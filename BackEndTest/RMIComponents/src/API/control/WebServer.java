@@ -136,16 +136,19 @@ public abstract class WebServer implements Runnable {
                             + " > HTTP/1.0 200 OK");
 
                     out.writeBytes("HTTP/1.0 200 OK\r\n");
+					out.writeBytes("Set-Cookie: Customer=DAGNU; Version=1; Path=/\n");
                     out.writeBytes("Content-Length: " + body.length + "\r\n");
                     out.writeBytes("Content-Type: " + type + "\r\n");
                     out.writeBytes("\r\n");
-
-                    if (!method.equals("HEAD")) {
-                    	// Den Inhalt schreiben
-                    	out.writeBytes(header.getHeader());
-                    	
-                        out.write(body, 0, body.length);
-                    }
+					if(!method.equals("HEAD")){
+						// Inhalt der Datei schreiben
+						if (type.equals("text/html")) {
+							// HTML Kopf schreiben                    	
+                    		out.writeBytes(header.getHeader());  
+                    		// TODO Ausgabe des linken und rechten frames                     	 	
+                    	}
+                    	out.write(body, 0, body.length);
+					}
                 } catch (HTTPException e) {
                     String method= getMethod(e.requestLine);
                     File file= null;
