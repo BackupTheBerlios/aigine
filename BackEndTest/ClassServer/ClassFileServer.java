@@ -1,4 +1,4 @@
-// Copyright MageLang Institute; Version $Id: ClassFileServer.java,v 1.1 2004/08/09 11:41:49 danny Exp $
+// Copyright MageLang Institute; Version $Id: ClassFileServer.java,v 1.2 2004/08/11 22:41:39 mr_nice Exp $
 
 /*
  * Copyright (c) 1996, 1996, 1997 Sun Microsystems, Inc. All Rights Reserved.
@@ -23,6 +23,8 @@ import java.io.*;
 public class ClassFileServer extends ClassServer {
 	private String classpath;
 
+	private String externalpath;
+
 	private static int DefaultServerPort = 2001;
 
 	/**
@@ -33,6 +35,20 @@ public class ClassFileServer extends ClassServer {
 	public ClassFileServer(int port, String classpath) throws IOException {
 		super(port);
 		this.classpath = classpath;
+	}
+
+	/**
+	 * Constructs a ClassFileServer which contains external jar files
+		 * @param port
+		 * @param classpath
+		 * @param externpath
+		 */
+	public ClassFileServer(int port, String classpath, String externpath)
+		throws IOException {
+		super(port);
+		this.classpath = classpath;
+		this.externalpath = externpath;
+		// TODO Auto-generated constructor stub
 	}
 
 	/**
@@ -96,6 +112,7 @@ public class ClassFileServer extends ClassServer {
 	public static void main(String args[]) {
 		int port = DefaultServerPort;
 		String classpath = "";
+		String externpath = null;
 
 		if (args.length >= 1) {
 			port = Integer.parseInt(args[0]);
@@ -103,15 +120,47 @@ public class ClassFileServer extends ClassServer {
 
 		if (args.length >= 2) {
 			classpath = args[1];
+			//			by mr_nice: to set external .jars
+			try {		
+				externpath = args[2];				
+			}catch(ArrayIndexOutOfBoundsException outofBounds){
+				System.out.println("no external path are given! "+outofBounds.getMessage());
+			}
+		}
+		if (externpath != null) {
+			try {
+				new ClassFileServer(port, classpath, externpath);
+				System.out.println("ClassFileServer started...");
+				System.out.println(
+					"Started whith classpath = "
+						+ classpath
+						+ " | on port = "
+						+ port
+						+ " | and the externalDir = "
+						+ externpath);
+			} catch (IOException e) {
+				System.out.println(
+					"Unable to start ClassServer: " + e.getMessage());
+				e.printStackTrace();
+			}
+
+		} else {
+
+			try {
+				new ClassFileServer(port, classpath);
+				System.out.println("ClassFileServer started...");
+				System.out.println(
+					"Started whith classpath = "
+						+ classpath
+						+ " | on port = "
+						+ port);
+			} catch (IOException e) {
+				System.out.println(
+					"Unable to start ClassServer: " + e.getMessage());
+				e.printStackTrace();
+			}
 		}
 
-		try {
-			new ClassFileServer(port, classpath);
-			System.out.println("ClassFileServer started...");
-		} catch (IOException e) {
-			System.out.println(
-				"Unable to start ClassServer: " + e.getMessage());
-			e.printStackTrace();
-		}
 	}
+
 }
