@@ -1,6 +1,6 @@
-/* Game Engine Design */
-
-
+/* Game Engine Design 
+ * SceneManagenent.h  
+ */
 
 #ifndef SCENEMANAGEMENT_H
 
@@ -18,34 +18,43 @@ class Renderer;
 
 /**
  * Das "SceneManagement" realisiert den Zugriff auf die "Objekte" - Hinzufügen,
- * Löschen, Eigenschaften ändern etc.. z.B. Aufruf an ein Model seine Vertizes
- * zwischen 2 Keyframes zu interpolieren.  Also das Ändern der Daten die
- * der "SceneGraph" ausgibt. weiter Aufgaben:
- * Einteilen der Welt in einen Octtree und Abfrage für Volumen, Sichtbarkeit etc.
- * Vorhandensein eines Spiegels (Scene muss zwei Mal gerendert werden)
- * ist dafür verantwortlich, dass alle sichtbaren "Objekte" gezeichnet werden.
- */
+ * Löschen, Eigenschaften ändern etc. - Also das Ändern der Daten die
+ * der "SceneGraph" ausgibt. 
+ * 
+ * TODO:
+ * - geladene Objekte in den "SceneGraph" Baum hängen
+ *   (derzeitig wird noch ein einzelnes tmpObject verwendet)
+ * - FrustumCulling (nur sichtbare Objekte zeichnen)
+ * - Einteilen der Welt in einen Octtree und Abfrage für Volumen, Sichtbarkeit etc.
+ *
+ * @author Danny Graef, Tobias Harpering
+ * @date 2004-01-06
+ */ 
 class SceneManagement : public SceneGraph, public GraphicPipeline
 {
 
 public:
-
+	/**
+	 * Konstruktor	 
+	 */
     SceneManagenent();
 
+    /**
+     * Lädt ein 3D Objekt aus einer Datei.
+     * @param fileType Typ der Datei
+     * @param fileName Name der zu ladenen Datei
+     */
     void load(string fileType, string fileName);
 
     /**
-     * Ausgabe der Szene. 
+     * Ausgabe der Szene.
+     * Ruft die Methoden von "GraphicPipeline" und
+     * "SceneGraph" für die Initialisierung und das
+     * Rendering der Objekte auf.
      */
     void display();
 
 private:
-	
-
-	/**
-     * returns the actual window-size of the current GLWindow
-     */
-	//int * getWindowSize();
 
     /**
      * @supplierCardinality 1

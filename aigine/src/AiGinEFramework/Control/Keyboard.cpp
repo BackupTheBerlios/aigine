@@ -7,19 +7,23 @@
 void Keyboard::keyAction(unsigned char key, int mouseX, int mouseY){
    switch (key) {
       case ('w'): // move front
-		  this->sceneMan->getCamera()->moveCamera(0.5);
+		  //this->sceneMan->getCamera()->moveCamera(0.5);
+      this->sceneMan->getCamera()->moveForward(0.5);
          glutPostRedisplay();
          break;
       case ('s'): // nach back
-		  this->sceneMan->getCamera()->moveCamera(-0.5);
+		  //this->sceneMan->getCamera()->moveCamera(-0.5);
+        this->sceneMan->getCamera()->moveBack(-0.5);
          glutPostRedisplay();
          break;
       case ('a'): // move left
-		  this->sceneMan->getCamera()->strafeCamera(-0.5);
+		  //this->sceneMan->getCamera()->strafeCamera(-0.5)
+        this->sceneMan->getCamera()->moveLeft(-0.5);
          glutPostRedisplay();
          break;
       case ('d'): // move right
-		  this->sceneMan->getCamera()->strafeCamera(0.5);
+		  //this->sceneMan->getCamera()->strafeCamera(0.5); 
+        this->sceneMan->getCamera()->moveRight(0.5);
          glutPostRedisplay();
          break;
       case 27: // ESC key code

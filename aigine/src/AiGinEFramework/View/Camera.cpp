@@ -1,4 +1,14 @@
 /* Game Engine Design */
+//////////////////////////////////////////////////////////////////////
+//                       C A M E R A . C P P                        //
+//                                                                  //
+//__________________________________________________________________//
+//                                                                  //
+// @author Danny Graef, Tobias Harpering                            //
+// @description: Camara control implementation
+// @date
+//////////////////////////////////////////////////////////////////////
+
 
 #include <math.h>
 
@@ -7,25 +17,68 @@
 #include "../Model/Point3D.h"
 #include "../Model/Vector3D.h"
 
+
+/**
+*  Constructor        
+*        
+* @author
+* @return
+* @param 
+* ________________________________________________________________________________________________________________
+*/        
 Camera::Camera(){}
 
+/**
+* Gibt die Position der acturellen Kammera zurueck
+*
+* @author 
+* @return Ein 3D Vector (x,y,z)
+* @param
+* ________________________________________________________________________________________________________________
+*/
 Point3D* Camera::getPosition(){ 
 	return this->position; 
 }
 
+/**
+*  
+* @author   
+* @return 
+* @param
+* ________________________________________________________________________________________________________________
+*/ 
 
 Point3D * Camera::getLookAtPosition() {
 	return this->lookAtPosition;
 }
 
+/**      
+*        
+* @author
+* @return
+* @param
+* ________________________________________________________________________________________________________________ 
+*/    
+
 void Camera::setLookAtPosition(Point3D * lookAtPosition){
 	this->lookAtPosition= lookAtPosition;
 }
 
+/**      
+*        
+* @author
+* @return
+* @param
+* ________________________________________________________________________________________________________________
+*/       
 Point3D * Camera::getRotation(){ return rotation; }
 
 /**
 *	Set the Rotation of the Camera controled with the Mouse (Shooter Style)
+* @author 
+* @return 
+* @param
+* ________________________________________________________________________________________________________________ 
 */
 void Camera::setRotation(Point3D * rotation, int mouseX, int mouseY, int* CurrentWinSize)	{
 	
@@ -40,7 +93,7 @@ void Camera::setRotation(Point3D * rotation, int mouseX, int mouseY, int* Curren
 	if( (mouseX == middleX) && (mouseY == middleY) ) return;
 	
 
-	cout<< "-------------------------------------------------------------------------------------"<<endl;
+	cout<< "----------------------------------------------------------------------------"<<endl;
 	cout <<"current mouse : "<< mouseX <<" | "<< mouseY << endl;
 	
 
@@ -69,28 +122,29 @@ void Camera::setRotation(Point3D * rotation, int mouseX, int mouseY, int* Curren
 		// movements, we need to get a perpendicular vector from the
 		// camera's view vector and up vector.  This will be the axis.
 		//Point3D vAxis = Cross(m_vView - m_vPosition, m_vUpVector);
-		Point3D normal = Point3D(rotation->getX() , rotation->getY(), rotation->getZ());
 		Point3D temp = *lookAtPosition - *position;	
-		normal = cross(&temp, rotation);
+		Point3D normal = cross(&temp, rotation);
 			
 		normal = getNormalVector(normal);
 
 		// Rotate around our perpendicular axis and along the y-axis
 		RotateView(angleZ, normal.getX(), normal.getY(), normal.getZ());
 		RotateView(angleY, 0, 1, 0);
+
+    // Ausgabe der aktuellen LookAtPosition
 		lookAtPosition->print("lookAtPosition : ");
 	}
 
 
 
-	// aus den Winkeln eine Vektor machen
-	//Point3D * vAxis = cross(m_vView - m_vPosition, m_vUpVector);
-	//Point3D normal = Point3D(rotation->getX() , rotation->getY(), rotation->getZ());
-	//Point3D temp = Point3D(rotation->getX() - 1 , rotation->getY() - 1, rotation->getZ() - 1);
+
+
+
+
 	
 	// operatoren test
 	/////////////////////////////////////////////
-	/*	normal = normal + temp;
+/*	normal = normal + temp;
 		normal.print("addtion = ");
 		normal = normal - temp;
 		normal.print("subtraktion = ");
@@ -99,23 +153,17 @@ void Camera::setRotation(Point3D * rotation, int mouseX, int mouseY, int* Curren
 		normal = normal / 10;
 		normal.print("division = ");
 	/////////////////////////////////////////////
-
-	temp = *lookAtPosition - *position;	
-	normal = cross(&temp, rotation);
-	temp.print("temp :   ");
-	rotation->print("rotation :   ");
-	normal.print("cross (temp, rotation:  ");
-	normal = getNormalVector(normal);
-	normal.print("normalize:  ");
-
-	this->rotation->setX(normal.getZ());
-	this->rotation->setY(normal.getX());
-	this->rotation->setZ(normal.getY());
 */
 }
 
 
-
+/**      
+*        
+* @author
+* @return
+* @param 
+* ________________________________________________________________________________________________________________
+*/
 /////////////////////////////////////// CROSS \\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\*
 /////
 /////	This returns a perpendicular vector from 2 given vectors by taking the cross product.
@@ -137,7 +185,13 @@ Point3D Camera::cross(Point3D * vVector1, Point3D * vVector2)
   
 
 
-  
+/**      
+*        
+* @author
+* @return
+* @param 
+* _______________________________________________________________________________________
+*/  
 /////////////////////////////////////// MAGNITUDE \\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\*
 /////
 /////	This returns the magnitude of a vector
@@ -153,7 +207,12 @@ float Camera::magnitude(Point3D vNormal)
 }
 
 
-
+/**      
+*        
+* @author
+* @return
+* @param 
+*/
 /////////////////////////////////////// NORMALIZE \\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\*
 /////
 /////	This returns a normalize vector (A vector exactly of length 1)
@@ -173,7 +232,12 @@ Point3D Camera::getNormalVector(Point3D vVector)
 	return vVector;										
 }
 
-
+/**      
+*        
+* @author
+* @return
+* @param 
+*/
 ///////////////////////////////// ROTATE VIEW \\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\*
 /////
 /////	This rotates the view around the position using an axis-angle rotation
@@ -213,7 +277,12 @@ void Camera::RotateView(float angle, float x, float y, float z)
 }
 
 
-
+/**      
+*        
+* @author
+* @return
+* @param 
+*/
 ///////////////////////////////// MOVE CAMERA \\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\*
 /////
 /////    This will move the camera forward or backward depending on the speed
@@ -224,7 +293,7 @@ void Camera::moveCamera(float speed)
 {
     // Get the current view vector (the direction we are looking)
     Point3D vVector = *lookAtPosition - *position;
-/////// * /////////// * /////////// * NEW * /////// * /////////// * /////////// *
+
 
     // I snuck this change in here!  We now normalize our view vector when
     // moving throughout the world.  This is a MUST that needs to be done.
@@ -232,7 +301,7 @@ void Camera::moveCamera(float speed)
     // is normalized too.
     vVector = getNormalVector(vVector);
     
-/////// * /////////// * /////////// * NEW * /////// * /////////// * /////////// *
+
 
     position->x = position->x + vVector.x * speed;        // Add our acceleration to our position's X
     position->z = position->z + vVector.z * speed;        // Add our acceleration to our position's Z
@@ -240,6 +309,14 @@ void Camera::moveCamera(float speed)
     lookAtPosition->z = lookAtPosition->z + vVector.z * speed;            // Add our acceleration to our view's Z
 }
 
+
+
+/**      
+*        
+* @author
+* @return
+* @param 
+*/
 /////// * /////////// * /////////// * NEW * /////// * /////////// * /////////// *
 
 ///////////////////////////////// STRAFE CAMERA \\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\*
@@ -277,27 +354,139 @@ void Camera::strafeCamera(float speed)
     lookAtPosition->z = lookAtPosition->z + strafe.z * speed;
 }
 
-void Camera::moveRight(){}
-void Camera::moveLeft(){}
-void Camera::moveUp(){}
-void Camera::moveDown(){
-  this->position->setY(this->position->getY() - 1);
-}
-void Camera::moveForward(){
-this->position->setZ(this->position->getZ() +1);
+
+
+// ________________________________________________________________________________________________________________
+// move -> keyboard control
+// ________________________________________________________________________________________________________________
+
+/**      
+*        
+* @author 
+* @return
+* @param 
+*/
+void Camera::moveRight(float speet){
+strafeCamera(speet); 
 }
 
-void Camera::moveBack(){
+/**      
+*        
+* @author
+* @return
+* @param 
+*/
+void Camera::moveLeft(float speet){
+ strafeCamera(speet);
 }
+
+/**      
+*        
+* @author
+* @return
+* @param 
+*/
+void Camera::moveUp(float speet){}
+
+/**      
+*        
+* @author
+* @return
+* @param 
+*/
+void Camera::moveDown(float speet){
+ // this->position->setY(this->position->getY() - 1);
+}
+
+/**      
+*        
+* @author
+* @return
+* @param 
+*/
+void Camera::moveForward(float speet){
+  moveCamera(speet);
+
+}
+
+/**      
+*        
+* @author
+* @return
+* @param 
+*/
+void Camera::moveBack(float speet){
+  moveCamera(speet);
+}
+
+// ________________________________________________________________________________________________________________
+// turn -> mouse control
+// ________________________________________________________________________________________________________________
+/**      
+*        
+* @author
+* @return
+* @param 
+*/
 void Camera::turnUp(){}
+
+/**      
+*        
+* @author
+* @return
+* @param 
+*/
 void Camera::turnDown(){}
+
+/**      
+*        
+* @author
+* @return
+* @param 
+*/
 void Camera::turnRight(){}
+
+/**      
+*        
+* @author
+* @return
+* @param 
+*/
 void Camera::turnLeft(){}
 	
+/**      
+*        
+* @author
+* @return
+* @param 
+*/
 void Camera::attachViewport(Viewport* param){}
+
+/**      
+*        
+* @authord
+* @return
+* @param 
+*/
 void Camera::set(){}
+
+/**      
+*        
+* @author
+* @return
+* @param 
+*/
 Camera::Camera(Point3D* position, Point3D* lookAtPosition ,Point3D * rotation){
 	this->position = position;
 	this->lookAtPosition = lookAtPosition;
 	this->rotation = rotation;	
 }
+
+
+/**               
+* Destructor    
+* @author
+* @return
+* @param 
+*/                
+Camera::~Camera(){}
