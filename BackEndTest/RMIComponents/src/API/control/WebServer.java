@@ -19,7 +19,8 @@ import java.util.HashMap;
 import java.util.Hashtable;
 
 import API.control.web.HeadFrame;
-
+import API.control.web.LeftFrame;
+import API.control.web.RightFrame;
 import exceptions.HTTPException;
 
 /**
@@ -39,7 +40,18 @@ public abstract class WebServer implements Runnable {
 	 * Für die Ausgabe des Headers.
 	 */
 	private HeadFrame header = new HeadFrame();
+	
+	/**
+	 * Für die Ausgabe der rechten Blockseite.
+	 */
+	private RightFrame right = new RightFrame();
 
+
+	/**
+	 * Für die Ausgabe der linken Blockseite.
+	 */
+	private LeftFrame left = new LeftFrame();
+	
     private int port;
     private String root;
 
@@ -131,6 +143,7 @@ public abstract class WebServer implements Runnable {
                     if (!method.equals("HEAD")) {
                     	// Den Inhalt schreiben
                     	out.writeBytes(header.getHeader());
+                    	
                         out.write(body, 0, body.length);
                     }
                 } catch (HTTPException e) {
