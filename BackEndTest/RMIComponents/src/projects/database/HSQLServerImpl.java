@@ -69,7 +69,7 @@ public class HSQLServerImpl implements HSQLServer {
 	 * @see API.interfaces.ServerHandle#register(API.model.RemoteObject)
 	 */
 	public String register(RemoteObject service) throws RemoteException {
-		// TODO Auto-generated method stub
+		// TODO Registrierung am HSQL Servers
 		return null;
 	}
 
@@ -79,7 +79,7 @@ public class HSQLServerImpl implements HSQLServer {
 	 * @see API.interfaces.ServerHandle#registerAdminClient(API.model.RemoteObject, java.lang.String, java.lang.String)
 	 */
 	public String registerAdminClient(RemoteObject remoteObject, String usr, String pass) throws RemoteException {
-		// TODO Auto-generated method stub
+		// TODO AdminClient Registrierung am HSQL Server
 		return null;
 	}
 
@@ -89,7 +89,7 @@ public class HSQLServerImpl implements HSQLServer {
 	 * @see API.interfaces.ServerHandle#checkClientConnections()
 	 */
 	public RemoteObjectTable checkClientConnections() throws RemoteException {
-		// TODO Auto-generated method stub
+		// TODO Überprüfen der mit dem HSQL Server verbunden Clients.
 		return null;
 	}
 }

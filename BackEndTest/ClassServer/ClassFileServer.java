@@ -1,4 +1,4 @@
-// Copyright MageLang Institute; Version $Id: ClassFileServer.java,v 1.2 2004/08/11 22:41:39 mr_nice Exp $
+// Copyright MageLang Institute; Version $Id: ClassFileServer.java,v 1.3 2004/08/14 12:13:46 danny Exp $
 
 /*
  * Copyright (c) 1996, 1996, 1997 Sun Microsystems, Inc. All Rights Reserved.
@@ -48,7 +48,7 @@ public class ClassFileServer extends ClassServer {
 		super(port);
 		this.classpath = classpath;
 		this.externalpath = externpath;
-		// TODO Auto-generated constructor stub
+		// TODO JAR Dateien verarbeiten
 	}
 
 	/**

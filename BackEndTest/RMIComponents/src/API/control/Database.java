@@ -24,7 +24,7 @@ public abstract class Database extends Server {
 	 */
 	public Database() throws RemoteException {
 		super();
-		// TODO Auto-generated constructor stub
+		// TODO Datenbank starten
 	}
 
 	/**
@@ -33,7 +33,6 @@ public abstract class Database extends Server {
 	 */
 	public Database(int port) throws RemoteException {
 		super(port);
-		// TODO Auto-generated constructor stub
 	}
 
 	/**
@@ -48,7 +47,6 @@ public abstract class Database extends Server {
 		RMIServerSocketFactory ssf)
 		throws RemoteException {
 		super(port, csf, ssf);
-		// TODO Auto-generated constructor stub
 	}
 	
 	
@@ -61,7 +59,6 @@ public abstract class Database extends Server {
 		String usr,
 		String pass)
 		throws RemoteException {
-		// TODO Auto-generated method stub
 		return super.register(remoteObject, usr, pass);
 	}
 
