@@ -66,9 +66,9 @@ void GraphicPipeline::initDisplay(){
    Vector3D* pc = lnkCamera->getPosition();
    Vector3D* lap = lnkCamera->getLookAtPosition();
    Vector3D* nv = lnkCamera->getUpVector();
-   gluLookAt (	pc->getX(), pc->getY(), pc->getZ(),    // Position
-				lap->getX(), lap->getY(), lap->getZ(), // Blickpunkt 
-				nv->getX(), nv->getY(), nv->getZ());   // Senkrechtvektor 
+   gluLookAt (	pc->x, pc->y, pc->z,    // Position
+				lap->x, lap->y, lap->z, // Blickpunkt 
+				nv->x, nv->y, nv->z);   // Senkrechtvektor 
    // Skalierungsmatrix setzten
    glScalef (1.0, 1.0, 1.0); 
    
