@@ -23,7 +23,7 @@ public class VTDatabaseImpl extends Database implements HSQLServer  {
 	/**
 	 * 
 	 */
-	public VTDatabaseImpl() {
+	public VTDatabaseImpl() throws RemoteException{
 		System.out.println("=>VTDatabaseImpl.constructor\n");
 		System.out.println("HSQLServer starten mit der in der properties spezialiseierten Datenbank");
 		//Server hsqlserver = new Server();

@@ -1,11 +1,11 @@
 package projects.voting;
 
-import java.io.IOException;
 import java.rmi.RemoteException;
 import java.util.Enumeration;
 
 import projects.interfaces.VTClient;
 import projects.interfaces.VTServer;
+import projects.voting.control.HelperXmlPersitence;
 import projects.voting.model.Vote;
 import projects.voting.model.VoteTable;
 import API.control.Server;
@@ -22,6 +22,7 @@ public class VTServerImpl extends Server implements VTServer {
      * die Votes
      */
     private VoteTable votes= null;
+    private HelperXmlPersitence hxp;
 
     /** 
      * Start des Servers und einlesen der Votes.
@@ -29,13 +30,9 @@ public class VTServerImpl extends Server implements VTServer {
      */
     public VTServerImpl() throws RemoteException {
         System.out.println("=> VTServerImpl.VTServerImpl()");
-        try {
-            votes= new VoteTable("votes.dat");
-        } catch (IOException e) {
-            e.printStackTrace();
-            System.out.println(
-                "Fehler in VTServerImpl.VTServerImpl() > " + e.getMessage());
-        }
+        hxp= new HelperXmlPersitence("shellvotes");
+
+        votes= hxp.getVoteTable();
         System.out.println("<= VTServerImpl.VTServerImpl()");
     }
 
@@ -47,11 +44,11 @@ public class VTServerImpl extends Server implements VTServer {
         System.out.println("=> VTServerImpl.updateClients()");
         Enumeration elem= remoteObjects.elements();
         while (elem.hasMoreElements()) {
-            RemoteObject remoteObject = null;
+            RemoteObject remoteObject= null;
             try {
                 remoteObject= (RemoteObject) elem.nextElement();
                 System.out.println("try update > " + remoteObject + "\n");
-				VTClient client= (VTClient) remoteObject.getApp();
+                VTClient client= (VTClient) remoteObject.getApp();
                 System.out.println("\tfor remoteObject" + client + "\n");
                 client.update(votes);
             } catch (RemoteException e) {
@@ -72,17 +69,16 @@ public class VTServerImpl extends Server implements VTServer {
                         + " > "
                         + e.getMessage());
                 remoteObjects.remove(remoteObject);
+            } catch (Exception e) {
+                e.printStackTrace();
+                System.out.println(
+                    "Fehler in VTServerImpl.updateClients() "
+                        + "update fehlgeschlagen:\n\t"
+                        + remoteObject
+                        + " > "
+                        + e.getMessage());
+                remoteObjects.remove(remoteObject);
             }
-			catch (Exception e) {
-							e.printStackTrace();
-							System.out.println(
-								"Fehler in VTServerImpl.updateClients() "
-									+ "update fehlgeschlagen:\n\t"
-									+ remoteObject
-									+ " > "
-									+ e.getMessage());
-							remoteObjects.remove(remoteObject);
-						}
         }
         System.out.println("<= VTServerImpl.updateClients()");
     }
@@ -103,6 +99,14 @@ public class VTServerImpl extends Server implements VTServer {
         System.out.println("<= VTServerImpl.register()");
         return result;
     }
+    /**
+     * ruft in der votetable die save() welche 
+     * für persitenz in der ....votes_config.xml sorgt
+     *
+     */
+    public synchronized void save() {
+        hxp.save();
+    }
 
     /**
      * Abgabe eines Votes.
@@ -112,6 +116,7 @@ public class VTServerImpl extends Server implements VTServer {
         if (votes.containsKey(voteid)) {
             Vote vote= (Vote) votes.get(voteid);
             vote.setCount(vote.getCount() + 1);
+            save();
         }
         this.updateClients();
     }
@@ -120,13 +125,12 @@ public class VTServerImpl extends Server implements VTServer {
      * @see projects.interfaces.VTServer#webvote(java.lang.String)
      */
     public VoteTable webvote(String voteid) throws RemoteException {
-        // TODO Auto-generated method stub
-		if (votes.containsKey(voteid)) {
-			Vote vote= (Vote) votes.get(voteid);
-			vote.setCount(vote.getCount() + 1);
-		}
-		this.updateClients();
-		return votes;
+        if (votes.containsKey(voteid)) {
+            Vote vote= (Vote) votes.get(voteid);
+            vote.setCount(vote.getCount() + 1);
+        }
+        this.updateClients();
+        return votes;
     }
 
 }
