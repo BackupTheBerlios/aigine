@@ -12,6 +12,8 @@
 SceneManagement* sm;
 Keyboard* kb;
 Mouse* m;
+AiGinEObject* knie;
+int dir;
 
 void display(void)
 {
@@ -39,6 +41,20 @@ void passivemotion(int x, int y)
 void keyboard(unsigned char key, int x, int y)
 {
 	kb->keyAction(key, x, y);
+}
+
+void littleAnim() {
+	cout << knie->getRotation()->x << endl;
+	if( knie->getRotation()->x > 0) {
+		dir = -1;
+	}
+	if(knie->getRotation()->x < -45) {
+		dir = 1;
+	}
+
+	knie->getRotation()->x += 1 * dir;
+	cout << knie->getRotation()->x << endl;
+	glutPostRedisplay();
 }
 
 void testPrimObjects() {
@@ -73,6 +89,8 @@ void testPrimObjects() {
 	gelenk_u_r->setTranslation(new Translation3D(0,-1.25,0));
 	gelenk_u_r->setScale(new Scale3D(1,1,1));
 	gelenk_u_r->setRotation(new Rotation3D(-45,1,0,0));
+	knie = gelenk_u_r;
+	dir = 1;
 
 	//Segment_Unten_Rechts
 	AiGinEObject* seg_u_r = sm->addObjectPrim(new ageObjectPrim(),gelenk_u_r,"child");
@@ -162,7 +180,8 @@ int main(int argc, char** argv)
 	glutDisplayFunc(display); // .. fuer die Bildgenerierung
     glutReshapeFunc(reshape); // .. fuer die Aenderung der Fenstergroesse
 	glutKeyboardFunc(keyboard); // .. fuer die Tastaturabfrage
-	glutPassiveMotionFunc(passivemotion); // fuer die Mausabfrage    
+	glutPassiveMotionFunc(passivemotion); // fuer die Mausabfrage
+//    glutIdleFunc(littleAnim);
     glutMainLoop(); // Kontrolle wird an GLUT uebergeben
     return 0;
 } 
