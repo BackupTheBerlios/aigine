@@ -10,6 +10,7 @@ import java.rmi.Remote;
 import java.rmi.RemoteException;
 
 import API.model.RemoteObject;
+import API.model.RemoteObjectTable;
 
 /**
  * @author tobi
@@ -41,4 +42,13 @@ public interface ServerHandle extends Remote{
 	 * @throws RemoteException
 	 */
 	String registerAdminClient(RemoteObject remoteObject, String usr, String pass) throws RemoteException;
+	
+	/**
+	 * Gibt die aktuelle Tabelle der registrierten Komponenten zurück.
+	 * 
+	 * @author danny
+	 * @since 10.08.2004 02:15:12
+	 * @version 0.01
+	 */
+	public RemoteObjectTable checkClientConnections() throws RemoteException;
 }

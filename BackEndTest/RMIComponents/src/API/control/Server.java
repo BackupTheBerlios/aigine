@@ -153,4 +153,21 @@ public abstract class Server extends UnicastRemoteObject {
 			System.out.println("\t updated client call > " + app);
 		return status;
 	}	
+	
+	/**
+	 * Gibt die aktuelle Tabelle der registrierten Komponenten zurück.
+	 * 
+	 * @author danny
+	 * @since 10.08.2004 02:15:12
+	 * @version 0.01
+	 * @see API.interfaces.ServerHandle#checkClientConnections()
+	 */
+	// TODO alle eingetragenden RemoteObjects brauchen eine test() Funktion,
+	// so dass der Server einen Check auf allen Objekten ausführen und diese
+	// ggf. aus der Tabelle entfernen kann.
+	// TODO update() Methode, die alle Clients abklappert und die übergebene Funktionalität
+	// auf den Clients ausführt.
+	public RemoteObjectTable checkClientConnections() throws RemoteException {
+		return remoteObjects;
+	}	
 }
