@@ -116,4 +116,17 @@ public class VTServerImpl extends Server implements VTServer {
         this.updateClients();
     }
 
+    /* (non-Javadoc)
+     * @see projects.interfaces.VTServer#webvote(java.lang.String)
+     */
+    public VoteTable webvote(String voteid) throws RemoteException {
+        // TODO Auto-generated method stub
+		if (votes.containsKey(voteid)) {
+			Vote vote= (Vote) votes.get(voteid);
+			vote.setCount(vote.getCount() + 1);
+		}
+		this.updateClients();
+		return votes;
+    }
+
 }

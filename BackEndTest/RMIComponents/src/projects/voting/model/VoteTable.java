@@ -63,17 +63,16 @@ public class VoteTable extends Hashtable {
 	public String toHTML() {
 		StringBuffer svotes = new StringBuffer();		
 		Enumeration enum = this.keys();
-		
 		svotes.append("\n<table border='1'>");
 		while (enum.hasMoreElements()) {
 			svotes.append("\n\t<tr>\n\t\t<td>");
 			String key = (String) enum.nextElement();
 			Vote vote = (Vote) this.get(key);
-			svotes.append(key);
+			svotes.append(vote.getDescription());
 			svotes.append("\n\t\t</td>\n\t\t<td>");
 			svotes.append(vote.getCount());
-			svotes.append("\n\t\t</td>\n\t\t<td>");
-			svotes.append(vote.getDescription());			
+			svotes.append("\n\t\t</td>\n\t\t<td>");			
+			svotes.append("<input type='radio' name='voteradio' value='" + key + "'>" + key);			
 			svotes.append("\n\t\t</td>\n\t</tr>");
 		}
 		svotes.append("\n</table>");

@@ -5,8 +5,10 @@
 package projects.voting;
 
 import java.rmi.RemoteException;
+import java.util.Hashtable;
 
 import projects.interfaces.VTClient;
+import projects.interfaces.VTServer;
 import projects.voting.model.VoteTable;
 import API.control.WebServer;
 import API.interfaces.ServerHandle;
@@ -18,48 +20,70 @@ import API.model.RemoteObject;
  * @since 08.08.2004 17:06:01
  * @version 0.01
  */
-public class VTWebServerImpl extends WebServer implements VTClient{
-	private final int default_port= 8080;
-	private final String default_root= "public_html";
-	private VoteTable votes = null;
-    
+public class VTWebServerImpl extends WebServer implements VTClient {
+    private final int default_port= 8080;
+    private final String default_root= "public_html";
+    private VoteTable votes= null;
+    private VTServer server = null;
     
     /* (non-Javadoc)
      * @see projects.interfaces.VTClient#update(projects.voting.model.VoteTable)
      */
     public void update(VoteTable votes) throws RemoteException {
         // TODO Ausgabe der Votes
-        this.votes = votes;
+        this.votes= votes;
     }
-	/**
-	 * Starts a web server with the deafult port and the default document root.
-	 * @see API.interfaces.Client#init(API.model.RemoteObject, API.interfaces.ServerHandle)
-	 */
-	public void init(RemoteObject compProps, ServerHandle server)
-		throws RemoteException {
-		// TODO zusätzlicher Paramter für Verzeichnis und Port des Webservers 
-		System.out.println(
-			"=> WebServer.init("
-				+ "RemoteObjectProperties "
-				+ compProps
-				+ ", Object"
-				+ server);
+    /**
+     * Starts a web server with the deafult port and the default document root.
+     * @see API.interfaces.Client#init(API.model.RemoteObject, API.interfaces.ServerHandle)
+     */
+    public void init(RemoteObject compProps, ServerHandle server)
+        throws RemoteException {
+        	this.server = (VTServer)server;       
+        // TODO zusätzlicher Paramter für Verzeichnis und Port des Webservers 
+        System.out.println(
+            "=> WebServer.init("
+                + "RemoteObjectProperties "
+                + compProps
+                + ", Object"
+                + server);
 
-		init(default_port, default_root);
+        init(default_port, default_root);
 
-		System.out.println(
-			"<= WebServer.init("
-				+ "RemoteObjectProperties "
-				+ compProps
-				+ " , Object"
-				+ server);
-	}
+        System.out.println(
+            "<= WebServer.init("
+                + "RemoteObjectProperties "
+                + compProps
+                + " , Object"
+                + server);
+    }
     /**
      * Gibt die Votings aus.
      * @see API.control.WebServer#getActionBody(java.lang.String[])
      */
-    protected byte[] getActionBody(String[] request) {
-        // TODO Umlenken auf den jeweiligen ActionEmpfänger
-        return votes.toHTML().getBytes();
+    protected byte[] getActionBody(String[] request, Hashtable requestProps) throws RemoteException {
+        StringBuffer site= new StringBuffer();
+
+        if (requestProps.get("op").equals("login")) {
+            // TODO Umlenken auf den jeweiligen ActionEmpfänger
+            site.append(
+                "\n<h1>Tschesch Kollega , "
+                    + requestProps.get("name")
+                    + " !</h1>\n");
+            site.append("\n<form action='vote.html' method='GET'>");
+            site.append("\n<input type='hidden' name='op' value='vote'>");
+            site.append(votes.toHTML());
+            site.append("\n<input type='submit' value='wählen'>");
+            site.append("\n</form>");
+            System.out.println("LOGIN from user : " + requestProps.get("name"));
+        } else if (requestProps.get("op").equals("vote")) {
+			site.append(
+				"\n<h1>vote for , "
+					+ requestProps.get("voteradio")
+					+ " !</h1>\n");
+			server.webvote((String) requestProps.get("voteradio"));
+			site.append(votes.toHTML());
+        }
+        return site.toString().getBytes();
     }
 }

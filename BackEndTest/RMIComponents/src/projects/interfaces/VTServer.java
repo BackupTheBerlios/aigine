@@ -6,6 +6,8 @@ package projects.interfaces;
 
 import java.rmi.RemoteException;
 
+import projects.voting.model.VoteTable;
+
 import API.interfaces.ServerHandle;
 
 /**
@@ -22,4 +24,9 @@ public interface VTServer extends ServerHandle{
 	 * @throws RemoteException
 	 */
 	void vote(String voteid) throws RemoteException;
+
+    /**
+     * @param object
+     */
+	VoteTable webvote(String voteid) throws RemoteException;
 }
