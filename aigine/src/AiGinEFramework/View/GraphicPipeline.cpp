@@ -79,7 +79,9 @@ void GraphicPipeline::initOpenGL(int argc, char** argv){
 	ambient[3] = 1.0; 
 	this->lnkLight->setAmbient(ambient);
 	
+	/*
 	this->enableLight(lnkLight,0);
+	/**/
 	//Translation3D * lightpos = new Translation3D(3.0,-30.0,1.0); //die position des lichtes +10 in alle richtungen
 
 	glEnable(GL_COLOR_MATERIAL);

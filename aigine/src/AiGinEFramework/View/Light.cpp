@@ -108,12 +108,8 @@ void Light::display() {
 	this->setAmbient(ambient);
 	this->display(1,"spot"); // spot leider noch nicht implementiert ..:-(
 
-
-
 }
 
 //Destructor
-Light::~Light()
-{
-
+Light::~Light() {
 }
