@@ -11,20 +11,23 @@ package API.control.web;
  * @since 16.08.2004 05:34:23
  * @version 0.01
  */
+
+// TODO (byDR) fällt raus wegen allgemeinerer Frame-Struktur
 public class HeadFrame {
 	private String title = "TITLE WEB Testumgebung VSYSBeleg";
-	private String content ="CONTENT Willkommen auf der Online Plattform";
+	private String content = "CONTENT Willkommen auf der Online Plattform";
+	
 	public String getHeader(){
 		StringBuffer header = new StringBuffer();
-		header.append("<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 4.01 Transitional//EN\">");
-		header.append("<html>\n<head>\n<title>" + title + "</title>\n");
-		header.append("\t<link rel=\"stylesheet\" href=\"design.css\" type=\"text/css\" />\n");
-		header.append("</head>\n<body>\n<table class=\"site\">\n<tr>\n\t<td colspan=\"3\">\n");
-		header.append("<!-- Header -->\n");
+//		header.append("<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 4.01 Transitional//EN\">");
+//		header.append("<html>\n<head>\n<title>" + title + "</title>\n");
+//		header.append("\t<link rel=\"stylesheet\" href=\"catalog.css\" type=\"text/css\" />\n");
+//		header.append("</head>\n<body>\n");
+//		header.append("<!-- Header -->\n");
 		
-		header.append(content);
+//		header.append(content);
 		
-		header.append("\t</td>\n</tr>\n<tr>\n");
+//		header.append("\t");
         return header.toString();
 	}
     /**

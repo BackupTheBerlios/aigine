@@ -5,23 +5,23 @@
 package API.control.web;
 
 import java.util.Hashtable;
-
 /**
  * @author Dennis
  * @since 2004-09-16
  * enthält ein 'Frameset', die Reihenfolge wird mit Positionierung im Basis-Template
- * verbunden.
+ * verbunden. *
  */
-public class Frames {
+public class RequestFrames {
+
 	private Hashtable frames = new Hashtable();
 
-	public Frames() {
+	public RequestFrames() {
 	}
 	/**
 		 * Fügt einen Frame hinzu.
 		 * @param newFrame, FrameNumber
 	 */
-	public int addFrame(BlockFrame newFrame, int FrameNumber) {
+	public int addFrame(RequestFrame newFrame, int FrameNumber) {
 		frames.put(new Integer(FrameNumber), newFrame);
 		return 0 ;
 	}
@@ -30,8 +30,8 @@ public class Frames {
 	 * Fügt einen Frame hinzu.
 	 * @param newFrame, FrameNumber
 	 */
-	public BlockFrame getFrame(int FrameNumber) {
-		BlockFrame fr = (BlockFrame) frames.get(new Integer(FrameNumber)) ;
+	public RequestFrame getFrame(int FrameNumber) {
+		RequestFrame fr = (RequestFrame) frames.get(new Integer(FrameNumber)) ;
 		return fr ;
 	}
 }
