@@ -3,7 +3,6 @@
 
 #include "Types3DS.h"
 #include "CLoad3DS.h"
-#include <gl/glut.h>
 
 #define TEXTURE_BMP 0
 #define TEXTURE_TGA 1  // not available
