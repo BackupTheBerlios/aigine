@@ -1,0 +1,215 @@
+package id4bz9gdqs5a4tzdqs5ao7d;
+
+/**
+@version 2.0
+@physicalPackage
+@__modelType diagram 
+*/
+class diagram {
+/**
+@__ref <oiref:cpp#Class#ageGM_Translation3D:oiref><oihard>
+@__modelType reference 
+@backgroundColor 255,153,0
+*/
+class reference {
+}/**
+@__ref <oiref:cpp#Class#ageGM_Rotation3D:oiref><oihard>
+@__modelType reference 
+@backgroundColor 255,153,0
+*/
+class reference1 {
+}/**
+@__ref <oiref:cpp#Class#ageGM_Viewport:oiref><oihard>
+@__modelType reference 
+@backgroundColor 255,153,0
+*/
+class reference2 {
+}/**
+@__ref <oiref:cpp#Class#ageGM_Vector2:oiref><oihard>
+@__modelType reference 
+@backgroundColor 255,153,0
+*/
+class reference3 {
+}/**
+@__ref <oiref:cpp#Class#ageGM_Tree:oiref><oihard>
+@__modelType reference 
+@backgroundColor 255,153,0
+*/
+class reference4 {
+}/**
+@__ref <oiref:cpp#Class#ageGM_Mesh:oiref><oihard>
+@__modelType reference 
+@backgroundColor 255,153,0
+*/
+class reference5 {
+}/**
+@__ref <oiref:cpp#Class#ageGM_Camera:oiref><oihard>
+@__modelType reference 
+@backgroundColor 255,153,0
+*/
+class reference6 {
+}/**
+@__ref <oiref:cpp#Class#ageGM_Vector3:oiref><oihard>
+@__modelType reference 
+@backgroundColor 255,153,0
+*/
+class reference7 {
+}/**
+@__ref <oiref:cpp#Class#ageGM_Scale3D:oiref><oihard>
+@__modelType reference 
+@backgroundColor 255,153,0
+*/
+class reference8 {
+}/**
+@__ref <oiref:cpp#Class#ageGM_Knot:oiref><oihard>
+@__modelType reference 
+@backgroundColor 255,153,0
+*/
+class reference9 {
+}/**
+@__ref <oiref:cpp#Class#ageGM_Light:oiref><oihard>
+@__modelType reference 
+@backgroundColor 255,153,0
+*/
+class reference11 {
+}/**
+@__ref <oiref:cpp#Class#ageGM_ObjectTree:oiref><oihard>
+@__modelType reference 
+@backgroundColor 255,0,0
+*/
+class reference12 {
+}/**
+@__ref <oiref:cpp#Class#ageGM_Model:oiref><oihard>
+@__modelType reference 
+@backgroundColor 255,153,0
+*/
+class reference13 {
+}/**
+@__ref <oiref:cpp#Class#ageGM_LookAtObjects:oiref><oihard>
+@__modelType reference 
+@backgroundColor 255,153,0
+*/
+class reference14 {
+}/**
+@__ref <oiref:cpp#Class#ageGM_List:oiref><oihard>
+@__modelType reference 
+@backgroundColor 255,153,0
+*/
+class reference15 {
+}/**
+@__ref <oiref:design#Class#id4bz9gdqs5a4tzdqs5ao7d.node:oiref><oihard>
+@__modelType reference 
+*/
+class reference70 {
+}/**
+@__ref <oiref:design#Class#id4bz9gdqs5a4tzdqs5ao7d.node21:oiref><oihard>
+@__modelType reference 
+*/
+class reference71 {
+}/**
+@__ref <oiref:design#Class#id4bz9gdqs5a4tzdqs5ao7d.node23:oiref><oihard>
+@__modelType reference 
+*/
+class reference72 {
+}/**
+@__ref <oiref:design#Class#id4bz9gdqs5a4tzdqs5ao7d.node25:oiref><oihard>
+@__modelType reference 
+*/
+class reference73 {
+}}/**
+@__tags
+@shapeType ClassDiagram 
+@backgroundColor 255,153,0
+*/
+class __tags {
+}/**
+@__options option.links = Rectilinear 
+*/
+class __options {
+}/**
+@__positions <oigroup:<oiref:design#Class#id4bz9gdqs5a4tzdqs5ao7d.node23:oiref>=1381,1281,269,40,0:oigroup>
+
+<oigroup:<oiref:cpp#Class#ageGM_Vector3:oiref>=1011,71,200,1180,0:oigroup>
+<oigroup:<oiref:cpp#Class#ageGM_LookAtObjects:oiref>=369,500,200,165,1:oigroup>
+<oigroup:Composite#supplierCardinality#MemberLink#<oiref:cpp#Member#ageGM_Tree#rootKnot:oiref>=1386,152,28,16,0:oigroup>
+<oigroup:<oiref:design#Class#id4bz9gdqs5a4tzdqs5ao7d.node25:oiref>=1380,1340,271,40,1:oigroup>
+<oigroup:Composite#supplierCardinality#MemberLink#<oiref:cpp#Member#ageGM_Model#scale:oiref>=498,1022,28,16,0:oigroup>
+<oigroup:<oiref:cpp#Extends#ageGM_Rotation3D#ageGM_Vector3:oiref>=730,1160,800,1160,800,1280,1111,1280,1111,1251:oigroup>
+<oigroup:MemberLink#<oiref:cpp#Member#ageGM_Model#translation:oiref>=280,912,530,912:oigroup>
+<oigroup:<oiref:cpp#Class#ageGM_Camera:oiref>=371,109,200,309,1:oigroup>
+<oigroup:<oiref:cpp#Class#ageGM_Scale3D:oiref>=530,1000,200,85,1:oigroup>
+<oigroup:<oiref:cpp#Class#ageGM_Light:oiref>=31,130,200,261,1:oigroup>
+<oigroup:<oiref:cpp#Extends#ageGM_Camera#ageGM_LookAtObjects:oiref>=471,418,471,500:oigroup>
+<oigroup:Composite#supplierCardinality#MemberLink#<oiref:cpp#Member#ageGM_Camera#upVector:oiref>=979,243,28,16,0:oigroup>
+<oigroup:MemberLink#<oiref:cpp#Member#ageGM_Model#normals:oiref>=280,700,1011,700:oigroup>
+<oigroup:Composite#supplierCardinality#MemberLink#<oiref:cpp#Member#ageGM_Model#translation:oiref>=498,892,28,16,0:oigroup>
+<oigroup:<oiref:cpp#Class#ageGM_Mesh:oiref>=1590,310,200,142,1:oigroup>
+<oigroup:MemberLink#<oiref:cpp#Member#ageGM_Knot#left:oiref>=1428,152,1428,212,1538,212,1538,102,1478,102:oigroup>
+<oigroup:<oiref:cpp#Class#ageGM_ObjectTree:oiref>=1580,20,117,82,1:oigroup>
+<oigroup:MemberLink#<oiref:cpp#Member#ageGM_Model#directionVector3D:oiref>=280,800,1011,800:oigroup>
+<oigroup:Composite#supplierCardinality#MemberLink#<oiref:cpp#Member#ageGM_Model#normals:oiref>=979,680,28,16,0:oigroup>
+<oigroup:<oiref:cpp#Extends#ageGM_Scale3D#ageGM_Vector3:oiref>=730,1020,840,1020,840,1280,1111,1280,1111,1251:oigroup>
+<oigroup:<oiref:design#Class#id4bz9gdqs5a4tzdqs5ao7d.node:oiref>=1381,1160,269,40,0:oigroup>
+<oigroup:Composite#supplierCardinality#MemberLink#<oiref:cpp#Member#ageGM_Model#directionVector3D:oiref>=979,780,28,16,0:oigroup>
+<oigroup:<oiref:cpp#Class#ageGM_Rotation3D:oiref>=530,1119,200,110,1:oigroup>
+<oigroup:<oiref:cpp#Class#ageGM_Knot:oiref>=1351,10,127,142,1:oigroup>
+<oigroup:Composite#supplierCardinality#MemberLink#<oiref:cpp#Member#ageGM_LookAtObjects#lookAtPosition:oiref>=979,562,28,16,0:oigroup>
+<oigroup:MemberLink#<oiref:cpp#Member#ageGM_Model#scale:oiref>=280,1042,530,1042:oigroup>
+<oigroup:Composite#supplierCardinality#MemberLink#<oiref:cpp#Member#ageGM_Knot#right:oiref>=1482,107,28,16,0:oigroup>
+<oigroup:MemberLink#<oiref:cpp#Member#ageGM_Model#texVertices:oiref>=180,1251,180,1341:oigroup>
+<oigroup:<oiref:cpp#Class#ageGM_List:oiref>=1601,511,200,414,1:oigroup>
+<oigroup:<oiref:cpp#Class#ageGM_Viewport:oiref>=1579,170,200,101,1:oigroup>
+<oigroup:<oiref:cpp#Class#ageGM_Translation3D:oiref>=530,870,200,85,1:oigroup>
+<oigroup:<oiref:cpp#Extends#ageGM_Light#ageGM_LookAtObjects:oiref>=131,391,131,520,369,520:oigroup>
+<oigroup:<oiref:cpp#Extends#ageGM_Translation3D#ageGM_Vector3:oiref>=730,938,880,938,880,1280,1111,1280,1111,1251:oigroup>
+<oigroup:MemberLink#<oiref:cpp#Member#ageGM_Tree#temporaryKnot:oiref>=1384,369,1384,152:oigroup>
+<oigroup:Composite#supplierCardinality#MemberLink#<oiref:cpp#Member#ageGM_Model#rotation:oiref>=498,1154,28,16,0:oigroup>
+<oigroup:MemberLink#<oiref:cpp#Member#ageGM_Camera#upVector:oiref>=571,263,1011,263:oigroup>
+<oigroup:MemberLink#<oiref:cpp#Member#ageGM_LookAtObjects#lookAtPosition:oiref>=569,582,1011,582:oigroup>
+<oigroup:<oiref:design#Class#id4bz9gdqs5a4tzdqs5ao7d.node21:oiref>=1381,1219,269,39,0:oigroup>
+<oigroup:Composite#supplierCardinality#MemberLink#<oiref:cpp#Member#ageGM_Model#texVertices:oiref>=148,1321,28,16,0:oigroup>
+<oigroup:Composite#supplierCardinality#MemberLink#<oiref:cpp#Member#ageGM_Model#vertices:oiref>=979,740,28,16,0:oigroup>
+<oigroup:Composite#supplierCardinality#MemberLink#<oiref:cpp#Member#ageGM_Tree#temporaryKnot:oiref>=1352,152,28,16,0:oigroup>
+<oigroup:MemberLink#<oiref:cpp#Member#ageGM_Model#rotation:oiref>=280,1174,530,1174:oigroup>
+<oigroup:MemberLink#<oiref:cpp#Member#ageGM_Knot#right:oiref>=1453,152,1453,187,1513,187,1513,127,1478,127:oigroup>
+<oigroup:Composite#supplierCardinality#MemberLink#<oiref:cpp#Member#ageGM_Knot#left:oiref>=1482,82,28,16,0:oigroup>
+<oigroup:MemberLink#<oiref:cpp#Member#ageGM_Tree#rootKnot:oiref>=1418,369,1418,152:oigroup>
+<oigroup:<oiref:cpp#Class#ageGM_Tree:oiref>=1331,369,200,430,1:oigroup>
+<oigroup:<oiref:cpp#Class#ageGM_Model:oiref>=80,640,200,611,0:oigroup>
+<oigroup:<oiref:cpp#Class#ageGM_Vector2:oiref>=81,1341,200,190,1:oigroup>
+<oigroup:MemberLink#<oiref:cpp#Member#ageGM_Model#vertices:oiref>=280,760,1011,760:oigroup>
+*/
+class __positions {
+}/**
+@shapeType Note
+@__modelType node
+@name Note1
+@text Bisher nicht definiert
+@backgroundColor 255,0,0 
+*/
+class node {
+}/**
+@shapeType Note
+@__modelType node
+@name Note2
+@text Teilweise definiert
+@backgroundColor 255,153,0 
+*/
+class node21 {
+}/**
+@shapeType Note
+@__modelType node
+@name Note3
+@text Definition abgeschlossen
+@backgroundColor 255,255,0 
+*/
+class node23 {
+}/**
+@shapeType Note
+@__modelType node
+@name Note4
+@text Definition & Implementation abgeschlossen
+@backgroundColor 0,255,0 
+*/
+class node25 {
+}

@@ -1,0 +1,84 @@
+
+
+/** ageGraphics (dx: DirectX Graphics, port: OpenGL)
+alles für 2D und 3D Grafik
+auf Direct3D und OpenGL basierend
+beinhaltet nützliche Funktionen, z.B. mathematische Hilfestellung
+*/
+
+/** ageAudio (dx: DirectX Audio, port: *)
+für Sound, Musik und Audioaufnahmen zuständig
+sowohl Effekte (Explosion etc.) als auch Hintergrundmusik
+- 3D Sound
+*/
+
+/** ageMultiPlay (dx: DirectPlay, port: *)
+Voice- und Textchat
+Multiplayer Konfiguration und Design sowie Handle der Netzwerkkommunikation
+(Server- und Spieleliste, Clan- und Multi-Spielverwaltung)
+*/
+
+/** ageNetwork (dx: DirectPlay, port *)
+Netzwerkkommunikation (SOAP, UDDI, WSDL)
+*/
+
+/** ageInput (dx: DirectInput, port *)
+Eingabe (Gamepad, Mouse, Keyboard)
+- ForceFeedback
+*/
+
+/** ageMedia (dx: DirectShow port: *)
+abspielen von Multimedia Dateien (mp3, mpeg Video)
+Wiedergabe von DVDs
+Steuerung von Aufnahmegeräten (Videokamera, EyeToy)
+*/
+
+/** ageSetup (dx: DirectSetup, port: configure + *)
+Abfrage und Installation von benötigten Bibliotheken und Treibern
+alles an Hardware und Systemzugriffen für die verwendeten 
+Frameworks wird geprüft und notfalls installiert bzw. ein Konfiguration
+angeboten.
+- DirectX oder OpenGL-Version
+- Netzwerktreiber und Verbindung
+- Codecs für Media Zugriffe (divx, mpeg)
+*/
+
+/** Math
+alle allgemeinen mathematischen Datentypen und Funktionen, die in mehreren
+Frameworks verwendet werden.
+*/
+
+
+/** MVC Richtlinie
+	V -> C -> M
+         ^
+        App.
+
+ * Model:
+alle Datenmodelle und die auf ihnen definierten Standard-Operatoren
+sowie alle für den Datentyp spezifischen Methoden, z.B.
+ageGM_Matrix: Determinate, Inverse; die Funktionen für
+Rotation und Skalierung werden in einem entsprechenden
+Control (ageGC_Matrix) für die grafikspezifische Verwendung der
+Matrix ausgelagert. Init-Funktion von ageGM_Model(laden aus Datei(3DS,obj,
+eigenes Format; nicht SceneGraph beschreibende Formate, wie VRML)
+
+ * Control
+Arbeitet auf dem Model. Stellt Funktionalität dar(implementiert Programmlogik)
+
+ * View
+Ausgabelkomponente
+*/
+
+/** Programmierrichtlinien:
+struct und enums werden zu Klassen! Verwendung von Unions(unterschiedliche
+Zugriffsmöglichkeiten, z.B. Matrix=float[4][4] & float[16] & float m11, m12,...)
+ * Namensgebung:
+ Packages:
+ 	- alle Frameworks erhalten die Kennzeichnung "age*" (z.B. ageGraphics)
+    - alle anderen werden direkt benannt (z.B. Math, Tools, Examples)
+ Klassen:
+ 	- eines Frameworks werden durch age + Package Kürzel + [MVC] Zugehörigkeit +
+      Name gekennzeichnet (z.B. ageGM_Matrix und ageGC_Matrix)
+    - alle anderen werden
+*/

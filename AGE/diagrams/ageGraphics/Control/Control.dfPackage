@@ -1,0 +1,115 @@
+package id4jvjudqs5a4tzdqs5ao6j;
+
+/**
+@version 2.0
+@physicalPackage
+@__modelType diagram 
+*/
+class diagram {
+/**
+@__ref <oiref:cpp#Class#ageGC_SceneManager:oiref><oihard>
+@__modelType reference
+@backgroundColor 255,153,0 
+*/
+class reference {
+}/**
+@__ref <oiref:cpp#Class#ageGC_ObjectPrim:oiref><oihard>
+@__modelType reference
+@backgroundColor 255,153,0 
+*/
+class reference16 {
+}/**
+@__ref <oiref:cpp#Class#ageGC_TextureManager:oiref><oihard>
+@__modelType reference
+@backgroundColor 255,0,0 
+*/
+class reference17 {
+}/**
+@__ref <oiref:cpp#Class#ageGC_SceneGraph:oiref><oihard>
+@__modelType reference
+@backgroundColor 255,153,0 
+*/
+class reference18 {
+}/**
+@__ref <oiref:cpp#Class#ageGC_Object:oiref><oihard>
+@__modelType reference
+@backgroundColor 255,153,0 
+*/
+class reference19 {
+}/**
+@__ref <oiref:design#Class#id4jvjudqs5a4tzdqs5ao6j.node:oiref><oihard>
+@__modelType reference 
+*/
+class reference66 {
+}/**
+@__ref <oiref:design#Class#id4jvjudqs5a4tzdqs5ao6j.node21:oiref><oihard>
+@__modelType reference 
+*/
+class reference67 {
+}/**
+@__ref <oiref:design#Class#id4jvjudqs5a4tzdqs5ao6j.node23:oiref><oihard>
+@__modelType reference 
+*/
+class reference68 {
+}/**
+@__ref <oiref:design#Class#id4jvjudqs5a4tzdqs5ao6j.node25:oiref><oihard>
+@__modelType reference 
+*/
+class reference69 {
+}}/**
+@__tags
+@shapeType ClassDiagram 
+@backgroundColor 255,153,0
+*/
+class __tags {
+}/**
+@__options 
+*/
+class __options {
+}/**
+@__positions <oigroup:<oiref:design#Class#id4jvjudqs5a4tzdqs5ao6j.node25:oiref>=520,550,271,40,1:oigroup>
+<oigroup:<oiref:cpp#Class#ageGC_TextureManager:oiref>=530,30,146,82,1:oigroup>
+<oigroup:<oiref:cpp#Class#ageGC_SceneManager:oiref>=260,10,200,181,1:oigroup>
+<oigroup:<oiref:cpp#Class#ageGC_ObjectPrim:oiref>=260,250,200,542,1:oigroup>
+<oigroup:<oiref:design#Class#id4jvjudqs5a4tzdqs5ao6j.node:oiref>=520,370,270,40,0:oigroup>
+<oigroup:<oiref:design#Class#id4jvjudqs5a4tzdqs5ao6j.node23:oiref>=520,490,270,40,0:oigroup>
+<oigroup:<oiref:cpp#Class#ageGC_Object:oiref>=50,380,110,149,1:oigroup>
+<oigroup:<oiref:cpp#Extends#ageGC_SceneManager#ageGC_SceneGraph:oiref>=260,100,210,100:oigroup>
+<oigroup:<oiref:cpp#Class#ageGC_SceneGraph:oiref>=10,10,200,270,1:oigroup>
+<oigroup:<oiref:design#Class#id4jvjudqs5a4tzdqs5ao6j.node21:oiref>=520,430,270,40,0:oigroup>
+<oigroup:<oiref:cpp#Extends#ageGC_ObjectPrim#ageGC_Object:oiref>=260,454,160,454:oigroup> 
+*/
+class __positions {
+}/**
+@shapeType Note
+@__modelType node
+@name Note1
+@text Bisher nicht definiert
+@backgroundColor 255,0,0 
+*/
+class node {
+}/**
+@shapeType Note
+@__modelType node
+@name Note2
+@text Teilweise definiert
+@backgroundColor 255,153,0 
+*/
+class node21 {
+}/**
+@shapeType Note
+@__modelType node
+@name Note3
+@text Definition abgeschlossen
+@backgroundColor 255,255,0 
+*/
+class node23 {
+}/**
+@shapeType Note
+@__modelType node
+@name Note4
+@text Definition & Implementation abgeschlossen
+@backgroundColor 0,255,0 
+*/
+class node25 {
+}

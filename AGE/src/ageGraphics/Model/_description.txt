@@ -1,0 +1,7 @@
+alle Datenmodelle
+die auf ihnen definierten Standard-Operatoren
+und alle Datentyp spezifischen Methoden, z.B.
+ageM_Matrix: Determinate, Inverse; die Funktionen für
+Rotation und Skalierung werden in einem entsprechenden
+Control (ageC_Matrix) für die grafikspezifische Verwendung der
+Matrix ausgelagert.

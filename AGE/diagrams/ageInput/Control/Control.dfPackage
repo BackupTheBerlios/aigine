@@ -1,0 +1,38 @@
+package id1hp5fdqs5a4tzdqs5aoc3;
+
+/**
+@version 2.0
+@physicalPackage
+@__modelType diagram 
+*/
+class diagram {
+/**
+@__ref <oiref:cpp#Class#ageIC_Keyboard:oiref><oihard>
+@__modelType reference 
+*/
+class reference {
+}/**
+@__ref <oiref:cpp#Class#ageIC_File:oiref><oihard>
+@__modelType reference 
+*/
+class reference56 {
+}/**
+@__ref <oiref:cpp#Class#ageIC_Mouse:oiref><oihard>
+@__modelType reference 
+*/
+class reference57 {
+}}/**
+@__tags
+@shapeType ClassDiagram 
+@backgroundColor 255,153,0
+*/
+class __tags {
+}/**
+@__options 
+*/
+class __options {
+}/**
+@__positions 
+*/
+class __positions {
+}

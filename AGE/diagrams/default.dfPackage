@@ -1,0 +1,147 @@
+package id4ef1fdqs5a4tzdqs5aldu;
+
+/**
+@version 2.0
+@physicalPackage
+@__modelType diagram 
+*/
+class diagram {
+/**
+@__ref <oiref:design#Class#id1feddqs5a4tzdqs5aowy.diagram:oiref><oihard>
+@__modelType reference
+@__fqn <oiref:#Package#Math:oiref> 
+*/
+class reference {
+}/**
+@__ref <oiref:design#Class#id36gg3dqs5a4tzdqs5aoap.diagram:oiref><oihard>
+@__modelType reference
+@__fqn <oiref:#Package#ageInput:oiref> 
+*/
+class reference1 {
+}/**
+@__ref <oiref:design#Class#id1g9ijdqs5a4tzdqs5ao5p.diagram:oiref><oihard>
+@__modelType reference
+@__fqn <oiref:#Package#ageGraphics:oiref> 
+*/
+class reference2 {
+}/**
+@__ref <oiref:design#Class#id3ip5cdqs5a4tzdqs5aosi.diagram:oiref><oihard>
+@__modelType reference
+@__fqn <oiref:#Package#examples:oiref> 
+*/
+class reference3 {
+}/**
+@__ref <oiref:design#Class#idwh3xdqs5a4tzdqs5ap6f.diagram:oiref><oihard>
+@__modelType reference
+@__fqn <oiref:#Package#tools:oiref> 
+*/
+class reference4 {
+}/**
+@__ref <oiref:design#Class#id3rgtsdqs5a4tzdqs5aoom.diagram:oiref><oihard>
+@__modelType reference
+@__fqn <oiref:#Package#ageSetup:oiref> 
+*/
+class reference5 {
+}/**
+@__ref <oiref:design#Class#id1ir76dqs5a4tzdqs5aofz.diagram:oiref><oihard>
+@__modelType reference
+@__fqn <oiref:#Package#ageMedia:oiref> 
+*/
+class reference6 {
+}/**
+@__ref <oiref:design#Class#id2n0ordqs5a4tzdqs5aoxs.diagram:oiref><oihard>
+@__modelType reference
+@__fqn <oiref:#Package#ageAudio:oiref> 
+*/
+class reference7 {
+}/**
+@__ref <oiref:design#Class#id3l9ntdqs5a4tzdqs5aojw.diagram:oiref><oihard>
+@__modelType reference
+@__fqn <oiref:#Package#ageMultiPlay:oiref> 
+*/
+class reference8 {
+}/**
+@__ref <oiref:design#Class#id43lxwdqs5a4tzdqs5ap1y.diagram:oiref><oihard>
+@__modelType reference
+@__fqn <oiref:#Package#ageNetwork:oiref> 
+*/
+class reference9 {
+}/**
+@__ref <oiref:design#Class#id4ef1fdqs5a4tzdqs5aldu.node:oiref><oihard>
+@__modelType reference 
+*/
+class reference20 {
+}/**
+@__ref <oiref:design#Class#id4ef1fdqs5a4tzdqs5aldu.node21:oiref><oihard>
+@__modelType reference 
+*/
+class reference22 {
+}/**
+@__ref <oiref:design#Class#id4ef1fdqs5a4tzdqs5aldu.node23:oiref><oihard>
+@__modelType reference 
+*/
+class reference24 {
+}/**
+@__ref <oiref:design#Class#id4ef1fdqs5a4tzdqs5aldu.node25:oiref><oihard>
+@__modelType reference 
+*/
+class reference26 {
+}}/**
+@__tags
+@shapeType ClassDiagram 
+*/
+class __tags {
+}/**
+@__options 
+*/
+class __options {
+}/**
+@__positions <oigroup:<oiref:design#Class#id4ef1fdqs5a4tzdqs5aldu.node21:oiref>=20,360,270,40,0:oigroup>
+<oigroup:<oiref:design#Class#id1feddqs5a4tzdqs5aowy.diagram:oiref>=500,410,70,80,0:oigroup>
+<oigroup:<oiref:design#Class#id4ef1fdqs5a4tzdqs5aldu.node:oiref>=20,300,270,40,0:oigroup>
+<oigroup:<oiref:design#Class#id4ef1fdqs5a4tzdqs5aldu.node25:oiref>=20,480,271,40,1:oigroup>
+<oigroup:<oiref:design#Class#id1ir76dqs5a4tzdqs5aofz.diagram:oiref>=280,20,110,110,0:oigroup>
+<oigroup:<oiref:design#Class#id3l9ntdqs5a4tzdqs5aojw.diagram:oiref>=150,20,110,110,0:oigroup>
+<oigroup:<oiref:design#Class#idwh3xdqs5a4tzdqs5ap6f.diagram:oiref>=500,310,70,80,0:oigroup>
+<oigroup:<oiref:design#Class#id36gg3dqs5a4tzdqs5aoap.diagram:oiref>=150,160,110,110,0:oigroup>
+<oigroup:<oiref:design#Class#id43lxwdqs5a4tzdqs5ap1y.diagram:oiref>=410,20,110,110,0:oigroup>
+<oigroup:<oiref:design#Class#id4ef1fdqs5a4tzdqs5aldu.node23:oiref>=20,420,270,40,0:oigroup>
+<oigroup:<oiref:design#Class#id2n0ordqs5a4tzdqs5aoxs.diagram:oiref>=20,160,110,110,0:oigroup>
+<oigroup:<oiref:design#Class#id3rgtsdqs5a4tzdqs5aoom.diagram:oiref>=280,160,110,110,0:oigroup>
+<oigroup:<oiref:design#Class#id1g9ijdqs5a4tzdqs5ao5p.diagram:oiref>=20,20,110,110,0:oigroup>
+<oigroup:<oiref:design#Class#id3ip5cdqs5a4tzdqs5aosi.diagram:oiref>=500,190,75,94,1:oigroup>
+*/
+class __positions {
+}/**
+@shapeType Note
+@__modelType node
+@name Note1
+@text Bisher nicht definiert
+@backgroundColor 255,0,0 
+*/
+class node {
+}/**
+@shapeType Note
+@__modelType node
+@name Note2
+@text Teilweise definiert
+@backgroundColor 255,153,0 
+*/
+class node21 {
+}/**
+@shapeType Note
+@__modelType node
+@name Note3
+@text Definition abgeschlossen
+@backgroundColor 255,255,0 
+*/
+class node23 {
+}/**
+@shapeType Note
+@__modelType node
+@name Note4
+@text Definition & Implementation abgeschlossen
+@backgroundColor 0,255,0 
+*/
+class node25 {
+}

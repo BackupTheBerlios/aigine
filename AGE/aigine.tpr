@@ -1,0 +1,38 @@
+[Project]
+Language=cpp
+Project.JDK=C:\\Programme\\develop\\TogeterControl\\jdk
+Root.0=$TGH$/jdk/jre/lib/rt.jar
+Root.0.access=import
+Root.0.non_removable=
+Root.1=$PROJECT_DIR$/src
+Root.1.access=writable
+Root.1.file_types=cpp_source;cpp_header;idl_source;vbnet_source;java_source;java_class;vb_files;csharp_source
+Root.1.package_prefix=
+Root.1.srcControlEnabled=false
+Root.1.srcControlProject=
+Root.2=$PROJECT_DIR$/diagrams
+Root.2.access=writable
+Root.2.file_types=element;diagram
+Root.2.package_prefix=
+Root.2.srcControlEnabled=false
+Root.2.srcControlProject=
+Version=3.0
+projectfile.encoding=Cp1252
+[editor]
+recent.file.0=C:\\Dokumente und Einstellungen\\Sebastian Blaum\\Desktop\\_mvcport\\AiGinE\\src\\ageGraphics\\Model\\ageGM_Model.cpp
+recent.file.1=C:\\Dokumente und Einstellungen\\Sebastian Blaum\\Desktop\\AGE\\src\\ageGraphics\\View\\ageGV_GraphicPipeline.h
+recent.file.2=C:\\Dokumente und Einstellungen\\Sebastian Blaum\\Desktop\\AGE\\src\\ageGraphics\\Model\\ObjectList.h
+recent.file.3=C:\\Dokumente und Einstellungen\\Sebastian Blaum\\Desktop\\AGE\\src\\ageGraphics\\Model\\ageGM_List.h
+recent.file.4=C:\\Dokumente und Einstellungen\\Sebastian Blaum\\Desktop\\AGE\\src\\ageGraphics\\Model\\ageGM_Mesh.h
+recent.file.5=C:\\Dokumente und Einstellungen\\Sebastian Blaum\\Desktop\\AGE\\src\\ageGraphics\\Model\\ageGM_Viewport.h
+recent.file.6=C:\\Dokumente und Einstellungen\\Sebastian Blaum\\Desktop\\AGE\\src\\ageGraphics\\Model\\ageGM_Scale3D.h
+recent.file.7=C:\\Dokumente und Einstellungen\\Sebastian Blaum\\Desktop\\AGE\\src\\ageGraphics\\Model\\ageGM_Translation3D.h
+recent.file.8=C:\\Dokumente und Einstellungen\\Sebastian Blaum\\Desktop\\AGE\\src\\ageGraphics\\Model\\ageGM_Rotation3D.h
+recent.file.9=C:\\Dokumente und Einstellungen\\Sebastian Blaum\\Desktop\\AGE\\src\\ageGraphics\\Model\\ageGM_Model.h
+[workspace]
+Programmer. DebugWorkspace={{0,2,-1,0,0,0,0,0,0,1,0,50,75,25,-1,-1,-1,-1}${0,1,-1,0,0,0,0,1,0,1,1,50,75,25,-1,-1,-1,-1}${0,3,-1,0,0,0,0,0,0,1,0,50,50,25,-1,-1,-1,-1}${0,3,-1,0,0,0,0,0,0,1,0,50,50,25,-1,-1,-1,-1}${0,-1,-1,0,0,0,0,0,0,1,0,5,5,5,-1,-1,-1,-1}${0,4,-1,0,0,0,0,0,0,1,0,50,50,25,-1,-1,-1,-1}${0,0,-1,0,0,0,0,1,0,1,0,75,5,5,-1,-1,-1,-1}${0,7,-1,0,0,0,0,0,0,1,0,50,50,75,-1,-1,-1,-1}}
+Programmer.aigine={{0,2,-1,0,0,0,0,1,0,1,0,50,75,25,-1,-1,-1,-1}${0,1,-1,0,0,0,0,1,0,1,1,50,75,25,-1,-1,-1,-1}${0,3,-1,0,0,0,0,1,0,1,0,50,50,25,-1,-1,-1,-1}${0,3,-1,0,0,0,0,1,0,1,0,50,50,25,-1,-1,-1,-1}${0,-1,-1,0,0,0,0,0,0,1,0,5,5,5,-1,-1,-1,-1}${0,4,-1,0,0,0,0,1,0,1,0,50,50,25,-1,-1,-1,-1}${0,0,-1,0,0,0,0,0,0,1,0,75,5,5,-1,-1,-1,-1}${0,7,-1,0,0,0,0,0,0,1,0,50,50,75,-1,-1,-1,-1}}
+names.Programmer={<default>}
+Programmer.<default>={{0,2,-1,0,0,0,0,1,0,1,1,50,75,25,-1,-1,-1,-1}${0,1,-1,0,0,0,0,0,0,1,0,50,75,25,-1,-1,-1,-1}${0,3,-1,0,0,0,0,1,0,1,0,50,50,25,-1,-1,-1,-1}${0,3,-1,0,0,0,0,1,0,1,0,50,50,25,-1,-1,-1,-1}${0,-1,-1,0,0,0,0,0,0,1,0,5,5,5,-1,-1,-1,-1}${0,4,-1,0,0,0,0,0,0,1,0,50,50,25,-1,-1,-1,-1}${0,0,-1,0,0,0,0,0,0,1,0,75,5,5,-1,-1,-1,-1}${0,7,-1,0,0,0,0,0,0,1,0,50,50,75,-1,-1,-1,-1}}
+[lastOpenProjectName]
+Programmer=<default>

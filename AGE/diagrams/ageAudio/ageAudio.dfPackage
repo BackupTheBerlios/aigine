@@ -1,0 +1,99 @@
+package id2n0ordqs5a4tzdqs5aoxs;
+
+/**
+@version 2.0
+@physicalPackage
+@__modelType diagram 
+*/
+class diagram {
+/**
+@__ref <oiref:design#Class#id1hxvjdqs5a4tzdqs5aoyw.diagram:oiref><oihard>
+@__modelType reference
+@__fqn <oiref:#Package#ageAudio.Control:oiref> 
+*/
+class reference {
+}/**
+@__ref <oiref:design#Class#id3ujy3dqs5a4tzdqs5ap0u.diagram:oiref><oihard>
+@__modelType reference
+@__fqn <oiref:#Package#ageAudio.View:oiref> 
+*/
+class reference19 {
+}/**
+@__ref <oiref:design#Class#id2a3fxdqs5a4tzdqs5aozq.diagram:oiref><oihard>
+@__modelType reference
+@__fqn <oiref:#Package#ageAudio.Model:oiref> 
+*/
+class reference20 {
+}/**
+@__ref <oiref:design#Class#id2n0ordqs5a4tzdqs5aoxs.node:oiref><oihard>
+@__modelType reference 
+*/
+class reference51 {
+}/**
+@__ref <oiref:design#Class#id2n0ordqs5a4tzdqs5aoxs.node21:oiref><oihard>
+@__modelType reference 
+*/
+class reference52 {
+}/**
+@__ref <oiref:design#Class#id2n0ordqs5a4tzdqs5aoxs.node23:oiref><oihard>
+@__modelType reference 
+*/
+class reference53 {
+}/**
+@__ref <oiref:design#Class#id2n0ordqs5a4tzdqs5aoxs.node25:oiref><oihard>
+@__modelType reference 
+*/
+class reference54 {
+}}/**
+@__tags
+@shapeType ClassDiagram 
+@backgroundColor 255,0,0
+*/
+class __tags {
+}/**
+@__options 
+*/
+class __options {
+}/**
+@__positions <oigroup:<oiref:design#Class#id2n0ordqs5a4tzdqs5aoxs.node25:oiref>=10,410,271,40,1:oigroup>
+<oigroup:<oiref:design#Class#id2n0ordqs5a4tzdqs5aoxs.node23:oiref>=10,350,270,40,0:oigroup>
+<oigroup:<oiref:design#Class#id2a3fxdqs5a4tzdqs5aozq.diagram:oiref>=10,110,53,57,1:oigroup>
+<oigroup:<oiref:design#Class#id2n0ordqs5a4tzdqs5aoxs.node21:oiref>=10,290,270,40,0:oigroup>
+<oigroup:<oiref:design#Class#id2n0ordqs5a4tzdqs5aoxs.node:oiref>=10,230,270,40,0:oigroup>
+<oigroup:<oiref:design#Class#id3ujy3dqs5a4tzdqs5ap0u.diagram:oiref>=90,10,53,57,1:oigroup>
+<oigroup:<oiref:design#Class#id1hxvjdqs5a4tzdqs5aoyw.diagram:oiref>=10,10,60,57,1:oigroup> 
+*/
+class __positions {
+}/**
+@shapeType Note
+@__modelType node
+@name Note1
+@text Bisher nicht definiert
+@backgroundColor 255,0,0 
+*/
+class node {
+}/**
+@shapeType Note
+@__modelType node
+@name Note2
+@text Teilweise definiert
+@backgroundColor 255,153,0 
+*/
+class node21 {
+}/**
+@shapeType Note
+@__modelType node
+@name Note3
+@text Definition abgeschlossen
+@backgroundColor 255,255,0 
+*/
+class node23 {
+}/**
+@shapeType Note
+@__modelType node
+@name Note4
+@text Definition & Implementation abgeschlossen
+@backgroundColor 0,255,0 
+*/
+class node25 {
+}
