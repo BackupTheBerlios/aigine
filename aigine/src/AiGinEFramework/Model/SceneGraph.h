@@ -32,27 +32,27 @@ public:
 
     void draw();
 
-    Object3DS* getTmpTestObject();
+    Object3DS * getTmpTestObject();
 
-    void setTmpTestObject(Object3DS* tmpTestObject);
+    void setTmpTestObject(Object3DS * tmpTestObject);
 
-	void drawSceneGraph(knot* k);
+    void drawSceneGraph(knot * k);
 
-	//alle add- bzw. remove-Funktionen geben einen bool als Erfogsmeldung zurück
-	//true -> Operation erfolgreich
-	//false -> Fehler (könnte gegen int ausgetauscht werden; 0->OK x ->Fehler Nr. x)
-	bool addChild(AiGinEObject* parentObject, AiGinEObject* childObject);
+    //alle add- bzw. remove-Funktionen geben einen bool als Erfogsmeldung zurück
+    //true -> Operation erfolgreich
+    //false -> Fehler (könnte gegen int ausgetauscht werden; 0->OK x ->Fehler Nr. x)
+    bool addChild(AiGinEObject * parentObject, AiGinEObject * childObject);
 
-	bool addNext(AiGinEObject* parentObject, AiGinEObject* nextObject);
+    bool addNext(AiGinEObject * parentObject, AiGinEObject * nextObject);
 
     bool removeObject(AiGinEObject * object);
 
 private:
     ObjectTree * lnkObjectTree;
-    Object3DS* tmpTestObject;
-	knot* root;
-	//sucht ihm Baum nach einem gegebenen Object
-	knot* findObject(AiGinEObject* obj);
+    Object3DS * tmpTestObject;
+    knot * root;
+    //sucht ihm Baum nach einem gegebenen Object
+    knot * findObject(AiGinEObject * obj);
 };
 
 #endif //SCENEGRAPH_H
