@@ -66,6 +66,23 @@ public:
 
     void setTranslation(Translation3D * translation);
 
+    /**
+     * Setzt die Translation auf die angebenen Koordinaten.
+     * @param x Koordinate.
+     * @param y Koordinate.
+     * @param z Koordinate.
+     */
+    void setTranslation(float x, float y, float z);
+
+  /**
+   * Rotiert das erste Gelenk entsprechend der Achse.
+   * @param angle Winkel um den gedreht werden soll.
+   * @param axis Achse, die für die Drehung verwendet 
+   *             werden soll 'x' = links, rechts
+   *                         'z' = hoch, runter.
+   */
+  void rotate(int angle, char axis);
+
     Rotation3D*  getRotation();
 
     void setRotation(Rotation3D * rotation);

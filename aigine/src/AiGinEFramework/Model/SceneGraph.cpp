@@ -100,6 +100,7 @@ void SceneGraph::drawSceneGraph(AiGinEObject * obj) {
 	}
 }
 
+
 void SceneGraph::printGraph() {
 	printSceneGraph((AiGinEObject*)this->getRootKnot(), "");
 }
