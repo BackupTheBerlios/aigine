@@ -16,7 +16,7 @@ Object3D::~Object3D(){}
 Object3D::Object3D(){
 
 	this->translation = new Translation3D(0,0,0);
-	//this->rotation = new Rotation3D(0,0,0);
+	this->rotation = new Rotation3D(0,0,0,0);
 	this->scale = new Scale3D(1,1,1);
 
 	
@@ -28,7 +28,7 @@ void Object3D::setRotation(Rotation3D * rotation){
 	this->rotation = rotation;
  }
 
-Rotation3D * Object3D::getRotation(){ return rotation; }
+Rotation3D * Object3D::getRotation() { return rotation; }
 
 
 //Translation
