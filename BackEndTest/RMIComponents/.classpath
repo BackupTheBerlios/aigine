@@ -1,10 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <classpath>
 	<classpathentry kind="src" path="src"/>
-	<classpathentry kind="src" path="lib"/>
 	<classpathentry kind="var" path="VSYSLIBS/hibernate/hibernate2.jar"/>
 	<classpathentry kind="var" path="VSYSLIBS/JConfig/jconfig.jar"/>
-	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER/org.eclipse.jdt.internal.debug.ui.launcher.StandardVMType/j2sdk1.4.2_05"/>
 	<classpathentry kind="src" path="/BootStrapedRMIComponent"/>
+	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER"/>
+	<classpathentry kind="src" path="lib"/>
+	<classpathentry kind="var" path="VSYSLIBS/hypersonic/hsqldb.jar"/>
 	<classpathentry kind="output" path="bin/project"/>
 </classpath>
