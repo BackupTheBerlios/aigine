@@ -7,8 +7,10 @@
 #define GRAPHICPIPELINE_H
 
 #include <GL/glut.h>
-#include "Camera.h"
+#include "../View/Camera.h"
 
+
+class Light;
 class SceneGraph;
 
 class Renderer;
@@ -54,6 +56,10 @@ public:
     /** Gibt einen Pointer auf die aktuelle Kamera zurück. */
     Camera * getCamera();
 
+    /**Fühgt ein std. Licht an die angegebenen Stelle mit der angegebenen Blickrichtung*/
+	void addLightAt(Vector3D *position, Vector3D * lookAt);
+    
+
     /** Gibt die aktuelle Fenstergröße zurück. */
     int * getWindowSize();
 
@@ -76,6 +82,15 @@ private:
      * @clientCardinality 1
      */
     Camera * lnkCamera;
+
+	
+	/**
+     *  Verwendet Licht
+     * @supplierCardinality 1..*
+     * @clientCardinality 1
+     */
+	Light * lnkLight;
+
 };
 
 #endif //GRAPHICPIPELINE_H

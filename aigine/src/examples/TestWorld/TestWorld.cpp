@@ -1,10 +1,10 @@
 #include <GL/glut.h> 
 
 
-#include "../../AiGinEFramework/Model/AiGinEObject.h"
+#include "../../AiGinEFramework/Utils/AiGinEObject.h"
 #include "../../AiGinEFramework/Model/SceneManagement.h"
-#include "../../AiGinEFramework/Model/ageObject3DS.h"
-#include "../../AiGinEFramework/Model/ageObjectPrim.h"
+#include "../../AiGinEFramework/AgeObjects/ageObject3DS.h"
+#include "../../AiGinEFramework/AgeObjects/ageObjectPrim.h"
 #include "../../AiGinEFramework/Model/Translation3D.h"
 #include "../../AiGinEFramework/Control/Keyboard.h"
 #include "../../AiGinEFramework/Control/Mouse.h"

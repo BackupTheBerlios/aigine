@@ -3,14 +3,14 @@
  */
 
 #include <math.h>
-
 #include "Camera.h"
-#include "../Model/Vector3D.h"
+
+
+
 
 
 //____________________________________________________________________________
-Camera::Camera()
-{
+Camera::Camera() {
     this->upVector = new Vector3D(0.0, 1.0, 0.0);
 }
 
@@ -18,31 +18,19 @@ Camera::Camera()
 Camera::Camera(Vector3D * position, Vector3D * lookAtPosition,
    Vector3D * upVector)
    {
-       this->position = position;
-       this->lookAtPosition = lookAtPosition;
-       this->upVector = upVector;
+	Translation3D * pos_tmp = (Translation3D*) position; 
+       this->setTranslation( pos_tmp ); 
+       this->setLookAtPosition( lookAtPosition);
+       this->upVector =upVector ;
 }
 
 //____________________________________________________________________________
-Vector3D * Camera::getPosition()
-{
-    return this->position;
-}
 
 //____________________________________________________________________________
-Vector3D * Camera::getLookAtPosition()
-{
-    return this->lookAtPosition;
-}
 
 //____________________________________________________________________________
-void Camera::setLookAtPosition(Vector3D * lookAtPosition)
-{
-    this->lookAtPosition = lookAtPosition;
-}
 
 //____________________________________________________________________________
-Vector3D * Camera::getUpVector() { return upVector; }
 
 //____________________________________________________________________________
 void Camera::setRotation(int mouseX, int mouseY, int * winSize)
@@ -83,57 +71,29 @@ void Camera::setRotation(int mouseX, int mouseY, int * winSize)
         // Um den Vektor für die Drehung um die z - Achse zu ermitteln
         // wird das Kreuzprodukt des Kamerarichtungsvektor = Blickpunkt - Position
         // und des Normalenvektors der Kamera gebildet.
-        Vector3D temp = * lookAtPosition - * position;
+        Vector3D temp = * this->getLookAtPosition() - * getTranslation();
         Vector3D zAxis = Vector3D::cross(& temp, upVector);
 
         zAxis = Vector3D::getNormalVector(zAxis);
 
         // Rotation um die beiden Achsen
-        rotateView(angleZ, zAxis.x, zAxis.y, zAxis.z);
-        rotateView(angleY, 0, 1, 0); // yAxis
+        this->rotateView(angleZ, zAxis.x, zAxis.y, zAxis.z);
+        this->rotateView(angleY, 0, 1, 0); // yAxis
 
         // Ausgabe der aktuellen Positionen
-//        position->print("\nPosition : ");
-//        lookAtPosition->print("lookAtPosition : ");
+        this->getTranslation()->print("\ngetTranslation() : ");
+        this->getLookAtPosition()->print("lookAtPosition : ");
     }
 }
 
 //____________________________________________________________________________
-void Camera::rotateView(float angle, float x, float y, float z)
-{
-    Vector3D vNewView = Vector3D(0.0, 0.0, 0.0);
-    // Get the view vector (The direction we are facing)	
-    Vector3D vView = * lookAtPosition - * position;
-    // Calculate the sine and cosine of the angle once
-    float cosTheta = (float)cos(angle);
-    float sinTheta = (float)sin(angle);
-
-    // Find the new x position for the new rotated point
-    vNewView.x = (cosTheta + (1 - cosTheta) * x * x) * vView.x;
-    vNewView.x += ((1 - cosTheta) * x * y - z * sinTheta) * vView.y;
-    vNewView.x += ((1 - cosTheta) * x * z + y * sinTheta) * vView.z;
-
-    // Find the new y position for the new rotated point
-    vNewView.y = ((1 - cosTheta) * x * y + z * sinTheta) * vView.x;
-    vNewView.y += (cosTheta + (1 - cosTheta) * y * y) * vView.y;
-    vNewView.y += ((1 - cosTheta) * y * z - x * sinTheta) * vView.z;
-
-    // Find the new z position for the new rotated point
-    vNewView.z = ((1 - cosTheta) * x * z - y * sinTheta) * vView.x;
-    vNewView.z += ((1 - cosTheta) * y * z + x * sinTheta) * vView.y;
-    vNewView.z += (cosTheta + (1 - cosTheta) * z * z) * vView.z;
-
-    // Now we just add the newly rotated vector to our position to set
-    // our new rotated view of our camera.
-    * lookAtPosition = * position + vNewView;
-}
 
 
 //____________________________________________________________________________
 void Camera::moveCamera(float speed)
 {
     // Get the current view vector (the direction we are looking)
-    Vector3D vector = * lookAtPosition - * position;
+    Vector3D vector = * this->getLookAtPosition() - * getTranslation();
 
     // I snuck this change in here!  We now normalize our view vector when
     // moving throughout the world.  This is a MUST that needs to be done.
@@ -142,17 +102,17 @@ void Camera::moveCamera(float speed)
     vector = Vector3D::getNormalVector(vector);
 
     // setze Kameraposition 
-    position->x = position->x + vector.x * speed;
-    position->z = position->z + vector.z * speed;
+    getTranslation()->x = getTranslation()->x + vector.x * speed;
+    getTranslation()->z = getTranslation()->z + vector.z * speed;
     // setze Blickpunkt
-    lookAtPosition->x = lookAtPosition->x + vector.x * speed; 
-    lookAtPosition->z = lookAtPosition->z + vector.z * speed; 
+    this->getLookAtPosition()->x = this->getLookAtPosition()->x + vector.x * speed; 
+    this->getLookAtPosition()->z = this->getLookAtPosition()->z + vector.z * speed; 
 }
 
 //____________________________________________________________________________
 void Camera::strafeCamera(float speed)
 {
-    Vector3D temp = * lookAtPosition - * position;
+    Vector3D temp = * this->getLookAtPosition() - *getTranslation();
     // Initialize a variable for the cross product result
     Vector3D strafe = Vector3D::cross(& temp, upVector);
 
@@ -173,12 +133,12 @@ void Camera::strafeCamera(float speed)
     // and view.  It's as simple as that.  It has already been calculated in Update().
 
     // Add the strafe vector to our position
-    position->x = position->x + strafe.x * speed;
-    position->z = position->z + strafe.z * speed;
+    getTranslation()->x = getTranslation()->x + strafe.x * speed;
+    getTranslation()->z = getTranslation()->z + strafe.z * speed;
 
     // Add the strafe vector to our view
-    lookAtPosition->x = lookAtPosition->x + strafe.x * speed;
-    lookAtPosition->z = lookAtPosition->z + strafe.z * speed;
+    this->getLookAtPosition()->x = this->getLookAtPosition()->x + strafe.x * speed;
+    this->getLookAtPosition()->z = this->getLookAtPosition()->z + strafe.z * speed;
 }
 
 
@@ -198,13 +158,13 @@ void Camera::moveLeft(float speed)
 //____________________________________________________________________________
 void Camera::moveUp(float speed) 
 { 
-    position->y = position->y + speed;
+    getTranslation()->y = getTranslation()->y + speed;
 }
 
 //____________________________________________________________________________
 void Camera::moveDown(float speed)
 {
-    position->y = position->y - speed;
+    getTranslation()->y = getTranslation()->y - speed;
 }
 
 //____________________________________________________________________________
@@ -225,14 +185,14 @@ void Camera::moveBack(float speed)
  * @return
  * @param
  */
-void Camera::attachViewport(Viewport * param) { }
+//void Camera::attachViewport(Viewport * param) { }
 
 /**
  * @author
  * @return
  * @param
  */
-void Camera::set() { }
+//void Camera::set() { }
 
 /**
  * Destruktor
@@ -241,3 +201,4 @@ void Camera::set() { }
  * @param
  */
 Camera::~Camera() { }
+Vector3D * Camera::getUpVector() { return upVector; }

@@ -2,10 +2,11 @@
  * GraphicPipeline.cpp  
  */
 
-#include "../View/GraphicPipeline.h"
+#include "GraphicPipeline.h"
 //#include "StateManager.h"
-#include "../View/Camera.h"
+#include "Camera.h"
 #include "../Model/Vector3D.h"
+#include "../View/Light.h"
 
 //____________________________________________________________________________
 GraphicPipeline::GraphicPipeline()
@@ -32,10 +33,27 @@ void GraphicPipeline::initOpenGL(int argc, char** argv){
     // Ausgabe des Fensters
     glutCreateWindow (argv[0]);
 
+	/* // Definition der Lichteigenschaften
+   GLfloat mat_specular[] = { 1.0, 1.0, 1.0, 1.0 }; // weiss
+   //GLfloat mat_diffuse[] = { 1.0, 1.0, 1.0, 1.0 }; // weiss
+   GLfloat mat_diffuse[] = { 0.8, 1.0, 0.8, 1.0 }; // leichtes gruen
+   GLfloat mat_diffuse1[] = { 1.0, 0.4, 0.4, 1.0 }; // ein wenig rot
+   GLfloat mat_shininess[] = { 10.0 }; // fuer Helligkeit der Reflextion
+   GLfloat light_position[] = { 1.0, 1.0, 1.0, 0.0 }; // position in homogenen koordinaten
+   GLfloat light_position1[] = { -3.0, 3.0, 3.0, 1.0 };
+     // da 4. = 0 werden die ersten drei Koordinaten unendlich /**/
+
+	this->lnkLight = new Light(); //Konstruktor mit den standart Werten:
+												   //  Vector3D position, Vector3D lookAtPosition
+	
 	glEnable(GL_COLOR_MATERIAL);
 	glEnable(GL_DEPTH_TEST);
 
 	glutSetCursor(9);
+
+	// das Licht initiieren und enablen wird dann im licht gemacht
+	
+	
 
 	this->lnkCamera = new Camera(	new Vector3D(5.0, 5.0, 5.0), new Vector3D(0.0, 0.0, 0.0), new Vector3D(0.0, 1.0, 0.0)	);								
 }
@@ -63,7 +81,7 @@ void GraphicPipeline::initDisplay(){
    // Transformationsmatrix wird auf die Einheitsmatrix gesetzt
    glLoadIdentity ();
    // Kameraposition setzen
-   Vector3D* pc = lnkCamera->getPosition();
+   Vector3D* pc = lnkCamera->getTranslation();
    Vector3D* lap = lnkCamera->getLookAtPosition();
    Vector3D* nv = lnkCamera->getUpVector();
    gluLookAt (	pc->x, pc->y, pc->z,    // Position
@@ -71,6 +89,9 @@ void GraphicPipeline::initDisplay(){
 				nv->x, nv->y, nv->z);   // Senkrechtvektor 
    // Skalierungsmatrix setzten
    glScalef (1.0, 1.0, 1.0); 
+   
+   //Es werde Licht
+	
    
    // Ausgabe des 3d gitters
    // TODO: als Onjekt in ScenenGraph hängen
@@ -103,4 +124,10 @@ Camera* GraphicPipeline::getCamera(){
 //____________________________________________________________________________
 void GraphicPipeline::setCameraRotation(int mouseX, int mouseY) {
 	this->lnkCamera->setRotation(mouseX, mouseY, this->windowSize);
+
+}
+
+void GraphicPipeline::addLightAt(Vector3D * position, Vector3D * lookAt) {
+	
+	
 }

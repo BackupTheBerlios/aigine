@@ -26,6 +26,11 @@ class reference18 {
 @__modelType reference 
 */
 class reference19 {
+}/**
+@__ref <oiref:cpp#Class#Light:oiref><oihard>
+@__modelType reference 
+*/
+class reference6 {
 }}/**
 @__tags
 @shapeType ClassDiagram 

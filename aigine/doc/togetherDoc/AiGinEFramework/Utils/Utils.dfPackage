@@ -21,6 +21,21 @@ class reference20 {
 @__modelType reference 
 */
 class reference21 {
+}/**
+@__ref <oiref:cpp#Class#AiGinEObject:oiref><oihard>
+@__modelType reference 
+*/
+class reference3 {
+}/**
+@__ref <oiref:cpp#Class#Object3D:oiref><oihard>
+@__modelType reference 
+*/
+class reference4 {
+}/**
+@__ref <oiref:cpp#Class#LookAtObjects:oiref><oihard>
+@__modelType reference 
+*/
+class reference5 {
 }}/**
 @__tags
 @shapeType ClassDiagram 

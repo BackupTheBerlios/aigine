@@ -1,11 +1,16 @@
 /* Game Engine Design */
 
-#include "SceneGraph.h"
-#include "../../Tools/loader3DS/Object3DS.h"
-#include "AiGinEObject.h"
-#include "ageObject3DS.h"
+
 #include <iostream>
 using namespace std;
+
+
+#include "SceneGraph.h"
+#include "../../Tools/loader3DS/Object3DS.h"
+#include "../AgeObjects/ageObject3DS.h"
+#include "../Utils/AiGinEObject.h"
+#include "Scale3D.h"
+
 
 SceneGraph::SceneGraph() : Tree() {
 }
@@ -64,7 +69,7 @@ bool SceneGraph::addNext(AiGinEObject* parentObject, AiGinEObject* nextObject){
 	return false;
 }
 
-void SceneGraph::drawSceneGraph(AiGinEObject* obj) {
+void SceneGraph::drawSceneGraph(AiGinEObject * obj) {
 	if(obj == NULL) return;
 	glPushMatrix();
 	//(AiGinEObject(k->obj))->getTranslation();

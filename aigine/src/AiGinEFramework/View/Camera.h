@@ -6,19 +6,19 @@
 #ifndef CAMERA_H
 #define CAMERA_H
 
-#include <GL/glut.h>
+//#include <GL/glut.h>
 
-class Viewport;
-class Vector3D;
+#include "../Model/Vector3D.h"
+#include "../Utils/LookAtObjects.h"
+
+
 
 /**
  * Kamerasteuerung.
  * @author Danny Graef, Tobias Harpering
  * @since 2004-01-07
  */
-class Camera
-{
-
+class Camera :  public LookAtObjects {
 
 public:
     /**
@@ -32,30 +32,6 @@ public:
      */
     void setRotation(int mouseX, int mouseY, int * CurrentWinSize);
 
-    /**
-     * Gibt die Position der aktuellen Kamera zurueck.
-     * @return Position der Kamera.
-     */
-    Vector3D * getPosition();
-
-    /**
-     * Gibt den Blickpunkt zurueck.
-     * @return Blickpunkt der Kamera.
-     */
-    Vector3D * getLookAtPosition();
-
-    /**
-     * Setzt den Blickpunkt der Kamera.
-     * @param lookAtPostion neuer Blickpunkt.
-     */
-    void setLookAtPosition(Vector3D * lookAtPosition);
-
-    /**
-     * Gibt den Normalenvektor der Kamera zurueck.
-     * @return Normalenvektor der Kamera
-     */
-    Vector3D * getUpVector();
-
     /** Konstruktor */
     Camera();
 
@@ -67,19 +43,7 @@ public:
      */
     Camera(Vector3D * position, Vector3D * lookAtPosiont, Vector3D * upVector);
 
-    /**
-     * @author
-     * @return
-     * @param
-     */
-    void attachViewport(Viewport * param);
 
-    /**
-     * @author
-     * @return
-     * @param
-     */
-    virtual void set();
 
     /////////////////////////K E Y B O A R D   M O V E M E N T//////////////////
 
@@ -119,34 +83,25 @@ public:
      */
     void moveRight(float speet);
 
+	/**
+     * Gibt den Normalenvektor der Kamera zurueck.
+     * @return Normalenvektor der Kamera
+     */
+    Vector3D * getUpVector();
+
     /** Destruktor */
     ~Camera();
 
-
 private:
-    /** Normalenvektor der Kamera */
-    Vector3D * upVector;
-
-    /** Blickpunkt der Kamera */
-    Vector3D * lookAtPosition;
-
-    /** Position der Kamera */
-    Vector3D * position;
-
-    /**
-     * Führt eine Rotation um den angegebenen Winkel an dem durch
-     * x, y, z gegebenen Achsenvektor aus.
-     * @param angle Winkel um den gedreht werden soll
-     * @param x, y, z Koordinaten des Achsenvektors
-     */
-    void rotateView(float angle, float x, float y, float z);
-
 
     /**
      * @supplierCardinality 1
      * @clientCardinality 1
      */
-    Viewport * lnkViewport;
+    //Viewport * lnkViewport;
+
+    /** Normalenvektor der Kamera */
+    Vector3D * upVector;
 
     /**
      * Bewegt die Kammera auf der x-z Ebene vorwärts und rückwärts
@@ -160,6 +115,9 @@ private:
      * @param speed die Geschwindigkeit mit der die Kammera sich bewegen soll.    
      */
     void strafeCamera(float speed);
+
+
+
 };
 
 #endif //CAMERA_H

@@ -10,10 +10,9 @@
 
 #include "../Utils/Tree.h"
 #include "../../Tools/loader3DS/Object3DS.h"
-class AiGinEObject;
+#include "../Utils/AiGinEObject.h"
+
 class ObjectTree;
-
-
 
 /**
  * Unter "SceneGraph" versteht man die Abbildung einer gesammten Szene. Er
@@ -22,8 +21,6 @@ class ObjectTree;
  * Modell einen ScenenGraph zu parsen und dem eigentlichen SceneGraph
  * hinzuzufügen (z.B. aus vrml oder 3ds).
  */
-
-
 class SceneGraph : public Tree
 {
 public:

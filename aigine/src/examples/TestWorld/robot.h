@@ -1,9 +1,10 @@
 // robot.h: interface for the robot class.
 //
 //////////////////////////////////////////////////////////////////////
-
-#include "../../AiGinEFramework/Model/SceneManagement.h"
 #include <iostream>
+#include "../../AiGinEFramework/Model/SceneManagement.h"
+
+#include "../../AiGinEFramework/Utils/AiGinEObject.h"
 using namespace std;
 
 #ifndef ROBOT_H

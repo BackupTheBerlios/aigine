@@ -52,30 +52,10 @@ class reference28 {
 */
 class reference29 {
 }/**
-@__ref <oiref:cpp#Class#ageObjectPrim:oiref><oihard>
-@__modelType reference 
-*/
-class reference30 {
-}/**
-@__ref <oiref:cpp#Class#Object3D:oiref><oihard>
-@__modelType reference 
-*/
-class reference31 {
-}/**
-@__ref <oiref:cpp#Class#AiGinEObject:oiref><oihard>
-@__modelType reference 
-*/
-class reference32 {
-}/**
 @__ref <oiref:cpp#Class#Vector3D:oiref><oihard>
 @__modelType reference 
 */
 class reference33 {
-}/**
-@__ref <oiref:cpp#Class#ageObject3DS:oiref><oihard>
-@__modelType reference 
-*/
-class reference34 {
 }/**
 @__ref <oiref:cpp#Class#ObjectTree:oiref><oihard>
 @__modelType reference 
