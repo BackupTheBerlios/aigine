@@ -1,5 +1,3 @@
-package newdefault;
-
 import java.io.File;
 import java.io.IOException;
 

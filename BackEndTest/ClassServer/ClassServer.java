@@ -1,4 +1,4 @@
-// Copyright MageLang Institute; Version $Id: ClassServer.java,v 1.1 2005/01/29 15:56:21 danny Exp $
+// Copyright MageLang Institute; Version $Id: ClassServer.java,v 1.6 2005/01/29 15:57:20 danny Exp $
 
 /*
  * Copyright (c) 1996, 1996, 1997 Sun Microsystems, Inc. All Rights Reserved.
@@ -14,8 +14,6 @@
  */
 
 //package examples.classServer;
-
-package newdefault;
 
 import java.io.*;
 import java.net.*;
