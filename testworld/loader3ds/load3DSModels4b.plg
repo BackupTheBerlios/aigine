@@ -1,0 +1,46 @@
+<html>
+<body>
+<pre>
+<h1>Erstellungsprotokoll</h1>
+<h3>
+--------------------Konfiguration: load3DSModels4b - Win32 Debug--------------------
+</h3>
+<h3>Befehlszeilen</h3>
+Erstellen der temporären Datei  "C:\DOKUME~1\fosion\LOKALE~1\Temp\RSP8D.tmp" mit Inhalten
+[
+/nologo /MLd /W3 /Gm /GX /ZI /Od /D "WIN32" /D "_DEBUG" /D "_CONSOLE" /D "_MBCS" /FR"Debug/" /Fp"Debug/load3DSModels4b.pch" /YX /Fo"Debug/" /Fd"Debug/" /FD /GZ /c 
+"C:\fosion\projekte&arbeiten\develop\testworld\loader3ds\3dsLoader.cpp"
+"C:\fosion\projekte&arbeiten\develop\testworld\loader3ds\3dsObject.cpp"
+"C:\fosion\projekte&arbeiten\develop\testworld\loader3ds\testLoader.cpp"
+"C:\fosion\projekte&arbeiten\develop\testworld\loader3ds\tgaLoader.cpp"
+]
+Creating command line "cl.exe @C:\DOKUME~1\fosion\LOKALE~1\Temp\RSP8D.tmp" 
+Erstellen der temporären Datei  "C:\DOKUME~1\fosion\LOKALE~1\Temp\RSP8E.tmp" mit Inhalten
+[
+kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib opengl32.lib glu32.lib glut32.lib glaux.lib /nologo /subsystem:console /incremental:yes /pdb:"Debug/load3DSModels4b.pdb" /debug /machine:I386 /out:"Debug/load3DSModels4b.exe" /pdbtype:sept 
+".\Debug\3dsLoader.obj"
+".\Debug\3dsObject.obj"
+".\Debug\testLoader.obj"
+".\Debug\tgaLoader.obj"
+]
+Erstellen der Befehlzeile "link.exe @C:\DOKUME~1\fosion\LOKALE~1\Temp\RSP8E.tmp"
+<h3>Ausgabefenster</h3>
+Kompilierung läuft...
+3dsLoader.cpp
+3dsObject.cpp
+testLoader.cpp
+tgaLoader.cpp
+c:\fosion\projekte&arbeiten\develop\testworld\loader3ds\tgaloader.cpp(210) : warning C4101: 'internal_format' : Unreferenzierte lokale Variable
+c:\fosion\projekte&arbeiten\develop\testworld\loader3ds\tgaloader.cpp(134) : warning C4715: 'TGAImage::getData' : Nicht alle Steuerelementpfade geben einen Wert zurück
+Linker-Vorgang läuft...
+Erstellen der Befehlzeile "bscmake.exe /nologo /o"Debug/load3DSModels4b.bsc"  ".\Debug\3dsLoader.sbr" ".\Debug\3dsObject.sbr" ".\Debug\testLoader.sbr" ".\Debug\tgaLoader.sbr""
+Browse-Informationsdatei wird erstellt...
+<h3>Ausgabefenster</h3>
+
+
+
+<h3>Ergebnisse</h3>
+load3DSModels4b.exe - 0 Fehler, 2 Warnung(en)
+</pre>
+</body>
+</html>
