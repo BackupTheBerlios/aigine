@@ -16,12 +16,10 @@ import java.rmi.server.UnicastRemoteObject;
 import org.jconfig.Configuration;
 import org.jconfig.ConfigurationManager;
 
-// import projects.interfaces.CClient;
-
 import API.interfaces.Application;
 import API.interfaces.Client;
-import API.interfaces.ServerHandle;
 import API.interfaces.ManagerHandle;
+import API.interfaces.ServerHandle;
 import API.model.RemoteObject;
 import API.util.RemoteConfigHelper;
 import API.util.RemoteObjectHelper;
@@ -51,10 +49,6 @@ public class BootStrapedApplicationStarter implements BootStrapedComponent {
 	protected ManagerHandle manager = null;
 
 	private RemoteObjectHelper roh;
-	private int valid_auswahl;
-	private String auswahl;
-	private String category;
-	private String[] categorynames;
 	private Configuration configuration;
 
 	/**
@@ -66,6 +60,8 @@ public class BootStrapedApplicationStarter implements BootStrapedComponent {
 	 * @return valider Wert innerhalb des g.g. Intervalls oder -1 fuer nicht valide
 	 */
 	private int getIntChoose(int min, int max, String question) {
+		String auswahl = null;
+		int valid_auswahl = 0;
 		// Frage stellen und Eingabe einlesen
 		System.out.println(question);
 		BufferedReader inB = new BufferedReader(
@@ -98,51 +94,34 @@ public class BootStrapedApplicationStarter implements BootStrapedComponent {
 	/**
 	 * ausgabeMenue Menue auf konsole ausgeben
 	 */
-	private void ausgabeMenue() {
-
-		categorynames = configuration.getCategoryNames();
+	private void ausgabeMenue(String[] categorynames) {
 		System.out.println("+-----Menue---------------");
 		for (int i = 0; i < categorynames.length; i++) {
 			System.out.println("| (" + i + ") " + categorynames[i]);
 		}
 	}
 
-	/**
-	 * Initialisiert die gewuenschte Komponente.
-	 * - laden der Klasse vom Klassenserver
-	 * - starten der Koponente abhängig von ihrem Typ <code>client || server</code>
-	 * - Registrierung der Komponente
-	 */
-	public void init(String jconfigserverUrl) {
-		// TODO Wenn keine Typenzuordnung gefunden wird, muss das Programm
-		// die notwendigen Parameter beim User abfragen.
-		// TODO jConfig eine entsprechende DTD
-		// so dass die Eigenschaften vorher geprüft werden können.
-		// TODO Name der Konfiguration als Paramter entgegennehmen
-
-		System.out.println("=> BootStrapedApplicationStarter.init() "
-				+ jconfigserverUrl);
+	public void initConfigurationServer(String jConfigDerverUrl) {
 		//Configuration besorgen
 		RemoteConfigHelper rch = new RemoteConfigHelper();
-		RemoteConfigHelper.load(jconfigserverUrl, "catalogConfig");
+		RemoteConfigHelper.load(jConfigDerverUrl, "catalogConfig");
 		ConfigurationManager cm = rch.getCM();
 		this.configuration = ConfigurationManager
 				.getConfiguration("catalogConfig");
-		//konsolenabfrage...        
-		ausgabeMenue();
-		int menueAuswahl = getIntChoose(0, categorynames.length,
-				"Was soll´s denn sein: ");
-		//hier wird der ausgewaehlte service (Categoryname) in category gespeichert 
-		//ist kürzer;-) 
-		category = categorynames[menueAuswahl];
+	}
+
+	public void init(String jConfigServerUrl, String loadClass) {
+		System.out.println("=> BootStrapedApplicationStarter.init("
+				+ jConfigServerUrl + ", " + loadClass + ")");
+		initConfigurationServer(jConfigServerUrl);
 		//Remoteobject mit Konfig daten fuettern 
-		roh = new RemoteObjectHelper(configuration, category);
+		roh = new RemoteObjectHelper(configuration, loadClass);
 		//zuweisen...
 		component = roh.getConfiguratedRemoteObject();
 		try {
 			compClass = RMIClassLoader.loadClass(configuration.getProperty(
-					"codebase", "", category), configuration.getProperty(
-					"compClassName", "", category));
+					"codebase", "", loadClass), configuration.getProperty(
+					"compClassName", "", loadClass));
 			System.out
 					.println("BootStrapedApplicationStarter.init() After loading Component Class");
 		} catch (MalformedURLException e) {
@@ -158,17 +137,46 @@ public class BootStrapedApplicationStarter implements BootStrapedComponent {
 			System.out.println("BootStrapedApplicationStarter.init() "
 					+ e.getMessage());
 		}
-		if (configuration.getProperty("typ", "", category).equals("server")) {
+		if (configuration.getProperty("typ", "", loadClass).equals("server")) {
 			runServer();
-		} else if (configuration.getProperty("typ", "", category).equals(
+		} else if (configuration.getProperty("typ", "", loadClass).equals(
 				"client")) {
 			runClient();
-		} else if (configuration.getProperty("typ", "", category).equals(
+		} else if (configuration.getProperty("typ", "", loadClass).equals(
 				"manager")) {
 			runManager();
 		}
 		this.register(component);
-		System.out.println("<= BootStrapedApplicationStarter.init()");
+		System.out.println("<= BootStrapedApplicationStarter.init("
+				+ jConfigServerUrl + ", " + loadClass + ")");
+	}
+
+	/**
+	 * Initialisiert die gewuenschte Komponente.
+	 * - laden der Klasse vom Klassenserver
+	 * - starten der Koponente abhängig von ihrem Typ <code>client || server</code>
+	 * - Registrierung der Komponente
+	 */
+	public void init(String jConfigServerUrl) {
+		String[] categorynames;
+
+		// TODO Wenn keine Typenzuordnung gefunden wird, muss das Programm
+		// die notwendigen Parameter beim User abfragen.
+		// TODO jConfig eine entsprechende DTD
+		// so dass die Eigenschaften vorher geprüft werden können.
+		// TODO Name der Konfiguration als Paramter entgegennehmen
+
+		System.out.println("=> BootStrapedApplicationStarter.init("
+				+ jConfigServerUrl + ")");
+		initConfigurationServer(jConfigServerUrl);
+		//konsolenabfrage...      
+		categorynames = configuration.getCategoryNames();
+		ausgabeMenue(categorynames);
+		int menueAuswahl = getIntChoose(0, categorynames.length,
+				"Was soll´s denn sein: ");
+		init(jConfigServerUrl, categorynames[menueAuswahl]);
+		System.out.println("<= BootStrapedApplicationStarter.init("
+				+ jConfigServerUrl + ")");
 	}
 
 	/**

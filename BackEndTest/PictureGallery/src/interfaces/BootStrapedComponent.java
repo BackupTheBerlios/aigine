@@ -14,4 +14,5 @@ public interface BootStrapedComponent{
 	 * gewuenschte Komponente
 	 */
 	public void init(String jconfigserverUrl);
+	public void init(String jconfigUrl, String loadClass);
 }

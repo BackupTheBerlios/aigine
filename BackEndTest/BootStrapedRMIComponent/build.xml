@@ -1,0 +1,19 @@
+
+
+<!-- Funzt leider nicht, da ANT nach laden des BootStrapedApplicationStarters alle Klassen
+auf dem Server sucht und deswegen jconfig nicht findet - shit shit shit ÄNDERN !!!!!! -->
+
+	
+<project name="BootStrapedRMIComponent" default="test" basedir=".">
+  
+  <target name="test" depends="startManager, startPictureGallery">  		         
+  </target>  
+  
+  <target name="startManager"> 
+  	<java classname="RMIComponentLoader" classpath="." args="-classServer http://localhost:2002/ -jconfigServer http://localhost:2001/ -loadClass ManagerServer" />
+  </target> 
+  
+  <target name="startPictureGallery">
+  </target>
+	
+</project>
