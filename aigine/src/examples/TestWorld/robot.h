@@ -70,9 +70,17 @@ private:
 	AiGinEObject* KnieL;
 	AiGinEObject* FussR;
 	AiGinEObject* FussL;
-	
+	AiGinEObject* EllbogenR;
+	AiGinEObject* EllbogenL;
+	AiGinEObject* HandR;
+	AiGinEObject* HandL;
+
 	AiGinEObject* drawBaseLegs(AiGinEObject* parent, string kind);
-	AiGinEObject* drawLeg(AiGinEObject* parent, string kind);
+	AiGinEObject* drawHead(AiGinEObject* parent, string kind);
+	AiGinEObject* drawTorso(AiGinEObject* parent, string kind);
+
+	AiGinEObject* drawLeg(AiGinEObject* parent, string kind, string side);
+	AiGinEObject* drawArm(AiGinEObject* parent,  string kind, string side);
 
 };
 

@@ -19,30 +19,57 @@ robot::~robot() {
 
 //=========================== Huefte ===========================
 AiGinEObject* robot::drawBaseLegs(AiGinEObject* parent, string kind) {
-AiGinEObject* cube;
+	//Huefte
+	AiGinEObject* base;
 	if(parent != NULL) {
-		cube = this->sceneMan->addObjectPrim(new ageObjectPrim(),parent,kind);
+		base = this->sceneMan->addObjectPrim(new ageObjectPrim(),parent,kind);
 	} else {
-		cube = this->sceneMan->addObjectPrim(new ageObjectPrim());
+		base = this->sceneMan->addObjectPrim(new ageObjectPrim());
 	}
-	((ageObjectPrim*)cube)->setCube(1.0);
-	((ageObjectPrim*)cube)->setColor(255,0,0);
-	cube->setScale(new Scale3D(BASE_WIDTH, BASE_HEIGHT, TORSO));
+	((ageObjectPrim*)base)->setCube(1.0);
+	((ageObjectPrim*)base)->setColor(255,0,0);
+	base->setScale(new Scale3D(BASE_WIDTH, BASE_HEIGHT, TORSO));
 
-	AiGinEObject* right_leg = drawLeg(cube,"child");
-	AiGinEObject* left_leg = drawLeg(right_leg, "next");
+	//Torso
+	AiGinEObject* torso = this->sceneMan->addObjectPrim(new ageObjectPrim(),base,"child");
+	((ageObjectPrim*)torso)->setCube(1.0);
+	((ageObjectPrim*)torso)->setColor(255,0,0);
+	torso->setScale(new Scale3D(TORSO_WIDTH,TORSO_HEIGHT,TORSO));
+	torso->setTranslation(new Translation3D(0.0, TORSO_HEIGHT / 2.0, 0.0));
 
+	//Beine
+	AiGinEObject* right_leg = drawLeg(torso,"next","right");
+	AiGinEObject* left_leg = drawLeg(right_leg, "next", "left");
 	right_leg->setTranslation(new Translation3D(TORSO_WIDTH * 0.33 , - (BASE_HEIGHT), 0.0));
 	left_leg->setTranslation(new Translation3D(- TORSO_WIDTH * 0.33 , - (BASE_HEIGHT), 0.0));
 
-	this->BeinL = right_leg;
-	this->BeinR = left_leg;
+	this->BeinR = right_leg;
+	this->BeinL = left_leg;
 
-	return cube;
+	//Kopf
+	AiGinEObject* head_join = this->sceneMan->addObjectPrim(new ageObjectPrim(),torso,"child");
+	((ageObjectPrim*)head_join)->setSphere(1.0,8,8);
+	((ageObjectPrim*)head_join)->setColor(0,255,0);
+	head_join->setScale(new Scale3D(HEAD_JOINT_SIZE,HEAD_JOINT_SIZE,HEAD_JOINT_SIZE));
+	head_join->setTranslation(new Translation3D(0.0, TORSO_HEIGHT + (HEAD_HEIGHT/2.0) +HEAD_JOINT_SIZE * 2.0, 0.0));
+	
+	AiGinEObject* head = this->sceneMan->addObjectPrim(new ageObjectPrim(),head_join,"child");
+	((ageObjectPrim*)head)->setCube(1.0);
+	((ageObjectPrim*)head)->setColor(255,0,0);
+	head->setScale(new Scale3D(HEAD_WIDTH,HEAD_HEIGHT, TORSO));
+	head->setTranslation(new Translation3D(0.0,-HEAD_HEIGHT * 0.66,0.0));
+
+	//Arme
+	AiGinEObject* right_arm = drawArm(head,"next","right");
+	AiGinEObject* left_arm = drawArm(right_arm, "next", "left");
+	right_arm->setTranslation(new Translation3D(TORSO_WIDTH * 0.66, TORSO_HEIGHT * 0.875,0.0));
+	left_arm->setTranslation(new Translation3D(- (TORSO_WIDTH * 0.66), TORSO_HEIGHT * 0.875,0.0));
+
+	return base;
 }
 
 //=========================== Bein ===========================
-AiGinEObject* robot::drawLeg(AiGinEObject* parent, string kind) {
+AiGinEObject* robot::drawLeg(AiGinEObject* parent, string kind, string side) {
 	//Bein_Oben_Gelenk
 	AiGinEObject* upper_leg_join = this->sceneMan->addObjectPrim(new ageObjectPrim(),parent,kind);
 	((ageObjectPrim*)upper_leg_join)->setSphere(1.0,8,8);
@@ -85,76 +112,71 @@ AiGinEObject* robot::drawLeg(AiGinEObject* parent, string kind) {
 	foot->setScale(new Scale3D(FOOT_WIDTH, FOOT_HEIGHT, FOOT));
 	foot->setTranslation(new Translation3D(0.0,- FOOT_JOINT_SIZE * 2.0, FOOT_WIDTH * 0.5));
 	
-	if(kind == "next") {
+	if(side == "right") {
 		this->KnieR = lower_leg_join;
 		this->FussR = foot_join;
-	} else {
+	} else if(side == "left") {
 		this->KnieL = lower_leg_join;
 		this->FussL = foot_join;
+	} else {
+		//Fehler
 	}
 	return upper_leg_join;
 }
 
-//================= Draw_Head(frame) =================
+//=========================== Arm ============================
+AiGinEObject* robot::drawArm(AiGinEObject* parent,  string kind, string side) {
+
+  	//Arm_Oben_Gelenk
+	AiGinEObject* upper_arm_join = this->sceneMan->addObjectPrim(new ageObjectPrim(),parent,kind);
+	((ageObjectPrim*)upper_arm_join)->setSphere(1.0,8,8);
+	((ageObjectPrim*)upper_arm_join)->setColor(0,255,0);
+	upper_arm_join->setScale(new Scale3D(UP_ARM_JOINT_SIZE,UP_ARM_JOINT_SIZE,UP_ARM_JOINT_SIZE));
+
+	//Arm_Oben
+	AiGinEObject* upper_arm = this->sceneMan->addObjectPrim(new ageObjectPrim(),upper_arm_join,"child");
+	((ageObjectPrim*)upper_arm)->setCube(1.0);
+	((ageObjectPrim*)upper_arm)->setColor(255,0,0);
+	upper_arm->setScale(new Scale3D(UP_ARM_WIDTH,UP_ARM_HEIGHT,UP_ARM_WIDTH));
+	upper_arm->setTranslation(new Translation3D(0.0,- UP_ARM_HEIGHT * 0.7, 0.0));
+
+	//Arm_Unten_Gelenk
+	AiGinEObject* lower_arm_join = this->sceneMan->addObjectPrim(new ageObjectPrim(),upper_arm,"child");
+	((ageObjectPrim*)lower_arm_join)->setSphere(1.0,8,8);
+	((ageObjectPrim*)lower_arm_join)->setColor(0,255,0);
+	lower_arm_join->setScale(new Scale3D(LO_ARM_JOINT_SIZE,LO_ARM_JOINT_SIZE,LO_ARM_JOINT_SIZE));
+	lower_arm_join->setTranslation(new Translation3D(0.0,- UP_ARM_HEIGHT * 0.6,0.0));
+
+	//Arm_Unten
+	AiGinEObject* lower_arm = this->sceneMan->addObjectPrim(new ageObjectPrim(),lower_arm_join,"child");
+	((ageObjectPrim*)lower_arm)->setCube(1.0);
+	((ageObjectPrim*)lower_arm)->setColor(255,0,0);
+	lower_arm->setScale(new Scale3D(LO_ARM_WIDTH,LO_ARM_HEIGHT,LO_ARM_WIDTH));
+	lower_arm->setTranslation(new Translation3D(0.0,- LO_ARM_HEIGHT * 0.625,0.0));
+	
+	//Hand
+	AiGinEObject* hand = this->sceneMan->addObjectPrim(new ageObjectPrim(),lower_arm,"child");
+	((ageObjectPrim*)hand)->setCube(1.0);
+	((ageObjectPrim*)hand)->setColor(255,0,0);
+	hand->setScale(new Scale3D(HAND_WIDTH,HAND_HEIGHT,HAND));
+	hand->setTranslation(new Translation3D(0.0,- (LO_ARM_HEIGHT * 0.75), 0.0));
+	
+	if(side == "right") {
+		this->EllbogenR = lower_arm_join;
+		this->HandR = hand;
+	} else if(side == "left") {
+		this->EllbogenL = lower_arm_join;
+		this->HandL = hand;
+	} else {
+		//Fehler
+	}
+	return upper_arm_join;
+
 /*
-void Draw_Head(int frame) {
-   glScalef(HEAD_WIDTH,HEAD_HEIGHT, TORSO) ;
-   	glutSolidCube(1.0) ;
-   glTranslatef(0.0,-HEAD_HEIGHT * 0.66,0.0) ;
-   glScalef(HEAD_JOINT_SIZE,HEAD_JOINT_SIZE,HEAD_JOINT_SIZE) ;
-   glutWireSphere(1.0,8,8) ;
-}
-
-//================= Draw_Torso(frame) ================
-
-void Draw_Torso(int frame)
-{
-   glScalef(TORSO_WIDTH,TORSO_HEIGHT,TORSO) ;
-   	glutSolidCube(1.0) ;
-}
-
-//================== Draw_Arm (side, frame) ====================
-
-void Draw_Upper_Arm(int frame)
-{
-   glScalef(UP_ARM_JOINT_SIZE,UP_ARM_JOINT_SIZE,UP_ARM_JOINT_SIZE) ;
-   glutWireSphere(1.0,8,8) ;
-   glTranslatef(0.0,- UP_ARM_HEIGHT * 0.7, 0.0) ;
-   glScalef(UP_ARM_WIDTH,UP_ARM_HEIGHT,UP_ARM_WIDTH) ;
-   glutSolidCube(1.0) ;
-}
-
-void Draw_Lower_Arm(int frame) {
-   glScalef(LO_ARM_JOINT_SIZE,LO_ARM_JOINT_SIZE,LO_ARM_JOINT_SIZE) ;
-   glutWireSphere(1.0,8,8) ;
-   glTranslatef(0.0,- LO_ARM_HEIGHT * 0.625,0.0) ;
-   glScalef(LO_ARM_WIDTH,LO_ARM_HEIGHT,LO_ARM_WIDTH) ;
-   glutSolidCube(1.0) ;
-}
-
-void Draw_Hand(int frame) {
-   glScalef(HAND_WIDTH,HAND_HEIGHT,HAND) ;
-   glutSolidCube(1.0) ;
-}
-
-void Draw_Arm(int side, int frame) {
-	glPushMatrix() ;
-
-   glRotatef(walking_angles[side][0],1.0,0.0,0.0) ;
-   Draw_Upper_Arm(frame) ;
-   glTranslatef(0.0,- UP_ARM_HEIGHT * 0.6,0.0) ;
-   glRotatef(walking_angles[side][1],1.0,0.0,0.0) ;
-   Draw_Lower_Arm(frame) ;
-
-   glTranslatef(0.0,- (LO_ARM_HEIGHT * 0.75), 0.0) ;
-
    glTranslatef(0.0,  HAND_HEIGHT , 0.0) ;
-   glRotatef(walking_angles[side][2],1.0,0.0,0.0) ;
    glTranslatef(0.0,- HAND_HEIGHT , 0.0) ;
-   Draw_Hand(frame) ;
-
+*/
 }
-/**/
 
 //-------------------------------------------------------------------
 void robot::drawRobot() {
@@ -169,13 +191,14 @@ void robot::animRobot() {
 	this->Huefte->getRotation()->angle = ((int)this->Huefte->getRotation()->angle) % 360 + 1;
 	
 	this->BeinL->getRotation()->x = 1;
-	this->KnieR->getRotation()->z = 1;
 	this->BeinL->getRotation()->angle += 2;
+
+	this->KnieR->getRotation()->z = 1;
 	this->KnieR->getRotation()->angle += 2;
 
 	this->FussL->getRotation()->y = 1;
 	this->FussL->getRotation()->angle += 4;
 	
-	this->sceneMan->display();
+//	this->sceneMan->display();
 	
 }
