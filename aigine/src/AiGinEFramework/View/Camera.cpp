@@ -66,9 +66,11 @@ void Camera::setRotation(int mouseX, int mouseY, int * winSize)
         // wird das Kreuzprodukt des Kamerarichtungsvektor = Blickpunkt - Position
         // und des Normalenvektors der Kamera gebildet.
         Vector3D temp = * this->getLookAtPosition() - * getTranslation();
-        Vector3D zAxis = Vector3D::cross(& temp, upVector);
+//        Vector3D zAxis = Vector3D::cross(& temp, upVector);
+        Vector3D zAxis = Vector3DCross(temp, *upVector);
 
-        zAxis = Vector3D::getNormalVector(zAxis);
+//        zAxis = Vector3D::getNormalVector(zAxis);
+        zAxis = Vector3DNormalize(zAxis);
 
         // Rotation um die beiden Achsen
         this->rotateView(angleZ, zAxis.x, zAxis.y, zAxis.z);
@@ -93,7 +95,8 @@ void Camera::moveCamera(float speed)
     // moving throughout the world.  This is a MUST that needs to be done.
     // That way you don't move faster than you strafe, since the strafe vector
     // is normalized too.
-    vector = Vector3D::getNormalVector(vector);
+//    vector = Vector3D::getNormalVector(vector);
+     vector = Vector3DNormalize(vector);
 
     // setze Kameraposition 
     getTranslation()->x = getTranslation()->x + vector.x * speed;
@@ -108,10 +111,12 @@ void Camera::strafeCamera(float speed)
 {
     Vector3D temp = * this->getLookAtPosition() - *getTranslation();
     // Initialize a variable for the cross product result
-    Vector3D strafe = Vector3D::cross(& temp, upVector);
+//    Vector3D strafe = Vector3D::cross(& temp, upVector);
+    Vector3D strafe = Vector3DCross(temp, *upVector);
 
     // Normalize the strafe vector
-    strafe = Vector3D::getNormalVector(strafe);
+//    strafe = Vector3D::getNormalVector(strafe);
+    strafe = Vector3DNormalize(strafe);
 
     // Strafing is quite simple if you understand what the cross product is.
     // If you have 2 vectors (say the up vVector and the view vVector) you can
