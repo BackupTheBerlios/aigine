@@ -37,7 +37,7 @@
 		<!-- Adresse und Port des Managerdienstes -->
 		<property name="manager" value="http://localhost:2004/"/>
 		<!--Name des manager servers-->
-		<property name="managerName" value="HSQLServer"/>
+		<property name="managerName" value="VTDatabaseServer"/>
 	</category>	
 	<category name="vtclient">
 		<!-- Typ der Anwendung -->
