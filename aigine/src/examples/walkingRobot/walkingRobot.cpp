@@ -45,9 +45,13 @@ void keyboard(unsigned char key, int x, int y)
 	kb->keyAction(key, x, y);
 }
 
+void idleFunc() {
+}
+
 void timerFunc(int ms) {
 	robi->animRobot();
-	sm->display();
+	glutPostRedisplay();
+//	sm->display();
 	glutTimerFunc(ms,timerFunc,ms);
 }
 
@@ -62,9 +66,7 @@ int main(int argc, char** argv)
 	//	testPrimObjects();
 
 	robi = new robot(sm);
-	robi->drawRobot();
-	robi->getModel()->setTranslation(new Translation3D(-20,0,-20));
-//	sm->printGraph();
+	robi->setTranslation(new Translation3D(-20,15,-20));
 	
 	// ... weitere Objekte laden
 	
@@ -73,7 +75,8 @@ int main(int argc, char** argv)
     glutReshapeFunc(reshape); // .. fuer die Aenderung der Fenstergroesse
 	glutKeyboardFunc(keyboard); // .. fuer die Tastaturabfrage
 	glutPassiveMotionFunc(passivemotion); // fuer die Mausabfrage
-    glutTimerFunc(20,timerFunc, 20);
+    glutTimerFunc(1,timerFunc, 1);
+	glutIdleFunc(idleFunc);
     glutMainLoop(); // Kontrolle wird an GLUT uebergeben
     return 0;
 } 

@@ -2,6 +2,7 @@
 //
 //////////////////////////////////////////////////////////////////////
 #include <iostream>
+#include <math.h>
 #include "../../AiGinEFramework/Model/SceneManagement.h"
 
 #include "../../AiGinEFramework/Model/AiGinEObject.h"
@@ -54,6 +55,24 @@ using namespace std;
 #define RADIUS 2.4
 /**/
 
+typedef struct {
+	float head    ;
+	float upbody  ;
+	float lobody  ;
+	float l_uparm ;
+	float l_loarm ;
+	float l_hand  ;
+	float l_upleg ;
+	float l_loleg ;
+	float l_foot  ;
+	float r_uparm ;
+	float r_loarm ;
+	float r_hand  ;
+	float r_upleg ;
+	float r_loleg ;
+	float r_foot  ;
+} anim_angles ;
+
 class robot  
 {
 public:
@@ -62,6 +81,7 @@ public:
 	void drawRobot();
 	void animRobot();
 	AiGinEObject* getModel();
+	void setTranslation(Translation3D* trans);
 private:
 	SceneManagement* sceneMan;
 
@@ -88,10 +108,23 @@ private:
 	AiGinEObject* drawLeg(AiGinEObject* parent, string kind, string side);
 	AiGinEObject* drawArm(AiGinEObject* parent,  string kind, string side);
 
+	double findBaseMove(double langle_up, double langle_lo, double rangle_up, double rangle_lo);
+	void animateBody();
+	FILE* openFiles(char r_w_a);
+	void readDataFromFile();
+	anim_angles array[4];
+	float langle_count ;
+	float langle_count2 ;
+	float rangle_count ;
+	float rangle_count2 ;
+	float origPos;;
+	int frames;
+	int flag;
+
 	int myAngle;
 	int direction;
 	int vel;
-
+	
 };
 
 #endif //ROBOT_H

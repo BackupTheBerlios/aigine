@@ -14,6 +14,23 @@ robot::robot(SceneManagement* sm) {
 	this->myAngle = 0;
 	this->direction = 1;
 	this->vel = 1;
+	this->frames = FRAMES;
+	this->flag = 1;
+
+	this->langle_count = 0.0;
+	this->langle_count2 = 0.0;
+	this->rangle_count = 0.0;
+	this->rangle_count2 = 0.0;
+	this->drawRobot();
+	this->readDataFromFile();
+	
+	langle_count = this->BeinL->getRotation()->angle;
+	langle_count2 = this->KnieL->getRotation()->angle;
+	rangle_count = this->BeinR->getRotation()->angle;
+	rangle_count2 = this->KnieR->getRotation()->angle;
+
+	this->origPos = this->Huefte->getTranslation()->y;
+	
 }
 
 robot::~robot() {
@@ -22,6 +39,13 @@ robot::~robot() {
 AiGinEObject* robot::getModel() {
 	return this->Huefte;
 }
+
+void robot::setTranslation(Translation3D* trans) {
+	this->Huefte->setTranslation(trans);
+	this->origPos = trans->y;
+}
+
+
 
 //=========================== Huefte ===========================
 AiGinEObject* robot::drawModel(AiGinEObject* parent, string kind) {
@@ -198,11 +222,13 @@ void robot::drawRobot() {
 }
 
 void robot::animRobot() {
+
+	this->animateBody();
 /*
 	this->Huefte->getRotation()->y = 1;
 	this->Huefte->getRotation()->angle = ((int)this->Huefte->getRotation()->angle) % 360 + 1;
 */
-	
+	/*
 	if(this->myAngle <= -90 || this->myAngle >= 90) {
 		this->direction *= -1;
 	}
@@ -233,7 +259,478 @@ void robot::animRobot() {
 	this->HandR->getRotation()->z = 1;
 	this->HandR->getRotation()->angle = this->myAngle/2;
 
-	
-//	this->sceneMan->display();
-	
+	/**/	
 }
+
+
+FILE* robot::openFiles(char r_w_a) {
+	FILE *file ;
+
+   if (r_w_a == 'r')
+   {
+ 	   file  = fopen("data.txt","r") ;
+   }
+   else if (r_w_a == 'w')
+   {
+      file  = fopen("test.txt","w") ;
+   }
+   else
+   {
+      printf("Wrong use of 'Open_Files' procedure, exiting...\n") ;
+      printf("Please press enter to finish\n") ;
+      getchar() ;
+      exit(0) ;
+   }
+   return file ;
+}
+
+void robot::readDataFromFile() {
+   int counter, scan_counter ;
+   FILE *working_file ;
+
+   working_file = openFiles('r') ;
+
+   if (working_file == NULL)
+   {
+      printf("Searched the following directories and could not find the file\n") ;
+      printf("'data.txt'\ne:\\bp\\chapter2\\model2\\\ng:\\data\\\na:\\\n") ;
+      printf("Exiting, please press enter...\n\n") ;
+      getchar() ;
+      exit(0) ;
+   }
+   else
+   {
+      printf("Data input file opened!\n\n") ;
+
+	  this->Kopf->getRotation()->x = 1;
+      this->Torso->getRotation()->x = 1 ;
+      this->Huefte->getRotation()->x = 1 ;
+      this->ArmL->getRotation()->x = 1 ;
+      this->EllbogenL->getRotation()->x = 1 ;
+      this->HandL->getRotation()->x = 1 ;
+      this->BeinL->getRotation()->x = 1 ;
+      this->KnieL->getRotation()->x = 1 ;
+      this->FussL->getRotation()->x = 1 ;
+      this->ArmR->getRotation()->x = 1 ;
+      this->EllbogenR->getRotation()->x = 1 ;
+      this->HandR->getRotation()->x = 1 ;
+      this->BeinR->getRotation()->x = 1 ;
+      this->KnieR->getRotation()->x = 1 ;
+      this->FussR->getRotation()->x = 1 ;
+
+      scan_counter =  fscanf(working_file,"%f",&this->Kopf->getRotation()->angle) ;
+      scan_counter += fscanf(working_file,"%f",&this->Torso->getRotation()->angle) ;
+      scan_counter += fscanf(working_file,"%f",&this->Huefte->getRotation()->angle) ;
+      scan_counter += fscanf(working_file,"%f",&this->ArmL->getRotation()->angle) ;
+      scan_counter += fscanf(working_file,"%f",&this->EllbogenL->getRotation()->angle) ;
+      scan_counter += fscanf(working_file,"%f",&this->HandL->getRotation()->angle) ;
+      scan_counter += fscanf(working_file,"%f",&this->BeinL->getRotation()->angle) ;
+      scan_counter += fscanf(working_file,"%f",&this->KnieL->getRotation()->angle) ;
+      scan_counter += fscanf(working_file,"%f",&this->FussL->getRotation()->angle) ;
+      scan_counter += fscanf(working_file,"%f",&this->ArmR->getRotation()->angle) ;
+      scan_counter += fscanf(working_file,"%f",&this->EllbogenR->getRotation()->angle) ;
+      scan_counter += fscanf(working_file,"%f",&this->HandR->getRotation()->angle) ;
+      scan_counter += fscanf(working_file,"%f",&this->BeinR->getRotation()->angle) ;
+      scan_counter += fscanf(working_file,"%f",&this->KnieR->getRotation()->angle) ;
+      scan_counter += fscanf(working_file,"%f",&this->FussR->getRotation()->angle) ;
+
+      for (counter = 0 ; counter < 4 ; counter++)
+      {
+      	scan_counter +=  fscanf(working_file,"%f",&this->array[counter].head) ;
+      	scan_counter += fscanf(working_file,"%f",&this->array[counter].upbody) ;
+      	scan_counter += fscanf(working_file,"%f",&this->array[counter].lobody) ;
+      	scan_counter += fscanf(working_file,"%f",&this->array[counter].l_uparm) ;
+      	scan_counter += fscanf(working_file,"%f",&this->array[counter].l_loarm) ;
+      	scan_counter += fscanf(working_file,"%f",&this->array[counter].l_hand) ;
+      	scan_counter += fscanf(working_file,"%f",&this->array[counter].l_upleg) ;
+      	scan_counter += fscanf(working_file,"%f",&this->array[counter].l_loleg) ;
+      	scan_counter += fscanf(working_file,"%f",&this->array[counter].l_foot) ;
+      	scan_counter += fscanf(working_file,"%f",&this->array[counter].r_uparm) ;
+      	scan_counter += fscanf(working_file,"%f",&this->array[counter].r_loarm) ;
+      	scan_counter += fscanf(working_file,"%f",&this->array[counter].r_hand) ;
+      	scan_counter += fscanf(working_file,"%f",&this->array[counter].r_upleg) ;
+      	scan_counter += fscanf(working_file,"%f",&this->array[counter].r_loleg) ;
+      	scan_counter += fscanf(working_file,"%f",&this->array[counter].r_foot) ;
+		}
+
+      printf("%d values read.\n\n",scan_counter) ;
+   }
+
+   fclose(working_file) ;
+}
+
+
+
+
+
+double robot::findBaseMove(double langle_up, double langle_lo, double rangle_up, double rangle_lo) {
+
+//	cout << langle_up << " , " << langle_lo << " , " << rangle_up << " , " << rangle_lo << endl;
+   double result1, result2, first_result, second_result, radians_up, radians_lo ;
+
+   radians_up = (PI*langle_up)/180.0 ;
+   radians_lo = (PI*langle_lo-langle_up)/180.0 ;
+   result1 = (UP_LEG_HEIGHT + 2*UP_LEG_JOINT_SIZE) * cos(radians_up) ;
+   result2 = (LO_LEG_HEIGHT + 2*(LO_LEG_JOINT_SIZE+FOOT_JOINT_SIZE)+FOOT_HEIGHT)
+             * cos(radians_lo) ;
+   first_result = LEG_HEIGHT - (result1 + result2) ;
+
+   radians_up = (PI*rangle_up)/180.0 ;
+   radians_lo = (PI*rangle_lo-rangle_up)/180.0 ;
+   result1 = (UP_LEG_HEIGHT + 2*UP_LEG_JOINT_SIZE) * cos(radians_up) ;
+   result2 = (LO_LEG_HEIGHT + 2*(LO_LEG_JOINT_SIZE+FOOT_JOINT_SIZE)+FOOT_HEIGHT)
+             * cos(radians_lo) ;
+   second_result = LEG_HEIGHT - (result1 + result2) ;
+
+   if (first_result <= second_result) {
+      return (-first_result);
+	  } else {
+      return (-second_result);
+	  }
+}
+
+void robot::animateBody() {
+
+	float l_upleg_add, l_loleg_add, r_upleg_add, r_loleg_add,
+         l_uparm_add, l_loarm_add, l_hand_add,
+         r_uparm_add, r_loarm_add, r_hand_add = 0.0;
+
+   switch (flag)
+   {
+      case 1 :
+
+
+
+         l_upleg_add = this->array[0].l_upleg / FRAMES ;
+       	r_upleg_add = this->array[0].r_upleg / FRAMES ;
+         l_loleg_add = this->array[0].l_loleg / FRAMES ;
+       	r_loleg_add = this->array[0].r_loleg / FRAMES ;
+
+         l_uparm_add = this->array[0].l_uparm / FRAMES ;
+       	l_loarm_add = this->array[0].l_loarm / FRAMES ;
+         l_hand_add  = this->array[0].l_hand / FRAMES ;
+       	r_uparm_add = this->array[0].r_uparm / FRAMES ;
+         r_hand_add  = this->array[0].r_hand / FRAMES ;
+         r_loarm_add = this->array[0].r_loarm / FRAMES ;
+
+
+		 this->BeinL->getRotation()->angle += r_upleg_add;
+		 this->BeinR->getRotation()->angle += l_upleg_add;
+		 this->KnieL->getRotation()->angle += r_loleg_add;
+		 this->KnieR->getRotation()->angle += l_loleg_add;
+
+		 this->ArmL->getRotation()->angle += l_uparm_add;
+		 this->EllbogenL->getRotation()->angle += l_loarm_add;
+		 this->HandL->getRotation()->angle += l_hand_add;
+
+ 		 this->ArmR->getRotation()->angle += r_uparm_add;
+		 this->EllbogenR->getRotation()->angle += r_loarm_add ;
+		 this->HandR->getRotation()->angle += r_hand_add ;
+
+		 
+         langle_count  -= l_upleg_add ;
+         langle_count2 -= l_loleg_add ;
+         rangle_count  -= r_upleg_add ;
+         rangle_count2 -= r_loleg_add ;
+		 this->Huefte->getTranslation()->y = this->origPos + findBaseMove(langle_count,langle_count2,rangle_count,rangle_count2) ;
+         frames-- ;
+         if (frames == 0)
+         {
+            flag = 2 ;
+            frames = FRAMES ;
+         }
+         break ;
+
+      case 2 :
+
+         l_upleg_add = this->array[1].l_upleg / FRAMES ;
+        	r_upleg_add = this->array[1].r_upleg / FRAMES ;
+         l_loleg_add = this->array[1].l_loleg / FRAMES ;
+       	r_loleg_add = this->array[1].r_loleg / FRAMES ;
+
+         l_uparm_add = this->array[1].l_uparm / FRAMES ;
+       	l_loarm_add = this->array[1].l_loarm / FRAMES ;
+         l_hand_add  = this->array[1].l_hand / FRAMES ;
+       	r_uparm_add = this->array[1].r_uparm / FRAMES ;
+         r_hand_add  = this->array[1].r_hand / FRAMES ;
+         r_loarm_add = this->array[1].r_loarm / FRAMES ;
+
+
+		 this->BeinL->getRotation()->angle += r_upleg_add;
+		 this->BeinR->getRotation()->angle += l_upleg_add;
+		 this->KnieL->getRotation()->angle += r_loleg_add;
+		 this->KnieR->getRotation()->angle += l_loleg_add;
+
+		 this->ArmL->getRotation()->angle += l_uparm_add;
+		 this->EllbogenL->getRotation()->angle += l_loarm_add;
+		 this->HandL->getRotation()->angle += l_hand_add;
+
+ 		 this->ArmR->getRotation()->angle += r_uparm_add;
+		 this->EllbogenR->getRotation()->angle += r_loarm_add ;
+		 this->HandR->getRotation()->angle += r_hand_add ;
+
+		 
+         langle_count  -= l_upleg_add ;
+         langle_count2 -= l_loleg_add ;
+         rangle_count  -= r_upleg_add ;
+         rangle_count2 -= r_loleg_add ;
+		 this->Huefte->getTranslation()->y = this->origPos + findBaseMove(langle_count,langle_count2,rangle_count,rangle_count2) ;
+         frames-- ;
+         if (frames == 0)
+         {
+            flag = 3 ;
+            frames = FRAMES ;
+         }
+         break ;
+
+      case 3 :
+
+         l_upleg_add = this->array[2].l_upleg / FRAMES ;
+       	r_upleg_add = this->array[2].r_upleg / FRAMES ;
+         l_loleg_add = this->array[2].l_loleg / FRAMES ;
+       	r_loleg_add = this->array[2].r_loleg / FRAMES ;
+
+         l_uparm_add = this->array[2].l_uparm / FRAMES ;
+       	l_loarm_add = this->array[2].l_loarm / FRAMES ;
+         l_hand_add  = this->array[2].l_hand / FRAMES ;
+       	r_uparm_add = this->array[2].r_uparm / FRAMES ;
+         r_hand_add  = this->array[2].r_hand / FRAMES ;
+         r_loarm_add = this->array[2].r_loarm / FRAMES ;
+
+		 this->BeinL->getRotation()->angle += r_upleg_add;
+		 this->BeinR->getRotation()->angle += l_upleg_add;
+		 this->KnieL->getRotation()->angle += r_loleg_add;
+		 this->KnieR->getRotation()->angle += l_loleg_add;
+
+		 this->ArmL->getRotation()->angle += l_uparm_add;
+		 this->EllbogenL->getRotation()->angle += l_loarm_add;
+		 this->HandL->getRotation()->angle += l_hand_add;
+
+ 		 this->ArmR->getRotation()->angle += r_uparm_add;
+		 this->EllbogenR->getRotation()->angle += r_loarm_add ;
+		 this->HandR->getRotation()->angle += r_hand_add ;
+
+
+		 
+         langle_count  -= l_upleg_add ;
+         langle_count2 -= l_loleg_add ;
+         rangle_count  -= r_upleg_add ;
+         rangle_count2 -= r_loleg_add ;
+		 this->Huefte->getTranslation()->y = this->origPos + findBaseMove(langle_count,langle_count2,rangle_count,rangle_count2) ;
+         frames-- ;
+         if (frames == 0)
+         {
+            flag = 4 ;
+            frames = FRAMES ;
+         }
+         break ;
+
+      case 4 :
+
+         l_upleg_add = this->array[3].l_upleg / FRAMES ;
+       	r_upleg_add = this->array[3].r_upleg / FRAMES ;
+         l_loleg_add = this->array[3].l_loleg / FRAMES ;
+       	r_loleg_add = this->array[3].r_loleg / FRAMES ;
+
+         l_uparm_add = this->array[3].l_uparm / FRAMES ;
+       	l_loarm_add = this->array[3].l_loarm / FRAMES ;
+         l_hand_add  = this->array[3].l_hand / FRAMES ;
+       	r_uparm_add = this->array[3].r_uparm / FRAMES ;
+         r_hand_add  = this->array[3].r_hand / FRAMES ;
+         r_loarm_add = this->array[3].r_loarm / FRAMES ;
+
+		 this->BeinL->getRotation()->angle += r_upleg_add;
+		 this->BeinR->getRotation()->angle += l_upleg_add;
+		 this->KnieL->getRotation()->angle += r_loleg_add;
+		 this->KnieR->getRotation()->angle += l_loleg_add;
+
+		 this->ArmL->getRotation()->angle += l_uparm_add;
+		 this->EllbogenL->getRotation()->angle += l_loarm_add;
+		 this->HandL->getRotation()->angle += l_hand_add;
+
+ 		 this->ArmR->getRotation()->angle += r_uparm_add;
+		 this->EllbogenR->getRotation()->angle += r_loarm_add ;
+		 this->HandR->getRotation()->angle += r_hand_add ;
+
+		 
+         langle_count  -= l_upleg_add ;
+         langle_count2 -= l_loleg_add ;
+         rangle_count  -= r_upleg_add ;
+         rangle_count2 -= r_loleg_add ;
+		 this->Huefte->getTranslation()->y = this->origPos + findBaseMove(langle_count,langle_count2,rangle_count,rangle_count2) ;
+         frames-- ;
+         if (frames == 0)
+         {
+            flag = 5 ;
+            frames = FRAMES ;
+         }
+         break ;
+
+		case 5 :
+
+         l_upleg_add = this->array[0].r_upleg / FRAMES ;
+       	r_upleg_add = this->array[0].l_upleg / FRAMES ;
+         l_loleg_add = this->array[0].r_loleg / FRAMES ;
+       	r_loleg_add = this->array[0].l_loleg / FRAMES ;
+
+         l_uparm_add = this->array[0].r_uparm / FRAMES ;
+       	l_loarm_add = this->array[0].r_loarm / FRAMES ;
+         l_hand_add  = this->array[0].r_hand / FRAMES ;
+       	r_uparm_add = this->array[0].l_uparm / FRAMES ;
+         r_hand_add  = this->array[0].l_hand / FRAMES ;
+         r_loarm_add = this->array[0].l_loarm / FRAMES ;
+
+		 this->BeinL->getRotation()->angle += r_upleg_add;
+		 this->BeinR->getRotation()->angle += l_upleg_add;
+		 this->KnieL->getRotation()->angle += r_loleg_add;
+		 this->KnieR->getRotation()->angle += l_loleg_add;
+
+		 this->ArmL->getRotation()->angle += l_uparm_add;
+		 this->EllbogenL->getRotation()->angle += l_loarm_add;
+		 this->HandL->getRotation()->angle += l_hand_add;
+
+ 		 this->ArmR->getRotation()->angle += r_uparm_add;
+		 this->EllbogenR->getRotation()->angle += r_loarm_add ;
+		 this->HandR->getRotation()->angle += r_hand_add ;
+
+		 
+         langle_count  -= l_upleg_add ;
+         langle_count2 -= l_loleg_add ;
+         rangle_count  -= r_upleg_add ;
+         rangle_count2 -= r_loleg_add ;
+		 this->Huefte->getTranslation()->y = this->origPos + findBaseMove(langle_count,langle_count2,rangle_count,rangle_count2) ;
+         frames-- ;
+         if (frames == 0)
+         {
+            flag = 6 ;
+            frames = FRAMES ;
+         }
+         break ;
+
+      case 6 :
+
+         l_upleg_add = this->array[1].r_upleg / FRAMES ;
+       	r_upleg_add = this->array[1].l_upleg / FRAMES ;
+         l_loleg_add = this->array[1].r_loleg / FRAMES ;
+       	r_loleg_add = this->array[1].l_loleg / FRAMES ;
+
+         l_uparm_add = this->array[1].r_uparm / FRAMES ;
+       	l_loarm_add = this->array[1].r_loarm / FRAMES ;
+         l_hand_add  = this->array[1].r_hand / FRAMES ;
+       	r_uparm_add = this->array[1].l_uparm / FRAMES ;
+         r_hand_add  = this->array[1].l_hand / FRAMES ;
+         r_loarm_add = this->array[1].l_loarm / FRAMES ;
+
+		 this->BeinL->getRotation()->angle += r_upleg_add;
+		 this->BeinR->getRotation()->angle += l_upleg_add;
+		 this->KnieL->getRotation()->angle += r_loleg_add;
+		 this->KnieR->getRotation()->angle += l_loleg_add;
+
+		 this->ArmL->getRotation()->angle += l_uparm_add;
+		 this->EllbogenL->getRotation()->angle += l_loarm_add;
+		 this->HandL->getRotation()->angle += l_hand_add;
+
+ 		 this->ArmR->getRotation()->angle += r_uparm_add;
+		 this->EllbogenR->getRotation()->angle += r_loarm_add ;
+		 this->HandR->getRotation()->angle += r_hand_add ;
+	
+		 
+         langle_count  -= l_upleg_add ;
+         langle_count2 -= l_loleg_add ;
+         rangle_count  -= r_upleg_add ;
+         rangle_count2 -= r_loleg_add ;
+		 this->Huefte->getTranslation()->y = this->origPos + findBaseMove(langle_count,langle_count2,rangle_count,rangle_count2) ;
+         frames-- ;
+         if (frames == 0)
+         {
+            flag = 7 ;
+            frames = FRAMES ;
+         }
+         break ;
+
+      case 7 :
+
+         l_upleg_add = this->array[2].r_upleg / FRAMES ;
+       	r_upleg_add = this->array[2].l_upleg / FRAMES ;
+         l_loleg_add = this->array[2].r_loleg / FRAMES ;
+       	r_loleg_add = this->array[2].l_loleg / FRAMES ;
+
+         l_uparm_add = this->array[2].r_uparm / FRAMES ;
+       	l_loarm_add = this->array[2].r_loarm / FRAMES ;
+         l_hand_add  = this->array[2].r_hand / FRAMES ;
+       	r_uparm_add = this->array[2].l_uparm / FRAMES ;
+         r_hand_add  = this->array[2].l_hand / FRAMES ;
+         r_loarm_add = this->array[2].l_loarm / FRAMES ;
+
+		 this->BeinL->getRotation()->angle += r_upleg_add;
+		 this->BeinR->getRotation()->angle += l_upleg_add;
+		 this->KnieL->getRotation()->angle += r_loleg_add;
+		 this->KnieR->getRotation()->angle += l_loleg_add;
+
+		 this->ArmL->getRotation()->angle += l_uparm_add;
+		 this->EllbogenL->getRotation()->angle += l_loarm_add;
+		 this->HandL->getRotation()->angle += l_hand_add;
+
+ 		 this->ArmR->getRotation()->angle += r_uparm_add;
+		 this->EllbogenR->getRotation()->angle += r_loarm_add ;
+		 this->HandR->getRotation()->angle += r_hand_add ;
+
+		 
+         langle_count  -= l_upleg_add ;
+         langle_count2 -= l_loleg_add ;
+         rangle_count  -= r_upleg_add ;
+         rangle_count2 -= r_loleg_add ;
+		 this->Huefte->getTranslation()->y = this->origPos + findBaseMove(langle_count,langle_count2,rangle_count,rangle_count2) ;
+         frames-- ;
+         if (frames == 0)
+         {
+            flag = 8 ;
+            frames = FRAMES ;
+         }
+         break ;
+
+      case 8 :
+
+         l_upleg_add = this->array[3].r_upleg / FRAMES ;
+       	r_upleg_add = this->array[3].l_upleg / FRAMES ;
+         l_loleg_add = this->array[3].r_loleg / FRAMES ;
+       	r_loleg_add = this->array[3].l_loleg / FRAMES ;
+
+         l_uparm_add = this->array[3].r_uparm / FRAMES ;
+       	l_loarm_add = this->array[3].r_loarm / FRAMES ;
+         l_hand_add  = this->array[3].r_hand / FRAMES ;
+       	r_uparm_add = this->array[3].l_uparm / FRAMES ;
+         r_hand_add  = this->array[3].l_hand / FRAMES ;
+         r_loarm_add = this->array[3].l_loarm / FRAMES ;
+
+		 this->BeinL->getRotation()->angle += r_upleg_add;
+		 this->BeinR->getRotation()->angle += l_upleg_add;
+		 this->KnieL->getRotation()->angle += r_loleg_add;
+		 this->KnieR->getRotation()->angle += l_loleg_add;
+
+		 this->ArmL->getRotation()->angle += l_uparm_add;
+		 this->EllbogenL->getRotation()->angle += l_loarm_add;
+		 this->HandL->getRotation()->angle += l_hand_add;
+
+ 		 this->ArmR->getRotation()->angle += r_uparm_add;
+		 this->EllbogenR->getRotation()->angle += r_loarm_add ;
+		 this->HandR->getRotation()->angle += r_hand_add ;
+
+		 
+         langle_count  -= l_upleg_add ;
+         langle_count2 -= l_loleg_add ;
+         rangle_count  -= r_upleg_add ;
+         rangle_count2 -= r_loleg_add ;
+		 this->Huefte->getTranslation()->y = this->origPos + findBaseMove(langle_count,langle_count2,rangle_count,rangle_count2) ;
+         frames-- ;
+         if (frames == 0)
+         {
+            flag = 1 ;
+            frames = FRAMES ;
+         }
+         break ;
+      default :
+         break ;
+   }
+}
+/**/
