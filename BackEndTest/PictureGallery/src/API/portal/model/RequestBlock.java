@@ -17,7 +17,7 @@ public class RequestBlock {
 	private String op = null ;
 	private String srv = null ;
 	private String name = null ;
-	Hashtable requests = null ;
+	Hashtable requests = new Hashtable() ;
 	
 	public RequestBlock(String BlockName, String server, String operation) {
 		this.srv = server ;
@@ -32,21 +32,25 @@ public class RequestBlock {
 		this.name = BlockName ;
 	}
 	
-	public String getServer() {
-		return this.srv ;
-	}
-	
 	public void setServer(String newServer) {
 		this.srv = newServer ;
+	}
+
+	public void setOperation(String newOperation) {
+		this.op = newOperation ;
+	}
+
+	public void setRequests(Hashtable ht) {
+		this.requests = ht ;
 	}
 	
 	public String getOperation() {
 		return this.op ;
 	}
-	
-	public void setOperation(String newOperation) {
-		this.op = newOperation ;
-	}
+
+	public String getServer() {
+		return this.srv ;
+	}	
 	
 	public Hashtable getRequests() {
 		return this.requests ;

@@ -1,22 +1,18 @@
 /*
  * Created on 07.09.2004
  *
- * TODO To change the template for this generated file go to
- * Window - Preferences - Java - Code Style - Code Templates
  */
 package projects.catalog.model;
 
 /**
  * @author your mama
  *
- * Subcatalogs are catalogs that are spezialice the thems
+ * Subcatalogs are catalogs which spezialice the thems
  */
 public class Category {
 	private long id;
 	private String name;
 	private Catalog mainCatalog;
-	
-	
 
 	/**
 	 * @return Returns the id.

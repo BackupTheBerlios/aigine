@@ -129,6 +129,37 @@ public class CProjectServerImpl extends Server implements CProjectServer {
 //	}
 	
 	/**
+	 * description:
+	 * 
+	 * @param manager 
+	 */
+	private Block showimage(Hashtable requests) {
+		System.out.println() ;
+		return null ;
+	}
+	
+	/**
+	 * description:
+	 * 
+	 * @param Requests as Hashtable
+	 */
+	private Block showimages(Hashtable requests) {
+		Block result = null ;
+		System.out.println("==> projects.catalog.CProjectServerImpl.showimages") ;
+		
+		System.out.println("  > folgende Requests sind angekommen") ;
+		
+		System.out.println("<== projects.catalog.CProjectServerImpl.showimages") ;
+		BlockContent bc = new BlockContent("Testbild", "image") ;
+		bc.addAttribute("src", "img/pferde/img_1.jpg") ;
+		bc.addAttribute("alt", "Bild eines Pferdes") ;
+		bc.addAttribute("border", "3") ;
+		result = new Block(bc) ;
+		result.setTitle("ich zeige Bilder:") ;
+		return result ;
+	}
+	
+	/**
 	* verarbeitet einen 'WebRequest' der momentan vom Webserver an beliebige andere Server geschickt werden kann
 	* 
 	* @author Dennis
@@ -179,7 +210,7 @@ public class CProjectServerImpl extends Server implements CProjectServer {
 			tempbc = new BlockContent("rechten Block von Kategorien auf Toplist ändern", "link") ;
 			tempbc.addAttribute("href","catalog.html?srv=CProjectServer&block=kategorien&op=toplist") ;
 			tempbc.addAttribute("class","wichtig") ;
-			tempbc.addAttribute("class","wichtig") ;
+			//tempbc.addAttribute("class","wichtig") ;
 			bcSubEnde1.setSubContent(tempbc) ;
 			
 			tempbc = new BlockContent("1. Link:", "listpoint") ;
@@ -200,7 +231,8 @@ public class CProjectServerImpl extends Server implements CProjectServer {
 			result.setStyle("main") ;
 			
 	//		<a href=\"catalog.html?block=kategorien&srv=CProjectServer&op=toplist\">test</a>
-			
+		} else if (op.indexOf("showimages") == 0) {
+			result = showimages(requestProps) ;
 		} else { 
 			WebRequestError = new String("unexpected Operation") ;
 			result = new Block("unexpected Block-Operation") ;

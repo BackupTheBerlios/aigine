@@ -1,8 +1,7 @@
 /*
  * Created on 07.09.2004
  *
- * TODO To change the template for this generated file go to
- * Window - Preferences - Java - Code Style - Code Templates
+ * 
  */
 package projects.catalog.model;
 
@@ -19,6 +18,11 @@ public class Picture {
 	private Category thema;
 	private String src_path;
 	
+	public Picture(String thepath, String theformat, String thename) {
+		this.src_path = thepath ;
+		this.format = theformat ;
+		this.name = thename ;
+	}
 
 	/**
 	 * @return Returns the format.
@@ -65,9 +69,9 @@ public class Picture {
 	 * class Picture.java created by @author your mama or at his system
 	 * created on 10.09.2004 2004 at 06:14:39
 	 */
-	public String toHtml() {
+/*	public String toHtml() {
 		StringBuffer pic_html = new StringBuffer();
 		pic_html.append("<td> <img src="+src_path+"");
 		return pic_html.toString();
-	}
+	}*/
 }

@@ -6,6 +6,7 @@
 package projects.interfaces;
 
 import java.rmi.RemoteException;
+import java.util.Hashtable;
 
 import projects.catalog.model.Category;
 import projects.catalog.model.Picture;
@@ -26,13 +27,12 @@ public interface CDBServer extends ServerHandle {
 	 void insertPicture(String catalogName, String categoryName, Picture pic) throws RemoteException;
 	 void insertPicture(Picture pic) throws RemoteException;
 	 
-	 Category selectCategory(int bilderanzahl) throws RemoteException; 
+	public Hashtable getPictures(String categoryName, int StartNr) throws RemoteException ;
 	 
+//	 Category selectCategory(int bilderanzahl) throws RemoteException; 
+//	Question (byDR) wie war die obige Methode gedacht???	 
 	 
-	 
-	 
-	 
-	 /**
+	/**
 	  * CManagerServer.registerServices() ruft dann
 	  * non-overriding method for CDBServer
 	  * Tags are:@param manager

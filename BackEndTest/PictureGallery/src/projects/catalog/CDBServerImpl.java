@@ -8,6 +8,7 @@ package projects.catalog;
 import java.rmi.RemoteException;
 import java.rmi.server.RMIClientSocketFactory;
 import java.rmi.server.RMIServerSocketFactory;
+import java.util.Hashtable;
 
 import API.control.Database;
 import projects.catalog.model.Category;
@@ -19,12 +20,12 @@ import API.model.RemoteObject;
 /**
  * 
  * 
- * class CDBServerImpl.java created by @author ?
+ * class CDBServerImpl.java created by @author ?, drichter
  * created on 08.09.2004 2004 at 14:14:46 
  */
 public class CDBServerImpl extends Database implements CDBServer {
 
-	//TODO initialiserit die voting.control.HelperDatabasePersistence
+	//TODO initialisiert die voting.control.HelperDatabasePersistence
 	private String WebRequestError = null;
 	private ManagerHandle manager;	
 	
@@ -40,7 +41,7 @@ public class CDBServerImpl extends Database implements CDBServer {
 	 */
 	public synchronized String register(RemoteObject remoteObject, String usr,
 			String pass) throws RemoteException {
-		// TODO gegister methode mit usr and passwd (for adminClients mybe)
+		// LATER gegister methode mit usr and passwd (for adminClients mybe)
 		String regresult = super.register(remoteObject, usr, pass); 
 		return regresult ;
 	}
@@ -52,7 +53,6 @@ public class CDBServerImpl extends Database implements CDBServer {
 	 * @see API.control.Database#register(API.model.RemoteObject)
 	 */
 	public synchronized String register(RemoteObject remoteObject) {
-		// TODO Auto-generated method stub
 		return super.register(remoteObject);
 	}
 	/**
@@ -63,7 +63,6 @@ public class CDBServerImpl extends Database implements CDBServer {
 	 * @see API.control.Server#registerComponent(API.model.RemoteObject)
 	 */
 	protected synchronized String registerComponent(RemoteObject remoteObject) {
-		// TODO Auto-generated method stub
 		return super.registerComponent(remoteObject);
 	}
 	/**
@@ -73,7 +72,6 @@ public class CDBServerImpl extends Database implements CDBServer {
 	 */
 	public CDBServerImpl() throws RemoteException {
 		super();
-		// TODO Auto-generated constructor stub
 	}
 	/**
 	 * Constructor for CDBServerImpl object
@@ -83,7 +81,6 @@ public class CDBServerImpl extends Database implements CDBServer {
 	 */
 	public CDBServerImpl(int port) throws RemoteException {
 		super(port);
-		// TODO Auto-generated constructor stub
 	}
 	/**
 	 * Constructor for CDBServerImpl object
@@ -96,7 +93,6 @@ public class CDBServerImpl extends Database implements CDBServer {
 	public CDBServerImpl(int port, RMIClientSocketFactory csf,
 			RMIServerSocketFactory ssf) throws RemoteException {
 		super(port, csf, ssf);
-		// TODO Auto-generated constructor stub
 	}
 	/**
 	 * description:
@@ -108,7 +104,7 @@ public class CDBServerImpl extends Database implements CDBServer {
 	 * @see API.interfaces.ServerHandle#registerService(API.model.RemoteObject, API.interfaces.ServerHandle)
 	 */
 	public String registerService(RemoteObject remoteObject) throws RemoteException {
-		// TODO Auto-generated method stub
+		// Question notwendig?
 		return null;
 	}
 
@@ -124,10 +120,10 @@ public class CDBServerImpl extends Database implements CDBServer {
 	/* (non-Javadoc)
 	 * @see projects.interfaces.CDBServer#setPicture(java.lang.String, java.lang.String, projects.catalog.model.Picture)
 	 */
-	public void setPicture(String catalogName, String categoryName, Picture pic) {
+/*	public void setPicture(String catalogName, String categoryName, Picture pic) {
 		// TODO unausgereiftes Fragment für die Bilderdatenbank
 		
-	}
+	}*/
 	/* (non-Javadoc)
 	 * @see projects.interfaces.CDBServer#getManager()
 	 */
@@ -137,9 +133,7 @@ public class CDBServerImpl extends Database implements CDBServer {
 	/**
 	 * description:
 	 * 
-	 * @param catalogName
-	 * @param categoryName
-	 * @param pic
+	 * @param catalogName, categoryName, pic
 	 * @throws RemoteException 
 	 * @see projects.interfaces.CDBServer#insertPicture(java.lang.String, java.lang.String, projects.catalog.model.Picture)
 	 */
@@ -158,6 +152,24 @@ public class CDBServerImpl extends Database implements CDBServer {
 		// TODO Auto-generated method stub
 		
 	}
+	
+	public Hashtable getPictures(String categoryName, int StartNr) {
+		Hashtable ht = new Hashtable() ;
+		// TODO hier muss nun ein Zugriff auf die Datenbank erfolgen, und die Antwortzeilen werden dann in Picture-Objekte verpackt
+		// da dies bislang noch nicht geht, werden die Picture-Objekte hier nun von Hand erstellt
+		Picture pic = new Picture("img/pferde/img_1.jpg", "JPEG", "Schönes Pferd 1") ;
+		ht.put(new Integer(0), pic) ;
+		pic = new Picture("img/pferde/img_2.jpg", "JPEG", "Hübsches Pferd 2") ;
+		ht.put(new Integer(1), pic) ;
+		pic = new Picture("img/pferde/img_3.jpg", "JPEG", "Tolles Pferd 3") ;
+		ht.put(new Integer(2), pic) ;
+		pic = new Picture("img/pferde/img_4.jpg", "JPEG", "Super Pferd 4") ;
+		ht.put(new Integer(3), pic) ;
+		pic = new Picture("img/pferde/img_5.jpg", "JPEG", "Ruhiges Pferd 5") ;
+		ht.put(new Integer(4), pic) ;
+		return ht ;
+	}
+	
 	/**
 	 * description:
 	 * 
@@ -166,8 +178,8 @@ public class CDBServerImpl extends Database implements CDBServer {
 	 * @throws RemoteException 
 	 * @see projects.interfaces.CDBServer#selectCategory(int)
 	 */
-	public Category selectCategory(int bilderanzahl) throws RemoteException {
+/*	public Category selectCategory(int bilderanzahl) throws RemoteException {
 		// TODO Auto-generated method stub
 		return null;
-	}
+	} */
 }

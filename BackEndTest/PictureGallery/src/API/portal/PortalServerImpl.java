@@ -141,6 +141,7 @@ public class PortalServerImpl extends Server implements PortalHandle {
 		rfs.addFrame(rf, 1) ; // linker Frame
 		rf = new RequestFrame(2) ;
 		rf.addBlock("main", "CProjectServer", "main", 0) ;
+		rf.addBlock("main2", "CProjectServer", "showimages", 1) ;
 		rfs.addFrame(rf, 2) ; // Hauptbereich
 		// vorerst mal überall nur die Serverinfo
 		rf = new RequestFrame(3) ;
@@ -174,6 +175,7 @@ public class PortalServerImpl extends Server implements PortalHandle {
 					if (rb.getName().compareTo(block) == 0) {
 						rb.setServer(server) ;
 						rb.setOperation(operation) ;
+				// TODO		rb.se
 						System.out.println("+++ aktualisiere diesen Block mit dem letzten Link") ;
 					} else {
 						System.out.println("  > dieser Block war nicht zu aktualisieren") ;
