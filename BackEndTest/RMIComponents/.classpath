@@ -2,5 +2,45 @@
 <classpath>
     <classpathentry kind="src" path="src"/>
     <classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER"/>
+    <classpathentry kind="src" path="lib"/>
+    <classpathentry kind="lib" path="/usr/home/share/develop/BackEndTest/RMIComponents/lib/hibernate/ant-1.5.3.jar"/>
+    <classpathentry kind="lib" path="/usr/home/share/develop/BackEndTest/RMIComponents/lib/hibernate/ant-optional-1.5.3.jar"/>
+    <classpathentry kind="lib" path="/usr/home/share/develop/BackEndTest/RMIComponents/lib/hibernate/apache.license.txt"/>
+    <classpathentry kind="lib" path="/usr/home/share/develop/BackEndTest/RMIComponents/lib/hibernate/c3p0-0.8.4.5.jar"/>
+    <classpathentry kind="lib" path="/usr/home/share/develop/BackEndTest/RMIComponents/lib/hibernate/c3p0.license.txt"/>
+    <classpathentry kind="lib" path="/usr/home/share/develop/BackEndTest/RMIComponents/lib/hibernate/cglib-full-2.0.1.jar"/>
+    <classpathentry kind="lib" path="/usr/home/share/develop/BackEndTest/RMIComponents/lib/hibernate/commons-collections-2.1.jar"/>
+    <classpathentry kind="lib" path="/usr/home/share/develop/BackEndTest/RMIComponents/lib/hibernate/commons-dbcp-1.1.jar"/>
+    <classpathentry kind="lib" path="/usr/home/share/develop/BackEndTest/RMIComponents/lib/hibernate/commons-lang-1.0.1.jar"/>
+    <classpathentry kind="lib" path="/usr/home/share/develop/BackEndTest/RMIComponents/lib/hibernate/commons-logging-1.0.3.jar"/>
+    <classpathentry kind="lib" path="/usr/home/share/develop/BackEndTest/RMIComponents/lib/hibernate/commons-pool-1.1.jar"/>
+    <classpathentry kind="lib" path="/usr/home/share/develop/BackEndTest/RMIComponents/lib/hibernate/concurrent-1.3.2.jar"/>
+    <classpathentry kind="lib" path="/usr/home/share/develop/BackEndTest/RMIComponents/lib/hibernate/connector.jar"/>
+    <classpathentry kind="lib" path="/usr/home/share/develop/BackEndTest/RMIComponents/lib/hibernate/connector.licence.txt"/>
+    <classpathentry kind="lib" path="/usr/home/share/develop/BackEndTest/RMIComponents/lib/hibernate/dom4j-1.4.jar"/>
+    <classpathentry kind="lib" path="/usr/home/share/develop/BackEndTest/RMIComponents/lib/hibernate/ehcache-0.7.jar"/>
+    <classpathentry kind="lib" path="/usr/home/share/develop/BackEndTest/RMIComponents/lib/hibernate/hibernate2.jar"/>
+    <classpathentry kind="lib" path="/usr/home/share/develop/BackEndTest/RMIComponents/lib/hibernate/hsqldb.jar"/>
+    <classpathentry kind="lib" path="/usr/home/share/develop/BackEndTest/RMIComponents/lib/hibernate/jaas.jar"/>
+    <classpathentry kind="lib" path="/usr/home/share/develop/BackEndTest/RMIComponents/lib/hibernate/jaas.licence.txt"/>
+    <classpathentry kind="lib" path="/usr/home/share/develop/BackEndTest/RMIComponents/lib/hibernate/jboss-cache.jar"/>
+    <classpathentry kind="lib" path="/usr/home/share/develop/BackEndTest/RMIComponents/lib/hibernate/jboss-common.jar"/>
+    <classpathentry kind="lib" path="/usr/home/share/develop/BackEndTest/RMIComponents/lib/hibernate/jboss-jmx.jar"/>
+    <classpathentry kind="lib" path="/usr/home/share/develop/BackEndTest/RMIComponents/lib/hibernate/jboss-system.jar"/>
+    <classpathentry kind="lib" path="/usr/home/share/develop/BackEndTest/RMIComponents/lib/hibernate/jcs-1.0-dev.jar"/>
+    <classpathentry kind="lib" path="/usr/home/share/develop/BackEndTest/RMIComponents/lib/hibernate/jdbc2_0-stdext.jar"/>
+    <classpathentry kind="lib" path="/usr/home/share/develop/BackEndTest/RMIComponents/lib/hibernate/jdbc2_0-stdext.licence.txt"/>
+    <classpathentry kind="lib" path="/usr/home/share/develop/BackEndTest/RMIComponents/lib/hibernate/jgroups-2.2.1.jar"/>
+    <classpathentry kind="lib" path="/usr/home/share/develop/BackEndTest/RMIComponents/lib/hibernate/jta.jar"/>
+    <classpathentry kind="lib" path="/usr/home/share/develop/BackEndTest/RMIComponents/lib/hibernate/jta.licence.txt"/>
+    <classpathentry kind="lib" path="/usr/home/share/develop/BackEndTest/RMIComponents/lib/hibernate/junit-3.8.1.jar"/>
+    <classpathentry kind="lib" path="/usr/home/share/develop/BackEndTest/RMIComponents/lib/hibernate/log4j-1.2.8.jar"/>
+    <classpathentry kind="lib" path="/usr/home/share/develop/BackEndTest/RMIComponents/lib/hibernate/odmg-3.0.jar"/>
+    <classpathentry kind="lib" path="/usr/home/share/develop/BackEndTest/RMIComponents/lib/hibernate/oscache-2.0.jar"/>
+    <classpathentry kind="lib" path="/usr/home/share/develop/BackEndTest/RMIComponents/lib/hibernate/proxool-0.8.3.jar"/>
+    <classpathentry kind="lib" path="/usr/home/share/develop/BackEndTest/RMIComponents/lib/hibernate/swarmcache-1.0rc2.jar"/>
+    <classpathentry kind="lib" path="/usr/home/share/develop/BackEndTest/RMIComponents/lib/hibernate/xalan-2.4.0.jar"/>
+    <classpathentry kind="lib" path="/usr/home/share/develop/BackEndTest/RMIComponents/lib/hibernate/xerces-2.4.0.jar"/>
+    <classpathentry kind="lib" path="/usr/home/share/develop/BackEndTest/RMIComponents/lib/hibernate/xml-apis.jar"/>
     <classpathentry kind="output" path="bin"/>
 </classpath>

@@ -6,18 +6,30 @@
   <!-- set global properties for this build -->
   <property name="src" location="src"/>
   <property name="build" location="bin"/>
-
-  <target name="dist" depends="clean, build"/>
-
-  <target name="build" depends="build_classes, build_rmics"/>
   
-  <target name="build_classes">
-	<mkdir dir="${build}"/>
-  	<javac srcdir="${src}" destdir="${build}"/>
+  <path id="base.path">
+   		<pathelement path="${classpath}"/>
+   		<fileset dir="lib">
+      		<include name="**/*.jar"/>
+   		</fileset>
+   		<pathelement location="classes"/>
+	</path>
+  
+  
+  <target name="dist" depends="clean, build"/>  
+  <target name="build" depends="build_classes, build_rmics"/>  
+  
+  <target name="build_classes">  	
+	<mkdir dir="${build}"/>	
+  	<javac srcdir="${src}" destdir="${build}">
+  		<classpath refid="base.path"/>
+  	</javac>  	
   </target>
-  
+    
   <target name="build_rmics" description="kompiliert alle Proxies (fuer Klassen, die auf Impl enden)">
-	<rmic base="${build}" includes="**/*Impl.class"/>
+	<rmic base="${build}" includes="**/*Impl.class">
+		<classpath refid="base.path"/>
+	</rmic>
   </target>
   
   <target name="clean" description="clean up" >
