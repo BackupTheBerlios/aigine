@@ -36,7 +36,7 @@ void GraphicPipeline::initOpenGL(int argc, char** argv){
     glutInitDisplayMode (GLUT_DOUBLE | GLUT_RGB | GLUT_DEPTH); 
 
 	glutInitWindowSize(this->windowSize[0],this->windowSize[1]);
-    glutInitWindowPosition (100, 100);
+    glutInitWindowPosition (50, 50);
     
     // Ausgabe des Fensters
     glutCreateWindow (argv[0]);
