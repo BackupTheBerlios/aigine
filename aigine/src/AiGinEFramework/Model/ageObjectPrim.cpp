@@ -14,7 +14,11 @@ ageObjectPrim::ageObjectPrim(): AiGinEObject() {
 	glEnable(GL_TEXTURE_GEN_S);     // Enable spherical
 	glEnable(GL_TEXTURE_GEN_T);     // Environment Mapping
 
+	this->kind = 0;
 	this->solid = true;
+	this->colorR = 0;
+	this->colorG = 0;
+	this->colorB = 0;
 }
 
 ageObjectPrim::~ageObjectPrim()
@@ -24,7 +28,7 @@ ageObjectPrim::~ageObjectPrim()
 
 void ageObjectPrim::display() {
 	glPushMatrix();
-	glColor3ub(255, 0, 0);
+	glColor3ub(this->colorR, this->colorG, this->colorB);
 	if(this->solid) {
 		switch(this->kind) {
 		case 1:
@@ -45,16 +49,16 @@ void ageObjectPrim::display() {
 	} else {
 		switch(this->kind) {
 		case 1:
-			glutSolidSphere(this->radiusSphere, this->slicesSphere, this->stacksSphere);
+			glutWireSphere(this->radiusSphere, this->slicesSphere, this->stacksSphere);
 			break;
 		case 2:
-			glutSolidCone(this->baseCone, this->heightCone, this->slicesCone, this->stacksCone);
+			glutWireCone(this->baseCone, this->heightCone, this->slicesCone, this->stacksCone);
 			break;
 		case 3:
-			glutSolidCube(this->sizeCube);
+			glutWireCube(this->sizeCube);
 			break;
 		case 4:
-			glutSolidTorus(this->innerRadiusTorus, this->outerRadiusTorus, this->sidesTorus, this->ringsTorus);
+			glutWireTorus(this->innerRadiusTorus, this->outerRadiusTorus, this->sidesTorus, this->ringsTorus);
 			break;
 		default:
 			break;
@@ -89,4 +93,10 @@ void ageObjectPrim::setTorus(double innerRadius, double outerRadius, int sides, 
 	this->outerRadiusTorus = outerRadius;
 	this->sidesTorus = sides;
 	this->ringsTorus = rings;
+}
+
+void ageObjectPrim::setColor(int r,int g,int b) {
+	this->colorR = r;
+	this->colorG = g;
+	this->colorB = b;
 }
