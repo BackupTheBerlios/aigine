@@ -9,7 +9,7 @@
 //#include <GL/glut.h>
 
 #include "../Model/Vector3D.h"
-#include "../Utils/LookAtObjects.h"
+#include "../Model/LookAtObjects.h"
 
 
 

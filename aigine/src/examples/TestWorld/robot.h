@@ -4,7 +4,7 @@
 #include <iostream>
 #include "../../AiGinEFramework/Model/SceneManagement.h"
 
-#include "../../AiGinEFramework/Utils/AiGinEObject.h"
+#include "../../AiGinEFramework/Model/AiGinEObject.h"
 using namespace std;
 
 #ifndef ROBOT_H

@@ -11,7 +11,7 @@
 #include "SceneGraph.h"
 #include "../AgeObjects/ageObjectPrim.h"
 
-#include "../Utils/AiGinEObject.h"
+#include "AiGinEObject.h"
 
 using namespace std;
 

@@ -13,7 +13,7 @@
 #include "../View/GraphicPipeline.h"
 #include "../AgeObjects/ageObject3DS.h"
 #include "../../Tools/loader3DS/Object3DS.h"
-#include "../Utils/AiGinEObject.h"
+#include "AiGinEObject.h"
 
 
 /*********************P U B L I C***************************************/

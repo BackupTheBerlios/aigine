@@ -8,7 +8,7 @@
 
 
 
-#include "../Utils/LookAtObjects.h"
+#include "../Model/LookAtObjects.h"
 #include "../View/GraphicPipeline.h"
 #include "../Model/Translation3D.h"
 
