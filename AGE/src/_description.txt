@@ -1,5 +1,3 @@
-
-
 /** ageGraphics (dx: DirectX Graphics, port: OpenGL)
 alles für 2D und 3D Grafik
 auf Direct3D und OpenGL basierend
@@ -57,10 +55,12 @@ Frameworks verwendet werden.
  * Model:
 alle Datenmodelle und die auf ihnen definierten Standard-Operatoren
 sowie alle für den Datentyp spezifischen Methoden, z.B.
-ageGM_Matrix: Determinate, Inverse; die Funktionen für
+- ageGM_Matrix: Determinate, Inverse;
+die Funktionen für
 Rotation und Skalierung werden in einem entsprechenden
 Control (ageGC_Matrix) für die grafikspezifische Verwendung der
-Matrix ausgelagert. Init-Funktion von ageGM_Model(laden aus Datei(3DS,obj,
+Matrix ausgelagert.
+- Init-Funktion von ageGM_Model(laden aus Datei(3DS,obj,
 eigenes Format; nicht SceneGraph beschreibende Formate, wie VRML)
 
  * Control
@@ -68,6 +68,7 @@ Arbeitet auf dem Model. Stellt Funktionalität dar(implementiert Programmlogik)
 
  * View
 Ausgabelkomponente
+Man beachte: Die Ausgabekomponenten sind immer im Kontext des Modells zu sehen. Also während bei ageGraphics die Viewkomponente logischerweise sehr umfangreich ist, kann sie in anderen Fällen durchaus leer sein bzw. aus Consolenausgaben und/oder einfachen Windoof-Tabellen, etc. bestehen. 
 */
 
 /** Programmierrichtlinien:
