@@ -11,6 +11,9 @@
 
 robot::robot(SceneManagement* sm) {
 	this->sceneMan = sm;
+	this->myAngle = 0;
+	this->direction = 1;
+	this->vel = 1;
 }
 
 robot::~robot() {
@@ -18,7 +21,7 @@ robot::~robot() {
 
 
 //=========================== Huefte ===========================
-AiGinEObject* robot::drawBaseLegs(AiGinEObject* parent, string kind) {
+AiGinEObject* robot::drawModel(AiGinEObject* parent, string kind) {
 	//Huefte
 	AiGinEObject* base;
 	if(parent != NULL) {
@@ -51,19 +54,22 @@ AiGinEObject* robot::drawBaseLegs(AiGinEObject* parent, string kind) {
 	((ageObjectPrim*)head_join)->setSphere(1.0,8,8);
 	((ageObjectPrim*)head_join)->setColor(0,255,0);
 	head_join->setScale(new Scale3D(HEAD_JOINT_SIZE,HEAD_JOINT_SIZE,HEAD_JOINT_SIZE));
-	head_join->setTranslation(new Translation3D(0.0, TORSO_HEIGHT + (HEAD_HEIGHT/2.0) +HEAD_JOINT_SIZE * 2.0, 0.0));
-	
+	head_join->setTranslation(new Translation3D(0.0,TORSO_HEIGHT/2 + HEAD_JOINT_SIZE,0.0));
+	// + (HEAD_HEIGHT/2.0)-HEAD_HEIGHT * 0.66
 	AiGinEObject* head = this->sceneMan->addObjectPrim(new ageObjectPrim(),head_join,"child");
 	((ageObjectPrim*)head)->setCube(1.0);
 	((ageObjectPrim*)head)->setColor(255,0,0);
 	head->setScale(new Scale3D(HEAD_WIDTH,HEAD_HEIGHT, TORSO));
-	head->setTranslation(new Translation3D(0.0,-HEAD_HEIGHT * 0.66,0.0));
+	head->setTranslation(new Translation3D(0.0, (HEAD_HEIGHT/2.0) + HEAD_JOINT_SIZE, 0.0));
 
 	//Arme
-	AiGinEObject* right_arm = drawArm(head,"next","right");
+	AiGinEObject* right_arm = drawArm(head_join,"next","right");
 	AiGinEObject* left_arm = drawArm(right_arm, "next", "left");
-	right_arm->setTranslation(new Translation3D(TORSO_WIDTH * 0.66, TORSO_HEIGHT * 0.875,0.0));
-	left_arm->setTranslation(new Translation3D(- (TORSO_WIDTH * 0.66), TORSO_HEIGHT * 0.875,0.0));
+	right_arm->setTranslation(new Translation3D(TORSO_WIDTH * 0.66, TORSO_HEIGHT/2 - UP_ARM_JOINT_SIZE,0.0));
+	left_arm->setTranslation(new Translation3D(- (TORSO_WIDTH * 0.66), TORSO_HEIGHT/2 - UP_ARM_JOINT_SIZE,0.0));
+
+	this->ArmR = right_arm;
+	this->ArmL = left_arm;
 
 	return base;
 }
@@ -181,7 +187,7 @@ AiGinEObject* robot::drawArm(AiGinEObject* parent,  string kind, string side) {
 //-------------------------------------------------------------------
 void robot::drawRobot() {
 
-	AiGinEObject* base = drawBaseLegs(NULL,"");
+	AiGinEObject* base = drawModel(NULL,"");
 	this->Huefte = base;
 
 }
@@ -190,14 +196,32 @@ void robot::animRobot() {
 	this->Huefte->getRotation()->y = 1;
 	this->Huefte->getRotation()->angle = ((int)this->Huefte->getRotation()->angle) % 360 + 1;
 	
+	if(this->myAngle <= -90 || this->myAngle >= 90) {
+		this->direction *= -1;
+	}
+
+	this->myAngle += this->vel * this->direction;
+
+
+
 	this->BeinL->getRotation()->x = 1;
-	this->BeinL->getRotation()->angle += 2;
+	this->BeinL->getRotation()->angle = this->myAngle/2;
 
-	this->KnieR->getRotation()->z = 1;
-	this->KnieR->getRotation()->angle += 2;
+	this->KnieL->getRotation()->x = 1;
+	this->KnieL->getRotation()->angle = this->myAngle/2 + 45;
 
-	this->FussL->getRotation()->y = 1;
-	this->FussL->getRotation()->angle += 4;
+	this->FussL->getRotation()->x = 1;
+	this->FussL->getRotation()->angle = this->myAngle/2;
+
+	this->ArmR->getRotation()->z = 1;
+	this->ArmR->getRotation()->angle = this->myAngle + 90;
+
+	this->EllbogenR->getRotation()->z = 1;
+	this->EllbogenR->getRotation()->angle = this->myAngle/2 + 45;
+	
+	this->HandR->getRotation()->z = 1;
+	this->HandR->getRotation()->angle = this->myAngle/2;
+
 	
 //	this->sceneMan->display();
 	
