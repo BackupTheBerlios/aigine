@@ -68,8 +68,9 @@ public class VTClientImpl implements VTClient {
 			"RemoteObjectProperties " + compProps + " , Object" + s);
 	}
 
-	/* (non-Javadoc)
-	 * @see projects.projects.Client.VoteUpdate#update(java.lang.String)
+	/* *
+	 * wird von dem VTserver aufgerufen und die VoteTable uebergeben die dieser 
+	 * entweder aus dem RAM, einem XML file oder einer Datenbank liest
 	 */
 	public void update(VoteTable votes) throws RemoteException {
 		// TODO update der Tabelledaten verbessern, es sollte immer nur
