@@ -12,6 +12,7 @@ import projects.catalog.control.CSession;
 import projects.catalog.model.Catalog;
 import projects.catalog.model.Picture;
 import projects.catalog.model.User;
+
 import API.interfaces.PersistenceHelper;
 
 /**

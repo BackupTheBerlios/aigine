@@ -7,6 +7,7 @@ package projects.interfaces;
 
 import java.rmi.RemoteException;
 
+import projects.catalog.model.Category;
 import projects.catalog.model.Picture;
 import API.interfaces.ServerHandle;
 
@@ -21,7 +22,14 @@ public interface CDBServer extends ServerHandle {
 	 //setzt der Manager in seiner register methode
 	CManagerServer manager = null;
 	
-	 void setPicture(String catalogName, String categoryName, Picture pic) throws RemoteException;
+	 void insertPicture(String catalogName, String categoryName, Picture pic) throws RemoteException;
+	 void insertPicture(Picture pic) throws RemoteException;
+	 
+	 Category selectCategory(int bilderanzahl) throws RemoteException; 
+	 
+	 
+	 
+	 
 	 
 	 /**
 	  * CManagerServer.registerServices() ruft dann

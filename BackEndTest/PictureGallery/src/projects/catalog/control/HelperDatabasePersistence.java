@@ -65,7 +65,7 @@ public class HelperDatabasePersistence implements PersistenceHelper {
 		this.isServer = false;
 	}
 
-	protected void setUp(Properties serverProp) {
+	protected void setUp() {
 
 		if (isNetwork) {
 			serverProps = "database.0=mem:" + dbname;
@@ -95,7 +95,7 @@ public class HelperDatabasePersistence implements PersistenceHelper {
 	 * 
 	 * @see API.interfaces.PersistenceHelper#save()
 	 */
-	public void save() {
+	public void insertPicture(Picture pic) {
 		// TODO speicher ein db abbild des data- objectes
 		if (isServer) {
 			try {
@@ -163,14 +163,14 @@ public class HelperDatabasePersistence implements PersistenceHelper {
 					"category_desc longvarchar," +
 					"pic_id integer(7) NOT NULL," +
 					"CONSTRAINT PK_Category PRIMARY KEY (category_id, pic_id));";
-			String create_basket = "CREATE TABLE Basket(" +
-					"bask_id integer(7) NOT NULL," +
-					"bask_desc longvarchar," +
-					"pic_id integer(7) NOT NULL," +
-					"category_id integer(7) NOT NULL," +
-					"pic_id1 integer(7) NOT NULL," +
-					"CONSTRAINT PK_Basket PRIMARY KEY " +
-						"(bask_id, pic_id, category_id, pic_id1));";
+//			String create_basket = "CREATE TABLE Basket(" +
+//					"bask_id integer(7) NOT NULL," +
+//					"bask_desc longvarchar," +
+//					"pic_id integer(7) NOT NULL," +
+//					"category_id integer(7) NOT NULL," +
+//					"pic_id1 integer(7) NOT NULL," +
+//					"CONSTRAINT PK_Basket PRIMARY KEY " +
+//						"(bask_id, pic_id, category_id, pic_id1));";
 			String alter_usr = "ALTER TABLE User ADD CONSTRAINT urs_bask_rel FOREIGN KEY" +
 					"( bask_id," +
 					"pic_id," +
@@ -245,6 +245,17 @@ public class HelperDatabasePersistence implements PersistenceHelper {
 
 	Connection newConnection() throws Exception {
 		return DriverManager.getConnection(url, user, password);
+	}
+
+	/**
+	 * description:
+	 * 
+	 *  
+	 * @see API.interfaces.PersistenceHelper#save()
+	 */
+	public void save() {
+		// TODO Auto-generated method stub
+		
 	}
 
 }

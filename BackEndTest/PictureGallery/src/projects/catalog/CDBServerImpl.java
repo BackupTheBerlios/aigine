@@ -10,6 +10,7 @@ import java.rmi.server.RMIClientSocketFactory;
 import java.rmi.server.RMIServerSocketFactory;
 
 import API.control.Database;
+import projects.catalog.model.Category;
 import projects.catalog.model.Picture;
 import projects.interfaces.CDBServer;
 import projects.interfaces.CManagerServer;
@@ -131,5 +132,41 @@ public class CDBServerImpl extends Database implements CDBServer {
 	 */
 	public CManagerServer getManager() throws RemoteException {
 		return this.manager ;
+	}
+	/**
+	 * description:
+	 * 
+	 * @param catalogName
+	 * @param categoryName
+	 * @param pic
+	 * @throws RemoteException 
+	 * @see projects.interfaces.CDBServer#insertPicture(java.lang.String, java.lang.String, projects.catalog.model.Picture)
+	 */
+	public void insertPicture(String catalogName, String categoryName, Picture pic) throws RemoteException {
+		// TODO Auto-generated method stub
+		
+	}
+	/**
+	 * description:
+	 * 
+	 * @param pic
+	 * @throws RemoteException 
+	 * @see projects.interfaces.CDBServer#insertPicture(projects.catalog.model.Picture)
+	 */
+	public void insertPicture(Picture pic) throws RemoteException {
+		// TODO Auto-generated method stub
+		
+	}
+	/**
+	 * description:
+	 * 
+	 * @param bilderanzahl
+	 * @return
+	 * @throws RemoteException 
+	 * @see projects.interfaces.CDBServer#selectCategory(int)
+	 */
+	public Category selectCategory(int bilderanzahl) throws RemoteException {
+		// TODO Auto-generated method stub
+		return null;
 	}
 }
