@@ -11,11 +11,15 @@ import java.util.List;
 
 import org.jconfig.Configuration;
 
+import projects.interfaces.VTPersistenceHelper;
 import projects.voting.model.VoteTable;
+
+
+
 
 /**
  * @author tobi
- *
+ * your mama is 
  * Project : RMIComponents, At : Aug 28, 2004
  */
 public class HelperDatabasePersistence implements VTPersistenceHelper {
@@ -74,6 +78,14 @@ public class HelperDatabasePersistence implements VTPersistenceHelper {
 	 * @see API.interfaces.PersistenceHelper#refreshConfiguration()
 	 */
 	public void refreshConfiguration() {
+		// TODO Auto-generated method stub
+		
+	}
+
+	/* (non-Javadoc)
+	 * @see projects.interfaces.VTPersistenceHelper#setVoteTable(projects.voting.model.VoteTable)
+	 */
+	public void setVoteTable(VoteTable votes) {
 		// TODO Auto-generated method stub
 		
 	}
