@@ -71,6 +71,13 @@ public:
 
     void moveRight();
 
+private:    
+
+    /**
+     * @supplierCardinality 1
+     * @clientCardinality 1 
+     */
+    Viewport * lnkViewport;
 };
 
 #endif //CAMERA_H

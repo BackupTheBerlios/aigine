@@ -7,6 +7,7 @@
 #define SCENEMANAGEMENT_H
 
 #include "SceneGraph.h"
+class Camera;
 
 class Renderer;
 class ObjectList;
@@ -23,7 +24,7 @@ class ObjectList;
  * ist dafür verantwortlich, dass alle sichtbaren "Objekte" gezeichnet werden.
  */
 
-class SceneManagement
+class SceneManagement : public SceneGraph
 {
 
 private:
@@ -37,7 +38,12 @@ private:
      */
 
     ObjectList * lnkObjectList;
-    Renderer * lnkRenderer;
+
+    /**
+     * @clientCardinality 1
+     * @supplierCardinality 1..*
+     */
+    Camera * lnkRenderer;
 };
 
 #endif //SCENEMANAGEMENT_H

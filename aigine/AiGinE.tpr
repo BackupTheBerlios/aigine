@@ -29,25 +29,25 @@ Root.2.package_prefix=
 projectfile.encoding=Cp1252
 [editor]
 
-recent.file.0=F:\\develop\\c_3d\\AiGinE\\aigine\\src\\GraphicEngine\\Camera.h
+recent.file.0=/home/05/03644/daten/aigine/aigine/src/GraphicEngine/SceneGraph.h
 
-recent.file.1=F:\\develop\\c_3d\\AiGinE\\aigine\\src\\Model\\Liste.h
+recent.file.1=/home/05/03644/daten/aigine/aigine/src/GraphicEngine/Object.h
 
-recent.file.2=F:\\develop\\c_3d\\AiGinE\\aigine\\src\\Model\\Translation3D.h
+recent.file.2=/home/05/03644/daten/aigine/aigine/src/GraphicEngine/Shader.h
 
-recent.file.3=F:\\develop\\c_3d\\AiGinE\\aigine\\src\\Model\\Tree.h
+recent.file.3=/home/05/03644/daten/aigine/aigine/src/GraphicEngine/Mesh.h
 
-recent.file.4=F:\\develop\\c_3d\\AiGinE\\aigine\\src\\Util\\tree.h
+recent.file.4=/home/05/03644/daten/aigine/aigine/src/GraphicEngine/MeshList.h
 
-recent.file.5=F:\\develop\\c_3d\\AiGinE\\aigine\\src\\Model\\Rotation3D.h
+recent.file.5=/home/05/03644/daten/aigine/aigine/src/GraphicEngine/Camera.h
 
-recent.file.6=F:\\develop\\c_3d\\AiGinE\\aigine\\src\\Model\\Point3D.h
+recent.file.6=/home/05/03644/daten/aigine/aigine/src/GraphicEngine/SceneManagement.h
 
-recent.file.7=F:\\develop\\c_3d\\AiGinE\\aigine\\src\\Util\\Tree.h
+recent.file.7=/home/05/03644/daten/aigine/aigine/src/GraphicEngine/Viewport.h
 
-recent.file.8=F:\\develop\\c_3d\\AiGinE\\aigine\\src\\TestWorld\\util\\ThreadInterface.h
+recent.file.8=/home/05/03644/daten/aigine/aigine/src/GraphicEngine/StateManager.h
 
-recent.file.9=F:\\develop\\c_3d\\AiGinE\\aigine\\src\\TestWorld\\util\\Test.h
+recent.file.9=/home/05/03644/daten/aigine/aigine/src/GraphicEngine/Renderer.h
 
 [workspace]
 
@@ -62,7 +62,7 @@ Developer.CodingWorkspace={{0,2,-1,0,0,0,0,0,0,1,0,50,75,25,-1,-1,-1,-1}${0,1,-1
 Developer.DebugWorkspace={{0,2,-1,0,0,0,0,0,0,1,0,50,75,25,-1,-1,-1,-1}${0,1,-1,0,0,0,0,1,0,1,1,50,75,25,-1,-1,-1,-1}${0,3,-1,0,0,0,0,0,0,1,0,50,50,25,-1,-1,-1,-1}${0,3,-1,0,0,0,0,0,0,1,0,50,50,25,-1,-1,-1,-1}${0,-1,-1,0,0,0,0,0,0,1,0,5,5,5,-1,-1,-1,-1}${0,4,-1,0,0,0,0,0,0,1,0,50,50,25,-1,-1,-1,-1}${0,0,-1,0,0,0,0,1,0,1,0,75,5,5,-1,-1,-1,-1}${0,7,-1,0,0,0,0,0,0,1,0,50,50,75,-1,-1,-1,-1}}
 Developer.DesignWorkspace={{0,2,-1,0,0,0,0,1,0,1,0,50,75,22,-1,-1,-1,-1}${0,1,-1,0,0,0,0,0,0,1,0,50,75,22,-1,-1,-1,-1}${0,3,-1,0,0,0,0,1,0,1,0,50,50,22,-1,-1,-1,-1}${0,3,-1,0,0,0,0,1,0,1,0,50,50,22,-1,-1,-1,-1}${0,-1,-1,0,0,0,0,0,0,1,0,5,5,5,-1,-1,-1,-1}${0,4,-1,0,0,0,0,1,0,1,1,50,50,22,-1,-1,-1,-1}${0,0,-1,0,0,0,0,0,0,1,0,75,5,5,-1,-1,-1,-1}${0,7,-1,0,0,0,0,0,0,1,0,50,50,75,-1,-1,-1,-1}}
 names.Developer={<default>}
-Developer.<default>={{0,2,-1,0,0,0,0,0,0,1,0,50,75,25,-1,-1,-1,-1}${0,1,-1,0,0,0,0,1,0,1,1,50,75,25,-1,-1,-1,-1}${0,3,-1,0,0,0,0,1,0,1,0,50,50,25,-1,-1,-1,-1}${0,3,-1,0,0,0,0,1,0,1,0,50,50,25,-1,-1,-1,-1}${0,-1,-1,0,0,0,0,0,0,1,0,5,5,5,-1,-1,-1,-1}${0,4,-1,0,0,0,0,0,0,1,0,50,50,25,-1,-1,-1,-1}${0,0,-1,0,0,0,0,0,0,1,0,75,5,5,-1,-1,-1,-1}${0,7,-1,0,0,0,0,0,0,1,0,50,50,75,-1,-1,-1,-1}}
+Developer.<default>={{0,2,-1,0,0,0,0,0,0,1,0,50,75,25,0,46,1024,718}${0,1,-1,0,0,0,0,1,0,1,0,50,75,25,-1,-1,-1,-1}${0,3,-1,0,0,0,0,1,0,1,1,50,50,25,-1,-1,-1,-1}${0,3,-1,0,0,0,0,1,0,1,1,50,50,25,-1,-1,-1,-1}${0,-1,-1,0,0,0,0,0,0,1,0,5,5,5,0,46,1024,718}${0,4,-1,0,0,0,0,0,0,1,0,50,50,25,-1,-1,-1,-1}${0,0,-1,0,0,0,0,0,0,1,0,75,5,5,-1,-1,-1,-1}${0,7,-1,0,0,0,0,0,0,1,0,50,50,75,-1,-1,-1,-1}}
 [newDiagramExpert]
 
 includeInCurrentDiagram=true
@@ -112,7 +112,7 @@ cpp.rightMarginToIndents=80
 
 [genHTML]
 
-folder=F:\\develop\\c_3d\\AiGinE\\aigine\\publish
+folder=/home/05/03644/daten/aigine/aigine/publish
 
 generateFor=all_packages
 

@@ -1,6 +1,7 @@
 /* Game Engine Design */
 
 #include "SceneGraph.h"
+void SceneGraph::removeObject(AiGinEObject* object){}
 class AiGinEObject;
 void SceneGraph::draw()
 {

@@ -6,6 +6,9 @@
 
 #define VIEWPORT_H
 
+/**
+ * Einstellungen der Perspektive, Fenstergröße, Linsenkrümmung etc. werden vom Viewport übernommen. 
+ */
 class Viewport
 {
 
