@@ -24,22 +24,28 @@ public class RemoteObjectTable extends Hashtable {
    * Fügt einen neues RemoteObject hinzu.
    */
 	public void add(RemoteObject rop){
+		System.out.println("=> RemoteObjectTable.add(RemoteObject " + rop + ")");
 		super.put(rop.getApp().toString(), rop);
+		System.out.println("<= RemoteObjectTable.add(RemoteObject " + rop + ")");
 	}
 
 	/**
    * Gibt einen Vektor mit Informationen zu den angemeldeten RemoteObjects zurück.
    */
 	public Vector getDataVector(){
+		System.out.println("=> RemoteObjectTable.getDataVector()");
 		Enumeration enum = this.elements();
-		Vector data = null;
+		Vector data = new Vector();
 		while(enum.hasMoreElements()) {
 			RemoteObject pro = (RemoteObject) enum.nextElement();
 			Vector v = new Vector();
-			v.add(pro.getRmiName());
-			v.add(pro.getCompClassName());
-			data.add(v);			
+			//v.add(pro.getRmiName());
+			//v.add(pro.getCompClassName());	
+			v.add(pro.getApp());			
+			data.add(v);
+			System.out.println("\t" + pro.getRmiName() + "\t|" + pro.getCompClassName());
 		}
+		System.out.println("<= RemoteObjectTable.getDataVector()");
 		return data;
 	}
 
@@ -48,8 +54,9 @@ public class RemoteObjectTable extends Hashtable {
    */
 	public Vector getKeyVector(){
 		Vector v = new Vector();
-		v.add("RMI Name");
-		v.add("Comp ClassName");		
+		//v.add("RMI Name");
+		//v.add("Comp ClassName");
+		v.add("Object");			
 		return v;
 	}
 }
