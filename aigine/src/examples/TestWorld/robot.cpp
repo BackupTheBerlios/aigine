@@ -19,6 +19,9 @@ robot::robot(SceneManagement* sm) {
 robot::~robot() {
 }
 
+AiGinEObject* robot::getModel() {
+	return this->Huefte;
+}
 
 //=========================== Huefte ===========================
 AiGinEObject* robot::drawModel(AiGinEObject* parent, string kind) {

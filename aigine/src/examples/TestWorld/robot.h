@@ -61,6 +61,7 @@ public:
 	virtual ~robot();
 	void drawRobot();
 	void animRobot();
+	AiGinEObject* getModel();
 private:
 	SceneManagement* sceneMan;
 
