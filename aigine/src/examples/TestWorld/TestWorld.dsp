@@ -135,6 +135,10 @@ SOURCE=..\..\tools\loader3DS\Object3DS.cpp
 # End Source File
 # Begin Source File
 
+SOURCE=.\robot.cpp
+# End Source File
+# Begin Source File
+
 SOURCE=..\..\AiGinEFramework\Model\Rotation3D.cpp
 # End Source File
 # Begin Source File
@@ -244,6 +248,10 @@ SOURCE=..\..\AiGinEFramework\Model\ObjectList.h
 # Begin Source File
 
 SOURCE=..\..\AiGinEFramework\View\Renderer.h
+# End Source File
+# Begin Source File
+
+SOURCE=.\robot.h
 # End Source File
 # Begin Source File
 

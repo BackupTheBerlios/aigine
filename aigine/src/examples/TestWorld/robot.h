@@ -5,6 +5,8 @@
 #include "../../AiGinEFramework/Model/SceneManagement.h"
 #include "../../AiGinEFramework/Model/ageObjectPrim.h"
 #include "../../AiGinEFramework/Model/AiGinEObject.h"
+#include <iostream>
+using namespace std;
 
 #ifndef ROBOT_H
 #define ROBOT_H
@@ -28,7 +30,7 @@
 #define HAND					LO_ARM_WIDTH / 2.0
 #define FINGER_SIZE				0.1
 #define TORSO_WIDTH				TORSO_HEIGHT * 0.75
-#define TORSO_HEIGHT			0.8
+#define TORSO_HEIGHT			8
 #define TORSO					TORSO_WIDTH / 3.0
 #define HEAD_WIDTH				HEAD_HEIGHT * 0.93
 #define HEAD_HEIGHT 			TORSO_HEIGHT * 0.375
@@ -67,6 +69,14 @@ private:
 	AiGinEObject* BeinL;
 	AiGinEObject* KnieR;
 	AiGinEObject* KnieL;
+	AiGinEObject* FussR;
+	AiGinEObject* FussL;
+	
+	AiGinEObject* drawBaseLegs(AiGinEObject* parent, string kind);
+	AiGinEObject* drawUpperLeg(AiGinEObject* parent, string kind);
+	AiGinEObject* drawLowerLeg(AiGinEObject* parent, string kind);
+	AiGinEObject* drawFoot(AiGinEObject* parent, string kind);
+	AiGinEObject* drawLeg(AiGinEObject* parent, string kind);
 
 };
 
