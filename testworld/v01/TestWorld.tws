@@ -1,0 +1,14 @@
+workspace.diagram.active.meta = { hidden:="true" }
+workspace.diagram.open.0.meta = { hidden:="true" }
+workspace.diagram.open.1.meta = { hidden:="true" }
+workspace.diagram.open.2.meta = { hidden:="true" }
+
+workspace.diagram.active = <oiref:design#Class#id184ygcqzlbixgcqzlblpv.diagram:oiref>
+workspace.diagram.open.0 = <oiref:design#Class#id184ygcqzlbixgcqzlblpv.diagram:oiref>
+workspace.diagram.open.1 = <oiref:design#Class#id2hijncqzlgilmcqzlse0h.diagram:oiref>
+workspace.diagram.active = <oiref:design#Class#id184ygcqzlbixgcqzlblpv.diagram:oiref>
+workspace.diagram.open.0 = <oiref:design#Class#id184ygcqzlbixgcqzlblpv.diagram:oiref>
+workspace.diagram.open.1 = <oiref:design#Class#id2hijncqzlgilmcqzlse0h.diagram:oiref>
+workspace.editor.active = F:\develop\c_3d\AiGinE\testworld\v01\src\Util\QueueEntry.h
+workspace.editor.open.0 = F:\develop\c_3d\AiGinE\testworld\v01\src\Util\jmutex.h
+workspace.editor.open.1 = F:\develop\c_3d\AiGinE\testworld\v01\src\Util\QueueEntry.h

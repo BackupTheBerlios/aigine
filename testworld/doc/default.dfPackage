@@ -1,0 +1,73 @@
+package id184ygcqzlbixgcqzlblpv;
+
+/**
+@version 2.0
+@physicalPackage
+@__modelType diagram 
+*/
+class diagram {
+/**
+@__ref <oiref:design#Class#id1t0ikcqzlgilmcqzlsdm0.diagram:oiref><oihard>
+@__modelType reference
+@__fqn <oiref:#Package#GraphicEngine:oiref> 
+*/
+class reference {
+}/**
+@__ref <oiref:design#Class#id2hijncqzlgilmcqzlse0h.diagram:oiref><oihard>
+@__modelType reference
+@__fqn <oiref:#Package#Util:oiref> 
+*/
+class reference5 {
+}/**
+@__ref <oiref:design#Class#idk0a8cqzlgilmcqzlsdos.diagram:oiref><oihard>
+@__modelType reference
+@__fqn <oiref:#Package#Model:oiref> 
+*/
+class reference7 {
+}/**
+@__ref <oiref:design#Class#id184ygcqzlbixgcqzlblpv.node:oiref><oihard>
+@__modelType reference 
+*/
+class reference18 {
+}}/**
+@__tags
+@shapeType ClassDiagram 
+*/
+class __tags {
+}/**
+@__options 
+*/
+class __options {
+}/**
+@__positions <oigroup:<oiref:design#Class#id184ygcqzlbixgcqzlblpv.node:oiref>=40,220,670,350,0:oigroup>
+<oigroup:<oiref:design#Class#id2hijncqzlgilmcqzlse0h.diagram:oiref>=570,0,200,210,0:oigroup>
+<oigroup:<oiref:design#Class#id1t0ikcqzlgilmcqzlsdm0.diagram:oiref>=310,10,230,200,0:oigroup>
+<oigroup:<oiref:design#Class#idk0a8cqzlgilmcqzlsdos.diagram:oiref>=40,10,220,190,0:oigroup> 
+*/
+class __positions {
+}/**
+@shapeType Note
+@__modelType node
+@name Note1
+@text hier erstmal ne paar klassen zum angucken. ich mach dann noch text zwischen keine angst. 
+
+Model:
+-  hier befindet sich der von mir aufgesetzte Thread fred (AigineThread) diesen nemt ihr und leitet eure klassen ab
+ (natürlich nur die die auch innem eigenen thread laufen sollen. 
+- als nächstes ist da meine viel gepriesende Liste 
+        usage:  LIste<obj> Listenname = new Liste<obj>;  (like vector) für ops -> r.t.f.m
+Util
+:
+- JThread: hab ich im netz gefunden. ist net da die benutzung wie der Java - Thread ist
+        das ziel ist natürlich, nur noch dein AigineThread zu benutzen der dann 
+        alles weitere macht 
+- Mutex: wird benutzt um Globale Variablen auf die zwei threads zugriff haben zu synkronisieren
+
+
+GraphicEngine
+
+ist eigentlich nur die cube.c aus Jung´s Uebung. hab sie aber n bischchen umgebaut. dies ist die C++´sigste version, dei ich zum laufen gebracht habe
+mr_nice @ 09-12-03 
+*/
+class node {
+}

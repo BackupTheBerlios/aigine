@@ -1,0 +1,41 @@
+<HTML><HEAD><!-- Copyright © 2000-2003 TogetherSoft Corporation, a wholly owned subsidiary of Borland Software Corporation. All rights reserved. All patents pending. onWed Aug 29 22:37:09 CEST 2001 --><TITLE></TITLE><LINK REL="stylesheet" TYPE="text/css" HREF="../stylesheet.css" TITLE="Style"><BASE TARGET=classFrame>
+<SCRIPT LANGUAGE = "JavaScript">
+function doClick(imageHref) {
+if (parent.imageFrame != null)
+   parent.imageFrame.location.href = imageHref;
+}
+
+function loadImage() {
+try{ if((parseInt ( navigator.appVersion.charAt(0) )  >=4)  && ( (navigator.appName.indexOf("Microsoft") != -1)  || (navigator.appName.indexOf("Sun") != -1))) {
+  if (parent.isAppletFirstTime == true) {
+     parent.isAppletFirstTime = false;
+     return;
+  }
+  if (parent.packageListFrame.document.navigApplet == null) { return; }
+  var imageFileName = "doc-files/default.cl.gif";
+  var myWidth = document.body.scrollWidth;
+  if (myWidth <= document.body.clientWidth) myWidth = document.images[0].width+25;
+  var myHeight = document.body.scrollHeight;
+  if (myHeight <= document.body.clientHeight) myHeight = document.images[0].height+25;
+    parent.packageListFrame.document.navigApplet.loadView(imageFileName, myWidth, myHeight);
+  resizeSpot();
+  moveSpot();
+ }}catch(Exception){}
+}
+
+function resizeSpot() {
+try{ if((parseInt ( navigator.appVersion.charAt(0) )  >=4)  && ( (navigator.appName.indexOf("Microsoft") != -1)  || (navigator.appName.indexOf("Sun") != -1))) {
+   if (parent.packageListFrame.document.navigApplet == null) { return; }
+    parent.packageListFrame.document.navigApplet.setSpotSize(document.body.clientWidth, document.body.clientHeight);
+    parent.packageListFrame.document.navigApplet.repaint();
+ }}catch(Exception){}
+}
+
+function moveSpot() {
+try{ if((parseInt ( navigator.appVersion.charAt(0) )  >=4)  && ( (navigator.appName.indexOf("Microsoft") != -1)  || (navigator.appName.indexOf("Sun") != -1))) {
+   if (parent.packageListFrame.document.navigApplet == null) { return; }
+    parent.packageListFrame.document.navigApplet.moveSpot(document.body.scrollLeft, document.body.scrollTop);
+ }}catch(Exception){}
+}
+</SCRIPT></HEAD>
+<BODY onLoad="loadImage()" onResize="resizeSpot()" onScroll="moveSpot()"><IMG SRC = "default.cl.gif" USEMAP = "#Beauty"><MAP NAME = "Beauty"><AREA SHAPE = "RECT" COORDS="115,61,210,77" HREF = "../GraphicEngine/Display.html"><AREA SHAPE = "RECT" COORDS="115,77,210,93" HREF = "../GraphicEngine/_angles.html"><AREA SHAPE = "RECT" COORDS="115,93,210,109" HREF = "../GraphicEngine/IOControl.html"><AREA SHAPE = "RECT" COORDS="115,109,210,125" HREF = "../GraphicEngine/Line.html"><AREA SHAPE = "RECT" COORDS="113,10,214,162" HREF = "../GraphicEngine/GraphicEngine.cl.html" onClick = "doClick('../GraphicEngine/doc-files/GraphicEngine.cl.html')"><AREA SHAPE = "RECT" COORDS="12,61,89,77" HREF = "../Util/JThread.html"><AREA SHAPE = "RECT" COORDS="12,77,89,93" HREF = "../Util/QueueEntry.html"><AREA SHAPE = "RECT" COORDS="12,93,89,109" HREF = "../Util/JMutex.html"><AREA SHAPE = "RECT" COORDS="12,125,89,141" HREF = "../Util/pthread/pthread.cl.html" onClick = "doClick('../Util/pthread/doc-files/pthread.cl.html')"><AREA SHAPE = "RECT" COORDS="12,141,89,157" HREF = "../Util/win32/win32.cl.html" onClick = "doClick('../Util/win32/doc-files/win32.cl.html')"><AREA SHAPE = "RECT" COORDS="12,261,103,277" HREF = "../Model/Liste.html"><AREA SHAPE = "RECT" COORDS="12,277,103,293" HREF = "../Model/AigineThread.html"><AREA SHAPE = "RECT" COORDS="12,309,103,325" HREF = "../Model/syncronization/syncronization.cl.html" onClick = "doClick('../Model/syncronization/doc-files/syncronization.cl.html')"><AREA SHAPE = "RECT" COORDS="10,10,93,171" HREF = "../Util/Util.cl.html" onClick = "doClick('../Util/doc-files/Util.cl.html')"><AREA SHAPE = "RECT" COORDS="10,210,107,339" HREF = "../Model/Model.cl.html" onClick = "doClick('../Model/doc-files/Model.cl.html')"></MAP></BODY></HTML>

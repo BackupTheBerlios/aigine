@@ -1,0 +1,41 @@
+<HTML><HEAD><!-- Copyright © 2000-2003 TogetherSoft Corporation, a wholly owned subsidiary of Borland Software Corporation. All rights reserved. All patents pending. onThu Aug 30 00:02:32 CEST 2001 --><TITLE></TITLE><LINK REL="stylesheet" TYPE="text/css" HREF="../../stylesheet.css" TITLE="Style"><BASE TARGET=classFrame>
+<SCRIPT LANGUAGE = "JavaScript">
+function doClick(imageHref) {
+if (parent.imageFrame != null)
+   parent.imageFrame.location.href = imageHref;
+}
+
+function loadImage() {
+try{ if((parseInt ( navigator.appVersion.charAt(0) )  >=4)  && ( (navigator.appName.indexOf("Microsoft") != -1)  || (navigator.appName.indexOf("Sun") != -1))) {
+  if (parent.isAppletFirstTime == true) {
+     parent.isAppletFirstTime = false;
+     return;
+  }
+  if (parent.packageListFrame.document.navigApplet == null) { return; }
+  var imageFileName = "GraphicEngine/doc-files/GraphicEngine.cl.gif";
+  var myWidth = document.body.scrollWidth;
+  if (myWidth <= document.body.clientWidth) myWidth = document.images[0].width+25;
+  var myHeight = document.body.scrollHeight;
+  if (myHeight <= document.body.clientHeight) myHeight = document.images[0].height+25;
+    parent.packageListFrame.document.navigApplet.loadView(imageFileName, myWidth, myHeight);
+  resizeSpot();
+  moveSpot();
+ }}catch(Exception){}
+}
+
+function resizeSpot() {
+try{ if((parseInt ( navigator.appVersion.charAt(0) )  >=4)  && ( (navigator.appName.indexOf("Microsoft") != -1)  || (navigator.appName.indexOf("Sun") != -1))) {
+   if (parent.packageListFrame.document.navigApplet == null) { return; }
+    parent.packageListFrame.document.navigApplet.setSpotSize(document.body.clientWidth, document.body.clientHeight);
+    parent.packageListFrame.document.navigApplet.repaint();
+ }}catch(Exception){}
+}
+
+function moveSpot() {
+try{ if((parseInt ( navigator.appVersion.charAt(0) )  >=4)  && ( (navigator.appName.indexOf("Microsoft") != -1)  || (navigator.appName.indexOf("Sun") != -1))) {
+   if (parent.packageListFrame.document.navigApplet == null) { return; }
+    parent.packageListFrame.document.navigApplet.moveSpot(document.body.scrollLeft, document.body.scrollTop);
+ }}catch(Exception){}
+}
+</SCRIPT></HEAD>
+<BODY onLoad="loadImage()" onResize="resizeSpot()" onScroll="moveSpot()"><IMG SRC = "GraphicEngine.cl.gif" USEMAP = "#Beauty"><MAP NAME = "Beauty"><AREA SHAPE = "RECT" COORDS="511,68,608,84" HREF = "../../GraphicEngine/Line.html#start"><AREA SHAPE = "RECT" COORDS="511,84,608,100" HREF = "../../GraphicEngine/Line.html#end"><AREA SHAPE = "RECT" COORDS="511,100,608,116" HREF = "../../GraphicEngine/Line.html#angle"><AREA SHAPE = "RECT" COORDS="509,20,612,159" HREF = "../../GraphicEngine/Line.html"><AREA SHAPE = "RECT" COORDS="315,390,477,406" HREF = "../../GraphicEngine/Display.html#Display(IOControl)"><AREA SHAPE = "RECT" COORDS="315,406,477,422" HREF = "../../GraphicEngine/Display.html#reshape(int, int)"><AREA SHAPE = "RECT" COORDS="315,422,477,438" HREF = "../../GraphicEngine/Display.html#display_cube()"><AREA SHAPE = "RECT" COORDS="315,438,477,454" HREF = "../../GraphicEngine/Display.html#init()"><AREA SHAPE = "RECT" COORDS="315,454,477,470" HREF = "../../GraphicEngine/Display.html#Display()"><AREA SHAPE = "RECT" COORDS="315,470,477,486" HREF = "../../GraphicEngine/Display.html#~Display()"><AREA SHAPE = "RECT" COORDS="315,502,477,518" HREF = "../../GraphicEngine/Display.html#get_x()"><AREA SHAPE = "RECT" COORDS="315,518,477,534" HREF = "../../GraphicEngine/Display.html#get_y()"><AREA SHAPE = "RECT" COORDS="315,534,477,550" HREF = "../../GraphicEngine/Display.html#get_z()"><AREA SHAPE = "RECT" COORDS="307,116,485,132" HREF = "../../GraphicEngine/IOControl.html#IOControl()"><AREA SHAPE = "RECT" COORDS="307,132,485,148" HREF = "../../GraphicEngine/IOControl.html#keyboard(unsigned char, int, int)"><AREA SHAPE = "RECT" COORDS="307,148,485,164" HREF = "../../GraphicEngine/IOControl.html#~IOControl()"><AREA SHAPE = "RECT" COORDS="307,180,485,196" HREF = "../../GraphicEngine/IOControl.html#getAngle()"><AREA SHAPE = "RECT" COORDS="307,196,485,212" HREF = "../../GraphicEngine/IOControl.html#getTemp_angle()"><AREA SHAPE = "RECT" COORDS="297,326,481,564" HREF = "../../GraphicEngine/Display.html"><AREA SHAPE = "RECT" COORDS="289,20,489,226" HREF = "../../GraphicEngine/IOControl.html"><AREA SHAPE = "RECT" COORDS="22,68,99,84" HREF = "../../GraphicEngine/_angles.html#x"><AREA SHAPE = "RECT" COORDS="22,84,99,100" HREF = "../../GraphicEngine/_angles.html#y"><AREA SHAPE = "RECT" COORDS="22,100,99,116" HREF = "../../GraphicEngine/_angles.html#z"><AREA SHAPE = "RECT" COORDS="20,20,103,159" HREF = "../../GraphicEngine/_angles.html"></MAP></BODY></HTML>

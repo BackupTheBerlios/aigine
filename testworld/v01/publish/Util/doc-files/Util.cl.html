@@ -1,0 +1,41 @@
+<HTML><HEAD><!-- Copyright © 2000-2003 TogetherSoft Corporation, a wholly owned subsidiary of Borland Software Corporation. All rights reserved. All patents pending. onThu Aug 30 00:02:33 CEST 2001 --><TITLE></TITLE><LINK REL="stylesheet" TYPE="text/css" HREF="../../stylesheet.css" TITLE="Style"><BASE TARGET=classFrame>
+<SCRIPT LANGUAGE = "JavaScript">
+function doClick(imageHref) {
+if (parent.imageFrame != null)
+   parent.imageFrame.location.href = imageHref;
+}
+
+function loadImage() {
+try{ if((parseInt ( navigator.appVersion.charAt(0) )  >=4)  && ( (navigator.appName.indexOf("Microsoft") != -1)  || (navigator.appName.indexOf("Sun") != -1))) {
+  if (parent.isAppletFirstTime == true) {
+     parent.isAppletFirstTime = false;
+     return;
+  }
+  if (parent.packageListFrame.document.navigApplet == null) { return; }
+  var imageFileName = "Util/doc-files/Util.cl.gif";
+  var myWidth = document.body.scrollWidth;
+  if (myWidth <= document.body.clientWidth) myWidth = document.images[0].width+25;
+  var myHeight = document.body.scrollHeight;
+  if (myHeight <= document.body.clientHeight) myHeight = document.images[0].height+25;
+    parent.packageListFrame.document.navigApplet.loadView(imageFileName, myWidth, myHeight);
+  resizeSpot();
+  moveSpot();
+ }}catch(Exception){}
+}
+
+function resizeSpot() {
+try{ if((parseInt ( navigator.appVersion.charAt(0) )  >=4)  && ( (navigator.appName.indexOf("Microsoft") != -1)  || (navigator.appName.indexOf("Sun") != -1))) {
+   if (parent.packageListFrame.document.navigApplet == null) { return; }
+    parent.packageListFrame.document.navigApplet.setSpotSize(document.body.clientWidth, document.body.clientHeight);
+    parent.packageListFrame.document.navigApplet.repaint();
+ }}catch(Exception){}
+}
+
+function moveSpot() {
+try{ if((parseInt ( navigator.appVersion.charAt(0) )  >=4)  && ( (navigator.appName.indexOf("Microsoft") != -1)  || (navigator.appName.indexOf("Sun") != -1))) {
+   if (parent.packageListFrame.document.navigApplet == null) { return; }
+    parent.packageListFrame.document.navigApplet.moveSpot(document.body.scrollLeft, document.body.scrollTop);
+ }}catch(Exception){}
+}
+</SCRIPT></HEAD>
+<BODY onLoad="loadImage()" onResize="resizeSpot()" onScroll="moveSpot()"><IMG SRC = "Util.cl.gif" USEMAP = "#Beauty"><MAP NAME = "Beauty"><AREA SHAPE = "RECT" COORDS="492,352,675,368" HREF = "../../Util/Queue.html#Queue()"><AREA SHAPE = "RECT" COORDS="492,368,675,384" HREF = "../../Util/Queue.html#Add(const T &)"><AREA SHAPE = "RECT" COORDS="492,384,675,400" HREF = "../../Util/Queue.html#Wait()"><AREA SHAPE = "RECT" COORDS="490,240,689,414" HREF = "../../Util/Queue.html"><AREA SHAPE = "RECT" COORDS="259,180,453,196" HREF = "../../Util/JThread.html#JThread()"><AREA SHAPE = "RECT" COORDS="259,196,453,212" HREF = "../../Util/JThread.html#~JThread()"><AREA SHAPE = "RECT" COORDS="259,212,453,228" HREF = "../../Util/JThread.html#Start()"><AREA SHAPE = "RECT" COORDS="259,228,453,244" HREF = "../../Util/JThread.html#Kill()"><AREA SHAPE = "RECT" COORDS="259,244,453,260" HREF = "../../Util/JThread.html#Thread()"><AREA SHAPE = "RECT" COORDS="259,260,453,276" HREF = "../../Util/JThread.html#IsRunning()"><AREA SHAPE = "RECT" COORDS="259,276,453,292" HREF = "../../Util/JThread.html#GetReturnValue()"><AREA SHAPE = "RECT" COORDS="257,20,457,322" HREF = "../../Util/JThread.html"><AREA SHAPE = "RECT" COORDS="120,360,203,455" HREF = "../../Util/win32/win32.cl.html" onClick = "doClick('../../Util/win32/doc-files/win32.cl.html')"><AREA SHAPE = "RECT" COORDS="22,100,133,116" HREF = "../../Util/JMutex.html#JMutex()"><AREA SHAPE = "RECT" COORDS="22,116,133,132" HREF = "../../Util/JMutex.html#~JMutex()"><AREA SHAPE = "RECT" COORDS="22,132,133,148" HREF = "../../Util/JMutex.html#Init()"><AREA SHAPE = "RECT" COORDS="22,148,133,164" HREF = "../../Util/JMutex.html#Lock()"><AREA SHAPE = "RECT" COORDS="22,164,133,180" HREF = "../../Util/JMutex.html#Unlock()"><AREA SHAPE = "RECT" COORDS="22,180,133,196" HREF = "../../Util/JMutex.html#IsInitialized()"><AREA SHAPE = "RECT" COORDS="20,360,103,455" HREF = "../../Util/pthread/pthread.cl.html" onClick = "doClick('../../Util/pthread/doc-files/pthread.cl.html')"><AREA SHAPE = "RECT" COORDS="20,20,137,210" HREF = "../../Util/JMutex.html"></MAP></BODY></HTML>

@@ -1,0 +1,41 @@
+<HTML><HEAD><!-- Copyright © 2000-2003 TogetherSoft Corporation, a wholly owned subsidiary of Borland Software Corporation. All rights reserved. All patents pending. onWed Aug 29 22:37:09 CEST 2001 --><TITLE></TITLE><LINK REL="stylesheet" TYPE="text/css" HREF="../../stylesheet.css" TITLE="Style"><BASE TARGET=classFrame>
+<SCRIPT LANGUAGE = "JavaScript">
+function doClick(imageHref) {
+if (parent.imageFrame != null)
+   parent.imageFrame.location.href = imageHref;
+}
+
+function loadImage() {
+try{ if((parseInt ( navigator.appVersion.charAt(0) )  >=4)  && ( (navigator.appName.indexOf("Microsoft") != -1)  || (navigator.appName.indexOf("Sun") != -1))) {
+  if (parent.isAppletFirstTime == true) {
+     parent.isAppletFirstTime = false;
+     return;
+  }
+  if (parent.packageListFrame.document.navigApplet == null) { return; }
+  var imageFileName = "Model/doc-files/Model.cl.gif";
+  var myWidth = document.body.scrollWidth;
+  if (myWidth <= document.body.clientWidth) myWidth = document.images[0].width+25;
+  var myHeight = document.body.scrollHeight;
+  if (myHeight <= document.body.clientHeight) myHeight = document.images[0].height+25;
+    parent.packageListFrame.document.navigApplet.loadView(imageFileName, myWidth, myHeight);
+  resizeSpot();
+  moveSpot();
+ }}catch(Exception){}
+}
+
+function resizeSpot() {
+try{ if((parseInt ( navigator.appVersion.charAt(0) )  >=4)  && ( (navigator.appName.indexOf("Microsoft") != -1)  || (navigator.appName.indexOf("Sun") != -1))) {
+   if (parent.packageListFrame.document.navigApplet == null) { return; }
+    parent.packageListFrame.document.navigApplet.setSpotSize(document.body.clientWidth, document.body.clientHeight);
+    parent.packageListFrame.document.navigApplet.repaint();
+ }}catch(Exception){}
+}
+
+function moveSpot() {
+try{ if((parseInt ( navigator.appVersion.charAt(0) )  >=4)  && ( (navigator.appName.indexOf("Microsoft") != -1)  || (navigator.appName.indexOf("Sun") != -1))) {
+   if (parent.packageListFrame.document.navigApplet == null) { return; }
+    parent.packageListFrame.document.navigApplet.moveSpot(document.body.scrollLeft, document.body.scrollTop);
+ }}catch(Exception){}
+}
+</SCRIPT></HEAD>
+<BODY onLoad="loadImage()" onResize="resizeSpot()" onScroll="moveSpot()"><IMG SRC = "Model.cl.gif" USEMAP = "#Beauty"><MAP NAME = "Beauty"><AREA SHAPE = "RECT" COORDS="370,90,533,106" HREF = "../../Model/AigineThread.html#AigineThread()"><AREA SHAPE = "RECT" COORDS="370,106,533,122" HREF = "../../Model/AigineThread.html#AigineThread(char *)"><AREA SHAPE = "RECT" COORDS="370,122,533,138" HREF = "../../Model/AigineThread.html#Thread()"><AREA SHAPE = "RECT" COORDS="370,138,533,154" HREF = "../../Model/AigineThread.html#~AigineThread()"><AREA SHAPE = "RECT" COORDS="370,170,533,186" HREF = "../../Model/AigineThread.html#getName()"><AREA SHAPE = "RECT" COORDS="352,10,537,200" HREF = "../../Model/AigineThread.html"><AREA SHAPE = "RECT" COORDS="150,154,318,170" HREF = "../../Model/Liste.html#Liste()"><AREA SHAPE = "RECT" COORDS="150,170,318,186" HREF = "../../Model/Liste.html#addItem(Type, int)"><AREA SHAPE = "RECT" COORDS="150,186,318,202" HREF = "../../Model/Liste.html#addItem(Type)"><AREA SHAPE = "RECT" COORDS="150,202,318,218" HREF = "../../Model/Liste.html#getData(int)"><AREA SHAPE = "RECT" COORDS="150,218,318,234" HREF = "../../Model/Liste.html#getItem(int)"><AREA SHAPE = "RECT" COORDS="150,234,318,250" HREF = "../../Model/Liste.html#length()"><AREA SHAPE = "RECT" COORDS="150,250,318,266" HREF = "../../Model/Liste.html#length(int)"><AREA SHAPE = "RECT" COORDS="150,266,318,282" HREF = "../../Model/Liste.html#nextItem()"><AREA SHAPE = "RECT" COORDS="150,282,318,298" HREF = "../../Model/Liste.html#lastItem()"><AREA SHAPE = "RECT" COORDS="150,298,318,314" HREF = "../../Model/Liste.html#addList(Liste)"><AREA SHAPE = "RECT" COORDS="150,314,318,330" HREF = "../../Model/Liste.html#getID(int)"><AREA SHAPE = "RECT" COORDS="150,330,318,346" HREF = "../../Model/Liste.html#swapItem(char)"><AREA SHAPE = "RECT" COORDS="150,346,318,362" HREF = "../../Model/Liste.html#rebuild()"><AREA SHAPE = "RECT" COORDS="150,362,318,378" HREF = "../../Model/Liste.html#~Liste()"><AREA SHAPE = "RECT" COORDS="150,394,318,410" HREF = "../../Model/Liste.html#getData()"><AREA SHAPE = "RECT" COORDS="132,10,332,424" HREF = "../../Model/Liste.html"><AREA SHAPE = "RECT" COORDS="12,84,108,100" HREF = "../../Model/syncronization/linux/linux.cl.html" onClick = "doClick('../../Model/syncronization/linux/doc-files/linux.cl.html')"><AREA SHAPE = "RECT" COORDS="12,100,108,116" HREF = "../../Model/syncronization/win32/win32.cl.html" onClick = "doClick('../../Model/syncronization/win32/doc-files/win32.cl.html')"><AREA SHAPE = "RECT" COORDS="10,10,112,130" HREF = "../../Model/syncronization/syncronization.cl.html" onClick = "doClick('../../Model/syncronization/doc-files/syncronization.cl.html')"></MAP></BODY></HTML>
