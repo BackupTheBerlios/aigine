@@ -1,6 +1,7 @@
 import java.rmi.RMISecurityManager;
 import java.security.Permission;
-//Copyright MageLang Institute; Version $Id: RMIComponentBootstrapSecurityManager.java,v 1.2 2004/08/13 14:21:54 fosion Exp $
+//Copyright MageLang Institute; Version $Id: RMIComponentBootstrapSecurityManager.java,v 1.3 2005/01/29 14:35:20 danny Exp $
+// TODO prüfen und aktualisieren der benötigten Berechtigungen
 /**
  * This class defines a security policy for RMI applications
  * that are bootstrap loaded from a server. The relaxation in

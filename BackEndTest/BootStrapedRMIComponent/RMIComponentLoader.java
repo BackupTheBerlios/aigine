@@ -1,4 +1,3 @@
-
 import interfaces.BootStrapedComponent;
 
 import java.io.FileNotFoundException;
@@ -7,15 +6,15 @@ import java.net.MalformedURLException;
 import java.net.URL;
 import java.rmi.server.RMIClassLoader;
 
+import exception.ParameterNotFoundException;
+
 /**
- * Laedt eine Klasse vom Server und startet sie.
- * Liest die zur Verfgung stehenden Komponenten aus einem
- * Repository und bietet eine Konfigurationsoberflche fr
- * die RMI Kommunikationseinstellungen an.
+ * Lädt den ApplicationStarter vom ClassServer und startet ihn.
  * @author danny
  * @since 05.05.2004
- * @modified Franky
  *
+ * @version 0.95
+ * - wird nur noch für das Laden und Starten des ApplicationStarter verwendet.
  * @version 0.90
  * - Umstellung auf eine zu uebergebene Property Datei, die alle Informationen
  *   fuer die RMI Kommunikation und die von der jeweiligen Komponente 
@@ -24,8 +23,8 @@ import java.rmi.server.RMIClassLoader;
  * @version 0.02
  * - kleine Erweiterung der Properties
  * @version 0.01
- * Einsatz fr die Uebung VSYS:
- * - verwendet die Java System Properties fr die Konfigurationseinstellungen.
+ * Einsatz für die Uebung VSYS:
+ * - verwendet die Java System Properties für die Konfigurationseinstellungen.
  * - startet die geladene Klasse (verwendet Thread.run() Aufruf)
  */
 
@@ -34,167 +33,155 @@ public class RMIComponentLoader {
 	/**
 	 * Reference to ourselves
 	 */
-	private static RMIComponentLoader rcl;
+	private static RMIComponentLoader ownReference;
 
-	/**
-	* Speichert das gelesene Property "codebase" fuer
-	* den Zugriff auf den Klassenserver
-	* @see java.rmi.server.RMIClassLoader
-	 */
-	public URL url;
-
-
-	
 	/**
 	 * url vom ClassServer.
 	 */
-	private static String url_classServer;
-	
+	private static String urlClassServer;
+
 	/**
 	 * url vom jconfigserver.
 	 */
-	private static String url_JconfigServer;
+	private static String urlJconfigServer;
 
 	/**
-	 * Name der zu ladenen Komponente.
+	 * Name der Starterklasse (lädt die angeforderte Klasse).
 	 */
-	private static String compClassName;
+	private static String compClassStarterName = "API.control.BootStrapedApplicationStarter";
 
 	/**
 	 * Klasse fuer die zu ladene Komponente.
 	 */
-	private Class compClass;
+	private Class compClassStarterClass;
 
 	/**
 	 * Zugriff auf den geladenen Komponenten Thread.
 	 */
-	private BootStrapedComponent component;
+	private BootStrapedComponent compClassStarter;
 
 	/**
-	 * Konstruktor
+	 * Konstruktor, prüft Argumente und lädt, instanziert und initialisiert
+	 * den Applikationstarter.
 	 */
-	// TODO Verwendung einer Konfigurationsoberflche fr die Einstellung aller bentigten Parameter.
-	public RMIComponentLoader(String args[])
-		throws
-			MalformedURLException,
-			ClassNotFoundException,
-			InstantiationException,
-			IllegalAccessException,
-			FileNotFoundException,
-			IOException {
+	// TODO Verwendung einer Konfigurationsoberfläche für die Einstellung aller 
+	//      möglichen Parameter.
+	public RMIComponentLoader(String args[]) throws MalformedURLException,
+			ClassNotFoundException, InstantiationException,
+			IllegalAccessException, FileNotFoundException, IOException,
+			ParameterNotFoundException {
+		URL url = null;
+		String loadClass = null;
 		System.out.println("=> RMIComponentLoader()");
-		
-		//		setzen der server Adressen
+		// setzen der Server Adressen
 		setClassServerFromArgs(args);
 		setJconfigServerFromArgs(args);
-		// uebergebenen URL lesen und Komponente laden vom Classserver laden
-		url = new URL(url_classServer);		
-		compClassName = "API.control.BootStrapedApplicationStarter";
-		
-		System.out.println("Asking for: " + url + " and " + compClassName);
-		compClass = RMIClassLoader.loadClass(url, compClassName);
-		System.out.println("After loading Component Class => " + compClass);
-
-		try {
-			component = (BootStrapedComponent) compClass.newInstance();	
-		} catch (Exception e) {
-			e.printStackTrace();
-			System.out.println("Fehler: " + e.getMessage());
-		}
-		
-
+		url = new URL(urlClassServer);
+		// Starter laden
+		System.out.println("Asking for: " + compClassStarterName + " @ " + url);
+		compClassStarterClass = RMIClassLoader.loadClass(url,
+				compClassStarterName);
+		System.out.println("Class loaded => " + compClassStarterClass);
+		// neue Instanz des Startes erzeugen
+		compClassStarter = (BootStrapedComponent) compClassStarterClass
+				.newInstance();
 		// Komponente initialisieren und starten
-		//component.run();
-		component.init(url_JconfigServer);
+		try {
+			loadClass = getParameter(args, "-loadClass");
+			compClassStarter.init(urlJconfigServer, loadClass);
+		} catch (ParameterNotFoundException pnfe) {
+			// Keine Klasse angegeben
+			compClassStarter.init(urlJconfigServer);
+		}
 	}
 
-	
-	private void setClassServerFromArgs(String[] args) {
-		String c_url = getArgument(args,"-classServer");
-		if ( c_url != null ) {
-			url_classServer = c_url;
-		}
-		else {
-			//documentRoot = System.getProperty("java.io.tmpdir");
-			url_classServer = "";
-		}
+	/**
+	 * Setzen der KlassenServer Variablen (parst die Argumente nach -classServer)
+	 * @param java program args
+	 */
+	private void setClassServerFromArgs(String[] args)
+			throws ParameterNotFoundException {
+		urlClassServer = getParameter(args, "-classServer");
+		System.out.println("Set ClassServer URL: " + urlClassServer);
 	}
-    
-	private void setJconfigServerFromArgs(String[] args) {
-		String c_url = getArgument(args,"-jconfigServer");
-		if ( c_url != null ) {
-			try {
-				url_JconfigServer = c_url;
-				
-				
-			}
-			catch (Exception e) {
-				url_JconfigServer = "";
-               }
-		}
+
+	/**
+	 * Setzen der KonfigurationsServer Variablen (parst die Argumente nach -jconfigServer)
+	 * @param java program args
+	 */
+	private void setJconfigServerFromArgs(String[] args)
+			throws ParameterNotFoundException {
+		urlJconfigServer = getParameter(args, "-jconfigServer");
+		System.out.println("Set JConfigServer URL: " + urlJconfigServer);
 	}
-    /**
-     * holt uebergebenes Parameter aus Argument Array . 
-     * In der Form "-param Argument"
-     * @param args	aus main
-     * @param param	welchen parameter 
-     * @return Parameter
-     */
-    private String getArgument(String[] args,String param) {
+
+	/**
+	 * holt uebergebenes Parameter aus Argument Array. 
+	 * In der Form "-param Argument"
+	 * @param args	aus main
+	 * @param param	welchen parameter 
+	 * @return Parameter
+	 * @throws ParameterNotFoundException
+	 */
+	private String getParameter(String[] args, String param)
+			throws ParameterNotFoundException {
 		String ret = null;
-		for ( int i = 0; i < args.length;i++) {
-			if ( args[i].equals(param)) {
-				if ( (i+1) <= args.length ) {
-					ret = args[i+1];
+		for (int i = 0; i < args.length; i++) {
+			if (args[i].equals(param)) {
+				if ((i + 1) <= args.length) {
+					ret = args[i + 1];
+					System.out.println("getParameter: param=" + param
+							+ ", value=" + ret);
 				}
 			}
 		}
+		if (ret == null)
+			throw new ParameterNotFoundException(param);
+
 		return ret;
 	}
-	
-	
 
 	/**
-	 * @param PropertyFileName
 	 */
-	// TODO Prfung der Parameter und Help Aufruf
-	// TODO Parameter fr GUI oder Shell Modus
+	// TODO Parameter für die zu startene Klasse und 
+	//      entsprechende init Methode im ApplikationStarter, z.B. loadClass
+	// TODO Parameter für GUI oder Shell Modus
 	public static void main(String args[]) {
-		if (args.length < 2) {
-			System.out.println(
-				"Usage: java RMIComponentLoader ClassServerURL [e.g. http://localhost:2002/   ...]");
+		if (args.length < 4 || args[0].equals("-h") || args[0].equals("-help")
+				|| args[0].equals("--help")) {
+			System.out.println("Usage: java RMIComponentLoader "
+					+ "-jconfigServer URLforJconfigServer "
+					+ "-classServer URLforClassServer "
+					+ "[-loadClass ClassName]");
 			return;
 		}
 		// SecurityManager setzen und RMIComponentLoader starten.
 		System.setSecurityManager(new RMIComponentBootstrapSecurityManager());
 		try {
-			rcl = new RMIComponentLoader(args);
-			
+			ownReference = new RMIComponentLoader(args);
 		} catch (MalformedURLException e) {
-			e.printStackTrace();
-			System.out.println(
-				"URL not specified correctly for the Component class: "
-					+ e.getMessage());
+			System.err
+					.println("Error: RMIComponentLoader, URL not specified correctly for the component class: "
+							+ e.getMessage());
 		} catch (ClassNotFoundException e) {
-			e.printStackTrace();
-			System.out.println(
-				"RMIComponentLoader, class not found: " + e.getMessage());
-		} catch (InstantiationException e) {
-			e.printStackTrace();
-			System.out.println(
-				"RMIComponentLoader, class could not be instantiated"
+			System.err.println("Error: RMIComponentLoader, class not found: "
 					+ e.getMessage());
+		} catch (InstantiationException e) {
+			System.err
+					.println("Error: RMIComponentLoader, class could not be instantiated: "
+							+ e.getMessage());
 		} catch (IllegalAccessException e) {
-			e.printStackTrace();
-			System.out.println("Internal error" + e.getMessage());
+			System.out.println("Error: RMIComponentLoader, internal error: " + e.getMessage());
+			e.printStackTrace();			
 		} catch (FileNotFoundException e) {
-			e.printStackTrace();
-			System.out.println(
-				"RMIComponentLoader, no property file found " + e.getMessage());
+			System.err.println("Error: RMIComponentLoader, file not found: "
+					+ e.getMessage());
 		} catch (IOException ioe) {
-			System.out.println(
-				"RMIComponentLoader, couldn't read properties"
+			System.err.println("Error: RMIComponentLoader, io error: "
 					+ ioe.getMessage());
+		} catch (ParameterNotFoundException pnfe) {
+			System.err.println("Error: RMIComponentLoader, couldn't read parameter: "
+					+ pnfe.getMessage());
 		}
 	}
 }
