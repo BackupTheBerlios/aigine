@@ -14,11 +14,6 @@ import API.interfaces.ServerHandle;
  * Project : RMIComponents, At : Aug 11, 2004
  */
 public interface HSQLServer extends ServerHandle {
-		
-		
-		 void  
-		
-		
 }
 
 
