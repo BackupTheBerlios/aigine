@@ -19,11 +19,26 @@ import API.model.RemoteObject;
  */
 public interface ServerHandle extends Remote{
 	/**
-	 * registriert einen VTClient
+	 * registriert einen Client ohne Anmeldung
 	 * @param projects.projects.Client
 	 * @return aktuelles VoteTable
 	 * @throws RemoteException
 	 */
 	String register(RemoteObject service) throws RemoteException;
+
+	/**
+	 * registriert einen Client anhand der Userkennung mit Passwortabfrage.
+	 * @param projects.projects.Client
+	 * @return aktuelles VoteTable
+	 * @throws RemoteException
+	 */
 	String register(RemoteObject remoteObject, String usr, String pass) throws RemoteException;
+
+	/**
+	 * registriert einen Admin Client anhand der Userkennung mit Passwortabfrage.
+	 * @param projects.projects.Client
+	 * @return aktuelles VoteTable
+	 * @throws RemoteException
+	 */
+	String registerAdminClient(RemoteObject remoteObject, String usr, String pass) throws RemoteException;
 }
