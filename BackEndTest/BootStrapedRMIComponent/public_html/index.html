@@ -1,38 +1,148 @@
-<HTML>
-<HEAD>
-<TITLE>WEB Testumgebung VSYSBeleg</TITLE>
-</HEAD>
-<BODY>
-<TABLE border="2">
-<TR>
-<TD colspan="3">
-<!-- Header -->
-Willkommen auf der Online Plattform
-</TD>
-</TR>
-<TR>
-<TD>
-<!-- Left Frame -->
-left
-</TD>
-<TD>
-<!-- Main Frame -->
-Dokumentation
-</TD>
-<TD>
-<!-- Right Frame -->
-<FORM ACTION="voting.html" METHOD="GET">
-<INPUT TYPE="hidden" NAME="op" VALUE="login">
-<TABLE><TR><TD>
-  name</TD><TD><INPUT type="text" name="name">
-</TD></TR><TR><TD>
-  password</TD><TD><INPUT type="password" name="password">
-</TD></TR><TR><TD colspan="2">
-  <INPUT type="submit" value="login">
-</TD></TR></TABLE>
-</FORM>
-</TD>
-</TR>
-</TABLE>
-</BODY>
-</HTML>
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+<head>
+  <title>WEB Testumgebung VSYSBeleg</title>
+  <link rel="stylesheet" href="design.css" type="text/css">
+</head>
+<body>
+<table class="site">
+  <tbody>
+    <tr>
+      <td colspan="3"><!-- Header -->Willkommen auf der Online
+Plattform </td>
+    </tr>
+    <tr>
+      <td class="left"><!-- Left Frame --><br>
+      <ul>
+        <li>Menu <br>
+        </li>
+        <li>f&uuml;r <br>
+        </li>
+        <li>die</li>
+        <li>Kategorien <br>
+        </li>
+        <li>etc.</li>
+      </ul>
+      </td>
+      <td class="main"><!-- Main Frame -->/*<br>
+&nbsp;* VSYS Beleg: verteilte Anwendungen mit RMI<br>
+&nbsp;* 0503xxx, Dennis Richter<br>
+&nbsp;* 0503xxx, Frank Otto<br>
+&nbsp;* 0503xxx, Tobias Harpering<br>
+&nbsp;* 0503644, Danny Gr&auml;f<br>
+&nbsp;*/<br>
+      <br>
+      <h1>Aufbau:</h1>
+      <p>Unterteilung in mehrere Projekte:<br>
+Ein Klassenserver bietet die Klassenbibliothek f&uuml;r die
+Komponenten, die
+vom Komponentenlader gestartet werden. Dabei wird eine zweistufige
+"BootStraped Strategie" eingesetzt. Der Komponentenlader l&auml;dt
+wiederum den eigentlichen Komponentenstarter, der dann erst die
+eigentlich angeforderte Komponente l&auml;dt und startet, dadurch steht
+einer Weiterentwiklung oder Anpassung des Ladeprozesses nichts im Wege.<br>
+      </p>
+      <h2>ClassServer/</h2>
+      <p>Der Klassenserver stellt die notwendigen HTTP Zugriffe
+f&uuml;r das
+Herunterladen von Klassen zur Verf&uuml;gung. Beim Starten muss der zu
+verwendene Port und der Pfad mit den anzubietenen Klassen angegeben
+werden.<br>
+siehe: <a href="ClassServer/runhttp">ClassServer/runhttp</a><br>
+Aufruf: java ClassFileServer PORT PATH </p>
+      <h2>BootStrapedRMIComponent/</h2>
+      <p>Mit diesem Programm kann das auszuf&uuml;hrende Program vom
+Klassen
+Server geladen und
+gestartet werden. Die zur Verf&uuml;gung stehenden Programme sind in
+der Konfigurationsdatei hinterlegt.<br>
+siehe Bsp.:<a href="BootStrapedRMIComponent/icke_config.xml">BootStrapedRMIComponent/icke_config.xml</a><br>
+Aufruf: java RMIComponentLoader http://tweety:2002/<br>
+      </p>
+      <h2>RMIComponents</h2>
+Die eigentliche Entwicklungsumgebung, deren ausf&uuml;hrbare Versionen
+&uuml;ber den ClassServer zum Starten angeboten werden.<br>
+      <h3>API</h3>
+      <p>Framework f&uuml;r die von allen Komponenten ben&ouml;tigten
+Eigenschaften.<br>
+      </p>
+      <h4>BootStrapedApplicationStarter</h4>
+      <a
+ href="file:///usr/home/danny/BackEndTest/RMIComponents/src/API/control/BootStrapedApplicationStarter.java">RMIComponents/src/API/control/BootStrapedApplicationStarter.java</a><br>
+Dieses Programm wird vom <span style="font-style: italic;">RMIComponentLoader</span>
+gestartet. Es liest die lokal vorliegende Konfigurationsdatei und gibt
+f&uuml;r die zur Verf&uuml;gung stehenden Applikationen eine
+Auswahlmen&uuml; aus. Die ausgew&auml;hlten Komponente wird dann je
+nach Konfiguration (siehe config Datei) gestartet. F&uuml;r die
+Registrierung an anderen Komponenten wird ein Datencontainer
+(RemoteObject) erzeugt, in diesem werden alle Properties und eine
+Referenz auf die gestartet Komponente hinterlegt. Unterschieden wird in
+Client und Serverkomponenten f&uuml;r die entsprechenden Startaufrufe
+und abh&auml;ngig vom Authentifizierungstyp wird die jeweilige
+Registrierung mit/ohne Passwort oder Admin usw. durchgef&uuml;hrt.<br>
+      <h4>Server / ServerHandle<br>
+      </h4>
+      <a href="RMIComponents/src/API/control/Server.java">RMIComponents/src/API/control/Server.java</a><br>
+Der <span style="color: rgb(153, 0, 0); font-weight: bold;">BootStrapedApplicationStarter</span><span
+ style="font-weight: bold;"> </span>greift &uuml;ber das Interface <span
+ style="color: rgb(153, 0, 0); font-weight: bold;">ServerHandle</span>
+auf eine zu ladene Komponente zu, wenn <span style="font-weight: bold;">&lt;property
+name="typ" value="server"/&gt;</span> . Die Klasse <span
+ style="color: rgb(153, 0, 0); font-weight: bold;">Server</span>
+implementiert h&auml;ufig ben&ouml;tiger Serverfunktionalit&auml;ten,
+z.B. Anmeldung von Clients. Am Server k&ouml;nnen sich andere
+RMIComponents registrieren, daf&uuml;r stehen ihnen abh&auml;ngig vom
+gew&auml;hlten Authentifizierungstypen mehrere M&ouml;glichkeiten zur
+Verf&uuml;gung. Alle registrierten Kommunikationspartner werden in der <span
+ style="font-weight: bold; color: rgb(153, 0, 0);">RemoteObjectTable</span>
+gespeichert. <br>
+      <h4>Application / Client</h4>
+Interfaces, die die Initialisierungsmethode von Client Komponenten
+beschreiben, so dass an Client <br>
+Implemtierungen das vom<span
+ style="color: rgb(153, 0, 0); font-weight: bold;">
+BootStrapedApplicationStarter</span><span style="font-weight: bold;"></span>
+erzeugte <span style="font-weight: bold; color: rgb(153, 0, 0);">RemoteObject
+      </span><span style="color: rgb(153, 0, 0);"></span>und<span
+ style="font-weight: bold; color: rgb(153, 0, 0);"> ServerHandle</span><span
+ style="font-weight: bold;"></span> f&uuml;r die gegenseitigen
+Methodenaufrufe &uuml;bergeben werden kann.<span
+ style="font-weight: bold;"><br>
+      </span>
+      <h4>WebServer</h4>
+      <a href="RMIComponents/src/API/control/WebServer.java">RMIComponents/src/API/control/WebServer.java</a><br>
+Ein einfacher Webserver f&uuml;r HTTP GET/HEAD requests.<br>
+      <h3>Projects</h3>
+      <h4>voting.VTServerImpl</h4>
+Ein Votingserver, der von Server abgeleitet ist. An ihm k&ouml;nnen
+sich andere RemoteObjects anmelden<br>
+und entweder auf seine Votes oder wiederrum auf die registrierten
+Komponenten zugreifen.<br>
+      <br>
+MA SCHAUN, WIE DAT NACHHER AUSSIEHT.<br>
+      </td>
+      <td class="blocks-right"><!-- Right Frame -->
+      <form action="voting.html" method="get"><input type="hidden"
+ name="op" value="login">
+        <table>
+          <tbody>
+            <tr>
+              <td> name</td>
+              <td><input type="text" name="name"></td>
+            </tr>
+            <tr>
+              <td> password</td>
+              <td><input type="password" name="password"></td>
+            </tr>
+            <tr>
+              <td colspan="2"> <input type="submit" value="login"></td>
+            </tr>
+          </tbody>
+        </table>
+      </form>
+      </td>
+    </tr>
+  </tbody>
+</table>
+</body>
+</html>
