@@ -1,0 +1,19 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC
+        "-//Hibernate/Hibernate Mapping DTD 2.0//EN"
+        "http://hibernate.sourceforge.net/hibernate-mapping-2.0.dtd">
+
+<hibernate-mapping>
+
+        <class name="de.gloegl.road2hibernate.User" table="USERS">
+                <id name="id" column="uid" type="long">
+                        <generator class="increment"/>
+                </id>
+                
+                <property name="firstname"/>
+                <property name="lastname"/>
+                <property name="nicname"/>
+                <property name="session" type="object"/>
+        </class>
+
+</hibernate-mapping>
