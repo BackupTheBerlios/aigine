@@ -11,7 +11,6 @@ import java.util.List;
 
 import org.jconfig.Configuration;
 
-import projects.interfaces.VTPersistenceHelper;
 import projects.voting.model.VoteTable;
 
 /**

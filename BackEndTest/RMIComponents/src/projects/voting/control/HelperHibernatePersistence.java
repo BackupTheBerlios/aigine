@@ -6,10 +6,8 @@
  */
 package projects.voting.control;
 
-import java.net.MalformedURLException;
 import java.net.URI;
 import java.net.URISyntaxException;
-import java.net.URL;
 import java.util.Enumeration;
 import java.util.List;
 
@@ -17,72 +15,81 @@ import net.sf.hibernate.HibernateException;
 import net.sf.hibernate.Session;
 import net.sf.hibernate.SessionFactory;
 import net.sf.hibernate.Transaction;
-import net.sf.hibernate.cfg.Configuration;
-
 import projects.interfaces.VTPersistenceHelper;
-import projects.voting.model.DBVote;
 import projects.voting.model.Vote;
 import projects.voting.model.VoteTable;
 import API.interfaces.ServerHandle;
 
 /**
  * @author tobi
- *
+ * 
  * To change the template for this generated type comment go to
  * Window&gt;Preferences&gt;Java&gt;Code Generation&gt;Code and Comments
  */
 public class HelperHibernatePersistence implements VTPersistenceHelper {
 
 	private SessionFactory sessionFactory;
+
 	//Vorsicht hier steht auch immer die "general" mit drin!
 	private String[] categorynames;
+
 	private String databasename;
+
 	private VoteTable votes;
 
 	/**
-	 * 
+	 *  
 	 */
-	public HelperHibernatePersistence(
-		
-		SessionFactory sf,
-		ServerHandle classServer) {
+	public HelperHibernatePersistence(SessionFactory sf,
+			ServerHandle classServer) {
 		System.out.println("=>HelperHibernatePersistence:Constructor");
 		votes = new VoteTable();
 		sessionFactory = sf;
-		System.out.println(
-			"<=HelperDatabasePersistence.constructor");
+		System.out.println("<=HelperDatabasePersistence.constructor");
 
 	}
 
-	/* (non-Javadoc)
+	/*
+	 * (non-Javadoc)
+	 * 
 	 * @see projects.voting.control.PersistenceHelper#refreshConfiguration()
 	 */
 	public void refreshConfiguration() {
 
 	}
 
-	/* (non-Javadoc)
+	/*
+	 * (non-Javadoc)
+	 * 
 	 * @see projects.voting.control.PersistenceHelper#save()
 	 */
 	public void save() {
+		System.out.println("=>HleperHibernatePersistence.save()");
 		try {
-			Session session = sessionFactory.openSession();
-			Transaction tx = session.beginTransaction();
-			Enumeration enum = votes.elements();
-			while (enum.hasMoreElements()) {
 
-				DBVote vote = (DBVote) enum.nextElement();
-				System.out.println(
-					"HelperDatabasePer.save: the next element=" + vote);
-				session.save(vote);
+			Enumeration enum = votes.elements();
+			System.out.println("Enumeration of votes: " + enum);
+			while (enum.hasMoreElements()) {
+				Session session = sessionFactory.openSession();
+				System.out.println("Session is open: " + session);
+				Transaction tx = session.beginTransaction();
+				System.out.println("begin Transaction: " + tx);
+				Vote vote = (Vote) enum.nextElement();
+				System.out.println("zu speichernde vote: " + vote.toString());
+				System.out.println("HelperDatabasePer.save: the next element="
+						+ vote);
+//				session.save(vote);
+//				session.saveOrUpdateCopy(vote);
+				session.saveOrUpdate(vote);
+				tx.commit();
+				session.close();
+				System.out.println("vote saved!");
 			}
 
-			tx.commit();
-			session.close();
 		} catch (HibernateException e) {
 			e.printStackTrace();
 		}
-
+		System.out.println("<=HleperHibernatePersistence.save()");
 	}
 
 	public List listVotes() {
@@ -101,59 +108,65 @@ public class HelperHibernatePersistence implements VTPersistenceHelper {
 		}
 	}
 
-	/* (non-Javadoc)
+	/*
+	 * (non-Javadoc)
+	 * 
 	 * @see interfaces.PersistenceHelper#getVoteTable()
 	 */
 	public VoteTable getVoteTable() {
+		System.out.println("=>HleperHibernatePersistence.getVoteTable()");
 		VoteTable newVotes = null;
+		Session session = null;
+		Transaction tx = null;
 		try {
-			Session session = sessionFactory.openSession();
-			Transaction tx = session.beginTransaction();
-
+			System.out.println("session wird geoeffnet...");
+			session = sessionFactory.openSession();
+			System.out.println("....open!");
+			tx = session.beginTransaction();
+		
+			System.out.println("....begin transaction...");
 			List result = session.find("from Votes");
+			System.out.println("gitting from database: " + result);
 			for (int i = 0; i < result.size(); i++) {
-				DBVote dbv = (DBVote) result.get(i);
-				newVotes.put(dbv.getId(), (Vote) dbv);
+				Vote dbv = (Vote) result.get(i);
+				newVotes.put(String.valueOf(dbv.getId()), (Vote) dbv);
 			}
 
-			tx.commit();
-			session.close();
+			
 
-			return newVotes;
 		} catch (HibernateException e) {
 			throw new RuntimeException(e.getMessage());
+		} finally {
+			try {
+				tx.commit();
+				session.close();
+			}catch (HibernateException e) {
+				
+			}
 		}
+		System.out.println("<=HleperHibernatePersistence.getVoteTable()");
+		return newVotes;
 	}
 
 	/**
 	 * checkt ob die uebergebene URI koreckt angegben wurde
-	 * @param uri 
-	 * HelperDatabasePersistence.java
+	 * 
+	 * @param uri
+	 *            HelperDatabasePersistence.java
 	 */
 	public URI uriParser(String uriString) {
 		try {
-			URI uri =
-				new URI("file", "/projects/voting/model/DBVote.hbm.xml", null);
-			System.out.println(
-				"Schema   : "
-					+ uri.getScheme()
+			URI uri = new URI("file", "/projects/voting/model/Vote.hbm.xml",
+					null);
+			System.out.println("Schema   : " + uri.getScheme()
 					+ "\nSchemaspezifischer Teil: "
-					+ uri.getSchemeSpecificPart()
-					+ "\nFragment : "
+					+ uri.getSchemeSpecificPart() + "\nFragment : "
 					+ uri.getFragment());
 			if (!uri.isOpaque())
-				System.out.println(
-					"Autoritaet: "
-						+ uri.getAuthority()
-						+ "\nPfad     : "
-						+ uri.getPath()
-						+ "\nAnfrage  : "
-						+ uri.getQuery()
-						+ "\nUser     : "
-						+ uri.getUserInfo()
-						+ "\nHost     : "
-						+ uri.getHost()
-						+ "\nPort     : "
+				System.out.println("Autoritaet: " + uri.getAuthority()
+						+ "\nPfad     : " + uri.getPath() + "\nAnfrage  : "
+						+ uri.getQuery() + "\nUser     : " + uri.getUserInfo()
+						+ "\nHost     : " + uri.getHost() + "\nPort     : "
 						+ uri.getPort());
 			return uri;
 		} catch (URISyntaxException e) {
@@ -167,33 +180,28 @@ public class HelperHibernatePersistence implements VTPersistenceHelper {
 	/**
 	 * 
 	 * @param uri
-	 * @return Valid URI to go
-	 * HelperDatabasePersistence.java
+	 * @return Valid URI to go HelperDatabasePersistence.java
 	 */
 	public void uriParser(URI uri) {
 
-		System.out.println(
-			"Schema   : "
-				+ uri.getScheme()
-				+ "\nSchemaspezifischer Teil: "
-				+ uri.getSchemeSpecificPart()
-				+ "\nFragment : "
-				+ uri.getFragment());
+		System.out.println("Schema   : " + uri.getScheme()
+				+ "\nSchemaspezifischer Teil: " + uri.getSchemeSpecificPart()
+				+ "\nFragment : " + uri.getFragment());
 		if (!uri.isOpaque())
-			System.out.println(
-				"Autoritaet: "
-					+ uri.getAuthority()
-					+ "\nPfad     : "
-					+ uri.getPath()
-					+ "\nAnfrage  : "
-					+ uri.getQuery()
-					+ "\nUser     : "
-					+ uri.getUserInfo()
-					+ "\nHost     : "
-					+ uri.getHost()
-					+ "\nPort     : "
+			System.out.println("Autoritaet: " + uri.getAuthority()
+					+ "\nPfad     : " + uri.getPath() + "\nAnfrage  : "
+					+ uri.getQuery() + "\nUser     : " + uri.getUserInfo()
+					+ "\nHost     : " + uri.getHost() + "\nPort     : "
 					+ uri.getPort());
 		System.out.println("\n URI ' " + uri + " ist korrekt");
 
+	}
+
+	/**
+	 * @param votes
+	 *            The votes to set.
+	 */
+	public void setVoteTable(VoteTable votes) {
+		this.votes = votes;
 	}
 }

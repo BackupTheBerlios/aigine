@@ -27,6 +27,7 @@ public interface VTDatabaseServer extends ServerHandle {
 	 
 	 VoteTable getVoteTable() throws RemoteException;
 	 
+	 void update(VoteTable votes)throws RemoteException;
 	 
-	void vote(String voteid) throws RemoteException;
+	 void vote(String voteid) throws RemoteException;
 }

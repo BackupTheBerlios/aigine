@@ -49,7 +49,7 @@ public class VTWebServerImpl extends WebServer implements VTClient {
                 + server);
 
         init(default_port, default_root);
-
+      
         System.out.println(
             "<= WebServer.init("
                 + "RemoteObjectProperties "

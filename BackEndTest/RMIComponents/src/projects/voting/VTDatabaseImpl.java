@@ -6,20 +6,29 @@
  */
 package projects.voting;
 
-import interfaces.PersistenceHelper;
-
 import java.rmi.RemoteException;
 import java.util.List;
-import java.util.Vector;
+
+import org.hsqldb.util.DatabaseManagerSwing;
 
 import projects.interfaces.VTDatabaseServer;
 import projects.interfaces.VTLogicServer;
+import projects.interfaces.VTPersistenceHelper;
+import projects.voting.control.HelperHibernatePersistence;
 import projects.voting.control.HelperXmlPersitence;
-import projects.voting.model.DBVote;
 import projects.voting.model.Vote;
 import projects.voting.model.VoteTable;
 import API.control.Database;
+import API.interfaces.ServerHandle;
 import API.model.RemoteObject;
+
+
+
+
+
+
+
+
 
 /**
  * @author tobi
@@ -30,7 +39,7 @@ import API.model.RemoteObject;
 public class VTDatabaseImpl extends Database implements VTDatabaseServer {
 	
 	
-	private PersistenceHelper storehelper;
+	private VTPersistenceHelper storehelper;
 
 	private VoteTable votes;
 
@@ -40,11 +49,21 @@ public class VTDatabaseImpl extends Database implements VTDatabaseServer {
 	 * 
 	 */
 	public VTDatabaseImpl() throws RemoteException {
+		super();
+		
 		System.out.println("=>VTDatabaseImpl.constructor\n");
 		System.out.println(
 			"VTDatabaseServer starten mit der in der properties spezialiseierten Datenbank");
-		storehelper = new HelperXmlPersitence("shellvotes");
-		votes = storehelper.getVoteTable();
+		//storehelper = new HelperXmlPersitence("shellvotes");		
+		storehelper = (VTPersistenceHelper) new HelperHibernatePersistence( super.getSessionFactory(), this);
+		this.votes = new HelperXmlPersitence("shellvotes").getVoteTable();
+		//this.votes = this.getVoteTable();
+		System.out.println("Vote table: \n"+this.votes.toString());
+		System.out.println("save aufruf!!");
+		storehelper.setVoteTable(votes);
+		this.save();
+		System.out.println("starting pluged in DBManagerswing...");
+		//DatabaseManagerSwing.main()
 		System.out.println("\n<= VTDatabaseImpl.constructor\n");
 	}
 
@@ -53,18 +72,19 @@ public class VTDatabaseImpl extends Database implements VTDatabaseServer {
 	 */
 	public String register(RemoteObject service) {
 		System.out.println("=>VTDatabaseImpl.register() > " + service);
-		// TODO Auto-generated method stub
+		// TODO Service regestrierung implementieren!
 		System.out.println("<=VTDatabaseImpl.register() > " + service);
+		
 		return super.register(service);
 	}
 
 	
 
 	/**
-		* Speichert einzelne DBVotes in der Datenbank
+		* Speichert einzelne Votes in der Datenbank
 		* @param title		
 		
-	public void storeVote(DBVote vote) {
+	public void storeVote(Vote vote) {
 		try {
 			Session session = sessionFactory.openSession();
 			Transaction tx = session.beginTransaction();
@@ -77,11 +97,25 @@ public class VTDatabaseImpl extends Database implements VTDatabaseServer {
 	}
 */
 	
+	/**
+	 * called the PersistensHelper class to manage the way of persistens
+	 */
 	public void save() {
 		storehelper.save();
 	}
+	
+	/**
+	 * 
+	 */
 	public List listVotes() {		
-		return storehelper.listVotes();
+		List votelist = null;
+		try {
+			votelist = storehelper.listVotes();
+		} catch (RemoteException e) {
+			System.out.println(
+				"Fehler in " + this.getClass().getName() + " => " + e.getMessage());
+		}
+		return votelist;
 		
 	}
 
@@ -89,7 +123,13 @@ public class VTDatabaseImpl extends Database implements VTDatabaseServer {
      * @see projects.interfaces.VTDatabaseServer#getVoteTable()
      */
     public VoteTable getVoteTable() throws RemoteException {
-		System.out.println("<=>VTDatabaseImpl.getVoteTable()");
+		System.out.println("=>VTDatabaseImpl.getVoteTable()");
+		
+		votes = storehelper.getVoteTable();
+		if (votes == null) {
+			System.out.println("Keine DB am Start___________________________________!!!!!!!!!!! :((");
+		}
+
         return votes;
         
     }
@@ -99,7 +139,7 @@ public class VTDatabaseImpl extends Database implements VTDatabaseServer {
 	 * @param service
 	 * @throws RemoteException
 	 */
-	public synchronized String registerService(final RemoteObject remoteObject){
+	public synchronized String registerService(final RemoteObject remoteObject, ServerHandle service) throws RemoteException{
 		return super.registerService(remoteObject);
 	}
 
@@ -113,16 +153,18 @@ public class VTDatabaseImpl extends Database implements VTDatabaseServer {
     /**
      * @return
      */
-    public PersistenceHelper getStorehelper() {
+    public VTPersistenceHelper getStorehelper() {
         return storehelper;
     }
 
     /**
      * @param helper
      */
-    public void setStorehelper(PersistenceHelper helper) {
+    public void setStorehelper(VTPersistenceHelper helper) {
         storehelper= helper;
     }
+    
+    
     
 	/**
 	 * Abgabe eines Votes.
@@ -136,5 +178,19 @@ public class VTDatabaseImpl extends Database implements VTDatabaseServer {
 			save();
 		}
 		System.out.println("<= VTDatabaseImpl.vote() > new votes: " + votes);
+	}
+
+	/* 
+	 * update methode um den dbServer wie ein client haendelbar zu mahchen 
+	 * @see projects.interfaces.VTDatabaseServer#update(projects.voting.model.VoteTable)
+	 */
+	public void update(VoteTable votes) {
+		System.out.println("=>VTDatabaseImpl.update(votes)");
+		System.out.println("givin votes:\n"+votes);
+		this.votes = votes;
+		storehelper.setVoteTable(votes);
+		this.save();
+		System.out.println("new votetable saved");
+		System.out.println("<=VTDatabaseImpl.update(votes)");
 	}
 }

@@ -8,6 +8,7 @@ import java.io.Serializable;
  * @since 05.05.2004 21:04:31
  */
 public class Vote implements Serializable{
+	private long id;
 	private int count = 0;
 	private String description = new String("");
 	
@@ -60,6 +61,24 @@ public class Vote implements Serializable{
 	 */
 	public void setDescription(String description) {
 		this.description = description;
+	}
+
+	/**
+	 * @return
+	 * Vote.java
+	 */
+	public long getId() {
+		return id;
+	}
+
+	/**
+	 * keep the id-handling to hibernate to use them witch 
+	 * may access property get- and set-Methods of all  visibilities
+	 * @param l long variable with a unique id
+	 * Vote.java
+	 */
+	private void setId(long l) {
+		id = l;
 	}
 
 }

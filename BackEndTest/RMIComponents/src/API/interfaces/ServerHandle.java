@@ -54,7 +54,7 @@ public interface ServerHandle extends Remote {
     * @return aktuelles VoteTable
     * @throws RemoteException
     */
-    String registerService(RemoteObject remoteObject)
+    String registerService(RemoteObject remoteObject, ServerHandle service)
         throws RemoteException;
 
     /**

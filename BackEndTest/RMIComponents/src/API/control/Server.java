@@ -111,8 +111,9 @@ public abstract class Server extends UnicastRemoteObject {
 	 * verwendet, um eine mögliche Überblendung zu vermeiden. 
 	 * @param service
 	 * @throws RemoteException
+	 * @throws RemoteException
 	 */
-	protected synchronized String registerService(final RemoteObject remoteObject){
+	protected synchronized String registerService(final RemoteObject remoteObject) throws RemoteException{
 		System.out.println("=> Server.registerComponent(RemoteObject " + remoteObject + ")");
 		String status = null;
 		if (remoteObjects.contains(remoteObject)) {

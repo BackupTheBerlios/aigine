@@ -6,8 +6,6 @@ import java.util.Enumeration;
 import projects.interfaces.VTClient;
 import projects.interfaces.VTDatabaseServer;
 import projects.interfaces.VTLogicServer;
-import projects.voting.control.HelperXmlPersitence;
-import projects.voting.model.Vote;
 import projects.voting.model.VoteTable;
 import API.control.Server;
 import API.interfaces.ServerHandle;
@@ -28,6 +26,7 @@ public class VTLogicServerImpl extends Server implements VTLogicServer {
 //    //private HelperDatabasePersistence hdp;
 //    private VTLogicServer logicserver;
 	private VTDatabaseServer dbserver;
+	private boolean isDB;
 
     /** 
      * Start des Servers und einlesen der Votes.
@@ -37,14 +36,25 @@ public class VTLogicServerImpl extends Server implements VTLogicServer {
         System.out.println("=> VTLogicServerImpl.VTLogicServerImpl()");
        //hxp= new HelperXmlPersitence("shellvotes");
 		//hdp= new HelperDatabasePersistence("shellvotes", );
-		
+        this.dbserver = null;
+		this.isDB = false;
         System.out.println("<= VTLogicServerImpl.VTLogicServerImpl()");
     }
     
+    /**
+     * VTLogigserverInit
     
 	public void init(RemoteObject compProps, ServerHandle server) {
+		//TODO den zu verwendenden DBServer aus der RemoteTable rausholen
+		//bzw von dem Manager zugewiesen bekommen...
+		System.out.println("=> VTLogicServerImpl.init()");
 		dbserver = (VTDatabaseServer)server;
-	}
+		 System.out.println("dbserver initialisiert");
+		 System.out.println("<= VTLogicServerImpl.init()");
+	}	
+	*/
+    
+    
 	/** 
 		 * Start des Servers und einlesen der Votes.
 		 * @throws <{RemoteException}>
@@ -73,7 +83,11 @@ public class VTLogicServerImpl extends Server implements VTLogicServer {
                 System.out.println("try update > " + remoteObject + "\n");
                 VTClient client= (VTClient) remoteObject.getApp();
                 System.out.println("\tfor remoteObject" + client + "\n");
-                client.update(dbserver.getVoteTable());
+                if(this.isDB) {
+                	client.update(dbserver.getVoteTable());
+                }else {
+                	
+                }
             } catch (RemoteException e) {
                 e.printStackTrace();
                 System.out.println(
@@ -134,7 +148,7 @@ public class VTLogicServerImpl extends Server implements VTLogicServer {
     public synchronized void save() throws RemoteException {
         //hxp.save();
         dbserver.save();
-		System.out.println("<=> VTLogicServerImpl.save()");
+		System.out.println("<=> VTLogicServerImpl.save() mit dem DBServer: "+dbserver);
     }
 
     /**
@@ -158,7 +172,16 @@ public class VTLogicServerImpl extends Server implements VTLogicServer {
     }
 
 
-	public synchronized String registerService(final RemoteObject remoteObject){
-		return null;
+	public synchronized String registerService(final RemoteObject remoteObject,ServerHandle service)
+		throws RemoteException {
+	        System.out.println("=> VTLogicServerImpl.registerService()remoteObj= "+remoteObject);
+	        if(remoteObject.getCompName().equals("VTDatabaseServer")){
+	        	this.dbserver = (VTDatabaseServer) service;
+	        	System.out.println("\n\n---------------endlich ein DBServer am start: "+dbserver);
+	        }	        
+	        String result= super.registerService(remoteObject);
+	        System.out.println("VTLogicServerImpl.registerService() > neues RemoteObject registriert.");
+	        System.out.println("<= VTLogicServerImpl.registerService()");
+		return result;
 	}
 }
