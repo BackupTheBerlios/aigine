@@ -1,0 +1,39 @@
+<html>
+<body>
+<pre>
+<h1>Erstellungsprotokoll</h1>
+<h3>
+--------------------Konfiguration: v01 - Win32 Debug--------------------
+</h3>
+<h3>Befehlszeilen</h3>
+Erstellen der temporären Datei  "C:\DOKUME~1\MRFC3F~1.NIC\LOKALE~1\Temp\RSPE.tmp" mit Inhalten
+[
+/nologo /MLd /W3 /Gm /GX /ZI /Od /D "WIN32" /D "_DEBUG" /D "_CONSOLE" /D "_MBCS" /Fp"Debug/v01.pch" /YX /Fo"Debug/" /Fd"Debug/" /FD /GZ /c 
+"F:\develop\c_3d\AiGinE\TestWorld\TestThread\v01\testmain.cpp"
+"F:\develop\c_3d\AiGinE\TestWorld\TestThread\v01\AigineThread.cpp"
+]
+Creating command line "cl.exe @C:\DOKUME~1\MRFC3F~1.NIC\LOKALE~1\Temp\RSPE.tmp" 
+Erstellen der temporären Datei  "C:\DOKUME~1\MRFC3F~1.NIC\LOKALE~1\Temp\RSPF.tmp" mit Inhalten
+[
+kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib /nologo /subsystem:console /incremental:yes /pdb:"Debug/v01.pdb" /debug /machine:I386 /out:"Debug/v01.exe" /pdbtype:sept 
+.\Debug\jmutex.obj
+.\Debug\jthread.obj
+.\Debug\testmain.obj
+.\Debug\AigineThread.obj
+]
+Erstellen der Befehlzeile "link.exe @C:\DOKUME~1\MRFC3F~1.NIC\LOKALE~1\Temp\RSPF.tmp"
+<h3>Ausgabefenster</h3>
+Kompilierung läuft...
+testmain.cpp
+f:\develop\c_3d\aigine\testworld\testthread\v01\testmain.cpp(1) : fatal error C1083: Include-Datei kann nicht geoeffnet werden: 'Model/AigineThread.h': No such file or directory
+AigineThread.cpp
+f:\develop\c_3d\aigine\testworld\testthread\v01\aiginethread.h(13) : error C2504: 'JThread' : Basisklasse undefiniert
+Fehler beim Ausführen von cl.exe.
+
+
+
+<h3>Ergebnisse</h3>
+v01.exe - 2 Fehler, 0 Warnung(en)
+</pre>
+</body>
+</html>
