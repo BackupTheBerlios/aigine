@@ -8,9 +8,7 @@ package projects.interfaces;
 
 import java.rmi.RemoteException;
 import java.util.List;
-import java.util.Vector;
 
-import projects.voting.model.DBVote;
 import projects.voting.model.VoteTable;
 import API.interfaces.ServerHandle;
 
@@ -21,19 +19,14 @@ import API.interfaces.ServerHandle;
  */
 public interface VTDatabaseServer extends ServerHandle {
 
-	/**
-		 * Methode zum speichern der daten. Nimmt einen Vector mit DBVortes entgegen
-		 * und speichert sie einzeln in der Datenbank
-		 *@param Vector contains DBVotes
-		 */
-	void storeVotes(Vector data) throws RemoteException;
-	
-	/**
-	 *  Methode zum speichern der daten. 
-	 * @param vote Datenbank Votes (mit extra parameter)
-	 */
-	void storeVote(DBVote vote) throws RemoteException;
+	void save() throws RemoteException;
 
+	 void refreshConfiguration() throws RemoteException;
 
 	 List listVotes() throws RemoteException;
+	 
+	 VoteTable getVoteTable() throws RemoteException;
+	 
+	 
+	void vote(String voteid) throws RemoteException;
 }

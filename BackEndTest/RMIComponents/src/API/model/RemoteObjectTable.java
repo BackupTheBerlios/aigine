@@ -31,6 +31,16 @@ public class RemoteObjectTable extends Hashtable {
 	}
 
 	/**
+	  * Fügt einen neues RemoteObject hinzu.
+	  */
+	   public void add(RemoteObject rop, String manager){
+		   System.out.println("=> RemoteObjectTable.add(RemoteObject " + rop + ")");
+		   super.put(rop.getRmiName() + manager, rop);
+		   System.out.println("<= RemoteObjectTable.add(RemoteObject " + rop + ")");
+	   }	
+	
+
+	/**
    * Gibt einen Vektor mit Informationen zu den angemeldeten RemoteObjects zurück.
    */
 	public Vector getDataVector(){
@@ -71,5 +81,15 @@ public class RemoteObjectTable extends Hashtable {
 		System.out.println("\t KEY =  " + rop.getApp().toString());		
         return super.remove(rop.getApp().toString());
     }
-
+	
+	/**
+	 * nimmt ein RemoteObject entgegen und löscht es 
+	 * aus dem HashTable . key -> siehe <ode>add()</code> 
+	 * @see java.util.Dictionary#remove(java.lang.Object)
+	 */
+	public synchronized Object remove(Object remoteObject, String manager) {
+		System.out.println("RemoteObjectTable.remove(" + remoteObject + ")");
+		RemoteObject rop = (RemoteObject)remoteObject;
+		return super.remove(rop.getRmiName() + manager);
+	}
 }

@@ -6,6 +6,7 @@ import java.rmi.server.RMIServerSocketFactory;
 import java.rmi.server.UnicastRemoteObject;
 
 import API.interfaces.AdminClient;
+import API.interfaces.ServerHandle;
 import API.model.RemoteObject;
 import API.model.RemoteObjectTable;
 
@@ -17,6 +18,16 @@ import API.model.RemoteObjectTable;
  */
 
 public abstract class Server extends UnicastRemoteObject {
+	/**
+	 * Wird von den Services für gegenseitige Registrierung benötigt.
+	 * @param compProps
+	 * @param server
+	 */
+	public void init(RemoteObject compProps, ServerHandle server) {
+		// TODO in extra Klasse Service auslagern, die von Server abgeleitet wird
+	}
+	
+	
 	/**
 	 * Die registrierten Kommunikationspartner
 	 * entweder Clients oder Services oder wiederum Server ... WAT EVER !
@@ -56,7 +67,9 @@ public abstract class Server extends UnicastRemoteObject {
 	 * Initialisiert die Tabelle mit den Kommunikationspartnern.
 	 */
 	public void initObjectTable() {
+		System.out.println("=> Server.initObjectTable()");
 		remoteObjects = new RemoteObjectTable();
+		System.out.println("<= Server.initObjectTable()");
 	}
 
 	/**
@@ -91,6 +104,26 @@ public abstract class Server extends UnicastRemoteObject {
 		return "überschreiben oder registerComponent nutzen.";
 	}
 	*/
+
+
+	/**
+	 * Registrierung eines Logik Service
+	 * verwendet, um eine mögliche Überblendung zu vermeiden. 
+	 * @param service
+	 * @throws RemoteException
+	 */
+	protected synchronized String registerService(final RemoteObject remoteObject){
+		System.out.println("=> Server.registerComponent(RemoteObject " + remoteObject + ")");
+		String status = null;
+		if (remoteObjects.contains(remoteObject)) {
+			status = " exists";
+		} else {
+			remoteObjects.add(remoteObject, remoteObject.getManagerName());
+			status = " now exists";
+		}
+		System.out.println("<=Server.registerComponent(RemoteObject " + remoteObject + ")");
+		return status;
+	}
 
 	/**
 	 * Registrierung eines RemoteObjects mit Username und Password.

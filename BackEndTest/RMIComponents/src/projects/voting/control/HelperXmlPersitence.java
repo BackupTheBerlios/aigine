@@ -1,6 +1,9 @@
 package projects.voting.control;
 
+import interfaces.*;
+
 import java.io.File;
+import java.util.List;
 
 import org.jconfig.Configuration;
 import org.jconfig.ConfigurationManager;
@@ -15,7 +18,7 @@ import projects.voting.model.VoteTable;
  * @author Frank Otto s0503712
  *
  */
-public class HelperXmlPersitence {
+public class HelperXmlPersitence implements PersistenceHelper {
   
    private Configuration configuration;
   //Vorsicht hier steht auch immer die "general" mit drin!
@@ -108,5 +111,17 @@ public class HelperXmlPersitence {
    public VoteTable getVoteTable(){
      return votes;
    }
+
+/* (non-Javadoc)
+ * @see interfaces.PersistenceHelper#listVotes()
+ */
+public List listVotes() {
+	for (int i = 0; i < categorynames.length; i++) {
+		   //votes aus der _config.xml ausgeben
+		   System.out.print("Kategorie: "+categorynames[i]);
+		   System.out.println(" Anzahl: "+configuration.getIntProperty("count", 0, categorynames[i]));
+	}
+    return null;
+}
 
 }

@@ -280,10 +280,11 @@ public class BootStrapedApplicationStarter implements BootStrapedComponent {
                         + server
                         + "  > mit : "
                         + remoteObject);
-                server.register(remoteObject);
+                server.register(remoteObject);                
 				}else{
 					try {
-						manager = (ServerHandle) Naming.lookup(component.getRmiName() + component.getManagerName());
+						System.out.println( "Manager == :"+component.getManager()+ component.getManagerName());
+						manager = (ServerHandle) Naming.lookup(component.getManager() + component.getManagerName());
 					} catch (MalformedURLException e1) {
 						System.out.println("BootstrepedApp.register: manager lookup faild!!");
 						
@@ -293,7 +294,8 @@ public class BootStrapedApplicationStarter implements BootStrapedComponent {
 						e1.printStackTrace();
 					}
 					System.out.println("BootstrepedApp.register: manager lookup SUCCESS!!!");
-					manager.register(component);
+					manager.registerService(component);
+					((Server)server).init(remoteObject, manager);
 					System.out.println("BootstrepedApp.register: manager.register SUCCESS!!!");
 				}
             } else if (remoteObject.getAuthTyp().equals("password")) {
