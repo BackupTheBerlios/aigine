@@ -112,10 +112,12 @@ Matrix4x4 Matrix4x4::operator *= (const float f) {
 	m41 *= f; m42 *= f; m43 *= f; m44 *= f;
 	return *this;
 }
+/*
 Matrix4x4 Matrix4x4::operator /= (const Matrix4x4& m) {
 	this = this / m;
 	return *this;
 }
+*/
 Matrix4x4 Matrix4x4::operator /= (const float f) {
 	m11 /= f; m12 /= f; m13 /= f; m14 /= f;
 	m21 /= f; m22 /= f; m23 /= f; m24 /= f;

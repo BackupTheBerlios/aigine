@@ -107,10 +107,6 @@ SOURCE=..\..\tools\loader3DS\CLoad3DS.cpp
 # End Source File
 # Begin Source File
 
-SOURCE=..\..\AiGinEFramework\Utils\Comparator.cpp
-# End Source File
-# Begin Source File
-
 SOURCE=..\..\AiGinEFramework\View\GraphicPipeline.cpp
 # End Source File
 # Begin Source File
@@ -128,6 +124,10 @@ SOURCE=..\..\AiGinEFramework\View\Light.cpp
 # Begin Source File
 
 SOURCE=..\..\AiGinEFramework\Model\LookAtObjects.cpp
+# End Source File
+# Begin Source File
+
+SOURCE=..\..\AiGinEFramework\Utils\Matrix4x4.cpp
 # End Source File
 # Begin Source File
 
@@ -215,10 +215,6 @@ SOURCE=..\..\tools\loader3DS\CLoad3DS.h
 # End Source File
 # Begin Source File
 
-SOURCE=..\..\AiGinEFramework\Utils\Comparator.h
-# End Source File
-# Begin Source File
-
 SOURCE=..\..\AiGinEFramework\View\GraphicPipeline.h
 # End Source File
 # Begin Source File
@@ -240,6 +236,10 @@ SOURCE=..\..\AiGinEFramework\Utils\List.h
 # Begin Source File
 
 SOURCE=..\..\AiGinEFramework\Model\LookAtObjects.h
+# End Source File
+# Begin Source File
+
+SOURCE=..\..\AiGinEFramework\Utils\Matrix4x4.h
 # End Source File
 # Begin Source File
 

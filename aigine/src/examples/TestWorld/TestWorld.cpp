@@ -8,6 +8,7 @@
 #include "../../AiGinEFramework/Model/Translation3D.h"
 #include "../../AiGinEFramework/Control/Keyboard.h"
 #include "../../AiGinEFramework/Control/Mouse.h"
+#include "../../AiGinEFramework/Utils/Matrix4x4.h"
 
 
 SceneManagement* sm;
@@ -88,6 +89,24 @@ int main(int argc, char** argv)
 
 	glutIgnoreKeyRepeat(1);
 //	glutSetKeyRepeat();
+
+
+Matrix4x4* matrix1 = new Matrix4x4(1.0, 0.0, 0.0, 0.0,
+								   0.0, 1.0, 0.0, 0.0,
+								   0.0, 0.0, 1.0, 0.0,
+								   0.0, 0.0, 0.0, 1.0);
+//Matrix4x4* matrix2 = new Matrix4x4(matrix1);
+
+//matrix1->Matrix4x4RotationX(DEG_TO_RAD(90));
+
+/*
+for (int i=0; i<4; i++) {
+	for (int j=0; j<4; j++) {
+		cout << matrix1->m[i][j] << " ";
+	}
+	cout << endl;
+}
+*/
 
 
 
