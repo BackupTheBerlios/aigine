@@ -123,7 +123,6 @@ public class CWebServerImpl extends WebServer implements CClient {
     
     private RequestFrames getFrames() {
     	// TODO (byDR) hier wird dann später die Benutzerkonfiguration aus der Datenbank verwendet, evtl. über CLoginServer?!
-    	BlockFrame headFrame = new BlockFrame() ;
     	RequestFrames rfs = new RequestFrames() ;
     	RequestFrame rf = new RequestFrame(0) ;
  		rf.addBlock("seitenkopf", "CProjectServer", "seitenkopf", 0) ;
@@ -142,15 +141,44 @@ public class CWebServerImpl extends WebServer implements CClient {
 		rfs.addFrame(rf, 3) ; // rechter Frame
 		return rfs ;
     }
-    
+
+	/**
+	 * @param block, server, operation
+	 */
+    private RequestFrames updateFrames(String block, String server, String operation) {
+		System.out.println("==> projects.catalog.CWebServerImpl.updateFrames") ;
+    	RequestFrames rfs = getFrames() ;
+    	if ((block != null) && (server != null) && (operation != null)) {
+	    	//^ hier wird momentan nur die Standardkonf der Frames geholt
+	    	for (int fs=0;fs < rfs.getFrameCount(); fs++) {
+	    		RequestFrame rf = rfs.getFrame(fs) ;
+	    		for (int f = 0;f < rf.getBlockCount(); f++) {
+	    			RequestBlock rb = rf.getRequestBlock(f) ;
+	    			System.out.println("  > Block: " + rb.getName() + " |Server: " + rb.getServer() + " |Operation: " + rb.getOperation()) ;
+	    			if (rb.getName().compareTo(block) == 0) {
+	    				rb.setServer(server) ;
+	    				rb.setOperation(operation) ;
+	    				System.out.println("+++ aktualisiere diesen Block mit dem letzten Link") ;
+	    			} else {
+						System.out.println("  > dieser Block war nicht zu aktualisieren") ;
+	    			}
+	    		}
+	    	}
+    	} else {
+    		System.out.println("--- kein Block wurde aktualisiert aufgrund ungültiger Parameter-Übergabe.") ;
+    	}
+		System.out.println("<== projects.catalog.CWebServerImpl.updateFrames\n\n") ;
+    	return rfs ;
+    }
     
     // diese hier geht die Frames-Struktur durch und ruft die entsprechenden Blöcke beim ProjectServer ab
     // und baut damit vorerst hart kodiert die Antwort-Seite auf 
-    private Frames executeRequests(RequestFrames userFrames, Hashtable requestProps) throws RemoteException {
+    private Frames executeRequests(Hashtable requestProps) throws RemoteException {
     	// , String operation, String BlockName, Hashtable requestProps
     	// TODO neuester Request muss den entsprechenden Block aktualisieren!
     	// mehrere Blocks zu aktualisieren mit einem Reload? vl. mit b1, b2, falls b nicht als Parameter mit übergeben wurde?
 		String site = null ;
+		RequestFrames userFrames = updateFrames((String) requestProps.get("block"),(String)  requestProps.get("srv"),(String) requestProps.get("op")) ;
 		RequestFrame aktuellerFrame = null ;
 		BlockFrame contentFrame = null ;
 		Frames contentFrames = new Frames() ;
@@ -163,12 +191,12 @@ public class CWebServerImpl extends WebServer implements CClient {
 			zaehler = 0 ;
 			aktuellerFrame = userFrames.getFrame(zaehler) ;
 			while (aktuellerFrame != null) {
-				System.out.println("  > FrameNummer/laut Frame: " + zaehler + "/" + aktuellerFrame.getFrameNumber()) ;
+//				System.out.println("  > FrameNummer/laut Frame: " + zaehler + "/" + aktuellerFrame.getFrameNumber()) ;
 				contentFrame = new BlockFrame() ;
 				blockzaehler = 0 ;
 				RequestBlock rb = aktuellerFrame.getRequestBlock(blockzaehler) ;
 				while (rb != null) {
-					System.out.println("  > BlockNummer: " + blockzaehler) ;
+//					System.out.println("  > BlockNummer: " + blockzaehler) ;
 
 					contentFrame.addBlock(getBlock(rb.getServer(), rb.getOperation(), rb.getName(), requestProps)) ;
 
@@ -192,7 +220,7 @@ public class CWebServerImpl extends WebServer implements CClient {
 		{
 			System.out.println("Sinnvollen Content erhalten!") ;
 		} */
-		System.out.println("\n<= projects.catalog.CWebServerImpl.executeRequests") ;
+		System.out.println("\n<== projects.catalog.CWebServerImpl.executeRequests") ;
     	
     	return contentFrames ;
     }
@@ -242,16 +270,16 @@ public class CWebServerImpl extends WebServer implements CClient {
         String site = new String("leerer Durchlauf") ;
         ServerHandle theServer = null ;
 		// wichtigste Faehigkeit des WebServers
-		System.out.println("=> projects.catalog.CWebServerImpl.getActionBody: beginne Antwortseite aufzubauen ...") ;
+		System.out.println("==> projects.catalog.CWebServerImpl.getActionBody: beginne Antwortseite aufzubauen ...") ;
 		
 		// Hier muss das FrameSet zusammengepuzzelt werden, daher gehen die eigentlichen Aufrufe in Untermethoden.
-		Frames theFrameSet = executeRequests(getFrames(), requestProps) ;
+		Frames theFrameSet = executeRequests(requestProps) ;
 		// aktualisiert das UserFrameset mit dem aktuellen Request und aktualisiert
 		// dann alle Blocks durch Anfragen an die zuständigen Server
 		site = parseFrames(theFrameSet) ;
 
 		System.out.println(">>> site (am Ende von getActionBody) = " + site) ;
-		System.out.println("<= projects.catalog.CWebServerImpl") ;
+		System.out.println("<== projects.catalog.CWebServerImpl") ;
         return site.getBytes();
 
 		/**        if (requestProps.get("op").equals("login")) {
