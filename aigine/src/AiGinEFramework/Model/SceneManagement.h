@@ -27,6 +27,12 @@ class ObjectList;
 class SceneManagement : public SceneGraph
 {
 
+public:
+
+    void load(String fileType, String fileName, object insertAt);
+
+    void display();
+
 private:
 
 

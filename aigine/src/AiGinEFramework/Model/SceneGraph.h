@@ -37,6 +37,7 @@ public:
 
 private:
     Tree* objects;
+    ObjectTree * lnkObjectTree;
 };
 
 #endif //SCENEGRAPH_H
