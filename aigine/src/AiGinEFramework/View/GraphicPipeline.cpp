@@ -2,9 +2,9 @@
  * GraphicPipeline.cpp  
  */
 
-#include "GraphicPipeline.h"
-#include "StateManager.h"
-#include "Camera.h"
+#include "../View/GraphicPipeline.h"
+//#include "StateManager.h"
+#include "../View/Camera.h"
 #include "../Model/Vector3D.h"
 
 //____________________________________________________________________________

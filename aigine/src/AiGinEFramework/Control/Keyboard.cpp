@@ -3,7 +3,7 @@
  */
 
 #include "Keyboard.h"
-#include "../GraphicEngine/SceneManagement.h"
+#include "../Model/SceneManagement.h"
 
 //____________________________________________________________________________
 void Keyboard::keyAction(unsigned char key, int mouseX, int mouseY){

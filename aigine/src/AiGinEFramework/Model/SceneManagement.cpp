@@ -9,10 +9,10 @@
 
 /**********************I N C L U D E*********************************/
 #include "SceneManagement.h"
-#include "Renderer.h"
-#include "GraphicPipeline.h"
+#include "../View/Renderer.h"
+#include "../View/GraphicPipeline.h"
 #include "ageObject3DS.h"
-#include "../Util/loader3DS/Object3DS.h"
+#include "../../Tools/loader3DS/Object3DS.h"
 
 
 /*********************P U B L I C***************************************/

@@ -3,7 +3,7 @@
  */
 
 #include "Mouse.h"
-#include "../GraphicEngine/SceneManagement.h"
+#include "../Model/SceneManagement.h"
 
 //____________________________________________________________________________
 Mouse::Mouse(SceneManagement* sceneMan)

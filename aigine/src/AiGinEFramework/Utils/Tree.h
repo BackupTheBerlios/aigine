@@ -8,10 +8,10 @@
 * @stereotype utility 
 */
 
-#include "windows.h"
 #include "List.h"
 #include "Knot.h"
-
+#include <iostream>
+using namespace std;
 
 
 class Tree {

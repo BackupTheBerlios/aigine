@@ -31,13 +31,13 @@ struct t3DObject
 
 #include <string>
 using namespace std;
-#include "List.h"
+#include "../Utils/List.h"
 
 #include "Translation3D.h"
 #include "Rotation3D.h"
+#include "Scale3D.h"
 #include "Mesh.h"
 
-#include "Scale3D.h"
 
 /**
  * Jedes <class>Object</class> hat genau einen

@@ -3,7 +3,7 @@
 #ifndef AIGINEOBJECT_H
 #define AIGINEOBJECT_H
 #include "../Model/Object3D.h"
-#include "../Model/Knot.h"
+#include "../Utils/Knot.h"
 
 class Shader;
 class Renderer;

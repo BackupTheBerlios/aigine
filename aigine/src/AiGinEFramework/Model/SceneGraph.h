@@ -8,8 +8,8 @@
 
 #include <GL/glut.h>
 
-#include "../Model/Tree.h"
-#include "../Util/loader3DS/Object3DS.h"
+#include "../Utils/Tree.h"
+#include "../../Tools/loader3DS/Object3DS.h"
 class AiGinEObject;
 class ObjectTree;
 

@@ -5,7 +5,7 @@
 #ifndef ROTATION3D_H
 #define ROTATION3D_H
 
-#include "..\MODEL\Vector3D.h"
+#include "Vector3D.h"
 
 class Rotation3D : public Vector3D {
 

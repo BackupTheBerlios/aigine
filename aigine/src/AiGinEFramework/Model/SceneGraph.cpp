@@ -1,7 +1,7 @@
 /* Game Engine Design */
 
 #include "SceneGraph.h"
-#include "../Util/loader3DS/Object3DS.h"
+#include "../../Tools/loader3DS/Object3DS.h"
 #include "AiGinEObject.h"
 #include "ageObject3DS.h"
 #include <iostream>

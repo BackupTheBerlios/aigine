@@ -15,6 +15,8 @@
 #ifndef _LIST_H_
 #define _LIST_H_
 
+#include <iostream>
+using namespace std;
 
 template < class Type >
 class List

@@ -2,12 +2,8 @@
 //
 //////////////////////////////////////////////////////////////////////
 
-#if !defined(AFX_KNOT_H__71E37B80_F2AC_429D_9154_6CA61AE87BF5__INCLUDED_)
-#define AFX_KNOT_H__71E37B80_F2AC_429D_9154_6CA61AE87BF5__INCLUDED_
-
-#if _MSC_VER > 1000
-#pragma once
-#endif // _MSC_VER > 1000
+#ifndef KNOT_H
+#define KNOT_H
 
 class Knot  
 {
@@ -20,7 +16,7 @@ public:
 
 };
 
-#endif // !defined(AFX_KNOT_H__71E37B80_F2AC_429D_9154_6CA61AE87BF5__INCLUDED_)
+#endif //KNOT_H
 
 
 

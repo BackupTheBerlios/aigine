@@ -7,7 +7,7 @@
 #define SCENEMANAGEMENT_H
 
 #include <string>
-#include "GraphicPipeline.h"
+#include "../View/GraphicPipeline.h"
 #include "SceneGraph.h"
 
 using namespace std;
