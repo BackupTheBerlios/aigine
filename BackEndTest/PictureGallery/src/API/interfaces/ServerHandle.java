@@ -8,6 +8,7 @@ import java.rmi.Remote;
 import java.rmi.RemoteException;
 import java.util.Hashtable;
 
+import API.control.web.Block;
 import API.model.RemoteObject;
 import API.model.RemoteObjectTable;
 
@@ -73,7 +74,7 @@ public interface ServerHandle extends Remote {
 	* @return String
 	* @throws RemoteException
 	*/
-	public String executeWebRequest(String op, Hashtable requestProps) throws RemoteException ;
+	public Block executeWebRequest(String op, String whichBlock, Hashtable requestProps) throws RemoteException ;
 	
 	/**
 	* liefert Fehlerdetails, wenn bei executeWebRequest ein Fehler auftritt

@@ -6,6 +6,7 @@ import java.rmi.server.RMIServerSocketFactory;
 import java.rmi.server.UnicastRemoteObject;
 import java.util.Hashtable;
 
+import API.control.web.Block;
 import API.interfaces.AdminClient;
 import API.interfaces.ServerHandle;
 import API.model.RemoteObject;
@@ -213,27 +214,30 @@ public abstract class Server extends UnicastRemoteObject {
 	* Standardinfos auch hier schon für die Ausgabe implementiert werden.
 	* @author Dennis
 	* @since 11.09.2004
-	* @param Operation, Parameterpaare und evtl. mit übertragenen Body
-	* @return String
+	* @param Operation, welcher Block, Parameterpaare und evtl. später mit übertragenem Body
+	* @return Block (serializable)
 	* @throws RemoteException
 	*/
-	public String executeWebRequest(String op, Hashtable requestProps) throws RemoteException {
-		String result = null ;
+	public Block executeWebRequest(String op, String whichBlock, Hashtable requestProps) throws RemoteException {
+		Block result = null ;
 		WebRequestError = null ;
-		System.out.println("\n\n>>+>> habe einen WebRequest erhalten: " + op) ;
+		System.out.println("\n\n>>> habe einen WebRequest erhalten: " + op) ;
 		if (op.indexOf("serverinfo") == 0) {
-			result = this.toString() ; //this.toString() ;
-	//		this.ref ;
+			result = new Block(this.toString()) ;
+			result.setTitle("Serverinformation") ;
+			//result.addContent() ;
 		} else
 		{
 			WebRequestError = new String("unexpected Operation") ;
+			result = new Block("unexpected Block-Operation") ;
 		}
-		System.out.println("\n\n  |>> ich antworte mit: " + result) ;
+		System.out.println("\n\n  > ich antworte mit: " + result) ;
 		return result ;
 	}
 
 	/**
 	* liefert Fehlerdetails, wenn bei executeWebRequest ein Fehler auftritt
+	* wird wahrscheinlich wieder entfallen, da executeWebRequest selbst FehlerBlocks generieren kann.
 	* @author Dennis
 	* @since 11.09.2004
 	* @param keine
