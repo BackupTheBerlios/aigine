@@ -1,24 +1,24 @@
 # Microsoft Developer Studio Project File - Name="TestWorld" - Package Owner=<4>
 # Microsoft Developer Studio Generated Build File, Format Version 6.00
-# ** DO NOT EDIT **
+# ** NICHT BEARBEITEN **
 
 # TARGTYPE "Win32 (x86) Console Application" 0x0103
 
 CFG=TestWorld - Win32 Debug
-!MESSAGE This is not a valid makefile. To build this project using NMAKE,
-!MESSAGE use the Export Makefile command and run
+!MESSAGE Dies ist kein gültiges Makefile. Zum Erstellen dieses Projekts mit NMAKE
+!MESSAGE verwenden Sie den Befehl "Makefile exportieren" und führen Sie den Befehl
 !MESSAGE 
 !MESSAGE NMAKE /f "TestWorld.mak".
 !MESSAGE 
-!MESSAGE You can specify a configuration when running NMAKE
-!MESSAGE by defining the macro CFG on the command line. For example:
+!MESSAGE Sie können beim Ausführen von NMAKE eine Konfiguration angeben
+!MESSAGE durch Definieren des Makros CFG in der Befehlszeile. Zum Beispiel:
 !MESSAGE 
 !MESSAGE NMAKE /f "TestWorld.mak" CFG="TestWorld - Win32 Debug"
 !MESSAGE 
-!MESSAGE Possible choices for configuration are:
+!MESSAGE Für die Konfiguration stehen zur Auswahl:
 !MESSAGE 
-!MESSAGE "TestWorld - Win32 Release" (based on "Win32 (x86) Console Application")
-!MESSAGE "TestWorld - Win32 Debug" (based on "Win32 (x86) Console Application")
+!MESSAGE "TestWorld - Win32 Release" (basierend auf  "Win32 (x86) Console Application")
+!MESSAGE "TestWorld - Win32 Debug" (basierend auf  "Win32 (x86) Console Application")
 !MESSAGE 
 
 # Begin Project
@@ -87,11 +87,11 @@ LINK32=link.exe
 # PROP Default_Filter "cpp;c;cxx;rc;def;r;odl;idl;hpj;bat"
 # Begin Source File
 
-SOURCE=..\..\AiGinEFramework\Model\ageObject3DS.cpp
+SOURCE=..\..\AiGinEFramework\AgeObjects\ageObject3DS.cpp
 # End Source File
 # Begin Source File
 
-SOURCE=..\..\AiGinEFramework\Model\ageObjectPrim.cpp
+SOURCE=..\..\AiGinEFramework\AgeObjects\ageObjectPrim.cpp
 # End Source File
 # Begin Source File
 
@@ -116,6 +116,14 @@ SOURCE=..\..\AiGinEFramework\Control\Keyboard.cpp
 # Begin Source File
 
 SOURCE=..\..\AiGinEFramework\Utils\Knot.cpp
+# End Source File
+# Begin Source File
+
+SOURCE=..\..\AiGinEFramework\View\Light.cpp
+# End Source File
+# Begin Source File
+
+SOURCE=..\..\AiGinEFramework\Model\LookAtObjects.cpp
 # End Source File
 # Begin Source File
 
@@ -187,11 +195,11 @@ SOURCE=..\..\AiGinEFramework\View\Viewport.cpp
 # PROP Default_Filter "h;hpp;hxx;hm;inl"
 # Begin Source File
 
-SOURCE=..\..\AiGinEFramework\Model\ageObject3DS.h
+SOURCE=..\..\AiGinEFramework\AgeObjects\ageObject3DS.h
 # End Source File
 # Begin Source File
 
-SOURCE=..\..\AiGinEFramework\Model\ageObjectPrim.h
+SOURCE=..\..\AiGinEFramework\AgeObjects\ageObjectPrim.h
 # End Source File
 # Begin Source File
 
@@ -219,7 +227,15 @@ SOURCE=..\..\AiGinEFramework\Utils\Knot.h
 # End Source File
 # Begin Source File
 
+SOURCE=..\..\AiGinEFramework\View\Light.h
+# End Source File
+# Begin Source File
+
 SOURCE=..\..\AiGinEFramework\Utils\List.h
+# End Source File
+# Begin Source File
+
+SOURCE=..\..\AiGinEFramework\Model\LookAtObjects.h
 # End Source File
 # Begin Source File
 

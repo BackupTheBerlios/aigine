@@ -1,7 +1,7 @@
 #include <GL/glut.h> 
 
 
-#include "../../AiGinEFramework/Utils/AiGinEObject.h"
+#include "../../AiGinEFramework/Model/AiGinEObject.h"
 #include "../../AiGinEFramework/Model/SceneManagement.h"
 #include "../../AiGinEFramework/AgeObjects/ageObject3DS.h"
 #include "../../AiGinEFramework/AgeObjects/ageObjectPrim.h"
