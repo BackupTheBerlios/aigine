@@ -22,8 +22,8 @@ GraphicPipeline::~GraphicPipeline()
 
 //____________________________________________________________________________
 void GraphicPipeline::initOpenGL(int argc, char** argv){
-	this->windowSize[0] = 320;
-    this->windowSize[1] = 240;
+	this->windowSize[0] = 640;
+    this->windowSize[1] = 480;
 
     glutInit(&argc, argv);
     glutInitDisplayMode (GLUT_DOUBLE | GLUT_RGB | GLUT_DEPTH); 
