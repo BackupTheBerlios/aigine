@@ -25,7 +25,7 @@ public class RemoteObjectHelper {
 	public RemoteObjectHelper(Configuration configuration, String category) {
 
 		ro = new RemoteObject();
-		System.out.println("=> RemoteObjectProperties()");
+		System.out.println("=> RemoteObjectHelper()");
 
 		ro.setDescription(configuration.getProperty("description", "", category));
 		ro.setServicetyp(configuration.getProperty("typ", "", category));
@@ -45,7 +45,7 @@ public class RemoteObjectHelper {
 			ro.setManagerName(configuration.getProperty("managerName","",category));
 //		}
 		
-    System.out.println("<= RemoteObjectProperties() > " + this);
+    System.out.println("<= RemoteObjectHelper() > " + this);
 
 	}
   /**
