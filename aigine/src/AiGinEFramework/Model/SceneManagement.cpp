@@ -11,6 +11,7 @@
 #include "SceneManagement.h"
 #include "Renderer.h"
 #include "GraphicPipeline.h"
+#include "../Util/loader3DS/Object3DS.h"
 
 
 /*********************P U B L I C***************************************/
@@ -29,7 +30,10 @@ void SceneManagement::display() {
 
 /********load(String fileType, String fileName, object insertAt)**********/
 void SceneManagement::load(string fileType, string fileName) {
-
+	Object3DS my3DSObject;
+	char* name = (char*)fileName.c_str();
+	my3DSObject.loadObject(name);
+	my3DSObject.toString();
 }
 
 
