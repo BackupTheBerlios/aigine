@@ -5,7 +5,6 @@
 #pragma warning (disable: 4786)
 
 #include <GL/glut.h>
-#include "../Utils/Comparator.h"
 #include <map>
 using namespace std;
 

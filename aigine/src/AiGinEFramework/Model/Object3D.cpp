@@ -9,7 +9,15 @@
 
 
 #include "Object3D.h"
+class Vector3D;
 
+void Object3D::setDirectionVector3D(Vector3D * directionVector3D){ 
+  
+  this->directionVector3D = directionVector3D; 
+
+}
+
+Vector3D* Object3D::getDirectionVector3D(){ return directionVector3D; }
 /**
 */
 Object3D::~Object3D(){}
@@ -32,6 +40,8 @@ Rotation3D * Object3D::getRotation() { return rotation; }
 void Object3D::rotate(int angle, char axis)
 {
 
+  
+ 
 }
 
 //Translation

@@ -32,6 +32,15 @@ Vector3D  Vector3D::operator*(float num)
 {
 	return Vector3D(this->x * num, this->y * num, this->z * num);
 }
+/**/
+//____________________________________________________________________________
+float Vector3D::skalarProdukt(Vector3D vector) {
+
+  cout << this->x << " * " << vector.x << " + " << endl;
+  cout << this->y << " * " << vector.y << " + " << endl;
+  cout << this->z << " * " << vector.z << "  " << endl;
+  return (this->x * vector.x) + (this->y * vector.y) + (this->z * vector.z);  
+}
 
 //____________________________________________________________________________
 Vector3D  Vector3D::operator/(float num)

@@ -23,11 +23,6 @@
 SceneManagement::SceneManagement(): SceneGraph(), GraphicPipeline(){	
 }
 
-//____________________________________________________________________________
-SceneManagement::SceneManagement(int argc, char** argv): 
-SceneGraph(), GraphicPipeline(argc, argv){	
-}
-
 /********load(String fileType, String fileName, object insertAt)**********/
 /*void SceneManagement::load(string fileType, string fileName) {
 	Object3DS* my3DSObject = new Object3DS();

@@ -43,6 +43,13 @@ public:
   Vector3D operator-(Vector3D vector);
 
   /**
+   * Multiplikation : SkalarProdukt; vector * vector = i;.
+   * @param mit dem zu multiplizierenden Vector.
+   * @return Scalar - Produkt.
+   */
+	float skalarProdukt (Vector3D vector);
+
+  /**
    * Multiplikation von Vektor und reeler Zahl.
    * @param num reele Zahl.
    * @return Produkt.

@@ -43,19 +43,6 @@ void GraphicPipeline::initOpenGL(int argc, char** argv){
 
 	glShadeModel (GL_SMOOTH);
 
-	/**         // Definition der Lichteigenschaften
-	* ein auszug aus der alten cube.c wie wir damals das licht definiert hatten remember?
-   *GLfloat mat_specular[] = { 1.0, 1.0, 1.0, 1.0 }; // weiss
-   *GLfloat mat_diffuse[] = { 1.0, 1.0, 1.0, 1.0 }; // weiss
-   *GLfloat mat_diffuse[] = { 0.8, 1.0, 0.8, 1.0 }; // leichtes gruen
-   *GLfloat mat_diffuse1[] = { 1.0, 0.4, 0.4, 1.0 }; // ein wenig rot
-   *GLfloat mat_shininess[] = { 10.0 }; // fuer Helligkeit der Reflextion
-   *GLfloat light_position[] = { 1.0, 1.0, 1.0, 0.0 }; // position in homogenen koordinaten
-   *GLfloat light_position1[] = { -3.0, 3.0, 3.0, 1.0 };
-   *  da 4. = 0 werden die ersten drei Koordinaten unendlich 
-	*		dieses muesst ihr selber definieren und der display uebergeben macht ihr es nicht 
-	*       wird ein standart licht an 0.0.0 gesetzt
-	*/
 
 	this->lnkLight = new Light(this); //Konstruktor mit den standart Werten:
 												   //  Vector3D position, Vector3D lookAtPosition
@@ -70,12 +57,10 @@ void GraphicPipeline::initOpenGL(int argc, char** argv){
 	this->lnkLight->setDiffuse(lightGreen_defuse);  // leichtes gruen
 	this->lnkLight->setTranslation(lightpos);
 
-	
-
 	float * ambient = new float[4];
-	ambient[0] = 1.0;
-	ambient[1] = 1.0;
-	ambient[2] = 1.0;
+	ambient[0] = 0.2;
+	ambient[1] = 0.2;
+	ambient[2] = 0.2;
 	ambient[3] = 1.0; 
 	this->lnkLight->setAmbient(ambient);
 	
@@ -195,16 +180,20 @@ int GraphicPipeline::enableLight(Light * currentLight, int index) {
    glLightfv(GL_LIGHT0, GL_POSITION, lightPosition );
 
    if(currentLight->getDiffuse() != NULL) 
-	   glLightfv(index, GL_DIFFUSE, currentLight->getDiffuse());
+	   //glLightfv(index, GL_DIFFUSE, currentLight->getDiffuse());
+     glLightfv(GL_LIGHT0, GL_DIFFUSE, currentLight->getDiffuse());
 	
    if(currentLight->getAmbient() != NULL) 
-		glLightfv(index, GL_AMBIENT, currentLight->getAmbient());
+		//glLightfv(index, GL_AMBIENT, currentLight->getAmbient());
+    glLightfv(GL_LIGHT0, GL_AMBIENT, currentLight->getAmbient());
    
    if(currentLight->getSpecular() != NULL) 
-		glLightfv(index, GL_SPECULAR, currentLight->getSpecular());
+		//glLightfv(index, GL_SPECULAR, currentLight->getSpecular());
+    glLightfv(GL_LIGHT0, GL_SPECULAR, currentLight->getSpecular());
 
    //for (int i = 0; i < index; i++) {
-		glEnable(index);
+		//glEnable(index);
+   glEnable(GL_LIGHT0);
    //}
 	return isSet;
 }

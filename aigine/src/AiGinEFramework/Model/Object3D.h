@@ -37,6 +37,7 @@ using namespace std;
 #include "Rotation3D.h"
 #include "Scale3D.h"
 #include "Mesh.h"
+#include "Vector3D.h"
 
 
 /**
@@ -96,6 +97,12 @@ public:
      */
     void initObject();
 
+    Vector3D* getDirectionVector3D();
+
+    void setDirectionVector3D(Vector3D * directionVector3D);
+
+    
+
 private:
 
 
@@ -114,6 +121,7 @@ private:
     Translation3D * translation;
     Rotation3D * rotation;  
     Scale3D * scale;
+    Vector3D* directionVector3D;
 };
 
 #endif //OBJECT3D_H
