@@ -1,17 +1,17 @@
 package interfaces;
-import java.util.Properties;
+
 
 /**
  * Interface für eine startbare Komponente, die eine <code>init</code> Methode für
  * die Weitergabe der Properties implemtieren muss.
- * @author danny, tobi
+ * @author danny, tobi, franky
  * @since 05.05.04
  */
 public interface BootStrapedComponent{
 
 	/**
-	 * Initialisiert ueber eine Property Datei die 
+	 * Initialisiert ueber eine xml Datei die 
 	 * gewuenschte Komponente
 	 */
-	public void init(Properties p);
+	public void init();
 }
