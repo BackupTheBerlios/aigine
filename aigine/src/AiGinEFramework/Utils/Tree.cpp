@@ -15,12 +15,12 @@
 using namespace std;
 
 Tree::Tree() {
-	this->knotListPreorder = new List<knot*>;
-	this->knotListInorder = new List<knot*>;
-	this->knotListPostorder = new List<knot*>;
-	this->knotListLevelorder = new List<knot*>;
-	this->actualListElement = 1;
-	this->rootKnot = this->initKnot(new knot);
+	this->knotListPreorder = new List<Knot*>;
+	this->knotListInorder = new List<Knot*>;
+	this->knotListPostorder = new List<Knot*>;
+	this->knotListLevelorder = new List<Knot*>;
+	this->actualListElement = 0;
+	this->rootKnot = new Knot();
 
 //	this->makeTest();
 }
@@ -42,66 +42,66 @@ void Tree::makeTest() {
 	string r = "r";
 	string t = "t";
 	
-	knot* newKnot;
+	Knot* newKnot;
 	
 	//level 1
-	this->rootKnot = this->initKnot(new knot);
+	this->rootKnot = new Knot();
 	this->rootKnot->data = &p;
 	
 	//level 2 - links
-	newKnot = this->initKnot(new knot);
+	newKnot = new Knot();
 	newKnot->data = &m;
 	this->addKnotLeft(this->rootKnot, newKnot);
 	
 	//level 2 - rechts
-	newKnot = this->initKnot(new knot);
+	newKnot = new Knot();
 	newKnot->data = &l;
 	this->addKnotRight(this->rootKnot, newKnot);
 	
 	//level 3 - links - links
-	newKnot = this->initKnot(new knot);
+	newKnot = new Knot();
 	newKnot->data = &s;
 	this->addKnotLeft(this->rootKnot->left, newKnot);
 	
 	//level 3 - rechts - rechts
-	newKnot = this->initKnot(new knot);
+	newKnot = new Knot();
 	newKnot->data = &e;
 	this->addKnotRight(this->rootKnot->right, newKnot);
 	
 	//level 4 - links - links - links
-	newKnot = this->initKnot(new knot);
+	newKnot = new Knot();
 	newKnot->data = &a;
 	this->addKnotLeft(this->rootKnot->left->left, newKnot);
 	
 	//level 4 - links - links - rechts
-	newKnot = this->initKnot(new knot);
+	newKnot = new Knot();
 	newKnot->data = &a;
 	this->addKnotRight(this->rootKnot->left->left, newKnot);
 	
 	//level 4 - rechts - rechts - rechts
-	newKnot = this->initKnot(new knot);
+	newKnot = new Knot();
 	newKnot->data = &r;
 	this->addKnotRight(this->rootKnot->right->right, newKnot);
 	
 	//level 5 - rechts - rechts - rechts - links
-	newKnot = this->initKnot(new knot);
+	newKnot = new Knot();
 	newKnot->data = &t;
 	this->addKnotLeft(this->rootKnot->right->right->right, newKnot);
 	
 	//level 5 - rechts - rechts - rechts - rechts
-	newKnot = this->initKnot(new knot);
+	newKnot = new Knot();
 	newKnot->data = &e;
 	this->addKnotRight(this->rootKnot->right->right->right, newKnot);
 	
 	//level 6 - rechts - rechts - rechts - rechts - links
-	newKnot = this->initKnot(new knot);
+	newKnot = new Knot();
 	newKnot->data = &e;
 	this->addKnotLeft(this->rootKnot->right->right->right->right, newKnot);
 	
 	
 	cout << endl << "Preorder-Traversierung:" << endl;
 	this->buildPreorder(this->rootKnot);
-	knot* tmp;
+	Knot* tmp;
 	while((tmp = this->getKnotPreorder()) != NULL) {
 		cout << *(string*)(tmp->data) << " ";
 	}
@@ -120,15 +120,22 @@ void Tree::makeTest() {
 		cout << *(string*)(tmp->data) << " ";
 	}
 	cout << endl;
+
+
+	/*
+	for(int g=0; g < knotListInorder->length();g++) {
+		cout << knotListInorder->getData() << endl;
+	}
+	*/
 }
 
 /**
 * @description Initialisiert einen neuen Knoten (knot). In der OO-Implementierung übernimmt dies der Konstruktor.
-* @param knot*
-* @return knot*	
+* @param Knot*
+* @return Knot*	
 * note: 
 */
-knot* Tree::initKnot(knot* k) {
+Knot* Tree::initKnot(Knot* k) {
 	k->data = NULL;
 	k->left = NULL;
 	k->right = NULL;
@@ -142,7 +149,7 @@ knot* Tree::initKnot(knot* k) {
 * @modified by 
 * note: 
 */
-bool Tree::addKnotLeft(knot* paren, knot* child) {
+bool Tree::addKnotLeft(Knot* paren, Knot* child) {
 	if(paren != NULL) {
 		paren->left = child;
 		return true;
@@ -158,7 +165,7 @@ bool Tree::addKnotLeft(knot* paren, knot* child) {
 * @modified by 
 * note: 
 */
-bool Tree::addKnotRight(knot* paren, knot* child) {
+bool Tree::addKnotRight(Knot* paren, Knot* child) {
 	if(paren != NULL) {
 		paren->right = child;
 		return true;
@@ -170,11 +177,11 @@ bool Tree::addKnotRight(knot* paren, knot* child) {
 /**
 * @description Gibt die Wurzel des Baumes zurück.
 * @param 
-* @return knot*	
+* @return Knot*	
 * @modified by 
 * note: 
 */
-knot* Tree::getRootKnot() {
+Knot* Tree::getRootKnot() {
 	return this->rootKnot;
 }
 
@@ -185,7 +192,7 @@ knot* Tree::getRootKnot() {
 * @modified by 
 * note: 
 */
-knot* Tree::getTemporaryKnot() {
+Knot* Tree::getTemporaryKnot() {
 	return this->temporaryKnot;
 }
 
@@ -197,7 +204,7 @@ knot* Tree::getTemporaryKnot() {
 * note: 
 */
 void Tree::rewindLists() {
-	this->actualListElement = 1;
+	this->actualListElement = 0;
 }
 
 /**
@@ -207,13 +214,13 @@ void Tree::rewindLists() {
 * @modified by 
 * note: 
 */
-knot* Tree::getKnotPreorder() {
+Knot* Tree::getKnotPreorder() {
 	if(this->actualListElement < this->knotListPreorder->length()) {
-		knot* tmp = *this->knotListPreorder->getData(this->actualListElement);
+		Knot* tmp = *this->knotListPreorder->getData(this->actualListElement);
 		this->actualListElement++;
 		return tmp;
 	} else {
-		this->actualListElement = 1;
+		this->actualListElement = 0;
 		return NULL;
 	}
 }
@@ -221,17 +228,17 @@ knot* Tree::getKnotPreorder() {
 /**
 * @description Gibt den naechsten Knoten der Liste für Inorder-Traversierung zurück. 
 * @param 
-* @return knot*	
+* @return Knot*	
 * @modified by 
 * note: 
 */
-knot* Tree::getKnotInorder() {
+Knot* Tree::getKnotInorder() {
 	if(this->actualListElement < this->knotListInorder->length()) {
-		knot* tmp = *this->knotListInorder->getData(this->actualListElement);
+		Knot* tmp = *this->knotListInorder->getData(this->actualListElement);
 		this->actualListElement++;
 		return tmp;
 	} else {
-		this->actualListElement = 1;
+		this->actualListElement = 0;
 		return NULL;
 	}
 }
@@ -239,17 +246,17 @@ knot* Tree::getKnotInorder() {
 /**
 * @description Gibt den naechsten Knoten der Liste für Postorder-Traversierung zurück. 
 * @param 
-* @return knot*	
+* @return Knot*	
 * @modified by 
 * note: 
 */
-knot* Tree::getKnotPostorder() {
+Knot* Tree::getKnotPostorder() {
 	if(this->actualListElement < this->knotListPostorder->length()) {
-		knot* tmp = *this->knotListPostorder->getData(this->actualListElement);
+		Knot* tmp = *this->knotListPostorder->getData(this->actualListElement);
 		this->actualListElement++;
 		return tmp;
 	} else {
-		this->actualListElement = 1;
+		this->actualListElement = 0;
 		return NULL;
 	}
 }
@@ -261,19 +268,20 @@ knot* Tree::getKnotPostorder() {
 * @modified by 
 * note: 
 */
-knot* Tree::getKnotLevelorder() {
+Knot* Tree::getKnotLevelorder() {
 	return NULL;
 }
 
 /**
 * @description Baut eine Liste entsprechend einer Preorder-Traversierung des Baumes auf.
-* @param knot* <startknoten>
+* @param Knot* <startknoten>
 * @return	
 * @modified by 
 * note: 
 */
-void Tree::buildPreorder(knot* k) {
+void Tree::buildPreorder(Knot* k) {
 	this->knotListPreorder->addItem(k);
+//	cout << "test" << endl;
 //	cout << *(string*)(k->data) << endl;
 	if(k->left != NULL) this->buildPreorder(k->left);
 	if(k->right!= NULL) this->buildPreorder(k->right);
@@ -282,12 +290,12 @@ void Tree::buildPreorder(knot* k) {
 
 /**
 * @description Baut eine Liste entsprechend einer Inorder-Traversierung des Baumes auf.
-* @param knot* <startknoten>
+* @param Knot* <startknoten>
 * @return	
 * @modified by 
 * note: 
 */
-void Tree::buildInorder(knot* k) {
+void Tree::buildInorder(Knot* k) {
 	if(k->left != NULL) this->buildInorder(k->left);
 	this->knotListInorder->addItem(k);
 //	cout << *(string*)(k->data) << endl;
@@ -296,17 +304,17 @@ void Tree::buildInorder(knot* k) {
 
 /**
 * @description Baut eine Liste entsprechend einer Postorder-Traversierung des Baumes auf.
-* @param knot* <startknoten>
+* @param Knot* <startknoten>
 * @return	
 * @modified by 
 * note: 
 */
-void Tree::buildPostorder(knot* k) {
+void Tree::buildPostorder(Knot* k) {
 	if(k->left != NULL) this->buildPostorder(k->left);
 	if(k->right!= NULL) this->buildPostorder(k->right);
 	this->knotListPostorder->addItem(k);
 //	cout << *(string*)(k->data) << endl;
 }
 
-void Tree::buildLevelorder(knot* k) {
+void Tree::buildLevelorder(Knot* k) {
 }

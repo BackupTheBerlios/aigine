@@ -10,43 +10,40 @@
 
 #include "windows.h"
 #include "List.h"
+#include "Knot.h"
 
-typedef struct knot {
-	knot* left;
-	knot* right;
-	void* data;
-} knot;
+
 
 class Tree {
 		
 private:
-	knot* rootKnot;
-	knot* temporaryKnot;
-	knot* initKnot(knot* k);
+	Knot* rootKnot;
+	Knot* temporaryKnot;
+	Knot* initKnot(Knot* k);
 	void makeTest();
 	int actualListElement;
-	List<knot*>* knotListPreorder;
-	List<knot*>* knotListInorder;
-	List<knot*>* knotListPostorder;
-	List<knot*>* knotListLevelorder;
+	List<Knot*>* knotListPreorder;
+	List<Knot*>* knotListInorder;
+	List<Knot*>* knotListPostorder;
+	List<Knot*>* knotListLevelorder;
 	
 public:	
 	Tree();
-	bool addKnotLeft(knot* paren, knot* child);
-	bool addKnotRight(knot* paren, knot* child);
-	knot* getRootKnot();
-	knot* getTemporaryKnot();
+	bool addKnotLeft(Knot* paren, Knot* child);
+	bool addKnotRight(Knot* paren, Knot* child);
+	Knot* getRootKnot();
+	Knot* getTemporaryKnot();
 	void rewindLists();
 	//Traversal-Funktionen
-	knot* getKnotPreorder();
-	knot* getKnotInorder();
-	knot* getKnotPostorder();
-	knot* getKnotLevelorder();
+	Knot* getKnotPreorder();
+	Knot* getKnotInorder();
+	Knot* getKnotPostorder();
+	Knot* getKnotLevelorder();
 	//Traversal-Build-Funktionen	
-	void buildPreorder(knot* k);
-	void buildInorder(knot* k);
-	void buildPostorder(knot* k);
-	void buildLevelorder(knot* k);
+	void buildPreorder(Knot* k);
+	void buildInorder(Knot* k);
+	void buildPostorder(Knot* k);
+	void buildLevelorder(Knot* k);
 
 };
 #endif //TREE_H
