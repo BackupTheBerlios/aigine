@@ -1,83 +1,28 @@
 /* Game Engine Design */
 
-
-
 #ifndef AIGINEOBJECT_H
-
 #define AIGINEOBJECT_H
-
-#include "../Model/Translation3D.h"
-#include "../Model/Rotation3D.h"
-#include "../Model/Scale3D.h"
-class Renderer;
-class MeshList;
-
+#include "Model/Object3D.h"
 class Shader;
-
-class Mesh;
-
-
+class Renderer;
 
 /**
- * Jedes <class>Object</class> hat genau einen
- * <class>Shader</class> und ein oder mehrere
- * <class>Meshes</class>. Das Objekt setzt die
- * Werte des Shaders, und rendert dann die
- * einzelnen Meshes (wenn benötigt auch öfter als einmal).
- * @stereotype interface
- * @author Tobias Harpering
- * @author Danny Graef
- * @author Frank Otto
+ * @stereotype interface 
  */
-
-class AiGinEObject
+class AiGinEObject : public Object3D
 {
-
-public:
-
-    Translation3D & getTranslation();
-
-    void setTranslation(Translation3D translation);
-
-    Rotation3D & getRotation();
-
-    void setRotation(Rotation3D rotation);
-
-    Scale3D& getScale();
-
-    void setScale(Scale3D scale);
-
-private:
-
-
+private:    
 
     /**
      * @supplierCardinality 1
-     * @clientCardinality 1
-     * @label ObjectShader
-     */
-
-    Shader * lnkShader;
-
-
-
-    /**
-     * @supplierCardinality 1
-     * @clientCardinality 1
-     * @label ObjectMeshes
-     */
-
-    MeshList * lnkMeshes;
-
-    Translation3D translation;
-    Rotation3D rotation;
-
-    /**
-     * @supplierCardinality 1
-     * @clientCardinality 1
+     * @clientCardinality 1 
      */
     Renderer * lnkRenderer;
-    Scale3D scale;
-};
 
+    /**
+     * @supplierCardinality 1..*
+     * @clientCardinality 1 
+     */
+    Shader * lnkShader;
+};
 #endif //AIGINEOBJECT_H
