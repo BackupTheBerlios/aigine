@@ -14,7 +14,7 @@ import projects.interfaces.VTClient;
 import projects.interfaces.VTServer;
 import projects.voting.control.JComponentCellEditor;
 import projects.voting.control.JComponentCellRenderer;
-import projects.voting.control.JVoteTable;
+import projects.voting.control.JDataTable;
 import projects.voting.control.VTClientVoteAction;
 import projects.voting.model.VTClientTableModel;
 import projects.voting.model.VoteTable;
@@ -30,7 +30,7 @@ public class VTClientImpl implements VTClient {
 
 	private JFrame frame = new JFrame();
 	private JLabel statuslabel = new JLabel("tschesch kollega");
-	private JVoteTable votetable = new JVoteTable();
+	private JDataTable votetable = new JDataTable();
 	private JButton bv = new JButton("vote");
 	private VTClientTableModel vtmodel = new VTClientTableModel();
 
