@@ -16,7 +16,7 @@ import projects.interfaces.VTServer;
 import projects.voting.control.JComponentCellEditor;
 import projects.voting.control.JComponentCellRenderer;
 import projects.voting.control.JDataTable;
-import projects.voting.control.VTAdminClientAction;
+import projects.voting.control.VTAdminClientRefreshAction;
 import projects.voting.model.VoteTable;
 import API.interfaces.AdminClient;
 import API.interfaces.ServerHandle;
@@ -33,7 +33,7 @@ public class VTAdminClientImpl implements VTClient, AdminClient {
 	private JFrame frame = new JFrame();
 	private JLabel statuslabel = new JLabel("tschesch kollega");
 	private JDataTable table = new JDataTable();
-	private JButton bv = new JButton("vote");
+	private JButton bv = new JButton("refresh");
 	private DefaultTableModel managedObjects = new DefaultTableModel();
 
 	private int recievedCounter = 0;
@@ -69,8 +69,9 @@ public class VTAdminClientImpl implements VTClient, AdminClient {
 			"RemoteObjectProperties " + compProps + " , Object" + s);
 	}
 
-	/* (non-Javadoc)
-	 * @see projects.projects.Client.VoteUpdate#update(java.lang.String)
+	/**
+	 * Wird vom Server ausgeführt und nimmt die aktuell verwalteten Clients entgegen,
+	 * um sie in der Tabelle auszugeben.
 	 */
 	public void update(RemoteObjectTable  remoteObjects) throws RemoteException {
 		recievedCounter++;
@@ -86,7 +87,7 @@ public class VTAdminClientImpl implements VTClient, AdminClient {
 	 * @param server
 	 */
 	public void setServerGrap(VTServer server) {
-		bv.addActionListener(new VTAdminClientAction(server));
+		bv.addActionListener(new VTAdminClientRefreshAction(server, table, statuslabel));
 		System.out.println(
 			"\t Serverhandle an den Actionlistener übergeben = " + server);
 	}
