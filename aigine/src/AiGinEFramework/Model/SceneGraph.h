@@ -9,6 +9,7 @@
 #include <GL/glut.h>
 
 #include "../Model/Tree.h"
+#include "../Util/loader3DS/Object3DS.h"
 class AiGinEObject;
 class ObjectTree;
 
@@ -32,8 +33,13 @@ public:
 
     void removeObject(AiGinEObject * object);
 
+    Object3DS* getTmpTestObject();
+
+    void setTmpTestObject(Object3DS* tmpTestObject);
+
 private:
     ObjectTree * lnkObjectTree;
+    Object3DS* tmpTestObject;
 };
 
 #endif //SCENEGRAPH_H

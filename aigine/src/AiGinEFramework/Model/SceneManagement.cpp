@@ -30,10 +30,12 @@ void SceneManagement::display() {
 
 /********load(String fileType, String fileName, object insertAt)**********/
 void SceneManagement::load(string fileType, string fileName) {
-	Object3DS my3DSObject;
+	Object3DS* my3DSObject = new Object3DS();
 	char* name = (char*)fileName.c_str();
-	my3DSObject.loadObject(name);
-	my3DSObject.toString();
+	my3DSObject->loadObject(name);
+	my3DSObject->toString();
+	this->setTmpTestObject(my3DSObject); // speichern im TestObjekt des
+															// SceneGraph => durch Baum ersetzen
 }
 
 

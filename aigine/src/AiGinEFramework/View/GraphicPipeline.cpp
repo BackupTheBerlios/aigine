@@ -21,6 +21,9 @@ void GraphicPipeline::initOpenGL(int argc, char** argv){
     glutInitWindowPosition (100, 100); // Positionierung des Fensters
     glutCreateWindow (argv[0]); // Ausgabe des Fensters
 
+	glEnable(GL_COLOR_MATERIAL);
+	glEnable(GL_DEPTH_TEST);
+
 	// Kamera initialisieren
 	this->lnkCamera = new Camera(new Point3D(5.0, 5.0, -5.0));
 }

@@ -6,8 +6,8 @@
 
 #define AIGINEOBJECT_H
 
-#include "Model/Translation3D.h"
-#include "Model/Rotation3D.h"
+#include "../Model/Translation3D.h"
+#include "../Model/Rotation3D.h"
 class MeshList;
 
 class Shader;
