@@ -211,7 +211,7 @@ public abstract class WebServer implements Runnable {
 		BufferedReader br = new BufferedReader(new InputStreamReader(in));
 		String s = br.readLine();
 		String[] v = s.split(" ", 3);
-
+		// TODO HTTP Request komplett einlesen und in String[] packen und Helperklassen anlegen (verwenden)
 		for (int i = 0; i < v.length; ++i) {
 			v[i] = URLDecoder.decode(v[i], "UTF-8");
 		}
