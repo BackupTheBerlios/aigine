@@ -87,95 +87,95 @@ LINK32=link.exe
 # PROP Default_Filter "cpp;c;cxx;rc;def;r;odl;idl;hpj;bat"
 # Begin Source File
 
-SOURCE=..\..\..\AiGinEFramework\Model\ageObject3DS.cpp
+SOURCE=..\..\AiGinEFramework\Model\ageObject3DS.cpp
 # End Source File
 # Begin Source File
 
-SOURCE=..\..\..\AiGinEFramework\Model\ageObjectPrim.cpp
+SOURCE=..\..\AiGinEFramework\Model\ageObjectPrim.cpp
 # End Source File
 # Begin Source File
 
-SOURCE=..\..\..\AiGinEFramework\Model\AiGinEObject.cpp
+SOURCE=..\..\AiGinEFramework\Model\AiGinEObject.cpp
 # End Source File
 # Begin Source File
 
-SOURCE=..\..\..\AiGinEFramework\View\Camera.cpp
+SOURCE=..\..\AiGinEFramework\View\Camera.cpp
 # End Source File
 # Begin Source File
 
-SOURCE=..\..\..\tools\loader3DS\CLoad3DS.cpp
+SOURCE=..\..\tools\loader3DS\CLoad3DS.cpp
 # End Source File
 # Begin Source File
 
-SOURCE=..\..\..\AiGinEFramework\View\GraphicPipeline.cpp
+SOURCE=..\..\AiGinEFramework\View\GraphicPipeline.cpp
 # End Source File
 # Begin Source File
 
-SOURCE=..\..\..\AiGinEFramework\Control\Keyboard.cpp
+SOURCE=..\..\AiGinEFramework\Control\Keyboard.cpp
 # End Source File
 # Begin Source File
 
-SOURCE=..\..\..\AiGinEFramework\Utils\Knot.cpp
+SOURCE=..\..\AiGinEFramework\Utils\Knot.cpp
 # End Source File
 # Begin Source File
 
-SOURCE=..\..\..\AiGinEFramework\Model\Mesh.cpp
+SOURCE=..\..\AiGinEFramework\Model\Mesh.cpp
 # End Source File
 # Begin Source File
 
-SOURCE=..\..\..\AiGinEFramework\Control\Mouse.cpp
+SOURCE=..\..\AiGinEFramework\Control\Mouse.cpp
 # End Source File
 # Begin Source File
 
-SOURCE=..\..\..\AiGinEFramework\Model\Object3D.cpp
+SOURCE=..\..\AiGinEFramework\Model\Object3D.cpp
 # End Source File
 # Begin Source File
 
-SOURCE=..\..\..\tools\loader3DS\Object3DS.cpp
+SOURCE=..\..\tools\loader3DS\Object3DS.cpp
 # End Source File
 # Begin Source File
 
-SOURCE=..\..\..\AiGinEFramework\Model\Rotation3D.cpp
+SOURCE=..\..\AiGinEFramework\Model\Rotation3D.cpp
 # End Source File
 # Begin Source File
 
-SOURCE=..\..\..\AiGinEFramework\Model\Scale3D.cpp
+SOURCE=..\..\AiGinEFramework\Model\Scale3D.cpp
 # End Source File
 # Begin Source File
 
-SOURCE=..\..\..\AiGinEFramework\Model\SceneGraph.cpp
+SOURCE=..\..\AiGinEFramework\Model\SceneGraph.cpp
 # End Source File
 # Begin Source File
 
-SOURCE=..\..\..\AiGinEFramework\Model\SceneManagement.cpp
+SOURCE=..\..\AiGinEFramework\Model\SceneManagement.cpp
 # End Source File
 # Begin Source File
 
-SOURCE=..\TestWorld.cpp
+SOURCE=TestWorld.cpp
 # End Source File
 # Begin Source File
 
-SOURCE=..\..\..\tools\tgaLoader.cpp
+SOURCE=..\..\tools\tgaLoader.cpp
 # End Source File
 # Begin Source File
 
-SOURCE=..\..\..\AiGinEFramework\Model\Translation3D.cpp
+SOURCE=..\..\AiGinEFramework\Model\Translation3D.cpp
 # End Source File
 # Begin Source File
 
-SOURCE=..\..\..\AiGinEFramework\Utils\Tree.cpp
+SOURCE=..\..\AiGinEFramework\Utils\Tree.cpp
 # End Source File
 # Begin Source File
 
-SOURCE=..\..\..\AiGinEFramework\Model\Vector2D.cpp
+SOURCE=..\..\AiGinEFramework\Model\Vector2D.cpp
 # End Source File
 # Begin Source File
 
-SOURCE=..\..\..\AiGinEFramework\Model\Vector3D.cpp
+SOURCE=..\..\AiGinEFramework\Model\Vector3D.cpp
 # End Source File
 # Begin Source File
 
-SOURCE=..\..\..\AiGinEFramework\View\Viewport.cpp
+SOURCE=..\..\AiGinEFramework\View\Viewport.cpp
 # End Source File
 # End Group
 # Begin Group "Header-Dateien"
@@ -183,115 +183,115 @@ SOURCE=..\..\..\AiGinEFramework\View\Viewport.cpp
 # PROP Default_Filter "h;hpp;hxx;hm;inl"
 # Begin Source File
 
-SOURCE=..\..\..\AiGinEFramework\Model\ageObject3DS.h
+SOURCE=..\..\AiGinEFramework\Model\ageObject3DS.h
 # End Source File
 # Begin Source File
 
-SOURCE=..\..\..\AiGinEFramework\Model\ageObjectPrim.h
+SOURCE=..\..\AiGinEFramework\Model\ageObjectPrim.h
 # End Source File
 # Begin Source File
 
-SOURCE=..\..\..\AiGinEFramework\Model\AiGinEObject.h
+SOURCE=..\..\AiGinEFramework\Model\AiGinEObject.h
 # End Source File
 # Begin Source File
 
-SOURCE=..\..\..\AiGinEFramework\View\Camera.h
+SOURCE=..\..\AiGinEFramework\View\Camera.h
 # End Source File
 # Begin Source File
 
-SOURCE=..\..\..\tools\loader3DS\CLoad3DS.h
+SOURCE=..\..\tools\loader3DS\CLoad3DS.h
 # End Source File
 # Begin Source File
 
-SOURCE=..\..\..\AiGinEFramework\View\GraphicPipeline.h
+SOURCE=..\..\AiGinEFramework\View\GraphicPipeline.h
 # End Source File
 # Begin Source File
 
-SOURCE=..\..\..\AiGinEFramework\Control\Keyboard.h
+SOURCE=..\..\AiGinEFramework\Control\Keyboard.h
 # End Source File
 # Begin Source File
 
-SOURCE=..\..\..\AiGinEFramework\Utils\Knot.h
+SOURCE=..\..\AiGinEFramework\Utils\Knot.h
 # End Source File
 # Begin Source File
 
-SOURCE=..\..\..\AiGinEFramework\Utils\List.h
+SOURCE=..\..\AiGinEFramework\Utils\List.h
 # End Source File
 # Begin Source File
 
-SOURCE=..\..\..\AiGinEFramework\Model\Mesh.h
+SOURCE=..\..\AiGinEFramework\Model\Mesh.h
 # End Source File
 # Begin Source File
 
-SOURCE=..\..\..\AiGinEFramework\Model\MeshList.h
+SOURCE=..\..\AiGinEFramework\Model\MeshList.h
 # End Source File
 # Begin Source File
 
-SOURCE=..\..\..\AiGinEFramework\Control\Mouse.h
+SOURCE=..\..\AiGinEFramework\Control\Mouse.h
 # End Source File
 # Begin Source File
 
-SOURCE=..\..\..\AiGinEFramework\Model\Object3D.h
+SOURCE=..\..\AiGinEFramework\Model\Object3D.h
 # End Source File
 # Begin Source File
 
-SOURCE=..\..\..\tools\loader3DS\Object3DS.h
+SOURCE=..\..\tools\loader3DS\Object3DS.h
 # End Source File
 # Begin Source File
 
-SOURCE=..\..\..\AiGinEFramework\Model\ObjectList.h
+SOURCE=..\..\AiGinEFramework\Model\ObjectList.h
 # End Source File
 # Begin Source File
 
-SOURCE=..\..\..\AiGinEFramework\View\Renderer.h
+SOURCE=..\..\AiGinEFramework\View\Renderer.h
 # End Source File
 # Begin Source File
 
-SOURCE=..\..\..\AiGinEFramework\Model\Rotation3D.h
+SOURCE=..\..\AiGinEFramework\Model\Rotation3D.h
 # End Source File
 # Begin Source File
 
-SOURCE=..\..\..\AiGinEFramework\Model\Scale3D.h
+SOURCE=..\..\AiGinEFramework\Model\Scale3D.h
 # End Source File
 # Begin Source File
 
-SOURCE=..\..\..\AiGinEFramework\Model\SceneGraph.h
+SOURCE=..\..\AiGinEFramework\Model\SceneGraph.h
 # End Source File
 # Begin Source File
 
-SOURCE=..\..\..\AiGinEFramework\Model\SceneManagement.h
+SOURCE=..\..\AiGinEFramework\Model\SceneManagement.h
 # End Source File
 # Begin Source File
 
-SOURCE=..\..\..\AiGinEFramework\Model\Shader.h
+SOURCE=..\..\AiGinEFramework\Model\Shader.h
 # End Source File
 # Begin Source File
 
-SOURCE=..\..\..\tools\tgaLoader.h
+SOURCE=..\..\tools\tgaLoader.h
 # End Source File
 # Begin Source File
 
-SOURCE=..\..\..\AiGinEFramework\Model\Translation3D.h
+SOURCE=..\..\AiGinEFramework\Model\Translation3D.h
 # End Source File
 # Begin Source File
 
-SOURCE=..\..\..\AiGinEFramework\Utils\Tree.h
+SOURCE=..\..\AiGinEFramework\Utils\Tree.h
 # End Source File
 # Begin Source File
 
-SOURCE=..\..\..\tools\loader3DS\Types3DS.h
+SOURCE=..\..\tools\loader3DS\Types3DS.h
 # End Source File
 # Begin Source File
 
-SOURCE=..\..\..\AiGinEFramework\Model\Vector2D.h
+SOURCE=..\..\AiGinEFramework\Model\Vector2D.h
 # End Source File
 # Begin Source File
 
-SOURCE=..\..\..\AiGinEFramework\Model\Vector3D.h
+SOURCE=..\..\AiGinEFramework\Model\Vector3D.h
 # End Source File
 # Begin Source File
 
-SOURCE=..\..\..\AiGinEFramework\View\Viewport.h
+SOURCE=..\..\AiGinEFramework\View\Viewport.h
 # End Source File
 # End Group
 # Begin Group "Ressourcendateien"
