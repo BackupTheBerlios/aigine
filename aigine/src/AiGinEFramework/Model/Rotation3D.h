@@ -2,7 +2,7 @@
 
 #ifndef ROTATION3D_H
 #define ROTATION3D_H
-#include "Point3D.h"
+#include "Vector3D.h"
 
 class Rotation3D {
 };
