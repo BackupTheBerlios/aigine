@@ -43,11 +43,11 @@ int * GraphicPipeline::getWindowSize() {
 void GraphicPipeline::initOpenGL(int argc, char** argv){
     glutInit(&argc, argv); // initialisiert GLUT und übergibt die Parameter
     glutInitDisplayMode (GLUT_DOUBLE | GLUT_RGB | GLUT_DEPTH); // mit Tiefeneffekt fuer Licht
-
-    glutInitWindowSize(800,600);  // festlegen der Fenstergroesse
+    
 	//initialisieren der windowSize variablen
 	this->windowSize[0] =800;
     this->windowSize[1] =600;
+	glutInitWindowSize(this->windowSize[0],this->windowSize[1]);  // festlegen der Fenstergroesse
     glutInitWindowPosition (100, 100); // Positionierung des Fensters
     glutCreateWindow (argv[0]); // Ausgabe des Fensters
 
@@ -67,31 +67,8 @@ void GraphicPipeline::initOpenGL(int argc, char** argv){
 */
 void GraphicPipeline::initDisplay(){
 
-	GLfloat mat_specular[] = { 1.0, 1.0, 1.0, 1.0 }; // weiss
-   //GLfloat mat_diffuse[] = { 1.0, 1.0, 1.0, 1.0 }; // weiss
-   GLfloat mat_diffuse[] = { 0.8, 1.0, 0.8, 1.0 }; // leichtes gruen
-   //GLfloat mat_diffuse1[] = { 1.0, 0.4, 0.4, 1.0 }; // ein wenig rot
-   //GLfloat mat_shininess[] = { 10.0 }; // fuer Helligkeit der Reflextion
-   GLfloat light_position[] = { 1.0, 1.0, 1.0, 0.0 }; // position in homogenen koordinaten
-   //GLfloat light_position1[] = { -3.0, 3.0, 3.0, 1.0 };
-     // da 4. = 0 werden die ersten drei Koordinaten unendlich
-	
-   //glShadeModel (GL_FLAT); // Shading wird auf flach gesetzt
 	glShadeModel (GL_SMOOTH);
 
-	/* Materialeigenschaften der Oberfläche */
-	glMaterialfv(GL_FRONT, GL_SPECULAR, mat_specular); // Spiegelreflextion des Lichts
-	//glMaterialfv(GL_FRONT, GL_DIFFUSE, mat_diffuse); // Divuse Reflextion
-	//glMaterialfv(GL_FRONT, GL_SHININESS, mat_shininess); // Groesse der Reflektion setzen
-    glLightfv(GL_LIGHT0, GL_POSITION, light_position);
-
-	// rotes licht hinzufuegen
-   glLightfv(GL_LIGHT1, GL_POSITION, light_position);
-   glLightfv(GL_LIGHT1, GL_DIFFUSE, mat_diffuse); 
-
-   glEnable(GL_LIGHTING);
-   glEnable(GL_LIGHT0);
-   //glEnable(GL_LIGHT1);
    glEnable(GL_DEPTH_TEST);
 
    glClear (GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT); // Bildspeicher mit Tiefeneffekt loeschen
@@ -103,7 +80,31 @@ void GraphicPipeline::initDisplay(){
    Point3D* lap = lnkCamera->getLookAtPosition();
    Point3D* nv = lnkCamera->getRotation();
    gluLookAt (pc->getX(), pc->getY(), pc->getZ(), lap->getX(), lap->getY(), lap->getZ(), nv->getX(), nv->getY(), nv->getZ()); // Betrachterposition
+   
    glScalef (1.0, 1.0, 1.0); /* modeling transformation */ // Skalierungsmatrix // ..  setzten
+
+
+
+   // Ausgabe des 3d gitters
+    glColor3ub(0, 255, 0);
+
+    // Draw a 1x1 grid along the X and Z axis'
+    for(float i = -50; i <= 50; i += 1)
+    {
+        // Start drawing some lines
+        glBegin(GL_LINES);
+
+            // Do the horizontal lines (along the X)
+            glVertex3f(-50, 0, i);
+            glVertex3f(50, 0, i);
+
+            // Do the vertical lines (along the Z)
+            glVertex3f(i, 0, -50);
+            glVertex3f(i, 0, 50);
+
+        // Stop drawing lines
+        glEnd();
+    }
 }
 
 /**

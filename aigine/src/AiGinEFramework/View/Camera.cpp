@@ -28,8 +28,6 @@ Point3D * Camera::getRotation(){ return rotation; }
 *	Set the Rotation of the Camera controled with the Mouse (Shooter Style)
 */
 void Camera::setRotation(Point3D * rotation, int mouseX, int mouseY, int* CurrentWinSize)	{
-	//Mouse * mouse = new Mouse();
-	POINT mousePos;
 	
 	int middleX = CurrentWinSize[0]  >> 1;				// This is a binary shift to get half the width
 	int middleY = CurrentWinSize[1]  >> 1;				// This is a binary shift to get half the height
@@ -38,23 +36,20 @@ void Camera::setRotation(Point3D * rotation, int mouseX, int mouseY, int* Curren
 	static float currentRotX = 0.0f;
 	
 
-	// Get the mouse's current X,Y position
-	GetCursorPos(&mousePos);
 	// If our cursor is still in the middle, we never moved... so don't update the screen
-	if( (mousePos.x == middleX) && (mousePos.y == middleY) ) return;
+	if( (mouseX == middleX) && (mouseY == middleY) ) return;
 	
 
 	cout<< "-------------------------------------------------------------------------------------"<<endl;
-	cout <<"current mouse : "<< mousePos.x<<" | "<<mousePos.y<<endl;
+	cout <<"current mouse : "<< mouseX <<" | "<< mouseY << endl;
 	
 
-	// Set the mouse position to the middle of our window
-	SetCursorPos(middleX, middleY);
+	glutWarpPointer (middleX, middleY);
 
 
 	// Get the direction the mouse moved in, but bring the number down to a reasonable amount
-	angleY = (float)( (middleX - mousePos.x) ) / 1000.0f;		
-	angleZ = (float)( (middleY - mousePos.y) ) / 1000.0f;	
+	angleY = (float)( (middleX - mouseX) ) / 1000.0f;		
+	angleZ = (float)( (middleY - mouseY) ) / 1000.0f;	
 
 	// Here we keep track of the current rotation (for up and down) so that
 	// we can restrict the camera from doing a full 360 loop.
@@ -83,7 +78,7 @@ void Camera::setRotation(Point3D * rotation, int mouseX, int mouseY, int* Curren
 		// Rotate around our perpendicular axis and along the y-axis
 		RotateView(angleZ, normal.getX(), normal.getY(), normal.getZ());
 		RotateView(angleY, 0, 1, 0);
-		rotation->print("rotation_tobi : ");
+		lookAtPosition->print("lookAtPosition : ");
 	}
 
 
@@ -187,7 +182,7 @@ Point3D Camera::getNormalVector(Point3D vVector)
 
 void Camera::RotateView(float angle, float x, float y, float z)
 {
-	Point3D vNewView = Point3D(0.0,0.0,0.0);;
+	Point3D vNewView = Point3D(0.0,0.0,0.0);
 
 	// Get the view vector (The direction we are facing)
 	//Point3D vView = m_vView - m_vPosition;		
@@ -213,14 +208,74 @@ void Camera::RotateView(float angle, float x, float y, float z)
 
 	// Now we just add the newly rotated vector to our position to set
 	// our new rotated view of our camera.
-	Point3D point_tmp = Point3D(this->getPosition()->x, this->getPosition()->y,this->getPosition()->z);
-	point_tmp = point_tmp + vNewView;
-	this->setLookAtPosition(&point_tmp);
+	Point3D point_tmp = Point3D(0,0,0);
+	*lookAtPosition = *position + vNewView;
 }
 
 
 
+///////////////////////////////// MOVE CAMERA \\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\*
+/////
+/////    This will move the camera forward or backward depending on the speed
+/////
+///////////////////////////////// MOVE CAMERA \\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\*
 
+void Camera::moveCamera(float speed)
+{
+    // Get the current view vector (the direction we are looking)
+    Point3D vVector = *lookAtPosition - *position;
+/////// * /////////// * /////////// * NEW * /////// * /////////// * /////////// *
+
+    // I snuck this change in here!  We now normalize our view vector when
+    // moving throughout the world.  This is a MUST that needs to be done.
+    // That way you don't move faster than you strafe, since the strafe vector
+    // is normalized too.
+    vVector = getNormalVector(vVector);
+    
+/////// * /////////// * /////////// * NEW * /////// * /////////// * /////////// *
+
+    position->x = position->x + vVector.x * speed;        // Add our acceleration to our position's X
+    position->z = position->z + vVector.z * speed;        // Add our acceleration to our position's Z
+    lookAtPosition->x = lookAtPosition->x + vVector.x * speed;            // Add our acceleration to our view's X
+    lookAtPosition->z = lookAtPosition->z + vVector.z * speed;            // Add our acceleration to our view's Z
+}
+
+/////// * /////////// * /////////// * NEW * /////// * /////////// * /////////// *
+
+///////////////////////////////// STRAFE CAMERA \\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\*
+/////
+/////    This strafes the camera left and right depending on the speed (-/+)
+/////
+///////////////////////////////// STRAFE CAMERA \\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\*
+
+void Camera::strafeCamera(float speed)
+{
+    Point3D temp = *lookAtPosition - *position;	
+    // Initialize a variable for the cross product result
+    Point3D strafe = cross(&temp, rotation);
+
+    // Normalize the strafe vector
+    strafe = getNormalVector(strafe);
+
+    // Strafing is quite simple if you understand what the cross product is.
+    // If you have 2 vectors (say the up vVector and the view vVector) you can
+    // use the cross product formula to get a vVector that is 90 degrees from the 2 vectors.
+    // For a better explanation on how this works, check out the OpenGL "Normals" tutorial at our site.
+    // In our new Update() function, we set the strafing vector (m_vStrafe).  Due
+    // to the fact that we need this vector for many things including the strafing
+    // movement and camera rotation (up and down), we just calculate it once.
+    //
+    // Like our MoveCamera() function, we add the strafing vector to our current position 
+    // and view.  It's as simple as that.  It has already been calculated in Update().
+    
+    // Add the strafe vector to our position
+    position->x = position->x + strafe.x * speed;
+    position->z = position->z + strafe.z * speed;
+
+    // Add the strafe vector to our view
+    lookAtPosition->x = lookAtPosition->x + strafe.x * speed;
+    lookAtPosition->z = lookAtPosition->z + strafe.z * speed;
+}
 
 void Camera::moveRight(){}
 void Camera::moveLeft(){}
@@ -231,7 +286,9 @@ void Camera::moveDown(){
 void Camera::moveForward(){
 this->position->setZ(this->position->getZ() +1);
 }
-void Camera::moveBack(){}
+
+void Camera::moveBack(){
+}
 void Camera::turnUp(){}
 void Camera::turnDown(){}
 void Camera::turnRight(){}

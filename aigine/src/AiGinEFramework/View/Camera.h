@@ -68,6 +68,14 @@ public:
 	void moveForward();
 
 
+  /*
+   * bewegt die Kamera um die angegebene
+   * Anzahl nach hinten.
+   * Viewpoint und LookAt werden entweder
+   * auf der derzeitigen Ebene "direction = 0"
+   * oder in Richtung der Kamera "direction = 1"
+   * bewegt
+   */
 	void moveBack();
 
 
@@ -88,6 +96,10 @@ public:
 
 
     void moveRight();
+
+
+  void moveCamera(float speed);
+  void strafeCamera(float speed);
 
 private:
 
