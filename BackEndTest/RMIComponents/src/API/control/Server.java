@@ -5,6 +5,7 @@ import java.rmi.server.RMIClientSocketFactory;
 import java.rmi.server.RMIServerSocketFactory;
 import java.rmi.server.UnicastRemoteObject;
 
+import API.interfaces.AdminClient;
 import API.model.RemoteObject;
 import API.model.RemoteObjectTable;
 
@@ -15,7 +16,7 @@ import API.model.RemoteObjectTable;
  * @version 0.01
  */
 
-public class Server extends UnicastRemoteObject {
+public abstract class Server extends UnicastRemoteObject {
 	/**
 	 * Die registrierten Kommunikationspartner
 	 * entweder Clients oder Services oder wiederum Server ... WAT EVER !
@@ -59,13 +60,13 @@ public class Server extends UnicastRemoteObject {
 	}
 
 	/**
-	 * Registrierung eines RemoteObjects für anonyme Kommunikation.
+	 * Registrierung eines RemoteObjects, wird von allen anderen register() Methoden
+	 * verwendet, um eine mögliche Überblendung zu vermeiden. 
 	 * @param service
 	 * @throws RemoteException
 	 */
-	public synchronized String register(final RemoteObject remoteObject)
-		throws RemoteException {
-		System.out.println("=> Server.register(RemoteObject " + remoteObject + ")");
+	protected synchronized String registerComponent(final RemoteObject remoteObject){
+		System.out.println("=> Server.registerComponent(RemoteObject " + remoteObject + ")");
 		String status = null;
 		if (remoteObjects.contains(remoteObject)) {
 			status = " exists";
@@ -73,9 +74,23 @@ public class Server extends UnicastRemoteObject {
 			remoteObjects.add(remoteObject);
 			status = " now exists";
 		}
-		System.out.println("<=Server.register(RemoteObject " + remoteObject + ")");
+		System.out.println("<=Server.registerComponent(RemoteObject " + remoteObject + ")");
 		return status;
 	}
+	
+	/**
+	 * Registrierung eines RemoteObjects für anonyme Kommunikation.
+	 * @param service
+	 * @throws RemoteException
+
+	public synchronized String register(final RemoteObject remoteObject)
+		throws RemoteException {
+		System.out.println("=> Server.register(RemoteObject " + remoteObject + ")");
+		System.out.println("TROTTEL, die Methode mußt du doch überschreiben.");
+		System.out.println("<= Server.register(RemoteObject " + remoteObject + ")");
+		return "überschreiben oder registerComponent nutzen.";
+	}
+	*/
 
 	/**
 	 * Registrierung eines RemoteObjects mit Username und Password.
@@ -99,12 +114,43 @@ public class Server extends UnicastRemoteObject {
 
 		// TODO Testdaten durch Zugriff auf Datenspeicher ersetzem (Usertabelle in DB)!
 		if (usr.equals("nice") && pass.equals("yourMama")) {
-			status = "tschesch kollega :D  => " + this.register(remoteObject);
+			status = "tschesch kollega :D  => " + this.registerComponent(remoteObject);
 		} else {
 			status = "USERNAME oder PASSWORD falsch ! dat war wohl nix :D";
 		}
 
-		System.out.println("<= Server.register(mit Password)");
+		System.out.println("<= Server.register(mit Password) > " + status);
 		return status;
 	}
+	
+	/**
+	 * Registrierung eines Remote Admin Objects mit Username und Password.
+	 * Wird vom Loader aufgerufen, wenn <code>typ=admin</code>.
+	 * @param remoteObject
+	 * @param username
+	 * @param password
+	 * @throws RemoteException
+	 */
+	public synchronized String registerAdminClient(
+		final RemoteObject remoteObject,
+		final String usr,
+		final String pass)
+		throws RemoteException {
+		System.out.println(
+			"=> Server.registerAdminClient(remotObject, usrname ="
+				+ usr
+				+ " , password = "
+				+ pass
+				+ ")");
+			
+			String status = register(remoteObject, usr, pass);
+			System.out.println("\t registriert HOFFENTLICH :D > status:"
+				 + status);
+			// Daten an Client schicken
+			AdminClient app = (AdminClient)remoteObject.getApp();
+			System.out.println("\t try update client call > " + app);
+			app.update(remoteObjects);
+			System.out.println("\t updated client call > " + app);
+		return status;
+	}	
 }
