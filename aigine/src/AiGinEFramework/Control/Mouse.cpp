@@ -14,5 +14,6 @@ Mouse::Mouse(SceneManagement* sceneMan)
 //____________________________________________________________________________
 void Mouse::passivemotion(int x, int y){
 	this->sceneMan->setCameraRotation(x, y);
-	glutPostRedisplay();
+//	glutPostRedisplay();
+//	this->sceneMan->display();
 }
