@@ -10,9 +10,6 @@ import java.rmi.RemoteException;
 import java.rmi.server.RMIClientSocketFactory;
 import java.rmi.server.RMIServerSocketFactory;
 
-import net.sf.hibernate.HibernateException;
-import net.sf.hibernate.SessionFactory;
-import net.sf.hibernate.cfg.Configuration;
 import API.model.RemoteObject;
 
 
@@ -23,8 +20,7 @@ import API.model.RemoteObject;
  */
 public abstract class Database extends Server {
 
-	private SessionFactory sessionFactory;
-	private Configuration cfg;
+	
 
 	/**
 	 * @throws RemoteException
@@ -33,9 +29,7 @@ public abstract class Database extends Server {
 		super();
 //		Vote dbvote = new Vote();
 		//System.out.println("Vote wird mal vorgeladen... mit der id "+ dbvote.getId());		
-		Configuration dbVoteConfig = new Configuration();
-
-		System.out.println("Initializing Hibernate");
+		
 		//cfg = new Configuration();
 //		URL url = null;
 //		try {
@@ -57,16 +51,7 @@ public abstract class Database extends Server {
 //					+ " => "
 //					+ e1.getMessage());
 //		}
-		try {
-			System.out.println("trying to create sessionFactory ---------*");
-			sessionFactory = dbVoteConfig.configure().buildSessionFactory();
-			System.out.println("Finished Initializing Hibernate.");
-		} catch (HibernateException e) {
-			e.printStackTrace();
-		}
-		System.out.println("SessionFactory has been builded! sf = " +sessionFactory.toString());
-		// TODO Datenbank starten
-
+		
 	}
 
 	/**
@@ -108,21 +93,5 @@ public abstract class Database extends Server {
 	public synchronized String register(RemoteObject remoteObject) {
 		return super.registerComponent(remoteObject);
 	}
-
-	/**
-	 * @return
-	 * Database.java
-	 */
-	public Configuration getCfg() {
-		return cfg;
-	}
-
-	/**
-	 * @return
-	 * Database.java
-	 */
-	public SessionFactory getSessionFactory() {
-		return sessionFactory;
-	}
-
+	
 }

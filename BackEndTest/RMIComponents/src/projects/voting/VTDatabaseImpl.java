@@ -53,7 +53,7 @@ public class VTDatabaseImpl extends Database implements VTDatabaseServer {
 		System.out.println(
 			"VTDatabaseServer starten mit der in der properties spezialiseierten Datenbank");
 		//storehelper = new HelperXmlPersitence("shellvotes");		
-		storehelper = (VTPersistenceHelper) new HelperHibernatePersistence( super.getSessionFactory(), this);
+		storehelper = (VTPersistenceHelper) new HelperHibernatePersistence(this);
 		this.votes = new HelperXmlPersitence("shellvotes").getVoteTable();
 		//this.votes = this.getVoteTable();
 		System.out.println("Vote table: \n"+this.votes.toString());

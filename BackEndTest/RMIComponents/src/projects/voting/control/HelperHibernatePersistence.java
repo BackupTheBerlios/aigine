@@ -15,6 +15,7 @@ import net.sf.hibernate.HibernateException;
 import net.sf.hibernate.Session;
 import net.sf.hibernate.SessionFactory;
 import net.sf.hibernate.Transaction;
+import net.sf.hibernate.cfg.Configuration;
 import projects.interfaces.VTPersistenceHelper;
 import projects.voting.model.Vote;
 import projects.voting.model.VoteTable;
@@ -28,23 +29,38 @@ import API.interfaces.ServerHandle;
  */
 public class HelperHibernatePersistence implements VTPersistenceHelper {
 
+	
+	//hibernate Configuration to build a configed Session
+	private Configuration cfg;
+	//hibernate SessionFactory to handel the contections
 	private SessionFactory sessionFactory;
 
 	//Vorsicht hier steht auch immer die "general" mit drin!
 	private String[] categorynames;
-
+	
+	//name der zu benuetzenden database
 	private String databasename;
-
+	// zu speichernde vote tabelle
 	private VoteTable votes;
 
 	/**
 	 *  
 	 */
-	public HelperHibernatePersistence(SessionFactory sf,
-			ServerHandle classServer) {
+	public HelperHibernatePersistence(ServerHandle classServer) {
 		System.out.println("=>HelperHibernatePersistence:Constructor");
 		votes = new VoteTable();
-		sessionFactory = sf;
+		cfg = new Configuration();
+
+		System.out.println("Initializing Hibernate");
+		try {
+			System.out.println("trying to create sessionFactory ---------*");
+			sessionFactory = cfg.configure().buildSessionFactory();
+			System.out.println("Finished Initializing Hibernate.");
+		} catch (HibernateException e) {
+			e.printStackTrace();
+		}
+		System.out.println("SessionFactory has been builded! sf = " +sessionFactory.toString());
+				
 		System.out.println("<=HelperDatabasePersistence.constructor");
 
 	}
