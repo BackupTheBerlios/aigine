@@ -9,7 +9,6 @@
 #include "../../AiGinEFramework/Control/Keyboard.h"
 #include "../../AiGinEFramework/Control/Mouse.h"
 
-#include "robot.h"
 
 SceneManagement* sm;
 Keyboard* kb;

@@ -74,7 +74,7 @@ BSC32=bscmake.exe
 LINK32=link.exe
 # ADD BASE LINK32 kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib /nologo /subsystem:console /debug /machine:I386 /pdbtype:sept
 # ADD LINK32 kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib glaux.lib glut32.lib opengl32.lib /nologo /subsystem:console /debug /machine:I386 /pdbtype:sept
-# SUBTRACT LINK32 /pdb:none
+# SUBTRACT LINK32 /pdb:none /nodefaultlib
 
 !ENDIF 
 
@@ -140,10 +140,6 @@ SOURCE=..\..\AiGinEFramework\Model\Object3D.cpp
 # Begin Source File
 
 SOURCE=..\..\tools\loader3DS\Object3DS.cpp
-# End Source File
-# Begin Source File
-
-SOURCE=.\robot.cpp
 # End Source File
 # Begin Source File
 
@@ -264,10 +260,6 @@ SOURCE=..\..\AiGinEFramework\Model\ObjectList.h
 # Begin Source File
 
 SOURCE=..\..\AiGinEFramework\View\Renderer.h
-# End Source File
-# Begin Source File
-
-SOURCE=.\robot.h
 # End Source File
 # Begin Source File
 
