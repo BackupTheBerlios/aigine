@@ -1,4 +1,4 @@
-// Copyright MageLang Institute; Version $Id: ClassFileServer.java,v 1.4 2004/08/28 05:06:32 mr_nice Exp $
+// Copyright MageLang Institute; Version $Id: ClassFileServer.java,v 1.5 2004/09/06 01:15:35 mr_nice Exp $
 
 /*
  * Copyright (c) 1996, 1996, 1997 Sun Microsystems, Inc. All Rights Reserved.
@@ -15,10 +15,8 @@
 import java.io.*;
 
 /**
- * The ClassFileServer implements a ClassServer that
- * reads class files from the file system. See the
- * doc for the "Main" method for how to run this
- * server.
+ * The ClassFileServer implements a ClassServer that reads class files from the
+ * file system. See the doc for the "Main" method for how to run this server.
  */
 public class ClassFileServer extends ClassServer {
 	private String classpath;
@@ -26,11 +24,14 @@ public class ClassFileServer extends ClassServer {
 	private String externalpath;
 
 	private static int DefaultServerPort = 2001;
+	
+	
 
 	/**
 	 * Constructs a ClassFileServer.
-	 *
-	 * @param classpath the classpath where the server locates classes
+	 * 
+	 * @param classpath
+	 *            the classpath where the server locates classes
 	 */
 	public ClassFileServer(int port, String classpath) throws IOException {
 		super(port);
@@ -39,12 +40,13 @@ public class ClassFileServer extends ClassServer {
 
 	/**
 	 * Constructs a ClassFileServer which contains external jar files
-		 * @param port
-		 * @param classpath
-		 * @param externpath
-		 */
+	 * 
+	 * @param port
+	 * @param classpath
+	 * @param externpath
+	 */
 	public ClassFileServer(int port, String classpath, String externpath)
-		throws IOException {
+			throws IOException {
 		super(port);
 		this.classpath = classpath;
 		this.externalpath = externpath;
@@ -52,60 +54,88 @@ public class ClassFileServer extends ClassServer {
 	}
 
 	/**
-	 * Returns an array of bytes containing the bytecodes for
-	 * the class represented by the argument <b>path</b>.
-	 * The <b>path</b> is a dot separated class name with
-	 * the ".class" extension removed.
-	 *
+	 * Returns an array of bytes containing the bytecodes for the class
+	 * represented by the argument <b>path </b>. The <b>path </b> is a dot
+	 * separated class name with the ".class" extension removed.
+	 * 
 	 * @return the bytecodes for the class
-	 * @exception ClassNotFoundException if the class corresponding
-	 * to <b>path</b> could not be loaded.
+	 * @exception ClassNotFoundException
+	 *                if the class corresponding to <b>path </b> could not be
+	 *                loaded.
 	 */
-	public byte[] getBytes(String path)
-		throws IOException, ClassNotFoundException {
-		System.out.println("reading: " + path.replace('.', File.separatorChar)+ ".class");
-		File f =
-			new File(
-				classpath
-					+ File.separator
-					+ path.replace('.', File.separatorChar)
-					+ ".class");
+	public byte[] getBytes(String path, String fileExt) throws IOException,
+			ClassNotFoundException {
+		byte[] bytecodes = null;
+		//
+		if(path.equals("project.voting.model.Vote")){
+			System.out.println("\n----------------------------\n\t"+path+fileExt+" gelesen!!\n----------------------------\n");
+		}
+		File f = null;
+		System.out.println("reading at classpath: " + classpath + " file:"
+				+ path + fileExt);
+		f = new File(classpath + File.separator
+				+ path.replace('.', File.separatorChar) + fileExt);
 		int length = (int) (f.length());
+		super.bytesCont += length;
+		//System.out.println("laenge des bytes:" + length);
 
 		if (length == 0) {
-			System.out.println("Zero length file: "+ path);
-			throw new IOException("File length is zero: " + path);
-		} else {
-			FileInputStream fin = new FileInputStream(f);
-			DataInputStream in = new DataInputStream(fin);
+			System.out.println("reading at exteralpath: " + externalpath
+					+ " file:" + path + fileExt);
+			f = new File(externalpath + File.separator
+					+ path.replace('.', File.separatorChar) + fileExt);
+			length = (int) (f.length());
+			super.bytesCont += length;
+			//System.out.println("laenge des bytes:" + length);
 
-			byte[] bytecodes = new byte[length];
-			in.readFully(bytecodes);
-			return bytecodes;
 		}
+		if (length == 0) {
+			System.out.println("Zero length file: " + path);
+			throw new IOException("File length is zero: " + path);
+
+		} else {
+			//System.out.println("else:::");
+			FileInputStream fin = new FileInputStream(f);
+			//System.out.println("new inputFileStream: "+fin);
+			DataInputStream in = new DataInputStream(fin);
+			//System.out.println("new DataInputStream: "+fin);	
+			bytecodes = new byte[length];
+			in.readFully(bytecodes);
+
+			if (fileExt.equals(".hbm.xml")) {
+				System.out.println("\nEine " + fileExt + " gelesen!!\n");
+				System.out.println(new String(bytecodes));
+			}
+
+		}
+		return bytecodes;
 	}
 
 	/**
-	 * Main method to create the class server that reads
-	 * class files. This takes two command line arguments, the
-	 * port on which the server accepts requests and the
-	 * root of the classpath. To start up the server: <br><br>
-	 *
+	 * Main method to create the class server that reads class files. This takes
+	 * two command line arguments, the port on which the server accepts requests
+	 * and the root of the classpath. To start up the server: <br>
+	 * <br>
+	 * 
 	 * <code>   java ClassFileServer <port> <classpath>
-	 * </code><br><br>
-	 *
-	 * The codebase of an RMI server using this webserver would
-	 * simply contain a URL with the host and port of the web
-	 * server (if the webserver's classpath is the same as
-	 * the RMI server's classpath): <br><br>
-	 *
+	 * </code><br>
+	 * <br>
+	 * 
+	 * The codebase of an RMI server using this webserver would simply contain a
+	 * URL with the host and port of the web server (if the webserver's
+	 * classpath is the same as the RMI server's classpath): <br>
+	 * <br>
+	 * 
 	 * <code>   java -Djava.rmi.server.codebase=http://zaphod:2001/ RMIServer
-	 * </code> <br><br>
-	 *
-	 * You can create your own class server inside your RMI server
-	 * application instead of running one separately. In your server
-	 * main simply create a ClassFileServer: <br><br>
-	 *
+	 * </code>
+	 * <br>
+	 * <br>
+	 * 
+	 * You can create your own class server inside your RMI server application
+	 * instead of running one separately. In your server main simply create a
+	 * ClassFileServer: <br>
+	 * <br>
+	 * 
 	 * <code>   new ClassFileServer(port, classpath);
 	 * </code>
 	 */
@@ -121,26 +151,23 @@ public class ClassFileServer extends ClassServer {
 		if (args.length >= 2) {
 			classpath = args[1];
 			//			by mr_nice: to set external .jars
-			try {		
-				externpath = args[2];				
-			}catch(ArrayIndexOutOfBoundsException outofBounds){
-				System.out.println("no external path are given! "+outofBounds.getMessage());
+			try {
+				externpath = args[2];
+			} catch (ArrayIndexOutOfBoundsException outofBounds) {
+				System.out.println("no external path are given! "
+						+ outofBounds.getMessage());
 			}
 		}
 		if (externpath != null) {
 			try {
 				new ClassFileServer(port, classpath, externpath);
 				System.out.println("ClassFileServer started...");
-				System.out.println(
-					"Started whith classpath = "
-						+ classpath
-						+ " | on port = "
-						+ port
-						+ " | and the externalDir = "
+				System.out.println("Started whith classpath = " + classpath
+						+ " | on port = " + port + " | and the externalDir = "
 						+ externpath);
 			} catch (IOException e) {
-				System.out.println(
-					"Unable to start ClassServer: " + e.getMessage());
+				System.out.println("Unable to start ClassServer: "
+						+ e.getMessage());
 				e.printStackTrace();
 			}
 
@@ -149,18 +176,21 @@ public class ClassFileServer extends ClassServer {
 			try {
 				new ClassFileServer(port, classpath);
 				System.out.println("ClassFileServer started...");
-				System.out.println(
-					"Started whith classpath = "
-						+ classpath
-						+ " | on port = "
-						+ port);
+				System.out.println("Started whith classpath = " + classpath
+						+ " | on port = " + port);
 			} catch (IOException e) {
-				System.out.println(
-					"Unable to start ClassServer: " + e.getMessage());
+				System.out.println("Unable to start ClassServer: "
+						+ e.getMessage());
 				e.printStackTrace();
 			}
 		}
 
 	}
 
+	/**
+	 * @return Returns the bytesCont.
+	 */
+	public int getBytesCont() {
+		return bytesCont;
+	}
 }

@@ -1,4 +1,4 @@
-// Copyright MageLang Institute; Version $Id: ClassServer.java,v 1.1 2004/08/09 11:41:49 danny Exp $
+// Copyright MageLang Institute; Version $Id: ClassServer.java,v 1.2 2004/09/06 01:15:35 mr_nice Exp $
 
 /*
  * Copyright (c) 1996, 1996, 1997 Sun Microsystems, Inc. All Rights Reserved.
@@ -39,6 +39,8 @@ public abstract class ClassServer implements Runnable {
 
 	private ServerSocket server = null;
 	private int port;
+	private static String fileExtension;
+	protected int bytesCont = 0;
 
 	/**
 	 * Constructs a ClassServer that listens on <b>port</b> and
@@ -65,7 +67,7 @@ public abstract class ClassServer implements Runnable {
 	 * to <b>path</b> could not be loaded.
 	 * @exception IOException if error occurs reading the class
 	 */
-	public abstract byte[] getBytes(String path)
+	public abstract byte[] getBytes(String path, String fileExt)
 		throws IOException, ClassNotFoundException;
 
 	/**
@@ -100,7 +102,8 @@ public abstract class ClassServer implements Runnable {
 						new InputStreamReader(socket.getInputStream()));
 				String path = getPath(in);
 				// retrieve bytecodes
-				byte[] bytecodes = getBytes(path);
+				System.out.println("request for " + path + fileExtension);
+				byte[] bytecodes = getBytes(path, fileExtension);
 				// send bytecodes in response (assumes HTTP/1.0 or later)
 				try {
 					out.writeBytes("HTTP/1.0 200 OK\r\n");
@@ -128,6 +131,7 @@ public abstract class ClassServer implements Runnable {
 
 		} finally {
 			try {
+				System.out.println("total byeds read: "+ this.bytesCont);
 				socket.close();
 			} catch (IOException e) {
 			}
@@ -153,15 +157,23 @@ public abstract class ClassServer implements Runnable {
 		if (line.startsWith("GET /")) {
 			line = line.substring(5, line.length() - 1).trim();
 
-			int index = line.indexOf(".class ");
-			if (index != -1) {
-				path = line.substring(0, index).replace('/', '.');
+			int index0 = line.indexOf(".class ");	
+			//edding .hbm.xml files to get hibernate configurations ---by mr_nice 		
+			int index1 = line.indexOf(".hbm.xml");
+			if (index0 != -1 ) {
+				path = line.substring(0, index0).replace('/', '.');
+				fileExtension = ".class";
+			}
+			if (index1 != -1) {
+				path = line.substring(0, index1).replace('/', '.');
+				fileExtension = ".hbm.xml";
 			}
 		}
 
 		// eat the rest of header
 		do {
 			line = in.readLine();
+			
 
 		} while (
 			(line.length() != 0)
