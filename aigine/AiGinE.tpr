@@ -29,31 +29,31 @@ Root.2.package_prefix=
 projectfile.encoding=Cp1252
 [editor]
 
-recent.file.0=F:\\develop\\c_3d\\AiGinE\\aigine\\src\\GraphicEngine\\SceneManagement.h
+recent.file.0=F:\\develop\\c_3d\\AiGinE\\aigine\\src\\Model\\Vector3D.h
 
-recent.file.1=F:\\develop\\c_3d\\AiGinE\\aigine\\src\\GraphicEngine\\GraphicPipeline.h
+recent.file.1=F:\\develop\\c_3d\\AiGinE\\aigine\\src\\Model\\Class1.h
 
-recent.file.2=F:\\develop\\c_3d\\AiGinE\\aigine\\src\\Input\\Mouse.h
+recent.file.2=F:\\develop\\c_3d\\AiGinE\\aigine\\src\\Model\\Translation3D.h
 
-recent.file.3=F:\\develop\\c_3d\\AiGinE\\aigine\\src\\Input\\Class1.h
+recent.file.3=F:\\develop\\c_3d\\AiGinE\\aigine\\src\\Model\\Rotation3D.h
 
-recent.file.4=F:\\develop\\c_3d\\AiGinE\\aigine\\src\\Input\\Input.h
+recent.file.4=F:\\develop\\c_3d\\AiGinE\\aigine\\src\\Model\\Point3D.h
 
-recent.file.5=F:\\develop\\c_3d\\AiGinE\\aigine\\src\\Input\\Keyboard.h
+recent.file.5=F:\\develop\\c_3d\\AiGinE\\aigine\\src\\GraphicEngine\\SceneManagement.h
 
-recent.file.6=F:\\develop\\c_3d\\AiGinE\\aigine\\src\\Input\\InOutput.h
+recent.file.6=F:\\develop\\c_3d\\AiGinE\\aigine\\src\\GraphicEngine\\GraphicPipeline.h
 
-recent.file.7=F:\\develop\\c_3d\\AiGinE\\aigine\\src\\Util\\loader3DS\\3dsLoader.h
+recent.file.7=F:\\develop\\c_3d\\AiGinE\\aigine\\src\\Input\\Mouse.h
 
-recent.file.8=C:\\fosion\\projekte&arbeiten\\develop\\aigine\\src\\Util\\tgaLoader.h
+recent.file.8=F:\\develop\\c_3d\\AiGinE\\aigine\\src\\GraphicEngine\\Camera.h
 
-recent.file.9=C:\\fosion\\projekte&arbeiten\\develop\\aigine\\src\\Util\\loader3DS\\3dsTypes.h
+recent.file.9=F:\\develop\\c_3d\\AiGinE\\aigine\\src\\Input\\Keyboard.h
 
 [workspace]
 
 Programmer. DebugWorkspace={{0,2,-1,0,0,0,0,0,0,1,0,50,75,25,-1,-1,-1,-1}${0,1,-1,0,0,0,0,1,0,1,1,50,75,25,-1,-1,-1,-1}${0,3,-1,0,0,0,0,0,0,1,0,50,50,25,-1,-1,-1,-1}${0,3,-1,0,0,0,0,0,0,1,0,50,50,25,-1,-1,-1,-1}${0,-1,-1,0,0,0,0,0,0,1,0,5,5,5,-1,-1,-1,-1}${0,4,-1,0,0,0,0,0,0,1,0,50,50,25,-1,-1,-1,-1}${0,0,-1,0,0,0,0,1,0,1,0,75,5,5,-1,-1,-1,-1}${0,7,-1,0,0,0,0,0,0,1,0,50,50,75,-1,-1,-1,-1}}
 
-Programmer.gameengine={{0,2,-1,0,0,0,0,1,0,1,0,63,75,25,-1,-1,-1,-1}${0,1,-1,0,0,0,0,1,0,1,0,63,75,25,-1,-1,-1,-1}${0,3,-1,0,0,0,0,1,0,1,0,50,50,25,-1,-1,-1,-1}${0,3,-1,0,0,0,0,1,0,1,0,50,50,25,-1,-1,-1,-1}${0,-1,-1,0,0,0,0,0,0,1,0,5,5,5,-1,-1,-1,-1}${0,4,-1,0,0,0,0,1,0,1,1,50,50,25,-1,-1,-1,-1}${0,0,-1,0,0,0,0,0,0,1,0,90,5,5,-1,-1,-1,-1}${0,7,-1,0,0,0,0,0,0,1,0,50,50,75,-1,-1,-1,-1}}
+Programmer.gameengine={{0,2,-1,0,0,0,0,1,0,1,1,63,75,25,-1,-1,-1,-1}${0,1,-1,0,0,0,0,0,0,1,0,63,75,25,-1,-1,-1,-1}${0,3,-1,0,0,0,0,1,0,1,0,50,50,25,-1,-1,-1,-1}${0,3,-1,0,0,0,0,1,0,1,0,50,50,25,-1,-1,-1,-1}${0,-1,-1,0,0,0,0,0,0,1,0,5,5,5,-1,-1,-1,-1}${0,4,-1,0,0,0,0,1,0,1,0,50,50,25,-1,-1,-1,-1}${0,0,-1,0,0,0,0,0,0,1,0,90,5,5,-1,-1,-1,-1}${0,7,-1,0,0,0,0,0,0,1,0,50,50,75,-1,-1,-1,-1}}
 
 names.Programmer={gameengine, DebugWorkspace }
 

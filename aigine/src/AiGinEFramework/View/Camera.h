@@ -7,7 +7,10 @@
 #define CAMERA_H
 
 #include <vector>
+//#include "../Input/Mouse.h"
 #include "../Model/Point3D.h"
+#include "../Model/Vector3D.h"
+
 
 using namespace std;
 
@@ -29,9 +32,19 @@ public:
 
 	void setLookAtPosition(Point3D * lookAtPosition);
 
-	Point3D * getNormalVector();
+	Point3D * getRotation();
 	
-	void setNormalVector(Point3D * normal);
+	/*
+	 * Rotation beinhaltet die drei Winkel der Kamera für x, y,z.
+	 * Die Funktion berechnet aus diesen einen Vektor und
+	 * verwendet ihn in normalisierter Form als Kameravektor.
+	 */
+	void setRotation(Point3D * rotation, int mouseX, int mouseY, int* CurrentWinSize);
+
+	void RotateView(float angle, float x, float y, float z);
+
+
+
     Camera();
 
     Camera(Point3D* position, Point3D* lookAtPosiont, Point3D* normalVector);
@@ -51,6 +64,11 @@ public:
 
     void moveDown();
 
+
+	void moveForward();
+
+
+	void moveBack();
 
 
     void turnUp();
@@ -73,7 +91,7 @@ public:
 
 private:
 
-	Point3D * normalVector;
+	Point3D * rotation;
 	Point3D * lookAtPosition;
     Point3D * position;
 
@@ -82,6 +100,10 @@ private:
      * @clientCardinality 1
      */
     Viewport * lnkViewport;
+
+	Point3D cross(Point3D * vVector1, Point3D * vVector2);
+	Point3D getNormalVector(Point3D vVector);
+	float magnitude(Point3D vNormal);
 };
 
 #endif //CAMERA_H

@@ -57,7 +57,7 @@ void GraphicPipeline::initOpenGL(int argc, char** argv){
 	// Kamera initialisieren
 	glutSetCursor(9);
 
-	this->lnkCamera = new Camera(new Point3D(5.0, 5.0, -5.0),new Point3D(0.0, 0.0, 0.0),new Point3D(0.0,1.0,0.0));
+	this->lnkCamera = new Camera(new Point3D(5.0, 5.0, 5.0),new Point3D(0.0, 0.0, 0.0),new Point3D(0.0,1.0,0.0));
 
 }
 
@@ -101,7 +101,7 @@ void GraphicPipeline::initDisplay(){
            /* viewing transformation  */
    Point3D* pc = lnkCamera->getPosition();
    Point3D* lap = lnkCamera->getLookAtPosition();
-   Point3D* nv = lnkCamera->getNormalVector();
+   Point3D* nv = lnkCamera->getRotation();
    gluLookAt (pc->getX(), pc->getY(), pc->getZ(), lap->getX(), lap->getY(), lap->getZ(), nv->getX(), nv->getY(), nv->getZ()); // Betrachterposition
    glScalef (1.0, 1.0, 1.0); /* modeling transformation */ // Skalierungsmatrix // ..  setzten
 }

@@ -18,9 +18,9 @@ public:
 	SceneManagement* sceneMan;
 
 private:
-	float angleX ; //angle for the x - achsis of the camera
-	float angleY ;
-	float angleZ ;
+	int angleX ; //angle for the x - achsis of the camera
+	int angleY ;
+	int angleZ ;
 
 	int old_x;
 	int old_y;
