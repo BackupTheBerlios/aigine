@@ -9,7 +9,7 @@ package projects.interfaces;
 import org.jconfig.Category;
 
 import projects.catalog.model.Catalog;
-import projects.catalog.model.Picture;
+import projects.catalog.model.PictureDTO;
 import projects.catalog.model.User;
 
 import API.control.Session;
@@ -53,6 +53,6 @@ public interface CPersistenceHelper extends PersistenceHelper {
 	 */
 	void setCategory(Category category);
 	
-	void setPicture(Picture pic, Session session);
+	void setPicture(PictureDTO pic, Session session);
 	
 }

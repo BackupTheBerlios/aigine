@@ -5,9 +5,10 @@
  */
 package API.portal.model;
 
-import java.io.Serializable;
 import java.util.Enumeration;
 import java.util.Hashtable;
+
+import API.model.AbstractDTO;
 
 /**
  * Description: Diese Klasse dient dem Aufbau hierarchischer Block-Strukturen, jeder Knoten
@@ -16,7 +17,7 @@ import java.util.Hashtable;
  * @since 2004-09-16
  * 
  */
-public class BlockContent implements Serializable {
+public class BlockContent extends AbstractDTO {
 // TODO (DR) tree aus Java-Standard-API nutzen?
 	private BlockContent nachfolger = null ;
 	private BlockContent subContent = null ;

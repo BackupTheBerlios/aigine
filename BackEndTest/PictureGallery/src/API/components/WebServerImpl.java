@@ -27,6 +27,9 @@ import API.model.RemoteObject;
  * @since 08.08.2004 17:06:01
  * @version 0.1.1
  */
+
+// TASK Portal erreichen ohne Dummydatei, nur durch Parameterübergabe im Browser (domain.de?srv=CProjectserver)
+
 public class WebServerImpl extends WebServer implements CClient {
     private final int default_port= 8080;
     private final String default_root= "public_html" ;

@@ -5,7 +5,7 @@
  */
 package API.control;
 
-import API.portal.model.RequestFrames;
+import API.portal.model.RequestFrameSet;
 
 //import java.security.InvalidKeyException;
 //import java.security.NoSuchAlgorithmException;
@@ -25,7 +25,7 @@ public class Session {
 	private String create_date;
 	private long sessionID;
 	private String usr;
-	private RequestFrames rfs = null ; // hier wird der aktuelle Zustand des Framesets des Users gespeichert
+	private RequestFrameSet rfs = null ; // hier wird der aktuelle Zustand des Framesets des Users gespeichert
 	
 	/**
 	 * 

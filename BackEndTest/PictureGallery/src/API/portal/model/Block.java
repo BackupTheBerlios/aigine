@@ -4,7 +4,7 @@
  */
 package API.portal.model;
 
-import java.io.Serializable;
+import API.model.AbstractDTO;
 
 /**
  * Ein Block kann in einem Frame des Portals dargestellt werden.
@@ -12,7 +12,7 @@ import java.io.Serializable;
  * @since 16.08.2004 06:20:57
  * @version 0.1
  */
-public class Block implements Serializable {
+public class Block extends AbstractDTO {
 	private String title = "BLOCK TITLE";
 	private BlockContent content = null ;
 	private String style = new String("catalog") ;

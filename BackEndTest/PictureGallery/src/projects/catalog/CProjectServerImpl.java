@@ -7,10 +7,12 @@ package projects.catalog;
 
 import java.rmi.RemoteException;
 import java.util.Hashtable;
+import java.util.Properties;
 
-import projects.catalog.model.Picture;
-import projects.interfaces.CDBServer;
+import projects.catalog.model.PictureDTO;
+import projects.interfaces.CDbServerHandle;
 import projects.interfaces.CProjectServer;
+ // import API.interfaces.DbServerHandle;
 import API.interfaces.ManagerHandle;
 // import API.interfaces.ServerHandle;
 
@@ -131,15 +133,15 @@ public class CProjectServerImpl extends Server implements CProjectServer {
 //		this.manager = localmanager ;
 //	}
 	
-	private BlockContent PictureToBlockContent(Picture thePic, int height, int width) {
+	private BlockContent PictureToBlockContent(PictureDTO thePic, int height, int width) {
 		BlockContent bcRoot = null ;
 		
 		bcRoot = new BlockContent("(Klick)","link") ;
-		bcRoot.addAttribute("href", "catalog.html?srv=CProjectServer&block=main&op=showimage&imgid=" + thePic.getId()) ;
-
-		BlockContent bc = new BlockContent(thePic.getName(),"image") ;
-		bc.addAttribute("src", thePic.getPath()) ;
-		bc.addAttribute("alt", thePic.getName()) ;
+		bcRoot.addAttribute("href", "catalog.html?srv=CProjectServer&block=main&op=showimage&imgid=" + thePic.getID()) ;
+		
+		BlockContent bc = new BlockContent(thePic.getTitel(),"image") ;
+		bc.addAttribute("src", "leerer Pfad zur Zeit") ; // thePic.getPath(), geht nicht, die Pfade stehen im Array darunter drin
+		bc.addAttribute("alt", thePic.getTitel()) ;
 		bc.addAttribute("border", "1") ;
 		if (height >= 0) {
 			bc.addAttribute("height", new Integer(height).toString()) ;
@@ -147,7 +149,7 @@ public class CProjectServerImpl extends Server implements CProjectServer {
 		}
 		bcRoot.setNachfolger(bc) ;
 		
-		BlockContent bctemp = new BlockContent("Dieses Bild \"" + thePic.getName() + "\" hat das Format " + thePic.getFormat(),"text") ;
+		BlockContent bctemp = new BlockContent("Dieses Bild \"" + thePic.getTitel() + "\" hat das Format derzeit unklar","text") ; // steht erst zur jeweiligen Datei dabei, thePic.getFormat()
 		bc.setNachfolger(bctemp) ;
 		// bc = bctemp ;
 		
@@ -165,19 +167,22 @@ public class CProjectServerImpl extends Server implements CProjectServer {
 	private Block showimage(Hashtable requests) {
 		System.out.println("==> projects.catalog.CProjectServerImpl.showimage") ;
 		Block result = null ;
-		Picture thePic = null ;
+		PictureDTO thePic = null ;
 		BlockContent bcRoot = null;
 		BlockContent bc = null ;
 
 
 		System.out.println("==> projects.catalog.CProjectServerImpl.showimages") ;
 
-		CDBServer dbserver = (CDBServer) this.getServer("CDBServer") ;
+		CDbServerHandle dbserver = (CDbServerHandle) this.getServer("CDBServer") ;
 
 		if (dbserver != null) {
 			try {
 				System.out.println("  > Diesen Wert senden wir an den CDBServer: " + requests.get("imgid").toString()) ;
-				thePic = dbserver.getPicture(requests.get("imgid").toString()) ;
+				// thePic = dbserver.getPicture(requests.get("imgid").toString()) ;
+				Properties param = new Properties() ;
+				param.put("ID_equal", requests.get("imgid").toString()) ;
+				thePic = (PictureDTO) dbserver.load(CDbServerHandle.PICTURE, param) ;
 			} catch (RemoteException re) {
 				System.out.println("--- Es ist eine RemoteException beim Aufruf von CDBServerImpl.getPictures() aufgetreten: " + re) ;
 			
@@ -189,7 +194,7 @@ public class CProjectServerImpl extends Server implements CProjectServer {
 		if (thePic != null) {
 			bcRoot = new BlockContent("Das von Ihnen gewünschte Bild:","text") ;
 //			bc = bcRoot ;
-			BlockContent bctemp = new BlockContent("Bild Nr. " + thePic.getId(),"text") ; 
+			BlockContent bctemp = new BlockContent("Bild Nr. " + thePic.getID(),"text") ; 
 			bctemp.setSubContent(PictureToBlockContent(thePic, -1, -1)) ; // TODO muss um Schalter erweitert werden, ob Thumb oder Vollbild, welche Attribute usw.
 			bcRoot.setNachfolger(bctemp) ;
 //			bc = bctemp ;
@@ -199,7 +204,7 @@ public class CProjectServerImpl extends Server implements CProjectServer {
 			bcRoot.addAttribute("class", "fehler") ;
 		}
 		result = new Block(bcRoot) ;
-		result.setTitle("Bild '" + thePic.getName() + "'") ;
+		result.setTitle("Bild '" + thePic.getTitel() + "'") ;
 
 		System.out.println("<== projects.catalog.CProjectServerImpl.showimage") ;
 
@@ -215,18 +220,21 @@ public class CProjectServerImpl extends Server implements CProjectServer {
 	 */
 	private Block showimages(Hashtable requests) {
 		Block result = null ;
-		Hashtable dbresult = null ;
+		PictureDTO[] pictures = null ;
 		BlockContent bcRoot = null;
 		BlockContent bc = null ;
 		
 		
 		System.out.println("==> projects.catalog.CProjectServerImpl.showimages") ;
 		
-		CDBServer dbserver = (CDBServer) this.getServer("CDBServer") ;
+		CDbServerHandle dbserver = (CDbServerHandle) this.getServer("CDBServer") ;
 		
 		if (dbserver != null) {
 			try {
-				dbresult = dbserver.getPictures("Pferde", 1, 0) ;
+				Properties props = new Properties() ;
+				// TODO byDR Der Fall der leeren Property-Liste ist noch nicht implementiert
+				pictures = (PictureDTO[]) dbserver.loadList(CDbServerHandle.PICTURE, props) ;
+				//dbresult = dbserver.getPictures("Pferde", 1, 0) ;
 			} catch (RemoteException re) {
 				System.out.println("--- Es ist eine RemoteException beim Aufruf von CDBServerImpl.getPictures() aufgetreten: " + re) ;
 			}
@@ -234,8 +242,8 @@ public class CProjectServerImpl extends Server implements CProjectServer {
 			System.out.println("--- CDBServer ist nicht erreichbar.") ;
 			bcRoot = new BlockContent("Unser Datenbankserver ist leider im Moment nicht erreichbar. Bitte versuchen Sie es später. Our Database is unreachable. Please try later.") ;
 		}
-		if (dbresult != null) {
-			if (dbresult.size() == 0) {
+		if (pictures != null) {
+			if (pictures.length == 0) {
 				System.out.println("Keine Bilder mit diesen Kriterien in der Datenbank") ;
 				bcRoot = new BlockContent("Unter diesen Kriterien gibt es derzeit leider keine Bilder in unserer Datenbank ...", "text") ;
 				bcRoot.addAttribute("class", "fehler") ;
@@ -243,10 +251,11 @@ public class CProjectServerImpl extends Server implements CProjectServer {
 			int zaehler = 1 ;
 			bcRoot = new BlockContent("Diese Bilder sind derzeit in unserer Datenbank eingetragen:","text") ;
 			bc = bcRoot ;
-			System.out.println("  > Anzahl der Bilder: " + dbresult.size()) ;
-			while (dbresult.containsKey(new Integer(zaehler))) {
+			System.out.println("  > Anzahl der Bilder: " + pictures.length) ;
+			//while (dbresult.containsKey(new Integer(zaehler))) {
+			for (int i = 0; i < pictures.length; i++) {
 				BlockContent bctemp = new BlockContent("Bild Nr. " + zaehler,"text") ; 
-				bctemp.setSubContent(PictureToBlockContent((Picture) dbresult.get(new Integer(zaehler)), 50, 50)) ; // TODO muss um Schalter erweitert werden, ob Thumb oder Vollbild, welche Attribute usw.
+				bctemp.setSubContent(PictureToBlockContent(pictures[i], 50, 50)) ; // TODO muss um Schalter erweitert werden, ob Thumb oder Vollbild, welche Attribute usw.
 				bc.setNachfolger(bctemp) ;
 				bc = bctemp ;
 				zaehler++ ;

@@ -11,7 +11,7 @@ import java.rmi.server.RMIClientSocketFactory;
 import java.rmi.server.RMIServerSocketFactory;
 import java.util.Hashtable;
 
-import projects.interfaces.CDBServer;
+import projects.interfaces.CDbServerHandle;
 import projects.interfaces.CLoginServer;
 import API.interfaces.ManagerHandle;
 import API.control.Session;
@@ -25,7 +25,7 @@ import API.model.RemoteObject;
 public class CLoginServerImpl extends Server implements CLoginServer {
 	
 	private ManagerHandle manager;
-	private CDBServer dbserver;
+	private CDbServerHandle dbserver;
 
 	/**
 	 * @throws RemoteException

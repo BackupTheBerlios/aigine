@@ -78,7 +78,8 @@ public abstract class Server extends UnicastRemoteObject {
 	}
 
 	/**
-	 * Erfragen eines ServerHandle beim Manager, Kapselung der Fehlerprüfungen 
+	 * Erfragen eines ServerHandle beim Manager, Kapselung der Fehlerprüfungen
+	 * @author Dennis
 	 * @param theManager
 	 * @throws RemoteException
 	 */

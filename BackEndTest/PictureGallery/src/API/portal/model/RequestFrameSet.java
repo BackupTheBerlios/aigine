@@ -5,17 +5,19 @@
 package API.portal.model;
 
 import java.util.Hashtable;
+
+import API.model.AbstractDTO;
 /**
  * @author Dennis
  * @since 2004-09-16
  * enthält ein 'Frameset', die Reihenfolge wird mit Positionierung im Basis-Template
  * verbunden. *
  */
-public class RequestFrames {
+public class RequestFrameSet extends AbstractDTO {
 
 	private Hashtable frames = new Hashtable();
 
-	public RequestFrames() {
+	public RequestFrameSet() {
 	}
 	
 	/**

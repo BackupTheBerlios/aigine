@@ -15,7 +15,7 @@ import java.sql.Statement;
 
 import org.hsqldb.Server;
 
-import projects.catalog.model.Picture;
+import projects.catalog.model.PictureDTO;
 
 import API.interfaces.PersistenceHelper;
 
@@ -95,7 +95,7 @@ public class HelperDatabasePersistence implements PersistenceHelper {
 	 * 
 	 * @see API.interfaces.PersistenceHelper#save()
 	 */
-	public void insertPicture(Picture pic) {
+	public void insertPicture(PictureDTO pic) {
 		// TODO speicher ein db abbild des data- objectes
 		if (isServer) {
 			try {
@@ -212,7 +212,7 @@ public class HelperDatabasePersistence implements PersistenceHelper {
 		}
 	}
 
-	public void savePic(Picture pic) {
+	public void savePic(PictureDTO pic) {
 		
 		String insert_pic = "INSERT INTO Picture (format,id,name,thema)" +
 										 "VALUES (jpg, NULL, theone, tolletThema);" +

@@ -8,12 +8,14 @@ package API.portal.model;
 
 import java.util.Hashtable;
 
+import API.model.AbstractDTO;
+
 /**
  * @author Dennis
  *
  * 
  */
-public class RequestFrame {
+public class RequestFrame extends AbstractDTO {
 	private Hashtable requestblocks ;
 	private int number = 0 ;
 

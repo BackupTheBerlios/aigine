@@ -9,13 +9,13 @@ import java.util.Hashtable;
 /**
  * @author Dennis
  * @since 2004-09-16
- * enthält ein 'Frameset', die Reihenfolge wird mit Positionierung im Basis-Template
- * verbunden.
+ * enthält ein 'Frameset' aus BlockFrame-Objekten, welche Blockobjekte enthalten,
+ * die Reihenfolge wird mit Positionierung im Basis-Template verbunden.
  */
-public class Frames {
+public class BlockFrameSet {
 	private Hashtable frames = new Hashtable();
 
-	public Frames() {
+	public BlockFrameSet() {
 	}
 	/**
 		 * Fügt einen Frame hinzu.
