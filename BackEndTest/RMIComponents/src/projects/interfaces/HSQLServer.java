@@ -15,6 +15,10 @@ import API.interfaces.ServerHandle;
  */
 public interface HSQLServer extends ServerHandle {
 		
+		
+		 void  
+		
+		
 }
 
 
