@@ -15,7 +15,7 @@ class SceneManagement;
  * - reagiert derzeitig nur auf einzelne Tasten, schön wäre natürlich
  *   wenn man in meherere Richtungen (z.B. nach vorne links) laufen könnte.
  *
- * @author Danny Graef, Tobias Harpering
+ * @author Danny Graef, Tobias Harpering ,Frank Otto
  * @date 2004-01-06
  */
 class Keyboard
