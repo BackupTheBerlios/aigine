@@ -9,7 +9,7 @@ import java.rmi.RemoteException;
 import java.util.Hashtable;
 
 import projects.interfaces.CProjectServer;
-import projects.interfaces.CManagerServer;
+import API.interfaces.ManagerHandle;
 
 import API.control.Server ;
 import API.control.web.Block;
@@ -24,7 +24,7 @@ import API.model.RemoteObjectTable;
  * created on 10.09.2004 2004 at 14:52:37 
  */
 public class CProjectServerImpl extends Server implements CProjectServer {
-	private CManagerServer manager;
+	private ManagerHandle manager;
 	private String WebRequestError = null;
 	
 	/**
@@ -114,7 +114,7 @@ public class CProjectServerImpl extends Server implements CProjectServer {
 	 * @return 
 	 * @see projects.interfaces.CLoginServer#getManager()
 	 */
-	public CManagerServer getManager() {
+	public ManagerHandle getManager() {
 		return manager;
 	}
 
@@ -124,9 +124,9 @@ public class CProjectServerImpl extends Server implements CProjectServer {
 	 * @param manager 
 	 * @see projects.interfaces.CLoginServer#setManager(projects.interfaces.CManagerServer)
 	 */
-	public void setManager(CManagerServer localmanager) {
-		this.manager = localmanager ;
-	}
+//	public void setManager(ManagerHandle localmanager) {
+//		this.manager = localmanager ;
+//	}
 	
 	/**
 	* verarbeitet einen 'WebRequest' der momentan vom Webserver an beliebige andere Server geschickt werden kann
@@ -160,9 +160,11 @@ public class CProjectServerImpl extends Server implements CProjectServer {
 		} else if (op.indexOf("main") == 0) {
 			BlockContent bc = new BlockContent("Hier soll dann die Musik spielen!") ;
 			BlockContent tempbc = new BlockContent("Und das dann auch noch in mehreren Elementen (hier: Absätzen), wie hier demonstriert!") ;
+			BlockContent bcEnde = null ;
 			bc.setNachfolger(tempbc) ;
-			tempbc = new BlockContent("Und weil es so schön ist, hier noch ein Absatz ... muh") ;
-			bc.getNachfolger().setNachfolger(tempbc) ;
+			bcEnde = tempbc ;
+			tempbc = new BlockContent("Und weil es so schön ist, hier noch ein Absatz ... muh <a href=\"catalog.html?block=kategorien&srv=CProjectServer&op=toplist\">test</a>") ;
+			bcEnde.setNachfolger(tempbc) ;
 			result = new Block(bc) ;
 			result.setTitle("Hauptbereich") ;
 			result.setStyle("main") ;

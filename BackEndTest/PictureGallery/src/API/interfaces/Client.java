@@ -18,10 +18,10 @@ import API.model.RemoteObject;
  */
 public interface Client extends Application {
 
-  /**
-   * Inittialisierung mit Übergabe des Server Objektes.
-   * @param Eigenschaften der Komponente
-   * @param Serverobjekt
-   */
-	public void init(RemoteObject compProps, ServerHandle server) throws RemoteException;
+	/**
+   	* Initialisierung mit Übergabe eines ManagerHandle.
+   	* @param Eigenschaften der Komponente
+   	* @param Serverobjekt
+   	*/
+	public void init(RemoteObject compProps, ManagerHandle server) throws RemoteException;
 }

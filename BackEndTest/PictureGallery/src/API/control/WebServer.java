@@ -18,9 +18,6 @@ import java.rmi.RemoteException;
 import java.util.HashMap;
 import java.util.Hashtable;
 
-import API.control.web.HeadFrame;
-import API.control.web.LeftFrame;
-import API.control.web.RightFrame;
 import exceptions.HTTPException;
 
 /**
@@ -37,22 +34,6 @@ public abstract class WebServer implements Runnable {
 	private ServerSocket server_socket;
 
 	private HashMap mime_types;
-
-	/**
-	 * 
-	 * Für die Ausgabe des Headers.
-	 */
-	private HeadFrame header = new HeadFrame();
-
-	/**
-	 * Für die Ausgabe der rechten Blockseite.
-	 */
-	private RightFrame right = new RightFrame();
-
-	/**
-	 * Für die Ausgabe der linken Blockseite.
-	 */
-	private LeftFrame left = new LeftFrame();
 
 	private int port;
 
@@ -153,7 +134,7 @@ public abstract class WebServer implements Runnable {
 						if (type.equals("text/html")) {
 							// HTML Kopf schreiben
 							// TODO Template-System einbauen -> extra Methode, eventuell auch Unterklassen einsetzen.
-							out.writeBytes(header.getHeader());
+							// ist rausgefallen: out.writeBytes(header.getHeader());
 							// TODO Ausgabe des linken und rechten frames
 						}
 						out.write(body, 0, body.length);

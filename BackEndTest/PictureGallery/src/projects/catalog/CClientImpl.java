@@ -3,8 +3,9 @@ package projects.catalog;
 import java.rmi.RemoteException;
 
 import projects.interfaces.CClient;
-import projects.interfaces.CManagerServer;
-import API.interfaces.ServerHandle;
+// import projects.interfaces.CManagerServer;
+//import projects.catalog.CManagerServer;
+import API.interfaces.ManagerHandle;
 import API.model.RemoteObject;
 
 /**
@@ -16,9 +17,10 @@ public class CClientImpl implements CClient {
 
 	
 
-	public void init(RemoteObject compProps, ServerHandle server) {
+	public void init(RemoteObject compProps, ManagerHandle server) {
 		System.out.println("=> CClientImpl.init(" +			"RemoteObjectProperties " + compProps + " , Object" + server);
-		CManagerServer s = (CManagerServer) server;
+//		CManagerServer s = (CManagerServer) server;
+		ManagerHandle s = (ManagerHandle) server;
 
 		
 		System.out.println("<= CClientImpl.init(" +
@@ -31,7 +33,7 @@ public class CClientImpl implements CClient {
 	 * dieser auf die vote Methode des Servers zugreifen kann.
 	 * @param server
 	 */
-	public void setServerGrap(CManagerServer server) {
+	public void setServerGrap(ManagerHandle server) {
 		//bv.addActionListener(new VTClientVoteAction(server, vtmodel));
 		System.out.println(
 			"\t Serverhandle an den Actionlistener übergeben = " + server);
@@ -45,7 +47,7 @@ public class CClientImpl implements CClient {
 	 * @throws RemoteException 
 	 * @see projects.interfaces.CClient#setManager(projects.interfaces.CManagerServer)
 	 */
-	public void setManager(CManagerServer manager) throws RemoteException {
+	public void setManager(ManagerHandle manager) throws RemoteException {
 		// TODO Auto-generated method stub
 		System.out.println(
 				"\t Serverhandle "+manager);
@@ -59,7 +61,7 @@ public class CClientImpl implements CClient {
 	 * @throws RemoteException 
 	 * @see projects.interfaces.CClient#getManager()
 	 */
-	public CManagerServer getManager() throws RemoteException {
+	public ManagerHandle getManager() throws RemoteException {
 		// TODO Auto-generated method stub
 		return null;
 	}

@@ -9,11 +9,12 @@ package projects.catalog;
 import java.rmi.RemoteException;
 import java.rmi.server.RMIClientSocketFactory;
 import java.rmi.server.RMIServerSocketFactory;
+import java.util.Hashtable;
 
 import projects.catalog.control.CSession;
 import projects.interfaces.CDBServer;
 import projects.interfaces.CLoginServer;
-import projects.interfaces.CManagerServer;
+import API.interfaces.ManagerHandle;
 import API.control.Server;
 import API.model.RemoteObject;
 
@@ -23,7 +24,7 @@ import API.model.RemoteObject;
  */
 public class CLoginServerImpl extends Server implements CLoginServer {
 	
-	private CManagerServer manager;
+	private ManagerHandle manager;
 	private CDBServer dbserver;
 
 	/**
@@ -90,7 +91,7 @@ public class CLoginServerImpl extends Server implements CLoginServer {
 	 * @return 
 	 * @see projects.interfaces.CLoginServer#getManager()
 	 */
-	public CManagerServer getManager() {
+	public ManagerHandle getManager() {
 		// TODO Auto-generated method stub
 		return null;
 	}
@@ -101,8 +102,40 @@ public class CLoginServerImpl extends Server implements CLoginServer {
 	 * @param manager 
 	 * @see projects.interfaces.CLoginServer#setManager(projects.interfaces.CManagerServer)
 	 */
-	public void setManager(CManagerServer localmanager) {
-		this.manager = localmanager ;
+//	public void setManager(ManagerHandle localmanager) {
+//		this.manager = localmanager ;
+//	}
+
+	/**
+	 * Einloggen des Users
+	 * @param requestProps
+	 * @return
+	 */
+	private String actionLogin(Hashtable requestProps) {
+		// TODO: Diese Funktion hat hier eigentlich nichts zu suchen
+		// TODO alt: "login" vom Server aufrufen und prüfen ob der User registriert ist.
+		StringBuffer site= new StringBuffer();
+//		  long usrID = Integer.parseInt((String) requestProps.get("name"));
+//		  try {
+//			manager.createSession(usrID);
+//		} catch (RemoteException e) {
+//			
+//			System.out.println("Error: exception type: RemoteException" +
+//					"with the message: \n "+e.getMessage());
+//			
+//		}
+        
+        
+//		site.append(
+//			 "\n<h1>Tschesch Kollega , "
+//				 + requestProps.get("name")
+//				 + " !</h1>\n");
+//		 site.append("\n<form action='galary.html' method='GET'>");
+//		 site.append("\n<input type='hidden' name='op' value='galary'>");
+//		 site.append(picture.toHtml());
+//		 site.append("\n<input type='submit' value='wählen'>");
+//		 site.append("\n</form>");
+		return site.toString();
 	}
 
 }

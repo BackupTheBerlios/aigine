@@ -13,20 +13,20 @@ import API.control.Database;
 import projects.catalog.model.Category;
 import projects.catalog.model.Picture;
 import projects.interfaces.CDBServer;
-import projects.interfaces.CManagerServer;
+import API.interfaces.ManagerHandle;
 import API.model.RemoteObject;
 
 /**
  * 
  * 
- * class CDBServerImpl.java created by @author your mama or at his system
+ * class CDBServerImpl.java created by @author ?
  * created on 08.09.2004 2004 at 14:14:46 
  */
 public class CDBServerImpl extends Database implements CDBServer {
 
 	//TODO initialiserit die voting.control.HelperDatabasePersistence
 	private String WebRequestError = null;
-	private CManagerServer manager;	
+	private ManagerHandle manager;	
 	
 	/**
 	 * description:
@@ -117,9 +117,10 @@ public class CDBServerImpl extends Database implements CDBServer {
 	 * @param manager 
 	 * @see projects.interfaces.CLoginServer#setManager(projects.interfaces.CManagerServer)
 	 */
-	public void setManager(CManagerServer localmanager) {
-		this.manager = localmanager ;
-	}
+//	public void setManager(ManagerHandle localmanager) {
+//		this.manager = localmanager ;
+//	}
+
 	/* (non-Javadoc)
 	 * @see projects.interfaces.CDBServer#setPicture(java.lang.String, java.lang.String, projects.catalog.model.Picture)
 	 */
@@ -130,7 +131,7 @@ public class CDBServerImpl extends Database implements CDBServer {
 	/* (non-Javadoc)
 	 * @see projects.interfaces.CDBServer#getManager()
 	 */
-	public CManagerServer getManager() throws RemoteException {
+	public ManagerHandle getManager() throws RemoteException {
 		return this.manager ;
 	}
 	/**

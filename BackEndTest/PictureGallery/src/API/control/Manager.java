@@ -125,21 +125,4 @@ public class Manager extends Server {
 		// TODO Anpassen der ueberschriebenen Methoden auf die object tabelle
 		return super.registerComponent(remoteObject);
 	}
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
 }

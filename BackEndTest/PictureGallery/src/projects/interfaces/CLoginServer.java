@@ -1,7 +1,8 @@
 package projects.interfaces;
 
 import projects.catalog.control.CSession;
-import API.interfaces.ServerHandle;
+import API.interfaces.ServerHandle ;
+import API.interfaces.ManagerHandle ;
 
 
 /**
@@ -10,7 +11,7 @@ import API.interfaces.ServerHandle;
  */
 public interface CLoginServer extends ServerHandle {
 	
-	CManagerServer manager = null;
+	ManagerHandle manager = null;
 	
 	/**
 	 * eine Session die ich mir selber zurecht gefummelt habe.
@@ -25,7 +26,7 @@ public interface CLoginServer extends ServerHandle {
 	 */
 	CSession createSession(long usrID) throws java.rmi.RemoteException;
 	
-	CManagerServer getManager()throws java.rmi.RemoteException;
-	void setManager(CManagerServer manager)throws java.rmi.RemoteException;
+	ManagerHandle getManager()throws java.rmi.RemoteException;
+	void setManager(ManagerHandle manager)throws java.rmi.RemoteException;
 	
 }

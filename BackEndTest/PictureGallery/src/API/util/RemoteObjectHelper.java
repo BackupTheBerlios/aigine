@@ -40,9 +40,9 @@ public class RemoteObjectHelper {
 		ro.setRmiName("rmi://" + ro.getHostname() + ":" + ro.getPort() + "/");
 		
 //		if(category.equals("vtlogicserver")){
-			System.out.println("Category: "+ category );	
-			ro.setManager(configuration.getProperty("manager","",category));
-			ro.setManagerName(configuration.getProperty("managerName","",category));
+		System.out.println("Category: "+ category );	
+		ro.setManager(configuration.getProperty("manager","",category));
+		ro.setManagerName(configuration.getProperty("managerName","",category));
 //		}
 	System.out.println("<= RemoteObjectHelper() > " + this);
 	}

@@ -1,5 +1,6 @@
 package projects.interfaces;
 
+import API.interfaces.ManagerHandle;
 import java.rmi.RemoteException;
 
 import API.interfaces.Client;
@@ -14,10 +15,10 @@ public interface CClient extends Client {
 	 * 
 	 */
 	//void update(VoteTable  votes) throws RemoteException;
-	CManagerServer manager = null;
+	ManagerHandle manager = null;
 
 	
-	void setManager(CManagerServer manager) throws RemoteException;
+	void setManager(ManagerHandle manager) throws RemoteException;
 	
-	CManagerServer getManager() throws RemoteException;
+	ManagerHandle getManager() throws RemoteException;
 }

@@ -8,6 +8,7 @@ package projects.interfaces;
 import java.rmi.RemoteException;
 
 import API.interfaces.Client;
+import API.interfaces.ManagerHandle ;
 
 /**
  * 
@@ -17,11 +18,11 @@ import API.interfaces.Client;
  */
 public interface CAdminClient extends Client {
 	
-	CManagerServer manager = null;
+	ManagerHandle manager = null;
 	
 	
-	void setManager(CManagerServer manager) throws RemoteException;
+	void setManager(ManagerHandle manager) throws RemoteException;
 	
-	CManagerServer getManager() throws RemoteException;
+	ManagerHandle getManager() throws RemoteException;
 
 }

@@ -8,6 +8,7 @@ import java.util.Hashtable;
 
 import API.control.web.Block;
 import API.interfaces.AdminClient;
+import API.interfaces.ManagerHandle;
 import API.interfaces.ServerHandle;
 import API.model.RemoteObject;
 import API.model.RemoteObjectTable;
@@ -21,7 +22,8 @@ import API.model.RemoteObjectTable;
 
 public abstract class Server extends UnicastRemoteObject {
 	private String WebRequestError = null;
-
+	protected ManagerHandle manager = null ;
+	
 	/**
 	 * Die registrierten Kommunikationspartner
 	 * entweder Clients oder Services oder wiederum Server ... WHAT EVER !
@@ -64,6 +66,54 @@ public abstract class Server extends UnicastRemoteObject {
 		RMIServerSocketFactory ssf)
 		throws RemoteException {
 		super(port, csf, ssf);
+	}
+
+	/**
+	 * Eintragen des Managers, an welchem der Server angemeldet wird 
+	 * @param theManager
+	 * @throws RemoteException
+	 */
+	final public void setManager(ManagerHandle theManager) throws RemoteException {
+		this.manager = theManager ;
+	}
+
+	/**
+	 * Erfragen eines ServerHandle beim Manager, Kapselung der Fehlerprüfungen 
+	 * @param theManager
+	 * @throws RemoteException
+	 */
+	protected ServerHandle getServer(String Servername) {
+		ServerHandle theServer = null ;
+		RemoteObject ro = null ;
+		System.out.println("==> API.control.Server.getServer()") ;
+		try {
+			ro = manager.getService(Servername) ;
+		} catch (RemoteException re) {
+			System.out.println("--- RemoteException beim Holen eines Servers '" + Servername + "' aufgetreten: " + re) ;
+		}
+		if (ro != null) {
+			System.out.println("  > Vergleich von '" + ro.getServicetyp() + "' mit 'server' mittels compareTo ergibt " + ro.getServicetyp().compareTo(new String("server")) ) ;
+			if (ro.getServicetyp().compareTo(new String("server")) == 0) {
+			// TODO (byDR) hier statt indexOf compareTo testen!	
+				System.out.println("+++ Ich habe einen Server erhalten!!") ;
+				theServer = (ServerHandle) ro.getServerApp() ;
+				if (theServer != null) {
+					System.out.println("<== API.control.Server.getServer()") ;
+					return theServer ;
+				} else {
+					// Fehler behandeln
+					System.out.println("--- angeforderter Server '" + Servername + "' ist bei meinem Manager nicht erreichbar!!!\n") ;
+				}
+			} else {
+				// Fehler behandeln
+				System.out.println("--- Übergebenes RemoteObject ist nicht vom benötigten Typ 'server'!\n") ;
+			}
+		} else {
+			// Fehler behandeln
+			System.out.println("--- Übergebenes RemoteObject ist null!\n") ;
+		}
+		System.out.println("<== API.control.Server.getServer()") ;
+		return null ;
 	}
 
 	/**
@@ -139,8 +189,6 @@ public abstract class Server extends UnicastRemoteObject {
 		 */
 	protected synchronized RemoteObject getService(String ServiceName) throws RemoteException {
 		System.out.println("versuche Service " + ServiceName + " zurueck zu liefern ...") ;
-	//	remoteObjects
-	
 		RemoteObject ro = remoteObjects.getService(ServiceName) ; 
 		return ro ; 
 	}

@@ -52,9 +52,9 @@ public class BlockFrame {
 	public String getContent(){
 		StringBuffer bs = new StringBuffer();
 		bs.append("<table><tr>");
-		Enumeration enum = blocks.elements();
-		while(enum.hasMoreElements()){
-			Block b = (Block)enum.nextElement();
+		Enumeration enum1 = blocks.elements();
+		while(enum1.hasMoreElements()){
+			Block b = (Block)enum1.nextElement();
 //			bs.append("<td>" + b.getTitle() + "<hr>" + b.getContent() + "</td>");
 		}
 		bs.append("</tr></table>");

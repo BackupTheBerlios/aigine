@@ -72,11 +72,12 @@ public class RemoteObject implements Serializable {
 	// TODO unsinnig???
 	protected Server theServer;
 
-	/** Authentifizierungstyp, derzitig anonym, nothing, password */
+	/** Authentifizierungstyp, derzeitig anonym, nothing, password */
 	protected String authTyp;
 
 	/**
 	 * zusaetzliche property für den service RMI name
+	 * TODO wird das eingesetzt?
 	 */
 	protected String manager;
 

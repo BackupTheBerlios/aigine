@@ -3,31 +3,20 @@
  *
  * Created for RMIComponents project :Q
  */
-package projects.catalog;
-
+package API.components;
 import java.rmi.RemoteException;
-
-import projects.catalog.control.CSession;
-import projects.interfaces.CAdminClient;
-import projects.interfaces.CClient;
-import projects.interfaces.CDBServer;
-import projects.interfaces.CLoginServer;
-import projects.interfaces.CManagerServer;
-import projects.interfaces.CProjectServer;
-
 import API.control.Manager;
-import API.control.WebServer;
+import API.interfaces.ManagerHandle ;
 
 import API.model.RemoteObject;
 import API.model.RemoteObjectTable;
 
 /**
  * 
- * 
  * class CManagerServerImpl.java created by @author your mama or at his system
  * created on 08.09.2004 2004 at 00:20:21 
  */
-public class CManagerServerImpl extends Manager implements CManagerServer {
+public class ManagerServerImpl extends Manager implements ManagerHandle {
 
 	//RemoteObject
 	
@@ -36,7 +25,7 @@ public class CManagerServerImpl extends Manager implements CManagerServer {
 	 * @throws RemoteException
 	 * 
 	 */
-	public CManagerServerImpl() throws RemoteException {
+	public ManagerServerImpl() throws RemoteException {
 		super();
 		// TODO Auto-generated constructor stub
 	}
@@ -73,7 +62,9 @@ public class CManagerServerImpl extends Manager implements CManagerServer {
 	        System.out.println("=> CManagerServerImpl.registerService()remoteObj= "+remoteObject);	             
 	        String result = super.registerService(remoteObject);
 	        System.out.println(remoteObject.toString()) ;
-	        if(remoteObject.getCompClassName() == "CDBServer") {
+
+			// nachfolgender Block war nie im Einsatz, soweit das zu erkennen ist (byDR)
+/*	        if(remoteObject.getCompClassName() == "CDBServer") {
 	        	CDBServer db = (CDBServer) remoteObject.getServerApp();
 	        	db.setManager(this);
 	        }
@@ -97,7 +88,7 @@ public class CManagerServerImpl extends Manager implements CManagerServer {
 				System.out.println("versuche bei einem CProjectServer .setManager anzuwenden ...\n\n") ;
 				CProjectServer cproject = (CProjectServer) remoteObject.getServerApp();
 				cproject.setManager(this) ;
-			} 
+			} */ 
 	        
 	        System.out.println("CManagerServerImpl.registerService() > neues RemoteObject registriert.");
 	        System.out.println("<= CManagerServerImpl.registerService()");
@@ -154,99 +145,10 @@ public class CManagerServerImpl extends Manager implements CManagerServer {
 	 * 
 	 * @return
 	 * @throws RemoteException 
-	 * @see API.interfaces.ServerHandle#checkClientConnections()
+	 * @see API.interfaces.ManagerHandle#checkClientConnections()
 	 */
 	public RemoteObjectTable checkClientConnections() throws RemoteException {
 		// TODO Auto-generated method stub
-		return null;
-	}
-
-	/**
-	 * description:
-	 * 
-	 * @return 
-	 * @see projects.interfaces.CManagerServer#getDBServer()
-	 */
-	public CDBServer getDBServer()throws RemoteException{
-		
-		
-	
-		return null;
-	}
-
-	/**
-	 * description:
-	 * 
-	 * @return 
-	 * @see projects.interfaces.CManagerServer#getLoginServer()
-	 */
-	public CLoginServer getLoginServer() throws RemoteException{
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	/**
-	 * description:
-	 * 
-	 * @return 
-	 * @see projects.interfaces.CManagerServer#getWebServer()
-	 */
-	public WebServer getWebServer() throws RemoteException{
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	/**
-	 * description:
-	 * 
-	 * @param dbserver 
-	 * @see projects.interfaces.CManagerServer#setDBServer(projects.interfaces.CDBServer)
-	 */
-	public void setDBServer(CDBServer dbserver) throws RemoteException{
-		// TODO Auto-generated method stub
-		System.out.println("hallo");
-	}
-
-	/**
-	 * description:
-	 * 
-	 * @param loginserver 
-	 * @see projects.interfaces.CManagerServer#setLoginServer(projects.interfaces.CLoginServer)
-	 */
-	public void setLoginServer(CLoginServer loginserver) throws RemoteException{
-		// TODO Auto-generated method stub
-		
-	}
-
-	/**
-	 * description:
-	 * 
-	 * @param webserver 
-	 * @see projects.interfaces.CManagerServer#setWebServer(API.control.WebServer)
-	 */
-	public void setWebServer(WebServer webserver) throws RemoteException{
-		// TODO Auto-generated method stub
-		
-	}
-
-	
-	
-	/**
-	 * description:
-	 * 
-	 * @param usrID
-	 * @return
-	 * @throws RemoteException 
-	 * @see projects.interfaces.CManagerServer#createSession(long)
-	 */
-	public CSession createSession(long usrID) throws RemoteException {
-		RemoteObject ro = this.getService("CLoginServer") ;
-		if (ro == null) {
-			return null ;
-		}
-		CLoginServer cloginserver = (CLoginServer) ro.getServerApp() ;
-		cloginserver.createSession(usrID) ;
-		// TODO SessionID ?!
 		return null;
 	}
 

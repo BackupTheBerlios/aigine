@@ -45,10 +45,10 @@ public class RemoteObjectTable extends Hashtable {
    */
 	public Vector getDataVector(){
 		System.out.println("=> RemoteObjectTable.getDataVector()");
-		Enumeration enum = this.elements();
+		Enumeration enum1 = this.elements();
 		Vector data = new Vector();
-		while(enum.hasMoreElements()) {
-			RemoteObject pro = (RemoteObject) enum.nextElement();
+		while(enum1.hasMoreElements()) {
+			RemoteObject pro = (RemoteObject) enum1.nextElement();
 			Vector v = new Vector();
 			//v.add(pro.getRmiName());
 			//v.add(pro.getCompClassName());	
@@ -67,20 +67,20 @@ public class RemoteObjectTable extends Hashtable {
 	public RemoteObject getService(String ServiceName) {
 		RemoteObject result_ro = null ;
 		StringBuffer sb = new StringBuffer(ServiceName) ;
-		System.out.println("=> RemoteObjectTable.getService()");
-		Enumeration enum = this.elements();
+		System.out.println("==> RemoteObjectTable.getService()");
+		Enumeration enum1 = this.elements();
 
-		System.out.println("Was für Eintrage haben wir zur Zeit?\n--------------------------------") ;
-		while(enum.hasMoreElements()) {
-			RemoteObject pro = (RemoteObject) enum.nextElement();
+		System.out.println("  > Was für Eintrage haben wir zur Zeit?\n--------------------------------") ;
+		while(enum1.hasMoreElements()) {
+			RemoteObject pro = (RemoteObject) enum1.nextElement();
 			StringBuffer temp = new StringBuffer(pro.getCompName()) ;
-			System.out.println("\n\t" + temp + " Vergleich mit: " + sb + " Ergebnis: " + sb.indexOf(temp.toString())) ;
+			System.out.println("  > " + temp + " im Vergleich mit: " + sb + " Ergebnis: " + sb.indexOf(temp.toString())) ;
 			if (sb.indexOf(temp.toString()) == 0) {
 				result_ro = pro ;
-				System.out.println("\n\tKlasse gefunden!!!\t--> " + pro.getCompName());
+				System.out.println("\n+++ Klasse gefunden!!!\t--> " + pro.getCompName());
 			}
 		}
-		System.out.println("\n<= RemoteObjectTable.getService()");		
+		System.out.println("<$== RemoteObjectTable.getService()");		
 		return result_ro;
 	}
 

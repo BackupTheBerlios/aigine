@@ -10,6 +10,7 @@ import java.rmi.RemoteException;
 import projects.catalog.model.Category;
 import projects.catalog.model.Picture;
 import API.interfaces.ServerHandle;
+import API.interfaces.ManagerHandle ;
 
 /**
  * CDBServer stellt die einzelnen Objecte zur Verfügung, die in die datenbank gehen
@@ -20,7 +21,7 @@ import API.interfaces.ServerHandle;
  */
 public interface CDBServer extends ServerHandle {
 	 //setzt der Manager in seiner register methode
-	CManagerServer manager = null;
+	ManagerHandle manager = null;
 	
 	 void insertPicture(String catalogName, String categoryName, Picture pic) throws RemoteException;
 	 void insertPicture(Picture pic) throws RemoteException;
@@ -37,6 +38,6 @@ public interface CDBServer extends ServerHandle {
 	  * Tags are:@param manager
 	  * @return void
 	  */
-	 void setManager(CManagerServer manager)throws RemoteException;
-	 CManagerServer getManager()throws RemoteException;
+	 void setManager(ManagerHandle manager)throws RemoteException;
+	 ManagerHandle getManager()throws RemoteException;
 }
