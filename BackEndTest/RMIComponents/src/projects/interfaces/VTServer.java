@@ -21,5 +21,5 @@ public interface VTServer extends ServerHandle{
 	 * @param voteid
 	 * @throws RemoteException
 	 */
-	void vote(String voteid) throws RemoteException;	
+	void vote(String voteid) throws RemoteException;
 }
