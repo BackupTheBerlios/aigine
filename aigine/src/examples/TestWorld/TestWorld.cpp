@@ -63,7 +63,8 @@ int main(int argc, char** argv)
 
 	robi = new robot(sm);
 	robi->drawRobot();
-	sm->printGraph();
+	robi->getModel()->setTranslation(new Translation3D(-20,0,-20));
+//	sm->printGraph();
 	
 	// ... weitere Objekte laden
 	
