@@ -1,0 +1,330 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 3.2 Final//EN">
+<html>
+  <head>
+    <title>
+      AiGinE - Pflichtenheft
+    </title>
+    <meta NAME="Author" CONTENT="Danny Gr&auml;f, Tobias Harpering">
+    <meta NAME="Keywords" CONTENT="
+    AiGinE, Game, Engine, C++, OpenGL, Framework">
+    <meta NAME="Description" CONTENT="AiGinE - A Game Engine for C++OpenGL">
+    <link HREF="http://aigine.berlios.de/css/default.css" REL="stylesheet" TYPE="text/css">
+
+  </head>
+  <body>
+    <p CLASS="projecttitle">
+      Pflichtenheft
+    </p>
+    <p CLASS="projecttitle">
+      AiGinE - A Game Engine
+    </p>
+    <ul>
+      <li>
+
+        Sebastian Blaum
+      </li>
+      <li>
+        Frank Otto
+      </li>
+      <li>
+        Danny Gr&auml;f
+      </li>
+    </ul>
+    <table SUMMARY="Zust&auml;ndigkeit">
+
+      <tr>
+        <th>
+          Phase
+        </th>
+        <th>
+          Veranwortliche
+        </th>
+        <th>
+          E-Mail
+        </th>
+
+      </tr>
+      <tr>
+        <td>
+          Pflichtenheft
+        </td>
+        <td>
+          Danny Gr&auml;f
+        </td>
+        <td>
+
+          <a HREF="mailto:AiGinE@danny-graef.de">AiGinE@danny-graef.de</a>
+        </td>
+      </tr>
+      <tr>
+        <td>
+          Entwurf
+        </td>
+        <td>
+          &nbsp;
+
+        </td>
+        <td>
+          &nbsp;
+        </td>
+      </tr>
+      <tr>
+        <td>
+          Spezifikation
+        </td>
+
+        <td>
+          &nbsp;
+        </td>
+        <td>
+          &nbsp;
+        </td>
+      </tr>
+      <tr>
+        <td>
+
+          Implementierung
+        </td>
+        <td>
+          &nbsp;
+        </td>
+        <td>
+          &nbsp;
+        </td>
+      </tr>
+
+      <tr>
+        <td>
+          Verifikation
+        </td>
+        <td>
+          &nbsp;
+        </td>
+        <td>
+          &nbsp;
+
+        </td>
+      </tr>
+    </table>
+    <br>
+
+    <table SUMMARY="Pflichtenheftversion">
+      <tr>
+        <th>
+          Version
+        </th>
+
+        <th>
+          Autor
+        </th>
+        <th>
+          Datum
+        </th>
+        <th>
+          Status
+        </th>
+        <th>
+
+          Kommentar
+        </th>
+      </tr>
+      <tr>
+        <td>
+          0.1
+        </td>
+        <td>
+          Danny Gr&auml;f, Tobias Harpering
+        </td>
+
+        <td>
+          2003-11-11
+        </td>
+        <td>
+          alpha
+        </td>
+        <td>
+          Grobplanung und Erstellung der Pflichtenheftstruktur
+        </td>
+      </tr>
+
+      <tr>
+        <td>
+          &nbsp;
+        </td>
+        <td>
+          &nbsp;
+        </td>
+        <td>
+          &nbsp;
+
+        </td>
+        <td>
+          &nbsp;
+        </td>
+        <td>
+          &nbsp;
+        </td>
+      </tr>
+    </table>
+
+    <h1>
+      Zielbestimmung
+    </h1>
+    <p>
+      AiGinE ist eine C++ Programierumgebung (Framework) f&uuml;r OpenGL 3D
+      Welten und speziell auf die Entwicklung von Spielen ausgerichtet.
+    </p>
+    <p>
+      Es bietet Programmieren eine Abstraktionsebene und Vereinfachnung sowie
+      Vereinheitlichung der daf&uuml;r ben&ouml;tigten Objekte, z.B. die
+      Szenen- und Kamerasteuerung. Weiterhin ist die Verwaltung von Ressourcen
+      (3D-Modelle, Texturen, Audiodaten etc.) durch Schnittstellen
+      modularisiert und kann dadurch gut erweitert werden.
+    </p>
+
+    <h2>
+      Musskriterien
+    </h2>
+    <p>
+      Die Umgebung soll:
+    </p>
+    <ul>
+      <li>
+        eine Abstraktion f&uuml;r die Ausgabe und Verwaltung von OpenGL sein. -
+        GraphicEngine
+      </li>
+
+      <li>
+        den Zugriff auf Ressourcen und Benutzereingaben vereinfachen - Input
+      </li>
+      <li>
+        Systemzugriffe verallgemeinern (Liste etc.) - Util
+      </li>
+      <li>
+        eine Testumgebung zur Verf&uuml;gung stellen - TestWorld
+      </li>
+    </ul>
+
+    <h2>
+      Wunschkriterien
+    </h2>
+    <p>
+      Die Umgebung k&ouml;nnte weiterhin:
+    </p>
+    <ul>
+      <li>
+        den Zugriff und die Verwendung von Multimedia Dateien (z.B. Video und
+        Sound) vereinfachen - MultiMedia
+      </li>
+
+      <li>
+        das Verwalten von Standardelementen (z.B. Textfelder, Men&uuml;s) der
+        Benutzerschnittstelle erm&ouml;glichen - GUI
+      </li>
+      <li>
+        die Erstellung von Client / Server Programmen durch Bereitstellung
+        einer Netzwerkschicht vereinfachen - Network
+      </li>
+    </ul>
+    <h2>
+      Abgrenzung
+    </h2>
+
+    <p>
+      Es soll eine Umgebung entstehen in der 3D-Objekte plaziert und die Kamera
+      sowie ein Avatar durch die Szene gesteuert werden k&ouml;nnen. F&uuml;r
+      den Import von 3D Modellen und Texturen sollen jeweils mindestens zwei
+      M&ouml;glichkeiten implementiert werden. Die darauf aufsetzende
+      Beispielapplikation LineKiller (Tetris Klone) soll die Verwendung der
+      Umgebung zeigen und wird dann in die zu erstellende 3D-Testumgebung
+      (TestWorld) integriert.
+    </p>
+    <h1>
+      Produkteinsatz
+    </h1>
+    <h2>
+      Anwendungsbereich
+    </h2>
+
+    <p>
+      Entwicklung von Spielen und 3D Umgebungen.
+    </p>
+    <h2>
+      Zielgruppen
+    </h2>
+    <p>
+      Entwickler und Projektmanager in den Bereichen 3D-Konstruktion und
+      Spiele-Entwicklung sowie Programmierer, die sich an einer
+      Weiterentwicklung beteiligen wollen.
+    </p>
+    <h1>
+
+      Produktumgebung
+    </h1>
+    <h2>
+      Entwicklungsumgebung
+    </h2>
+    <p>
+      C++ Compiler mit OpenGL (GLUT) Unterst&uuml;tzung. Alle weiteren
+      ben&ouml;tigten Komponenten liegen der Umgebung bei.
+    </p>
+    <h2>
+
+      Software
+    </h2>
+    <p>
+      Als Betriebssystem kann Linux und Windows verwendet werden.
+    </p>
+    <h2>
+      Hardware
+    </h2>
+    <p>
+      Standard PC sollte ausreichen (eigentlich gibt es derzeitig keine
+      ausreichende Dimensionierung:-).
+    </p>
+
+    <h1>
+      Aufgabenverteilung
+    </h1>
+    <p>
+      Da das Projekt sehr umfangreich ist und Kenntnisse sowie Arbeiten aus
+      mehreren Bereichen des Studiums erfordert, werden f&uuml;r die
+      Realisierung mehrere Belegarbeiten aller Projektmitglieder genutzt.
+    </p>
+    <h2>
+      Design der Umgebung
+    </h2>
+    <p>
+
+      Das Design wird f&uuml;r die Lehrveranstaltung MAS von Sebastian Blaum,
+      Frank Otto und Danny Gr&auml;f in UML mit dem Programm Together erstellt.
+    </p>
+    <h2>
+      Implemtierung
+    </h2>
+    <p>
+      Die Umgebung und die Beispielapplikation werden f&uuml;r die
+      Lehrveranstaltung 3D-CG von Tobias Harpering, Sebastian Blaum, Frank Otto
+      und Danny Gr&auml;f implemtiert.
+    </p>
+
+    <h2>
+      Projektpr&auml;sentation
+    </h2>
+    <p>
+      F&uuml;r die Belegarbeit in EMS und MG wird von Tobias Harpering eine
+      Pr&auml;sentation gehalten und eine entsprechende Pr&auml;sentations CD
+      erstellt.
+    </p>
+    <h2>
+      3D-Modelle
+    </h2>
+
+    <p>
+      Die Belegarbeiten f&uuml;r EMS von Frank Otto und 3D-CAD sowie G/E von
+      Danny Gr&auml;f werden auf die Modellierung von Testobjekten (R&auml;ume,
+      Pflanzen etc.) ausgerichtet.
+    </p>
+  </body>
+</html>
+
