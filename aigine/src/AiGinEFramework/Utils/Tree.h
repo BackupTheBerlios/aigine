@@ -27,8 +27,9 @@ private:
 	knot* rootKnot;
 	knot* temporaryKnot;
 	void addToList(knot* k);
-	void initKnot(knot* k);
+	knot* initKnot(knot* k);
 	void makeTest();
+	int actualListElement;
 	Liste<knot*>* knotListPreorder;
 	Liste<knot*>* knotListInorder;
 	Liste<knot*>* knotListPostorder;
@@ -41,6 +42,7 @@ public:
 	bool addKnotRight(knot* paren, knot* child);
 	knot* getRootKnot();
 	knot* getTemporaryKnot();
+	void rewindLists();
 	//Traversal-Funktionen
 	knot* getKnotPreorder();
 	knot* getKnotInorder();

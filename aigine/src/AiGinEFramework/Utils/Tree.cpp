@@ -11,82 +11,106 @@ Tree::Tree() {
 	this->knotListInorder = new Liste<knot*>;
 	this->knotListPostorder = new Liste<knot*>;
 	this->knotListLevelorder = new Liste<knot*>;
+	this->actualListElement = 1;
 
 	this->makeTest();
 }
 
 void Tree::makeTest() {
-	string a = "a";
-	string b = "b";
-	string c = "c";
-	string d = "d";
+	string p = "p";
+	string m = "m";
+	string l = "l";
+	string s = "s";
 	string e = "e";
-	string f = "f";
-	string g = "g";
+	string a = "a";
+	string r = "r";
+	string t = "t";
 
-	this->rootKnot = new knot;
-	this->initKnot(this->rootKnot);
-	this->rootKnot->data = &a;
+	knot* newKnot;
 
-	this->rootKnot->left = new knot;
-	this->initKnot(this->rootKnot->left);
-	this->rootKnot->left->data = &b;
+	//level 1
+	this->rootKnot = this->initKnot(new knot);
+	this->rootKnot->data = &p;
+
+	//level 2 - links
+	newKnot = this->initKnot(new knot);
+	newKnot->data = &m;
+	this->addKnotLeft(this->rootKnot, newKnot);
 	
-	this->rootKnot->right = new knot;
-	this->initKnot(this->rootKnot->right);
-	this->rootKnot->right->data = &c;
+	//level 2 - rechts
+	newKnot = this->initKnot(new knot);
+	newKnot->data = &l;
+	this->addKnotRight(this->rootKnot, newKnot);
+
+	//level 3 - links - links
+	newKnot = this->initKnot(new knot);
+	newKnot->data = &s;
+	this->addKnotLeft(this->rootKnot->left, newKnot);
+
+	//level 3 - rechts - rechts
+	newKnot = this->initKnot(new knot);
+	newKnot->data = &e;
+	this->addKnotRight(this->rootKnot->right, newKnot);
+
+	//level 4 - links - links - links
+	newKnot = this->initKnot(new knot);
+	newKnot->data = &a;
+	this->addKnotLeft(this->rootKnot->left->left, newKnot);
+
+	//level 4 - links - links - rechts
+	newKnot = this->initKnot(new knot);
+	newKnot->data = &a;
+	this->addKnotRight(this->rootKnot->left->left, newKnot);
+
+	//level 4 - rechts - rechts - rechts
+	newKnot = this->initKnot(new knot);
+	newKnot->data = &r;
+	this->addKnotRight(this->rootKnot->right->right, newKnot);
+
+	//level 5 - rechts - rechts - rechts - links
+	newKnot = this->initKnot(new knot);
+	newKnot->data = &t;
+	this->addKnotLeft(this->rootKnot->right->right->right, newKnot);
+
+	//level 5 - rechts - rechts - rechts - rechts
+	newKnot = this->initKnot(new knot);
+	newKnot->data = &e;
+	this->addKnotRight(this->rootKnot->right->right->right, newKnot);
+
+	//level 6 - rechts - rechts - rechts - rechts - links
+	newKnot = this->initKnot(new knot);
+	newKnot->data = &e;
+	this->addKnotLeft(this->rootKnot->right->right->right->right, newKnot);
 
 
-	this->rootKnot->left->left = new knot;
-	this->initKnot(this->rootKnot->left->left);
-	this->rootKnot->left->left->data = &d;
-
-	this->rootKnot->left->right = new knot;
-	this->initKnot(this->rootKnot->left->right);
-	this->rootKnot->left->right->data = &e;
-
-	this->rootKnot->right->left = new knot;
-	this->initKnot(this->rootKnot->right->left);
-	this->rootKnot->right->left->data = &f;
-
-	this->rootKnot->right->right = new knot;
-	this->initKnot(this->rootKnot->right->right);
-	this->rootKnot->right->right->data = &g;
-
-
-	cout << "TestTree:" << endl;
-	cout << *(string*)(this->rootKnot->data) << endl;
-	cout << *(string*)(this->rootKnot->left->data) << " , " << *(string*)(this->rootKnot->right->data) << endl;
-	cout << *(string*)(this->rootKnot->left->left->data) << " , " << *(string*)(this->rootKnot->left->right->data) << " , ";
-	cout << *(string*)(this->rootKnot->right->left->data) << " , " << *(string*)(this->rootKnot->right->right->data);
-	cout << endl;
-
-	cout << "Preorder-Traversierung:" << endl;
+	cout << endl << "Preorder-Traversierung:" << endl;
 	this->buildPreorder(this->rootKnot);
-	for(int i = 1; i<this->knotListPreorder->length();i++) {
-		knot* tmp = *this->knotListPreorder->getData(i);
-		cout << *(string*)(tmp->data) << endl;
+	knot* tmp;
+	while((tmp = this->getKnotPreorder()) != NULL) {
+		cout << *(string*)(tmp->data) << " ";
 	}
 
-	cout << "Inorder-Traversierung:" << endl;
+	cout << endl << "Inorder-Traversierung:" << endl;
 	this->buildInorder(this->rootKnot);
-	for(int j = 1; j<this->knotListInorder->length();j++) {
-		knot* tmp = *this->knotListInorder->getData(j);
-		cout << *(string*)(tmp->data) << endl;
+	this->rewindLists();
+	while((tmp = this->getKnotInorder()) != NULL) {
+		cout << *(string*)(tmp->data) << " ";
 	}
 
-	cout << "Postorder-Traversierung:" << endl;
+	cout << endl << "Postorder-Traversierung:" << endl;
 	this->buildPostorder(this->rootKnot);
-	for(int k = 1; k<this->knotListPostorder->length();k++) {
-		knot* tmp = *this->knotListPostorder->getData(k);
-		cout << *(string*)(tmp->data) << endl;
+	this->rewindLists();
+	while((tmp = this->getKnotPostorder()) != NULL) {
+		cout << *(string*)(tmp->data) << " ";
 	}
+	cout << endl;
 }
 
-void Tree::initKnot(knot* k) {
+knot* Tree::initKnot(knot* k) {
 	k->data = NULL;
 	k->left = NULL;
 	k->right = NULL;
+	return k;
 }
 
 
@@ -114,15 +138,40 @@ knot* Tree::getRootKnot() {
 knot* Tree::getTemporaryKnot() {
 	return this->temporaryKnot;
 }
+void Tree::rewindLists() {
+	this->actualListElement = 1;
+}
 
 knot* Tree::getKnotPreorder() {
-	return NULL;
+	if(this->actualListElement < this->knotListPreorder->length()) {
+		knot* tmp = *this->knotListPreorder->getData(this->actualListElement);
+		this->actualListElement++;
+		return tmp;
+	} else {
+		this->actualListElement = 1;
+		return NULL;
+	}
 }
+
 knot* Tree::getKnotInorder() {
-	return NULL;
+	if(this->actualListElement < this->knotListInorder->length()) {
+		knot* tmp = *this->knotListInorder->getData(this->actualListElement);
+		this->actualListElement++;
+		return tmp;
+	} else {
+		this->actualListElement = 1;
+		return NULL;
+	}
 }
 knot* Tree::getKnotPostorder() {
-	return NULL;
+	if(this->actualListElement < this->knotListPostorder->length()) {
+		knot* tmp = *this->knotListPostorder->getData(this->actualListElement);
+		this->actualListElement++;
+		return tmp;
+	} else {
+		this->actualListElement = 1;
+		return NULL;
+	}
 }
 knot* Tree::getKnotLevelorder() {
 	return NULL;
