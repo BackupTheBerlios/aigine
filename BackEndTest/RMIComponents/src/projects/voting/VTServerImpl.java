@@ -47,32 +47,42 @@ public class VTServerImpl extends Server implements VTServer {
         System.out.println("=> VTServerImpl.updateClients()");
         Enumeration elem= remoteObjects.elements();
         while (elem.hasMoreElements()) {
-            VTClient client = null;
-            RemoteObject remoteObject;
+            RemoteObject remoteObject = null;
             try {
                 remoteObject= (RemoteObject) elem.nextElement();
-                client= (VTClient) remoteObject.getApp();
-                System.out.println("try update \n\t" + client + "\n");
+                System.out.println("try update > " + remoteObject + "\n");
+				VTClient client= (VTClient) remoteObject.getApp();
+                System.out.println("\tfor remoteObject" + client + "\n");
                 client.update(votes);
             } catch (RemoteException e) {
                 e.printStackTrace();
                 System.out.println(
                     "Fehler in VTServerImpl.updateClients() "
                         + "update fehlgeschlagen:\n\t"
-                        + client
+                        + remoteObject
                         + " > "
                         + e.getMessage());
-                remoteObjects.remove(client);
+                remoteObjects.remove(remoteObject);
             } catch (ClassCastException e) {
                 e.printStackTrace();
                 System.out.println(
                     "Fehler in VTServerImpl.updateClients() "
                         + "update fehlgeschlagen:\n\t"
-                        + client
+                        + remoteObject
                         + " > "
                         + e.getMessage());
-                remoteObjects.remove(client);
+                remoteObjects.remove(remoteObject);
             }
+			catch (Exception e) {
+							e.printStackTrace();
+							System.out.println(
+								"Fehler in VTServerImpl.updateClients() "
+									+ "update fehlgeschlagen:\n\t"
+									+ remoteObject
+									+ " > "
+									+ e.getMessage());
+							remoteObjects.remove(remoteObject);
+						}
         }
         System.out.println("<= VTServerImpl.updateClients()");
     }
