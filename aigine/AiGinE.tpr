@@ -35,10 +35,16 @@ recent.file.7=C:\\Dokumente und Einstellungen\\Sebastian Blaum\\Desktop\\aigine\
 recent.file.8=C:\\Dokumente und Einstellungen\\Sebastian Blaum\\Desktop\\aigine\\src\\AiGinEFramework\\Model\\Rotation3D.h
 recent.file.9=C:\\Dokumente und Einstellungen\\Sebastian Blaum\\Desktop\\aigine\\src\\AiGinEFramework\\Model\\LookAtObjects.h
 [genHTML]
-folder=C:\\Dokumente und Einstellungen\\Sebastian Blaum\\Desktop\\aigine\\publish\\togetherPublish
+folder=F:\\develop\\c_3d\\AiGinE\\aigine\\publish\\togetherPublish
 generateFor=all_packages
 includeDiagrams=true
-launchBrowser=false
+launchBrowser=true
 navigationTree=false
 [lastOpenProjectName]
 Programmer=<default>
+[option]
+links=Rectilinear
+showgrid=false
+snaptogrid=false
+[newDiagramExpert]
+includeInCurrentDiagram=false

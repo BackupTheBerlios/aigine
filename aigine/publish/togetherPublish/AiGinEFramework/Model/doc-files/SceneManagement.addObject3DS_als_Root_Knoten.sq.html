@@ -1,0 +1,41 @@
+<HTML><HEAD><!-- Copyright © 2000-2003 TogetherSoft Corporation, a wholly owned subsidiary of Borland Software Corporation. All rights reserved. All patents pending. onTue Jan 27 23:32:55 CET 2004 --><TITLE></TITLE><LINK REL="stylesheet" TYPE="text/css" HREF="../../../stylesheet.css" TITLE="Style"><BASE TARGET=classFrame>
+<SCRIPT LANGUAGE = "JavaScript">
+function doClick(imageHref) {
+if (parent.imageFrame != null)
+   parent.imageFrame.location.href = imageHref;
+}
+
+function loadImage() {
+try{ if((parseInt ( navigator.appVersion.charAt(0) )  >=4)  && ( (navigator.appName.indexOf("Microsoft") != -1)  || (navigator.appName.indexOf("Sun") != -1))) {
+  if (parent.isAppletFirstTime == true) {
+     parent.isAppletFirstTime = false;
+     return;
+  }
+  if (parent.packageListFrame.document.navigApplet == null) { return; }
+  var imageFileName = "AiGinEFramework/Model/doc-files/SceneManagement.addObject3DS_als_Root_Knoten.sq.gif";
+  var myWidth = document.body.scrollWidth;
+  if (myWidth <= document.body.clientWidth) myWidth = document.images[0].width+25;
+  var myHeight = document.body.scrollHeight;
+  if (myHeight <= document.body.clientHeight) myHeight = document.images[0].height+25;
+    parent.packageListFrame.document.navigApplet.loadView(imageFileName, myWidth, myHeight);
+  resizeSpot();
+  moveSpot();
+ }}catch(Exception){}
+}
+
+function resizeSpot() {
+try{ if((parseInt ( navigator.appVersion.charAt(0) )  >=4)  && ( (navigator.appName.indexOf("Microsoft") != -1)  || (navigator.appName.indexOf("Sun") != -1))) {
+   if (parent.packageListFrame.document.navigApplet == null) { return; }
+    parent.packageListFrame.document.navigApplet.setSpotSize(document.body.clientWidth, document.body.clientHeight);
+    parent.packageListFrame.document.navigApplet.repaint();
+ }}catch(Exception){}
+}
+
+function moveSpot() {
+try{ if((parseInt ( navigator.appVersion.charAt(0) )  >=4)  && ( (navigator.appName.indexOf("Microsoft") != -1)  || (navigator.appName.indexOf("Sun") != -1))) {
+   if (parent.packageListFrame.document.navigApplet == null) { return; }
+    parent.packageListFrame.document.navigApplet.moveSpot(document.body.scrollLeft, document.body.scrollTop);
+ }}catch(Exception){}
+}
+</SCRIPT></HEAD>
+<BODY onLoad="loadImage()" onResize="resizeSpot()" onScroll="moveSpot()"><IMG SRC = "SceneManagement.addObject3DS_als_Root_Knoten.sq.gif" USEMAP = "#Beauty"><MAP NAME = "Beauty"><AREA SHAPE = "RECT" COORDS="553,175,567,225" HREF = "../../../AiGinEFramework/Model/SceneManagement.addObject3DS_als_Root_Knoten.sq.html#a6"><AREA SHAPE = "RECT" COORDS="515,140,606,390" HREF = "../../../AiGinEFramework/Model/SceneManagement.addObject3DS_als_Root_Knoten.sq.html#a5"><AREA SHAPE = "RECT" COORDS="345,270,359,290" HREF = "../../../AiGinEFramework/Model/SceneManagement.addObject3DS_als_Root_Knoten.sq.html#a4"><AREA SHAPE = "RECT" COORDS="336,230,350,300" HREF = "../../../AiGinEFramework/Model/SceneManagement.addObject3DS_als_Root_Knoten.sq.html#a3"><AREA SHAPE = "RECT" COORDS="327,155,341,310" HREF = "../../../AiGinEFramework/Model/SceneManagement.addObject3DS_als_Root_Knoten.sq.html#a2"><AREA SHAPE = "RECT" COORDS="275,50,393,390" HREF = "../../../AiGinEFramework/Model/SceneManagement.addObject3DS_als_Root_Knoten.sq.html#a1"><AREA SHAPE = "RECT" COORDS="50,50,145,390" HREF = "../../../AiGinEFramework/Model/SceneManagement.addObject3DS_als_Root_Knoten.sq.html#a0"></MAP></BODY></HTML>

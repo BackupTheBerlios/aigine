@@ -1,0 +1,41 @@
+<HTML><HEAD><!-- Copyright © 2000-2003 TogetherSoft Corporation, a wholly owned subsidiary of Borland Software Corporation. All rights reserved. All patents pending. onTue Jan 27 23:32:56 CET 2004 --><TITLE></TITLE><LINK REL="stylesheet" TYPE="text/css" HREF="../../../../stylesheet.css" TITLE="Style"><BASE TARGET=classFrame>
+<SCRIPT LANGUAGE = "JavaScript">
+function doClick(imageHref) {
+if (parent.imageFrame != null)
+   parent.imageFrame.location.href = imageHref;
+}
+
+function loadImage() {
+try{ if((parseInt ( navigator.appVersion.charAt(0) )  >=4)  && ( (navigator.appName.indexOf("Microsoft") != -1)  || (navigator.appName.indexOf("Sun") != -1))) {
+  if (parent.isAppletFirstTime == true) {
+     parent.isAppletFirstTime = false;
+     return;
+  }
+  if (parent.packageListFrame.document.navigApplet == null) { return; }
+  var imageFileName = "AiGinEFramework/Model/AgeObjects/doc-files/AgeObjects.cl.gif";
+  var myWidth = document.body.scrollWidth;
+  if (myWidth <= document.body.clientWidth) myWidth = document.images[0].width+25;
+  var myHeight = document.body.scrollHeight;
+  if (myHeight <= document.body.clientHeight) myHeight = document.images[0].height+25;
+    parent.packageListFrame.document.navigApplet.loadView(imageFileName, myWidth, myHeight);
+  resizeSpot();
+  moveSpot();
+ }}catch(Exception){}
+}
+
+function resizeSpot() {
+try{ if((parseInt ( navigator.appVersion.charAt(0) )  >=4)  && ( (navigator.appName.indexOf("Microsoft") != -1)  || (navigator.appName.indexOf("Sun") != -1))) {
+   if (parent.packageListFrame.document.navigApplet == null) { return; }
+    parent.packageListFrame.document.navigApplet.setSpotSize(document.body.clientWidth, document.body.clientHeight);
+    parent.packageListFrame.document.navigApplet.repaint();
+ }}catch(Exception){}
+}
+
+function moveSpot() {
+try{ if((parseInt ( navigator.appVersion.charAt(0) )  >=4)  && ( (navigator.appName.indexOf("Microsoft") != -1)  || (navigator.appName.indexOf("Sun") != -1))) {
+   if (parent.packageListFrame.document.navigApplet == null) { return; }
+    parent.packageListFrame.document.navigApplet.moveSpot(document.body.scrollLeft, document.body.scrollTop);
+ }}catch(Exception){}
+}
+</SCRIPT></HEAD>
+<BODY onLoad="loadImage()" onResize="resizeSpot()" onScroll="moveSpot()"><IMG SRC = "AgeObjects.cl.gif" USEMAP = "#Beauty"><MAP NAME = "Beauty"><AREA SHAPE = "RECT" COORDS="232,90,389,106" HREF = "../../../../AiGinEFramework/Model/AgeObjects/ageObject3DS.html#ageObject3DS(string)"><AREA SHAPE = "RECT" COORDS="232,106,389,122" HREF = "../../../../AiGinEFramework/Model/AgeObjects/ageObject3DS.html#~ageObject3DS()"><AREA SHAPE = "RECT" COORDS="232,122,389,138" HREF = "../../../../AiGinEFramework/Model/AgeObjects/ageObject3DS.html#display()"><AREA SHAPE = "RECT" COORDS="230,10,393,168" HREF = "../../../../AiGinEFramework/Model/AgeObjects/ageObject3DS.html"><AREA SHAPE = "RECT" COORDS="28,362,206,378" HREF = "../../../../AiGinEFramework/Model/AgeObjects/ageObjectPrim.html#ageObjectPrim()"><AREA SHAPE = "RECT" COORDS="28,378,206,394" HREF = "../../../../AiGinEFramework/Model/AgeObjects/ageObjectPrim.html#ageObjectPrim(const char *)"><AREA SHAPE = "RECT" COORDS="28,394,206,410" HREF = "../../../../AiGinEFramework/Model/AgeObjects/ageObjectPrim.html#~ageObjectPrim()"><AREA SHAPE = "RECT" COORDS="28,410,206,426" HREF = "../../../../AiGinEFramework/Model/AgeObjects/ageObjectPrim.html#display()"><AREA SHAPE = "RECT" COORDS="28,426,206,442" HREF = "../../../../AiGinEFramework/Model/AgeObjects/ageObjectPrim.html#setSphere(float, int, int)"><AREA SHAPE = "RECT" COORDS="28,442,206,458" HREF = "../../../../AiGinEFramework/Model/AgeObjects/ageObjectPrim.html#setCone(float, float, int, int)"><AREA SHAPE = "RECT" COORDS="28,458,206,474" HREF = "../../../../AiGinEFramework/Model/AgeObjects/ageObjectPrim.html#setTorus(float, float, int, int)"><AREA SHAPE = "RECT" COORDS="28,474,206,490" HREF = "../../../../AiGinEFramework/Model/AgeObjects/ageObjectPrim.html#setColor(int, int, int)"><AREA SHAPE = "RECT" COORDS="28,490,206,506" HREF = "../../../../AiGinEFramework/Model/AgeObjects/ageObjectPrim.html#readData()"><AREA SHAPE = "RECT" COORDS="28,506,206,522" HREF = "../../../../AiGinEFramework/Model/AgeObjects/ageObjectPrim.html#writeData()"><AREA SHAPE = "RECT" COORDS="28,538,206,554" HREF = "../../../../AiGinEFramework/Model/AgeObjects/ageObjectPrim.html#setCube(float)"><AREA SHAPE = "RECT" COORDS="10,10,210,568" HREF = "../../../../AiGinEFramework/Model/AgeObjects/ageObjectPrim.html"></MAP></BODY></HTML>

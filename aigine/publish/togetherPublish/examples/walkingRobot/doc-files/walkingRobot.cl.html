@@ -1,0 +1,41 @@
+<HTML><HEAD><!-- Copyright © 2000-2003 TogetherSoft Corporation, a wholly owned subsidiary of Borland Software Corporation. All rights reserved. All patents pending. onTue Jan 27 23:32:57 CET 2004 --><TITLE></TITLE><LINK REL="stylesheet" TYPE="text/css" HREF="../../../stylesheet.css" TITLE="Style"><BASE TARGET=classFrame>
+<SCRIPT LANGUAGE = "JavaScript">
+function doClick(imageHref) {
+if (parent.imageFrame != null)
+   parent.imageFrame.location.href = imageHref;
+}
+
+function loadImage() {
+try{ if((parseInt ( navigator.appVersion.charAt(0) )  >=4)  && ( (navigator.appName.indexOf("Microsoft") != -1)  || (navigator.appName.indexOf("Sun") != -1))) {
+  if (parent.isAppletFirstTime == true) {
+     parent.isAppletFirstTime = false;
+     return;
+  }
+  if (parent.packageListFrame.document.navigApplet == null) { return; }
+  var imageFileName = "examples/walkingRobot/doc-files/walkingRobot.cl.gif";
+  var myWidth = document.body.scrollWidth;
+  if (myWidth <= document.body.clientWidth) myWidth = document.images[0].width+25;
+  var myHeight = document.body.scrollHeight;
+  if (myHeight <= document.body.clientHeight) myHeight = document.images[0].height+25;
+    parent.packageListFrame.document.navigApplet.loadView(imageFileName, myWidth, myHeight);
+  resizeSpot();
+  moveSpot();
+ }}catch(Exception){}
+}
+
+function resizeSpot() {
+try{ if((parseInt ( navigator.appVersion.charAt(0) )  >=4)  && ( (navigator.appName.indexOf("Microsoft") != -1)  || (navigator.appName.indexOf("Sun") != -1))) {
+   if (parent.packageListFrame.document.navigApplet == null) { return; }
+    parent.packageListFrame.document.navigApplet.setSpotSize(document.body.clientWidth, document.body.clientHeight);
+    parent.packageListFrame.document.navigApplet.repaint();
+ }}catch(Exception){}
+}
+
+function moveSpot() {
+try{ if((parseInt ( navigator.appVersion.charAt(0) )  >=4)  && ( (navigator.appName.indexOf("Microsoft") != -1)  || (navigator.appName.indexOf("Sun") != -1))) {
+   if (parent.packageListFrame.document.navigApplet == null) { return; }
+    parent.packageListFrame.document.navigApplet.moveSpot(document.body.scrollLeft, document.body.scrollTop);
+ }}catch(Exception){}
+}
+</SCRIPT></HEAD>
+<BODY onLoad="loadImage()" onResize="resizeSpot()" onScroll="moveSpot()"><IMG SRC = "walkingRobot.cl.gif" USEMAP = "#Beauty"><MAP NAME = "Beauty"><AREA SHAPE = "RECT" COORDS="550,20,633,115" HREF = "../../../examples/walkingRobot/data/data.cl.html" onClick = "doClick('../../../examples/walkingRobot/data/doc-files/data.cl.html')"><AREA SHAPE = "RECT" COORDS="188,65,476,81" HREF = "../../../examples/walkingRobot/robot.html#robot(SceneManagement)"><AREA SHAPE = "RECT" COORDS="188,81,476,97" HREF = "../../../examples/walkingRobot/robot.html#~robot()"><AREA SHAPE = "RECT" COORDS="188,97,476,113" HREF = "../../../examples/walkingRobot/robot.html#drawRobot(AiGinEObject, string)"><AREA SHAPE = "RECT" COORDS="188,113,476,129" HREF = "../../../examples/walkingRobot/robot.html#animRobot()"><AREA SHAPE = "RECT" COORDS="188,305,476,321" HREF = "../../../examples/walkingRobot/robot.html#getModel()"><AREA SHAPE = "RECT" COORDS="170,20,480,340" HREF = "../../../examples/walkingRobot/robot.html"><AREA SHAPE = "RECT" COORDS="22,68,103,84" HREF = "../../../examples/walkingRobot/anim_angles.html#head"><AREA SHAPE = "RECT" COORDS="22,84,103,100" HREF = "../../../examples/walkingRobot/anim_angles.html#upbody"><AREA SHAPE = "RECT" COORDS="22,100,103,116" HREF = "../../../examples/walkingRobot/anim_angles.html#lobody"><AREA SHAPE = "RECT" COORDS="22,116,103,132" HREF = "../../../examples/walkingRobot/anim_angles.html#l_uparm"><AREA SHAPE = "RECT" COORDS="22,132,103,148" HREF = "../../../examples/walkingRobot/anim_angles.html#l_loarm"><AREA SHAPE = "RECT" COORDS="22,148,103,164" HREF = "../../../examples/walkingRobot/anim_angles.html#l_hand"><AREA SHAPE = "RECT" COORDS="22,164,103,180" HREF = "../../../examples/walkingRobot/anim_angles.html#l_upleg"><AREA SHAPE = "RECT" COORDS="22,180,103,196" HREF = "../../../examples/walkingRobot/anim_angles.html#l_loleg"><AREA SHAPE = "RECT" COORDS="22,196,103,212" HREF = "../../../examples/walkingRobot/anim_angles.html#l_foot"><AREA SHAPE = "RECT" COORDS="22,212,103,228" HREF = "../../../examples/walkingRobot/anim_angles.html#r_uparm"><AREA SHAPE = "RECT" COORDS="22,228,103,244" HREF = "../../../examples/walkingRobot/anim_angles.html#r_loarm"><AREA SHAPE = "RECT" COORDS="22,244,103,260" HREF = "../../../examples/walkingRobot/anim_angles.html#r_hand"><AREA SHAPE = "RECT" COORDS="22,260,103,276" HREF = "../../../examples/walkingRobot/anim_angles.html#r_upleg"><AREA SHAPE = "RECT" COORDS="22,276,103,292" HREF = "../../../examples/walkingRobot/anim_angles.html#r_loleg"><AREA SHAPE = "RECT" COORDS="22,292,103,308" HREF = "../../../examples/walkingRobot/anim_angles.html#r_foot"><AREA SHAPE = "RECT" COORDS="20,20,107,351" HREF = "../../../examples/walkingRobot/anim_angles.html"></MAP></BODY></HTML>
