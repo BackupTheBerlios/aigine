@@ -51,7 +51,7 @@ public abstract class Database extends Server {
 	
 	
 	
-	/* (non-Javadoc)
+	/* Register Methode des Servers mit Authentifizierung
 	 * @see API.control.Server#register(API.model.RemoteObject, java.lang.String, java.lang.String)
 	 */
 	public synchronized String register(
@@ -61,5 +61,14 @@ public abstract class Database extends Server {
 		throws RemoteException {
 		return super.register(remoteObject, usr, pass);
 	}
+	
+	/* Register Methode des Servers als anonnymer client
+		 * @see API.control.Server#register(API.model.RemoteObject, java.lang.String, java.lang.String)
+		 */
+		public synchronized String register(
+			RemoteObject remoteObject)
+						 {
+			return super.registerComponent(remoteObject );
+		}
 
 }
