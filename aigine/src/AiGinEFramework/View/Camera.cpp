@@ -11,7 +11,9 @@ Point3D* Camera::getPosition(){
 void Camera::moveRight(){}
 void Camera::moveLeft(){}
 void Camera::moveUp(){}
-void Camera::moveDown(){}
+void Camera::moveDown(){
+  this->position->setY(this->position->getY() - 1);
+}
 void Camera::turnUp(){}
 void Camera::turnDown(){}
 void Camera::turnRight(){}

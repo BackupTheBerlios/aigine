@@ -46,3 +46,6 @@ void GraphicPipeline::initDisplay(){
    glScalef (1.0, 1.0, 1.0); /* modeling transformation */ // Skalierungsmatrix
      // ..  setzten
 }
+Camera* GraphicPipeline::getCamera(){
+	return this->lnkCamera;
+}
