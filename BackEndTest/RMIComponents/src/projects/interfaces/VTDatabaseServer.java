@@ -7,9 +7,11 @@
 package projects.interfaces;
 
 import java.rmi.RemoteException;
+import java.util.List;
 import java.util.Vector;
 
 import projects.voting.model.DBVote;
+import projects.voting.model.VoteTable;
 import API.interfaces.ServerHandle;
 
 /**
@@ -32,4 +34,6 @@ public interface VTDatabaseServer extends ServerHandle {
 	 */
 	void storeVote(DBVote vote) throws RemoteException;
 
+
+	 List listVotes() throws RemoteException;
 }
