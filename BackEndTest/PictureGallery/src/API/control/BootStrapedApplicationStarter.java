@@ -218,7 +218,7 @@ public class BootStrapedApplicationStarter implements BootStrapedComponent {
      */
     private void runServer() {
     	//TODO registrieren eines Servers an einem laufenden (zentralen) Manager ist nicht implementiert.
-   // 	muh
+   
         System.out.println("=> BootStrapedApplicationStarter.runServer()") ;
         System.out.println("component: "+component) ;
         Class serverClass = compClass ;
