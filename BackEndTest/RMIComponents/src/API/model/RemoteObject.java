@@ -1,18 +1,19 @@
 package API.model;
 
 import java.io.Serializable;
-import java.util.Properties;
-import API.interfaces.Application;
 
+import API.interfaces.Application;
+import org.jconfig.*; 
 /**
  * Speichert die Eigenschaften einer RMI Komponente (Verbindungsinformationen etc.)
- * @author danny, tobi
+ * @author danny, tobi, franky
  * @since 25.07.2004
  * @version 0.01
  */
 public class RemoteObject implements Serializable {
-    /** Die vom Loader eingelesenen Properties. */
-    protected Properties props;
+	private String username;
+
+	private String passwd;
 
     /** Beschreibung der Komponente. */
     protected String description;
@@ -66,19 +67,22 @@ public class RemoteObject implements Serializable {
      * Konstruktor nimmt die vom Loader eingelesenen Properties entgegen und
      * initialisiert die notwendigen Paramter
      */
-    public RemoteObject(Properties property) {
+    public RemoteObject(Configuration configuration,String type) {
         // TODO Umstellung auf XML Properties mit automatischer Schemaprüfung
         super();
+        //configuration.getProperty("codebase","nix","vtserver");
         System.out.println("=> RemoteObjectProperties()");
-        this.props = property;
-        this.description = property.getProperty("description");
-        this.servicetyp = property.getProperty("typ");
-        this.codebase = property.getProperty("codebase");
-        this.compClassName = property.getProperty("compClassName");
-        this.compName = property.getProperty("compName");
-        this.port = property.getProperty("port");
-        this.hostname = property.getProperty("hostname");
-        this.authTyp = property.getProperty("authTyp");
+
+        this.description = configuration.getProperty("description","",type);
+        this.servicetyp = configuration.getProperty("typ","",type);
+        this.codebase = configuration.getProperty("codebase","",type);
+        this.compClassName = configuration.getProperty("compClassName","",type);
+        this.compName = configuration.getProperty("compName","",type);
+        this.port = configuration.getProperty("port","",type);
+        this.hostname = configuration.getProperty("hostname","",type);
+        this.authTyp = configuration.getProperty("authTyp","",type);
+        this.username = configuration.getProperty("user","",type);
+        this.passwd = configuration.getProperty("passwd","",type);
         this.rmiName = "rmi://" + this.hostname + ":" + this.port + "/";
         System.out.println("<= RemoteObjectProperties() > " + this);
     }
@@ -192,17 +196,35 @@ public class RemoteObject implements Serializable {
         app = application;
     }
 
-    /** @return */
-    public Properties getProps() {
-        return props;
-    }
-
-    /** @param properties */
-    public void setProps(Properties properties) {
-        props = properties;
-    }
-
     public String getAuthTyp() { return authTyp; }
 
     public void setAuthTyp(String authTyp) { this.authTyp = authTyp; }
+	/**
+	 * @return
+	 */
+	public String getPasswd() {
+		return passwd;
+	}
+
+	/**
+	 * @param i
+	 */
+	public void setPasswd(String i) {
+		passwd = i;
+	}
+
+	/**
+	 * @return
+	 */
+	public String getUsername() {
+		return username;
+	}
+
+	/**
+	 * @param i
+	 */
+	public void setUsername(String i) {
+		username = i;
+	}
+
 }
