@@ -21,7 +21,7 @@
         </property>
         <property name="hibernate.hbm2ddl.auto">update</property>
 
-        <mapping resource="projects.voting.model.DBVote.hbm.xml"/>
+        <mapping resource="Vote.hbm.xml"/>
 
     </session-factory>
 
