@@ -1,24 +1,30 @@
 package API.control;
 
+import interfaces.BootStrapedComponent;
+
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
 import java.net.MalformedURLException;
 import java.rmi.Naming;
 import java.rmi.RemoteException;
 import java.rmi.registry.LocateRegistry;
 import java.rmi.server.RMIClassLoader;
 import java.rmi.server.UnicastRemoteObject;
-import java.util.Properties;
+
+import org.jconfig.Configuration;
+import org.jconfig.ConfigurationManager;
+
 import API.interfaces.Application;
 import API.interfaces.Client;
 import API.interfaces.ServerHandle;
 import API.model.RemoteObject;
-import interfaces.BootStrapedComponent;
-
 /**
  * Wird vom RMIComponentLoader verwendet um die entsprechende Applikation
  * anhängig von der angegebenen <code>codebase</code> und dem
  * <code>compClassName</code> vom Klassenserver zu laden und entsprechend
  * ihrer Anforderungen entweder als Server oder Client Komponente zu starten.
- * @author danny, tobi
+ * @author danny, tobi, franky
  * @since 25.07.2004 16:54:02
  * @date 07.08.2004
  * @version 0.02
@@ -34,24 +40,102 @@ public class BootStrapedApplicationStarter implements BootStrapedComponent {
     /** Speicherung des Serverzugriffes. */
     protected ServerHandle server= null;
 
+
+    private int valid_auswahl;
+    private String auswahl;
+    private String category;
+    private String[] categorynames; 
+    private static final Configuration configuration =
+      ConfigurationManager.getConfiguration("icke");
+      
+  
+  /**
+     * Stellt eine Auswahl zwischen min und max zur Verfuegung
+     * ,liest von der Konsole User Eingaben ein und prueft auf valide Eingaben
+     * @param min auswahl minimum
+     * @param max auswahl maximum
+     * @param question Die Frage welche gestellt werden soll
+         * @return valider Wert innerhalb des g.g. Intervalls oder -1 fuer nicht valide
+     */
+    private int getIntAuswahl(int min, int max, String question) {
+      // Frage stellen und Eingabe einlesen
+      System.out.println(question);
+      BufferedReader inB = new BufferedReader(new InputStreamReader(System.in)); //gepufferte wandlung von asci nach unicode
+      try {
+        auswahl = inB.readLine();
+      }
+      catch (IOException ex1) {}
+      // Umwandeln in Int
+      Integer i;
+      try {
+        i = new Integer(auswahl);
+      }
+      catch (NumberFormatException ex) {
+        //falls sich nicht nach int Umwandeln laesst
+        System.out.println("Bitte geben Sie eine Zahl zwischen " + min + " und " +
+                           max + " ein!");
+        return ( -1);
+      }
+      valid_auswahl = i.intValue();
+      //ist der wert innerhalb des Intervalls ?
+      if (valid_auswahl > max || valid_auswahl < min) {
+        System.out.println("Bitte geben Sie eine Zahl zwischen " + min + " und " +
+                           max + " ein!");
+        return ( -1);
+      }
+
+      return (valid_auswahl);
+    }
+
+    /**
+     * ausgabeMenue Menue auf konsole ausgeben
+     */
+    private void ausgabeMenue() {
+      
+      
+      categorynames = configuration.getCategoryNames();
+      System.out.println("+-----Menue---------------");
+      for(int i = 0; i<categorynames.length; i++ ){
+        System.out.println("| (" + i + ") "+categorynames[i]);
+      }
+      
+      
+//      System.out.println("+-----Menue-------+");
+//      System.out.println("| (1) VTServer    |");
+//      System.out.println("| (2) VTClient    |");
+//      System.out.println("| (3) AdminClient |");
+//      System.out.println("+-----------------+\n");
+
+    }
+  
+  
+     
     /**
      * Initialisiert die gewuenschte Komponente.
      * - laden der Klasse vom Klassenserver
      * - starten der Koponente abhängig von ihrem Typ <code>client || server</code>
      * - Registrierung der Komponente
      */
-    public void init(final Properties p) {
+    public void init(){     //final Properties p) {
         // TODO Wenn keine Typenzuordnung gefunden wird, muss das Programm
         // die notwendigen Paramter beim User abfragen.
-        // TODO Die Properties mit jConfig in XML speichern und eine entsprechende DTD
+        // TODO jConfig eine entsprechende DTD
         // so dass die Eigenschaften vorher geprüft werden können.
+   
+        //konsolenabfrage...
+        ausgabeMenue();
+        int menueAuswahl = getIntAuswahl(0, categorynames.length,"Was soll´s denn sein: ");
+        //hier wird der ausgewaehlte service (Categoryname) in category gespeichert 
+        //ist kürzer;-) 
+        category=categorynames[menueAuswahl];
+         
         System.out.println("=> BootStrapedApplicationStarter.init()");
-        component= new RemoteObject(p);
+        component= new RemoteObject(configuration,category);
         try {
             compClass=
                 RMIClassLoader.loadClass(
-                    p.getProperty("codebase"),
-                    p.getProperty("compClassName"));
+                configuration.getProperty("codebase","",category),
+                configuration.getProperty("compClassName","",category));
             System.out.println(
                 "BootStrapedApplicationStarter.init() After loading Component Class");
         } catch (MalformedURLException e) {
@@ -67,9 +151,9 @@ public class BootStrapedApplicationStarter implements BootStrapedComponent {
             System.out.println(
                 "BootStrapedApplicationStarter.init() " + e.getMessage());
         }
-        if (p.getProperty("typ").equals("server")) {
+        if (configuration.getProperty("typ","",category).equals("server")) {
             runServer();
-        } else if (p.getProperty("typ").equals("client")) {
+        } else if (configuration.getProperty("typ","",category).equals("client")) {
             runClient();
         }
         this.register(component);
@@ -197,16 +281,16 @@ public class BootStrapedApplicationStarter implements BootStrapedComponent {
                     "\tRegistrierung mit Authentifikation > authTyp = password");
                 server.register(
                     remoteObject,
-                    remoteObject.getProps().getProperty("username"),
-                    remoteObject.getProps().getProperty("passwd"));
+                    remoteObject.getUsername(),
+                    remoteObject.getPasswd());
             } else if (remoteObject.getAuthTyp().equals("admin")) {
                 // admin => Anmeldung mit Password und registerAdminClient()
                 System.out.println(
                     "\t Admin Client Registrierung > authTyp = admin");
                 server.registerAdminClient(
                     remoteObject,
-                    remoteObject.getProps().getProperty("username"),
-                    remoteObject.getProps().getProperty("passwd"));
+                    remoteObject.getUsername(),
+                    remoteObject.getPasswd());
             }
         } catch (RemoteException e) {
             System.out.println(
