@@ -72,9 +72,6 @@ private:
 	AiGinEObject* FussL;
 	
 	AiGinEObject* drawBaseLegs(AiGinEObject* parent, string kind);
-	AiGinEObject* drawUpperLeg(AiGinEObject* parent, string kind);
-	AiGinEObject* drawLowerLeg(AiGinEObject* parent, string kind);
-	AiGinEObject* drawFoot(AiGinEObject* parent, string kind);
 	AiGinEObject* drawLeg(AiGinEObject* parent, string kind);
 
 };
