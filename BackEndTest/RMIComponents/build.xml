@@ -49,17 +49,25 @@
       <!-- Nach dieser methode, die einzelnen relevanten jars in das bin zu verschieben und dort zu entpacken,
       sollte erstmal alle weiteren externen archive behandelt werden (bis jemand rausfindet wie in die einzelnen jars 
       reingefasst werden kann) -->
-     	<move todir="${build}">
+     	<!--<move todir="${build}">
     		<fileset dir="lib/hypersonic/"/>
+    		<fileset dir="lib/JConfig/"/>
   		</move>
-  		<!-- entpacken der zufor verschobenen datei (musste ich lieder hard angeben mit '*' war 
+  		 entpacken der zufor verschobenen datei (musste ich lieder hard angeben mit '*' war 
   		das leider nicht zu machen :( )-->
-  		<unjar src="${build}/hsqldb.jar" dest="${build}"></unjar>
+  		<!--<unjar src="${build}/hsqldb.jar" dest="${build}"></unjar>-->
+  		
   </target>
     
   <target name="build_rmics" description="kompiliert alle Proxies (fuer Klassen, die auf Impl enden)">
 	<rmic base="${build}" includes="**/*Impl.class">		
 	</rmic>
+		<unjar dest="${build}">  				
+  				<fileset dir="lib">
+        			<include name="**/*.jar"/>
+        			<!--<exclude name="**/tmp*.zip"/>-->
+    			</fileset>  		
+  		</unjar>
   </target>
   
   <target name="clean" description="clean up" >
