@@ -8,11 +8,11 @@ package projects.interfaces;
 
 import org.jconfig.Category;
 
-import projects.catalog.control.CSession;
 import projects.catalog.model.Catalog;
 import projects.catalog.model.Picture;
 import projects.catalog.model.User;
 
+import API.control.Session;
 import API.interfaces.PersistenceHelper;
 
 /**
@@ -27,13 +27,13 @@ import API.interfaces.PersistenceHelper;
  */
 public interface CPersistenceHelper extends PersistenceHelper {
 	
-	CSession session = null;
+	Session session = null;
 	
 	User getUser(long userID); // einen einzelnen user aus der db nach seiner id fischen
 	
-	User getUser(CSession session); // fieleicht noch nach der session
+	User getUser(Session session); // fieleicht noch nach der session
 	
-	void setUser(User usr, CSession session); // einen user in die db schreiben
+	void setUser(User usr, Session session); // einen user in die db schreiben
 	
 	
 	/**
@@ -53,6 +53,6 @@ public interface CPersistenceHelper extends PersistenceHelper {
 	 */
 	void setCategory(Category category);
 	
-	void setPicture(Picture pic, CSession session);
+	void setPicture(Picture pic, Session session);
 	
 }

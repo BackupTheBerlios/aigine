@@ -10,3 +10,5 @@ h1 { font:Verdana, Arial, Sans-Serif; font-size:16pt }
 .blocktitle {font-family:Verdana,Helvetica,Arial,Sans-Serif; color:red; background-color:#eeeeee ; font-size:9pt; padding:1pt}
 .catalog {font-family:Verdana,Helvetica,Arial,Sans-Serif; color:darkblue; background-color:#eefefe ; font-size:8pt;}
 .main {font-family:Verdana,Helvetica,Arial,Sans-Serif; color:darkgray; background-color:#fefeee ; font-size:10pt;}
+
+.wichtig { color:red; font-weight:bold ; }

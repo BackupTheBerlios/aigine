@@ -8,8 +8,8 @@ import java.rmi.Remote;
 import java.rmi.RemoteException;
 import java.util.Hashtable;
 
-import API.control.web.Block;
 import API.model.RemoteObject;
+import API.portal.model.Block;
 
 /**
  * @author tobi

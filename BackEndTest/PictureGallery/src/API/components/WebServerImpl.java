@@ -63,7 +63,6 @@ public class WebServerImpl extends WebServer implements CClient {
     
       
     /**
-     * durch Dennis: Diese Methode ist im CWebServerImpl allgemein für Manager gelöst ..
      * Führt die jeweilige Aktion, abhängig von dem übergebenen Property "op" aus.
      * ab 20041107:
      * 		Methode ist reduziert auf Aufruf des PortalServer und Ausgabe dessen
@@ -79,7 +78,7 @@ public class WebServerImpl extends WebServer implements CClient {
         /* Diese Methode könnte auch erweitert werden, damit sie nur bei bestimmten 
          * Aufrufformen (Parametern) an den Portalserver geht und ansonsten andere
          * Aufrufe anders weiterleitet, ist aber für IM nicht erforderlich. */
-        String site = new String("leerer Durchlauf") ;
+        byte[] site = new String("leerer Durchlauf").getBytes() ;
         PortalHandle theServer = null ;
 		// wichtigste Faehigkeit des WebServers
 		System.out.println("==> API.components.WebServerImpl.getActionBody: Stelle Anfrage an den Portalserver ...") ;
@@ -94,26 +93,27 @@ public class WebServerImpl extends WebServer implements CClient {
 					site = theServer.getPortalAsHTML(requestProps) ;
 				} else {
 					// Fehler behandeln
-					site = new String("--- PortalServer wurde (beim Manager) nicht gefunden ...") ;
+					site = new String("--- PortalServer wurde (beim Manager) nicht gefunden ...").getBytes() ;
 					// ^damit wird der Fehler mit geparst und als Ausgabe des WebServers angezeigt.
 					System.out.println("--- angeforderter PortalServer ist bei meinem Manager nicht erreichbar!!!\n") ;
 				}
 			} else {
 				// Fehler behandeln
-				site = new String("--- Handle ist nicht vom Typ 'server'!") ;
+				site = new String("--- Handle ist nicht vom Typ 'server'!").getBytes() ;
 				// ^damit wird der Fehler mit geparst und als Ausgabe des WebServers angezeigt.
 				System.out.println("--- Übergebenes RemoteObject ist nicht vom benötigten Typ 'server'!\n") ;
 			}
 		} else {
 			// Fehler behandeln
-			site = new String("--- Handle ist null!") ;
+			site = new String("--- Handle ist null!").getBytes() ;
 			// ^damit wird der Fehler mit geparst und als Ausgabe des WebServers angezeigt.
 			System.out.println("--- Übergebenes RemoteObject ist null!\n") ;
 		}
 
 		System.out.println(">>> site (am Ende von getActionBody) = " + site) ;
 		System.out.println("<== API.components.WebServerImpl") ;
-        return site.getBytes();
+		return site ;
+        // return site.getBytes();
     }
     
 	/**

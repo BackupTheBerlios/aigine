@@ -99,7 +99,7 @@
 		<!-- Pfad fuer den Klassenserver, der das Repository der RMIComponents zur Verfuegung stellt. -->
 		<property name="codebase" value="${server.path}"/>
 		<!-- Klassenname der zu ladenen Komponenten -->
-		<property name="compClassName" value="API.components.PortalServerImpl"/>
+		<property name="compClassName" value="API.portal.PortalServerImpl"/>
 		<!-- Name der Komponente -->
 		<property name="compName" value="PortalServer"/>
 		<!-- Domain Name des Serverdienstes der gestartet werden soll -->

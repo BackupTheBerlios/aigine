@@ -1,21 +1,17 @@
 /*
- * Created on 07.11.2004
+ * Created on 02.01.2005
  *
  * To change the template for this generated file go to
  * Window&gt;Preferences&gt;Java&gt;Code Generation&gt;Code and Comments
  */
-package API.interfaces;
-import java.rmi.*;
-import java.util.Hashtable;
-
+package API.portal.render;
 
 /**
- * @author Dennis
+ * @author drichter
  *
  * To change the template for this generated type comment go to
  * Window&gt;Preferences&gt;Java&gt;Code Generation&gt;Code and Comments
  */
-public interface PortalHandle extends ServerHandle {
+class RenderXML {
 
-	public byte[] getPortalAsHTML(Hashtable requestProps) throws RemoteException ;
 }

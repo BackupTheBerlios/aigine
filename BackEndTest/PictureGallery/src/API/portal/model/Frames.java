@@ -2,7 +2,7 @@
  * Created on 16.09.2004
  *
  */
-package API.control.web;
+package API.portal.model;
 
 import java.util.Hashtable;
 

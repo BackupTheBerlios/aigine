@@ -1,6 +1,6 @@
 package projects.interfaces;
 
-import projects.catalog.control.CSession;
+import API.control.Session;
 import API.interfaces.ServerHandle ;
 import API.interfaces.ManagerHandle ;
 
@@ -24,7 +24,7 @@ public interface CLoginServer extends ServerHandle {
 	 * Tags are:@throws java.rmi.RemoteException
 	 * @return CSession
 	 */
-	CSession createSession(long usrID) throws java.rmi.RemoteException;
+	Session createSession(long usrID) throws java.rmi.RemoteException;
 	
 	ManagerHandle getManager()throws java.rmi.RemoteException;
 	void setManager(ManagerHandle manager)throws java.rmi.RemoteException;

@@ -6,7 +6,7 @@
  */
 package projects.catalog.model;
 
-import projects.catalog.control.CSession;
+import API.control.Session;
 
 /**
  * @author your mama
@@ -18,7 +18,7 @@ public class User {
 	private String firstname;
 	private String lastname;
 	private String nicname;
-	private CSession session;
+	private Session session;
 	
 	
 	
@@ -50,13 +50,13 @@ public class User {
 	/**
 	 * @return Returns the sessionID.
 	 */
-	public CSession getSession() {
+	public Session getSession() {
 		return session;
 	}
 	/**
 	 * @param sessionID The sessionID to set.
 	 */
-	public void setSession(CSession session) {
+	public void setSession(Session session) {
 		this.session = session;
 	}
 	/**

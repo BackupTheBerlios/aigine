@@ -11,10 +11,10 @@ import java.rmi.server.RMIClientSocketFactory;
 import java.rmi.server.RMIServerSocketFactory;
 import java.util.Hashtable;
 
-import projects.catalog.control.CSession;
 import projects.interfaces.CDBServer;
 import projects.interfaces.CLoginServer;
 import API.interfaces.ManagerHandle;
+import API.control.Session;
 import API.control.Server;
 import API.model.RemoteObject;
 
@@ -62,7 +62,7 @@ public class CLoginServerImpl extends Server implements CLoginServer {
 	 * 
 	 * @see projects.interfaces.CLoginServer#createSession(java.lang.Long)
 	 */
-	public CSession createSession(long usrID) {
+	public Session createSession(long usrID) {
 		// TODO Schauen ob der user für die session vorhanden ist
 		
 		return null;

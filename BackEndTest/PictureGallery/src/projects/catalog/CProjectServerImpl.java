@@ -12,10 +12,10 @@ import projects.interfaces.CProjectServer;
 import API.interfaces.ManagerHandle;
 
 import API.control.Server ;
-import API.control.web.Block;
-import API.control.web.BlockContent;
 import API.model.RemoteObject;
 import API.model.RemoteObjectTable;
+import API.portal.model.Block;
+import API.portal.model.BlockContent;
 
 /**
  * 
@@ -159,15 +159,48 @@ public class CProjectServerImpl extends Server implements CProjectServer {
 			result.setTitle("Toplist Bilder!!") ;
 		} else if (op.indexOf("main") == 0) {
 			BlockContent bc = new BlockContent("Hier soll dann die Musik spielen!") ;
-			BlockContent tempbc = new BlockContent("Und das dann auch noch in mehreren Elementen (hier: Absätzen), wie hier demonstriert!") ;
+			BlockContent tempbc = new BlockContent("Und das dann auch noch in mehreren Elementen (hier: Absätzen), wie hier demonstriert! Wobei dieser hier hervorgehoben wird.") ;
 			BlockContent bcEnde = null ;
+			BlockContent bcSubEnde1 = null ;
+			tempbc.addAttribute("class","wichtig") ;
 			bc.setNachfolger(tempbc) ;
 			bcEnde = tempbc ;
-			tempbc = new BlockContent("Und weil es so schön ist, hier noch ein Absatz ... muh <a href=\"catalog.html?block=kategorien&srv=CProjectServer&op=toplist\">test</a>") ;
+			tempbc = new BlockContent("Und weil es so schön ist, hier noch ein Absatz ... mit einer anschließenden ", "text") ;
 			bcEnde.setNachfolger(tempbc) ;
+			bcEnde = tempbc ;
+			tempbc = new BlockContent("Linkliste:", "ulist") ;
+			bcEnde.setNachfolger(tempbc) ;
+			bcEnde = tempbc ;
+			
+			tempbc = new BlockContent("1. Link:", "listpoint") ;
+			bcEnde.setSubContent(tempbc) ;
+			bcSubEnde1 = tempbc ;
+			
+			tempbc = new BlockContent("rechten Block von Kategorien auf Toplist ändern", "link") ;
+			tempbc.addAttribute("href","catalog.html?srv=CProjectServer&block=kategorien&op=toplist") ;
+			tempbc.addAttribute("class","wichtig") ;
+			tempbc.addAttribute("class","wichtig") ;
+			bcSubEnde1.setSubContent(tempbc) ;
+			
+			tempbc = new BlockContent("1. Link:", "listpoint") ;
+			bcSubEnde1.setNachfolger(tempbc) ;
+			bcSubEnde1 = tempbc ;
+			
+			tempbc = new BlockContent("rechten Block von Toplist auf Kategorien ändern", "link") ;
+			tempbc.addAttribute("href","catalog.html?srv=CProjectServer&block=kategorien&op=kategorien") ;
+			tempbc.addAttribute("class","wichtig") ;
+			tempbc.addAttribute("class","wichtig") ;
+			bcSubEnde1.setSubContent(tempbc) ;
+
+			
+//			bcEnde = tempbc ;
+			
 			result = new Block(bc) ;
 			result.setTitle("Hauptbereich") ;
 			result.setStyle("main") ;
+			
+	//		<a href=\"catalog.html?block=kategorien&srv=CProjectServer&op=toplist\">test</a>
+			
 		} else { 
 			WebRequestError = new String("unexpected Operation") ;
 			result = new Block("unexpected Block-Operation") ;

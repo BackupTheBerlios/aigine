@@ -6,12 +6,12 @@ import java.rmi.server.RMIServerSocketFactory;
 import java.rmi.server.UnicastRemoteObject;
 import java.util.Hashtable;
 
-import API.control.web.Block;
 import API.interfaces.AdminClient;
 import API.interfaces.ManagerHandle;
 import API.interfaces.ServerHandle;
 import API.model.RemoteObject;
 import API.model.RemoteObjectTable;
+import API.portal.model.Block;
 
 /**
  * Implementierung häufig benötiger Serverfunktionalitäten, z.B. Anmeldung von Clients.
@@ -36,7 +36,7 @@ public abstract class Server extends UnicastRemoteObject {
 	 * @param server
 	 */
 	public void init(RemoteObject compProps, ServerHandle server) {
-		// TODO in extra Klasse Service auslagern, die von Server abgeleitet wird
+		// TODO (?) in extra Klasse Service auslagern, die von Server abgeleitet wird
 	}
 
 	/**
@@ -92,9 +92,8 @@ public abstract class Server extends UnicastRemoteObject {
 			System.out.println("--- RemoteException beim Holen eines Servers '" + Servername + "' aufgetreten: " + re) ;
 		}
 		if (ro != null) {
-			System.out.println("  > Vergleich von '" + ro.getServicetyp() + "' mit 'server' mittels compareTo ergibt " + ro.getServicetyp().compareTo(new String("server")) ) ;
+//			System.out.println("  > Vergleich von '" + ro.getServicetyp() + "' mit 'server' mittels compareTo ergibt " + ro.getServicetyp().compareTo(new String("server")) ) ;
 			if (ro.getServicetyp().compareTo(new String("server")) == 0) {
-			// TODO (byDR) hier statt indexOf compareTo testen!	
 				System.out.println("+++ Ich habe einen Server erhalten!!") ;
 				theServer = (ServerHandle) ro.getServerApp() ;
 				if (theServer != null) {
