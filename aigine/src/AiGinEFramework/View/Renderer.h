@@ -10,26 +10,16 @@ class SceneGraph;
 
 class SceneManagement;
 
-/**
- * @stereotype interface 
- */
-class Renderer {
-
-
-    
-private:    
+/** @stereotype interface */
+class Renderer
+{
+private:
 
     /**
      * @supplierCardinality 1
-     * @clientCardinality 1 
+     * @clientCardinality 1
      */
     GraphicPipeline * lnkGraphicPipeline;
-
-    /**
-     * @supplierCardinality 1
-     * @clientCardinality 1 
-     */
-    SceneManagement * lnkSceneGraph;
 };
 
 #endif //RENDERER_H

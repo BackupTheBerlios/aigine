@@ -35,12 +35,15 @@ public:
 
     virtual ~GraphicPipeline();
 
-    /**
-     * Initialisiert OpenGL.
-     */
+    /** Initialisiert OpenGL. */
     void initOpenGL(int argc, char * * argv);
 
     void reshape(int width, int height);
+
+    /**
+     * Initialisiert die Bildschirmausgabe. 
+     */
+    void initDisplay();
 
 private:
 
@@ -51,16 +54,13 @@ private:
      * @clientCardinality 1
      */
 
-    Camera * lnkCamera;
-
-
+    StateManager * lnkStateManager;
 
     /**
-     * @supplierCardinality 1
+     * @supplierCardinality 1..*
      * @clientCardinality 1
      */
-
-    StateManager * lnkStateManager;
+    Camera * lnkCamera;
 };
 
 #endif //GRAPHICPIPELINE_H

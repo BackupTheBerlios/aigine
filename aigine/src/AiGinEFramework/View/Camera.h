@@ -6,6 +6,11 @@
 
 #define CAMERA_H
 
+#include <vector>
+#include "../Model/Point3D.h"
+
+using namespace std;
+
 class Viewport;
 
 
@@ -17,28 +22,15 @@ class Camera
 
 public:
 
-
-
-    Vector * getPosition();
-
-
+	Point3D* getPosition();
 
     Camera();
 
-
-
-    /** [6] or [5] if you don't think you don't need the near */
-
-    void extractPlanes(Plane param);
-
-
+    Camera(Point3D* position);
 
     void attachViewport(Viewport * param);
 
-
-
     virtual void set();
-
 
 
     void turnDown();
@@ -71,11 +63,13 @@ public:
 
     void moveRight();
 
-private:    
+private:
+
+    Point3D * position;
 
     /**
      * @supplierCardinality 1
-     * @clientCardinality 1 
+     * @clientCardinality 1
      */
     Viewport * lnkViewport;
 };

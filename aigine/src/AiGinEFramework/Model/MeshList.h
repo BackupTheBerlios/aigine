@@ -13,7 +13,8 @@ class Mesh;
 
 /** Liste von <class>Mesh</class> Objekten */
 
-class MeshList {
+class MeshList
+{
 
 private:
 

@@ -6,13 +6,15 @@
 
 #define SCENEMANAGEMENT_H
 
+#include <string>
+#include "GraphicPipeline.h"
 #include "SceneGraph.h"
+
+using namespace std;
+
 class Camera;
 
 class Renderer;
-class ObjectList;
-
-
 
 /**
  * Das "SceneManagement" realisiert den Zugriff auf die "Objekte" - Hinzufügen,
@@ -23,33 +25,27 @@ class ObjectList;
  * Vorhandensein eines Spiegels (Scene muss zwei Mal gerendert werden)
  * ist dafür verantwortlich, dass alle sichtbaren "Objekte" gezeichnet werden.
  */
-
-class SceneManagement : public SceneGraph
+class SceneManagement : public SceneGraph, public GraphicPipeline
 {
 
 public:
 
-    void load(String fileType, String fileName, object insertAt);
+    SceneManagenent();
 
+    void load(string fileType, string fileName);
+
+    /**
+     * Ausgabe der Szene. 
+     */
     void display();
 
 private:
 
-
-
     /**
-     * @clientCardinality 1
      * @supplierCardinality 1
-     * @label SceneObjects
-     */
-
-    ObjectList * lnkObjectList;
-
-    /**
      * @clientCardinality 1
-     * @supplierCardinality 1..*
      */
-    Camera * lnkRenderer;
+    Renderer * lnkRenderer;
 };
 
 #endif //SCENEMANAGEMENT_H

@@ -7,13 +7,9 @@
 #define SCENEGRAPH_H
 
 #include <GL/glut.h>
-#include "SceneManagement.h"
 
 #include "../Model/Tree.h"
-#include "GraphicPipeline.h"
-class Camera;
 class AiGinEObject;
-class Renderer;
 class ObjectTree;
 
 
@@ -26,17 +22,17 @@ class ObjectTree;
  * hinzuzufügen (z.B. aus vrml oder 3ds).
  */
 
-class SceneGraph {
+class SceneGraph
+{
 public:
 
-    void addObject(AiGinEObject* object);
+    void addObject(AiGinEObject * object);
 
     void draw();
 
-    void removeObject(AiGinEObject* object);
+    void removeObject(AiGinEObject * object);
 
 private:
-    Tree* objects;
     ObjectTree * lnkObjectTree;
 };
 

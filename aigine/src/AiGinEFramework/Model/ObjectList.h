@@ -11,7 +11,8 @@ class AiGinEObject;
 
 
 
-class ObjectTree {
+class ObjectTree
+{
 
 private:
 
