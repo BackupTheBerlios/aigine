@@ -15,14 +15,14 @@ class SceneManagement;
  * - reagiert derzeitig nur auf einzelne Tasten, schön wäre natürlich
  *   wenn man in meherere Richtungen (z.B. nach vorne links) laufen könnte.
  *
- * @author Danny Graef, Tobias Harpering ,Frank Otto
+ * @author Danny Graef, Tobias Harpering, Frank Otto
  * @date 2004-01-06
  */
 class Keyboard
 {
 public:
 	/**
-	 * Konstruktor	 
+	 * Konstruktor
 	 */
 	Keyboard(SceneManagement* sceneMan);
 
@@ -31,7 +31,7 @@ public:
      * Prüft welche Taste gedrückt wurde und für die zugewiesene
 	   * Methode auf.
      */
-    void keyAction(unsigned char key, int x, int y);    
+    void keyAction(unsigned char key, int x, int y);
 
 private:
 	/**
