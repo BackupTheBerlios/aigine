@@ -72,40 +72,40 @@ bool Vector3D::operator != (const Vector3D& v) const {
 	if(x != v.x) return true; if(y != v.y) return true; return z != v.z;
 }
 
-float Vector3DLength(const Vector3D& v) {
+float Vector3D::Vector3DLength(const Vector3D& v) {
 	return sqrtf(v.x * v.x + v.y * v.y + v.z * v.z);
 }
-float Vector3DLengthSq(const Vector3D& v) {
+float Vector3D::Vector3DLengthSq(const Vector3D& v) {
 	return v.x * v.x + v.y * v.y + v.z * v.z;
 }
-float Vector3DDot(const Vector3D& v1, const Vector3D& v2) {
+float Vector3D::Vector3DDot(const Vector3D& v1, const Vector3D& v2) {
 	return v1.x * v2.x + v1.y * v2.y + v1.z * v2.z;
 }
-float Vector3DAngle(const Vector3D& v1, const Vector3D& v2) {
+float Vector3D::Vector3DAngle(const Vector3D& v1, const Vector3D& v2) {
 	return acosf(Vector3DDot(Vector3DNormalizeEx(v1), Vector3DNormalizeEx(v2)));
 }
-Vector3D	Vector3DNormalize(const Vector3D& v) {
+Vector3D	Vector3D::Vector3DNormalize(const Vector3D& v) {
 	return v / sqrtf(v.x * v.x + v.y * v.y + v.z * v.z);
 }
-Vector3D	Vector3DNormalizeEx(const Vector3D& v) {
+Vector3D	Vector3D::Vector3DNormalizeEx(const Vector3D& v) {
 	return v / (sqrtf(v.x * v.x + v.y * v.y + v.z * v.z) + 0.0001f);
 }
-Vector3D	Vector3DCross(const Vector3D& v1, const Vector3D& v2) {
+Vector3D	Vector3D::Vector3DCross(const Vector3D& v1, const Vector3D& v2) {
 	return Vector3D(v1.y * v2.z - v1.z * v2.y, v1.z * v2.x - v1.x * v2.z, v1.x * v2.y - v1.y * v2.x);
 }
-Vector3D	Vector3DInterpolateCoords(const Vector3D& v1, const Vector3D& v2, const float p) {
+Vector3D	Vector3D::Vector3DInterpolateCoords(const Vector3D& v1, const Vector3D& v2, const float p) {
 	return v1 + p * (v2 - v1);
 }
-Vector3D	Vector3DInterpolateNormal(const Vector3D& v1, const Vector3D& v2, const float p) {
+Vector3D	Vector3D::Vector3DInterpolateNormal(const Vector3D& v1, const Vector3D& v2, const float p) {
 	return Vector3DNormalize(v1 + p * (v2 - v1));
 }
-Vector3D	Vector3DMin(const Vector3D& v1, const Vector3D& v2) {
+Vector3D	Vector3D::Vector3DMin(const Vector3D& v1, const Vector3D& v2) {
 	return Vector3D(MIN(v1.x, v2.x), MIN(v1.y, v2.y), MIN(v1.z, v2.z));
 }
-Vector3D	Vector3DMax(const Vector3D& v1, const Vector3D& v2) {
+Vector3D	Vector3D::Vector3DMax(const Vector3D& v1, const Vector3D& v2) {
 	return Vector3D(MAX(v1.x, v2.x), MAX(v1.y, v2.y), MAX(v1.z, v2.z));
 }
-Vector3D	Vector3DRandom() {
+Vector3D	Vector3D::Vector3DRandom() {
 	return Vector3DNormalizeEx(Vector3D(FloatRandom(-1.0f, 1.0f), FloatRandom(-1.0f, 1.0f), FloatRandom(-1.0f, 1.0f)));
 }
 /*

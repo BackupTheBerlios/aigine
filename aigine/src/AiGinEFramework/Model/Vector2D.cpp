@@ -84,37 +84,37 @@ bool Vector2D::operator != (const Vector2D& v) const {
 }
 
 // ******************************************************************
-float Vector2DLength(const Vector2D& v) {
+float Vector2D::Vector2DLength(const Vector2D& v) {
 	return sqrtf(v.x * v.x + v.y * v.y);
 }
-float Vector2DLengthSq(const Vector2D& v) {
+float Vector2D::Vector2DLengthSq(const Vector2D& v) {
 	return v.x * v.x + v.y * v.y;
 }
-float Vector2DDot(const Vector2D& v1, const Vector2D& v2) {
+float Vector2D::Vector2DDot(const Vector2D& v1, const Vector2D& v2) {
 	return v1.x * v2.x + v1.y * v2.y;
 }
-float Vector2DAngle(const Vector2D& v1, const Vector2D& v2) {
+float Vector2D::Vector2DAngle(const Vector2D& v1, const Vector2D& v2) {
 	return acosf(Vector2DDot(Vector2DNormalizeEx(v1), Vector2DNormalizeEx(v2)));
 }
-Vector2D	Vector2DNormalize(const Vector2D& v) {
+Vector2D Vector2D::Vector2DNormalize(const Vector2D& v) {
 	return v / sqrtf(v.x * v.x + v.y * v.y);
 }
-Vector2D	Vector2DNormalizeEx(const Vector2D& v) {
+Vector2D Vector2D::Vector2DNormalizeEx(const Vector2D& v) {
 	return v / (sqrtf(v.x * v.x + v.y * v.y) + 0.0001f);
 }
-Vector2D	Vector2DInterpolateCoords(const Vector2D& v1, const Vector2D& v2, const float p) {
+Vector2D Vector2D::Vector2DInterpolateCoords(const Vector2D& v1, const Vector2D& v2, const float p) {
 	return v1 + p * (v2 - v1);
 }
-Vector2D	Vector2DInterpolateNormal(const Vector2D& v1, const Vector2D& v2, const float p) {
+Vector2D Vector2D::Vector2DInterpolateNormal(const Vector2D& v1, const Vector2D& v2, const float p) {
 	return Vector2DNormalize(v1 + p * (v2 - v1));
 }
-Vector2D	Vector2DMin(const Vector2D& v1, const Vector2D& v2) {
+Vector2D Vector2D::Vector2DMin(const Vector2D& v1, const Vector2D& v2) {
 	return Vector2D(MIN(v1.x, v2.x), MIN(v1.y, v2.y));
 }
-Vector2D	Vector2DMax(const Vector2D& v1, const Vector2D& v2) {
+Vector2D Vector2D::Vector2DMax(const Vector2D& v1, const Vector2D& v2) {
 	return Vector2D(MAX(v1.x, v2.x), MAX(v1.y, v2.y));
 }
-Vector2D	Vector2DRandom() {
+Vector2D Vector2D::Vector2DRandom() {
 	return Vector2DNormalizeEx(Vector2D(FloatRandom(-1.0f, 1.0f), FloatRandom(-1.0f, 1.0f)));
 }
 /*

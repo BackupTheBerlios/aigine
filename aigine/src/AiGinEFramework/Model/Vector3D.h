@@ -12,8 +12,12 @@ class Vector3D
 {
 public:
 	// Variablen
-	union
-	{
+
+
+    /**
+     * @alias data 
+     */
+	union {
 		struct
 		{
 			float x;	// Koordinaten
@@ -65,22 +69,23 @@ public:
 
 	void print();
 	void print(char* description);
-};
+//};
 
 // ******************************************************************
 // Funktionen deklarieren
-float Vector3DLength(const Vector3D& v);
-float Vector3DLengthSq(const Vector3D& v);
-float Vector3DDot(const Vector3D& v1, const Vector3D& v2);
-float Vector3DAngle(const Vector3D& v1, const Vector3D& v2);
-Vector3D	Vector3DNormalize(const Vector3D& v);
-Vector3D	Vector3DNormalizeEx(const Vector3D& v);
-Vector3D	Vector3DCross(const Vector3D& v1, const Vector3D& v2);
-Vector3D	Vector3DInterpolateCoords(const Vector3D& v1, const Vector3D& v2, const float p);
-Vector3D	Vector3DInterpolateNormal(const Vector3D& v1, const Vector3D& v2, const float p);
-Vector3D	Vector3DMin(const Vector3D& v1, const Vector3D& v2);
-Vector3D	Vector3DMax(const Vector3D& v1, const Vector3D& v2);
-Vector3D	Vector3DRandom();
+static float Vector3DLength(const Vector3D& v);
+static float Vector3DLengthSq(const Vector3D& v);
+static float Vector3DDot(const Vector3D& v1, const Vector3D& v2);
+static float Vector3DAngle(const Vector3D& v1, const Vector3D& v2);
+static Vector3D	Vector3DNormalize(const Vector3D& v);
+static Vector3D	Vector3DNormalizeEx(const Vector3D& v);
+static Vector3D	Vector3DCross(const Vector3D& v1, const Vector3D& v2);
+static Vector3D	Vector3DInterpolateCoords(const Vector3D& v1, const Vector3D& v2, const float p);
+static Vector3D	Vector3DInterpolateNormal(const Vector3D& v1, const Vector3D& v2, const float p);
+static Vector3D	Vector3DMin(const Vector3D& v1, const Vector3D& v2);
+static Vector3D	Vector3DMax(const Vector3D& v1, const Vector3D& v2);
+static Vector3D	Vector3DRandom();
 //float FloatRandom(const float fMin, const float fMax);
+};
 
 #endif //Vector3D_H
