@@ -12,7 +12,7 @@
 GraphicPipeline::GraphicPipeline()
 {
 	this->windowSize = new int ;
-	this->InitMask();		//	zuerst die bilder mask.zip entpacken!!!
+	//this->InitMask();		//	zuerst die bilder mask.zip entpacken!!!
 }
 
 //____________________________________________________________________________
