@@ -16,11 +16,14 @@ import java.rmi.server.UnicastRemoteObject;
 import org.jconfig.Configuration;
 import org.jconfig.ConfigurationManager;
 
+import projects.interfaces.VTClient;
 import API.interfaces.Application;
-import API.interfaces.Client;
 import API.interfaces.ServerHandle;
 import API.model.RemoteObject;
 import API.util.RemoteObjectHelper;
+
+
+
 /**
  * Wird vom RMIComponentLoader verwendet um die entsprechende Applikation
  * anhängig von der angegebenen <code>codebase</code> und dem
@@ -62,7 +65,7 @@ public class BootStrapedApplicationStarter implements BootStrapedComponent {
      * @param question Die Frage welche gestellt werden soll
          * @return valider Wert innerhalb des g.g. Intervalls oder -1 fuer nicht valide
      */
-    private int getIntAuswahl(int min, int max, String question) {
+    private int getIntChoose(int min, int max, String question) {
       // Frage stellen und Eingabe einlesen
       System.out.println(question);
       BufferedReader inB = new BufferedReader(new InputStreamReader(System.in)); //gepufferte wandlung von asci nach unicode
@@ -121,7 +124,7 @@ public class BootStrapedApplicationStarter implements BootStrapedComponent {
         System.out.println("=> BootStrapedApplicationStarter.init()");
         //konsolenabfrage...
         ausgabeMenue();
-        int menueAuswahl = getIntAuswahl(0, categorynames.length,"Was soll´s denn sein: ");
+        int menueAuswahl = getIntChoose(0, categorynames.length,"Was soll´s denn sein: ");
         //hier wird der ausgewaehlte service (Categoryname) in category gespeichert 
         //ist kürzer;-) 
         category=categorynames[menueAuswahl];
@@ -180,8 +183,10 @@ public class BootStrapedApplicationStarter implements BootStrapedComponent {
             System.out.println(
                 "\tlookup(" + component.getRmiName() + name + " = " + server);
             client= (Application) clientClass.newInstance();
-            ((Client) client).init(component, server);
+            VTClient vtc =  (VTClient)client;            
             System.out.println("\tnew instance = " + client);
+            vtc.init(component,server);
+            System.out.println("\tVTClient.init called");
             UnicastRemoteObject.exportObject(client);
             System.out.println("\texported Object = " + client);
             // setzte Eigenreferenz
@@ -205,6 +210,7 @@ public class BootStrapedApplicationStarter implements BootStrapedComponent {
      */
     private void runServer() {
         System.out.println("=> BootStrapedApplicationStarter.runServer()");
+        System.out.println("component: "+component);
         Class serverClass= compClass;
         Server serverObject= null;
         String name= component.getCompClassName();
@@ -214,10 +220,13 @@ public class BootStrapedApplicationStarter implements BootStrapedComponent {
             System.out.println(
                 "\tcreateRegistry(Integer.parseInt(rmiPort) ="
                     + component.getPort()
-                    + " compName >"
+                    + " compClassName >"
                     + name);
             serverObject= (Server) serverClass.newInstance();
+            System.out.println("eine neue Instans von: "+name+" wurde instanziiert");
+            
             serverObject.initObjectTable();
+            System.out.println("neue object Tabelle");
             System.out.println("\tnew serverInstance " + serverObject);
             Naming.rebind(
                 component.getRmiName() + component.getCompName(),
@@ -235,13 +244,14 @@ public class BootStrapedApplicationStarter implements BootStrapedComponent {
             for (int i= 0; i < dfs.length; i++) {
                 System.out.println("\n" + dfs[i]);
             }
+            server= (ServerHandle) serverObject;
         } catch (Exception e) {
             e.printStackTrace();
             System.out.println(
                 "Fehler in BootStrapedServerStarter.runServer() : "
                     + e.getMessage());
         }
-        server= (ServerHandle) serverObject;
+        
         // für register Methode erforderlich
         System.out.println("<= BootStrapedApplicationStarter.runServer()");
     }   
@@ -263,7 +273,7 @@ public class BootStrapedApplicationStarter implements BootStrapedComponent {
                 + " , ServerHandle "
                 + server
                 + ")");
-        // TODO Prüfen der Registermethode
+        //Prüfen der Registermethode
         try {
 			System.out.println("\tRegistrierung an Server = " + server);
 			System.out.println("\t\t für Komponente = " + component);
@@ -276,9 +286,9 @@ public class BootStrapedApplicationStarter implements BootStrapedComponent {
             	
                 // anonym => Anmeldung ohne Password            	
                 System.out.println(
-                    "\tAnonyme Registrierung > authTyp = anonym > an : "
+                    "\tAnonyme Registrierung > authTyp = anonym > an : \n"
                         + server
-                        + "  > mit : "
+                        + "\n  > mit : \n"
                         + remoteObject);
                 server.register(remoteObject);                
 				}else{
@@ -294,8 +304,7 @@ public class BootStrapedApplicationStarter implements BootStrapedComponent {
 						e1.printStackTrace();
 					}
 					System.out.println("BootstrepedApp.register: manager lookup SUCCESS!!!");
-					manager.registerService(component);
-					((Server)server).init(remoteObject, manager);
+					manager.registerService(remoteObject,server);					
 					System.out.println("BootstrepedApp.register: manager.register SUCCESS!!!");
 				}
             } else if (remoteObject.getAuthTyp().equals("password")) {
