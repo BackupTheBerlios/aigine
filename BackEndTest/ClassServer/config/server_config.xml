@@ -8,9 +8,9 @@
 		<!-- URL fuer den Klassenserver -->
 		<property name="url" value="http://localhost:2002/"/>
 		<!-- das repository relativ angeben -->
-		<property name="repository" value="../RMIComponents/bin"/>
+		<property name="repository" value="../PictureGallery/bin"/>
 		<!-- Klassenname der zu ladenen Komponenten -->
-		<property name="externalrepository" value="../RMIComponents/bin/project"/>
+		<property name="externalrepository" value="../PictureGallery/bin/project"/>
 		<!-- Name der Komponente -->
 	</category>
 	<category name="jconfigserver">
@@ -19,7 +19,7 @@
 		<!-- port der Anwendung -->
 		<property name="port" value="2001"/>
 		<!-- das repository absolut angeben -->
-		<property name="repository" value="C:\Programme\eclipse\Borland\TogetherEC\workspace\ClassServer\config"/>
+		<property name="repository" value="c:\Prog_exec\eclipse\workspace\ClassServer\config\"/>
 		<!-- Klassenname der zu ladenen Komponenten -->
 	</category>
 </properties>
