@@ -1,4 +1,4 @@
-// Copyright MageLang Institute; Version $Id: ClassFileServer.java,v 1.6 2004/09/09 08:36:11 fosion Exp $
+// Copyright MageLang Institute; Version $Id: ClassFileServer.java,v 1.7 2004/10/03 14:59:37 mr_nice Exp $
 
 /*
  * Copyright (c) 1996, 1996, 1997 Sun Microsystems, Inc. All Rights Reserved.
@@ -13,6 +13,8 @@
 //package examples.classServer;
 
 import java.io.*;
+import java.util.jar.JarFile;
+
 import org.jconfig.server.ConfigurationServer;
 import org.jconfig.Configuration;
 import org.jconfig.ConfigurationManager;
@@ -46,6 +48,9 @@ public class ClassFileServer extends ClassServer {
 		super(port);
 				
 		this.repository = configuration.getProperty("repository",System.getProperty("java.io.tmpdir"),"classserver");
+		
+		this.getRepositoryContent(repository);
+		
 		this.externalrepository = configuration.getProperty("externalrepository",System.getProperty("java.io.tmpdir"),"classserver");
 		System.out.println("CLassFileServer Started whith\n classpath = " + this.repository
 										+ " | on port = " + port + " | and the externalDir = "
@@ -57,7 +62,37 @@ public class ClassFileServer extends ClassServer {
 		System.out.println("Done");
 		
 	}
-
+	
+	private void getRepositoryContent(String path) {
+	File file = new File(path);
+    
+    File[] dirContent = file.listFiles();
+    
+    int anzahlDateien = 0;
+    int anzahlVerzeichnisse = 0;
+    
+    for (int i = 0; i < dirContent.length; i++) {
+        
+        File tmpFile = dirContent[i];
+        
+        if(tmpFile.isDirectory()){
+            
+            anzahlVerzeichnisse++;
+            
+            
+        }else{
+            
+            anzahlDateien++;
+            
+        }
+        
+    }
+    
+    System.out.println("Im Verzeichnis " + path
+        + " befinden sich " + anzahlDateien
+        + " Dateien und " + anzahlVerzeichnisse
+        + " Unterverzeichnisse." ); 
+	}
 	/**
 	 * Returns an array of bytes containing the bytecodes for the class
 	 * represented by the argument <b>path </b>. The <b>path </b> is a dot
@@ -71,13 +106,14 @@ public class ClassFileServer extends ClassServer {
 	public byte[] getBytes(String path, String fileExt) throws IOException,
 			ClassNotFoundException {
 		byte[] bytecodes = null;
-		//
-		if(path.equals("project.voting.model.Vote")){
-			System.out.println("\n----------------------------\n\t"+path+fileExt+" gelesen!!\n----------------------------\n");
-		}
 		File f = null;
+		JarFile	jf = null;
 		System.out.println("reading at classpath: " + repository + " file:"
 				+ path + fileExt);
+		if(fileExt == ".jar") {
+		 jf= new JarFile(new File(repository + File.separator
+					+ path.replace('.', File.separatorChar) + fileExt+"!/"));
+		} //TODO vieleicht im den jar:http... path bereitz uebergeben als classpath...
 		f = new File(repository + File.separator
 				+ path.replace('.', File.separatorChar) + fileExt);
 		int length = (int) (f.length());

@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="iso-8859-1" ?>
 <properties>
 	<variables>
-		<variable name="server.path" value="http://localhost:2002/"/>
+		<variable name="server.path" value="http://localhost:2002/lib/lib.jar"/>
 	</variables>
 	<category name="CManagerserver">
 		<!-- Typ der Anwendung -->
@@ -113,4 +113,20 @@
 		<!--Name des manager servers-->
 		<property name="managerName" value="CManagerServer"/>
 	</category>
+	<category name="eventservice">
+		<!-- Typ der Anwendung -->
+		<property name="typ" value="client"/>
+		<!-- Pfad fuer den Klassenserver, der das Repository der RMIComponents zur Verfuegung stellt. -->
+		<property name="codebase" value="${server.path}"/>
+		<!-- Klassenname der zu ladenen Komponenten -->
+		<property name="compClassName" value="projects.th.EventManagerImpl"/>
+		<!-- Name der Komponente -->
+		<property name="compName" value="CManagerServer"/>
+		<!-- Domain Name des Serverdienstes der gestartet werden soll -->
+		<property name="hostname" value="localhost"/>
+		<!-- Port des Serverdienstes -->
+		<property name="port" value="2006"/>
+		<!-- Authentifizierungstyp -->
+		<property name="authTyp" value="anonym"/>
+	</category>		
 </properties>	

@@ -6,7 +6,7 @@
 		<!-- port der Anwendung -->
 		<property name="port" value="2002"/>
 		<!-- URL fuer den Klassenserver -->
-		<property name="url" value="http://localhost:2002/"/>
+		<property name="url" value="http://localhost:2002/ARSCH"/>
 		<!-- das repository relativ angeben -->
 		<property name="repository" value="../PictureGallery/bin"/>
 		<!-- Klassenname der zu ladenen Komponenten -->

@@ -1,4 +1,4 @@
-// Copyright MageLang Institute; Version $Id: ClassServer.java,v 1.3 2004/09/09 08:36:11 fosion Exp $
+// Copyright MageLang Institute; Version $Id: ClassServer.java,v 1.4 2004/10/03 14:59:37 mr_nice Exp $
 
 /*
  * Copyright (c) 1996, 1996, 1997 Sun Microsystems, Inc. All Rights Reserved.
@@ -41,6 +41,7 @@ public abstract class ClassServer implements Runnable {
 	private ServerSocket server = null;
 	private int port;
 	private static String fileExtension;
+	private static String jarURL;
 	protected int bytesCont = 0;
 
 	/**
@@ -154,7 +155,11 @@ public abstract class ClassServer implements Runnable {
 	 * parsing the HTML header.
 	 */
 	private static String getPath(BufferedReader in) throws IOException {
+		
 		String line = in.readLine();
+		System.out.println(" \n\n----------------------------------------------------------------------------");
+		System.out.println("Request: "+line);
+		
 		String path = "";
 		//System.out.println("=> ClassServer.getPath(path = " + line + ")" );
 		// extract class from GET line
@@ -164,6 +169,8 @@ public abstract class ClassServer implements Runnable {
 			int index0 = line.indexOf(".class ");	
 			//edding .hbm.xml files to get hibernate configurations ---by mr_nice 		
 			int index1 = line.indexOf(".hbm.xml");
+			
+			int index2 = line.indexOf(".jar");
 			if (index0 != -1 ) {
 				path = line.substring(0, index0).replace('/', '.');
 				fileExtension = ".class";
@@ -172,20 +179,24 @@ public abstract class ClassServer implements Runnable {
 				path = line.substring(0, index1).replace('/', '.');
 				fileExtension = ".hbm.xml";
 			}
+			if (index2 != -1) {
+				path = line.substring(0, index2).replace('/', '.');
+				fileExtension = ".jar";
+			    jarURL = "jar:http://"+path+fileExtension+"!/";
+			}
 		}
-
+		
 		// eat the rest of header
 		do {
 			line = in.readLine();
-			
-
+			System.out.println(line);
 		} while (
 			(line.length() != 0)
 				&& (line.charAt(0) != '\r')
 				&& (line.charAt(0) != '\n'));
-
+		System.out.println("<= ClassServer.getPath(path) > " + path);
 		if (path.length() != 0) {
-			//System.out.println("<= ClassServer.getPath(path) > " + path);
+			System.out.println("<= ClassServer.getPath(path) > " + path);
 			return path;
 		} else {
 			throw new IOException("Malformed Header");
