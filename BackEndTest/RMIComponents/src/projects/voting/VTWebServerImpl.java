@@ -21,12 +21,15 @@ import API.model.RemoteObject;
 public class VTWebServerImpl extends WebServer implements VTClient{
 	private final int default_port= 8080;
 	private final String default_root= "public_html";
+	private VoteTable votes = null;
+    
+    
     /* (non-Javadoc)
      * @see projects.interfaces.VTClient#update(projects.voting.model.VoteTable)
      */
     public void update(VoteTable votes) throws RemoteException {
         // TODO Ausgabe der Votes
-        
+        this.votes = votes;
     }
 	/**
 	 * Starts a web server with the deafult port and the default document root.
@@ -51,4 +54,12 @@ public class VTWebServerImpl extends WebServer implements VTClient{
 				+ " , Object"
 				+ server);
 	}
+    /**
+     * Gibt die Votings aus.
+     * @see API.control.WebServer#getActionBody(java.lang.String[])
+     */
+    protected byte[] getActionBody(String[] request) {
+        // TODO Umlenken auf den jeweiligen ActionEmpfänger
+        return votes.toHTML().getBytes();
+    }
 }

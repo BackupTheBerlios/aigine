@@ -15,6 +15,7 @@ import java.net.Socket;
 import java.net.URLDecoder;
 import java.net.UnknownHostException;
 import java.util.HashMap;
+import java.util.StringTokenizer;
 
 import exceptions.HTTPException;
 
@@ -26,7 +27,7 @@ import exceptions.HTTPException;
  * @since 08.08.2004 16:11:54
  * @version 0.01 http://www-ui.is.s.u-tokyo.ac.jp/~kobayash/misc/ui/util/SimpleWebServer.java
  */
-public class WebServer implements Runnable {
+public abstract class WebServer implements Runnable {
 
     private ServerSocket server_socket;
     private HashMap mime_types;
@@ -100,7 +101,23 @@ public class WebServer implements Runnable {
 
             try {
                 try {
-                    String[] request= readRequestLines(socket.getInputStream());
+                	// TODO URL parsing ersetzen und um Actionabfrage ergänzen.
+					/*import java.net.*;
+					import java.io.*;
+
+					public class ParseURL {
+						public static void main(String[] args) throws Exception {
+							URL aURL = new URL("http://java.sun.com:80/docs/books/"
+											   + "tutorial/index.html#DOWNLOADING");
+							System.out.println("protocol = " + aURL.getProtocol());
+							System.out.println("host = " + aURL.getHost());
+							System.out.println("filename = " + aURL.getFile());
+							System.out.println("port = " + aURL.getPort());
+							System.out.println("ref = " + aURL.getRef());
+						}
+					}*/
+                	
+                    String[] request= readRequestLines(socket.getInputStream());                    
                     String method= getMethod(request);
                     String type= getType(request);
                     byte[] body= getBody(request);
@@ -218,7 +235,7 @@ public class WebServer implements Runnable {
      */
     private File getFile(String[] request) throws HTTPException {
 		System.out.println("=> WebServer.getFile(String[] request)");
-		String filename = root + request[1].replace('/', File.separatorChar);
+		String filename = root + request[1].replace('/', File.separatorChar);	
         File file= new File(filename);
 
         if (!file.exists()) {
@@ -248,6 +265,12 @@ public class WebServer implements Runnable {
     private String getType(String[] request) throws HTTPException {
 		System.out.println("=> WebServer.getType(String[] request)");
 		String path= request[1];
+		int actionpoint  = path.indexOf("?");
+		if(actionpoint > 0){
+			// Löschen der Paramter
+			path = path.substring(0, actionpoint);
+			System.out.println("request gekürzt > " + path);
+		}	
         String type=
             (String) mime_types.get(path.substring(path.lastIndexOf('.') + 1));
 		System.out.println("<= WebServer.getType(String[] request) > " + type);
@@ -262,19 +285,40 @@ public class WebServer implements Runnable {
     }
 
     /**
-     * Nimmt die 2. Zeile des Request und gibt die dort angegebene Datei 
+     * Nimmt die 2. Zeile des Request und gibt entweder die dort angegebene Datei
+     * oder wenn ein "?" enthalten ist die Rückgabe der entsprechenden Aktion 
      * im Binärfomat zurück.
      * @param request
      * @return file content
      * @throws HTTPException 500 or 404 or 403
      */
     private byte[] getBody(String[] request) throws HTTPException {
-		System.out.println("=> WebServer.getBody(String[] request)");		
+		System.out.println("=> WebServer.getBody(String[] request)");	
+		String url = root + request[1].replace('/', File.separatorChar);	
+		// testet ob ein "?" enthalten ist => Parameter parsen
+		if(url.indexOf("?") > 0){
+			// TODO parsen der Attribute
+			// StringTokenizer st = new StringTokenizer(url);
+			return getActionBody(request);
+		} else {
+			return getFileBody(request);
+		}
+    }
+
+    /**
+     * Gibt den Content zurück, wenn eine Aktion aufgerufen wird und muß von jedem
+     * Server entsprechend bearbeitet (überschrieben) werden.
+     * @param request
+     * @return
+     */
+    protected abstract byte[] getActionBody(String[] request);
+
+    private byte[] getFileBody(String[] request) throws HTTPException {
         File file= getFile(request); // 404 or 403
-		System.out.println("\tDatei "+ file + "wird gelesen");
+        System.out.println("\tDatei "+ file + "wird gelesen");
         try {
             byte[] body= new byte[(int) file.length()];
-
+        
             System.out.println(
                 Thread.currentThread().getName()
                     + " | "
@@ -283,12 +327,12 @@ public class WebServer implements Runnable {
                     + file.length()
                     + " bytes)");
             new DataInputStream(new FileInputStream(file)).readFully(body);
-			System.out.println("<= WebServer.getBody(String[] request)" + body);
+        	System.out.println("<= WebServer.getBody(String[] request)" + body);
             return body;
         } catch (IOException e) {
-			System.out.println(
-				 Thread.currentThread().getName()
-					 + " getBody() > " + file + " 500 Internal Server Error");           	
+        	System.out.println(
+        		 Thread.currentThread().getName()
+        			 + " getBody() > " + file + " 500 Internal Server Error");           	
             throw new HTTPException("500", "Internal Server Error", request);
         }
     }
