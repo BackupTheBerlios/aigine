@@ -222,44 +222,7 @@ void robot::drawRobot() {
 }
 
 void robot::animRobot() {
-
 	this->animateBody();
-/*
-	this->Huefte->getRotation()->y = 1;
-	this->Huefte->getRotation()->angle = ((int)this->Huefte->getRotation()->angle) % 360 + 1;
-*/
-	/*
-	if(this->myAngle <= -90 || this->myAngle >= 90) {
-		this->direction *= -1;
-	}
-
-	this->myAngle += this->vel * this->direction;
-
-	this->Torso->getRotation()->y = 1;
-	this->Torso->getRotation()->angle = this->myAngle/2;
-	
-	this->Kopf->getRotation()->x = 1;
-	this->Kopf->getRotation()->angle = - this->myAngle/3 + 30;
-
-	this->BeinL->getRotation()->x = 1;
-	this->BeinL->getRotation()->angle = this->myAngle/2;
-
-	this->KnieL->getRotation()->x = 1;
-	this->KnieL->getRotation()->angle = this->myAngle/2 + 45;
-
-	this->FussL->getRotation()->x = 1;
-	this->FussL->getRotation()->angle = this->myAngle/2;
-
-	this->ArmR->getRotation()->z = 1;
-	this->ArmR->getRotation()->angle = this->myAngle + 90;
-
-	this->EllbogenR->getRotation()->z = 1;
-	this->EllbogenR->getRotation()->angle = this->myAngle/2 + 45;
-	
-	this->HandR->getRotation()->z = 1;
-	this->HandR->getRotation()->angle = this->myAngle/2;
-
-	/**/	
 }
 
 
