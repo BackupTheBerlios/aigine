@@ -8,7 +8,7 @@
 #include "../../AiGinEFramework/Model/Translation3D.h"
 #include "../../AiGinEFramework/Control/Keyboard.h"
 #include "../../AiGinEFramework/Control/Mouse.h"
-#include "../../AiGinEFramework/Utils/Matrix4x4.h"
+#include "../../AiGinEFramework/Model/Matrix4x4.h"
 
 
 SceneManagement* sm;

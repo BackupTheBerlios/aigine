@@ -135,7 +135,7 @@ SOURCE=..\..\AiGinEFramework\Model\LookAtObjects.cpp
 # End Source File
 # Begin Source File
 
-SOURCE=..\..\AiGinEFramework\Utils\Matrix4x4.cpp
+SOURCE=..\..\AiGinEFramework\Model\Matrix4x4.cpp
 # End Source File
 # Begin Source File
 
@@ -259,7 +259,7 @@ SOURCE=..\..\AiGinEFramework\Model\LookAtObjects.h
 # End Source File
 # Begin Source File
 
-SOURCE=..\..\AiGinEFramework\Utils\Matrix4x4.h
+SOURCE=..\..\AiGinEFramework\Model\Matrix4x4.h
 # End Source File
 # Begin Source File
 
