@@ -1,16 +1,6 @@
 /* Game Engine Design */
 
-
-#include <iostream>
-using namespace std;
-
-
-#include "SceneGraph.h"
-#include "../../Tools/loader3DS/Object3DS.h"
-#include "AgeObjects/ageObject3DS.h"
-#include "AiGinEObject.h"
-#include "Scale3D.h"
-
+#include "../AiGinE.h"
 
 SceneGraph::SceneGraph() : Tree() {
 }

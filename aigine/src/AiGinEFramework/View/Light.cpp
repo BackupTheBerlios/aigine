@@ -1,6 +1,6 @@
 /* Game Engine Design */
 
-#include "Light.h"
+#include "../AiGinE.h"
 
 #define	BASEPOINT 0.0,0.0,0.0
 

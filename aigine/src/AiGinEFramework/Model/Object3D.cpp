@@ -5,10 +5,8 @@
 //////////////////////INCLUDE/////////////////////////////////////
 
 
+#include "../AiGinE.h"
 
-
-
-#include "Object3D.h"
 class Vector3D;
 
 void Object3D::setDirectionVector3D(Vector3D * directionVector3D){ 

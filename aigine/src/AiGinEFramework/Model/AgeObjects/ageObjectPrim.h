@@ -6,9 +6,7 @@
 
 #define AGEOBJECTPRIM_H
 
-#include <GL/glut.h>
-#include "../AiGinEObject.h"
-#include "../../Utils/fileControl.h"
+#include "../../AiGinE.h"
 
 class ageObjectPrim : public AiGinEObject, public fileControl  
 {

@@ -8,10 +8,7 @@
 
 #define map_nb 2
 
-#include <GL/glut.h>
-#include <gl/glaux.h>// ich weiss...
-#include "../View/Camera.h"
-
+#include "../AiGinE.h"
 
 class Light;
 

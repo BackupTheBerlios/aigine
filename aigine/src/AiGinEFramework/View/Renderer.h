@@ -5,7 +5,9 @@
 #ifndef RENDERER_H
 
 #define RENDERER_H
-#include "GraphicPipeline.h"
+
+#include "../AiGinE.h"
+
 class SceneGraph;
 
 class SceneManagement;

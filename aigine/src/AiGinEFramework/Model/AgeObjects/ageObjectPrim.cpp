@@ -1,9 +1,7 @@
 /* Game Engine Design */
 
-#include "ageObjectPrim.h"
-#include "../../Utils/fileControl.h"
-#include <iostream>
-using namespace std;
+#include "../../AiGinE.h"
+
 ageObjectPrim::ageObjectPrim(): AiGinEObject(), fileControl() {
 	this->kind = 0;
 	this->solid = true;

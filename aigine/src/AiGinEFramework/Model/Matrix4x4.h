@@ -5,12 +5,10 @@
 #ifndef MATRIX4X4_H
 #define MATRIX4X4_H
 
-#define TB_DEG_TO_RAD(x)		((x) * 0.0174532925199432957692369076848f)		// Grad -> Bogenmaß
-#define TB_RAD_TO_DEG(x)		((x) * 57.295779513082320876798154814105f)		// Bogenmaß -> Grad
+//#define TB_DEG_TO_RAD(x)		((x) * 0.0174532925199432957692369076848f)		// Grad -> Bogenmaß
+//#define TB_RAD_TO_DEG(x)		((x) * 57.295779513082320876798154814105f)		// Bogenmaß -> Grad
 
-#include <Math.h>
-#include <iostream>
-using namespace std;
+#include "../AiGinE.h"
 
 class Matrix4x4  
 {
@@ -67,22 +65,21 @@ public:
 
 //};
 
-	static Matrix4x4	Matrix4x4Identity();
-	//{return Matrix4x4(1.0f, 0.0f, 0.0f, 0.0f, 0.0f, 1.0f, 0.0f, 0.0f, 0.0f, 0.0f, 1.0f, 0.0f, 0.0f, 0.0f, 0.0f, 1.0f);}	// Identitätsmatrix liefern
-//	static Matrix4x4	Matrix4x4Translation(const Vector3D& v);																								// Translationsmatrix (Verschiebungsmatrix) berechnen
-	static Matrix4x4	Matrix4x4RotationX(const float f);																										// Rotationsmatrix um die X-Achse berechnen
-	static Matrix4x4	Matrix4x4RotationY(const float f);																										// Rotationsmatrix um die Y-Achse berechnen
-	static Matrix4x4	Matrix4x4RotationZ(const float f);																										// Rotationsmatrix um die Z-Achse berechnen
-	static Matrix4x4	Matrix4x4Rotation(const float x, const float y, const float z);																			// Rotiert um alle drei Achsen
-//	static Matrix4x4	Matrix4x4RotationAxis(const Vector3D& v, const float f);																				// Rotationsmatrix um eine beliebige Achse berechnen
-//	static Matrix4x4	Matrix4x4Scaling(const Vector3D& v);																									// Skalierungsmatrix berechnen
-//	static Matrix4x4	Matrix4x4Axes(const Vector3D& vXAxis, const Vector3D& vYAxis, const Vector3D& vZAxis);												// Liefert eine Achsenmatrix
-	static float		Matrix4x4Det(const Matrix4x4& m);																							// Determinante berechnen
-	static Matrix4x4	Matrix4x4Invert(const Matrix4x4& m);																										// Invertierte (umgekehrte) Matrix berechnen
-	static Matrix4x4	Matrix4x4Transpose(const Matrix4x4& m);																									// Transponierte Matrix berechnen
-//	static Matrix4x4	Matrix4x4Projection(const float fFOV, const float fAspect, const float fNearPlane, const float fFarPlane);								// Projektionsmatrix berechnen
-//	static Matrix4x4	Matrix4x4Camera(const Vector3D& vPos, const Vector3D& vLookAt, const Vector3D& vUp = Vector3D(0.0f, 1.0f, 0.0f));					// Kameramatrix erzeugen
-	static Matrix4x4	Matrix4x4ToTex2DMatrix(const Matrix4x4& m);																								// In Texturmatrix umwandeln
+	static Matrix4x4	Identity();
+	static Matrix4x4	Translation(const Vector3D& v);																								// Translationsmatrix (Verschiebungsmatrix) berechnen
+	static Matrix4x4	RotationX(const float f);																										// Rotationsmatrix um die X-Achse berechnen
+	static Matrix4x4	RotationY(const float f);																										// Rotationsmatrix um die Y-Achse berechnen
+	static Matrix4x4	RotationZ(const float f);																										// Rotationsmatrix um die Z-Achse berechnen
+	static Matrix4x4	Rotation(const float x, const float y, const float z);																			// Rotiert um alle drei Achsen
+	static Matrix4x4	RotationAxis(const Vector3D& v, const float f);																				// Rotationsmatrix um eine beliebige Achse berechnen
+	static Matrix4x4	Scaling(const Vector3D& v);																									// Skalierungsmatrix berechnen
+	static Matrix4x4	Axes(const Vector3D& vXAxis, const Vector3D& vYAxis, const Vector3D& vZAxis);												// Liefert eine Achsenmatrix
+	static float		Det(const Matrix4x4& m);																							// Determinante berechnen
+	static Matrix4x4	Invert(const Matrix4x4& m);																										// Invertierte (umgekehrte) Matrix berechnen
+	static Matrix4x4	Transpose(const Matrix4x4& m);																									// Transponierte Matrix berechnen
+	static Matrix4x4	Projection(const float fFOV, const float fAspect, const float fNearPlane, const float fFarPlane);								// Projektionsmatrix berechnen
+	static Matrix4x4	Camera(const Vector3D& vPos, const Vector3D& vLookAt, const Vector3D& vUp = Vector3D(0.0f, 1.0f, 0.0f));					// Kameramatrix erzeugen
+	static Matrix4x4	ToTex2DMatrix(const Matrix4x4& m);																								// In Texturmatrix umwandeln
 
 
 	static float Matrix2x2Det(Matrix4x4 m2x2);

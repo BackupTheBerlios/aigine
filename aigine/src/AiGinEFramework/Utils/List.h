@@ -15,9 +15,217 @@
 #ifndef _LIST_H_
 #define _LIST_H_
 
-#include <iostream>
-using namespace std;
+#include "../AiGinE.h"
 
+// Template-Struktur für einen Eintrag einer verketteten Liste
+template <typename Type> struct ListEntry
+{
+	ListEntry<Type>*	pPrevEntry;	// Zeiger auf den vorherigen Eintrag
+	ListEntry<Type>*	pNextEntry;	// Zeiger auf den nächsten Eintrag
+	Type				Data;		// Die eigentlichen Listendaten
+};
+
+// ******************************************************************
+// Template-Klasse für eine verkettete Liste
+template <typename Type> class List
+{
+private:
+	// Variablen
+	ListEntry<Type>*	m_pFirstEntry;	// Erster Listeneintrag
+	ListEntry<Type>*	m_pLastEntry;	// Letzter Listeneintrag
+	int					m_iNumEntries;	// Anzahl der Listeneinträge
+
+public:
+	// Konstruktur und Destruktor
+	List();
+	~List();
+
+	// Methoden
+	ListEntry<Type>*	AddEntry(Type* pData);									// Eintrag hinzufügen
+	Result			FindEntry(Type* pData, ListEntry<Type>** ppOut);		// Eintrag suchen
+	Result			DeleteEntry(ListEntry<Type>* pEntry);					// Eintrag löschen
+	Result			Clear();												// Liste leeren
+	Result			Traverse(Result (* pCallback)(ListEntry<Type>*));	// Liste durchlaufen
+
+	// Inline-Methoden
+	inline Type*				GetEntryData(ListEntry<Type>* pEntry)	{return &pEntry->Data;}
+	inline ListEntry<Type>*	GetFirstEntry()							{return m_pFirstEntry;}
+	inline ListEntry<Type>*	GetLastEntry()							{return m_pLastEntry;}
+	inline int					GetNumEntries()							{return m_iNumEntries;}
+};
+
+// ******************************************************************
+// Konstruktor der List-Klasse
+template <typename Type> List<Type>::List()
+{
+	// Alles zurücksetzen
+	ZeroMemory(this, sizeof(List<Type>));
+}
+
+// ******************************************************************
+// Destruktor der List-Klasse
+template <typename Type> List<Type>::~List()
+{
+	// Liste leeren
+	Clear();
+}
+
+// ******************************************************************
+// Diese Methode fügt einen neuen Eintrag zur Liste hinzu.
+template <typename Type> ListEntry<Type>* List<Type>::AddEntry(Type* pData)
+{
+	ListEntry<Type>* pNewEntry;
+
+	// Parameter prüfen
+	if(pData == NULL) AGE_ERROR_NULL_POINTER("pData", NULL);
+
+
+	// Speicher für die Listeneintragsstruktur reservieren
+	pNewEntry = new ListEntry<Type>;
+	if(pNewEntry == NULL) AGE_ERROR_OUT_OF_MEMORY(NULL);
+
+	// Der neue Eintrag steht an letzter Stelle der Liste.
+	// Daher gibt es keinen nächsten Eintrag und der vorherige Eintrag
+	// ist der ursprüngliche letzte Listeneintrag.
+	pNewEntry->pPrevEntry = m_pLastEntry;
+	if(m_pLastEntry != NULL) m_pLastEntry->pNextEntry = pNewEntry;
+	pNewEntry->pNextEntry = NULL;
+	m_pLastEntry = pNewEntry;
+
+	// Wenn die Liste noch ganz leer ist, dann ist dieser Eintrag auch
+	// gleichzeitig der erste Eintrag.
+	if(m_pFirstEntry == NULL) m_pFirstEntry = pNewEntry;
+
+	// Daten kopieren
+	memcpy(&pNewEntry->Data, pData, sizeof(Type));
+
+	// Eintragszähler erhöhen
+	m_iNumEntries++;
+
+	// Zeiger auf die Listeneintragsstruktur zurückliefern
+	return pNewEntry;
+}
+
+// ******************************************************************
+// Diese Methode sucht einen Eintrag in der Liste mit den angegebenen Daten.
+template <typename Type> Result List<Type>::FindEntry(Type* pData,
+														  ListEntry<Type>** ppOut)
+{
+	ListEntry<Type>* pCurrentEntry;
+
+	// Parameter prüfen
+	if(pData == NULL) AGE_ERROR_NULL_POINTER("pData", AGE_ERROR);
+
+
+	// Zuerst den allerersten Listeneintrag testen
+	pCurrentEntry = m_pFirstEntry;
+
+	while(pCurrentEntry != NULL)
+	{
+		// Die Daten des aktuellen Eintrags mit den angegebenen Daten
+		// vergleichen. Falls sie übereinstimmen, ist die Suche beendet.
+		if(!memcmp(&pCurrentEntry->Data, pData, sizeof(Type)))
+		{
+			// Falls gewünscht, wird der als Parameter angegebene Doppelzeiger
+			// nun auf die Adresse der Listeneintragsstruktur gesetzt.
+			if(ppOut != NULL) *ppOut = pCurrentEntry;
+			return AGE_OK;
+		}
+
+		// Fortschreiten
+		pCurrentEntry = pCurrentEntry->pNextEntry;
+	}
+
+	// Es wurde nichts gefunden!
+	return AGE_NOT_FOUND;
+}
+
+// ******************************************************************
+// Diese Methode löscht einen Eintrag in der Liste.
+template <typename Type> Result List<Type>::DeleteEntry(ListEntry<Type>* pEntry)
+{
+	// Parameter prüfen
+	if(pEntry == NULL) AGE_ERROR_NULL_POINTER("pEntry", AGE_ERROR);
+
+
+	// Beim Löschen entsteht ein Loch in der Liste, welches nun "gestopft"
+	// werden muss. Dabei spielt es eine Rolle, ob der Eintrag an erster
+	// oder letzter Stelle oder irgendwo in der Mitte der Liste steht.
+	if(pEntry == m_pFirstEntry &&
+	   pEntry == m_pLastEntry)
+	{
+		// Der Eintrag ist der erste und einzige.
+		m_pFirstEntry = NULL;
+		m_pLastEntry = NULL;
+	}
+	else if(pEntry == m_pFirstEntry)
+	{
+		// Der Eintrag steht an erster Stelle.
+		// Der neue erste Eintrag ist nun der Folgende des zu löschenden Eintrags.
+		m_pFirstEntry = pEntry->pNextEntry;
+		m_pFirstEntry->pPrevEntry = NULL;
+	}
+	else if(pEntry == m_pLastEntry)
+	{
+		// Der Eintrag steht an letzter Stelle.
+		// Der neue letzte Eintrag ist nun der Vorherige des zu löschenden Eintrags.
+		m_pLastEntry = pEntry->pPrevEntry;
+		m_pLastEntry->pNextEntry = NULL;
+	}
+	else
+	{
+		// Der Eintrag steht irgendwo in der Mitte.
+		// Der vorherige und der folgende Eintrag werden nun verknüpft.
+		pEntry->pPrevEntry->pNextEntry = pEntry->pNextEntry;
+		pEntry->pNextEntry->pPrevEntry = pEntry->pPrevEntry;
+	}
+
+	// Der Speicher für sie wurde beim Erstellen eines neuen Eintrags
+	// reserviert und kann nun wieder freigegeben werden.
+	AGE_SAFE_DELETE(pEntry);
+
+	// Eintragszähler verringern
+	m_iNumEntries--;
+
+	return AGE_OK;
+}
+
+// ******************************************************************
+// Diese Methode löscht die gesamte Liste.
+template <typename Type> Result List<Type>::Clear()
+{
+	// Es wird so lange der erste Listeneintrag gelöscht, bis keiner mehr da ist.
+	while(m_pFirstEntry != NULL) DeleteEntry(m_pFirstEntry);
+
+	return AGE_OK;
+}
+
+// ******************************************************************
+// Durchlaufen der Liste
+template <typename Type> Result List<Type>::Traverse(Result (* pCallback)(ListEntry<Type>*))
+{
+	ListEntry<Type>* pCurrentEntry;
+
+	// Parameter prüfen
+	if(pCallback == NULL) AGE_ERROR_NULL_POINTER("pCallback", AGE_ERROR);
+
+
+	// Die ganze Liste durchlaufen
+	pCurrentEntry = m_pFirstEntry;
+
+	while(pCurrentEntry != NULL)
+	{
+		// Rückruffunktion aufrufen
+		if(pCallback(pCurrentEntry) == AGE_STOP) break;
+
+		// Fortfahren
+		pCurrentEntry = pCurrentEntry->pNextEntry;
+	}
+
+	return AGE_OK;
+}
+
+/*
 template < class Type >
 class List
 {
@@ -260,6 +468,7 @@ private:
     //Adresse des vorhergehenden knotens
     List< Type > * _before;
 };
+*/
 
 /**
  * Die Objectorientierte Variante funktioniert leider aus irgendeinem
@@ -346,7 +555,6 @@ private:
  * //aber da list->_before = tmp; //this->setItem((this->length())-1) =
  * tmp; //} };
  */
-
 
 
 #endif // !defined(AFX_TEMPLATE_H__C9B12662_C636_4257_B7BC_FF9737A99A91__INCLUDED_)

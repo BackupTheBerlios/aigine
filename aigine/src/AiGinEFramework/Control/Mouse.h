@@ -3,8 +3,7 @@
 #ifndef MOUSE_H
 #define MOUSE_H
 
-#include <iostream>
-using namespace std;
+#include "../AiGinE.h"
 
 class SceneManagement;
 

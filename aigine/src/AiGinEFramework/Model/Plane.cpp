@@ -2,7 +2,7 @@
 //
 //////////////////////////////////////////////////////////////////////
 
-#include "Plane.h"
+#include "../AiGinE.h"
 
 //////////////////////////////////////////////////////////////////////
 // Construction/Destruction
@@ -43,23 +43,23 @@ bool Plane::operator != (const Plane& p) const {
 	return d != p.d;
 }
 
-Plane	Plane::PlaneNormalize(const Plane& p) {
-	float fLength(Vector3D::Vector3DLength(p.n));
+Plane	Plane::Normalize(const Plane& p) {
+	float fLength(Vector3D::Length(p.n));
 	return Plane(p.n / fLength, p.d / fLength);
 }
 
-float	Plane::PlaneDotNormal(const Plane& p, const Vector3D& v) {
+float	Plane::DotNormal(const Plane& p, const Vector3D& v) {
 	return p.a * v.x + p.b * v.y + p.c * v.z;
 }
 
-float	Plane::PlaneDotCoords(const Plane& p, const Vector3D& v) {
+float	Plane::DotCoords(const Plane& p, const Vector3D& v) {
 	return p.a * v.x + p.b * v.y + p.c * v.z + p.d;
 }
 
-Plane	Plane::PlaneFromPointNormal(const Vector3D& p, const Vector3D& n) {
+Plane	Plane::FromPointNormal(const Vector3D& p, const Vector3D& n) {
 	return Plane(n, -n.x * p.x - n.y * p.y - n.z * p.z);
 }
 
-Plane	Plane::PlaneFromPoints(const Vector3D& v1, const Vector3D& v2, const Vector3D& v3) {
-	return PlaneFromPointNormal(v1, Vector3D::Vector3DCross(v3 - v2, v1 - v2));
+Plane	Plane::FromPoints(const Vector3D& v1, const Vector3D& v2, const Vector3D& v3) {
+	return FromPointNormal(v1, Vector3D::Cross(v3 - v2, v1 - v2));
 }

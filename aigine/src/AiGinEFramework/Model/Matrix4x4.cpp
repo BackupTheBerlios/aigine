@@ -2,7 +2,7 @@
 //
 //////////////////////////////////////////////////////////////////////
 
-#include "Matrix4x4.h"
+#include "../AiGinE.h"
 
 //////////////////////////////////////////////////////////////////////
 // Construction/Destruction
@@ -71,7 +71,7 @@ Matrix4x4 Matrix4x4::operator * (const float f) const {
 }
 
 Matrix4x4 Matrix4x4::operator / (const Matrix4x4& m) const {
-	return *this * Matrix4x4Invert(m);
+	return *this * Invert(m);
 }
 
 Matrix4x4 Matrix4x4::operator / (const float f) const {
@@ -175,12 +175,18 @@ bool Matrix4x4::operator != (const Matrix4x4& m) const {
 //Hilfsfunktionen
 
 
-Matrix4x4 Matrix4x4::Matrix4x4Identity() {
+Matrix4x4 Matrix4x4::Identity() {
 	return Matrix4x4(1.0f, 0.0f, 0.0f, 0.0f, 0.0f, 1.0f, 0.0f, 0.0f, 0.0f, 0.0f, 1.0f, 0.0f, 0.0f, 0.0f, 0.0f, 1.0f);
 }
-//	Matrix4x4 Matrix4x4Translation(const Vector3D& v) {}
 
-Matrix4x4	Matrix4x4::Matrix4x4RotationX(const float f) {
+Matrix4x4 Matrix4x4::Translation(const Vector3D& v) {
+	return Matrix4x4(1.0f, 0.0f, 0.0f, 0.0f,
+		            0.0f, 1.0f, 0.0f, 0.0f,
+					0.0f, 0.0f, 1.0f, 0.0f,
+					v.x,  v.y,  v.z,  1.0f);
+}
+
+Matrix4x4	Matrix4x4::RotationX(const float f) {
 	Matrix4x4 mResult;
 	
 	// Rotationsmatrix berechnen
@@ -195,7 +201,8 @@ Matrix4x4	Matrix4x4::Matrix4x4RotationX(const float f) {
 	
 	return mResult;
 }
-Matrix4x4	Matrix4x4::Matrix4x4RotationY(const float f) {
+
+Matrix4x4	Matrix4x4::RotationY(const float f) {
 	Matrix4x4 mResult;
 	
 	// Rotationsmatrix berechnen
@@ -210,7 +217,8 @@ Matrix4x4	Matrix4x4::Matrix4x4RotationY(const float f) {
 	
 	return mResult;
 }
-Matrix4x4	Matrix4x4::Matrix4x4RotationZ(const float f) {
+
+Matrix4x4	Matrix4x4::RotationZ(const float f) {
 	Matrix4x4 mResult;
 	
 	// Rotationsmatrix berechnen
@@ -224,12 +232,52 @@ Matrix4x4	Matrix4x4::Matrix4x4RotationZ(const float f) {
 	
 	return mResult;
 }
-Matrix4x4 Matrix4x4::Matrix4x4Rotation(const float x, const float y, const float z) {
-	return Matrix4x4RotationZ(z) * Matrix4x4RotationX(x) * Matrix4x4RotationY(y);
+
+Matrix4x4 Matrix4x4::Rotation(const float x, const float y, const float z) {
+	return RotationZ(z) * RotationX(x) * RotationY(y);
 }
-//	Matrix4x4	Matrix4x4RotationAxis(const Vector3D& v, const float f) {}
-//	Matrix4x4	Matrix4x4Scaling(const Vector3D& v);																									// Skalierungsmatrix berechnen
-//	Matrix4x4	Matrix4x4Axes(const Vector3D& vXAxis, const Vector3D& vYAxis, const Vector3D& vZAxis) {}
+
+Matrix4x4	Matrix4x4::RotationAxis(const Vector3D& v, const float f) {
+	// Sinus und Kosinus berechnen
+	float fSin(sinf(-f));
+	float fCos(cosf(-f));
+
+	// Achsenvektor normalisieren
+	Vector3D vAxis(Vector3D::Normalize(v));
+
+	// Matrix erstellen
+	return Matrix4x4((vAxis.x * vAxis.x) * (1.0f - fCos) + fCos,
+		            (vAxis.x * vAxis.y) * (1.0f - fCos) - (vAxis.z * fSin),
+				    (vAxis.x * vAxis.z) * (1.0f - fCos) + (vAxis.y * fSin),
+					0.0f,
+					(vAxis.y * vAxis.x) * (1.0f - fCos) + (vAxis.z * fSin),
+					(vAxis.y * vAxis.y) * (1.0f - fCos) + fCos,
+					(vAxis.y * vAxis.z) * (1.0f - fCos) - (vAxis.x * fSin),
+					0.0f,
+					(vAxis.z * vAxis.x) * (1.0f - fCos) - (vAxis.y * fSin),
+					(vAxis.z * vAxis.y) * (1.0f - fCos) + (vAxis.x * fSin),
+					(vAxis.z * vAxis.z) * (1.0f - fCos) + fCos,
+					0.0f,
+					0.0f,
+					0.0f,
+					0.0f,
+					1.0f);
+}
+
+Matrix4x4	Matrix4x4::Scaling(const Vector3D& v) {
+	// Skalierungsmatrix berechnen
+	return Matrix4x4(v.x,  0.0f, 0.0f, 0.0f,
+		            0.0f, v.y,  0.0f, 0.0f,
+					0.0f, 0.0f, v.z,  0.0f,
+					0.0f, 0.0f, 0.0f, 1.0f);
+}
+
+Matrix4x4	Matrix4x4::Axes(const Vector3D& vXAxis, const Vector3D& vYAxis, const Vector3D& vZAxis) {
+	return Matrix4x4(vXAxis.x, vXAxis.y, vXAxis.z, 0.0f,
+		            vYAxis.x, vYAxis.y, vYAxis.z, 0.0f,
+					vZAxis.x, vZAxis.y, vZAxis.z, 0.0f,
+					0.0f,     0.0f,     0.0f,     1.0f);
+}
 
 float Matrix4x4::Matrix2x2Det(Matrix4x4 m2x2) {
 	return 
@@ -245,7 +293,7 @@ float Matrix4x4::Matrix3x3Det(Matrix4x4 m3x3) {
 
 }
 
-float Matrix4x4::Matrix4x4Det(const Matrix4x4& m4x4) {
+float Matrix4x4::Det(const Matrix4x4& m4x4) {
 	return 
 		m4x4.m11 * Matrix3x3Det(buildSubMatrix3x3(m4x4,0, 0))
 	-	m4x4.m12 * Matrix3x3Det(buildSubMatrix3x3(m4x4,0, 1))
@@ -289,10 +337,10 @@ Matrix4x4 Matrix4x4::buildSubMatrix3x3(Matrix4x4 m4x4, int i, int k) {
 	return m3x3;
 }
 
-Matrix4x4 Matrix4x4::Matrix4x4Invert(const Matrix4x4& m) {
+Matrix4x4 Matrix4x4::Invert(const Matrix4x4& m) {
 	// Determinante berechnen
-	float fInvDet(Matrix4x4Det(m));
-	if(fInvDet == 0.0f) return Matrix4x4Identity();
+	float fInvDet(Det(m));
+	if(fInvDet == 0.0f) return Identity();
 	fInvDet = 1.0f / fInvDet;
 	
 	// Invertierte Matrix berechnen
@@ -319,7 +367,7 @@ Matrix4x4 Matrix4x4::Matrix4x4Invert(const Matrix4x4& m) {
 	return mResult;
 }
 
-Matrix4x4	Matrix4x4::Matrix4x4Transpose(const Matrix4x4& m) {
+Matrix4x4	Matrix4x4::Transpose(const Matrix4x4& m) {
 	// Matrix transponieren
 	return Matrix4x4(m.m11, m.m21, m.m31, m.m41,
 		m.m12, m.m22, m.m32, m.m42,
@@ -341,7 +389,7 @@ Matrix4x4	Matrix4x4::Matrix4x4Projection(const float fFOV, const float fAspect, 
 }
 /**/
 //	Matrix4x4	Matrix4x4::Matrix4x4Camera(const Vector3D& vPos, const Vector3D& vLookAt, const Vector3D& vUp = Vector3D(0.0f, 1.0f, 0.0f)) {}
-Matrix4x4	Matrix4x4::Matrix4x4ToTex2DMatrix(const Matrix4x4& m) {
+Matrix4x4	Matrix4x4::ToTex2DMatrix(const Matrix4x4& m) {
 	return Matrix4x4(m.m11, m.m12, m.m14, 0.0f,
 		            m.m21, m.m22, m.m24, 0.0f,
 					m.m41, m.m42, m.m44, 0.0f,

@@ -2,7 +2,8 @@
 
 #ifndef TRANSLATION3D_H
 #define TRANSLATION3D_H
-#include "Vector3D.h"
+#include "../AiGinE.h"
+
 class Translation3D : public Vector3D {
 
 public:

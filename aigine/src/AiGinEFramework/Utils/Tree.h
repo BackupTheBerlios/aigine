@@ -8,11 +8,7 @@
 * @stereotype utility 
 */
 
-#include "List.h"
-#include "Knot.h"
-#include <iostream>
-using namespace std;
-
+#include "../AiGinE.h"
 
 class Tree {
 		

@@ -2,8 +2,8 @@
 
 #ifndef AIGINEOBJECT_H
 #define AIGINEOBJECT_H
-#include "../Model/Object3D.h"
-#include "../Utils/Knot.h"
+
+#include "../AiGinE.h"
 
 class Shader;
 class Renderer;

@@ -8,10 +8,7 @@
 // @date 15.01.2004
 //
 ////////////////////////////////////////////////////////////////////////
-#include "Tree.h"
-#include <iostream>
-#include <string>
-using namespace std;
+#include "../AiGinE.h"
 
 Tree::Tree() {
 	this->knotListPreorder = new List<Knot*>;

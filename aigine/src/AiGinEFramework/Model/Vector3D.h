@@ -3,10 +3,7 @@
 #ifndef Vector3DD_H
 #define Vector3DD_H
 
-#include "Makros.h"
-#include <Math.h>
-#include <iostream>
-using namespace std;
+#include "../AiGinE.h"
 
 class Vector3D
 {
@@ -73,18 +70,18 @@ public:
 
 // ******************************************************************
 // Funktionen deklarieren
-static float Vector3DLength(const Vector3D& v);
-static float Vector3DLengthSq(const Vector3D& v);
-static float Vector3DDot(const Vector3D& v1, const Vector3D& v2);
-static float Vector3DAngle(const Vector3D& v1, const Vector3D& v2);
-static Vector3D	Vector3DNormalize(const Vector3D& v);
-static Vector3D	Vector3DNormalizeEx(const Vector3D& v);
-static Vector3D	Vector3DCross(const Vector3D& v1, const Vector3D& v2);
-static Vector3D	Vector3DInterpolateCoords(const Vector3D& v1, const Vector3D& v2, const float p);
-static Vector3D	Vector3DInterpolateNormal(const Vector3D& v1, const Vector3D& v2, const float p);
-static Vector3D	Vector3DMin(const Vector3D& v1, const Vector3D& v2);
-static Vector3D	Vector3DMax(const Vector3D& v1, const Vector3D& v2);
-static Vector3D	Vector3DRandom();
+static float Length(const Vector3D& v);
+static float LengthSq(const Vector3D& v);
+static float Dot(const Vector3D& v1, const Vector3D& v2);
+static float Angle(const Vector3D& v1, const Vector3D& v2);
+static Vector3D	Normalize(const Vector3D& v);
+static Vector3D	NormalizeEx(const Vector3D& v);
+static Vector3D	Cross(const Vector3D& v1, const Vector3D& v2);
+static Vector3D	InterpolateCoords(const Vector3D& v1, const Vector3D& v2, const float p);
+static Vector3D	InterpolateNormal(const Vector3D& v1, const Vector3D& v2, const float p);
+static Vector3D	Min(const Vector3D& v1, const Vector3D& v2);
+static Vector3D	Max(const Vector3D& v1, const Vector3D& v2);
+static Vector3D	Random();
 //float FloatRandom(const float fMin, const float fMax);
 };
 

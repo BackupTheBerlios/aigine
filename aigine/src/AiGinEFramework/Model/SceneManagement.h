@@ -6,14 +6,7 @@
 
 #define SCENEMANAGEMENT_H
 
-#include <string>
-#include "../View/GraphicPipeline.h"
-#include "SceneGraph.h"
-#include "AgeObjects/ageObjectPrim.h"
-
-#include "AiGinEObject.h"
-
-using namespace std;
+#include "../AiGinE.h"
 
 class Camera;
 

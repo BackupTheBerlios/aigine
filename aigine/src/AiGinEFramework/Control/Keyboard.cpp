@@ -2,8 +2,7 @@
  * Keyboard.cpp
  */
 
-#include "Keyboard.h"
-#include "../Model/SceneManagement.h"
+#include "../AiGinE.h"
 
 //____________________________________________________________________________
 void Keyboard::keyAction(unsigned char key, int mouseX, int mouseY){

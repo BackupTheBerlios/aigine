@@ -29,16 +29,7 @@ struct t3DObject
 
 #define OBJECT3D_H
 
-#include <string>
-using namespace std;
-#include "../Utils/List.h"
-
-#include "Translation3D.h"
-#include "Rotation3D.h"
-#include "Scale3D.h"
-#include "Mesh.h"
-#include "Vector3D.h"
-
+#include "../AiGinE.h"
 
 /**
  * Jedes <class>Object</class> hat genau einen

@@ -95,6 +95,10 @@ SOURCE=..\..\AiGinEFramework\Model\AgeObjects\ageObjectPrim.cpp
 # End Source File
 # Begin Source File
 
+SOURCE=..\..\AiGinEFramework\AiGinE.cpp
+# End Source File
+# Begin Source File
+
 SOURCE=..\..\AiGinEFramework\Model\AiGinEObject.cpp
 # End Source File
 # Begin Source File
@@ -216,6 +220,10 @@ SOURCE=..\..\AiGinEFramework\Model\AgeObjects\ageObject3DS.h
 # Begin Source File
 
 SOURCE=..\..\AiGinEFramework\Model\AgeObjects\ageObjectPrim.h
+# End Source File
+# Begin Source File
+
+SOURCE=..\..\AiGinEFramework\AiGinE.h
 # End Source File
 # Begin Source File
 

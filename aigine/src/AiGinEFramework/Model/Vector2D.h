@@ -3,10 +3,7 @@
 #ifndef VECTOR2D_H
 #define VECTOR2D_H
 
-#include "Makros.h"
-#include <Math.h>
-#include <iostream>
-using namespace std;
+#include "../AiGinE.h"
 
 // ******************************************************************
 // Die 2D-Vektor-Klasse
@@ -71,17 +68,17 @@ public:
 
 // ******************************************************************
 // Funktionen deklarieren
-static float Vector2DLength(const Vector2D& v);
-static float Vector2DLengthSq(const Vector2D& v);
-static float Vector2DDot(const Vector2D& v1, const Vector2D& v2);
-static float Vector2DAngle(const Vector2D& v1, const Vector2D& v2);
-static Vector2D	Vector2DNormalize(const Vector2D& v);
-static Vector2D	Vector2DNormalizeEx(const Vector2D& v);
-static Vector2D	Vector2DInterpolateCoords(const Vector2D& v1, const Vector2D& v2, const float p);
-static Vector2D	Vector2DInterpolateNormal(const Vector2D& v1, const Vector2D& v2, const float p);
-static Vector2D	Vector2DMin(const Vector2D& v1, const Vector2D& v2);
-static Vector2D	Vector2DMax(const Vector2D& v1, const Vector2D& v2);
-static Vector2D	Vector2DRandom();
+static float Length(const Vector2D& v);
+static float LengthSq(const Vector2D& v);
+static float Dot(const Vector2D& v1, const Vector2D& v2);
+static float Angle(const Vector2D& v1, const Vector2D& v2);
+static Vector2D	Normalize(const Vector2D& v);
+static Vector2D	NormalizeEx(const Vector2D& v);
+static Vector2D	InterpolateCoords(const Vector2D& v1, const Vector2D& v2, const float p);
+static Vector2D	InterpolateNormal(const Vector2D& v1, const Vector2D& v2, const float p);
+static Vector2D	Min(const Vector2D& v1, const Vector2D& v2);
+static Vector2D	Max(const Vector2D& v1, const Vector2D& v2);
+static Vector2D	Random();
 };
 
 #endif //Vector2D_H

@@ -4,12 +4,8 @@
 #define _LOOKATOBJECTS_H
 
 
-#include <GL/glut.h>
 
-#include "AiGinEObject.h"
-#include "Vector3D.h"
-
-
+#include "../AiGinE.h"
 
 /**
 * @author Tobias Harpering

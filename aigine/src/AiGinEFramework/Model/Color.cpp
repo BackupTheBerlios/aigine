@@ -2,8 +2,7 @@
 //
 //////////////////////////////////////////////////////////////////////
 
-#include "Color.h"
-
+#include "../AiGinE.h"
 
 // Konstruktoren
 Color::Color() {}
@@ -11,10 +10,10 @@ Color::Color(const float f) : r(f), g(f), b(f), a(1.0f) {}
 Color::Color(const float _r, const float _g, const float _b) : r(_r), g(_g), b(_b), a(1.0f) {}
 Color::Color(const float _r, const float _g, const float _b, const float _a) : r(_r), g(_g), b(_b), a(_a) {}
 Color::Color(const float* pfComponent) : r(pfComponent[0]), g(pfComponent[1]), b(pfComponent[2]), a(pfComponent[3]) {}
-Color::Color(const BYTE _r, const BYTE _g, const BYTE _b) : r((float)(_r) * COLOR_CONV), g((float)(_g) * COLOR_CONV), b((float)(_b) * COLOR_CONV), a(1.0f) {}
-Color::Color(const BYTE _r, const BYTE _g, const BYTE _b, const BYTE _a) : r((float)(_r) * COLOR_CONV), g((float)(_g) * COLOR_CONV), b((float)(_b) * COLOR_CONV), a((float)(_a) * COLOR_CONV) {}
-Color::Color(const BYTE* pComponent) : r((float)(pComponent[0]) * COLOR_CONV), g((float)(pComponent[1]) * COLOR_CONV), b((float)(pComponent[2]) * COLOR_CONV), a((float)(pComponent[3]) * COLOR_CONV) {}
-Color::Color(const DWORD c) : r(COLOR_CONV * (float)(BYTE)(c >> 16)), g(COLOR_CONV * (float)(BYTE)(c >> 8)), b(COLOR_CONV * (float)(BYTE)(c)), a(COLOR_CONV * (float)(BYTE)(c >> 24)) {}
+Color::Color(const BYTE _r, const BYTE _g, const BYTE _b) : r((float)(_r) * AGE_COLOR_CONV), g((float)(_g) * AGE_COLOR_CONV), b((float)(_b) * AGE_COLOR_CONV), a(1.0f) {}
+Color::Color(const BYTE _r, const BYTE _g, const BYTE _b, const BYTE _a) : r((float)(_r) * AGE_COLOR_CONV), g((float)(_g) * AGE_COLOR_CONV), b((float)(_b) * AGE_COLOR_CONV), a((float)(_a) * AGE_COLOR_CONV) {}
+Color::Color(const BYTE* pComponent) : r((float)(pComponent[0]) * AGE_COLOR_CONV), g((float)(pComponent[1]) * AGE_COLOR_CONV), b((float)(pComponent[2]) * AGE_COLOR_CONV), a((float)(pComponent[3]) * AGE_COLOR_CONV) {}
+Color::Color(const DWORD c) : r(AGE_COLOR_CONV * (float)(BYTE)(c >> 16)), g(AGE_COLOR_CONV * (float)(BYTE)(c >> 8)), b(AGE_COLOR_CONV * (float)(BYTE)(c)), a(AGE_COLOR_CONV * (float)(BYTE)(c >> 24)) {}
 //Color(const D3DCOLORVALUE& c) : D3DColorValue(c) {}
 
 // Casting-Operatoren
@@ -128,11 +127,12 @@ Color Color::ColorInterpolate(const Color& c1, const Color& c2, const float p) {
 	return c1 + p * (c2 - c1);
 }
 Color Color::ColorMin(const Color& c1, const Color& c2) {
-	return Color(MIN(c1.r, c2.r), MIN(c1.g, c2.g), MIN(c1.b, c2.b), MIN(c1.a, c2.a));
+	return Color(AGE_MIN(c1.r, c2.r), AGE_MIN(c1.g, c2.g), AGE_MIN(c1.b, c2.b), AGE_MIN(c1.a, c2.a));
 }
 Color Color::ColorMax(const Color& c1, const Color& c2) {
-	return Color(MAX(c1.r, c2.r), MAX(c1.g, c2.g), MAX(c1.b, c2.b), MAX(c1.a, c2.a));
+	return Color(AGE_MAX(c1.r, c2.r), AGE_MAX(c1.g, c2.g), AGE_MAX(c1.b, c2.b), AGE_MAX(c1.a, c2.a));
 }
 Color Color::ColorRandom(float fAlpha) {
-	return Color(FloatRandom(0.0f, 1.0f), FloatRandom(0.0f, 1.0f), FloatRandom(0.0f, 1.0f), fAlpha < 0.0f ? FloatRandom(0.0f, 1.0f) : fAlpha);
+//	return Color(FloatRandom(0.0f, 1.0f), FloatRandom(0.0f, 1.0f), FloatRandom(0.0f, 1.0f), fAlpha < 0.0f ? FloatRandom(0.0f, 1.0f) : fAlpha);
+	return Color();
 }

@@ -2,8 +2,7 @@
  * Mouse.cpp  
  */
 
-#include "Mouse.h"
-#include "../Model/SceneManagement.h"
+#include "../AiGinE.h"
 
 //____________________________________________________________________________
 Mouse::Mouse(SceneManagement* sceneMan)

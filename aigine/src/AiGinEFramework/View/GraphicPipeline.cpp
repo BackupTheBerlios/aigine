@@ -2,11 +2,7 @@
  * GraphicPipeline.cpp  
  */
 
-#include "GraphicPipeline.h"
-//#include "StateManager.h"
-#include "Camera.h"
-#include "../Model/Vector3D.h"
-#include "../View/Light.h"
+#include "../AiGinE.h"
 
 //____________________________________________________________________________
 GraphicPipeline::GraphicPipeline(int argc, char** argv)

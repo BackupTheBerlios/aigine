@@ -6,7 +6,7 @@
 #ifndef FILECONTROL_H
 #define FILECONTROL_H
 
-#include <iostream>
+#include "../AiGinE.h"
 using namespace std;
 
 class fileControl  

@@ -1,4 +1,5 @@
 /* Game Engine Design */
 
-#include "Mesh.h"
+#include "../AiGinE.h"
+
 Mesh::~Mesh(){}

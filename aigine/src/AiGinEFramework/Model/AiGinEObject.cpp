@@ -1,6 +1,5 @@
-#include "AiGinEObject.h"
-#include <iostream>
-using namespace std;
+
+#include "../AiGinE.h"
 
 AiGinEObject::AiGinEObject(): Object3D(), Knot() {
 }

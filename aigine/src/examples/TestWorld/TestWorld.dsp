@@ -95,6 +95,10 @@ SOURCE=..\..\AiGinEFramework\Model\AgeObjects\ageObjectPrim.cpp
 # End Source File
 # Begin Source File
 
+SOURCE=..\..\AiGinEFramework\AiGinE.cpp
+# End Source File
+# Begin Source File
+
 SOURCE=..\..\AiGinEFramework\Model\AiGinEObject.cpp
 # End Source File
 # Begin Source File
@@ -111,11 +115,31 @@ SOURCE=..\..\AiGinEFramework\Model\Color.cpp
 # End Source File
 # Begin Source File
 
+SOURCE=..\..\AiGinEFramework\View\Config.cpp
+# End Source File
+# Begin Source File
+
+SOURCE=..\..\AiGinEFramework\View\Direct3D.cpp
+# End Source File
+# Begin Source File
+
+SOURCE=..\..\AiGinEFramework\View\Effect.cpp
+# End Source File
+# Begin Source File
+
+SOURCE=..\..\AiGinEFramework\Utils\File.cpp
+# End Source File
+# Begin Source File
+
 SOURCE=..\..\AiGinEFramework\Utils\fileControl.cpp
 # End Source File
 # Begin Source File
 
 SOURCE=..\..\AiGinEFramework\View\GraphicPipeline.cpp
+# End Source File
+# Begin Source File
+
+SOURCE=..\..\AiGinEFramework\Model\IndexBuffer.cpp
 # End Source File
 # Begin Source File
 
@@ -131,6 +155,10 @@ SOURCE=..\..\AiGinEFramework\View\Light.cpp
 # End Source File
 # Begin Source File
 
+SOURCE=..\..\AiGinEFramework\Utils\Log.cpp
+# End Source File
+# Begin Source File
+
 SOURCE=..\..\AiGinEFramework\Model\LookAtObjects.cpp
 # End Source File
 # Begin Source File
@@ -139,11 +167,23 @@ SOURCE=..\..\AiGinEFramework\Model\Matrix4x4.cpp
 # End Source File
 # Begin Source File
 
+SOURCE=..\..\AiGinEFramework\Utils\Memory.cpp
+# End Source File
+# Begin Source File
+
 SOURCE=..\..\AiGinEFramework\Model\Mesh.cpp
 # End Source File
 # Begin Source File
 
+SOURCE=..\..\AiGinEFramework\Model\Model.cpp
+# End Source File
+# Begin Source File
+
 SOURCE=..\..\AiGinEFramework\Control\Mouse.cpp
+# End Source File
+# Begin Source File
+
+SOURCE=..\..\AiGinEFramework\Model\Object.cpp
 # End Source File
 # Begin Source File
 
@@ -191,11 +231,19 @@ SOURCE=..\..\AiGinEFramework\Utils\Tree.cpp
 # End Source File
 # Begin Source File
 
+SOURCE=..\..\AiGinEFramework\Utils\Utils.cpp
+# End Source File
+# Begin Source File
+
 SOURCE=..\..\AiGinEFramework\Model\Vector2D.cpp
 # End Source File
 # Begin Source File
 
 SOURCE=..\..\AiGinEFramework\Model\Vector3D.cpp
+# End Source File
+# Begin Source File
+
+SOURCE=..\..\AiGinEFramework\Utils\VFile.cpp
 # End Source File
 # Begin Source File
 
@@ -215,6 +263,10 @@ SOURCE=..\..\AiGinEFramework\Model\AgeObjects\ageObjectPrim.h
 # End Source File
 # Begin Source File
 
+SOURCE=..\..\AiGinEFramework\AiGinE.h
+# End Source File
+# Begin Source File
+
 SOURCE=..\..\AiGinEFramework\Model\AiGinEObject.h
 # End Source File
 # Begin Source File
@@ -231,11 +283,31 @@ SOURCE=..\..\AiGinEFramework\Model\Color.h
 # End Source File
 # Begin Source File
 
+SOURCE=..\..\AiGinEFramework\View\Config.h
+# End Source File
+# Begin Source File
+
+SOURCE=..\..\AiGinEFramework\View\Direct3D.h
+# End Source File
+# Begin Source File
+
+SOURCE=..\..\AiGinEFramework\View\Effect.h
+# End Source File
+# Begin Source File
+
+SOURCE=..\..\AiGinEFramework\Utils\File.h
+# End Source File
+# Begin Source File
+
 SOURCE=..\..\AiGinEFramework\Utils\fileControl.h
 # End Source File
 # Begin Source File
 
 SOURCE=..\..\AiGinEFramework\View\GraphicPipeline.h
+# End Source File
+# Begin Source File
+
+SOURCE=..\..\AiGinEFramework\Model\IndexBuffer.h
 # End Source File
 # Begin Source File
 
@@ -255,11 +327,19 @@ SOURCE=..\..\AiGinEFramework\Utils\List.h
 # End Source File
 # Begin Source File
 
+SOURCE=..\..\AiGinEFramework\Utils\Log.h
+# End Source File
+# Begin Source File
+
 SOURCE=..\..\AiGinEFramework\Model\LookAtObjects.h
 # End Source File
 # Begin Source File
 
 SOURCE=..\..\AiGinEFramework\Model\Matrix4x4.h
+# End Source File
+# Begin Source File
+
+SOURCE=..\..\AiGinEFramework\Utils\Memory.h
 # End Source File
 # Begin Source File
 
@@ -271,7 +351,15 @@ SOURCE=..\..\AiGinEFramework\Model\MeshList.h
 # End Source File
 # Begin Source File
 
+SOURCE=..\..\AiGinEFramework\Model\Model.h
+# End Source File
+# Begin Source File
+
 SOURCE=..\..\AiGinEFramework\Control\Mouse.h
+# End Source File
+# Begin Source File
+
+SOURCE=..\..\AiGinEFramework\Model\Object.h
 # End Source File
 # Begin Source File
 
@@ -331,11 +419,19 @@ SOURCE=..\..\tools\loader3DS\Types3DS.h
 # End Source File
 # Begin Source File
 
+SOURCE=..\..\AiGinEFramework\Utils\Utils.h
+# End Source File
+# Begin Source File
+
 SOURCE=..\..\AiGinEFramework\Model\Vector2D.h
 # End Source File
 # Begin Source File
 
 SOURCE=..\..\AiGinEFramework\Model\Vector3D.h
+# End Source File
+# Begin Source File
+
+SOURCE=..\..\AiGinEFramework\Utils\VFile.h
 # End Source File
 # Begin Source File
 

@@ -1,16 +1,6 @@
 /* Game Engine Design */
 
-
-#include <math.h>
-
-//#include "LookAtObjects.h"
-#include "../Model/Vector3D.h"
-#include "LookAtObjects.h"
-
-
-
-
-
+#include "../AiGinE.h"
 
 LookAtObjects::LookAtObjects() : AiGinEObject() {
 

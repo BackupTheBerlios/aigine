@@ -9,15 +9,11 @@
  * @author Tobias Harpering 
  */
 
-#include "../Utils/List.h"
-#include "Vector2D.h"
-#include "Vector3D.h"
-
 #ifndef MESH_H
 
 #define MESH_H
 
-
+#include "../AiGinE.h"
 
 /**
  * Ein <class>Mesh</class> beinhaltet die Vertices die benötigt werden, um

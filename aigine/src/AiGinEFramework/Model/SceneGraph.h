@@ -6,11 +6,7 @@
 
 #define SCENEGRAPH_H
 
-#include <GL/glut.h>
-
-#include "../Utils/Tree.h"
-#include "../../Tools/loader3DS/Object3DS.h"
-#include "AiGinEObject.h"
+#include "../AiGinE.h"
 
 class ObjectTree;
 

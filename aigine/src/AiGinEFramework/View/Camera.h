@@ -6,11 +6,7 @@
 #ifndef CAMERA_H
 #define CAMERA_H
 
-//#include <GL/glut.h>
-
-#include "../Model/Vector3D.h"
-#include "../Model/LookAtObjects.h"
-
+#include "../AiGinE.h"
 
 
 /**

@@ -6,11 +6,7 @@
 
 #define LIGHT_H	
 
-
-
-#include "../Model/LookAtObjects.h"
-#include "../View/GraphicPipeline.h"
-#include "../Model/Translation3D.h"
+#include "../AiGinE.h"
 
 class AiGinEObject;
 

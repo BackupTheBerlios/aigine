@@ -2,13 +2,9 @@
 
 #ifndef KEYBOARD_H
 #define KEYBOARD_H
-#pragma warning (disable: 4786)
+//#pragma warning (disable: 4786)
 
-#include <GL/glut.h>
-#include <map>
-using namespace std;
-
-//class SceneManagement;
+#include "../AiGinE.h"
 
 /**
  * "Keyboard" handelt die zugewiesenen Tastaturkommandos und für
@@ -21,8 +17,7 @@ using namespace std;
  * @author Danny Graef, Tobias Harpering, Frank Otto
  * @date 2004-01-06
  */
-class Keyboard
-{
+class Keyboard {
 public:
 	/**
 	 * Konstruktor
