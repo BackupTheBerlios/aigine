@@ -37,6 +37,9 @@ public class RemoteObjectHelper {
 		ro.setUsername(configuration.getProperty("user", "", category));
 		ro.setPasswd(configuration.getProperty("passwd", "", category));
 		ro.setRmiName("rmi://" + ro.getHostname() + ":" + ro.getPort() + "/");
+		if(ro.getDescription() == "vtdatabase"){
+			ro.setManager(configuration.getProperty("manager","",category));
+		}
 		
     System.out.println("<= RemoteObjectProperties() > " + this);
 

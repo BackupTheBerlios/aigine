@@ -3,6 +3,24 @@
 	<variables>
 		<variable name="server.path" value="http://localhost:2002/"/>
 	</variables>
+	<category name="vtdatabase">
+		<!-- Typ der Anwendung -->
+		<property name="typ" value="server"/>
+		<!-- Pfad fuer den Klassenserver, der das Repository der RMIComponents zur Verfuegung stellt. -->
+		<property name="codebase" value="${server.path}"/>
+		<!-- Klassenname der zu ladenen Komponenten -->
+		<property name="compClassName" value="projects.database.HSQLServerImpl"/>
+		<!-- Name der Komponente -->
+		<property name="compName" value="VTServer"/>
+		<!-- Domain Name des Serverdienstes der gestartet werden soll -->
+		<property name="hostname" value="localhost"/>
+		<!-- Port des Serverdienstes -->
+		<property name="port" value="2004"/>
+		<!-- Authentifizierungstyp -->
+		<property name="authTyp" value="nothing"/>
+		<!-- Adresse und Port des Managerdienstes -->
+		<property name="manager"value="http://localhost:2003/"/>
+	</category>
 	<category name="vtserver">
 		<!-- Typ der Anwendung -->
 		<property name="typ" value="server"/>
@@ -68,7 +86,7 @@
 		<property name="port" value="2003"/>
 		<!-- Authentifizierungstyp -->
 		<property name="authTyp" value="anonym"/>
-	</category>
+	</category>	
 </properties>
 
 

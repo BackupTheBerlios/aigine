@@ -3,7 +3,6 @@ package API.model;
 import java.io.Serializable;
 
 import API.interfaces.Application;
-import org.jconfig.*; 
 /**
  * Speichert die Eigenschaften einer RMI Komponente (Verbindungsinformationen etc.)
  * @author danny, tobi, franky
@@ -62,6 +61,11 @@ public class RemoteObject implements Serializable {
 
     /** Authentifizierungstyp, derzitig anonym, nothing, password */
     protected String authTyp;
+    
+    /**
+     * zusaetzliche property für den service RMI name
+     */
+    protected String manager;
 
     /**
      * Konstruktor nimmt die vom Loader eingelesenen Properties entgegen und
@@ -211,6 +215,20 @@ public class RemoteObject implements Serializable {
 	 */
 	public void setUsername(String i) {
 		username = i;
+	}
+
+	/**
+	 * @return
+	 */
+	public String getManager() {
+		return manager;
+	}
+
+	/**
+	 * @param string
+	 */
+	public void setManager(String string) {
+		manager = string;
 	}
 
 }
