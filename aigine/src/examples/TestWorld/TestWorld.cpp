@@ -91,22 +91,60 @@ int main(int argc, char** argv)
 //	glutSetKeyRepeat();
 
 
-Matrix4x4* matrix1 = new Matrix4x4(1.0, 0.0, 0.0, 0.0,
-								   0.0, 1.0, 0.0, 0.0,
-								   0.0, 0.0, 1.0, 0.0,
-								   0.0, 0.0, 0.0, 1.0);
-//Matrix4x4* matrix2 = new Matrix4x4(matrix1);
+// Matrizen-Test
+Matrix4x4 matrix1 = Matrix4x4(1.0, 0.0, 0.0, 0.0,
+							  0.0, 1.0, 0.0, 0.0,
+							  0.0, 0.0, 1.0, 0.0,
+							  0.0, 0.0, 0.0, 1.0);
 
-//matrix1->Matrix4x4RotationX(DEG_TO_RAD(90));
+Matrix4x4 matrix2 = Matrix4x4(1.0, 0.0, -1.0, 0.0,
+							 -8.0, 4.0, 1.0, 0.0,
+							 -2.0, 1.0, 0.0, 0.0,
+							  0.0, 0.0, 0.0, 1.0);
 
-/*
-for (int i=0; i<4; i++) {
-	for (int j=0; j<4; j++) {
-		cout << matrix1->m[i][j] << " ";
+Matrix4x4 matrix3 = Matrix4x4(2.0, 0.0, 0.0, 0.0,
+							  0.0, 2.0, 0.0, 0.0,
+							  0.0, 0.0, 2.0, 0.0,
+							  0.0, 0.0, 0.0, 2.0);
+Matrix4x4 matrix4 = Matrix4x4();
+
+//dafür hab ich >6h gearbeitet.. puh ;-)
+matrix4 = matrix1 / matrix3;
+
+int i,j;
+for (i=0; i<4; i++) {
+	for (j=0; j<4; j++) {
+		cout << matrix1.m[i][j] << " ";
 	}
 	cout << endl;
 }
-*/
+	
+cout << endl;
+
+for (i=0; i<4; i++) {
+	for (j=0; j<4; j++) {
+		cout << matrix2.m[i][j] << " ";
+	}
+	cout << endl;
+}
+
+cout << endl;
+
+for (i=0; i<4; i++) {
+	for (j=0; j<4; j++) {
+		cout << matrix3.m[i][j] << " ";
+	}
+	cout << endl;
+}
+
+cout << endl;
+
+for (i=0; i<4; i++) {
+	for (j=0; j<4; j++) {
+		cout << matrix4.m[i][j] << " ";
+	}
+	cout << endl;
+}
 
 
 
