@@ -1,4 +1,37 @@
-<project name="RMIComponents" default="dist" basedir=".">
+
+<!--RMIComponets - project buld.xml
+	@autor dagnu, mr_nice
+	
+	Dieses kleine schnuckellige xml file ist ne zimlich maechtige sache hiermit koennen wir alle
+	relevanten post- und pre- Configurationen vornehmen. ein paar habe ich bereitz hinzugefuehgt.
+	
+	Um das Project BackEndTest vom CVS lauffaehig zu machen, geht man wie volgt vor:
+	
+		-1. Target [dist]  	     loescht als ersts das bin verzeichniss, entpacked alle .jar files
+								 in das neu erstellte lib/lib verzeichniss. Nun wird das project 
+								 kompilliert und die class in /bin/project abgelegt
+
+		-2. Target [copy_libs] - kopiert nun alle in lib/lib entpackten klassen und ein paar 
+								 zusaetzliche dateien in das bin/ verzeichniss
+								 
+		-3. Target [compile]   - loescht als erstes das bin/project verzeichniss, laesst jedoch
+								 bin verzeichniss unberuehrt. als naechstes wird das project gebaut 
+								 und die stups geschrieben. fertig. sollange wie sich in dem lib 
+								 verzeichniss nichts aendert, brauch bei allen weiteren aenderungen
+								 im quellcode nur noch der letzte Target [compile] aufgerufen werden.
+								 spart ne maenge zeit :).
+								 
+								 
+		 ...have a lot of fun! 
+		 mr_nice
+ -->
+	
+	
+	
+	
+	
+	
+<project name="RMIComponents" default="compile" basedir=".">
   <description>
 	Baut alle Klassen und die RMI Proxies fuer die RMI Komponenten Bibliothek.
   </description>
@@ -20,14 +53,15 @@
   <target name="compile" depends="clean_project_only,build" description="wird dann aufgerufen, wenn die .jars entpackt sind und die classen in das /bin verzeichniss copiert wurden (copy_libs)">  		         
   </target>  
   
-  <target name="dist" depends="clean, unjar_libs, build, copy_libs">  		         
+	<!-- wird einmal am Anfang aufgerufen wenn das project frisch vom cvs ist -->
+  <target name="dist" depends="clean, unjar_libs, build, copy_libs" description="Wird aufgerufen, wenn das project frisch vom CVS kommt">  		         
   </target>  
   
   
-  <target name="build" depends="build_classes, build_rmics">  		
+  <target name="build" depends="build_classes, build_rmics" description="kompilliert das project, und baut stub-classes. Wird ueber dependecies aufgerufen!">  		
   </target>  
   
-  <target name="build_classes">
+  <target name="build_classes" description="kompilliert das project. Wird ueber dependecies aufgerufen!">
   		<mkdir dir="${build}"/>
   		<mkdir dir="${build}/project"/>  
 		<!-- der ganze rotz wird kompiliert --> 		
@@ -36,12 +70,12 @@
   	</javac>  		
   </target>
     
-  <target name="build_rmics" description="kompiliert alle Proxies (fuer Klassen, die auf Impl enden)">
+  <target name="build_rmics" description="kompiliert alle Proxies (fuer Klassen, die auf Impl enden). Wird ueber dependecies aufgerufen!">
 	<rmic base="${build}/project" includes="**/*Impl.class">		
 	</rmic>	
    </target>
   
-   <target name="unjar_libs" description="extrahiert alle relevanten jar files">
+   <target name="unjar_libs" description="Baut das Verzeichniss lib/lib/ und extrahiert alle relevanten jar files in dieses. Im [dist] aufruf enthalten!">
 		<mkdir dir="lib/lib"/>		
 		<unjar dest="lib/lib">  				
   				<fileset dir="lib/hibernate"/>
@@ -51,7 +85,7 @@
   		</unjar>  			
   </target>
   
-  <target name="copy_libs" description="kopiert alle dateien die in lib/lib und res sind in das bin verzeichniss">
+  <target name="copy_libs" description="kopiert alle dateien die in lib/lib und res sind in das bin verzeichniss. Einmal nach [dist] aufrufen!">
   		 <copy todir="${build}">    		
     		<fileset dir="lib/lib"/>    		
   		</copy>
@@ -67,10 +101,10 @@
   		
   </target>
   
-  <target name="jar_project" description="erstellen eines jarfiles mit den klassen des gesammten projectes">
+  <target name="jar_project" description="erstellen eines jarfiles mit den klassen des gesammten projectes. Wird ersmal nicht benötigt!!">
   </target>
   
-  <target name="jar_lib" description="erstellen eines jarfiles mit dem inhalt von lib nach lib.jar">
+  <target name="jar_lib" description="erstellen eines jarfiles mit dem inhalt von lib nach lib.jar. Wird ersmal nicht benötigt!!">
   		<mkdir dir="${build}/lib"/>
 		<jar jarfile="lib/lib.jar" 
             	basedir="lib">  
@@ -79,7 +113,7 @@
   
 
   
-  <target  name="dellib">
+  <target  name="dellib" description="loescht alle dateien aus ./lib/lib/">
   	<delete>
     	<fileset dir="./lib/lib/" includes="**/*.class"/>
     	<fileset dir="./lib/lib/" includes="**/*.xslt"/>
@@ -106,12 +140,12 @@
   
    -->
  
-  <target name="clean" description="clean up" >
+  <target name="clean" description="clean up bin/ dir" >
     <delete dir="${build}"/>    
   </target>
 
 
-	<target name="clean_project_only" description="clean up only the project-build-dirs" >
+	<target name="clean_project_only" description="clean up only the project-build-dirs. Depended on [compile]" >
     	<delete dir="${build}/project"/>		
   	</target>
 </project>
