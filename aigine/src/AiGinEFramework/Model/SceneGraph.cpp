@@ -68,9 +68,20 @@ void SceneGraph::drawSceneGraph(AiGinEObject* obj) {
 	//(AiGinEObject(k->obj))->getTranslation();
 	//k->obj->getRotation()
 	//k->obj->draw();
+	
 	Translation3D * trans = obj->getTranslation();
 	glTranslatef(trans->x,trans->y,trans->z);
+
+	/*Rotation3D* rotate= obj->getRotation();
+	glScalef (rotate->x, rotate->y, rotate->z);/**/
+
+	glPushMatrix();
+	Scale3D* scale = obj->getScale();
+	glScalef (scale->x, scale->y, scale->z);
+
 	((ageObject3DS*)obj)->display();
+	glPopMatrix();
+
 	if(obj->right != NULL) {
 		this->drawSceneGraph((AiGinEObject*)(obj->right));
 	}
