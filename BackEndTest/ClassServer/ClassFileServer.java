@@ -1,4 +1,4 @@
-// Copyright MageLang Institute; Version $Id: ClassFileServer.java,v 1.5 2004/09/06 01:15:35 mr_nice Exp $
+// Copyright MageLang Institute; Version $Id: ClassFileServer.java,v 1.6 2004/09/09 08:36:11 fosion Exp $
 
 /*
  * Copyright (c) 1996, 1996, 1997 Sun Microsystems, Inc. All Rights Reserved.
@@ -13,19 +13,27 @@
 //package examples.classServer;
 
 import java.io.*;
-
+import org.jconfig.server.ConfigurationServer;
+import org.jconfig.Configuration;
+import org.jconfig.ConfigurationManager;
 /**
  * The ClassFileServer implements a ClassServer that reads class files from the
  * file system. See the doc for the "Main" method for how to run this server.
  */
+
+
 public class ClassFileServer extends ClassServer {
-	private String classpath;
+	private String repository;
 
-	private String externalpath;
-
+	private String externalrepository;
+	
 	private static int DefaultServerPort = 2001;
 	
-	
+	private static final Configuration configuration =
+		 ConfigurationManager.getConfiguration("config/server");
+	//TODO FOSION alles in die main config schmeissen
+		 
+	private static int port = configuration.getIntProperty("port",2002,"classserver");
 
 	/**
 	 * Constructs a ClassFileServer.
@@ -33,24 +41,21 @@ public class ClassFileServer extends ClassServer {
 	 * @param classpath
 	 *            the classpath where the server locates classes
 	 */
-	public ClassFileServer(int port, String classpath) throws IOException {
+	public ClassFileServer() throws IOException {
+		
 		super(port);
-		this.classpath = classpath;
-	}
-
-	/**
-	 * Constructs a ClassFileServer which contains external jar files
-	 * 
-	 * @param port
-	 * @param classpath
-	 * @param externpath
-	 */
-	public ClassFileServer(int port, String classpath, String externpath)
-			throws IOException {
-		super(port);
-		this.classpath = classpath;
-		this.externalpath = externpath;
-		// TODO JAR Dateien verarbeiten
+				
+		this.repository = configuration.getProperty("repository",System.getProperty("java.io.tmpdir"),"classserver");
+		this.externalrepository = configuration.getProperty("externalrepository",System.getProperty("java.io.tmpdir"),"classserver");
+		System.out.println("CLassFileServer Started whith\n classpath = " + this.repository
+										+ " | on port = " + port + " | and the externalDir = "
+										+ this.externalrepository);
+		//Reisst einen Jconfig Server hoch
+		// port = 
+		System.out.println("\nJetzt starte ich Config Server...");
+		ConfigurationServer cs = new ConfigurationServer(configuration.getIntProperty("port",2010,"jconfigserver"),configuration.getProperty("repository","","jconfigserver"));
+		System.out.println("Done");
+		
 	}
 
 	/**
@@ -71,18 +76,18 @@ public class ClassFileServer extends ClassServer {
 			System.out.println("\n----------------------------\n\t"+path+fileExt+" gelesen!!\n----------------------------\n");
 		}
 		File f = null;
-		System.out.println("reading at classpath: " + classpath + " file:"
+		System.out.println("reading at classpath: " + repository + " file:"
 				+ path + fileExt);
-		f = new File(classpath + File.separator
+		f = new File(repository + File.separator
 				+ path.replace('.', File.separatorChar) + fileExt);
 		int length = (int) (f.length());
 		super.bytesCont += length;
 		//System.out.println("laenge des bytes:" + length);
 
 		if (length == 0) {
-			System.out.println("reading at exteralpath: " + externalpath
+			System.out.println("reading at exteralpath: " + externalrepository
 					+ " file:" + path + fileExt);
-			f = new File(externalpath + File.separator
+			f = new File(externalrepository + File.separator
 					+ path.replace('.', File.separatorChar) + fileExt);
 			length = (int) (f.length());
 			super.bytesCont += length;
@@ -140,52 +145,19 @@ public class ClassFileServer extends ClassServer {
 	 * </code>
 	 */
 	public static void main(String args[]) {
-		int port = DefaultServerPort;
-		String classpath = "";
-		String externpath = null;
-
-		if (args.length >= 1) {
-			port = Integer.parseInt(args[0]);
-		}
-
-		if (args.length >= 2) {
-			classpath = args[1];
-			//			by mr_nice: to set external .jars
+		
+		
 			try {
-				externpath = args[2];
-			} catch (ArrayIndexOutOfBoundsException outofBounds) {
-				System.out.println("no external path are given! "
-						+ outofBounds.getMessage());
-			}
-		}
-		if (externpath != null) {
-			try {
-				new ClassFileServer(port, classpath, externpath);
-				System.out.println("ClassFileServer started...");
-				System.out.println("Started whith classpath = " + classpath
-						+ " | on port = " + port + " | and the externalDir = "
-						+ externpath);
+				new ClassFileServer();
+				
 			} catch (IOException e) {
 				System.out.println("Unable to start ClassServer: "
 						+ e.getMessage());
 				e.printStackTrace();
 			}
-
-		} else {
-
-			try {
-				new ClassFileServer(port, classpath);
-				System.out.println("ClassFileServer started...");
-				System.out.println("Started whith classpath = " + classpath
-						+ " | on port = " + port);
-			} catch (IOException e) {
-				System.out.println("Unable to start ClassServer: "
-						+ e.getMessage());
-				e.printStackTrace();
-			}
-		}
 
 	}
+	
 
 	/**
 	 * @return Returns the bytesCont.
@@ -193,4 +165,9 @@ public class ClassFileServer extends ClassServer {
 	public int getBytesCont() {
 		return bytesCont;
 	}
+	
+
+	
+	
+	
 }

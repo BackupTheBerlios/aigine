@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="iso-8859-1" ?>
+<properties>
+	<variables>
+		<variable name="server.path" value="http://localhost:2002/"/>
+	</variables>
+	<category name="dbserver">
+		<!-- Typ der Anwendung -->
+		<property name="typ" value="server"/>
+		<!-- Pfad fuer den Klassenserver, der das Repository der RMIComponents zur Verfuegung stellt. -->
+		<property name="codebase" value="${server.path}"/>
+		<!-- Klassenname der zu ladenen Komponenten -->
+		<property name="compClassName" value="projects.voting.VTDatabaseImpl"/>
+		<!-- Name der Komponente -->
+		<property name="compName" value="VTDatabaseServer"/>
+		<!-- Domain Name des Serverdienstes der gestartet werden soll -->
+		<property name="hostname" value="localhost"/>
+		<!-- Port des Serverdienstes -->
+		<property name="port" value="2004"/>
+		<!-- Authentifizierungstyp -->
+		<property name="authTyp" value="nothing"/>
+	</category>
+	<category name="vtlogicserver">
+		<!-- Typ der Anwendung -->
+		<property name="typ" value="server"/>
+		<!-- Pfad fuer den Klassenserver, der das Repository der RMIComponents zur Verfuegung stellt. -->
+		<property name="codebase" value="${server.path}"/>
+		<!-- Klassenname der zu ladenen Komponenten -->
+		<property name="compClassName" value="projects.voting.VTLogicServerImpl"/>
+		<!-- Name der Komponente -->
+		<property name="compName" value="VTLogicServer"/>
+		<!-- Domain Name des Serverdienstes der gestartet werden soll -->
+		<property name="hostname" value="localhost"/>
+		<!-- Port des Serverdienstes -->
+		<property name="port" value="2003"/>
+		<!-- Authentifizierungstyp -->
+		<property name="authTyp" value="anonym"/>
+		<!-- Adresse und Port des Managerdienstes -->
+		<property name="manager" value="rmi://localhost:2004/"/>
+		<!--Name des manager servers-->
+		<property name="managerName" value="VTDatabaseServer"/>
+	</category>	
+	<category name="vtclient">
+		<!-- Typ der Anwendung -->
+		<property name="typ" value="client"/>
+		<!-- Pfad fuer den Klassenserver, der das Repository der RMIComponents zur Verfuegung stellt. -->
+		<property name="codebase" value="${server.path}"/>
+		<!-- Klassenname der zu ladenen Komponenten -->
+		<property name="compClassName" value="projects.voting.VTClientImpl"/>
+		<!-- Name der Komponente -->
+		<property name="compName" value="VTLogicServer"/>
+		<!-- Domain Name des Serverdienstes der gestartet werden soll -->
+		<property name="hostname" value="localhost"/>
+		<!-- Port des Serverdienstes -->
+		<property name="port" value="2003"/>
+		<!-- Authentifizierungstyp -->
+		<property name="authTyp" value="anonym"/>
+	</category>
+	<category name="vtadminclient">
+		<!-- Typ der Anwendung -->
+		<property name="typ" value="client"/>
+		<!-- Pfad fuer den Klassenserver, der das Repository der RMIComponents zur Verfuegung stellt. -->
+		<property name="codebase" value="${server.path}"/>
+		<!-- Klassenname der zu ladenen Komponenten -->
+		<property name="compClassName" value="projects.voting.VTAdminClientImpl"/>
+		<!-- Name der Komponente -->
+		<property name="compName" value="VTLogicServer"/>
+		<!-- Domain Name des Serverdienstes der gestartet werden soll -->
+		<property name="hostname" value="localhost"/>
+		<!-- Port des Serverdienstes -->
+		<property name="port" value="2003"/>
+		<!-- Authentifizierungstyp -->
+		<property name="authTyp" value="admin"/>
+		<property name="user" value="nice"/>
+		<property name="passwd" value="yourMama"/>
+	</category>
+	<category name="vtwebservice">
+		<!-- Typ der Anwendung -->
+		<property name="typ" value="client"/>
+		<!-- Pfad fuer den Klassenserver, der das Repository der RMIComponents zur Verfuegung stellt. -->
+		<property name="codebase" value="${server.path}"/>
+		<!-- Klassenname der zu ladenen Komponenten -->
+		<property name="compClassName" value="projects.voting.VTWebServerImpl"/>
+		<!-- Name der Komponente -->
+		<property name="compName" value="VTLogicServer"/>
+		<!-- Domain Name des Serverdienstes der gestartet werden soll -->
+		<property name="hostname" value="localhost"/>
+		<!-- Port des Serverdienstes -->
+		<property name="port" value="2003"/>
+		<!-- Authentifizierungstyp -->
+		<property name="authTyp" value="anonym"/>
+	</category>	
+</properties>
+
+

@@ -1,4 +1,4 @@
-// Copyright MageLang Institute; Version $Id: ClassServer.java,v 1.2 2004/09/06 01:15:35 mr_nice Exp $
+// Copyright MageLang Institute; Version $Id: ClassServer.java,v 1.3 2004/09/09 08:36:11 fosion Exp $
 
 /*
  * Copyright (c) 1996, 1996, 1997 Sun Microsystems, Inc. All Rights Reserved.
@@ -17,6 +17,7 @@
 
 import java.io.*;
 import java.net.*;
+
 
 /**
  * ClassServer is an abstract class that provides the
@@ -54,6 +55,9 @@ public abstract class ClassServer implements Runnable {
 		this.port = port;
 		server = new ServerSocket(port);
 		newListener();
+		
+
+		
 	}
 
 	/**
