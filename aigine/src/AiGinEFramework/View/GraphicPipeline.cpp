@@ -43,17 +43,21 @@ void GraphicPipeline::initOpenGL(int argc, char** argv){
 
 	glShadeModel (GL_SMOOTH);
 
-	/* // Definition der Lichteigenschaften
-   GLfloat mat_specular[] = { 1.0, 1.0, 1.0, 1.0 }; // weiss
-   //GLfloat mat_diffuse[] = { 1.0, 1.0, 1.0, 1.0 }; // weiss
-   GLfloat mat_diffuse[] = { 0.8, 1.0, 0.8, 1.0 }; // leichtes gruen
-   GLfloat mat_diffuse1[] = { 1.0, 0.4, 0.4, 1.0 }; // ein wenig rot
-   GLfloat mat_shininess[] = { 10.0 }; // fuer Helligkeit der Reflextion
-   GLfloat light_position[] = { 1.0, 1.0, 1.0, 0.0 }; // position in homogenen koordinaten
-   GLfloat light_position1[] = { -3.0, 3.0, 3.0, 1.0 };
-     // da 4. = 0 werden die ersten drei Koordinaten unendlich /**/
+	/**         // Definition der Lichteigenschaften
+	* ein auszug aus der alten cube.c wie wir damals das licht definiert hatten remember?
+   *GLfloat mat_specular[] = { 1.0, 1.0, 1.0, 1.0 }; // weiss
+   *GLfloat mat_diffuse[] = { 1.0, 1.0, 1.0, 1.0 }; // weiss
+   *GLfloat mat_diffuse[] = { 0.8, 1.0, 0.8, 1.0 }; // leichtes gruen
+   *GLfloat mat_diffuse1[] = { 1.0, 0.4, 0.4, 1.0 }; // ein wenig rot
+   *GLfloat mat_shininess[] = { 10.0 }; // fuer Helligkeit der Reflextion
+   *GLfloat light_position[] = { 1.0, 1.0, 1.0, 0.0 }; // position in homogenen koordinaten
+   *GLfloat light_position1[] = { -3.0, 3.0, 3.0, 1.0 };
+   *  da 4. = 0 werden die ersten drei Koordinaten unendlich 
+	*		dieses muesst ihr selber definieren und der display uebergeben macht ihr es nicht 
+	*       wird ein standart licht an 0.0.0 gesetzt
+	*/
 
-	this->lnkLight = new Light(); //Konstruktor mit den standart Werten:
+	this->lnkLight = new Light(this); //Konstruktor mit den standart Werten:
 												   //  Vector3D position, Vector3D lookAtPosition
 
 	float * lightGreen_defuse = new float[4];
@@ -62,17 +66,16 @@ void GraphicPipeline::initOpenGL(int argc, char** argv){
 	lightGreen_defuse[2] = 1.0;
 	lightGreen_defuse[3] = 1.0;        // leichtes gruen	
 
-	Translation3D * lightpos = new Translation3D(3.0,-30.0,1.0); //die position des lichtes +10 in alle richtungen
+	Translation3D * lightpos = new Translation3D(30.0,-30.0,1.0); //die position des lichtes +10 in alle richtungen
 	this->lnkLight->setDiffuse(lightGreen_defuse);  // leichtes gruen
 	this->lnkLight->setTranslation(lightpos);
 
-	//ambient Licht
-	//Light * ambientLight = new Light();
+	
 
 	float * ambient = new float[4];
-	ambient[0] = 0.2;
-	ambient[1] = 0.2;
-	ambient[2] = 0.2;
+	ambient[0] = 0.7;
+	ambient[1] = 0.7;
+	ambient[2] = 0.7;
 	ambient[3] = 1.0; 
 	this->lnkLight->setAmbient(ambient);
 	
@@ -167,7 +170,10 @@ char intToChar(int integer)
  return (char)integer+48;
 }
 //___enableLight________________________________________________________________
-/**setzt alle relevanten Gl befehle für das Licht*/
+/**setzt alle relevanten Gl befehle für das Licht
+* @todo im moment kann man nur ganz normale lichter setzten. um zb ein spot zu setzten muss ich noch 
+* mal rann...:-(
+*/
 
 int GraphicPipeline::enableLight(Light * currentLight, int index) {
 	int isSet = false;					

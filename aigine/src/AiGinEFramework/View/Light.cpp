@@ -6,8 +6,12 @@
 
 
 
-//Std - Constructor
-Light::Light() {
+/**Std - Constructor
+*@param GraphicPipeline um auf deren funktion für das setzten des lichtes zureuck zu greifen
+*/
+Light::Light(GraphicPipeline * lnkPipe) {
+	
+	this->lnkPipeline = lnkPipe;
 	//this->attachViewport( new Viewport());
 	this->setLookAtPosition(new Vector3D(BASEPOINT));
 	this->setTranslation(new Translation3D(BASEPOINT));
@@ -23,9 +27,13 @@ Light::Light() {
 	this->pos_direct = 1;	// Positional light by default, if you not understand: don´n panic :-) ! tobi
 }
 
-// Constructor with specialized param for position and LookAt
-Light::Light(Translation3D* position, Vector3D * lookAt) {
+/** Constructor with specialized param for position and LookAt
+* @param GraphicPipeline um auf deren funktion für das setzten des lichtes zureuck zu greifen
+*/
+Light::Light(GraphicPipeline * lnkPipe,Translation3D* position, Vector3D * lookAt) {
 	
+	this->lnkPipeline = lnkPipe;
+
 	this->setLookAtPosition(lookAt);
 
     //this->attachViewport(new Viewport());	
@@ -76,6 +84,32 @@ void Light::setAmbient(float * ambient) {
 int Light::getPos_direct() { return this->pos_direct;}
 void Light::setPos_direct(int art) {
 	this->pos_direct = art;
+}
+
+/** Display für eine einheitliche handhabung*/
+void Light::display(int index, string kind) {	
+	lnkPipeline->enableLight(this, index);	
+}
+
+void Light::display() {	
+
+	float * lightGreen_defuse = new float[4];
+	lightGreen_defuse[0] = 1.0;
+	lightGreen_defuse[1] = 1.0;
+	lightGreen_defuse[2] = 1.0;
+	lightGreen_defuse[3] = 1.0;        // leichtes gruen	
+	this->setDiffuse(lightGreen_defuse);  // leichtes gruen	
+
+	float * ambient = new float[4];
+	ambient[0] = 0.7;
+	ambient[1] = 0.7;
+	ambient[2] = 0.7;
+	ambient[3] = 1.0; 
+	this->setAmbient(ambient);
+	this->display(1,"spot"); // spot leider noch nicht implementiert ..:-(
+
+
+
 }
 
 //Destructor
