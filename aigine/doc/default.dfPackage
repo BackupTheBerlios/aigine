@@ -40,9 +40,9 @@ class __tags {
 */
 class __options {
 }/**
-@__positions <oigroup:<oiref:design#Class#id8430dn6d1h2idn6d2ase.diagram:oiref>=10,10,57,52,1:oigroup>
-<oigroup:<oiref:design#Class#id1ftendn6d1h2idn6d2auc.diagram:oiref>=10,270,91,85,1:oigroup>
-<oigroup:<oiref:design#Class#ida1f8dn6d1h2idn6d2aqq.diagram:oiref>=87,10,134,205,1:oigroup>
+@__positions <oigroup:<oiref:design#Class#id8430dn6d1h2idn6d2ase.diagram:oiref>=10,10,53,57,1:oigroup>
+<oigroup:<oiref:design#Class#id1ftendn6d1h2idn6d2auc.diagram:oiref>=10,270,78,94,1:oigroup>
+<oigroup:<oiref:design#Class#ida1f8dn6d1h2idn6d2aqq.diagram:oiref>=87,10,124,279,1:oigroup>
 <oigroup:<oiref:design#Class#id35gxsdn6d1h2idn6d2avg.diagram:oiref>=241,10,53,60,0:oigroup>
 */
 class __positions {
