@@ -9,8 +9,6 @@ package projects.voting;
 import java.rmi.RemoteException;
 import java.util.List;
 
-import org.hsqldb.util.DatabaseManagerSwing;
-
 import projects.interfaces.VTDatabaseServer;
 import projects.interfaces.VTLogicServer;
 import projects.interfaces.VTPersistenceHelper;
