@@ -1,0 +1,113 @@
+DROP TABLE User IF EXISTS ;
+DROP TABLE Catalog IF EXISTS ;
+DROP TABLE Category  IF EXISTS ;
+DROP TABLE Basket IF EXISTS ;
+DROP TABLE Picture IF EXISTS ;
+
+
+CREATE TABLE User
+(
+usr_firstname varchar(127),
+urs_id mediumint(7) NOT NULL,
+urs_lastname varchar(127),
+usr_nicname varchar(127) NOT NULL UNIQUE,
+usr_sessionID bigint(9) NOT NULL UNIQUE,
+usr_lastAccess date,
+usr_entrytime time,
+usr_entrydate date NOT NULL,
+bask_id mediumint(7) NOT NULL,
+pic_id mediumint(7) NOT NULL,
+category_id mediumint(7) NOT NULL,
+pic_id1 mediumint(7) NOT NULL,
+  CONSTRAINT PK_User PRIMARY KEY (urs_id, bask_id, pic_id, category_id, pic_id1)
+);
+
+
+CREATE TABLE Catalog
+(
+cat_id mediumint(7) NOT NULL,
+cat_name mediumint(7) NOT NULL,
+category_id mediumint(7) NOT NULL,
+pic_id mediumint(7) NOT NULL,
+  CONSTRAINT PK_Catalog PRIMARY KEY (cat_id, category_id, pic_id)
+);
+
+
+CREATE TABLE Picture
+(
+pic_id mediumint(7) NOT NULL,
+pic_name varchar(127) NOT NULL,
+pic_dest varchar(127) NOT NULL,
+  CONSTRAINT PK_Picture PRIMARY KEY (pic_id)
+);
+
+
+CREATE TABLE Category 
+(
+category_id mediumint(7) NOT NULL,
+category_name varchar(127) NOT NULL,
+category_desc text,
+pic_id mediumint(7) NOT NULL,
+  CONSTRAINT PK_Category PRIMARY KEY (category_id, pic_id)
+);
+
+
+CREATE TABLE Basket
+(
+bask_id mediumint(7) NOT NULL,
+bask_desc text,
+pic_id mediumint(7) NOT NULL,
+category_id mediumint(7) NOT NULL,
+pic_id1 mediumint(7) NOT NULL,
+  CONSTRAINT PK_Basket PRIMARY KEY (bask_id, pic_id, category_id, pic_id1)
+);
+
+
+ALTER TABLE User ADD CONSTRAINT urs_bask_rel FOREIGN KEY (
+bask_id,
+pic_id,
+category_id,
+pic_id1
+);
+REFERENCES Basket (
+bask_id,
+pic_id,
+category_id,
+pic_id1
+);
+
+
+ALTER TABLE Catalog ADD CONSTRAINT cat_category_rel FOREIGN KEY (
+category_id,
+pic_id
+);
+REFERENCES Category (
+category_id,
+pic_id
+);
+
+
+ALTER TABLE Category ADD CONSTRAINT pic_category_rel FOREIGN KEY (
+pic_id
+);
+REFERENCES Picture (
+pic_id
+);
+
+
+ALTER TABLE Basket ADD CONSTRAINT bask_pic_rel FOREIGN KEY (
+pic_id
+);
+REFERENCES Picture (
+pic_id
+);
+
+
+ALTER TABLE Basket ADD CONSTRAINT bask_category_rel FOREIGN KEY (
+category_id,
+pic_id1
+);
+REFERENCES Category (
+category_id,
+pic_id
+);
