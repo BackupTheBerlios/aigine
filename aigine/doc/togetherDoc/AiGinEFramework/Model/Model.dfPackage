@@ -97,6 +97,11 @@ class reference1 {
 @__modelType reference 
 */
 class reference7 {
+}/**
+@__ref <oiref:cpp#Class#Matrix4x4:oiref><oihard>
+@__modelType reference 
+*/
+class reference8 {
 }}/**
 @__tags
 @shapeType ClassDiagram 
@@ -138,6 +143,7 @@ class __options {
 <oigroup:<oiref:cpp#Extends#Rotation3D#Vector3D:oiref>=801,1296,560,1296:oigroup>
 <oigroup:<oiref:cpp#Class#MeshList:oiref>=820,239,83,82,1:oigroup>
 <oigroup:<oiref:cpp#Class#LookAtObjects:oiref>=200,1611,200,149,1:oigroup>
+<oigroup:<oiref:cpp#Class#Matrix4x4:oiref>=1901,479,200,629,1:oigroup>
 <oigroup:MemberLink#<oiref:cpp#Member#Object3D#translation:oiref>=1240,1052,992,1052:oigroup>
 <oigroup:<oiref:cpp#Class#ageObjectPrim:oiref>=517,1292,200,478,1:oigroup>
 <oigroup:<oiref:cpp#Extends#SceneManagement#SceneGraph:oiref>=1809,2021,1809,1955:oigroup>
