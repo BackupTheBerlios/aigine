@@ -10,9 +10,8 @@ import java.util.Hashtable;
 
 /**
  * @author Dennis
+ * @since 2004-09-16
  *
- * To change the template for this generated type comment go to
- * Window&gt;Preferences&gt;Java&gt;Code Generation&gt;Code and Comments
  */
 public class RequestBlock {
 	private String op = null ;
@@ -37,8 +36,16 @@ public class RequestBlock {
 		return this.srv ;
 	}
 	
+	public void setServer(String newServer) {
+		this.srv = newServer ;
+	}
+	
 	public String getOperation() {
 		return this.op ;
+	}
+	
+	public void setOperation(String newOperation) {
+		this.op = newOperation ;
 	}
 	
 	public Hashtable getRequests() {

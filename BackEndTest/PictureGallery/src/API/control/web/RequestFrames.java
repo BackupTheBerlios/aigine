@@ -17,9 +17,21 @@ public class RequestFrames {
 
 	public RequestFrames() {
 	}
+	
 	/**
-		 * Fügt einen Frame hinzu.
-		 * @param newFrame, FrameNumber
+	 * @return Anzahl der Frames
+	 */
+	public int getFrameCount() {
+		int zaehler = 0 ;
+		while (frames.get(new Integer(zaehler)) != null) {
+			zaehler++ ;
+		}
+		return zaehler ;
+	}
+	
+	/**
+	 * Fügt einen Frame hinzu.
+	 * @param newFrame, FrameNumber
 	 */
 	public int addFrame(RequestFrame newFrame, int FrameNumber) {
 		frames.put(new Integer(FrameNumber), newFrame);
