@@ -51,7 +51,7 @@ public class BootStrapedApplicationStarter implements BootStrapedComponent {
     private String category;
     private String[] categorynames; 
     private static final Configuration configuration =
-      ConfigurationManager.getConfiguration("icke");
+      ConfigurationManager.getConfiguration("main");
       
   
   /**
