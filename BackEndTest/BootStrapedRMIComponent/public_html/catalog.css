@@ -1,25 +1,12 @@
-table.site {
-	border: solid blue 2px;
-	width:100%;
-}
+table.site { border: solid blue 2px; width:100%; }
+td { font-size:10pt; text-align:left;  vertical-align:top; }
 
-td{
-  font-size:10pt;
-  text-align:left;
-  vertical-align:top;
-}
-
-td.main {
-  border: solid blue 1px;
-}
-
-td.blocks-left {
-  text-align:left;
-  width:150%;
-}
-
-td.blocks-right {
-  text-align:right;
-}
+td.main {border: solid blue 1px; }
+td.blocks-left {text-align:left; width:150%; }
+td.blocks-right { text-align:right; }
 
 h1 { font:Verdana, Arial, Sans-Serif; font-size:16pt }
+.copyright {font-family:Verdana,Helvetica,Arial,Sans-Serif; color:silver; font-size:8pt;}
+.blocktitle {font-family:Verdana,Helvetica,Arial,Sans-Serif; color:red; background-color:#eeeeee ; font-size:9pt; padding:1pt}
+.catalog {font-family:Verdana,Helvetica,Arial,Sans-Serif; color:darkblue; background-color:#eefefe ; font-size:8pt;}
+.main {font-family:Verdana,Helvetica,Arial,Sans-Serif; color:darkgray; background-color:#fefeee ; font-size:10pt;}
