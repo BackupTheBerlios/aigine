@@ -11,14 +11,21 @@ void SceneGraph::draw()
 
    glPushMatrix();        
       glTranslatef(0.0, 0.0, 0.0);
-      this->tmpTestObject->renderObject();
+      //this->tmpTestObject->renderObject();
+	  //glColor3f (1.0, 0.0, 0.0); // setzt die Farbe auf weiss
+	  glutSolidTeapot(1.0);
    glPopMatrix();
 
 
    glutSwapBuffers(); // Tauschen der Bildspeicher - for double buffer
 }
 void SceneGraph::addObject(AiGinEObject* object){}
+
 Object3DS* SceneGraph::getTmpTestObject(){ return tmpTestObject; }
+
+
+
+
 void SceneGraph::setTmpTestObject(Object3DS* tmpTestObject){ 
 		// Chrome Shader : TODO : Wenn das AiGinEObject ferrtig ist, muss das in den Shader
 						glBindTexture(GL_TEXTURE_2D, tmpTestObject->getTextureID(0));

@@ -4,18 +4,21 @@
 #define KEYBOARD_H
 
 #include <GL/glut.h>
-#include "../GraphicEngine/SceneManagement.h"
+//#include <iostream>
+//using namespace std;
 
-class SceneManagement;
+#include "../GraphicEngine/SceneManagement.h"
+#include "../Model/Point3D.h"
+
+//class SceneManagement;
+class Point3D;
 
 class Keyboard
 {
-public:    
+public:
+	Keyboard(SceneManagement* sceneMan);
 
-    Keyboard(SceneManagement* sceneMan);
-
-    void keyAction(unsigned char key, int x, int y);
-private:    
-    SceneManagement* sceneMan;
+    void keyAction(unsigned char key, int x, int y);    
+	SceneManagement* sceneMan;
 };
 #endif //KEYBOARD_H

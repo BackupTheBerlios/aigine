@@ -43,7 +43,14 @@ public:
 
     Camera* getCamera();
 
+	int * getWindowSize();
+
 private:
+	/**
+     * 
+     * 
+     */
+	int * windowSize;
 
 
 
@@ -58,6 +65,8 @@ private:
      * @supplierCardinality 1..*
      * @clientCardinality 1*/
     Camera * lnkCamera;
+
+	
 };
 
 #endif //GRAPHICPIPELINE_H

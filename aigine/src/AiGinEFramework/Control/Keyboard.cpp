@@ -1,9 +1,10 @@
 /* Game Engine Design */
 
 #include "Keyboard.h"
-#include "../GraphicEngine/SceneManagement.h"
 
-void Keyboard::keyAction(unsigned char key, int x, int y){
+
+
+void Keyboard::keyAction(unsigned char key, int mouseX, int mouseY){
    switch (key) {
       case ('x'):
 		  this->sceneMan->getCamera()->moveDown();
@@ -46,8 +47,13 @@ void Keyboard::keyAction(unsigned char key, int x, int y){
          _active_angle = &_arm_angles[3];
          break;
 */
-   }
+
+   }  
+
 }
-Keyboard::Keyboard(SceneManagement* sceneMan){
+
+
+Keyboard::Keyboard(SceneManagement* sceneMan)
+{
 	this->sceneMan = sceneMan;
 }

@@ -40,6 +40,12 @@ public:
     void display();
 
 private:
+	
+
+	/**
+     * returns the actual window-size of the current GLWindow
+     */
+	//int * getWindowSize();
 
     /**
      * @supplierCardinality 1

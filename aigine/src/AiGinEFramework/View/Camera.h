@@ -20,13 +20,21 @@ class Viewport;
 class Camera
 {
 
+
 public:
 
 	Point3D* getPosition();
 
+	Point3D * getLookAtPosition();
+
+	void setLookAtPosition(Point3D * lookAtPosition);
+
+	Point3D * getNormalVector();
+	
+	void setNormalVector(Point3D * normal);
     Camera();
 
-    Camera(Point3D* position);
+    Camera(Point3D* position, Point3D* lookAtPosiont, Point3D* normalVector);
 
     void attachViewport(Viewport * param);
 
@@ -65,6 +73,8 @@ public:
 
 private:
 
+	Point3D * normalVector;
+	Point3D * lookAtPosition;
     Point3D * position;
 
     /**

@@ -40,4 +40,10 @@ void SceneManagement::load(string fileType, string fileName) {
 
 
 
+
+/**********************getWindowSizt**********************/
+//int * SceneManagement::getWindowSize() {
+	
+//}
+
 /*********************P R I V A T E***************************************/
