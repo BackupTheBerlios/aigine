@@ -4,12 +4,6 @@
 #include <iostream>
 using namespace std;
 ageObjectPrim::ageObjectPrim(): AiGinEObject() {
-//	glBindTexture(GL_TEXTURE_2D, this->my3DSObject->getTextureID(0));
-	glTexGenf(GL_S, GL_TEXTURE_GEN_MODE, GL_SPHERE_MAP);
-	glTexGenf(GL_T, GL_TEXTURE_GEN_MODE, GL_SPHERE_MAP);
-	glEnable(GL_TEXTURE_GEN_S);     // Enable spherical
-	glEnable(GL_TEXTURE_GEN_T);     // Environment Mapping
-
 	this->kind = 0;
 	this->solid = true;
 	this->colorR = 0;
