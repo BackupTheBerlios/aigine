@@ -21,7 +21,7 @@ public interface CDBServer extends ServerHandle {
 	 //setzt der Manager in seiner register methode
 	CManagerServer manager = null;
 	
-	 void setPicture(String catalogName, String categoryName, Picture pic);
+	 void setPicture(String catalogName, String categoryName, Picture pic) throws RemoteException;
 	 
 	 /**
 	  * CManagerServer.registerServices() ruft dann
@@ -29,11 +29,6 @@ public interface CDBServer extends ServerHandle {
 	  * Tags are:@param manager
 	  * @return void
 	  */
-	 void setManagerServer(CManagerServer manager)throws RemoteException;
-	 
-	 
-	 CManagerServer getManagerServer()throws RemoteException;
-	 
-	
-
+	 void setManager(CManagerServer manager)throws RemoteException;
+	 CManagerServer getManager()throws RemoteException;
 }

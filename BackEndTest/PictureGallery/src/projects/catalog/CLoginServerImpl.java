@@ -20,8 +20,6 @@ import API.model.RemoteObject;
 /**
  * @author your mama
  *
- * TODO To change the template for this generated type comment go to
- * Window - Preferences - Java - Code Style - Code Templates
  */
 public class CLoginServerImpl extends Server implements CLoginServer {
 	
@@ -58,7 +56,7 @@ public class CLoginServerImpl extends Server implements CLoginServer {
 	}
 
 	/**
-	 * Creiert eine neue CSession welche von Certificat abgeleitet ist und 
+	 * Kreiert eine neue CSession welche von Certificat abgeleitet ist und 
 	 * die verschlüsselung der user- daten uebernimmt
 	 * 
 	 * @see projects.interfaces.CLoginServer#createSession(java.lang.Long)
@@ -103,9 +101,8 @@ public class CLoginServerImpl extends Server implements CLoginServer {
 	 * @param manager 
 	 * @see projects.interfaces.CLoginServer#setManager(projects.interfaces.CManagerServer)
 	 */
-	public void setManager(CManagerServer manager) {
-		// TODO Auto-generated method stub
-		
+	public void setManager(CManagerServer localmanager) {
+		this.manager = localmanager ;
 	}
 
 }

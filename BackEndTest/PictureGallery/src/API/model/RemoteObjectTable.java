@@ -60,6 +60,30 @@ public class RemoteObjectTable extends Hashtable {
 		return data;
 	}
 
+/**
+ * 
+ * @return
+ */
+	public RemoteObject getService(String ServiceName) {
+		RemoteObject result_ro = null ;
+		StringBuffer sb = new StringBuffer(ServiceName) ;
+		System.out.println("=> RemoteObjectTable.getService()");
+		Enumeration enum = this.elements();
+
+		System.out.println("Was für Eintrage haben wir zur Zeit?\n--------------------------------") ;
+		while(enum.hasMoreElements()) {
+			RemoteObject pro = (RemoteObject) enum.nextElement();
+			StringBuffer temp = new StringBuffer(pro.getCompName()) ;
+			System.out.println("\n\t" + temp + " Vergleich mit: " + sb + " Ergebnis: " + sb.indexOf(temp.toString())) ;
+			if (sb.indexOf(temp.toString()) == 0) {
+				result_ro = pro ;
+				System.out.println("\n\tKlasse gefunden!!!\t--> " + pro.getCompName());
+			}
+		}
+		System.out.println("\n<= RemoteObjectTable.getService()");		
+		return result_ro;
+	}
+
 	/**
    * Gibt einen Vektor mit den Schlüsselwerten für den <code>dataVector</code> zurück.
    */

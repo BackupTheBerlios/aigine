@@ -13,6 +13,7 @@ import projects.interfaces.CClient;
 import projects.interfaces.CDBServer;
 import projects.interfaces.CLoginServer;
 import projects.interfaces.CManagerServer;
+import projects.interfaces.CProjectServer;
 
 import API.control.Manager;
 import API.control.WebServer;
@@ -65,16 +66,20 @@ public class CManagerServerImpl extends Manager implements CManagerServer {
 	 */
 		public synchronized String registerService(final RemoteObject remoteObject)
 		throws RemoteException {
-	        System.out.println("=> VTLogicServerImpl.registerService()remoteObj= "+remoteObject);	             
-	        String result= super.registerService(remoteObject);
+			// TODO kann vereinfacht und vereinheitlicht werden, anhand des Typs unterscheiden ob getServerApp oder getApp
+			// dürfte in der momentanen Variante auch nicht funktionieren wegen der String-Vergleiche
+			//String result = new String("") ;
+			
+	        System.out.println("=> CManagerServerImpl.registerService()remoteObj= "+remoteObject);	             
+	        String result = super.registerService(remoteObject);
+	        System.out.println(remoteObject.toString()) ;
 	        if(remoteObject.getCompClassName() == "CDBServer") {
 	        	CDBServer db = (CDBServer) remoteObject.getServerApp();
-	        	db.setManagerServer(this);
+	        	db.setManager(this);
 	        }
 	        if(remoteObject.getCompClassName() == "CLoginServer") {
 	        	CLoginServer login = (CLoginServer) remoteObject.getServerApp();
 	        	login.setManager(this);
-	        	
 	        }
 	        if(remoteObject.getCompClassName() == "WebServer") {
 	        	CClient web = (CClient) remoteObject.getApp();
@@ -88,10 +93,30 @@ public class CManagerServerImpl extends Manager implements CManagerServer {
 	        	CClient client = (CClient) remoteObject.getApp();
 	        	client.setManager(this);
 	        }
+			if(remoteObject.getCompClassName().indexOf("CProjectServer") == 0) {
+				System.out.println("versuche bei einem CProjectServer .setManager anzuwenden ...\n\n") ;
+				CProjectServer cproject = (CProjectServer) remoteObject.getServerApp();
+				cproject.setManager(this) ;
+			} 
 	        
-	        System.out.println("VTLogicServerImpl.registerService() > neues RemoteObject registriert.");
-	        System.out.println("<= VTLogicServerImpl.registerService()");
+	        System.out.println("CManagerServerImpl.registerService() > neues RemoteObject registriert.");
+	        System.out.println("<= CManagerServerImpl.registerService()");
 		return result;
+	}
+
+	/**
+	 * description:
+	 * 
+	 * @param String ServiceName
+	 * @return den geangeforderten Server, wenn nicht registriert <code>null</code>
+	 * @throws RemoteException 
+	 * @see API.interfaces.ServerHandle#getService(API.model.RemoteObject)
+	 */
+	public synchronized RemoteObject getService(String ServiceName) throws RemoteException {
+		System.out.println("=> CManagerServerImpl.getService()ServiceName = " + ServiceName) ;
+		RemoteObject ro = super.getService(ServiceName);
+		System.out.println("<= CManagerServerImpl.getService()") ;
+		return ro ;
 	}
 
 	/**

@@ -4,21 +4,16 @@ import projects.catalog.control.CSession;
 import API.interfaces.ServerHandle;
 
 
-
-
-
 /**
- * @author your mama
+ * @author Danny, Tobi?!
  *
- * TODO To change the template for this generated type comment go to
- * Window - Preferences - Java - Code Style - Code Templates
  */
 public interface CLoginServer extends ServerHandle {
 	
 	CManagerServer manager = null;
 	
 	/**
-	 * eine Session die ich mir selber zurecht gefummtel habe.
+	 * eine Session die ich mir selber zurecht gefummelt habe.
 	 * User meldet sich an, wird in der db gesucht, angelegt/zurückgegeben und 
 	 * in diese CSession gespeichert.
 	 *  

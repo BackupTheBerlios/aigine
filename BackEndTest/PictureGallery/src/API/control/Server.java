@@ -4,6 +4,7 @@ import java.rmi.RemoteException;
 import java.rmi.server.RMIClientSocketFactory;
 import java.rmi.server.RMIServerSocketFactory;
 import java.rmi.server.UnicastRemoteObject;
+import java.util.Hashtable;
 
 import API.interfaces.AdminClient;
 import API.interfaces.ServerHandle;
@@ -18,6 +19,14 @@ import API.model.RemoteObjectTable;
  */
 
 public abstract class Server extends UnicastRemoteObject {
+	private String WebRequestError = null;
+
+	/**
+	 * Die registrierten Kommunikationspartner
+	 * entweder Clients oder Services oder wiederum Server ... WHAT EVER !
+	 */
+	protected RemoteObjectTable remoteObjects = null ;
+	
 	/**
 	 * Wird von den Services für gegenseitige Registrierung benötigt.
 	 * @param compProps
@@ -26,13 +35,6 @@ public abstract class Server extends UnicastRemoteObject {
 	public void init(RemoteObject compProps, ServerHandle server) {
 		// TODO in extra Klasse Service auslagern, die von Server abgeleitet wird
 	}
-	
-	
-	/**
-	 * Die registrierten Kommunikationspartner
-	 * entweder Clients oder Services oder wiederum Server ... WAT EVER !
-	 */
-	protected RemoteObjectTable remoteObjects = null;
 
 	/**
 	 * @throws java.rmi.RemoteException
@@ -126,10 +128,20 @@ public abstract class Server extends UnicastRemoteObject {
 		return status;
 	}
 
+	/**
+		 * Liefert einen registrierten Service zurück, wenn der Klassenname in der
+		 * RemoteObjectTable bereits vorhanden ist.
+		 * @author dennis
+		 * @param serviceName
+		 * @throws RemoteException
+		 * @return RemoteObject oder null, wenn kein Eintrag gefunden wurde.
+		 */
 	protected synchronized RemoteObject getService(String ServiceName) throws RemoteException {
 		System.out.println("versuche Service " + ServiceName + " zurueck zu liefern ...") ;
 	//	remoteObjects
-		return (RemoteObject) remoteObjects.get(ServiceName) ;
+	
+		RemoteObject ro = remoteObjects.getService(ServiceName) ; 
+		return ro ; 
 	}
 	
 	
@@ -194,6 +206,43 @@ public abstract class Server extends UnicastRemoteObject {
 			System.out.println("\t updated client call > " + app);
 		return status;
 	}	
+	
+	/**
+	* verarbeitet einen 'WebRequest' der momentan vom Webserver an beliebige andere Server geschickt werden kann
+	* muss von den Servern dann individuell überschrieben werden, dabei könnten
+	* Standardinfos auch hier schon für die Ausgabe implementiert werden.
+	* @author Dennis
+	* @since 11.09.2004
+	* @param Operation, Parameterpaare und evtl. mit übertragenen Body
+	* @return String
+	* @throws RemoteException
+	*/
+	public String executeWebRequest(String op, Hashtable requestProps) throws RemoteException {
+		String result = null ;
+		WebRequestError = null ;
+		System.out.println("\n\n>>+>> habe einen WebRequest erhalten: " + op) ;
+		if (op.indexOf("serverinfo") == 0) {
+			result = this.toString() ; //this.toString() ;
+	//		this.ref ;
+		} else
+		{
+			WebRequestError = new String("unexpected Operation") ;
+		}
+		System.out.println("\n\n  |>> ich antworte mit: " + result) ;
+		return result ;
+	}
+
+	/**
+	* liefert Fehlerdetails, wenn bei executeWebRequest ein Fehler auftritt
+	* @author Dennis
+	* @since 11.09.2004
+	* @param keine
+	* @return String
+	* @throws RemoteException
+	*/
+	public String getWebRequestError() throws RemoteException {
+		return WebRequestError ;
+	}
 	
 	/**
 	 * Gibt die aktuelle Tabelle der registrierten Komponenten zurück.

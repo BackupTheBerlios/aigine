@@ -2,6 +2,7 @@ package API.model;
 
 import java.io.Serializable;
 
+import API.control.Server;
 import API.interfaces.Application;
 import API.interfaces.ServerHandle;
 /**
@@ -61,9 +62,15 @@ public class RemoteObject implements Serializable {
 	protected Application app;
 	
 	/**
-	 * Refferenz auf die Instanz des ServerHandlers, wenn es sich um einen solchen handelt;
+	 * Referenz auf die Instanz des ServerHandlers, wenn es sich um einen solchen handelt;
 	 */
 	protected ServerHandle serverApp;
+
+	/** (byDR)
+	 * Referenz auf die Instanz der Server-Klasse, wenn es sich um eine solche handelt;
+	 */
+	// TODO unsinnig???
+	protected Server theServer;
 
 	/** Authentifizierungstyp, derzitig anonym, nothing, password */
 	protected String authTyp;
@@ -111,7 +118,9 @@ public class RemoteObject implements Serializable {
 					+ "\tmanager: "
 					+ this.manager
 					+ "\tmanagerName: "
-					+ this.managerName);
+					+ this.managerName
+					+ "\tServerApp: "
+					+ this.serverApp);
 		String s = sb.toString();
 		return s;
 	}
@@ -287,11 +296,28 @@ public class RemoteObject implements Serializable {
 	public ServerHandle getServerApp() {
 		return serverApp;
 	}
+	
 	/**
 	 * @param serverApp The serverApp to set.
 	 */
 	public void setServerApp(ServerHandle serverApp) {
 		this.serverApp = serverApp;
 		this.app = null;
+	}
+	
+	/**
+	 * @return Returns the serverApp.
+	 */
+	// TODO unsinnig???
+	public Server gettheServer() {
+		return this.theServer;
+	}
+	
+	/**
+	 * @param server. The Server to set.
+	 */
+	// TODO unsinnig???
+	public void settheServer(Server localServer) {
+		this.theServer = localServer;
 	}
 }

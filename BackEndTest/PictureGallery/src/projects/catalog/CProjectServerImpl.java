@@ -7,11 +7,10 @@ package projects.catalog;
 
 import java.rmi.RemoteException;
 
-import projects.catalog.control.CSession;
-import projects.interfaces.CLoginServer;
+import projects.interfaces.CProjectServer;
 import projects.interfaces.CManagerServer;
 
-import API.interfaces.ServerHandle;
+import API.control.Server ;
 import API.model.RemoteObject;
 import API.model.RemoteObjectTable;
 
@@ -21,14 +20,14 @@ import API.model.RemoteObjectTable;
  * class CProjectServerImpl.java created by @author your mama or at his system
  * created on 10.09.2004 2004 at 14:52:37 
  */
-public class CProjectServerImpl implements CLoginServer {
-
+public class CProjectServerImpl extends Server implements CProjectServer {
+	private CManagerServer manager;
 	/**
 	 * Constructor for CProjectServerImpl object
 	 * 
 	 * 
 	 */
-	public CProjectServerImpl() {
+	public CProjectServerImpl() throws RemoteException {
 		super();
 		// TODO Auto-generated constructor stub
 	}
@@ -107,25 +106,11 @@ public class CProjectServerImpl implements CLoginServer {
 	/**
 	 * description:
 	 * 
-	 * @param usrID
-	 * @return
-	 * @throws RemoteException 
-	 * @see projects.interfaces.CLoginServer#createSession(long)
-	 */
-	public CSession createSession(long usrID) throws RemoteException {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	/**
-	 * description:
-	 * 
 	 * @return 
 	 * @see projects.interfaces.CLoginServer#getManager()
 	 */
 	public CManagerServer getManager() {
-		// TODO Auto-generated method stub
-		return null;
+		return manager;
 	}
 
 	/**
@@ -134,9 +119,7 @@ public class CProjectServerImpl implements CLoginServer {
 	 * @param manager 
 	 * @see projects.interfaces.CLoginServer#setManager(projects.interfaces.CManagerServer)
 	 */
-	public void setManager(CManagerServer manager) {
-		// TODO Auto-generated method stub
-		
+	public void setManager(CManagerServer localmanager) {
+		this.manager = localmanager ;
 	}
-
 }

@@ -144,8 +144,7 @@ public abstract class WebServer implements Runnable {
 							+ " > HTTP/1.0 200 OK");
 
 					out.writeBytes("HTTP/1.0 200 OK\r\n");
-					out
-							.writeBytes("Set-Cookie: Customer=DAGNU; Version=1; Path=/\n");
+					out.writeBytes("Set-Cookie: Customer=DAGNU; Version=1; Path=/\n");
 					out.writeBytes("Content-Length: " + body.length + "\r\n");
 					out.writeBytes("Content-Type: " + type + "\r\n");
 					out.writeBytes("\r\n");
@@ -153,6 +152,7 @@ public abstract class WebServer implements Runnable {
 						// Inhalt der Datei schreiben
 						if (type.equals("text/html")) {
 							// HTML Kopf schreiben
+							// TODO Template-System einbauen -> extra Methode, eventuell auch Unterklassen einsetzen.
 							out.writeBytes(header.getHeader());
 							// TODO Ausgabe des linken und rechten frames
 						}
@@ -200,10 +200,9 @@ public abstract class WebServer implements Runnable {
 	}
 
 	/**
-	 * Liest den HTTP Cleint Request und gibt ein String Array dafür zurück.
+	 * Liest den HTTP Client Request und gibt ein String Array dafür zurück.
 	 * 
-	 * @param http
-	 *            client request
+	 * @param http client request
 	 * @return string array representation
 	 * @throws IOException
 	 */
@@ -248,35 +247,6 @@ public abstract class WebServer implements Runnable {
 	}
 
 	/**
-	 * Nimmt die 2. Zeile des Request und versucht die dort angegebene Datei als
-	 * <code>File</code> zu laden.
-	 * 
-	 * @param request
-	 * @return requested file
-	 * @throws HTTPException
-	 *             404 or 403
-	 */
-	private File getFile(String[] request) throws HTTPException {
-		System.out.println("=> WebServer.getFile(String[] request)");
-		String filename = root + request[1].replace('/', File.separatorChar);
-		File file = new File(filename);
-
-		if (!file.exists()) {
-			System.out.println(Thread.currentThread().getName()
-					+ " getFile() > " + filename + " 404 Not Found");
-			throw new HTTPException("404", "Not Found", request);
-		}
-
-		if (file.isDirectory() || file.isHidden()) {
-			System.out.println(Thread.currentThread().getName()
-					+ " getFile() > " + file + " 403 Forbidden");
-			throw new HTTPException("403", "Forbidden", request);
-		}
-		System.out.println("<= WebServer.getFile(String[] request) > " + file);
-		return file;
-	}
-
-	/**
 	 * Gibt den MimeType abhängig von der Endung der angeforderten Datei zurück.
 	 * 
 	 * @param request
@@ -315,8 +285,7 @@ public abstract class WebServer implements Runnable {
 	 * @throws HTTPException
 	 *             500 or 404 or 403
 	 */
-	private byte[] getBody(String[] request) throws HTTPException,
-			RemoteException {
+	private byte[] getBody(String[] request) throws HTTPException, RemoteException {
 		System.out.println("=> WebServer.getBody(String[] request)");
 		String url = root + request[1].replace('/', File.separatorChar);
 		// testet ob ein "?" enthalten ist => Parameter parsen
@@ -351,17 +320,20 @@ public abstract class WebServer implements Runnable {
 	 * @param request
 	 * @return
 	 */
-	protected abstract byte[] getActionBody(String[] request,
-			Hashtable requestProps) throws RemoteException;
+	protected abstract byte[] getActionBody(String[] request, Hashtable requestProps) throws RemoteException;
 
+	/**
+	 * Gibt eine Datei zurück
+	 * 
+	 * @param request
+	 * @return angefragte Datei (HTML, CSS bspw.) im Binärformat
+	 */
 	private byte[] getFileBody(String[] request) throws HTTPException {
 		File file = getFile(request); // 404 or 403
 		System.out.println("\tDatei " + file + "wird gelesen");
 		try {
 			byte[] body = new byte[(int) file.length()];
-
-			System.out
-					.println(Thread.currentThread().getName() + " | "
+			System.out.println(Thread.currentThread().getName() + " | "
 							+ file.getAbsolutePath() + " (" + file.length()
 							+ " bytes)");
 			new DataInputStream(new FileInputStream(file)).readFully(body);
@@ -372,6 +344,35 @@ public abstract class WebServer implements Runnable {
 					+ " getBody() > " + file + " 500 Internal Server Error");
 			throw new HTTPException("500", "Internal Server Error", request);
 		}
+	}
+
+	/**
+	 * Nimmt die 2. Zeile des Request und versucht die dort angegebene Datei als
+	 * <code>File</code> zu laden.
+	 * 
+	 * @param request
+	 * @return requested file
+	 * @throws HTTPException
+	 *             404 or 403
+	 */
+	private File getFile(String[] request) throws HTTPException {
+		System.out.println("=> WebServer.getFile(String[] request)");
+		String filename = root + request[1].replace('/', File.separatorChar);
+		File file = new File(filename);
+
+		if (!file.exists()) {
+			System.out.println(Thread.currentThread().getName()
+					+ " getFile() > " + filename + " 404 Not Found");
+			throw new HTTPException("404", "Not Foundoundound", request);
+		}
+
+		if (file.isDirectory() || file.isHidden()) {
+			System.out.println(Thread.currentThread().getName()
+					+ " getFile() > " + file + " 403 Forbidden");
+			throw new HTTPException("403", "Forbidden", request);
+		}
+		System.out.println("<= WebServer.getFile(String[] request) > " + file);
+		return file;
 	}
 
 	/**

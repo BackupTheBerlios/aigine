@@ -19,16 +19,11 @@ import API.model.RemoteObject;
  * Project : RMIComponents, At : Aug 11, 2004
  */
 public abstract class Database extends Server {
-
-	
-
 	/**
 	 * @throws RemoteException
 	 */
 	public Database() throws RemoteException {
 		super();
-//		
-		
 	}
 
 	/**

@@ -11,6 +11,7 @@ import projects.catalog.control.CSession;
 
 import API.control.WebServer;
 import API.interfaces.ServerHandle;
+import API.model.RemoteObject;
 
 /**
  * 
@@ -70,6 +71,14 @@ public interface CManagerServer extends ServerHandle {
 	 * @return void
 	 */
 	void setWebServer(WebServer webserver)throws RemoteException;
+	
+	/**
+	* gibt einen bestimmten Service zurueck, wenn er bereits registriert ist
+	* @param String ServiceName
+	* @return 
+	* @throws RemoteException
+	*/
+	RemoteObject getService(String ServiceName) throws RemoteException ;
 	
 	/**
 	 * createSession() 

@@ -39,11 +39,11 @@ public class RemoteObjectHelper {
 		ro.setPasswd(configuration.getProperty("passwd", "", category));
 		ro.setRmiName("rmi://" + ro.getHostname() + ":" + ro.getPort() + "/");
 		
-		if(category.equals("vtlogicserver")){
+//		if(category.equals("vtlogicserver")){
 			System.out.println("Category: "+ category );	
 			ro.setManager(configuration.getProperty("manager","",category));
 			ro.setManagerName(configuration.getProperty("managerName","",category));
-		}
+//		}
 		
     System.out.println("<= RemoteObjectProperties() > " + this);
 

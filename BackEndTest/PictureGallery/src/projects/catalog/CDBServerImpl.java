@@ -10,7 +10,9 @@ import java.rmi.server.RMIClientSocketFactory;
 import java.rmi.server.RMIServerSocketFactory;
 
 import API.control.Database;
-import API.interfaces.ServerHandle;
+import projects.catalog.model.Picture;
+import projects.interfaces.CDBServer;
+import projects.interfaces.CManagerServer;
 import API.model.RemoteObject;
 
 /**
@@ -19,11 +21,11 @@ import API.model.RemoteObject;
  * class CDBServerImpl.java created by @author your mama or at his system
  * created on 08.09.2004 2004 at 14:14:46 
  */
-public class CDBServerImpl extends Database implements ServerHandle {
+public class CDBServerImpl extends Database implements CDBServer {
 
 	//TODO initialiserit die voting.control.HelperDatabasePersistence
-	
-	
+	private String WebRequestError = null;
+	private CManagerServer manager;	
 	
 	/**
 	 * description:
@@ -109,7 +111,25 @@ public class CDBServerImpl extends Database implements ServerHandle {
 		return null;
 	}
 
- 
-	
-	
+	/**
+	 * description: wird beim Registrieren bei einem Manager verwendet
+	 * @param manager 
+	 * @see projects.interfaces.CLoginServer#setManager(projects.interfaces.CManagerServer)
+	 */
+	public void setManager(CManagerServer localmanager) {
+		this.manager = localmanager ;
+	}
+	/* (non-Javadoc)
+	 * @see projects.interfaces.CDBServer#setPicture(java.lang.String, java.lang.String, projects.catalog.model.Picture)
+	 */
+	public void setPicture(String catalogName, String categoryName, Picture pic) {
+		// TODO unausgereiftes Fragment für die Bilderdatenbank
+		
+	}
+	/* (non-Javadoc)
+	 * @see projects.interfaces.CDBServer#getManager()
+	 */
+	public CManagerServer getManager() throws RemoteException {
+		return this.manager ;
+	}
 }

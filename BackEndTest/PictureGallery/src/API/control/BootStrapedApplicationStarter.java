@@ -120,7 +120,7 @@ public class BootStrapedApplicationStarter implements BootStrapedComponent {
      */
     public void init(String jconfigserverUrl){     
         // TODO Wenn keine Typenzuordnung gefunden wird, muss das Programm
-        // die notwendigen Paramter beim User abfragen.
+        // die notwendigen Parameter beim User abfragen.
         // TODO jConfig eine entsprechende DTD
         // so dass die Eigenschaften vorher geprüft werden können.
         
@@ -141,8 +141,7 @@ public class BootStrapedApplicationStarter implements BootStrapedComponent {
         //zuweisen...
         component= roh.getConfiguratedRemoteObject();
         try {
-            compClass=
-                RMIClassLoader.loadClass(
+            compClass = RMIClassLoader.loadClass(
                 configuration.getProperty("codebase","",category),
                 configuration.getProperty("compClassName","",category));
             System.out.println(
@@ -187,12 +186,12 @@ public class BootStrapedApplicationStarter implements BootStrapedComponent {
                     + component.getRmiName()
                     + " =  compName >"
                     + name);
-            server= (ServerHandle) Naming.lookup(component.getRmiName() + name);
+            server = (ServerHandle) Naming.lookup(component.getRmiName() + name);
             System.out.println(
                 "\tlookup(" + component.getRmiName() + name + " = " + server);
-            client= (Application) clientClass.newInstance();
+            client = (Application) clientClass.newInstance();
             System.out.println("\ncast des remoteObjects in das remote 'Application' "); 
-            Client vtc =  (Client)client;            
+            Client vtc = (Client) client;            
             System.out.println("\tnew instance = " + client);
             vtc.init(component,server);
             System.out.println("\tCClient.init called");
@@ -212,34 +211,34 @@ public class BootStrapedApplicationStarter implements BootStrapedComponent {
     }
 
     /**
-     * Startet eine Koponente vom Typ Server.
+     * Startet eine Komponente vom Typ Server.
      * - Starten einer RMIRegistry
      * - Neuinstanziierung und Initialisierung der Komponente
      * - Einbinden der Komponente in die Registry
      */
     private void runServer() {
-        System.out.println("=> BootStrapedApplicationStarter.runServer()");
-        System.out.println("component: "+component);
-        Class serverClass= compClass;
-        Server serverObject= null;
-        String name= component.getCompClassName();
+    	//TODO registrieren eines Servers an einem laufenden (zentralen) Manager ist nicht implementiert.
+   // 	muh
+        System.out.println("=> BootStrapedApplicationStarter.runServer()") ;
+        System.out.println("component: "+component) ;
+        Class serverClass = compClass ;
+        Server serverObject = null ;
+        String name= component.getCompClassName() ;
         try {
-            LocateRegistry.createRegistry(
-                Integer.parseInt(component.getPort()));
+            // Anlegen einer Registry, was aber doch eigentlich nur sinnvoll für einen Manager ist, oder?
+            LocateRegistry.createRegistry(Integer.parseInt(component.getPort()));
             System.out.println(
                 "\tcreateRegistry(Integer.parseInt(rmiPort) ="
                     + component.getPort()
                     + " compClassName >"
                     + name);
-            serverObject= (Server) serverClass.newInstance();
-            System.out.println("eine neue Instans von: "+name+" wurde instanziiert");
+            serverObject = (Server) serverClass.newInstance();
+            System.out.println("eine neue Instanz von: " + name + " wurde instanziiert");
             
             serverObject.initObjectTable();
             System.out.println("neue object Tabelle");
             System.out.println("\tnew serverInstance " + serverObject);
-            Naming.rebind(
-                component.getRmiName() + component.getCompName(),
-                serverObject);
+            Naming.rebind(component.getRmiName() + component.getCompName(), serverObject);
             System.out.println(
                 "\nNaming.rebind out > "
                     + component.getRmiName()
@@ -248,32 +247,34 @@ public class BootStrapedApplicationStarter implements BootStrapedComponent {
                     + " , serverObject ="
                     + serverObject
                     + "\n");
-            System.out.println("\n\t Naming.list :");
-            String[] dfs= Naming.list(component.getRmiName());
+            System.out.println("\n\t Naming.list :") ;
+            String[] dfs = Naming.list(component.getRmiName()) ;
             for (int i= 0; i < dfs.length; i++) {
                 System.out.println("\n" + dfs[i]);
             }
-            server= (ServerHandle) serverObject;
+            server = (ServerHandle) serverObject;
+			component.setServerApp(server) ;
+//			((Server) serverObject) ;
+			// Server-Instanz (den hier gestarteten Server im RemoteObject eintragen)
         } catch (Exception e) {
             e.printStackTrace();
             System.out.println(
                 "Fehler in BootStrapedServerStarter.runServer() : "
                     + e.getMessage());
         }
-        
-        // für register Methode erforderlich
         System.out.println("<= BootStrapedApplicationStarter.runServer()");
     }   
     
     
     /**
-     * runService
+     * runService (nicht implementiert)
      * @param remoteObject
      */
 
     /**
      * Ruft abhängig von Authentifizierungsart die entsprechende 
      * <code>register</code> Methode auf.
+     * 
      */
     protected void register(final RemoteObject remoteObject) {
         System.out.println(
@@ -284,14 +285,20 @@ public class BootStrapedApplicationStarter implements BootStrapedComponent {
                 + ")");
         //Prüfen der Registermethode
         try {
+        	// TODO Diese Ausgabe scheint für Server an Manager nicht zu stimmen 
 			System.out.println("\tRegistrierung an Server = " + server);
 			System.out.println("\t\t für Komponente = " + component);
+			
+			//remoteObject
+		
             if (remoteObject.getAuthTyp().equals("nothing")) {
                 // nothing => keine Anmeldung erforderlich
                 System.out.println(
                     "\tKeine Registrierung erforderlich > authTyp = nothing");
             } else if (remoteObject.getAuthTyp().equals("anonym")) {
-            	if(remoteObject.getManager() == null){
+            	if (remoteObject.getManager().length() == 0) {
+           	// vorher statt component remoteObject.getManager() == null, das hat aber spontan nicht mehr funktioniert 
+           	// nur an CompName, wenn kein Manager angegeben ist. 
             	
                 // anonym => Anmeldung ohne Password            	
                 System.out.println(
@@ -300,21 +307,20 @@ public class BootStrapedApplicationStarter implements BootStrapedComponent {
                         + "\n  > mit : \n"
                         + remoteObject);
                 server.register(remoteObject);                
-				}else{
+				} else {
 					try {
-						System.out.println( "Manager == :"+component.getManager()+ component.getManagerName());
+						System.out.println( "Manager == "+component.getManager()+ component.getManagerName());
 						manager = (ServerHandle) Naming.lookup(component.getManager() + component.getManagerName());
 					} catch (MalformedURLException e1) {
-						System.out.println("BootstrepedApp.register: manager lookup faild!!");
-						
+						System.out.println("BootstrapedApp.register: manager lookup faild!!");
 						e1.printStackTrace();
 					} catch (NotBoundException e1) {
-						System.out.println("BootstrepedApp.register: manager lookup faild!!");
+						System.out.println("BootstrapedApp.register: manager lookup faild!!");
 						e1.printStackTrace();
 					}
-					System.out.println("BootstrepedApp.register: manager lookup SUCCESS!!!");
-					manager.registerService(remoteObject);					
-					System.out.println("BootstrepedApp.register: manager.register SUCCESS!!!");
+					System.out.println("BootstrapedApp.register: manager lookup SUCCESS!!!");
+					manager.registerService(remoteObject);				
+					System.out.println("BootstrapedApp.register: manager.register SUCCESS!!!");
 				}
             } else if (remoteObject.getAuthTyp().equals("password")) {
                 // password => Anmeldung mit Password
@@ -335,7 +341,7 @@ public class BootStrapedApplicationStarter implements BootStrapedComponent {
             }
         } catch (RemoteException e) {
             System.out.println(
-                "Fehler inBootStrapedApplicationStarter.register(RemoteObjectProperties "
+                "Fehler in BootStrapedApplicationStarter.register(RemoteObjectProperties "
                     + remoteObject
                     + " , ServerHandle "
                     + server
