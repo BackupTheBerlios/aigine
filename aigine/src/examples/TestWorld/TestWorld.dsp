@@ -107,6 +107,10 @@ SOURCE=..\..\tools\loader3DS\CLoad3DS.cpp
 # End Source File
 # Begin Source File
 
+SOURCE=..\..\AiGinEFramework\Utils\Comparator.cpp
+# End Source File
+# Begin Source File
+
 SOURCE=..\..\AiGinEFramework\View\GraphicPipeline.cpp
 # End Source File
 # Begin Source File
@@ -208,6 +212,10 @@ SOURCE=..\..\AiGinEFramework\View\Camera.h
 # Begin Source File
 
 SOURCE=..\..\tools\loader3DS\CLoad3DS.h
+# End Source File
+# Begin Source File
+
+SOURCE=..\..\AiGinEFramework\Utils\Comparator.h
 # End Source File
 # Begin Source File
 
