@@ -3,7 +3,7 @@
 	<variables>
 		<variable name="server.path" value="http://localhost:2002/"/>
 	</variables>
-	<category name="managerserver">
+	<category name="CManagerserver">
 		<!-- Typ der Anwendung -->
 		<property name="typ" value="server"/>
 		<!-- Pfad fuer den Klassenserver, der das Repository der RMIComponents zur Verfuegung stellt. -->
@@ -93,4 +93,24 @@
 		<!-- Authentifizierungstyp -->
 		<property name="authTyp" value="anonym"/>
 	</category>	
+	<category name="CProjectServer">
+		<!-- Typ der Anwendung -->
+		<property name="typ" value="server"/>
+		<!-- Pfad fuer den Klassenserver, der das Repository der RMIComponents zur Verfuegung stellt. -->
+		<property name="codebase" value="${server.path}"/>
+		<!-- Klassenname der zu ladenen Komponenten -->
+		<property name="compClassName" value="projects.catalog.CProjectServerImpl"/>
+		<!-- Name der Komponente -->
+		<property name="compName" value="CProjectServer"/>
+		<!-- Domain Name des Serverdienstes der gestartet werden soll -->
+		<property name="hostname" value="localhost"/>
+		<!-- Port des Serverdienstes -->
+		<property name="port" value="2007"/>
+		<!-- Authentifizierungstyp -->
+		<property name="authTyp" value="anonym"/> <!-- Wie muss der Parameter heißen für eine Anmeldung am Manager für Server? -->
+		<!-- Adresse und Port des Managerdienstes -->
+		<property name="manager" value="rmi://localhost:2006/"/>
+		<!--Name des manager servers-->
+		<property name="managerName" value="CManagerServer"/>
+	</category>
 </properties>	
