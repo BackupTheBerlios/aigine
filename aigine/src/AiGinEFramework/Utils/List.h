@@ -8,10 +8,12 @@
  * @description: Doppelt verkettete Liste als Template
  * Handhabung wie bei einem Vector (nur einfacher vorallem beim debuggen)
  * Liste < Objekt jeglicher Art > 'bezeichner' = new Liste < Object >;
+
+  * Index und benutzung laeuft nun 'edlich' ab 0
  */
 
-#ifndef _LISTE_H_
-#define _LISTE_H_
+#ifndef _LIST_H_
+#define _LIST_H_
 
 
 template < class Type >
@@ -23,7 +25,7 @@ public:
     ///////////////////////////////////////////////////////////////////////////////
     List()
     {
-        _id = 0;
+        _id = -1;
         _data = NULL;
         _tmp = NULL;
         _next = NULL;
@@ -45,7 +47,7 @@ public:
     ///////////////////////////////////////////////////////////////////////////////
     void addItem(Type input)
     {
-        Liste < Type > * l = new Liste < Type >;
+        List < Type > * l = new List < Type >;
         //wenn die indexNummer von dem zwischengespeicherten aktuellen knotens(_tmp=this)
         // = 0 ist...
         if (_tmp == NULL)
@@ -60,21 +62,22 @@ public:
             _before = NULL;
             //die before-variable bekommt die adresse des 1.knotens
             l->_before = this;
-            //index ist 1 (dadurch wird index 0 (this) nicht verwendet)
-            l->_id = 1;
+            //index ist 0 (dadurch wird index 0 (this) nicht verwendet)
+            l->_id = 0;
         }
         //bei allen weiteren knoten...
         else
         {
-            //wird der zwischengespeicherten (am anfang 'this' ansonsten
-            //der letzt erstellte) _next, der neue knoten zugewiesen
-            _tmp->_next = l;
+            
             //l->_next = NULL;
             //before bekommt den zuletzt erstellten knoten
             l->_before = _tmp;
-            l->_id = (length() - 1); //die index-variable von l bekommt den wert
+            l->_id = (length()); //die index-variable von l bekommt den wert
             //der bis dahin berechneten leange (-1, da
             //1.knoten (_id 0) nicht belegt.
+			//wird der zwischengespeicherten (am anfang 'this' ansonsten
+            //der letzt erstellte) _next, der neue knoten zugewiesen
+            _tmp->_next = l;
 
         }
         //der gerade erstellte knoten wird in this->_tmp zwischen-
@@ -93,7 +96,7 @@ public:
     {
         //die variable tmp bekommt die adresse von dem n-ten knotens
         //aus getItem(int n)
-        Liste < Type > * tmp = getItem(n);
+        List < Type > * tmp = getItem(n);
         //und liefert aber die adresse auf seine enthaltene information
         return (tmp->_data);
     }
@@ -104,12 +107,13 @@ public:
     List< Type > * getItem(int n)
     {
         //neuen pointer mit der adresse des anfangs (this=dieser adresse)
-        Liste < Type > * tmp = this;
+        List < Type > * tmp = this;
         if (this == NULL)
         {
             tmp = NULL;
             return tmp;
         }
+		
         //solange wie der index nicht = n wird...
         while (tmp->_id != n)
         {
@@ -127,7 +131,7 @@ public:
     int length()
     {
         //neuen pointer mit der adresse des anfangs (this=dieser adresse)
-        Liste < Type > * tmp = this;
+        List < Type > * tmp = this->_next;
         int i = 0;
         //solange tmp ungleich NULL wird...
         while (tmp != NULL)
@@ -141,11 +145,11 @@ public:
         return (i);
     }
 
-    int length(int n)
+    int reInitID()
     {
         //neuen pointer mit der adresse des anfangs (this=dieser adresse)
-        Liste < Type > * tmp = this;
-        int i = 0;
+        List < Type > * tmp = this;
+        int i = -1;
         //solange tmp ungleich NULL wird...
         while (tmp != NULL)
         {
@@ -156,7 +160,7 @@ public:
             //und gehe in der liste einen schritt weiter
             tmp = tmp->_next;
         }
-        //ansonsten wird i-1 zurueckgegeben
+        //ansonsten wird i zurueckgegeben
         return (i);
     }
 
@@ -172,10 +176,10 @@ public:
     void addList(List< Type > * list)
     {
         //for (int i=1;i<this->length();i++) {
-        Liste < Type > * tmp = NULL;
+        List < Type > * tmp = NULL;
         //if (this == NULL){this = list;}
         //else{
-        tmp = this->getItem((this->length(1)) - 1);
+        tmp = this->getItem((this->reInitID()) );
         if (!(list->_data))
         {
             tmp->_next = list->_next;
@@ -199,10 +203,10 @@ public:
     ////////////////////////////////////////////////////////////////////
     void swapItem(char n)
     {
-        Liste < Type > * tmpA = NULL;
-        Liste < Type > * tmpB = NULL;
-        Liste < Type > * tmpC = NULL;
-        // Liste<Type> *nextTmp;
+        List < Type > * tmpA = NULL;
+        List < Type > * tmpB = NULL;
+        List < Type > * tmpC = NULL;
+        // List<Type> *nextTmp;
         switch (n)
         {
 
@@ -234,8 +238,8 @@ public:
     void rebuild()
     {
 
-        int n = this->length(1) - 1;
-        this->_tmp = this->getItem(n - 1)->_next;
+        int n = this->reInitID();
+        this->_tmp = this->getItem(n)->_next;
     }
 
 
@@ -260,19 +264,19 @@ private:
  * beschissenen grund nicht daher nur hier
  * ///////////////////////////////////////////////////////////////////////////////
  * //Konstruktor ///////////////////////////////////////////////////////////////////////////////
- * template <class Type> Liste<Type>::Liste(){
+ * template <class Type> List<Type>::List(){
  * _id = 0; _data = NULL; _tmp = NULL; _next = NULL; _before = NULL; }
  * ///////////////////////////////////////////////////////////////////////////////
  * //Methode anhaengen eines knotens an das 1. element
  * ///////////////////////////////////////////////////////////////////////////////
- * template <class Type> void Liste<Type>::addItem(Type input, int i) {
+ * template <class Type> void List<Type>::addItem(Type input, int i) {
  * _id = i; _tmp = this; // zum zwischenspeichern des vorhergehenden knotens
  * _data = NULL; addItem(input); }
  * ///////////////////////////////////////////////////////////////////////////////
  * ////Methode zum anhaengen eines Knotens an alle weiteren
  * ///////////////////////////////////////////////////////////////////////////////
- * template <class Type> void Liste<Type>::addItem(Type input) {
- * Liste<Type> *l = new Liste<Type>;
+ * template <class Type> void List<Type>::addItem(Type input) {
+ * List<Type> *l = new List<Type>;
  * //wenn die indexNummer von dem zwischengespeicherten aktuellen
  * knotens(_tmp=this) // = 0 ist... if(_tmp==NULL){
  * //this->_next ist der neu auf dem heap angelegten knotens l _next = l ;
@@ -294,49 +298,49 @@ private:
  * ///////////////////////////////////////////////////////////////////////////////
  * //Methode liefert die adresse der _data-vaialblen des aktuellen knotens
  * ///////////////////////////////////////////////////////////////////////////////
- * template <class Type> Type *Liste<Type>::getData() { return _data; }
+ * template <class Type> Type *List<Type>::getData() { return _data; }
  * ///////////////////////////////////////////////////////////////////////////////
  * //Methode liefert die adresse der _data-vaialblen des n.ten knotens
  * ///////////////////////////////////////////////////////////////////////////////
- * template <class Type> Type *Liste<Type>::getData(int n) {
+ * template <class Type> Type *List<Type>::getData(int n) {
  * //die variable tmp bekommt die adresse von dem n-ten knotens //aus
- * getItem(int n) Liste<Type>*tmp = getItem(n);
+ * getItem(int n) List<Type>*tmp = getItem(n);
  * //und liefert aber die adresse auf seine enthaltene information
  * return (tmp->_data); } ///////////////////////////////////////////////////////////////////////////////
  * //Methode liefert die adresse des n.ten knotens
  * ///////////////////////////////////////////////////////////////////////////////
- * template <class Type> Liste<Type> *Liste<Type>::getItem(int n) {
+ * template <class Type> List<Type> *List<Type>::getItem(int n) {
  * //neuen pointer mit der adresse des anfangs (this=dieser adresse)
- * Liste<Type> *tmp = this; if (this == NULL) {tmp = NULL;return tmp;}
+ * List<Type> *tmp = this; if (this == NULL) {tmp = NULL;return tmp;}
  * //solange wie der index nicht = n wird... while(tmp->_id != n) {
- * //wird in der liste ein schritt weiter gelaufen tmp = tmp->_next; }
+ * //wird in der List ein schritt weiter gelaufen tmp = tmp->_next; }
  * //ansonsten wird die adresse des gefundenen knotes zurueckgegeben
  * return tmp; } ///////////////////////////////////////////////////////////////////////////////
- * ////Methode liefert die ganszahlige laenge der listenstruktur
+ * ////Methode liefert die ganszahlige laenge der Listnstruktur
  * ///////////////////////////////////////////////////////////////////////////////
- * template <class Type> int Liste<Type>::length() {
+ * template <class Type> int List<Type>::length() {
  * //neuen pointer mit der adresse des anfangs (this=dieser adresse)
- * Liste<Type> *tmp= this; int i =0; //solange tmp ungleich NULL wird...
+ * List<Type> *tmp= this; int i =0; //solange tmp ungleich NULL wird...
  * while (tmp!=NULL) { //zaehle i ein hoch... i++;
  * //und gehe in der liste einen schritt weiter tmp = tmp->_next; }
  * //ansonsten wird i-1 zurueckgegeben return (i); }
- * template <class Type> int Liste<Type>::length(int n) {
+ * template <class Type> int List<Type>::length(int n) {
  * //neuen pointer mit der adresse des anfangs (this=dieser adresse)
- * Liste<Type> *tmp= this; int i =0; //solange tmp ungleich NULL wird...
+ * List<Type> *tmp= this; int i =0; //solange tmp ungleich NULL wird...
  * while (tmp!=NULL) { //nummerriert die id's noch mal durch tmp->_id=i;
  * //zaehle i ein hoch... i++; //und gehe in der liste einen schritt weiter
  * tmp = tmp->_next; } //ansonsten wird i-1 zurueckgegeben return (i); }
- * template <class Type>Liste<Type>* Liste<Type>::nextItem(){
- * return this->_next; } template <class Type>Liste<Type>*
- * Liste<Type>::lastItem(){ return this->_before; }
- * template <class Type>int Liste<Type>::getID(int n) {
+ * template <class Type>List<Type>* List<Type>::nextItem(){
+ * return this->_next; } template <class Type>List<Type>*
+ * List<Type>::lastItem(){ return this->_before; }
+ * template <class Type>int List<Type>::getID(int n) {
  * return this->getItem(n)->_id; }
- * template <class Type>void Liste<Type>::addList(Liste<Type> *list) {
- * //for (int i=1;i<this->length();i++) { Liste<Type> *tmp=NULL;
+ * template <class Type>void List<Type>::addList(List<Type> *list) {
+ * //for (int i=1;i<this->length();i++) { List<Type> *tmp=NULL;
  * //if (this == NULL){this = list;}
  * //else{      tmp = this->getItem((this->length(1))-1); if(!(list->_data)){
  * tmp->_next = list->_next; }else{tmp->_next = list;}
- * //die liste wirde ohne das 1. element angeheangt. auf dem ruckweg ist es
+ * //die List wirde ohne das 1. element angeheangt. auf dem ruckweg ist es
  * //aber da list->_before = tmp; //this->setItem((this->length())-1) =
  * tmp; //} };
  */
