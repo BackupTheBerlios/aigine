@@ -31,17 +31,17 @@ class __tags {
 */
 class __options {
 }/**
-@__positions <oigroup:MemberLink#<oiref:cpp#Member#Knot#right:oiref>=423,152,423,178,465,178,465,136,439,136:oigroup>
-<oigroup:Composite#supplierCardinality#MemberLink#<oiref:cpp#Member#Knot#right:oiref>=443,116,28,16,0:oigroup>
-<oigroup:<oiref:cpp#Class#Knot:oiref>=356,10,83,142,1:oigroup>
-<oigroup:Composite#supplierCardinality#MemberLink#<oiref:cpp#Member#Tree#rootKnot:oiref>=324,84,28,16,0:oigroup>
-<oigroup:MemberLink#<oiref:cpp#Member#Knot#left:oiref>=407,152,407,200,481,200,481,114,439,114:oigroup>
-<oigroup:MemberLink#<oiref:cpp#Member#Tree#temporaryKnot:oiref>=210,57,356,57:oigroup>
-<oigroup:<oiref:cpp#Class#List:oiref>=10,490,200,414,1:oigroup>
-<oigroup:Composite#supplierCardinality#MemberLink#<oiref:cpp#Member#Knot#left:oiref>=443,94,28,16,0:oigroup>
-<oigroup:Composite#supplierCardinality#MemberLink#<oiref:cpp#Member#Tree#temporaryKnot:oiref>=324,37,28,16,0:oigroup>
-<oigroup:<oiref:cpp#Class#Tree:oiref>=10,10,200,430,1:oigroup>
-<oigroup:MemberLink#<oiref:cpp#Member#Tree#rootKnot:oiref>=210,104,356,104:oigroup> 
+@__positions <oigroup:MemberLink#<oiref:cpp#Member#Knot#right:oiref>=617,152,617,178,659,178,659,136,633,136:oigroup>
+<oigroup:Composite#supplierCardinality#MemberLink#<oiref:cpp#Member#Knot#right:oiref>=637,116,28,16,0:oigroup>
+<oigroup:<oiref:cpp#Class#Knot:oiref>=550,10,83,142,1:oigroup>
+<oigroup:Composite#supplierCardinality#MemberLink#<oiref:cpp#Member#Tree#rootKnot:oiref>=518,84,28,16,0:oigroup>
+<oigroup:MemberLink#<oiref:cpp#Member#Knot#left:oiref>=601,152,601,200,675,200,675,114,633,114:oigroup>
+<oigroup:MemberLink#<oiref:cpp#Member#Tree#temporaryKnot:oiref>=490,57,550,57:oigroup>
+<oigroup:<oiref:cpp#Class#List:oiref>=20,10,200,414,1:oigroup>
+<oigroup:Composite#supplierCardinality#MemberLink#<oiref:cpp#Member#Knot#left:oiref>=637,94,28,16,0:oigroup>
+<oigroup:Composite#supplierCardinality#MemberLink#<oiref:cpp#Member#Tree#temporaryKnot:oiref>=518,37,28,16,0:oigroup>
+<oigroup:<oiref:cpp#Class#Tree:oiref>=290,10,200,430,1:oigroup>
+<oigroup:MemberLink#<oiref:cpp#Member#Tree#rootKnot:oiref>=490,104,550,104:oigroup>
 */
 class __positions {
 }
