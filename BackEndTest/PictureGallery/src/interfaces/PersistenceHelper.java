@@ -15,7 +15,7 @@ package interfaces;
  */
 public interface PersistenceHelper {
 
-	public void save() ;
+	//public void save() ;
 	
 	
 	 /**
