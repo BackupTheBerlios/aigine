@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<uml:Model xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:uml="http://www.eclipse.org/uml2/1.0.0/UML" xmi:id="_QcjTIBomEdm6XevewdfoZg">
+  <ownedMember xmi:type="uml:UseCase" xmi:id="_YbgtwBomEdm6XevewdfoZg"/>
+  <ownedMember xmi:type="uml:Actor" xmi:id="_aXpDQBomEdm6XevewdfoZg"/>
+  <ownedMember xmi:type="uml:UseCase" xmi:id="_QFfBgBonEdm6XevewdfoZg"/>
+</uml:Model>
