@@ -8,18 +8,22 @@
 
 #include <GL/glut.h>
 #include "../AiGinEObject.h"
+#include "../../Utils/fileControl.h"
 
-class ageObjectPrim : public AiGinEObject  
+class ageObjectPrim : public AiGinEObject, public fileControl  
 {
 public:
 	ageObjectPrim();
+	ageObjectPrim(const char* fileName);
 	virtual ~ageObjectPrim();
 	void display();
-	void setSphere(double radius, int slices, int stacks);
-	void setCone(double base, double height, int slices, int stacks);
-	void setCube(double size);
-	void setTorus(double innerRadius, double outerRadius, int sides, int rings);
+	void setSphere(float radius, int slices, int stacks);
+	void setCone(float base, float height, int slices, int stacks);
+	void setCube(float size);
+	void setTorus(float innerRadius, float outerRadius, int sides, int rings);
 	void setColor(int r,int g,int b);
+	void readData();
+	void writeData();
 private:
 	int kind;	//0->not Set, 1->Sphere, 2->Cone, 3->Cube, 4->Torus
 	bool solid;
@@ -27,19 +31,19 @@ private:
 	int colorG;
 	int colorB;
 
-	double radiusSphere;
+	float radiusSphere;
 	int slicesSphere;
 	int stacksSphere;
 
-	double baseCone;
-	double heightCone;
+	float baseCone;
+	float heightCone;
 	int slicesCone;
 	int stacksCone;
 
-	double sizeCube;
+	float sizeCube;
 
-	double innerRadiusTorus;
-	double outerRadiusTorus;
+	float innerRadiusTorus;
+	float outerRadiusTorus;
 	int sidesTorus;
 	int ringsTorus;
 };
