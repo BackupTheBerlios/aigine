@@ -11,7 +11,7 @@
 #include "SceneManagement.h"
 #include "../View/Renderer.h"
 #include "../View/GraphicPipeline.h"
-#include "../AgeObjects/ageObject3DS.h"
+#include "AgeObjects/ageObject3DS.h"
 #include "../../Tools/loader3DS/Object3DS.h"
 #include "AiGinEObject.h"
 

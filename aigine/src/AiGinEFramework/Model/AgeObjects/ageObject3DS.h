@@ -7,8 +7,8 @@
 #define AGEOBJECT3DS_H
 
 #include <GL/glut.h>
-#include "../../Tools/loader3DS/Object3DS.h"
-#include "../Model/AiGinEObject.h"
+#include "../../../Tools/loader3DS/Object3DS.h"
+#include "../AiGinEObject.h"
 class Object3DS;
 
 class ageObject3DS : public AiGinEObject  

@@ -9,7 +9,7 @@
 #include <string>
 #include "../View/GraphicPipeline.h"
 #include "SceneGraph.h"
-#include "../AgeObjects/ageObjectPrim.h"
+#include "AgeObjects/ageObjectPrim.h"
 
 #include "AiGinEObject.h"
 
