@@ -14,7 +14,8 @@ import javax.swing.table.TableColumn;
 import javax.swing.table.TableModel;
 
 /**
- *
+ * Erweitertes JTable für automatische Spaltenbreite und spaltenabhängiges
+ * Rendering der Zellen. 
  * @author danny
  * @since 19.05.2004 17:32:47
  */
