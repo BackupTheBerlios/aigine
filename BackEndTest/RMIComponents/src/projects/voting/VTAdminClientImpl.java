@@ -11,12 +11,14 @@ import javax.swing.JLabel;
 import javax.swing.JScrollPane;
 import javax.swing.table.DefaultTableModel;
 
-import projects.interfaces.VTAdminClient;
+import projects.interfaces.VTClient;
 import projects.interfaces.VTServer;
 import projects.voting.control.JComponentCellEditor;
 import projects.voting.control.JComponentCellRenderer;
 import projects.voting.control.JDataTable;
 import projects.voting.control.VTAdminClientAction;
+import projects.voting.model.VoteTable;
+import API.interfaces.AdminClient;
 import API.interfaces.ServerHandle;
 import API.model.RemoteObject;
 import API.model.RemoteObjectTable;
@@ -26,7 +28,7 @@ import API.model.RemoteObjectTable;
  * @author danny
  * @since 05.05.2004 20:16:24
  */
-public class VTAdminClientImpl implements VTAdminClient {
+public class VTAdminClientImpl implements VTClient, AdminClient {
 
 	private JFrame frame = new JFrame();
 	private JLabel statuslabel = new JLabel("tschesch kollega");
@@ -88,4 +90,14 @@ public class VTAdminClientImpl implements VTAdminClient {
 		System.out.println(
 			"\t Serverhandle an den Actionlistener übergeben = " + server);
 	}
+
+    /* (non-Javadoc)
+     * @see projects.interfaces.VTClient#update(projects.voting.model.VoteTable)
+     */
+    public void update(VoteTable votes) throws RemoteException {
+        // TODO Votesupdate verarbeiten bzw. Administration für die Votes implementieren
+		System.out.println("=> VTAdminClientImpl.update(VoteTable votes)");
+		System.out.println(votes);
+		System.out.println("<= VTAdminClientImpl.update(VoteTable votes)");
+    }
 }
