@@ -105,7 +105,7 @@ public class RMIComponentLoader {
 
 		// Komponente initialisieren und starten
 		//component.run();
-		component.init();
+		component.init(url_JconfigServer);
 	}
 
 	
@@ -116,7 +116,7 @@ public class RMIComponentLoader {
 		}
 		else {
 			//documentRoot = System.getProperty("java.io.tmpdir");
-			url_classServer = "http://localhost:2002/";
+			url_classServer = "";
 		}
 	}
     
@@ -125,9 +125,11 @@ public class RMIComponentLoader {
 		if ( c_url != null ) {
 			try {
 				url_JconfigServer = c_url;
-				//port = Integer.parseInt(myPort);
+				
+				
 			}
 			catch (Exception e) {
+				url_JconfigServer = "";
                }
 		}
 	}
