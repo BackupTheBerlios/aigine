@@ -59,3 +59,23 @@ AiGinEObject * SceneManagement::addObject3DS(string fileName, AiGinEObject* pare
 	}
 	return my3DSObject;
 }
+
+AiGinEObject * SceneManagement::addObjectPrim(AiGinEObject* obj)
+{
+	this->addRoot(obj);
+	return obj;
+}
+
+AiGinEObject * SceneManagement::addObjectPrim(AiGinEObject* obj, AiGinEObject* parent, string kind) {
+	if(kind == "child") {
+		this->addChild(parent, obj);
+	}
+	else if(kind == "next") {
+		this->addNext(parent, obj);
+	}
+	else {
+		//error-ausnahme
+	}
+	return obj;
+}
+

@@ -48,6 +48,15 @@ public:
      */
 	AiGinEObject * addObject3DS(string fileName, AiGinEObject* parent, string kind);
 
+
+
+	AiGinEObject * addObjectPrim(AiGinEObject* obj);
+
+	AiGinEObject * addObjectPrim(AiGinEObject* obj, AiGinEObject* parent, string kind);
+
+
+
+
     /**
      * Ausgabe der Szene. Ruft die Methoden von "GraphicPipeline" und
      * "SceneGraph" für die Initialisierung und das Rendering der Objekte auf.
