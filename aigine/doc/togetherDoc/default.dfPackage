@@ -1,0 +1,42 @@
+package ide7e9dpmvpybodpmwyuis;
+
+/**
+@version 2.0
+@physicalPackage
+@__modelType diagram 
+*/
+class diagram {
+/**
+@__ref <oiref:design#Class#id167wbdpmvpybodpmwz3xm.diagram:oiref><oihard>
+@__modelType reference
+@__fqn <oiref:#Package#examples:oiref> 
+*/
+class reference {
+}/**
+@__ref <oiref:design#Class#id1u7ntdpmvpybodpmwyewl.diagram:oiref><oihard>
+@__modelType reference
+@__fqn <oiref:#Package#AiGinEFramework:oiref> 
+*/
+class reference36 {
+}/**
+@__ref <oiref:design#Class#id2p73pdpmvpybodpmwz8m7.diagram:oiref><oihard>
+@__modelType reference
+@__fqn <oiref:#Package#tools:oiref> 
+*/
+class reference37 {
+}}/**
+@__tags
+@shapeType ClassDiagram 
+*/
+class __tags {
+}/**
+@__options 
+*/
+class __options {
+}/**
+@__positions <oigroup:<oiref:design#Class#id1u7ntdpmvpybodpmwyewl.diagram:oiref>=105,10,120,126,1:oigroup>
+<oigroup:<oiref:design#Class#id2p73pdpmvpybodpmwz8m7.diagram:oiref>=10,170,75,87,1:oigroup>
+<oigroup:<oiref:design#Class#id167wbdpmvpybodpmwz3xm.diagram:oiref>=10,10,75,78,1:oigroup> 
+*/
+class __positions {
+}

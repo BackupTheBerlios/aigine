@@ -1,0 +1,33 @@
+package id4zio5dpmvpybodpmwy8to;
+
+/**
+@version 2.0
+@physicalPackage
+@__modelType diagram 
+*/
+class diagram {
+/**
+@__ref <oiref:cpp#Class#Mouse:oiref><oihard>
+@__modelType reference 
+*/
+class reference {
+}/**
+@__ref <oiref:cpp#Class#Keyboard:oiref><oihard>
+@__modelType reference 
+*/
+class reference13 {
+}}/**
+@__tags
+@shapeType ClassDiagram 
+*/
+class __tags {
+}/**
+@__options 
+*/
+class __options {
+}/**
+@__positions <oigroup:<oiref:cpp#Class#Keyboard:oiref>=10,170,200,110,1:oigroup>
+<oigroup:<oiref:cpp#Class#Mouse:oiref>=10,10,200,110,1:oigroup> 
+*/
+class __positions {
+}
