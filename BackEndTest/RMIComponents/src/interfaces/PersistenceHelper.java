@@ -6,9 +6,6 @@
  */
 package interfaces;
 
-import java.util.List;
-
-import projects.voting.model.VoteTable;
 
 /**
  * @author tobi
@@ -28,8 +25,8 @@ public interface PersistenceHelper {
 	*/   
    public void refreshConfiguration();
    
-   VoteTable getVoteTable() ;
-   
-   public List listVotes();
+//   VoteTable getVoteTable() ;
+//   
+//   public List listVotes();
 
 }
