@@ -67,7 +67,7 @@
 		<!-- Port des Serverdienstes -->
 		<property name="port" value="2003"/>
 		<!-- Authentifizierungstyp -->
-		<property name="authTyp" value="password"/>
+		<property name="authTyp" value="admin"/>
 		<property name="user" value="nice"/>
 		<property name="passwd" value="yourMama"/>
 	</category>
