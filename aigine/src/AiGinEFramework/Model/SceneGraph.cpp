@@ -50,15 +50,15 @@ bool addNext(AiGinEObject* parentObject, AiGinEObject* nextObject){
 void SceneGraph::drawSceneGraph(knot* k) {
 	if(k == NULL) return;
 	glPushMatrix();
-	//k->obj->getTranslation()
+	//(AiGinEObject(k->obj))->getTranslation();
 	//k->obj->getRotation()
 	//k->obj->draw();
-	if(k->child != NULL) {
-		this->drawSceneGraph(k->child);
+	if(k->right != NULL) {
+		this->drawSceneGraph(k->right);
 	}
 	glPopMatrix();
-	if(k->next != NULL) {
-		this->drawSceneGraph(k->next);
+	if(k->left != NULL) {
+		this->drawSceneGraph(k->left);
 	}
 }
 

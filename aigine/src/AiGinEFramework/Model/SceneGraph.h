@@ -23,11 +23,6 @@ class ObjectTree;
  * hinzuzufügen (z.B. aus vrml oder 3ds).
  */
 
-typedef struct knot {
-	knot* child;
-	knot* next;
-	AiGinEObject* obj;
-} knot;
 
 class SceneGraph
 {
