@@ -1,42 +1,42 @@
 <?xml version="1.0" ?>
 <properties>
   <category name="sh">
-    <count>3</count>
     <description>sh</description>
+    <count>3</count>
   </category>
   <category name="bash">
-    <count>4</count>
     <description>The GNU Bourne Again Shell</description>
+    <count>4</count>
   </category>
   <category name="tcsh">
-    <count>3</count>
     <description>tcsh</description>
+    <count>3</count>
   </category>
   <category name="esh">
-    <count>6</count>
     <description>The 'easy shell', a small shell with Lisp-like syntax</description>
-  </category>
-  <category name="ksh">
-    <count>3</count>
-    <description>Official AT and T release of KornShell 93</description>
+    <count>7</count>
   </category>
   <category name="osh">
-    <count>3</count>
     <description>An implementation of the UNIX 6th Edition shell</description>
+    <count>4</count>
+  </category>
+  <category name="ksh">
+    <description>Official AT and T release of KornShell 93</description>
+    <count>7</count>
   </category>
   <category name="zsh">
-    <count>3</count>
     <description>zsh</description>
+    <count>3</count>
   </category>
   <category name="general">
     <name>Shellvoting</name>
   </category>
   <category name="csh">
-    <count>3</count>
     <description>csh</description>
+    <count>3</count>
   </category>
   <category name="pdksh">
-    <count>3</count>
     <description>The Public Domain Korn Shell</description>
+    <count>4</count>
   </category>
 </properties>

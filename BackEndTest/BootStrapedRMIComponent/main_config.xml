@@ -35,7 +35,7 @@
 		<!-- Authentifizierungstyp -->
 		<property name="authTyp" value="anonym"/>
 		<!-- Adresse und Port des Managerdienstes -->
-		<property name="manager" value="http://localhost:2004/"/>
+		<property name="manager" value="rmi://localhost:2004/"/>
 		<!--Name des manager servers-->
 		<property name="managerName" value="VTDatabaseServer"/>
 	</category>	
@@ -47,7 +47,7 @@
 		<!-- Klassenname der zu ladenen Komponenten -->
 		<property name="compClassName" value="projects.voting.VTClientImpl"/>
 		<!-- Name der Komponente -->
-		<property name="compName" value="VTServer"/>
+		<property name="compName" value="VTLogicServer"/>
 		<!-- Domain Name des Serverdienstes der gestartet werden soll -->
 		<property name="hostname" value="localhost"/>
 		<!-- Port des Serverdienstes -->
@@ -63,13 +63,13 @@
 		<!-- Klassenname der zu ladenen Komponenten -->
 		<property name="compClassName" value="projects.voting.VTAdminClientImpl"/>
 		<!-- Name der Komponente -->
-		<property name="compName" value="VTServer"/>
+		<property name="compName" value="VTLogicServer"/>
 		<!-- Domain Name des Serverdienstes der gestartet werden soll -->
 		<property name="hostname" value="localhost"/>
 		<!-- Port des Serverdienstes -->
 		<property name="port" value="2003"/>
 		<!-- Authentifizierungstyp -->
-		<property name="authTyp" value="password"/>
+		<property name="authTyp" value="admin"/>
 		<property name="user" value="nice"/>
 		<property name="passwd" value="yourMama"/>
 	</category>
@@ -81,7 +81,7 @@
 		<!-- Klassenname der zu ladenen Komponenten -->
 		<property name="compClassName" value="projects.voting.VTWebServerImpl"/>
 		<!-- Name der Komponente -->
-		<property name="compName" value="VTServer"/>
+		<property name="compName" value="VTLogicServer"/>
 		<!-- Domain Name des Serverdienstes der gestartet werden soll -->
 		<property name="hostname" value="localhost"/>
 		<!-- Port des Serverdienstes -->
