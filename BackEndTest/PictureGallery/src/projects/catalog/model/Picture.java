@@ -5,12 +5,14 @@
  */
 package projects.catalog.model;
 
+import java.io.Serializable;
+
 /**
  * @author your mama
  *
- * Persistenc class to handle picture- persistence
+ * Persistence class to handle picture- persistence
  */
-public class Picture {
+public class Picture implements Serializable {
 	
 	private long id;
 	private String name;
@@ -43,10 +45,10 @@ public class Picture {
 		return id;
 	}
 	/**
-	 * private to let hiberate handle the id
+	 * 
 	 * @param id The id to set.
 	 */
-	private void setId(long id) {
+	public void setId(long id) {
 		this.id = id;
 	}
 	/**
@@ -60,6 +62,10 @@ public class Picture {
 	 */
 	public void setName(String name) {
 		this.name = name;
+	}
+	
+	public String getPath() {
+		return this.src_path ;
 	}
 	
 	/**

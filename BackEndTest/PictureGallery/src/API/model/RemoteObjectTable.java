@@ -70,17 +70,17 @@ public class RemoteObjectTable extends Hashtable {
 		System.out.println("==> RemoteObjectTable.getService()");
 		Enumeration enum1 = this.elements();
 
-		System.out.println("  > Was für Eintrage haben wir zur Zeit?\n--------------------------------") ;
+//		System.out.println("  > Was für Eintrage haben wir zur Zeit?\n--------------------------------") ;
 		while(enum1.hasMoreElements()) {
 			RemoteObject pro = (RemoteObject) enum1.nextElement();
 			StringBuffer temp = new StringBuffer(pro.getCompName()) ;
 			System.out.println("  > " + temp + " im Vergleich mit: " + sb + " Ergebnis: " + sb.indexOf(temp.toString())) ;
 			if (sb.indexOf(temp.toString()) == 0) {
 				result_ro = pro ;
-				System.out.println("\n+++ Klasse gefunden!!!\t--> " + pro.getCompName());
+				System.out.println("+++ Klasse gefunden!!!\t--> " + pro.getCompName());
 			}
 		}
-		System.out.println("<$== RemoteObjectTable.getService()");		
+		System.out.println("<== RemoteObjectTable.getService()");		
 		return result_ro;
 	}
 

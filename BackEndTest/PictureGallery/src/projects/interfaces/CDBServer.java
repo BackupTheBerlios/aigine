@@ -27,7 +27,8 @@ public interface CDBServer extends ServerHandle {
 	 void insertPicture(String catalogName, String categoryName, Picture pic) throws RemoteException;
 	 void insertPicture(Picture pic) throws RemoteException;
 	 
-	public Hashtable getPictures(String categoryName, int StartNr) throws RemoteException ;
+	public Hashtable getPictures(String categoryName, int StartNr, int Bilderanzahl) throws RemoteException ;
+	public Picture getPicture(String ID) throws RemoteException ;
 	 
 //	 Category selectCategory(int bilderanzahl) throws RemoteException; 
 //	Question (byDR) wie war die obige Methode gedacht???	 

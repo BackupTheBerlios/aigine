@@ -177,11 +177,11 @@ public class RenderHTML implements Render {
 		// HTMLstring.append("<table border=0>") ;
 		while (blocks.containsKey(new Integer(zaehler))) {
 			// TODO !!! hier muss der Blockkopf eingefügt werden
-			System.out.println("  > verarbeite einen Block (Nummer: " + zaehler + ")") ;
+//			System.out.println("  > verarbeite einen Block (Nummer: " + zaehler + ")") ;
 			Block b = (Block) blocks.get(new Integer(zaehler)) ;
 			
 			StringBuffer sb = new StringBuffer(this.getBlockStart(templateName, 1)) ; // TODO (byDR) unflexible BlockStart/BlockEnd-Verwendung ändern!!
-			System.out.println("  > BlockStart: '" + sb + "'") ;
+//			System.out.println("  > BlockStart: '" + sb + "'") ;
 			if (sb.indexOf("theTitle") > -1) {
 				sb.replace(sb.indexOf("theTitle"), sb.indexOf("theTitle") + 8, b.getTitle()) ;
 			}

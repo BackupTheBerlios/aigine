@@ -153,20 +153,52 @@ public class CDBServerImpl extends Database implements CDBServer {
 		
 	}
 	
-	public Hashtable getPictures(String categoryName, int StartNr) {
+	public Picture getPicture(String ID) {
+		Picture thepic = null ;
+		// TODO nur vorerst Zugriff auf die Hashtable mit den händisch vorgegebenen Fotos !!!
+		Hashtable provPics = getPictures("Pferde", 1, 0) ;
+		Integer num = new Integer(ID) ;
+	//	ID.
+		
+		if (provPics.containsKey(num)) {
+			thepic = (Picture) provPics.get(num) ;
+		}
+		return thepic ; 
+	}
+	
+	
+	/**
+	 * Description: liefert eine Hashtable zurück mit einer Liste von Picture-Objekten aus der Datenbank, momentan nach Kategorie unterschieden
+	 * 
+	 * @param Name der Kategorie, Nummer des ersten gewünschten Bildes, max. Anzahl der Bilder
+	 * @throws RemoteException 
+	 * @see projects.interfaces.CDBServer#getPicture(projects.catalog.model.Picture)
+	 */
+	public Hashtable getPictures(String categoryName, int StartNr, int Bilderanzahl) {
 		Hashtable ht = new Hashtable() ;
 		// TODO hier muss nun ein Zugriff auf die Datenbank erfolgen, und die Antwortzeilen werden dann in Picture-Objekte verpackt
 		// da dies bislang noch nicht geht, werden die Picture-Objekte hier nun von Hand erstellt
-		Picture pic = new Picture("img/pferde/img_1.jpg", "JPEG", "Schönes Pferd 1") ;
-		ht.put(new Integer(0), pic) ;
-		pic = new Picture("img/pferde/img_2.jpg", "JPEG", "Hübsches Pferd 2") ;
+		System.out.println("==> projects.catalog.CDBServerImpl.getPictures") ;
+		
+		Picture pic = new Picture("img/pferde/img_1.jpg", "JPEG", "Ardenner (Kaltblut)") ;
+		pic.setId(1) ;
 		ht.put(new Integer(1), pic) ;
-		pic = new Picture("img/pferde/img_3.jpg", "JPEG", "Tolles Pferd 3") ;
+		pic = new Picture("img/pferde/img_2.jpg", "JPEG", "Camargue-Pferd") ;
+		pic.setId(2) ;
 		ht.put(new Integer(2), pic) ;
-		pic = new Picture("img/pferde/img_4.jpg", "JPEG", "Super Pferd 4") ;
+		pic = new Picture("img/pferde/img_3.jpg", "JPEG", "Brandenburger") ;
+		pic.setId(3) ;
 		ht.put(new Integer(3), pic) ;
-		pic = new Picture("img/pferde/img_5.jpg", "JPEG", "Ruhiges Pferd 5") ;
+		pic = new Picture("img/pferde/img_4.jpg", "JPEG", "Araber-Mix") ;
+		pic.setId(4) ;
 		ht.put(new Integer(4), pic) ;
+		pic = new Picture("img/pferde/img_5.jpg", "JPEG", "Dartmoor-Pony") ;
+		pic.setId(5) ;
+		ht.put(new Integer(5), pic) ;
+		pic = new Picture("img/pferde/img_6.jpg", "JPEG", "Shetland-Pony") ;
+		pic.setId(5) ;
+		ht.put(new Integer(6), pic) ;
+		System.out.println("<== projects.catalog.CDBServerImpl.getPictures") ;
 		return ht ;
 	}
 	

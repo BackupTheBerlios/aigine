@@ -8,8 +8,11 @@ package projects.catalog;
 import java.rmi.RemoteException;
 import java.util.Hashtable;
 
+import projects.catalog.model.Picture;
+import projects.interfaces.CDBServer;
 import projects.interfaces.CProjectServer;
 import API.interfaces.ManagerHandle;
+// import API.interfaces.ServerHandle;
 
 import API.control.Server ;
 import API.model.RemoteObject;
@@ -128,15 +131,82 @@ public class CProjectServerImpl extends Server implements CProjectServer {
 //		this.manager = localmanager ;
 //	}
 	
+	private BlockContent PictureToBlockContent(Picture thePic, int height, int width) {
+		BlockContent bcRoot = null ;
+		
+		bcRoot = new BlockContent("(Klick)","link") ;
+		bcRoot.addAttribute("href", "catalog.html?srv=CProjectServer&block=main&op=showimage&imgid=" + thePic.getId()) ;
+
+		BlockContent bc = new BlockContent(thePic.getName(),"image") ;
+		bc.addAttribute("src", thePic.getPath()) ;
+		bc.addAttribute("alt", thePic.getName()) ;
+		bc.addAttribute("border", "1") ;
+		if (height >= 0) {
+			bc.addAttribute("height", new Integer(height).toString()) ;
+			bc.addAttribute("width", new Integer(width).toString()) ;	
+		}
+		bcRoot.setNachfolger(bc) ;
+		
+		BlockContent bctemp = new BlockContent("Dieses Bild \"" + thePic.getName() + "\" hat das Format " + thePic.getFormat(),"text") ;
+		bc.setNachfolger(bctemp) ;
+		// bc = bctemp ;
+		
+		bcRoot.setNachfolger(bc) ;
+		return bcRoot ;
+	}
+	
+	
+	
 	/**
 	 * description:
 	 * 
 	 * @param manager 
 	 */
 	private Block showimage(Hashtable requests) {
-		System.out.println() ;
-		return null ;
+		System.out.println("==> projects.catalog.CProjectServerImpl.showimage") ;
+		Block result = null ;
+		Picture thePic = null ;
+		BlockContent bcRoot = null;
+		BlockContent bc = null ;
+
+
+		System.out.println("==> projects.catalog.CProjectServerImpl.showimages") ;
+
+		CDBServer dbserver = (CDBServer) this.getServer("CDBServer") ;
+
+		if (dbserver != null) {
+			try {
+				System.out.println("  > Diesen Wert senden wir an den CDBServer: " + requests.get("imgid").toString()) ;
+				thePic = dbserver.getPicture(requests.get("imgid").toString()) ;
+			} catch (RemoteException re) {
+				System.out.println("--- Es ist eine RemoteException beim Aufruf von CDBServerImpl.getPictures() aufgetreten: " + re) ;
+			
+			}
+		} else {
+			System.out.println("--- CDBServer ist nicht erreichbar ...") ;
+			bcRoot = new BlockContent("Unser Datenbankserver ist leider im Moment nicht erreichbar. Bitte versuchen Sie es später. Our Database is unreachable. Please try later.") ;
+		}
+		if (thePic != null) {
+			bcRoot = new BlockContent("Das von Ihnen gewünschte Bild:","text") ;
+//			bc = bcRoot ;
+			BlockContent bctemp = new BlockContent("Bild Nr. " + thePic.getId(),"text") ; 
+			bctemp.setSubContent(PictureToBlockContent(thePic, -1, -1)) ; // TODO muss um Schalter erweitert werden, ob Thumb oder Vollbild, welche Attribute usw.
+			bcRoot.setNachfolger(bctemp) ;
+//			bc = bctemp ;
+		} else {
+			System.out.println("Keine Bilder mit diesen Kriterien in der Datenbank") ;
+			bcRoot = new BlockContent("Unter diesen Kriterien gibt es derzeit leider keine Bilder in unserer Datenbank ...", "text") ;
+			bcRoot.addAttribute("class", "fehler") ;
+		}
+		result = new Block(bcRoot) ;
+		result.setTitle("Bild '" + thePic.getName() + "'") ;
+
+		System.out.println("<== projects.catalog.CProjectServerImpl.showimage") ;
+
+		return result ;
 	}
+	
+	
 	
 	/**
 	 * description:
@@ -145,17 +215,56 @@ public class CProjectServerImpl extends Server implements CProjectServer {
 	 */
 	private Block showimages(Hashtable requests) {
 		Block result = null ;
+		Hashtable dbresult = null ;
+		BlockContent bcRoot = null;
+		BlockContent bc = null ;
+		
+		
 		System.out.println("==> projects.catalog.CProjectServerImpl.showimages") ;
 		
-		System.out.println("  > folgende Requests sind angekommen") ;
+		CDBServer dbserver = (CDBServer) this.getServer("CDBServer") ;
+		
+		if (dbserver != null) {
+			try {
+				dbresult = dbserver.getPictures("Pferde", 1, 0) ;
+			} catch (RemoteException re) {
+				System.out.println("--- Es ist eine RemoteException beim Aufruf von CDBServerImpl.getPictures() aufgetreten: " + re) ;
+			}
+		} else {
+			System.out.println("--- CDBServer ist nicht erreichbar.") ;
+			bcRoot = new BlockContent("Unser Datenbankserver ist leider im Moment nicht erreichbar. Bitte versuchen Sie es später. Our Database is unreachable. Please try later.") ;
+		}
+		if (dbresult != null) {
+			if (dbresult.size() == 0) {
+				System.out.println("Keine Bilder mit diesen Kriterien in der Datenbank") ;
+				bcRoot = new BlockContent("Unter diesen Kriterien gibt es derzeit leider keine Bilder in unserer Datenbank ...", "text") ;
+				bcRoot.addAttribute("class", "fehler") ;
+			}
+			int zaehler = 1 ;
+			bcRoot = new BlockContent("Diese Bilder sind derzeit in unserer Datenbank eingetragen:","text") ;
+			bc = bcRoot ;
+			System.out.println("  > Anzahl der Bilder: " + dbresult.size()) ;
+			while (dbresult.containsKey(new Integer(zaehler))) {
+				BlockContent bctemp = new BlockContent("Bild Nr. " + zaehler,"text") ; 
+				bctemp.setSubContent(PictureToBlockContent((Picture) dbresult.get(new Integer(zaehler)), 50, 50)) ; // TODO muss um Schalter erweitert werden, ob Thumb oder Vollbild, welche Attribute usw.
+				bc.setNachfolger(bctemp) ;
+				bc = bctemp ;
+				zaehler++ ;
+			}
+	/*		BlockContent bc = new BlockContent("Testbild", "image") ;
+			bc.addAttribute("src", "img/pferde/img_1.jpg") ;
+			bc.addAttribute("alt", "Bild eines Pferdes") ;
+			bc.addAttribute("border", "3") ;*/
+			
+		} else {
+			System.out.println("--- Rückgabe von CDBServer ist null.") ;
+			bcRoot = new BlockContent("Interner Serverfehler.") ;
+		}
+		result = new Block(bcRoot) ;
+		result.setTitle("Bilder der PictureGallery") ;
 		
 		System.out.println("<== projects.catalog.CProjectServerImpl.showimages") ;
-		BlockContent bc = new BlockContent("Testbild", "image") ;
-		bc.addAttribute("src", "img/pferde/img_1.jpg") ;
-		bc.addAttribute("alt", "Bild eines Pferdes") ;
-		bc.addAttribute("border", "3") ;
-		result = new Block(bc) ;
-		result.setTitle("ich zeige Bilder:") ;
+		
 		return result ;
 	}
 	
@@ -172,6 +281,7 @@ public class CProjectServerImpl extends Server implements CProjectServer {
 		Block result = null ;
 		WebRequestError = null ;
 		System.out.println("\n\n>>> habe einen WebRequest erhalten: " + op) ;
+//		System.out.println("  > die Hashtable mit den Request enthält folgende Daten: " + requestProps) ;
 		if (op.indexOf("serverinfo") == 0) {
 			result = new Block(this.toString()) ;
 			result.setTitle("Serverinformation") ;
@@ -180,7 +290,13 @@ public class CProjectServerImpl extends Server implements CProjectServer {
 			result.setTitle("Userinfos") ;
 			result.setStyle("copyright") ;
 		} else if (op.indexOf("seitenkopf") == 0) {
-			result = new Block("Auch dieses wird dynamisch vom CProjectServer generiert und kann daher flexibel eingesetzt werden!") ;
+			BlockContent bc = new BlockContent("Dieser Block wird dynamisch vom CProjectServer generiert und kann daher flexibel eingesetzt werden.","text") ;
+			BlockContent tempbc = new BlockContent(" Link zur Startseite ","link") ;
+			tempbc.addAttribute("href","catalog.html?srv=CProjectserver") ;
+			bc.setSubContent(tempbc) ;
+			BlockContent tempbc2 = new BlockContent("Absatz nach dem Link","text") ;
+			tempbc.setNachfolger(tempbc2) ;
+			result = new Block(bc) ;
 			result.setTitle("Kopf des Portals") ;
 		} else if (op.indexOf("kategorien") == 0) {
 			result = new Block("Und dies ist die Kategoriennavigation ...") ;
@@ -233,6 +349,8 @@ public class CProjectServerImpl extends Server implements CProjectServer {
 	//		<a href=\"catalog.html?block=kategorien&srv=CProjectServer&op=toplist\">test</a>
 		} else if (op.indexOf("showimages") == 0) {
 			result = showimages(requestProps) ;
+		} else if (op.indexOf("showimage") == 0) {
+			result = showimage(requestProps) ;
 		} else { 
 			WebRequestError = new String("unexpected Operation") ;
 			result = new Block("unexpected Block-Operation") ;
