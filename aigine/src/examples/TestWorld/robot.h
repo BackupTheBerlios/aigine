@@ -63,6 +63,9 @@ public:
 	void animRobot();
 private:
 	SceneManagement* sceneMan;
+
+	AiGinEObject* Kopf;
+	AiGinEObject* Torso;
 	AiGinEObject* Huefte;
 	AiGinEObject* BeinR;
 	AiGinEObject* BeinL;

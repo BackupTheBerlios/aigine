@@ -38,7 +38,8 @@ AiGinEObject* robot::drawModel(AiGinEObject* parent, string kind) {
 	((ageObjectPrim*)torso)->setCube(1.0);
 	((ageObjectPrim*)torso)->setColor(255,0,0);
 	torso->setScale(new Scale3D(TORSO_WIDTH,TORSO_HEIGHT,TORSO));
-	torso->setTranslation(new Translation3D(0.0, TORSO_HEIGHT / 2.0, 0.0));
+	torso->setTranslation(new Translation3D(0.0, TORSO_HEIGHT / 2.0 + BASE_HEIGHT / 2.0, 0.0));
+	this->Torso = torso;
 
 	//Beine
 	AiGinEObject* right_leg = drawLeg(torso,"next","right");
@@ -55,7 +56,8 @@ AiGinEObject* robot::drawModel(AiGinEObject* parent, string kind) {
 	((ageObjectPrim*)head_join)->setColor(0,255,0);
 	head_join->setScale(new Scale3D(HEAD_JOINT_SIZE,HEAD_JOINT_SIZE,HEAD_JOINT_SIZE));
 	head_join->setTranslation(new Translation3D(0.0,TORSO_HEIGHT/2 + HEAD_JOINT_SIZE,0.0));
-	// + (HEAD_HEIGHT/2.0)-HEAD_HEIGHT * 0.66
+	this->Kopf = head_join;
+
 	AiGinEObject* head = this->sceneMan->addObjectPrim(new ageObjectPrim(),head_join,"child");
 	((ageObjectPrim*)head)->setCube(1.0);
 	((ageObjectPrim*)head)->setColor(255,0,0);
@@ -163,7 +165,7 @@ AiGinEObject* robot::drawArm(AiGinEObject* parent,  string kind, string side) {
 	//Hand
 	AiGinEObject* hand = this->sceneMan->addObjectPrim(new ageObjectPrim(),lower_arm,"child");
 	((ageObjectPrim*)hand)->setCube(1.0);
-	((ageObjectPrim*)hand)->setColor(255,0,0);
+	((ageObjectPrim*)hand)->setColor(0,255,0);
 	hand->setScale(new Scale3D(HAND_WIDTH,HAND_HEIGHT,HAND));
 	hand->setTranslation(new Translation3D(0.0,- (LO_ARM_HEIGHT * 0.75), 0.0));
 	
@@ -193,8 +195,10 @@ void robot::drawRobot() {
 }
 
 void robot::animRobot() {
+/*
 	this->Huefte->getRotation()->y = 1;
 	this->Huefte->getRotation()->angle = ((int)this->Huefte->getRotation()->angle) % 360 + 1;
+*/
 	
 	if(this->myAngle <= -90 || this->myAngle >= 90) {
 		this->direction *= -1;
@@ -202,7 +206,11 @@ void robot::animRobot() {
 
 	this->myAngle += this->vel * this->direction;
 
-
+	this->Torso->getRotation()->y = 1;
+	this->Torso->getRotation()->angle = this->myAngle/2;
+	
+	this->Kopf->getRotation()->x = 1;
+	this->Kopf->getRotation()->angle = - this->myAngle/3 + 30;
 
 	this->BeinL->getRotation()->x = 1;
 	this->BeinL->getRotation()->angle = this->myAngle/2;
