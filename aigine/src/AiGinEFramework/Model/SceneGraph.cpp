@@ -79,7 +79,9 @@ void SceneGraph::drawSceneGraph(AiGinEObject* obj) {
 	Scale3D* scale = obj->getScale();
 	glScalef (scale->x, scale->y, scale->z);
 
-	((ageObject3DS*)obj)->display();
+	obj->display();
+
+//	((ageObject3DS*)obj)->display();
 	glPopMatrix();
 
 	if(obj->right != NULL) {
