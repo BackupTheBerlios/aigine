@@ -30,7 +30,7 @@ public abstract class Server extends UnicastRemoteObject {
 	
 	/**
 	 * Die registrierten Kommunikationspartner
-	 * entweder Clients oder Services oder wiederum Server ... WAT EVER !
+	 * entweder Clients oder Services oder wiederum Server ... WHAT EVER !
 	 */
 	protected RemoteObjectTable remoteObjects = null;
 
