@@ -14,8 +14,9 @@ import java.net.ServerSocket;
 import java.net.Socket;
 import java.net.URLDecoder;
 import java.net.UnknownHostException;
+import java.rmi.RemoteException;
 import java.util.HashMap;
-import java.util.StringTokenizer;
+import java.util.Hashtable;
 
 import exceptions.HTTPException;
 
@@ -292,14 +293,28 @@ public abstract class WebServer implements Runnable {
      * @return file content
      * @throws HTTPException 500 or 404 or 403
      */
-    private byte[] getBody(String[] request) throws HTTPException {
+    private byte[] getBody(String[] request) throws HTTPException, RemoteException {
 		System.out.println("=> WebServer.getBody(String[] request)");	
 		String url = root + request[1].replace('/', File.separatorChar);	
 		// testet ob ein "?" enthalten ist => Parameter parsen
-		if(url.indexOf("?") > 0){
+		int actionpoint  = url.indexOf("?");
+		if(actionpoint > 0){
 			// TODO parsen der Attribute
-			// StringTokenizer st = new StringTokenizer(url);
-			return getActionBody(request);
+			String urlpath = url.substring(0, actionpoint);
+			String actions = url.substring(actionpoint + 1);			
+			System.out.println("Aufruf von actionString > " + actions );
+			String[] propStrings= actions.split("&", 0);
+			Hashtable requestProps = new Hashtable();
+			for(int i = 0; i< propStrings.length; i++){
+				String tempProp = propStrings[i];
+				int delim = tempProp.indexOf("=");
+				String key = tempProp.substring(0, delim);
+				String value = tempProp.substring(delim+1);
+				requestProps.put(key, value);
+				System.out.println("add prop > key : " + key +" | value : " + value);
+			}
+			System.out.println("props" + propStrings);
+			return getActionBody(request, requestProps);
 		} else {
 			return getFileBody(request);
 		}
@@ -311,7 +326,7 @@ public abstract class WebServer implements Runnable {
      * @param request
      * @return
      */
-    protected abstract byte[] getActionBody(String[] request);
+    protected abstract byte[] getActionBody(String[] request, Hashtable requestProps) throws RemoteException ;
 
     private byte[] getFileBody(String[] request) throws HTTPException {
         File file= getFile(request); // 404 or 403
