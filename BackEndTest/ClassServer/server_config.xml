@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="iso-8859-1" ?>
+<properties>
+	<variables>
+	</variables>
+	<category name="classserver">
+		<!-- port der Anwendung -->
+		<property name="port" value="2002" />
+		<!-- URL fuer den Klassenserver -->
+		<property name="url" value="http://localhost:2002/" />
+		<!-- das repository relativ angeben -->		
+		<property name="repository" value="../PictureGallery/bin" />
+	</category>
+	<category name="jconfigserver">
+		<!-- URL fuer den jconfigserver -->
+		<property name="url" value="http://localhost:2001/" />
+		<!-- port der Anwendung -->
+		<property name="port" value="2001" />
+		<!-- das repository absolut angeben -->
+		<property name="repository" value="../PictureGallery/config"/>
+	</category>
+</properties>
+

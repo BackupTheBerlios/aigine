@@ -1,4 +1,4 @@
-// Copyright MageLang Institute; Version $Id: ClassServer.java,v 1.4 2004/10/03 14:59:37 mr_nice Exp $
+// Copyright MageLang Institute; Version $Id: ClassServer.java,v 1.1 2005/01/29 15:56:21 danny Exp $
 
 /*
  * Copyright (c) 1996, 1996, 1997 Sun Microsystems, Inc. All Rights Reserved.
@@ -14,6 +14,8 @@
  */
 
 //package examples.classServer;
+
+package newdefault;
 
 import java.io.*;
 import java.net.*;
@@ -42,7 +44,7 @@ public abstract class ClassServer implements Runnable {
 	private int port;
 	private static String fileExtension;
 	private static String jarURL;
-	protected int bytesCont = 0;
+	protected long bytesCont = 0;
 
 	/**
 	 * Constructs a ClassServer that listens on <b>port</b> and
