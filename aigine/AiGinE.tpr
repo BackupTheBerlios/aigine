@@ -113,7 +113,7 @@ cpp.rightMarginToIndents=80
 
 [genHTML]
 
-folder=F:\\develop\\c_3d\\AiGinE\\aigine\\publish
+folder=C:\\Programme\\TogetherSoft\\Together6.0.1\\out\\webpublish\\AiGinE.tpr
 
 generateFor=all_packages
 
