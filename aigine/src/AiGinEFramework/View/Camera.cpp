@@ -93,8 +93,8 @@ void Camera::setRotation(int mouseX, int mouseY, int * winSize)
         rotateView(angleY, 0, 1, 0); // yAxis
 
         // Ausgabe der aktuellen Positionen
-        position->print("\nPosition : ");
-        lookAtPosition->print("lookAtPosition : ");
+//        position->print("\nPosition : ");
+//        lookAtPosition->print("lookAtPosition : ");
     }
 }
 
