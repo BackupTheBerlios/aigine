@@ -3,8 +3,11 @@
 
 
 
-workspace.diagram.active = <oiref:design#Class#ida1f8dn6d1h2idn6d2aqq.diagram:oiref>
+workspace.diagram.active = <oiref:design#Class#id35gxsdn6d1h2idn6d2avg.diagram:oiref>
 workspace.diagram.open.0 = <oiref:design#Class#id3k4rmdo1afxq5do1do0bi.diagram:oiref>
 workspace.diagram.open.1 = <oiref:design#Class#id20qe9do1afxq5do1c62mc.diagram:oiref>
 workspace.diagram.open.2 = <oiref:design#Class#id35gxsdn6d1h2idn6d2avg.diagram:oiref>
-workspace.diagram.open.3 = <oiref:design#Class#ida1f8dn6d1h2idn6d2aqq.diagram:oiref>
+workspace.diagram.open.3 = <oiref:design#Class#id35gxsdn6d1h2idn6d2avg.diagram:oiref>
+workspace.editor.active = C:\fosion\projects\develop\aigine\src\Model\Scale3D.h
+workspace.editor.open.0 = C:\fosion\projects\develop\aigine\src\Model\Scale3D.h
+workspace.editor.open.1 = C:\fosion\projects\develop\aigine\src\GraphicEngine\AiGinEObject.h

@@ -29,25 +29,25 @@ Root.2.package_prefix=
 projectfile.encoding=Cp1252
 [editor]
 
-recent.file.0=F:\\cvs-develop\\aigine\\src\\GraphicEngine\\GraphicPipeline.h
+recent.file.0=C:\\fosion\\projects\\develop\\aigine\\src\\Model\\Scale3D.h
 
-recent.file.1=F:\\cvs-develop\\aigine\\src\\GraphicEngine\\Camera.h
+recent.file.1=C:\\fosion\\projects\\develop\\aigine\\src\\Model\\Rotation3D.h
 
-recent.file.2=F:\\cvs-develop\\aigine\\src\\GraphicEngine\\Viewport.h
+recent.file.2=C:\\fosion\\projects\\develop\\aigine\\src\\Model\\Translation3D.h
 
-recent.file.3=F:\\cvs-develop\\aigine\\src\\GraphicEngine\\StateManager.h
+recent.file.3=C:\\fosion\\projects\\develop\\aigine\\src\\GraphicEngine\\AiGinEObject.h
 
-recent.file.4=F:\\cvs-develop\\aigine\\src\\GraphicEngine\\SceneManagement.h
+recent.file.4=C:\\fosion\\projects\\develop\\aigine\\src\\Model\\Vector3D.h
 
-recent.file.5=F:\\cvs-develop\\aigine\\src\\GraphicEngine\\SceneGraph.h
+recent.file.5=C:\\fosion\\projects\\develop\\aigine\\src\\Model\\Liste.h
 
-recent.file.6=F:\\cvs-develop\\aigine\\src\\GraphicEngine\\Shader.h
+recent.file.6=C:\\fosion\\projects\\develop\\aigine\\src\\Model\\Class1.h
 
-recent.file.7=F:\\cvs-develop\\aigine\\src\\GraphicEngine\\ObjectList.h
+recent.file.7=C:\\fosion\\projects\\develop\\aigine\\src\\GraphicEngine\\Camera.h
 
-recent.file.8=F:\\cvs-develop\\aigine\\src\\GraphicEngine\\AiGinEObject.h
+recent.file.8=F:\\cvs-develop\\aigine\\src\\GraphicEngine\\GraphicPipeline.h
 
-recent.file.9=F:\\cvs-develop\\aigine\\src\\GraphicEngine\\Mesh.h
+recent.file.9=F:\\cvs-develop\\aigine\\src\\GraphicEngine\\Camera.h
 
 [workspace]
 
@@ -62,7 +62,7 @@ Developer.CodingWorkspace={{0,2,-1,0,0,0,0,0,0,1,0,50,75,25,-1,-1,-1,-1}${0,1,-1
 Developer.DebugWorkspace={{0,2,-1,0,0,0,0,0,0,1,0,50,75,25,-1,-1,-1,-1}${0,1,-1,0,0,0,0,1,0,1,1,50,75,25,-1,-1,-1,-1}${0,3,-1,0,0,0,0,0,0,1,0,50,50,25,-1,-1,-1,-1}${0,3,-1,0,0,0,0,0,0,1,0,50,50,25,-1,-1,-1,-1}${0,-1,-1,0,0,0,0,0,0,1,0,5,5,5,-1,-1,-1,-1}${0,4,-1,0,0,0,0,0,0,1,0,50,50,25,-1,-1,-1,-1}${0,0,-1,0,0,0,0,1,0,1,0,75,5,5,-1,-1,-1,-1}${0,7,-1,0,0,0,0,0,0,1,0,50,50,75,-1,-1,-1,-1}}
 Developer.DesignWorkspace={{0,2,-1,0,0,0,0,1,0,1,0,50,75,22,-1,-1,-1,-1}${0,1,-1,0,0,0,0,0,0,1,0,50,75,22,-1,-1,-1,-1}${0,3,-1,0,0,0,0,1,0,1,0,50,50,22,-1,-1,-1,-1}${0,3,-1,0,0,0,0,1,0,1,0,50,50,22,-1,-1,-1,-1}${0,-1,-1,0,0,0,0,0,0,1,0,5,5,5,-1,-1,-1,-1}${0,4,-1,0,0,0,0,1,0,1,1,50,50,22,-1,-1,-1,-1}${0,0,-1,0,0,0,0,0,0,1,0,75,5,5,-1,-1,-1,-1}${0,7,-1,0,0,0,0,0,0,1,0,50,50,75,-1,-1,-1,-1}}
 names.Developer={<default>}
-Developer.<default>={{0,2,-1,0,0,0,0,1,0,1,1,57,75,25,-1,-1,-1,-1}${0,1,-1,0,0,0,0,0,0,1,0,57,75,25,-1,-1,-1,-1}${0,3,-1,0,0,0,0,0,0,1,0,50,50,25,-1,-1,-1,-1}${0,3,-1,0,0,0,0,0,0,1,0,50,50,25,-1,-1,-1,-1}${0,-1,-1,0,0,0,0,0,0,1,0,5,5,5,-1,-1,-1,-1}${0,4,-1,0,0,0,0,0,0,1,0,50,50,25,-1,-1,-1,-1}${0,0,-1,0,0,0,0,0,0,1,0,75,5,5,-1,-1,-1,-1}${0,7,-1,0,0,0,0,0,0,1,0,50,50,75,-1,-1,-1,-1}}
+Developer.<default>={{0,2,-1,0,0,0,0,1,0,1,1,41,75,25,-1,-1,-1,-1}${0,1,-1,0,0,0,0,1,0,1,0,41,75,25,-1,-1,-1,-1}${0,3,-1,0,0,0,0,1,0,1,0,50,50,25,-1,-1,-1,-1}${0,3,-1,0,0,0,0,1,0,1,0,50,50,25,-1,-1,-1,-1}${0,-1,-1,0,0,0,0,0,0,1,0,5,5,5,-1,-1,-1,-1}${0,4,-1,0,0,0,0,1,0,1,0,50,50,25,-1,-1,-1,-1}${0,0,-1,0,0,0,0,0,0,1,0,75,5,5,-1,-1,-1,-1}${0,7,-1,0,0,0,0,0,0,1,0,50,50,75,-1,-1,-1,-1}}
 Programmer.<default>={{1,-1,2,-4,-4,1032,746,1,0,1,1,5,5,5,-1,-1,-1,-1}${0,1,-1,0,0,0,0,0,0,1,0,50,75,25,-1,-1,-1,-1}${0,3,-1,0,0,0,0,1,0,1,0,50,50,25,-1,-1,-1,-1}${0,3,-1,0,0,0,0,1,0,1,0,50,50,25,-1,-1,-1,-1}${0,-1,-1,0,0,0,0,0,0,1,0,5,5,5,-1,-1,-1,-1}${0,4,-1,0,0,0,0,0,0,1,0,50,50,25,-1,-1,-1,-1}${0,0,-1,0,0,0,0,0,0,1,0,75,5,5,-1,-1,-1,-1}${0,7,-1,0,0,0,0,0,0,1,0,50,50,75,-1,-1,-1,-1}}
 [newDiagramExpert]
 
