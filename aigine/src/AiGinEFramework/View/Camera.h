@@ -1,305 +1,165 @@
-/* Game Engine Design */
+/* Game Engine Design
+ * Camera.h
+ */
 
-//####################################################################
-//                       C A M E R A . H                        	   #
-//                                                                   #
-//___________________________________________________________________#
-//                                                                   #
-// @author Danny Graef, Tobias Harpering                             #
-// @description: Camara control implementation                       # 
-// @date                                                             #  
-//####################################################################
 
 #ifndef CAMERA_H
-
 #define CAMERA_H
 
-#include <vector>
-//#include "../Input/Mouse.h"
-#include "../Model/Point3D.h"
-#include "../Model/Vector3D.h"
-
-
-using namespace std;
+#include <GL/glut.h>
 
 class Viewport;
+class Vector3D;
 
-
-
-/** 
-* Kamerasteuerung
-* 
-* @author Danny Graef, Tobias Harpering       
-* 
-*/
-
+/**
+ * Kamerasteuerung.
+ * @author Danny Graef, Tobias Harpering
+ * @since 2004-01-07
+ */
 class Camera
 {
 
 
 public:
-	
-	/**      
-  * Gibt die Position der actuellen Kammera zurueck  
-  *        
-  * @author Danny Graef, Tobias Harpering
-  * @return Vector 3D
-  * @param -
-  */ 	
-	Point3D* getPosition();
+    /**
+     * Ermittelt die Differenz zur vorherigen Position und
+     * berechnet daraus die Drehungswinkel. Nach Ermittlung
+     * der z-Achse wird dann die Drehung auf dieser und der y-Achse
+     * ausgeführt.
+     * @param neue x Position
+     * @param neue y Position
+     * @paran aktuelle Fenstergröße
+     */
+    void setRotation(int mouseX, int mouseY, int * CurrentWinSize);
 
-	/**      
-	* Gibt den Vector der actuellen Blickrichtung zurueck  
-	*        
-	* @author Danny Graef, Tobias Harpering
-	* @return Richtungsvektor
-	* @param -
-	*/       
-	Point3D * getLookAtPosition();
-    
-	/**      
-	* Setzt die Blickrichtung der Kammera        
-	*        wwwwwwwww
-	* @author Danny Graef, Tobias Harpering
-	* @return -
-	* @param Uebernimmt einen 3d Vektor
-	*/       
-	void setLookAtPosition(Point3D * lookAtPosition);
-    
-	/**      
-	* Gibt den Normalvektor der Kammera zurueck       
-	*        
-	* @author Danny Graef, Tobias Harpering
-	* @return 3D (Up)Vector
-	* @param -
-	*/       
-	Point3D * getRotation();
-	
-	/*
-	 * Die Funktion berechnet den neuen Rotationsvektor der Kamera
-   * einen Vektor und
-	 * verwendet ihn in normalisierter Form als Kameravektor.
-   * @author Danny Graef, Tobias Harpering
-   * @return -
-   * @param Vektor 
-	*/
-	void setRotation(int mouseX, int mouseY, int* CurrentWinSize);
+    /**
+     * Gibt die Position der aktuellen Kamera zurueck.
+     * @return Position der Kamera.
+     */
+    Vector3D * getPosition();
 
-	/**
-	*
-	*/
-	void RotateView(float angle, float x, float y, float z);
+    /**
+     * Gibt den Blickpunkt zurueck.
+     * @return Blickpunkt der Kamera.
+     */
+    Vector3D * getLookAtPosition();
 
-    /**      
-    *        
-	*        
-	* @author
-	* @return
-	* @param 
-	*/       
+    /**
+     * Setzt den Blickpunkt der Kamera.
+     * @param lookAtPostion neuer Blickpunkt.
+     */
+    void setLookAtPosition(Vector3D * lookAtPosition);
+
+    /**
+     * Gibt den Normalenvektor der Kamera zurueck.
+     * @return Normalenvektor der Kamera
+     */
+    Vector3D * getUpVector();
+
+    /** Konstruktor */
     Camera();
-    
-    /**      
-    *        
-    *        
-    * @author
-    * @return
-    * @param 
-    */       
-    Camera(Point3D* position, Point3D* lookAtPosiont, Point3D* normalVector);
 
-    /**      
-    *        
-    *        
-    * @author
-    * @return
-    * @param 
-    */           
+    /**
+     * Konstruktor mit Vektorenzuweisung.
+     * @param position Kameraposition
+     * @param lookAtPosition Blickpunkt der Kamera
+     * @param upVector Normalenvektor der Kamera
+     */
+    Camera(Vector3D * position, Vector3D * lookAtPosiont, Vector3D * upVector);
+
+    /**
+     * @author
+     * @return
+     * @param
+     */
     void attachViewport(Viewport * param);
-	
-    /**      
-    *        
-    *        
-    * @author
-    * @return
-    * @param 
-    */       
+
+    /**
+     * @author
+     * @return
+     * @param
+     */
     virtual void set();
 
-//////////////////////////M O U S E   M O V E M E N T///////////////////////////
-    /**      
-    *        
-    *        
-    * @author
-    * @return
-    * @param 
-    */       
-    void turnDown();
+    /////////////////////////K E Y B O A R D   M O V E M E N T//////////////////
 
-    /**      
-    *        
-    *        
-    * @author
-    * @return
-    * @param 
-    */       
-    void turnRight();
+    /**
+     * Bewegt die Kamera nach unten.
+     * @param speed die Geschwindigkeit mit der die Kammera sich bewegen soll.
+     */
+    void moveDown(float speed);
 
-      /**      
-	*        
-	*        
-	* @author
-	* @return
-	* @param 
-	*/
-	void turnUp();
+    /**
+     * Bewegt die Kamera nach vorn.
+     * @param speed die Geschwindigkeit mit der die Kammera sich bewegen soll.
+     */
+    void moveForward(float speed);
 
-	/**      
-	*        
-	*        
-	* @author
-	* @return
-	* @param speet die Geschwindigkeit in float mit der die Kammera sich
-  * bewegen soll
-	*/
-	void turnLeft();
+    /**
+     * Bewegt die Kamera nach hinten.
+     * @param speed die Geschwindigkeit mit der die Kammera sich bewegen soll.
+     */
+    void moveBack(float speed);
 
-/////////////////////////K E Y B O A R D   M O V E M E N T//////////////////////
-  
-  /**      
-    *        
-    *        
-    * @author
-    * @return
-    * @param speet die Geschwindigkeit in float mit der die Kammera sich
-  * bewegen soll
-    */       
-    void moveDown(float speet);
+    /**
+     * Bewegt die Kamera nach oben.
+     * @param speed die Geschwindigkeit mit der die Kammera sich bewegen soll.
+     */
+    void moveUp(float speet);
 
-    /**      
-    *        
-    *        
-    * @author
-    * @return
-    * @param speet die Geschwindigkeit in float mit der die Kammera sich
-  * bewegen soll 
-    */           
-	void moveForward(float speet);
+    /**
+     * Bewegt die Kamera nach links.
+     * @param speed die Geschwindigkeit mit der die Kammera sich bewegen soll.
+     */
+    void moveLeft(float speet);
 
+    /**
+     * Bewegt die Kamera nach rechts.
+     * @param speed die Geschwindigkeit mit der die Kammera sich bewegen soll.
+     */
+    void moveRight(float speet);
 
-  	/**
-   	* bewegt die Kamera um die angegebene
-   	* Anzahl nach hinten.
-   	* Viewpoint und LookAt werden entweder
-   	* auf der derzeitigen Ebene "direction = 0"
-   	* oder in Richtung der Kamera "direction = 1"
-   	* bewegt
-   	*/
-	void moveBack(float speet);
+    /** Destruktor */
+    ~Camera();
 
-  
-  
-  	/**      
-	*        
-	*        
-	* @author
-	* @return
-	* @param speet die Geschwindigkeit in float mit der die Kammera sich
-  * bewegen soll
-	*/
-
-  void moveUp(float speet);
-
-  	/**      
-	*        
-	*        
-	* @author
-	* @return
-	* @param speet die Geschwindigkeit in float mit der die Kammera sich
-  * bewegen soll
-	*/
-  void moveLeft(float speet);
-
-
-  	/**      
-	*        
-	*        
-	* @author
-	* @return
-	* @param speet die Geschwindigkeit in float mit der die Kammera sich
-  * bewegen soll 
-	*/
-  void moveRight(float speet);
-
-  
-  
-  
-  /*
-  * Destructor
-  */
-  ~Camera();
-
-  /////////////////////////////////P R I V A T E///////////////////////////////
 
 private:
-  
-	Point3D * rotation; // 
-	Point3D * lookAtPosition; 
-    Point3D * position;
+    /** Normalenvektor der Kamera */
+    Vector3D * upVector;
+
+    /** Blickpunkt der Kamera */
+    Vector3D * lookAtPosition;
+
+    /** Position der Kamera */
+    Vector3D * position;
+
+    /**
+     * Führt eine Rotation um den angegebenen Winkel an dem durch
+     * x, y, z gegebenen Achsenvektor aus.
+     * @param angle Winkel um den gedreht werden soll
+     * @param x, y, z Koordinaten des Achsenvektors
+     */
+    void rotateView(float angle, float x, float y, float z);
+
 
     /**
      * @supplierCardinality 1
      * @clientCardinality 1
      */
     Viewport * lnkViewport;
-  
-  /**      
-	*        
-	*        
-	* @author
-	* @return
-	* @param 
-	*/
 
-	Point3D cross(Point3D * vVector1, Point3D * vVector2);
-	
-  	/**      
-	*        
-	*        
-	* @author
-	* @return
-	* @param 
-	*/
-  Point3D getNormalVector(Point3D vVector);
+    /**
+     * Bewegt die Kammera auf der x-z Ebene vorwärts und rückwärts
+     * entlang der Blickrichtung.
+     * @param speed die Geschwindigkeit mit der die Kammera sich bewegen soll.    
+     */
+    void moveCamera(float speed);
 
-  /**      
-	*        
-	*        
-	* @author
-	* @return
-	* @param 
-	*/
-  float magnitude(Point3D vNormal);
-
-  /**      
-	* Bewegt die Kammera auf der einer Vorgegebenen hoehe in der 3D Welt       
-	*        
-	* @author 
-	* @return -
-	* @param speet die Geschwindigkeit in float mit der die Kammera sich
-  * bewegen soll
-	*/
-  void moveCamera(float speed);
-  
-  /**      
-	* Bewegt die Kammera seitwerts (sonst das selbe wie 'moveCamera')       
-	*        
-	* @author
-	* @return
-	* @param speet die Geschwindigkeit in float mit der die Kammera sich
-  * bewegen soll
-	*/
-  void strafeCamera(float speed);
+    /**
+     * Bewegt die Kammera auf der x-z Ebene nach links und rechts.
+     * @param speed die Geschwindigkeit mit der die Kammera sich bewegen soll.    
+     */
+    void strafeCamera(float speed);
 };
 
 #endif //CAMERA_H
