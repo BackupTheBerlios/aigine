@@ -73,13 +73,13 @@ void GraphicPipeline::initOpenGL(int argc, char** argv){
 	
 
 	float * ambient = new float[4];
-	ambient[0] = 0.7;
-	ambient[1] = 0.7;
-	ambient[2] = 0.7;
+	ambient[0] = 1.0;
+	ambient[1] = 1.0;
+	ambient[2] = 1.0;
 	ambient[3] = 1.0; 
 	this->lnkLight->setAmbient(ambient);
 	
-	/*
+
 	this->enableLight(lnkLight,0);
 	/**/
 	//Translation3D * lightpos = new Translation3D(3.0,-30.0,1.0); //die position des lichtes +10 in alle richtungen
