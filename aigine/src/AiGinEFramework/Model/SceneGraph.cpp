@@ -4,6 +4,8 @@
 #include "../Util/loader3DS/Object3DS.h"
 #include "AiGinEObject.h"
 #include "ageObject3DS.h"
+#include <iostream>
+using namespace std;
 
 SceneGraph::SceneGraph() : Tree() {
 }
@@ -72,8 +74,8 @@ void SceneGraph::drawSceneGraph(AiGinEObject* obj) {
 	Translation3D * trans = obj->getTranslation();
 	glTranslatef(trans->x,trans->y,trans->z);
 
-	/*Rotation3D* rotate= obj->getRotation();
-	glScalef (rotate->x, rotate->y, rotate->z);/**/
+	Rotation3D* rotate= obj->getRotation();
+	glRotatef (rotate->angle, rotate->x, rotate->y, rotate->z);
 
 	glPushMatrix();
 	Scale3D* scale = obj->getScale();
