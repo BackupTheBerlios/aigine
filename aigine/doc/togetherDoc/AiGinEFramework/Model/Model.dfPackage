@@ -61,6 +61,27 @@ class reference33 {
 @__modelType reference 
 */
 class reference35 {
+}/**
+@__ref <oiref:design#Class#id1thvldpucva8bdpucw1g2.diagram:oiref><oihard>
+@__modelType reference
+@__fqn <oiref:#Package#AiGinEFramework.Model.AgeObjects:oiref> 
+*/
+class reference2 {
+}/**
+@__ref <oiref:cpp#Class#LookAtObjects:oiref><oihard>
+@__modelType reference 
+*/
+class reference3 {
+}/**
+@__ref <oiref:cpp#Class#AiGinEObject:oiref><oihard>
+@__modelType reference 
+*/
+class reference4 {
+}/**
+@__ref <oiref:cpp#Class#Object3D:oiref><oihard>
+@__modelType reference 
+*/
+class reference5 {
 }}/**
 @__tags
 @shapeType ClassDiagram 
@@ -71,53 +92,60 @@ class __tags {
 */
 class __options {
 }/**
-@__positions <oigroup:Composite#clientCardinality#MemberLink#<oiref:cpp#Member#AiGinEObject#lnkShader:oiref>=803,1113,15,16,0:oigroup>
-<oigroup:Composite#supplierCardinality#MemberLink#<oiref:cpp#Member#AiGinEObject#lnkShader:oiref>=868,1113,26,16,0:oigroup>
-<oigroup:MemberLink#<oiref:cpp#Member#Object3D#normals:oiref>=637,401,238,401:oigroup>
-<oigroup:<oiref:cpp#Extends#AiGinEObject#Object3D:oiref>=728,1061,728,981:oigroup>
-<oigroup:<oiref:cpp#Class#Translation3D:oiref>=338,182,200,85,1:oigroup>
-<oigroup:Composite#supplierCardinality#MemberLink#<oiref:cpp#Member#MeshList#lnkMesh:oiref>=50,892,26,16,0:oigroup>
-<oigroup:MemberLink#<oiref:cpp#Member#SceneGraph#lnkObjectTree:oiref>=229,1142,298,1142:oigroup>
-<oigroup:<oiref:cpp#Class#Scale3D:oiref>=338,292,192,84,0:oigroup>
-<oigroup:<oiref:cpp#Class#SceneManagement:oiref>=38,1442,200,181,1:oigroup>
-<oigroup:Composite#clientCardinality#MemberLink#<oiref:cpp#Member#ObjectTree#lnkObject:oiref>=385,1122,15,16,0:oigroup>
-<oigroup:Composite#supplierCardinality#MemberLink#<oiref:cpp#Member#SceneGraph#lnkObjectTree:oiref>=266,1122,28,16,0:oigroup>
-<oigroup:Composite#supplierCardinality#MemberLink#<oiref:cpp#Member#Object3D#meshList:oiref>=242,801,26,16,0:oigroup>
-<oigroup:<oiref:cpp#Extends#Scale3D#Vector3D:oiref>=338,334,238,334:oigroup>
+@__positions <oigroup:Composite#clientCardinality#MemberLink#<oiref:cpp#Member#AiGinEObject#lnkShader:oiref>=972,1072,15,16,0:oigroup>
+<oigroup:Composite#supplierCardinality#MemberLink#<oiref:cpp#Member#AiGinEObject#lnkShader:oiref>=961,1139,26,16,0:oigroup>
+<oigroup:MemberLink#<oiref:cpp#Member#Object3D#normals:oiref>=610,550,228,551:oigroup>
+<oigroup:<oiref:cpp#Extends#AiGinEObject#Object3D:oiref>=910,950,791,950:oigroup>
+<oigroup:<oiref:cpp#Class#Translation3D:oiref>=300,789,191,85,0:oigroup>
+<oigroup:Composite#supplierCardinality#MemberLink#<oiref:cpp#Member#MeshList#lnkMesh:oiref>=101,120,26,16,0:oigroup>
+<oigroup:MemberLink#<oiref:cpp#Member#Object3D#directionVector3D:oiref>=610,592,228,592:oigroup>
+<oigroup:MemberLink#<oiref:cpp#Member#SceneGraph#lnkObjectTree:oiref>=981,707,981,790:oigroup>
+<oigroup:<oiref:cpp#Class#Scale3D:oiref>=300,890,192,84,0:oigroup>
+<oigroup:<oiref:cpp#Class#SceneManagement:oiref>=891,161,200,181,1:oigroup>
+<oigroup:Composite#clientCardinality#MemberLink#<oiref:cpp#Member#ObjectTree#lnkObject:oiref>=962,872,15,16,0:oigroup>
+<oigroup:Composite#supplierCardinality#MemberLink#<oiref:cpp#Member#SceneGraph#lnkObjectTree:oiref>=949,770,28,16,0:oigroup>
+<oigroup:Composite#supplierCardinality#MemberLink#<oiref:cpp#Member#Object3D#meshList:oiref>=234,144,26,16,0:oigroup>
+<oigroup:<oiref:cpp#Extends#Scale3D#Vector3D:oiref>=300,963,228,963:oigroup>
 <oigroup:<oiref:cpp#Extends#ageObject3DS#AiGinEObject:oiref>=773,1291,773,1193:oigroup>
-<oigroup:MemberLink#<oiref:cpp#Member#AiGinEObject#lnkShader:oiref>=799,1133,898,1133:oigroup>
-<oigroup:<oiref:cpp#Class#Vector3D:oiref>=38,51,200,431,0:oigroup>
-<oigroup:MemberLink#<oiref:cpp#Member#Object3D#rotation:oiref>=637,106,538,106:oigroup>
-<oigroup:MemberLink#<oiref:cpp#Member#Object3D#scale:oiref>=637,334,530,334:oigroup>
-<oigroup:<oiref:cpp#Extends#Translation3D#Vector3D:oiref>=338,224,238,224:oigroup>
-<oigroup:MemberLink#<oiref:cpp#Member#MeshList#lnkMesh:oiref>=80,922,80,892:oigroup>
-<oigroup:Composite#supplierCardinality#MemberLink#<oiref:cpp#Member#Object3D#translation:oiref>=542,204,28,16,0:oigroup>
-<oigroup:<oiref:cpp#Class#Mesh:oiref>=38,750,200,142,1:oigroup>
-<oigroup:MemberLink#<oiref:cpp#Member#Object3D#vertices:oiref>=637,441,238,441:oigroup>
-<oigroup:<oiref:cpp#Extends#Rotation3D#Vector3D:oiref>=338,106,238,106:oigroup>
-<oigroup:<oiref:cpp#Class#MeshList:oiref>=39,922,83,82,1:oigroup>
-<oigroup:MemberLink#<oiref:cpp#Member#Object3D#translation:oiref>=637,224,538,224:oigroup>
+<oigroup:MemberLink#<oiref:cpp#Member#AiGinEObject#lnkShader:oiref>=991,1072,991,1159:oigroup>
+<oigroup:<oiref:cpp#Class#Vector3D:oiref>=29,530,199,589,0:oigroup>
+<oigroup:MemberLink#<oiref:cpp#Member#Object3D#rotation:oiref>=610,730,488,730:oigroup>
+<oigroup:MemberLink#<oiref:cpp#Member#Object3D#scale:oiref>=610,930,492,930:oigroup>
+<oigroup:MemberLink#<oiref:cpp#Member#LookAtObjects#lookAtPosition:oiref>=611,1074,228,1074:oigroup>
+<oigroup:<oiref:cpp#Extends#Translation3D#Vector3D:oiref>=300,852,228,852:oigroup>
+<oigroup:MemberLink#<oiref:cpp#Member#MeshList#lnkMesh:oiref>=131,92,131,140:oigroup>
+<oigroup:Composite#supplierCardinality#MemberLink#<oiref:cpp#Member#Object3D#translation:oiref>=495,797,28,16,0:oigroup>
+<oigroup:<oiref:cpp#Class#Mesh:oiref>=30,140,200,142,1:oigroup>
+<oigroup:MemberLink#<oiref:cpp#Member#Object3D#vertices:oiref>=610,570,228,571:oigroup>
+<oigroup:<oiref:cpp#Extends#Rotation3D#Vector3D:oiref>=299,735,228,735:oigroup>
+<oigroup:<oiref:cpp#Class#MeshList:oiref>=90,10,83,82,1:oigroup>
+<oigroup:<oiref:cpp#Class#LookAtObjects:oiref>=611,1030,200,149,1:oigroup>
+<oigroup:MemberLink#<oiref:cpp#Member#Object3D#translation:oiref>=610,817,491,817:oigroup>
 <oigroup:<oiref:cpp#Class#ageObjectPrim:oiref>=517,1292,200,478,1:oigroup>
-<oigroup:<oiref:cpp#Extends#SceneManagement#SceneGraph:oiref>=133,1442,133,1353:oigroup>
-<oigroup:<oiref:cpp#Class#Shader:oiref>=898,1092,83,82,1:oigroup>
-<oigroup:<oiref:cpp#Class#ObjectTree:oiref>=298,1101,83,82,1:oigroup>
-<oigroup:<oiref:cpp#Class#AiGinEObject:oiref>=658,1061,141,132,0:oigroup>
+<oigroup:<oiref:cpp#Extends#SceneManagement#SceneGraph:oiref>=990,342,990,421:oigroup>
+<oigroup:Composite#supplierCardinality#MemberLink#<oiref:cpp#Member#Object3D#directionVector3D:oiref>=232,572,28,16,0:oigroup>
+<oigroup:Composite#supplierCardinality#MemberLink#<oiref:cpp#Member#LookAtObjects#lookAtPosition:oiref>=232,1054,28,16,0:oigroup>
+<oigroup:<oiref:cpp#Class#Shader:oiref>=950,1159,83,82,1:oigroup>
+<oigroup:<oiref:cpp#Class#ObjectTree:oiref>=940,790,83,82,1:oigroup>
+<oigroup:<oiref:cpp#Class#AiGinEObject:oiref>=910,930,142,142,0:oigroup>
 <oigroup:<oiref:cpp#Class#ageObject3DS:oiref>=747,1291,163,142,1:oigroup>
-<oigroup:<oiref:cpp#Class#Rotation3D:oiref>=338,51,200,110,1:oigroup>
-<oigroup:MemberLink#<oiref:cpp#Member#Object3D#meshList:oiref>=637,821,238,821:oigroup>
-<oigroup:Composite#supplierCardinality#MemberLink#<oiref:cpp#Member#ObjectTree#lnkObject:oiref>=628,1122,26,16,0:oigroup>
-<oigroup:Composite#clientCardinality#MemberLink#<oiref:cpp#Member#MeshList#lnkMesh:oiref>=61,902,15,16,0:oigroup>
-<oigroup:Composite#supplierCardinality#MemberLink#<oiref:cpp#Member#Object3D#normals:oiref>=242,381,28,16,0:oigroup>
-<oigroup:Composite#supplierCardinality#MemberLink#<oiref:cpp#Member#Object3D#rotation:oiref>=542,86,28,16,0:oigroup>
-<oigroup:<oiref:cpp#Class#Object3D:oiref>=637,51,181,930,0:oigroup>
-<oigroup:Composite#supplierCardinality#MemberLink#<oiref:cpp#Member#Object3D#scale:oiref>=534,314,28,16,0:oigroup>
-<oigroup:Composite#supplierCardinality#MemberLink#<oiref:cpp#Member#Object3D#texVertices:oiref>=243,597,28,16,0:oigroup>
-<oigroup:Composite#supplierCardinality#MemberLink#<oiref:cpp#Member#Object3D#vertices:oiref>=242,421,28,16,0:oigroup>
-<oigroup:<oiref:cpp#Class#SceneGraph:oiref>=29,1083,200,270,1:oigroup>
-<oigroup:MemberLink#<oiref:cpp#Member#ObjectTree#lnkObject:oiref>=381,1142,658,1142:oigroup>
-<oigroup:<oiref:cpp#Class#Vector2D:oiref>=39,522,200,190,1:oigroup>
+<oigroup:<oiref:cpp#Class#Rotation3D:oiref>=299,660,189,112,0:oigroup>
+<oigroup:Composite#supplierCardinality#MemberLink#<oiref:cpp#Member#ObjectTree#lnkObject:oiref>=951,910,26,16,0:oigroup>
+<oigroup:MemberLink#<oiref:cpp#Member#Object3D#meshList:oiref>=610,164,230,164:oigroup>
+<oigroup:Composite#clientCardinality#MemberLink#<oiref:cpp#Member#MeshList#lnkMesh:oiref>=112,92,15,16,0:oigroup>
+<oigroup:Composite#supplierCardinality#MemberLink#<oiref:cpp#Member#Object3D#normals:oiref>=232,531,28,16,0:oigroup>
+<oigroup:Composite#supplierCardinality#MemberLink#<oiref:cpp#Member#Object3D#rotation:oiref>=492,710,28,16,0:oigroup>
+<oigroup:<oiref:cpp#Extends#LookAtObjects#AiGinEObject:oiref>=811,1051,910,1051:oigroup>
+<oigroup:<oiref:cpp#Class#Object3D:oiref>=610,150,181,820,0:oigroup>
+<oigroup:Composite#supplierCardinality#MemberLink#<oiref:cpp#Member#Object3D#scale:oiref>=496,910,28,16,0:oigroup>
+<oigroup:<oiref:design#Class#id1thvldpucva8bdpucw1g2.diagram:oiref>=1100,949,99,84,1:oigroup>
+<oigroup:Composite#supplierCardinality#MemberLink#<oiref:cpp#Member#Object3D#texVertices:oiref>=234,312,28,16,0:oigroup>
+<oigroup:Composite#supplierCardinality#MemberLink#<oiref:cpp#Member#Object3D#vertices:oiref>=232,551,28,16,0:oigroup>
+<oigroup:<oiref:cpp#Class#SceneGraph:oiref>=890,421,200,286,1:oigroup>
+<oigroup:MemberLink#<oiref:cpp#Member#ObjectTree#lnkObject:oiref>=981,872,981,930:oigroup>
+<oigroup:<oiref:cpp#Class#Vector2D:oiref>=30,309,200,190,1:oigroup>
 <oigroup:<oiref:cpp#Extends#ageObjectPrim#AiGinEObject:oiref>=687,1292,687,1193:oigroup>
-<oigroup:MemberLink#<oiref:cpp#Member#Object3D#texVertices:oiref>=637,617,239,617:oigroup>
+<oigroup:MemberLink#<oiref:cpp#Member#Object3D#texVertices:oiref>=610,332,230,332:oigroup>
 */
 class __positions {
 }

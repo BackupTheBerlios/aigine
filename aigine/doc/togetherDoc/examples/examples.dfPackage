@@ -12,6 +12,12 @@ class diagram {
 @__fqn <oiref:#Package#examples.TestWorld:oiref> 
 */
 class reference {
+}/**
+@__ref <oiref:design#Class#id1feddpucva8bdpucw1l2.diagram:oiref><oihard>
+@__modelType reference
+@__fqn <oiref:#Package#examples.walkingRobot:oiref> 
+*/
+class reference1 {
 }}/**
 @__tags
 @shapeType ClassDiagram 

@@ -73,7 +73,7 @@ typedef struct {
 	float r_foot  ;
 } anim_angles ;
 
-class robot  
+class robot
 {
 public:
 	robot(SceneManagement* sm);

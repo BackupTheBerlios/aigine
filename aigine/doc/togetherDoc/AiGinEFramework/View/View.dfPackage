@@ -42,15 +42,19 @@ class __tags {
 class __options {
 }/**
 @__positions <oigroup:Composite#supplierCardinality#MemberLink#<oiref:cpp#Member#GraphicPipeline#lnkCamera:oiref>=297,96,26,16,0:oigroup>
-<oigroup:Composite#clientCardinality#MemberLink#<oiref:cpp#Member#Camera#lnkViewport:oiref>=408,383,15,16,0:oigroup>
-<oigroup:<oiref:cpp#Class#Renderer:oiref>=110,340,87,98,1:oigroup>
+<oigroup:<oiref:cpp#Class#Light:oiref>=20,440,200,277,1:oigroup>
+<oigroup:MemberLink#<oiref:cpp#Member#Light#lnkPipeline:oiref>=83,440,83,376:oigroup>
+<oigroup:<oiref:cpp#Class#Renderer:oiref>=340,420,87,98,1:oigroup>
 <oigroup:Composite#clientCardinality#MemberLink#<oiref:cpp#Member#GraphicPipeline#lnkCamera:oiref>=214,96,15,16,0:oigroup>
 <oigroup:MemberLink#<oiref:cpp#Member#GraphicPipeline#lnkCamera:oiref>=210,116,327,116:oigroup>
+<oigroup:Composite#clientCardinality#MemberLink#<oiref:cpp#Member#GraphicPipeline#lnkLight:oiref>=127,376,15,16,0:oigroup>
+<oigroup:<oiref:cpp#Class#Viewport:oiref>=300,581,200,101,1:oigroup>
 <oigroup:MemberLink#<oiref:cpp#Member#Camera#lnkViewport:oiref>=427,383,427,473:oigroup>
-<oigroup:<oiref:cpp#Class#Viewport:oiref>=327,473,200,101,1:oigroup>
-<oigroup:<oiref:cpp#Class#GraphicPipeline:oiref>=10,10,200,213,1:oigroup>
-<oigroup:<oiref:cpp#Class#Camera:oiref>=327,10,200,373,1:oigroup>
-<oigroup:Composite#supplierCardinality#MemberLink#<oiref:cpp#Member#Camera#lnkViewport:oiref>=408,453,15,16,0:oigroup>
+<oigroup:<oiref:cpp#Class#GraphicPipeline:oiref>=10,10,200,366,1:oigroup>
+<oigroup:<oiref:cpp#Class#Camera:oiref>=327,10,200,325,1:oigroup>
+<oigroup:MemberLink#<oiref:cpp#Member#GraphicPipeline#lnkLight:oiref>=146,376,146,440:oigroup>
+<oigroup:Composite#supplierCardinality#MemberLink#<oiref:cpp#Member#Light#lnkPipeline:oiref>=51,376,28,16,0:oigroup>
+<oigroup:Composite#supplierCardinality#MemberLink#<oiref:cpp#Member#GraphicPipeline#lnkLight:oiref>=116,420,26,16,0:oigroup>
 */
 class __positions {
 }
