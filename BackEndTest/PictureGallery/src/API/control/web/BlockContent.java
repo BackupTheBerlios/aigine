@@ -16,6 +16,7 @@ import java.io.Serializable;
 public class BlockContent implements Serializable {
 // Diese Klasse dient dem Aufbau hierarchischer Block-Strukturen, jeder Knoten
 // kann Unterknoten enthalten
+// TODO tree aus Java-Standard-API nutzen?
 	private BlockContent nachfolger = null ;
 	private BlockContent subContent = null ;
 	// subContent enthält eine untergeordnete Kette, dies erlaubt Tabellen, Links u.ä.
