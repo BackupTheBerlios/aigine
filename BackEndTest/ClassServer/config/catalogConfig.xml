@@ -1,17 +1,17 @@
 <?xml version="1.0" encoding="iso-8859-1" ?>
 <properties>
 	<variables>
-		<variable name="server.path" value="http://localhost:2002/lib/lib.jar"/>
+		<variable name="server.path" value="http://localhost:2002/"/>
 	</variables>
-	<category name="CManagerserver">
+	<category name="Managerserver">
 		<!-- Typ der Anwendung -->
-		<property name="typ" value="server"/>
+		<property name="typ" value="manager"/>
 		<!-- Pfad fuer den Klassenserver, der das Repository der RMIComponents zur Verfuegung stellt. -->
 		<property name="codebase" value="${server.path}"/>
 		<!-- Klassenname der zu ladenen Komponenten -->
-		<property name="compClassName" value="projects.catalog.CManagerServerImpl"/>
+		<property name="compClassName" value="API.components.ManagerServerImpl"/>
 		<!-- Name der Komponente -->
-		<property name="compName" value="CManagerServer"/>
+		<property name="compName" value="ManagerServer"/>
 		<!-- Domain Name des Serverdienstes der gestartet werden soll -->
 		<property name="hostname" value="localhost"/>
 		<!-- Port des Serverdienstes -->
@@ -37,7 +37,7 @@
 		<!-- Adresse und Port des Managerdienstes -->
 		<property name="manager" value="rmi://localhost:2006/"/>
 		<!--Name des manager servers-->
-		<property name="managerName" value="CManagerServer"/>
+		<property name="managerName" value="ManagerServer"/>
 	</category>
 	<category name="cloginserver">
 		<!-- Typ der Anwendung -->
@@ -57,7 +57,7 @@
 		<!-- Adresse und Port des Managerdienstes -->
 		<property name="manager" value="rmi://localhost:2006/"/>
 		<!--Name des manager servers-->
-		<property name="managerName" value="CManagerServer"/>
+		<property name="managerName" value="ManagerServer"/>
 	</category>
 	<category name="cadminclient">
 		<!-- Typ der Anwendung -->
@@ -67,7 +67,7 @@
 		<!-- Klassenname der zu ladenen Komponenten -->
 		<property name="compClassName" value="projects.catalog.CAdminClientImpl"/>
 		<!-- Name der Komponente -->
-		<property name="compName" value="CManagerServer"/>
+		<property name="compName" value="ManagerServer"/>
 		<!-- Domain Name des Serverdienstes der gestartet werden soll -->
 		<property name="hostname" value="localhost"/>
 		<!-- Port des Serverdienstes -->
@@ -77,21 +77,41 @@
 		<property name="user" value="nice"/>
 		<property name="passwd" value="yourMama"/>
 	</category>
-	<category name="cwebservice">
+	<category name="WebServer">
 		<!-- Typ der Anwendung -->
 		<property name="typ" value="client"/>
 		<!-- Pfad fuer den Klassenserver, der das Repository der RMIComponents zur Verfuegung stellt. -->
 		<property name="codebase" value="${server.path}"/>
 		<!-- Klassenname der zu ladenen Komponenten -->
-		<property name="compClassName" value="projects.catalog.CWebServerImpl"/>
+		<property name="compClassName" value="API.components.WebServerImpl"/>
 		<!-- Name der Komponente -->
-		<property name="compName" value="CManagerServer"/>
+		<property name="compName" value="ManagerServer"/>
 		<!-- Domain Name des Serverdienstes der gestartet werden soll -->
 		<property name="hostname" value="localhost"/>
 		<!-- Port des Serverdienstes -->
 		<property name="port" value="2006"/>
 		<!-- Authentifizierungstyp -->
 		<property name="authTyp" value="anonym"/>
+	</category>
+	<category name="PortalServer">
+		<!-- Typ der Anwendung -->
+		<property name="typ" value="server"/>
+		<!-- Pfad fuer den Klassenserver, der das Repository der RMIComponents zur Verfuegung stellt. -->
+		<property name="codebase" value="${server.path}"/>
+		<!-- Klassenname der zu ladenen Komponenten -->
+		<property name="compClassName" value="API.components.PortalServerImpl"/>
+		<!-- Name der Komponente -->
+		<property name="compName" value="PortalServer"/>
+		<!-- Domain Name des Serverdienstes der gestartet werden soll -->
+		<property name="hostname" value="localhost"/>
+		<!-- Port des Serverdienstes -->
+		<property name="port" value="2010"/>
+		<!-- Authentifizierungstyp -->
+		<property name="authTyp" value="anonym"/> <!-- Wie muss der Parameter heißen für eine Anmeldung am Manager für Server? -->
+		<!-- Adresse und Port des Managerdienstes -->
+		<property name="manager" value="rmi://localhost:2006/"/>
+		<!--Name des manager servers-->
+		<property name="managerName" value="ManagerServer"/>
 	</category>	
 	<category name="CProjectServer">
 		<!-- Typ der Anwendung -->
@@ -111,22 +131,6 @@
 		<!-- Adresse und Port des Managerdienstes -->
 		<property name="manager" value="rmi://localhost:2006/"/>
 		<!--Name des manager servers-->
-		<property name="managerName" value="CManagerServer"/>
+		<property name="managerName" value="ManagerServer"/>
 	</category>
-	<category name="eventservice">
-		<!-- Typ der Anwendung -->
-		<property name="typ" value="client"/>
-		<!-- Pfad fuer den Klassenserver, der das Repository der RMIComponents zur Verfuegung stellt. -->
-		<property name="codebase" value="${server.path}"/>
-		<!-- Klassenname der zu ladenen Komponenten -->
-		<property name="compClassName" value="projects.th.EventManagerImpl"/>
-		<!-- Name der Komponente -->
-		<property name="compName" value="CManagerServer"/>
-		<!-- Domain Name des Serverdienstes der gestartet werden soll -->
-		<property name="hostname" value="localhost"/>
-		<!-- Port des Serverdienstes -->
-		<property name="port" value="2006"/>
-		<!-- Authentifizierungstyp -->
-		<property name="authTyp" value="anonym"/>
-	</category>		
 </properties>	
