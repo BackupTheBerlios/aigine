@@ -50,9 +50,9 @@ void GraphicPipeline::initOpenGL(int argc, char** argv){
 												   //  Vector3D position, Vector3D lookAtPosition
 
 	float * lightGreen_defuse = new float[4];
-	lightGreen_defuse[0] = 0.8;
+	lightGreen_defuse[0] = 1.0;
 	lightGreen_defuse[1] = 1.0;
-	lightGreen_defuse[2] = 0.8;
+	lightGreen_defuse[2] = 1.0;
 	lightGreen_defuse[3] = 1.0;        // leichtes gruen	
 
 	Translation3D * lightpos = new Translation3D(3.0,-30.0,1.0); //die position des lichtes +10 in alle richtungen
@@ -69,7 +69,7 @@ void GraphicPipeline::initOpenGL(int argc, char** argv){
 	ambient[3] = 1.0; 
 	this->lnkLight->setAmbient(ambient);
 	
-	this->enableLight(lnkLight,1);
+	this->enableLight(lnkLight,0);
 	//Translation3D * lightpos = new Translation3D(3.0,-30.0,1.0); //die position des lichtes +10 in alle richtungen
 
 	glEnable(GL_COLOR_MATERIAL);
@@ -180,16 +180,16 @@ int GraphicPipeline::enableLight(Light * currentLight, int index) {
    glLightfv(GL_LIGHT0, GL_POSITION, lightPosition );
 
    if(currentLight->getDiffuse() != NULL) 
-	   glLightfv(GL_LIGHT0, GL_DIFFUSE, currentLight->getDiffuse());
+	   glLightfv(index, GL_DIFFUSE, currentLight->getDiffuse());
 	
    if(currentLight->getAmbient() != NULL) 
-		glLightfv(GL_LIGHT0, GL_AMBIENT, currentLight->getAmbient());
+		glLightfv(index, GL_AMBIENT, currentLight->getAmbient());
    
    if(currentLight->getSpecular() != NULL) 
-		glLightfv(GL_LIGHT0, GL_SPECULAR, currentLight->getSpecular());
+		glLightfv(index, GL_SPECULAR, currentLight->getSpecular());
 
    //for (int i = 0; i < index; i++) {
-		glEnable(GL_LIGHT0);
+		glEnable(index);
    //}
 	return isSet;
 }
