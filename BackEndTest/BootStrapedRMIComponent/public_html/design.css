@@ -1,0 +1,23 @@
+table.site {
+	border: solid blue 2px;
+	width:100%;
+}
+
+td{
+  font-size:10pt;
+  text-align:left;
+  vertical-align:top;
+}
+
+td.main {
+  border: solid blue 1px;
+}
+
+td.blocks-left {
+  text-align:left;
+  width:150%;
+}
+
+td.blocks-right {
+  text-align:right;
+}
