@@ -1,9 +1,10 @@
+package interfaces;
 /*
  * Created on 05.05.2004
  *
  */
-package interfaces;
-import java.util.Properties;
+
+
 
 /**
  * Interface f\x{00FC}r eine Komponente.
