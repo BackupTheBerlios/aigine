@@ -9,6 +9,13 @@
 #include "../View/Light.h"
 
 //____________________________________________________________________________
+GraphicPipeline::GraphicPipeline(int argc, char** argv)
+{
+	GraphicPipeline();
+  initOpenGL(argc, argv);
+}
+
+//____________________________________________________________________________
 GraphicPipeline::GraphicPipeline()
 {
 	this->windowSize = new int ;
@@ -22,8 +29,8 @@ GraphicPipeline::~GraphicPipeline()
 
 //____________________________________________________________________________
 void GraphicPipeline::initOpenGL(int argc, char** argv){
-	this->windowSize[0] = 1024;
-    this->windowSize[1] = 768;
+	this->windowSize[0] = 800;
+    this->windowSize[1] = 600;
 
     glutInit(&argc, argv);
     glutInitDisplayMode (GLUT_DOUBLE | GLUT_RGB | GLUT_DEPTH); 

@@ -38,19 +38,26 @@ class GraphicPipeline
 
 public:
 
-
-    /** Konstruktor */
+      /** Konstruktor */
     GraphicPipeline();
+
+    /** 
+     * Konstruktor für Übergabe der Programmparameter und Aufruf der
+     * initOpenGL Funktion.
+     * @param argc Anzahl der Parameter.
+     * @param argv Liste mit Anzahl Parametern.
+     */
+    GraphicPipeline(int argc, char * * argv);
 
     /** Destruktor */
     virtual ~GraphicPipeline();
 
-    /** Initialisiert die OpenGL Umgebung und erzeugt eine neue Kamera. */
-    void initOpenGL(int argc, char * * argv);
-
     /** Funktion für OpenGL reshape() Pointer. Setzt Viewport, Frustum, etc. */
     void reshape(int width, int height);
 
+    /** Initialisiert die OpenGL Umgebung und erzeugt eine neue Kamera. */
+    void initOpenGL(int argc, char * * argv);
+    
     /**
      * Initialisiert die Bildschirmausgabe für
      * die verwendete Kamera und die eingestellten OpenGl States.
@@ -61,7 +68,7 @@ public:
     Camera * getCamera();
 
     /**Fühgt ein std. Licht an die angegebenen Stelle mit der angegebenen Blickrichtung*/
-	void addLightAt(Vector3D *position, Vector3D * lookAt);
+	  void addLightAt(Vector3D *position, Vector3D * lookAt);
     
 
     /** Gibt die aktuelle Fenstergröße zurück. */
@@ -95,9 +102,8 @@ private:
      * @clientCardinality 1
      */
     Camera * lnkCamera;
-
-	
-	/**
+    
+	  /**
      *  Verwendet Licht
      * @supplierCardinality 1..*
      * @clientCardinality 1

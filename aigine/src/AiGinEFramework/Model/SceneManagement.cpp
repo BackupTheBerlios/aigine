@@ -20,7 +20,12 @@
 
 
 /**********************C O N S T R U C T O R**********************/
-SceneManagement::SceneManagement(): SceneGraph() {	
+SceneManagement::SceneManagement(): SceneGraph(), GraphicPipeline(){	
+}
+
+//____________________________________________________________________________
+SceneManagement::SceneManagement(int argc, char** argv): 
+SceneGraph(), GraphicPipeline(argc, argv){	
 }
 
 /********load(String fileType, String fileName, object insertAt)**********/

@@ -37,6 +37,12 @@ public:
     /** Konstruktor */
     SceneManagement();
 
+    /** Konstruktor für übergabe der Programmparameter.
+     * @param argc Anzahl der Parameter.
+     * @param argv Liste mit Anzahl Parametern.
+     */
+    SceneManagement(int argc, char** argv);
+
     /**
      * Lädt ein 3D Objekt aus einer Datei und hängt es in die Wurzel des SceneGraph.
      * @param fileName Name der zu ladenen Datei
