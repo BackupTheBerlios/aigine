@@ -22,8 +22,8 @@ GraphicPipeline::~GraphicPipeline()
 
 //____________________________________________________________________________
 void GraphicPipeline::initOpenGL(int argc, char** argv){
-	this->windowSize[0] = 640;
-    this->windowSize[1] = 480;
+	this->windowSize[0] = 1024;
+    this->windowSize[1] = 768;
 
     glutInit(&argc, argv);
     glutInitDisplayMode (GLUT_DOUBLE | GLUT_RGB | GLUT_DEPTH); 
@@ -59,10 +59,6 @@ void GraphicPipeline::initOpenGL(int argc, char** argv){
 	this->lnkLight->setDiffuse(lightGreen_defuse);  // leichtes gruen
 	this->lnkLight->setTranslation(lightpos);
 
-	
-
-
-
 	//ambient Licht
 	//Light * ambientLight = new Light();
 
@@ -73,21 +69,9 @@ void GraphicPipeline::initOpenGL(int argc, char** argv){
 	ambient[3] = 1.0; 
 	this->lnkLight->setAmbient(ambient);
 	
-
 	this->enableLight(lnkLight,1);
 	//Translation3D * lightpos = new Translation3D(3.0,-30.0,1.0); //die position des lichtes +10 in alle richtungen
 
-
-
-
-
-
-	
-
-
-
-
-	
 	glEnable(GL_COLOR_MATERIAL);
 	glEnable(GL_DEPTH_TEST);
 
@@ -95,9 +79,7 @@ void GraphicPipeline::initOpenGL(int argc, char** argv){
 
 	// das Licht initiieren und enablen wird dann im licht gemacht
 	
-	
-
-	this->lnkCamera = new Camera(	new Vector3D(5.0, 8.0, 5.0), new Vector3D(0.0, 8.0, 0.0), new Vector3D(0.0, 1.0, 0.0)	);								
+	this->lnkCamera = new Camera(	new Vector3D(5.0, 25.0, 5.0), new Vector3D(0.0, 25.0, 0.0), new Vector3D(0.0, 1.0, 0.0)	);								
 }
 
 //____________________________________________________________________________
@@ -106,7 +88,7 @@ void GraphicPipeline::reshape(int width, int height)
    glViewport (0, 0, (GLsizei) width, (GLsizei) height);
    glMatrixMode (GL_PROJECTION);
    glLoadIdentity ();
-   glFrustum (-1.0, 1.0, -1.0, 1.0, 1.0, 200.0);
+   glFrustum (-1.0, 1.0, -1.0, 1.0, 1.0, 400.0);
    glMatrixMode (GL_MODELVIEW);
 
    // set the windowSize variable
@@ -133,8 +115,7 @@ void GraphicPipeline::initDisplay(){
    glScalef (1.0, 1.0, 1.0); 
    
    //Es werde Licht
-	
-   
+	 
    // Ausgabe des 3d gitters
    // TODO: als Onjekt in ScenenGraph hängen
    glColor3ub(0, 255, 0);
