@@ -78,10 +78,10 @@ class robot
 public:
 	robot(SceneManagement* sm);
 	virtual ~robot();
-	void drawRobot();
+	AiGinEObject* drawRobot(AiGinEObject* parent, string kind);
 	void animRobot();
 	AiGinEObject* getModel();
-	void setTranslation(Translation3D* trans);
+
 private:
 	SceneManagement* sceneMan;
 

@@ -21,16 +21,8 @@ robot::robot(SceneManagement* sm) {
 	this->langle_count2 = 0.0;
 	this->rangle_count = 0.0;
 	this->rangle_count2 = 0.0;
-	this->drawRobot();
-	this->readDataFromFile();
 	
-	langle_count = this->BeinL->getRotation()->angle;
-	langle_count2 = this->KnieL->getRotation()->angle;
-	rangle_count = this->BeinR->getRotation()->angle;
-	rangle_count2 = this->KnieR->getRotation()->angle;
 
-	this->origPos = this->Huefte->getTranslation()->y;
-	
 }
 
 robot::~robot() {
@@ -39,12 +31,6 @@ robot::~robot() {
 AiGinEObject* robot::getModel() {
 	return this->Huefte;
 }
-
-void robot::setTranslation(Translation3D* trans) {
-	this->Huefte->setTranslation(trans);
-	this->origPos = trans->y;
-}
-
 
 
 //=========================== Huefte ===========================
@@ -214,11 +200,18 @@ AiGinEObject* robot::drawArm(AiGinEObject* parent,  string kind, string side) {
 }
 
 //-------------------------------------------------------------------
-void robot::drawRobot() {
+AiGinEObject* robot::drawRobot(AiGinEObject* parent, string kind) {
 
-	AiGinEObject* base = drawModel(NULL,"");
+	AiGinEObject* base = drawModel(parent,kind);
 	this->Huefte = base;
+	this->origPos = this->Huefte->getTranslation()->y;	
+	this->readDataFromFile();
+	langle_count = this->BeinL->getRotation()->angle;
+	langle_count2 = this->KnieL->getRotation()->angle;
+	rangle_count = this->BeinR->getRotation()->angle;
+	rangle_count2 = this->KnieR->getRotation()->angle;
 
+	return this->Huefte;
 }
 
 void robot::animRobot() {
@@ -361,8 +354,6 @@ void robot::animateBody() {
    switch (flag)
    {
       case 1 :
-
-
 
          l_upleg_add = this->array[0].l_upleg / FRAMES ;
        	r_upleg_add = this->array[0].r_upleg / FRAMES ;

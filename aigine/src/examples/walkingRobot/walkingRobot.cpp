@@ -93,7 +93,10 @@ int main(int argc, char** argv)
 	//	testPrimObjects();
 
 	robi = new robot(sm);
-	robi->setTranslation(new Translation3D(-20,15,-20));
+	AiGinEObject* start = new AiGinEObject();
+	sm->addRoot(start);
+	AiGinEObject* robot = robi->drawRobot(start,"child");
+	start->setTranslation(new Translation3D(-20,15,-20));
 	
 	// ... weitere Objekte laden
 	
