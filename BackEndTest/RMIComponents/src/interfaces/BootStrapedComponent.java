@@ -13,5 +13,5 @@ public interface BootStrapedComponent{
 	 * Initialisiert ueber eine xml Datei die 
 	 * gewuenschte Komponente
 	 */
-	public void init();
+	public void init(String jconfigserverUrl);
 }

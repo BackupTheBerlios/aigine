@@ -20,6 +20,7 @@ import projects.interfaces.VTClient;
 import API.interfaces.Application;
 import API.interfaces.ServerHandle;
 import API.model.RemoteObject;
+import API.util.RemoteConfigHelper;
 import API.util.RemoteObjectHelper;
 
 
@@ -46,15 +47,14 @@ public class BootStrapedApplicationStarter implements BootStrapedComponent {
     protected ServerHandle server= null;
     
 	/** Speicherung des Serverzugriffes. */
-		protected ServerHandle manager= null;
+	protected ServerHandle manager= null;
 
     private RemoteObjectHelper roh;
     private int valid_auswahl;
     private String auswahl;
     private String category;
     private String[] categorynames; 
-    private static final Configuration configuration =
-      ConfigurationManager.getConfiguration("main");
+	private Configuration configuration;
       
   
   /**
@@ -116,13 +116,19 @@ public class BootStrapedApplicationStarter implements BootStrapedComponent {
      * - starten der Koponente abhängig von ihrem Typ <code>client || server</code>
      * - Registrierung der Komponente
      */
-    public void init(){     //final Properties p) {
+    public void init(String jconfigserverUrl){     
         // TODO Wenn keine Typenzuordnung gefunden wird, muss das Programm
         // die notwendigen Paramter beim User abfragen.
         // TODO jConfig eine entsprechende DTD
         // so dass die Eigenschaften vorher geprüft werden können.
-        System.out.println("=> BootStrapedApplicationStarter.init()");
-        //konsolenabfrage...
+        
+        System.out.println("=> BootStrapedApplicationStarter.init() "+jconfigserverUrl);
+		//Configuration besorgen
+		RemoteConfigHelper rch = new RemoteConfigHelper();
+		RemoteConfigHelper.load(jconfigserverUrl,"mainconfig");
+		ConfigurationManager cm = rch.getCM();
+		this.configuration = ConfigurationManager.getConfiguration("mainconfig");
+		//konsolenabfrage...        
         ausgabeMenue();
         int menueAuswahl = getIntChoose(0, categorynames.length,"Was soll´s denn sein: ");
         //hier wird der ausgewaehlte service (Categoryname) in category gespeichert 

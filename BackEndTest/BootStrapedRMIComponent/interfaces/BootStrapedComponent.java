@@ -18,5 +18,5 @@ public interface BootStrapedComponent{
 	 * gewuenschte Componente
 	 * @throws RemoteException
 	 */
-	public void init();
+	public void init(String jconfigUrl);
 }
