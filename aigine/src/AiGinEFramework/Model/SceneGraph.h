@@ -23,6 +23,12 @@ class ObjectTree;
  * hinzuzufügen (z.B. aus vrml oder 3ds).
  */
 
+typedef struct knot {
+	knot* child;
+	knot* next;
+	AiGinEObject* obj;
+} knot;
+
 class SceneGraph
 {
 public:
@@ -31,15 +37,27 @@ public:
 
     void draw();
 
-    void removeObject(AiGinEObject * object);
-
     Object3DS* getTmpTestObject();
 
     void setTmpTestObject(Object3DS* tmpTestObject);
 
+	void drawSceneGraph(knot* k);
+
+	//alle add- bzw. remove-Funktionen geben einen bool als Erfogsmeldung zurück
+	//true -> Operation erfolgreich
+	//false -> Fehler (könnte gegen int ausgetauscht werden; 0->OK x ->Fehler Nr. x)
+	bool addChild(AiGinEObject* parentObject, AiGinEObject* childObject);
+
+	bool addNext(AiGinEObject* parentObject, AiGinEObject* nextObject);
+
+    bool removeObject(AiGinEObject * object);
+
 private:
     ObjectTree * lnkObjectTree;
     Object3DS* tmpTestObject;
+	knot* root;
+	//sucht ihm Baum nach einem gegebenen Object
+	knot* findObject(AiGinEObject* obj);
 };
 
 #endif //SCENEGRAPH_H

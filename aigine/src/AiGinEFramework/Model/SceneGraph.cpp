@@ -3,7 +3,6 @@
 #include "SceneGraph.h"
 #include "../Util/loader3DS/Object3DS.h"
 
-void SceneGraph::removeObject(AiGinEObject* object){}
 void SceneGraph::draw()
 {
 
@@ -35,3 +34,35 @@ void SceneGraph::setTmpTestObject(Object3DS* tmpTestObject){
 						glEnable(GL_TEXTURE_GEN_T);     // Environment Mapping
 
 	this->tmpTestObject = tmpTestObject; }
+
+bool SceneGraph::removeObject(AiGinEObject* object){
+	return false;
+}
+
+bool addChild(AiGinEObject* parentObject, AiGinEObject* childObject){
+	return false;
+}
+
+bool addNext(AiGinEObject* parentObject, AiGinEObject* nextObject){
+	return false;
+}
+
+void SceneGraph::drawSceneGraph(knot* k) {
+	if(k == NULL) return;
+	glPushMatrix();
+	//k->obj->getTranslation()
+	//k->obj->getRotation()
+	//k->obj->draw();
+	if(k->child != NULL) {
+		this->drawSceneGraph(k->child);
+	}
+	glPopMatrix();
+	if(k->next != NULL) {
+		this->drawSceneGraph(k->next);
+	}
+}
+
+knot* SceneGraph::findObject(AiGinEObject* obj){
+	return this->root; ;
+}
+
