@@ -1,7 +1,5 @@
 package projects.voting.control;
 
-import interfaces.*;
-
 import java.io.File;
 import java.util.List;
 
@@ -12,6 +10,7 @@ import org.jconfig.parser.NestedConfigParser;
 
 import projects.voting.model.Vote;
 import projects.voting.model.VoteTable;
+import API.interfaces.PersistenceHelper;
 
 /**
  * Created on 15.08.2004
