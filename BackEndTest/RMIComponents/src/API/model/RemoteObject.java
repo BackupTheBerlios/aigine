@@ -67,24 +67,10 @@ public class RemoteObject implements Serializable {
      * Konstruktor nimmt die vom Loader eingelesenen Properties entgegen und
      * initialisiert die notwendigen Paramter
      */
-    public RemoteObject(Configuration configuration,String type) {
-        // TODO Umstellung auf XML Properties mit automatischer Schemaprüfung
+    public RemoteObject() {
+        
         super();
         //configuration.getProperty("codebase","nix","vtserver");
-        System.out.println("=> RemoteObjectProperties()");
-
-        this.description = configuration.getProperty("description","",type);
-        this.servicetyp = configuration.getProperty("typ","",type);
-        this.codebase = configuration.getProperty("codebase","",type);
-        this.compClassName = configuration.getProperty("compClassName","",type);
-        this.compName = configuration.getProperty("compName","",type);
-        this.port = configuration.getProperty("port","",type);
-        this.hostname = configuration.getProperty("hostname","",type);
-        this.authTyp = configuration.getProperty("authTyp","",type);
-        this.username = configuration.getProperty("user","",type);
-        this.passwd = configuration.getProperty("passwd","",type);
-        this.rmiName = "rmi://" + this.hostname + ":" + this.port + "/";
-        System.out.println("<= RemoteObjectProperties() > " + this);
     }
 
     public String toString() {
