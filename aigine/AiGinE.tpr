@@ -1,132 +1,42 @@
 [Project]
-
 Language=cpp
-
 Root.0=$PROJECT_DIR$/src
-
 Root.0.access=writable
-
-Root.0.file_types=;;cpp_header;cpp_source
-
-Root.1=$PROJECT_DIR$/doc
-
-Root.1.access=writable
-
-Root.1.file_types=diagram
-
-Root.1.package_prefix=
-
+Root.0.file_types=cpp_source;cpp_header
 Version=3.0
-
-Root.2=$TGH$/jdk/jre/lib/rt.jar
-
-Root.2.access=import
-
-Root.2.non_removable=
-
+Root.0.package_prefix=
+Root.0.srcControlEnabled=false
+Root.0.srcControlProject=
+Root.1=$TGH$/jdk/jre/lib/rt.jar
+Root.1.access=import
+Root.1.non_removable=
+Root.1.package_prefix=
+Root.2=$PROJECT_DIR$/doc/togetherDoc
+Root.2.access=writable
+Root.2.file_types=;;java_class;;diagram;;;;;;element
 Root.2.package_prefix=
-
-projectfile.encoding=Cp1252
-[editor]
-
-recent.file.0=C:\\fosion\\projects\\develop\\aigine\\src\\Model\\Scale3D.h
-
-recent.file.1=C:\\fosion\\projects\\develop\\aigine\\src\\Model\\Rotation3D.h
-
-recent.file.2=C:\\fosion\\projects\\develop\\aigine\\src\\Model\\Translation3D.h
-
-recent.file.3=C:\\fosion\\projects\\develop\\aigine\\src\\GraphicEngine\\AiGinEObject.h
-
-recent.file.4=C:\\fosion\\projects\\develop\\aigine\\src\\Model\\Vector3D.h
-
-recent.file.5=C:\\fosion\\projects\\develop\\aigine\\src\\Model\\Liste.h
-
-recent.file.6=C:\\fosion\\projects\\develop\\aigine\\src\\Model\\Class1.h
-
-recent.file.7=C:\\fosion\\projects\\develop\\aigine\\src\\GraphicEngine\\Camera.h
-
-recent.file.8=F:\\cvs-develop\\aigine\\src\\GraphicEngine\\GraphicPipeline.h
-
-recent.file.9=F:\\cvs-develop\\aigine\\src\\GraphicEngine\\Camera.h
-
+Root.2.srcControlEnabled=false
+Root.2.srcControlProject=
 [workspace]
-
 Programmer. DebugWorkspace={{0,2,-1,0,0,0,0,0,0,1,0,50,75,25,-1,-1,-1,-1}${0,1,-1,0,0,0,0,1,0,1,1,50,75,25,-1,-1,-1,-1}${0,3,-1,0,0,0,0,0,0,1,0,50,50,25,-1,-1,-1,-1}${0,3,-1,0,0,0,0,0,0,1,0,50,50,25,-1,-1,-1,-1}${0,-1,-1,0,0,0,0,0,0,1,0,5,5,5,-1,-1,-1,-1}${0,4,-1,0,0,0,0,0,0,1,0,50,50,25,-1,-1,-1,-1}${0,0,-1,0,0,0,0,1,0,1,0,75,5,5,-1,-1,-1,-1}${0,7,-1,0,0,0,0,0,0,1,0,50,50,75,-1,-1,-1,-1}}
-
-Programmer.gameengine={{0,2,-1,0,0,0,0,1,0,1,1,63,75,25,-1,-1,-1,-1}${0,1,-1,0,0,0,0,0,0,1,0,63,75,25,-1,-1,-1,-1}${0,3,-1,0,0,0,0,1,0,1,0,50,50,25,-1,-1,-1,-1}${0,3,-1,0,0,0,0,1,0,1,0,50,50,25,-1,-1,-1,-1}${0,-1,-1,0,0,0,0,0,0,1,0,5,5,5,-1,-1,-1,-1}${0,4,-1,0,0,0,0,1,0,1,0,50,50,25,-1,-1,-1,-1}${0,0,-1,0,0,0,0,0,0,1,0,90,5,5,-1,-1,-1,-1}${0,7,-1,0,0,0,0,0,0,1,0,50,50,75,-1,-1,-1,-1}}
-
-names.Programmer={<default>}
-
-Developer.AiGinE={{0,2,-1,0,0,0,0,1,0,1,1,50,75,25,-1,-1,-1,-1}${0,1,-1,0,0,0,0,1,0,1,0,50,75,25,-1,-1,-1,-1}${0,3,-1,0,0,0,0,1,0,1,0,50,50,25,-1,-1,-1,-1}${0,3,-1,0,0,0,0,1,0,1,0,50,50,25,-1,-1,-1,-1}${0,-1,-1,0,0,0,0,0,0,1,0,5,5,5,-1,-1,-1,-1}${0,4,-1,0,0,0,0,0,0,1,0,50,50,25,-1,-1,-1,-1}${0,0,-1,0,0,0,0,0,0,1,0,75,5,5,-1,-1,-1,-1}${0,7,-1,0,0,0,0,0,0,1,0,50,50,75,-1,-1,-1,-1}}
-Developer.CodingWorkspace={{0,2,-1,0,0,0,0,0,0,1,0,50,75,25,-1,-1,-1,-1}${0,1,-1,0,0,0,0,1,0,1,0,50,75,25,-1,-1,-1,-1}${0,3,-1,0,0,0,0,1,0,1,0,66,50,25,-1,-1,-1,-1}${0,3,-1,0,0,0,0,1,0,1,0,66,50,25,-1,-1,-1,-1}${0,-1,-1,0,0,0,0,0,0,1,0,5,5,5,-1,-1,-1,-1}${0,5,-1,0,0,0,0,0,0,1,0,50,50,25,-1,-1,-1,-1}${0,4,-1,0,0,0,0,1,0,1,1,66,50,25,-1,-1,-1,-1}${0,7,-1,0,0,0,0,0,0,1,0,50,50,75,-1,-1,-1,-1}}
-Developer.DebugWorkspace={{0,2,-1,0,0,0,0,0,0,1,0,50,75,25,-1,-1,-1,-1}${0,1,-1,0,0,0,0,1,0,1,1,50,75,25,-1,-1,-1,-1}${0,3,-1,0,0,0,0,0,0,1,0,50,50,25,-1,-1,-1,-1}${0,3,-1,0,0,0,0,0,0,1,0,50,50,25,-1,-1,-1,-1}${0,-1,-1,0,0,0,0,0,0,1,0,5,5,5,-1,-1,-1,-1}${0,4,-1,0,0,0,0,0,0,1,0,50,50,25,-1,-1,-1,-1}${0,0,-1,0,0,0,0,1,0,1,0,75,5,5,-1,-1,-1,-1}${0,7,-1,0,0,0,0,0,0,1,0,50,50,75,-1,-1,-1,-1}}
-Developer.DesignWorkspace={{0,2,-1,0,0,0,0,1,0,1,0,50,75,22,-1,-1,-1,-1}${0,1,-1,0,0,0,0,0,0,1,0,50,75,22,-1,-1,-1,-1}${0,3,-1,0,0,0,0,1,0,1,0,50,50,22,-1,-1,-1,-1}${0,3,-1,0,0,0,0,1,0,1,0,50,50,22,-1,-1,-1,-1}${0,-1,-1,0,0,0,0,0,0,1,0,5,5,5,-1,-1,-1,-1}${0,4,-1,0,0,0,0,1,0,1,1,50,50,22,-1,-1,-1,-1}${0,0,-1,0,0,0,0,0,0,1,0,75,5,5,-1,-1,-1,-1}${0,7,-1,0,0,0,0,0,0,1,0,50,50,75,-1,-1,-1,-1}}
-names.Developer={<default>}
-Developer.<default>={{0,2,-1,0,0,0,0,1,0,1,1,41,75,25,-1,-1,-1,-1}${0,1,-1,0,0,0,0,1,0,1,0,41,75,25,-1,-1,-1,-1}${0,3,-1,0,0,0,0,1,0,1,0,50,50,25,-1,-1,-1,-1}${0,3,-1,0,0,0,0,1,0,1,0,50,50,25,-1,-1,-1,-1}${0,-1,-1,0,0,0,0,0,0,1,0,5,5,5,-1,-1,-1,-1}${0,4,-1,0,0,0,0,1,0,1,0,50,50,25,-1,-1,-1,-1}${0,0,-1,0,0,0,0,0,0,1,0,75,5,5,-1,-1,-1,-1}${0,7,-1,0,0,0,0,0,0,1,0,50,50,75,-1,-1,-1,-1}}
-Programmer.<default>={{1,-1,2,-4,-4,1032,746,1,0,1,1,5,5,5,-1,-1,-1,-1}${0,1,-1,0,0,0,0,0,0,1,0,50,75,25,-1,-1,-1,-1}${0,3,-1,0,0,0,0,1,0,1,0,50,50,25,-1,-1,-1,-1}${0,3,-1,0,0,0,0,1,0,1,0,50,50,25,-1,-1,-1,-1}${0,-1,-1,0,0,0,0,0,0,1,0,5,5,5,-1,-1,-1,-1}${0,4,-1,0,0,0,0,0,0,1,0,50,50,25,-1,-1,-1,-1}${0,0,-1,0,0,0,0,0,0,1,0,75,5,5,-1,-1,-1,-1}${0,7,-1,0,0,0,0,0,0,1,0,50,50,75,-1,-1,-1,-1}}
-[newDiagramExpert]
-
-includeInCurrentDiagram=true
-
-[lastOpenProjectName]
-
-Programmer=<default>
-
-Developer=<default>
-[language]
-
-csharp=false
-
-idl=false
-
-java=false
-
-vbasic=false
-
-vbnet=false
-
-[codegen]
-
-cpp.blueprint.declaration_file_epilogue=\n #endif //%FILE_NAME%_%FILE_EXT%
-
-cpp.blueprint.declaration_file_prologue=  /* Game Engine Design */\n\n  #ifndef %FILE_NAME%_%FILE_EXT%\n  #define %FILE_NAME%_%FILE_EXT%\n
-
-cpp.blueprint.definition_file_prologue=  /* Game Engine Design */\n\n  #include %Header_File%\n
-
-[autoformat]
-
-cpp.cStyleComment.forceShortOneLines=true
-
-cpp.cStyleComment.keepEmptyLines=true
-
-cpp.continuationPrefix="   "
-
-cpp.indentStyle=3
-
-cpp.indentSymbol=space
-
-cpp.indentWidth=4
-
-cpp.rightMargin=80
-
-cpp.rightMarginToIndents=80
-
+Programmer.AiGinE={{0,2,-1,0,0,0,0,1,0,1,1,50,75,25,-1,-1,-1,-1}${0,1,-1,0,0,0,0,0,0,1,0,50,75,25,-1,-1,-1,-1}${0,3,-1,0,0,0,0,1,0,1,0,50,50,25,-1,-1,-1,-1}${0,3,-1,0,0,0,0,1,0,1,0,50,50,25,-1,-1,-1,-1}${0,-1,-1,0,0,0,0,0,0,1,0,5,5,5,-1,-1,-1,-1}${0,4,-1,0,0,0,0,1,0,1,0,50,50,25,-1,-1,-1,-1}${0,0,-1,0,0,0,0,0,0,1,0,75,5,5,-1,-1,-1,-1}${0,7,-1,0,0,0,0,0,0,1,0,50,50,75,-1,-1,-1,-1}}
+names.Programmer={AiGinE, DebugWorkspace }
+[editor]
+recent.file.0=C:\\Dokumente und Einstellungen\\Sebastian Blaum\\Desktop\\aigine\\src\\AiGinEFramework\\Model\\MeshList.h
+recent.file.1=C:\\Dokumente und Einstellungen\\Sebastian Blaum\\Desktop\\aigine\\src\\AiGinEFramework\\Model\\Mesh.h
+recent.file.2=C:\\Dokumente und Einstellungen\\Sebastian Blaum\\Desktop\\aigine\\src\\AiGinEFramework\\Model\\Vector2D.h
+recent.file.3=C:\\Dokumente und Einstellungen\\Sebastian Blaum\\Desktop\\aigine\\src\\AiGinEFramework\\Model\\Object3D.h
+recent.file.4=C:\\Dokumente und Einstellungen\\Sebastian Blaum\\Desktop\\aigine\\src\\AiGinEFramework\\Model\\Scale3D.h
+recent.file.5=C:\\Dokumente und Einstellungen\\Sebastian Blaum\\Desktop\\aigine\\src\\AiGinEFramework\\Model\\Translation3D.h
+recent.file.6=C:\\Dokumente und Einstellungen\\Sebastian Blaum\\Desktop\\aigine\\src\\AiGinEFramework\\Model\\Rotation3D.h
+recent.file.7=C:\\Dokumente und Einstellungen\\Sebastian Blaum\\Desktop\\aigine\\src\\AiGinEFramework\\Model\\AiGinEObject.h
+recent.file.8=C:\\Dokumente und Einstellungen\\Sebastian Blaum\\Desktop\\aigine\\src\\AiGinEFramework\\Model\\ageObject3DS.h
+recent.file.9=C:\\Dokumente und Einstellungen\\Sebastian Blaum\\Desktop\\aigine\\src\\AiGinEFramework\\Model\\ageObjectPrim.h
 [genHTML]
-
-folder=C:\\fosion\\projects\\develop\\aigine\\publish
-
+folder=C:\\Dokumente und Einstellungen\\Sebastian Blaum\\Desktop\\aigine\\publish\\togetherPublish
 generateFor=all_packages
-
 includeDiagrams=true
-
-javaDoc.overviewfile=
-
 launchBrowser=false
-
 navigationTree=false
-
-updatedependencies=true
-
-[option]
-detail=Implementation
-formatting=UML
+[lastOpenProjectName]
+Programmer=AiGinE
