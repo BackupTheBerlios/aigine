@@ -15,8 +15,6 @@ SceneManagement* sm;
 Keyboard* kb;
 Mouse* m;
 
-robot* robi;
-
 void display(void)
 {
 
@@ -46,7 +44,6 @@ void keyboard(unsigned char key, int x, int y)
 }
 
 void timerFunc(int ms) {
-	robi->animRobot();
 	sm->display();
 	glutTimerFunc(ms,timerFunc,ms);
 }
@@ -57,17 +54,8 @@ int main(int argc, char** argv)
 	m = new Mouse(sm);
 	kb = new Keyboard(sm);
 	sm->initOpenGL(argc, argv);
+	//tests here....
 
-	// Aufbau des Levels
-	//	testPrimObjects();
-
-	robi = new robot(sm);
-	robi->drawRobot();
-	robi->getModel()->setTranslation(new Translation3D(-20,0,-20));
-//	sm->printGraph();
-	
-	// ... weitere Objekte laden
-	
 	// Bekanntmachung der benoetigten Callback-Funktionen
 	glutDisplayFunc(display); // .. fuer die Bildgenerierung
     glutReshapeFunc(reshape); // .. fuer die Aenderung der Fenstergroesse
