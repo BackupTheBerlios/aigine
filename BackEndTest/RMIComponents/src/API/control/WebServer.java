@@ -102,23 +102,12 @@ public abstract class WebServer implements Runnable {
 
             try {
                 try {
-                	// TODO URL parsing ersetzen und um Actionabfrage ergänzen.
-					/*import java.net.*;
-					import java.io.*;
-
-					public class ParseURL {
-						public static void main(String[] args) throws Exception {
-							URL aURL = new URL("http://java.sun.com:80/docs/books/"
-											   + "tutorial/index.html#DOWNLOADING");
-							System.out.println("protocol = " + aURL.getProtocol());
-							System.out.println("host = " + aURL.getHost());
-							System.out.println("filename = " + aURL.getFile());
-							System.out.println("port = " + aURL.getPort());
-							System.out.println("ref = " + aURL.getRef());
-						}
-					}*/
-                	
-                    String[] request= readRequestLines(socket.getInputStream());                    
+                    String[] request= readRequestLines(socket.getInputStream()); 
+					System.out.println("REQUEST:");
+                    for(int i = 0; i < request.length; i++){
+                    	System.out.println("\t" + i + " : " + request[i]);
+                    }
+                                       
                     String method= getMethod(request);
                     String type= getType(request);
                     byte[] body= getBody(request);
