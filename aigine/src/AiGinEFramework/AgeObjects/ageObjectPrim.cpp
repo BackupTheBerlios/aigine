@@ -1,12 +1,8 @@
+/* Game Engine Design */
+
 #include "ageObjectPrim.h"
 #include <iostream>
-
 using namespace std;
-
-//////////////////////////////////////////////////////////////////////
-// Construction/Destruction
-//////////////////////////////////////////////////////////////////////
-
 ageObjectPrim::ageObjectPrim(): AiGinEObject() {
 //	glBindTexture(GL_TEXTURE_2D, this->my3DSObject->getTextureID(0));
 	glTexGenf(GL_S, GL_TEXTURE_GEN_MODE, GL_SPHERE_MAP);
@@ -20,12 +16,10 @@ ageObjectPrim::ageObjectPrim(): AiGinEObject() {
 	this->colorG = 0;
 	this->colorB = 0;
 }
-
 ageObjectPrim::~ageObjectPrim()
 {
 
 }
-
 void ageObjectPrim::display() {
 	glPushMatrix();
 	glColor3ub(this->colorR, this->colorG, this->colorB);
@@ -66,14 +60,12 @@ void ageObjectPrim::display() {
 	}
 	glPopMatrix();
 }
-
 void ageObjectPrim::setSphere(double radius, int slices, int stacks) {
 	this->kind = 1;
 	this->radiusSphere = radius;
 	this->slicesSphere = slices;
 	this->stacksSphere = stacks;
 }
-
 void ageObjectPrim::setCone(double base, double height, int slices, int stacks) {
 	this->kind = 2;
 	this->baseCone = base;
@@ -81,12 +73,10 @@ void ageObjectPrim::setCone(double base, double height, int slices, int stacks) 
 	this->slicesCone = slices;
 	this->stacksCone = stacks;
 }
-
 void ageObjectPrim::setCube(double size) {
 	this->kind = 3;
 	this->sizeCube = size;
 }
-
 void ageObjectPrim::setTorus(double innerRadius, double outerRadius, int sides, int rings) {
 	this->kind = 4;
 	this->innerRadiusTorus = innerRadius;
@@ -94,7 +84,6 @@ void ageObjectPrim::setTorus(double innerRadius, double outerRadius, int sides, 
 	this->sidesTorus = sides;
 	this->ringsTorus = rings;
 }
-
 void ageObjectPrim::setColor(int r,int g,int b) {
 	this->colorR = r;
 	this->colorG = g;
