@@ -20,8 +20,9 @@ Tree::Tree() {
 	this->knotListPostorder = new Liste<knot*>;
 	this->knotListLevelorder = new Liste<knot*>;
 	this->actualListElement = 1;
+	this->rootKnot = this->initKnot(new knot);
 
-	this->makeTest();
+//	this->makeTest();
 }
 
 /**
