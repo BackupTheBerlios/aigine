@@ -9,7 +9,7 @@
 */
 
 #include "windows.h"
-#include "Liste.h"
+#include "List.h"
 
 typedef struct knot {
 	knot* left;
@@ -17,24 +17,20 @@ typedef struct knot {
 	void* data;
 } knot;
 
-
-
 class Tree {
-	
-	
+		
 private:
 	knot* rootKnot;
 	knot* temporaryKnot;
 	knot* initKnot(knot* k);
 	void makeTest();
 	int actualListElement;
-	Liste<knot*>* knotListPreorder;
-	Liste<knot*>* knotListInorder;
-	Liste<knot*>* knotListPostorder;
-	Liste<knot*>* knotListLevelorder;
+	List<knot*>* knotListPreorder;
+	List<knot*>* knotListInorder;
+	List<knot*>* knotListPostorder;
+	List<knot*>* knotListLevelorder;
 	
-public:
-	
+public:	
 	Tree();
 	bool addKnotLeft(knot* paren, knot* child);
 	bool addKnotRight(knot* paren, knot* child);
