@@ -28,3 +28,4 @@ ageObject3DS::~ageObject3DS()
 void ageObject3DS::display() {
 	this->my3DSObject->renderObject();
 }
+

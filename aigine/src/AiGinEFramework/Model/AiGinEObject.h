@@ -30,7 +30,7 @@ private:
 public:
 
 	AiGinEObject();
-	void display();
+	virtual void display();
 
 };
 #endif //AIGINEOBJECT_H
