@@ -19,8 +19,8 @@ GraphicPipeline::~GraphicPipeline()
 
 //____________________________________________________________________________
 void GraphicPipeline::initOpenGL(int argc, char** argv){
-	this->windowSize[0] = 800;
-    this->windowSize[1] = 600;
+	this->windowSize[0] = 500;
+    this->windowSize[1] = 500;
 
     glutInit(&argc, argv);
     glutInitDisplayMode (GLUT_DOUBLE | GLUT_RGB | GLUT_DEPTH); 
@@ -96,9 +96,12 @@ int * GraphicPipeline::getWindowSize() {
 	return this->windowSize;
 }
 
-/**
-*
-*/
+//____________________________________________________________________________
 Camera* GraphicPipeline::getCamera(){
 	return this->lnkCamera;
+}
+
+//____________________________________________________________________________
+void GraphicPipeline::setCameraRotation(int mouseX, int mouseY) {
+	this->lnkCamera->setRotation(mouseX, mouseY, this->windowSize);
 }

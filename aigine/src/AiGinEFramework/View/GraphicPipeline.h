@@ -79,6 +79,11 @@ public:
      */
 	int * getWindowSize();
 
+	/**
+	 * Ruft die Kamera Rotation auf.
+	 */
+	void setCameraRotation(int mouseX, int mouseY);
+
 private:
 	/**
      * Größe des Fensters.

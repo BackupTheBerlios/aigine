@@ -7,23 +7,30 @@
 #include <iostream>
 using namespace std;
 
-#include "../GraphicEngine/SceneManagement.h"
-#include "../Model/Point3D.h"
+class SceneManagement;
 
 class Mouse
 {
-public:    
+public: 
+	/**
+	 * Constructor
+	 * @param: a pointer to a SceneManagement- object who contains all further needed objects
+	 *	like camara, renderer and the SceneGraph
+	 */
 	Mouse(SceneManagement* sceneMan);
+
+	/**
+	 * mouse movement depends to the normal vector of the camara object
+	 * @param x position of mouse
+	 * @param y position of mouse
+     */
     void passivemotion(int x, int y);
-	SceneManagement* sceneMan;
 
 private:
-	int angleX ; //angle for the x - achsis of the camera
-	int angleY ;
-	int angleZ ;
 
-	int old_x;
-	int old_y;
-	
+	/**
+	 * Referenz für den Kamerazugiff.
+	 */ 
+	SceneManagement* sceneMan;
 };
 #endif //MOUSE_H

@@ -26,7 +26,9 @@
 * @param 
 * ________________________________________________________________________________________________________________
 */        
-Camera::Camera(){}
+Camera::Camera(){
+	this->rotation = new Point3D(0.0, 1.0, 0.0); 
+}
 
 /**
 * Gibt die Position der acturellen Kammera zurueck
@@ -80,25 +82,18 @@ Point3D * Camera::getRotation(){ return rotation; }
 * @param
 * ________________________________________________________________________________________________________________ 
 */
-void Camera::setRotation(Point3D * rotation, int mouseX, int mouseY, int* CurrentWinSize)	{
-	
+void Camera::setRotation(int mouseX, int mouseY, int* CurrentWinSize)	{	
 	int middleX = CurrentWinSize[0]  >> 1;				// This is a binary shift to get half the width
 	int middleY = CurrentWinSize[1]  >> 1;				// This is a binary shift to get half the height
 	float angleY = 0.0f;							// This is the direction for looking up or down
 	float angleZ = 0.0f;							// This will be the value we need to rotate around the Y axis (Left and Right)
-	static float currentRotX = 0.0f;
-	
+	static float currentRotX = 0.0f;	
 
 	// If our cursor is still in the middle, we never moved... so don't update the screen
 	if( (mouseX == middleX) && (mouseY == middleY) ) return;
-	
 
-	cout<< "----------------------------------------------------------------------------"<<endl;
-	cout <<"current mouse : "<< mouseX <<" | "<< mouseY << endl;
-	
-
+	// setze den Pointer auf den Mittelpunkt des Fensters
 	glutWarpPointer (middleX, middleY);
-
 
 	// Get the direction the mouse moved in, but bring the number down to a reasonable amount
 	angleY = (float)( (middleX - mouseX) ) / 1000.0f;		
@@ -107,7 +102,6 @@ void Camera::setRotation(Point3D * rotation, int mouseX, int mouseY, int* Curren
 	// Here we keep track of the current rotation (for up and down) so that
 	// we can restrict the camera from doing a full 360 loop.
 	currentRotX -= angleZ;
-
 
 	// If the current rotation (in radians) is greater than 1.0, we want to cap it.
 	if(currentRotX > 1.0f)

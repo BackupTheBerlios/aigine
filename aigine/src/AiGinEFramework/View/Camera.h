@@ -59,7 +59,7 @@ public:
     
 	/**      
 	* Setzt die Blickrichtung der Kammera        
-	*        
+	*        wwwwwwwww
 	* @author Danny Graef, Tobias Harpering
 	* @return -
 	* @param Uebernimmt einen 3d Vektor
@@ -83,8 +83,11 @@ public:
    * @return -
    * @param Vektor 
 	*/
-	void setRotation(Point3D * rotation, int mouseX, int mouseY, int* CurrentWinSize);
+	void setRotation(int mouseX, int mouseY, int* CurrentWinSize);
 
+	/**
+	*
+	*/
 	void RotateView(float angle, float x, float y, float z);
 
     /**      

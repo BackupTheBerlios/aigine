@@ -11,9 +11,9 @@ void SceneGraph::draw()
 
    glPushMatrix();        
       glTranslatef(0.0, 0.0, 0.0);
-      //this->tmpTestObject->renderObject();
+      this->tmpTestObject->renderObject();
 	  //glColor3f (1.0, 0.0, 0.0); // setzt die Farbe auf weiss
-	  glutSolidTeapot(1.0);
+	  //glutSolidTeapot(1.0);
    glPopMatrix();
 
 
