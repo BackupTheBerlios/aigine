@@ -13,6 +13,8 @@ SceneManagement* sm;
 Keyboard* kb;
 Mouse* m;
 AiGinEObject* knie;
+AiGinEObject* huefteR;
+AiGinEObject* beine;
 int dir;
 
 void display(void)
@@ -43,18 +45,21 @@ void keyboard(unsigned char key, int x, int y)
 	kb->keyAction(key, x, y);
 }
 
-void littleAnim() {
-	cout << knie->getRotation()->x << endl;
-	if( knie->getRotation()->x > 0) {
+void littleAnim(int ms) {
+	if( knie->getRotation()->angle > 0) {
 		dir = -1;
 	}
-	if(knie->getRotation()->x < -45) {
+	if(knie->getRotation()->angle <= -45) {
 		dir = 1;
 	}
+	beine->getRotation()->y = 1;
+	beine->getRotation()->angle = ((int)beine->getRotation()->angle) % 360 + 5;
+	knie->getRotation()->angle += 2 * dir;
+	huefteR->getRotation()->angle -= 2 * dir;
+	cout << knie->getRotation()->angle << endl;
+	sm->display();
+	glutTimerFunc(ms, littleAnim, ms);
 
-	knie->getRotation()->x += 1 * dir;
-	cout << knie->getRotation()->x << endl;
-	glutPostRedisplay();
 }
 
 void testPrimObjects() {
@@ -65,6 +70,7 @@ void testPrimObjects() {
 	((ageObjectPrim*)huefte)->setColor(255,0,0);
 	huefte->setTranslation(new Translation3D(0,6,0));
 	huefte->setScale(new Scale3D(6,1,1));
+	beine = huefte;
 
 	//Bein_Rechts
 	//Gelenk_Oben_Rechts
@@ -74,6 +80,7 @@ void testPrimObjects() {
 	gelenk_o_r->setTranslation(new Translation3D(1.25,-0.5,0));
 	gelenk_o_r->setScale(new Scale3D(1,1,1));
 	gelenk_o_r->setRotation(new Rotation3D(45,1,0,0));
+	huefteR = gelenk_o_r;
 
 	//Segment_Oben_Rechts
 	AiGinEObject* seg_o_r = sm->addObjectPrim(new ageObjectPrim(),gelenk_o_r,"child");
@@ -90,7 +97,6 @@ void testPrimObjects() {
 	gelenk_u_r->setScale(new Scale3D(1,1,1));
 	gelenk_u_r->setRotation(new Rotation3D(-45,1,0,0));
 	knie = gelenk_u_r;
-	dir = 1;
 
 	//Segment_Unten_Rechts
 	AiGinEObject* seg_u_r = sm->addObjectPrim(new ageObjectPrim(),gelenk_u_r,"child");
@@ -181,7 +187,7 @@ int main(int argc, char** argv)
     glutReshapeFunc(reshape); // .. fuer die Aenderung der Fenstergroesse
 	glutKeyboardFunc(keyboard); // .. fuer die Tastaturabfrage
 	glutPassiveMotionFunc(passivemotion); // fuer die Mausabfrage
-//    glutIdleFunc(littleAnim);
+    glutTimerFunc(20,littleAnim, 20);
     glutMainLoop(); // Kontrolle wird an GLUT uebergeben
     return 0;
 } 
