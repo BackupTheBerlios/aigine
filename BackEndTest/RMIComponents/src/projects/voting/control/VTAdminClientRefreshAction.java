@@ -7,7 +7,7 @@ import java.util.Date;
 import javax.swing.JLabel;
 import javax.swing.table.DefaultTableModel;
 
-import projects.interfaces.VTServer;
+import projects.interfaces.VTLogicServer;
 import API.model.RemoteObjectTable;
 
 
@@ -18,7 +18,7 @@ import API.model.RemoteObjectTable;
  */
 public class VTAdminClientRefreshAction implements ActionListener {
 
-	private VTServer server = null;
+	private VTLogicServer server = null;
 	private JDataTable managedObjects = null;
 	private JLabel statuslabel = null;
 
@@ -26,7 +26,7 @@ public class VTAdminClientRefreshAction implements ActionListener {
 	 *  Konstruktor
 	 * @param server Objekt für den Serverzugriff.
 	 */
-	public VTAdminClientRefreshAction(VTServer server, 
+	public VTAdminClientRefreshAction(VTLogicServer server, 
 		JDataTable managedObjects, JLabel statuslabel) {
 		super();
 		this.server = server;		

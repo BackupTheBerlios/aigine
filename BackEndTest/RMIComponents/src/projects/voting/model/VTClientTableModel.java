@@ -11,8 +11,6 @@ import javax.swing.ButtonGroup;
 import javax.swing.JRadioButton;
 import javax.swing.table.DefaultTableModel;
 
-import projects.voting.model.VoteTable;
-
 /**
  * Erweitertes <code>DefaultTableModel</code> mit einer zusätzlichen
  * Spalte die eine <code> ButtonGroup</code> für die Auswahl der

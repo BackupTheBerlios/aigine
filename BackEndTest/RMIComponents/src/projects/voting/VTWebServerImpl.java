@@ -8,7 +8,7 @@ import java.rmi.RemoteException;
 import java.util.Hashtable;
 
 import projects.interfaces.VTClient;
-import projects.interfaces.VTServer;
+import projects.interfaces.VTLogicServer;
 import projects.voting.model.VoteTable;
 import API.control.WebServer;
 import API.interfaces.ServerHandle;
@@ -24,7 +24,7 @@ public class VTWebServerImpl extends WebServer implements VTClient {
     private final int default_port= 8080;
     private final String default_root= "public_html";
     private VoteTable votes= null;
-    private VTServer server = null;
+    private VTLogicServer server = null;
     
     /* (non-Javadoc)
      * @see projects.interfaces.VTClient#update(projects.voting.model.VoteTable)
@@ -39,7 +39,7 @@ public class VTWebServerImpl extends WebServer implements VTClient {
      */
     public void init(RemoteObject compProps, ServerHandle server)
         throws RemoteException {
-        	this.server = (VTServer)server;       
+        	this.server = (VTLogicServer)server;       
         // TODO zusätzlicher Paramter für Verzeichnis und Port des Webservers 
         System.out.println(
             "=> WebServer.init("

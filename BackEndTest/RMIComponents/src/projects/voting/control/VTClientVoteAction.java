@@ -3,8 +3,8 @@ package projects.voting.control;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
+import projects.interfaces.VTLogicServer;
 import projects.voting.model.VTClientTableModel;
-import projects.interfaces.VTServer;
 
 
 /**
@@ -14,7 +14,7 @@ import projects.interfaces.VTServer;
  */
 public class VTClientVoteAction implements ActionListener {
 
-	private VTServer server = null;
+	private VTLogicServer server = null;
 	private VTClientTableModel votetable = null;
 
 	/**
@@ -23,7 +23,7 @@ public class VTClientVoteAction implements ActionListener {
 	 * @param votetable TableModel mit der ButtonGroup für
 	 * die Votingausgabe.
 	 */
-	public VTClientVoteAction(VTServer server, VTClientTableModel votetable) {
+	public VTClientVoteAction(VTLogicServer server, VTClientTableModel votetable) {
 		super();
 		this.server = server;
 		this.votetable = votetable;

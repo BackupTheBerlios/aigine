@@ -1,5 +1,6 @@
 package API.util;
 import org.jconfig.Configuration;
+
 import API.model.RemoteObject;
 /**
 *
@@ -39,6 +40,7 @@ public class RemoteObjectHelper {
 		ro.setRmiName("rmi://" + ro.getHostname() + ":" + ro.getPort() + "/");
 		if(ro.getDescription() == "vtdatabase"){
 			ro.setManager(configuration.getProperty("manager","",category));
+			ro.setManagerName(configuration.getProperty("managerName","",category));
 		}
 		
     System.out.println("<= RemoteObjectProperties() > " + this);

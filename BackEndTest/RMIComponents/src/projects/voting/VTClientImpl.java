@@ -11,7 +11,7 @@ import javax.swing.JLabel;
 import javax.swing.JScrollPane;
 
 import projects.interfaces.VTClient;
-import projects.interfaces.VTServer;
+import projects.interfaces.VTLogicServer;
 import projects.voting.control.JComponentCellEditor;
 import projects.voting.control.JComponentCellRenderer;
 import projects.voting.control.JDataTable;
@@ -39,7 +39,7 @@ public class VTClientImpl implements VTClient {
 
 	public void init(RemoteObject compProps, ServerHandle server) {
 		System.out.println("=> VTClientImpl.init(" +			"RemoteObjectProperties " + compProps + " , Object" + server);
-		VTServer s = (VTServer) server;
+		VTLogicServer s = (VTLogicServer) server;
 
 		frame.setTitle(compProps.getCompName());
 		setServerGrap(s);
@@ -90,7 +90,7 @@ public class VTClientImpl implements VTClient {
 	 * dieser auf die vote Methode des Servers zugreifen kann.
 	 * @param server
 	 */
-	public void setServerGrap(VTServer server) {
+	public void setServerGrap(VTLogicServer server) {
 		bv.addActionListener(new VTClientVoteAction(server, vtmodel));
 		System.out.println(
 			"\t Serverhandle an den Actionlistener übergeben = " + server);

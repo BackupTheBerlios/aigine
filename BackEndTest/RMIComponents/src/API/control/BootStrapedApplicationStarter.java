@@ -7,6 +7,7 @@ import java.io.IOException;
 import java.io.InputStreamReader;
 import java.net.MalformedURLException;
 import java.rmi.Naming;
+import java.rmi.NotBoundException;
 import java.rmi.RemoteException;
 import java.rmi.registry.LocateRegistry;
 import java.rmi.server.RMIClassLoader;
@@ -40,6 +41,9 @@ public class BootStrapedApplicationStarter implements BootStrapedComponent {
 
     /** Speicherung des Serverzugriffes. */
     protected ServerHandle server= null;
+    
+	/** Speicherung des Serverzugriffes. */
+		protected ServerHandle manager= null;
 
     private RemoteObjectHelper roh;
     private int valid_auswahl;
@@ -240,7 +244,13 @@ public class BootStrapedApplicationStarter implements BootStrapedComponent {
         server= (ServerHandle) serverObject;
         // für register Methode erforderlich
         System.out.println("<= BootStrapedApplicationStarter.runServer()");
-    }
+    }   
+    
+    
+    /**
+     * runService
+     * @param remoteObject
+     */
 
     /**
      * Ruft abhängig von Authentifizierungsart die entsprechende 
@@ -262,6 +272,8 @@ public class BootStrapedApplicationStarter implements BootStrapedComponent {
                 System.out.println(
                     "\tKeine Registrierung erforderlich > authTyp = nothing");
             } else if (remoteObject.getAuthTyp().equals("anonym")) {
+            	if(remoteObject.getManager() == null){
+            	
                 // anonym => Anmeldung ohne Password            	
                 System.out.println(
                     "\tAnonyme Registrierung > authTyp = anonym > an : "
@@ -269,6 +281,21 @@ public class BootStrapedApplicationStarter implements BootStrapedComponent {
                         + "  > mit : "
                         + remoteObject);
                 server.register(remoteObject);
+				}else{
+					try {
+						manager = (ServerHandle) Naming.lookup(component.getRmiName() + component.getManagerName());
+					} catch (MalformedURLException e1) {
+						System.out.println("BootstrepedApp.register: manager lookup faild!!");
+						
+						e1.printStackTrace();
+					} catch (NotBoundException e1) {
+						System.out.println("BootstrepedApp.register: manager lookup faild!!");
+						e1.printStackTrace();
+					}
+					System.out.println("BootstrepedApp.register: manager lookup SUCCESS!!!");
+					manager.register(component);
+					System.out.println("BootstrepedApp.register: manager.register SUCCESS!!!");
+				}
             } else if (remoteObject.getAuthTyp().equals("password")) {
                 // password => Anmeldung mit Password
                 System.out.println(

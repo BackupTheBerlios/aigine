@@ -14,181 +14,209 @@ public class RemoteObject implements Serializable {
 
 	private String passwd;
 
-    /** Beschreibung der Komponente. */
-    protected String description;
+	/** Beschreibung der Komponente. */
+	protected String description;
 
-    /** Typ der Koponente, derzeitig client oder server ... */
-    protected String servicetyp;
+	/** Typ der Koponente, derzeitig client oder server ... */
+	protected String servicetyp;
 
-    /** Classpath für den RMIClassLoader (meist die URL des ClassServers) */
-    protected String codebase;
+	/** Classpath für den RMIClassLoader (meist die URL des ClassServers) */
+	protected String codebase;
 
-    /**
-     * Name des Serverdienstes, auf den zugegriffen werden soll oder
-     * unter welchem Namen eine Serverimplemtierung gestartet werden soll.
-     * - ist die Komponente ein Client : serverName =  zielServer  bsp1. tweety.de
-     * - ist die Komponente ein Server : serverName = aktueller Server bsp2 www.dagnu.de
-     */
-    protected String hostname;
+	/**
+	 * Name des Serverdienstes, auf den zugegriffen werden soll oder
+	 * unter welchem Namen eine Serverimplemtierung gestartet werden soll.
+	 * - ist die Komponente ein Client : serverName =  zielServer  bsp1. tweety.de
+	 * - ist die Komponente ein Server : serverName = aktueller Server bsp2 www.dagnu.de
+	 */
+	protected String hostname;
 
-    /** Name der Klasse für die zu ladene Komponente, z.B. projects.voting.VTServer */
-    protected String compClassName;
+	/** Name der Klasse für die zu ladene Komponente, z.B. projects.voting.VTLogicServer */
+	protected String compClassName;
 
-    /**
-     * Name für den Eintrag der Koponente in die Registry <code>rebind(...)</code> bzw.
-     * der Name für <code>lookup(...)</code>, je nachdem ob es sich um einen Server
-     * oder Client handelt.
-     */
-    protected String compName;
+	/**
+	 * Name für den Eintrag der Koponente in die Registry <code>rebind(...)</code> bzw.
+	 * der Name für <code>lookup(...)</code>, je nachdem ob es sich um einen Server
+	 * oder Client handelt.
+	 */
+	protected String compName;
 
-    /** IPAdresse des jeweiligen Serverdienstes. */
-    protected String ipaddr;
+	/** IPAdresse des jeweiligen Serverdienstes. */
+	protected String ipaddr;
 
-    /** Port für die Registry. */
-    protected String port;
+	/** Port für die Registry. */
+	protected String port;
 
-    /**
-     * Name für die Einbindung in die RMI Registry. Wird im Konstruktor gesetzt:
-     * <code>rmi://" + hostname  + ":" + port + "/";</code>
-     */
-    protected String rmiName;
+	/**
+	 * Name für die Einbindung in die RMI Registry. Wird im Konstruktor gesetzt:
+	 * <code>rmi://" + hostname  + ":" + port + "/";</code>
+	 */
+	protected String rmiName;
 
-    /**
-     * Referenz auf eine Instanz der Application, die mit den Parametern
-     * gestartet wurde.
-     */
-    protected Application app;
+	/**
+	 * Referenz auf eine Instanz der Application, die mit den Parametern
+	 * gestartet wurde.
+	 */
+	protected Application app;
 
-    /** Authentifizierungstyp, derzitig anonym, nothing, password */
-    protected String authTyp;
-    
-    /**
-     * zusaetzliche property für den service RMI name
-     */
-    protected String manager;
+	/** Authentifizierungstyp, derzitig anonym, nothing, password */
+	protected String authTyp;
 
-    /**
-     * Konstruktor nimmt die vom Loader eingelesenen Properties entgegen und
-     * initialisiert die notwendigen Paramter
-     */
-    public RemoteObject() {
-        
-        super();
-        //configuration.getProperty("codebase","nix","vtserver");
-    }
+	/**
+	 * zusaetzliche property für den service RMI name
+	 */
+	protected String manager;
 
-    public String toString() {
-        //		TODO auf die aktuellen Attribute anpassen !!!
-        StringBuffer sb = new StringBuffer("Service : " + " \thostname: " + this.hostname + "\tcodebase: " + this.codebase +
-            " \tdescription: " + this.description + " \tservicetyp: " + this.servicetyp + " \tcompClassName: " +
-            this.compClassName + " \tcompName: " + this.compName + " \ttargetPort: " + this.port);
-        String s = sb.toString();
-        return s;
-    }
+	/**
+	 * name des Managers an dem sich registriert wird
+	 *
+	 */
+	protected String managerName;
 
-    /** @return */
-    public String getDescription() {
-        return description;
-    }
+	/**
+	 * Konstruktor nimmt die vom Loader eingelesenen Properties entgegen und
+	 * initialisiert die notwendigen Paramter
+	 */
+	public RemoteObject() {
 
-    /** @return */
-    public String getIpaddr() {
-        return ipaddr;
-    }
+		super();
+		//configuration.getProperty("codebase","nix","vtserver");
+	}
 
-    /** @return */
-    public String getServicetyp() {
-        return servicetyp;
-    }
+	public String toString() {
+		//		TODO auf die aktuellen Attribute anpassen !!!
+		StringBuffer sb =
+			new StringBuffer(
+				"Service : "
+					+ " \thostname: "
+					+ this.hostname
+					+ "\tcodebase: "
+					+ this.codebase
+					+ " \tdescription: "
+					+ this.description
+					+ " \tservicetyp: "
+					+ this.servicetyp
+					+ " \tcompClassName: "
+					+ this.compClassName
+					+ " \tcompName: "
+					+ this.compName
+					+ " \ttargetPort: "
+					+ this.port
+					+ "\tmanager: "
+					+ this.manager
+					+ "\tmanagerName: "
+					+ this.managerName);
+		String s = sb.toString();
+		return s;
+	}
 
-    /** @param string */
-    public void setDescription(String string) {
-        description = string;
-    }
+	/** @return */
+	public String getDescription() {
+		return description;
+	}
 
-    /** @param string */
-    public void setIpaddr(String string) {
-        ipaddr = string;
-    }
+	/** @return */
+	public String getIpaddr() {
+		return ipaddr;
+	}
 
-    /** @param string */
-    public void setServicetyp(String string) {
-        servicetyp = string;
-    }
+	/** @return */
+	public String getServicetyp() {
+		return servicetyp;
+	}
 
-    /** @return */
-    public String getCodebase() {
-        return codebase;
-    }
+	/** @param string */
+	public void setDescription(String string) {
+		description = string;
+	}
 
-    /** @return */
-    public String getCompClassName() {
-        return compClassName;
-    }
+	/** @param string */
+	public void setIpaddr(String string) {
+		ipaddr = string;
+	}
 
-    /** @return */
-    public String getCompName() {
-        return compName;
-    }
+	/** @param string */
+	public void setServicetyp(String string) {
+		servicetyp = string;
+	}
 
-    /** @return */
-    public String getPort() {
-        return port;
-    }
+	/** @return */
+	public String getCodebase() {
+		return codebase;
+	}
 
-    /** @param string */
-    public void setCodebase(String string) {
-        codebase = string;
-    }
+	/** @return */
+	public String getCompClassName() {
+		return compClassName;
+	}
 
-    /** @param string */
-    public void setCompClassName(String string) {
-        compClassName = string;
-    }
+	/** @return */
+	public String getCompName() {
+		return compName;
+	}
 
-    /** @param string */
-    public void setCompName(String string) {
-        compName = string;
-    }
+	/** @return */
+	public String getPort() {
+		return port;
+	}
 
-    /** @param string */
-    public void setPort(String string) {
-        port = string;
-    }
+	/** @param string */
+	public void setCodebase(String string) {
+		codebase = string;
+	}
 
-    /** @return */
-    public String getHostname() {
-        return hostname;
-    }
+	/** @param string */
+	public void setCompClassName(String string) {
+		compClassName = string;
+	}
 
-    /** @param string */
-    public void setHostname(String string) {
-        hostname = string;
-    }
+	/** @param string */
+	public void setCompName(String string) {
+		compName = string;
+	}
 
-    /** @return */
-    public String getRmiName() {
-        return rmiName;
-    }
+	/** @param string */
+	public void setPort(String string) {
+		port = string;
+	}
 
-    /** @param string */
-    public void setRmiName(String string) {
-        rmiName = string;
-    }
+	/** @return */
+	public String getHostname() {
+		return hostname;
+	}
 
-    /** @return Application as Client */
-    public Application getApp() {
-        return app;
-    }
+	/** @param string */
+	public void setHostname(String string) {
+		hostname = string;
+	}
 
-    /** @param application */
-    public void setApp(Application application) {
-        app = application;
-    }
+	/** @return */
+	public String getRmiName() {
+		return rmiName;
+	}
 
-    public String getAuthTyp() { return authTyp; }
+	/** @param string */
+	public void setRmiName(String string) {
+		rmiName = string;
+	}
 
-    public void setAuthTyp(String authTyp) { this.authTyp = authTyp; }
+	/** @return Application as Client */
+	public Application getApp() {
+		return app;
+	}
+
+	/** @param application */
+	public void setApp(Application application) {
+		app = application;
+	}
+
+	public String getAuthTyp() {
+		return authTyp;
+	}
+
+	public void setAuthTyp(String authTyp) {
+		this.authTyp = authTyp;
+	}
 	/**
 	 * @return
 	 */
@@ -229,6 +257,20 @@ public class RemoteObject implements Serializable {
 	 */
 	public void setManager(String string) {
 		manager = string;
+	}
+
+	/**
+	 * @return
+	 */
+	public String getManagerName() {
+		return managerName;
+	}
+
+	/**
+	 * @param string
+	 */
+	public void setManagerName(String string) {
+		managerName = string;
 	}
 
 }

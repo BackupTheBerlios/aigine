@@ -12,7 +12,7 @@ import javax.swing.JScrollPane;
 import javax.swing.table.DefaultTableModel;
 
 import projects.interfaces.VTClient;
-import projects.interfaces.VTServer;
+import projects.interfaces.VTLogicServer;
 import projects.voting.control.JComponentCellEditor;
 import projects.voting.control.JComponentCellRenderer;
 import projects.voting.control.JDataTable;
@@ -41,7 +41,7 @@ public class VTAdminClientImpl implements VTClient, AdminClient {
 
 	public void init(RemoteObject compProps, ServerHandle server) {
 		System.out.println("=> VTAdminClientImpl.init(" +			"RemoteObjectProperties " + compProps + " , Object" + server);
-		VTServer s = (VTServer) server;
+		VTLogicServer s = (VTLogicServer) server;
 		
 		frame.setTitle("Admin Client for " + compProps.getCompName());
 		setServerGrap(s);
@@ -86,7 +86,7 @@ public class VTAdminClientImpl implements VTClient, AdminClient {
 	 * dieser auf die vote Methode des Servers zugreifen kann.
 	 * @param server
 	 */
-	public void setServerGrap(VTServer server) {
+	public void setServerGrap(VTLogicServer server) {
 		bv.addActionListener(new VTAdminClientRefreshAction(server, table, statuslabel));
 		System.out.println(
 			"\t Serverhandle an den Actionlistener übergeben = " + server);
