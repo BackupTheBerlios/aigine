@@ -58,32 +58,53 @@ public class VTWebServerImpl extends WebServer implements VTClient {
                 + server);
     }
     /**
-     * Gibt die Votings aus.
+     * Führt die jeweilige Aktion, abhängig von dem übergebenen Property "op" aus.
      * @see API.control.WebServer#getActionBody(java.lang.String[])
      */
     protected byte[] getActionBody(String[] request, Hashtable requestProps) throws RemoteException {
-        StringBuffer site= new StringBuffer();
+        String site= new String();
 
         if (requestProps.get("op").equals("login")) {
-            // TODO Umlenken auf den jeweiligen ActionEmpfänger
-            site.append(
-                "\n<h1>Tschesch Kollega , "
-                    + requestProps.get("name")
-                    + " !</h1>\n");
-            site.append("\n<form action='vote.html' method='GET'>");
-            site.append("\n<input type='hidden' name='op' value='vote'>");
-            site.append(votes.toHTML());
-            site.append("\n<input type='submit' value='wählen'>");
-            site.append("\n</form>");
+            site = actionLogin(requestProps);
             System.out.println("LOGIN from user : " + requestProps.get("name"));
         } else if (requestProps.get("op").equals("vote")) {
-			site.append(
-				"\n<h1>vote for , "
-					+ requestProps.get("voteradio")
-					+ " !</h1>\n");
-			server.webvote((String) requestProps.get("voteradio"));
-			site.append(votes.toHTML());
+        	site = actionVote(requestProps);
         }
-        return site.toString().getBytes();
+        return site.getBytes();
+    }
+    /**
+     * Führt ein Voting aus.
+     * @param requestProps
+     * @return
+     */
+    private String actionVote(Hashtable requestProps) throws RemoteException {
+		StringBuffer site= new StringBuffer();
+		site.append(
+			"\n<h1>vote for , "
+				+ requestProps.get("voteradio")
+				+ " !</h1>\n");
+		server.webvote((String) requestProps.get("voteradio"));
+		site.append(votes.toHTML());
+        return site.toString();
+    }
+    
+    /**
+     * EInloggen des Users
+     * @param requestProps
+     * @return
+     */
+    private String actionLogin(Hashtable requestProps) {
+    	// TODO "login" vom Server aufrufen und prüfen ob der User registriet ist.
+        StringBuffer site= new StringBuffer();
+		site.append(
+			 "\n<h1>Tschesch Kollega , "
+				 + requestProps.get("name")
+				 + " !</h1>\n");
+		 site.append("\n<form action='vote.html' method='GET'>");
+		 site.append("\n<input type='hidden' name='op' value='vote'>");
+		 site.append(votes.toHTML());
+		 site.append("\n<input type='submit' value='wählen'>");
+		 site.append("\n</form>");
+        return site.toString();
     }
 }
