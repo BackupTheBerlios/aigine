@@ -107,6 +107,10 @@ SOURCE=..\..\tools\loader3DS\CLoad3DS.cpp
 # End Source File
 # Begin Source File
 
+SOURCE=..\..\AiGinEFramework\Model\Color.cpp
+# End Source File
+# Begin Source File
+
 SOURCE=..\..\AiGinEFramework\Utils\fileControl.cpp
 # End Source File
 # Begin Source File
@@ -148,6 +152,10 @@ SOURCE=..\..\AiGinEFramework\Model\Object3D.cpp
 # Begin Source File
 
 SOURCE=..\..\tools\loader3DS\Object3DS.cpp
+# End Source File
+# Begin Source File
+
+SOURCE=..\..\AiGinEFramework\Model\Plane.cpp
 # End Source File
 # Begin Source File
 
@@ -223,6 +231,10 @@ SOURCE=..\..\tools\loader3DS\CLoad3DS.h
 # End Source File
 # Begin Source File
 
+SOURCE=..\..\AiGinEFramework\Model\Color.h
+# End Source File
+# Begin Source File
+
 SOURCE=..\..\AiGinEFramework\Utils\fileControl.h
 # End Source File
 # Begin Source File
@@ -276,6 +288,10 @@ SOURCE=..\..\tools\loader3DS\Object3DS.h
 # Begin Source File
 
 SOURCE=..\..\AiGinEFramework\Model\ObjectList.h
+# End Source File
+# Begin Source File
+
+SOURCE=..\..\AiGinEFramework\Model\Plane.h
 # End Source File
 # Begin Source File
 
