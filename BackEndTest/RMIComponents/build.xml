@@ -17,26 +17,31 @@
 	</path>
   
   
-  <target name="dist" depends="clean, build">  		         
+  <target name="compile" depends="clean_project_only,build" description="wird dann aufgerufen, wenn die .jars entpackt sind und die classen in das /bin verzeichniss copiert wurden (copy_libs)">  		         
   </target>  
+  
+  <target name="dist" depends="clean, unjar_libs, build, copy_libs">  		         
+  </target>  
+  
   
   <target name="build" depends="build_classes, build_rmics">  		
   </target>  
   
   <target name="build_classes">
-  		<mkdir dir="${build}"/>  		
+  		<mkdir dir="${build}"/>
+  		<mkdir dir="${build}/project"/>  
 		<!-- der ganze rotz wird kompiliert --> 		
-  	<javac srcdir="${src}" destdir="${build}">
+  	<javac srcdir="${src}" destdir="${build}/project">
   		<classpath refid="base.path"/><!--externe daten werden noch in lib gesucht -->
   	</javac>  		
   </target>
     
   <target name="build_rmics" description="kompiliert alle Proxies (fuer Klassen, die auf Impl enden)">
-	<rmic base="${build}" includes="**/*Impl.class">		
+	<rmic base="${build}/project" includes="**/*Impl.class">		
 	</rmic>	
-  </target>
+   </target>
   
-   <target name="unjar_other_lib" description="extrahiert aus der lib.jar alle relevanten jar files">
+   <target name="unjar_libs" description="extrahiert alle relevanten jar files">
 		<mkdir dir="lib/lib"/>		
 		<unjar dest="lib/lib">  				
   				<fileset dir="lib/hibernate"/>
@@ -46,15 +51,18 @@
   		</unjar>  			
   </target>
   
-  <target name="copy_libs" description="kopiert alle dateien die in lib/lib sind in das bin verzeichniss">
+  <target name="copy_libs" description="kopiert alle dateien die in lib/lib und res sind in das bin verzeichniss">
   		 <copy todir="${build}">    		
     		<fileset dir="lib/lib"/>    		
   		</copy>
   		<copy todir="${build}/org/hsqldb/">    		
-    		<fileset file="lib/hsqldb.gif"/>    		
+    		<fileset file="res/hsqldb.gif"/>    		
   		</copy>
   		<copy todir="${build}/org/">
-    		<fileset file="lib/hsqldb.gif"/>    		
+    		<fileset file="res/hsqldb.gif"/>
+    	</copy>
+    	<copy todir="${build}/projects/voting/model">
+    		<fileset file="res/Vote.hbm.xml"/>    		
   		</copy>
   		
   </target>
@@ -69,15 +77,43 @@
         </jar>
   </target>
   
-  <target name="unjar_lib" description="hier entpacke ich das lib-verzeichniss welches in vorm einer komplette .jar vorliegt">
-  		<unjar src="lib/lib.jar" dest="lib"></unjar>
+
+  
+  <target  name="dellib">
+  	<delete>
+    	<fileset dir="./lib/lib/" includes="**/*.class"/>
+    	<fileset dir="./lib/lib/" includes="**/*.xslt"/>
+    	<fileset dir="./lib/lib/" includes="**/*.dtd"/>
+    	<fileset dir="./lib/lib/" includes="**/*.xml"/>
+    	<fileset dir="./lib/lib/" includes="**/*.properties"/>
+    	<fileset dir="./lib/lib/" includes="**/*.gif"/>
+    	<fileset dir="./lib/lib/" includes="**/.nbattrs"/>
+	</delete>
   </target>
   
+  
+  <!-- from an Ant build.xml
+<target name="init-db">
+  <taskdef classname="net.sf.hibernate.tool.hbm2ddl.SchemaExportTask"
+      classpathref="project.class.path" name="schemaexport"/>
+  <schemaexport delimiter=";" drop="false" output="schema.sql"
+      properties="config/hibernate.properties" quiet="false" text="false">
+    <fileset dir="${build.destdir}">
+      <include name="**/*.hbm.xml"/>
+    </fileset>
+  </schemaexport>
+</target>
+  
+   -->
  
   <target name="clean" description="clean up" >
     <delete dir="${build}"/>    
   </target>
-</project>
 
+
+	<target name="clean_project_only" description="clean up only the project-build-dirs" >
+    	<delete dir="${build}/project"/>		
+  	</target>
+</project>
 
 
