@@ -100,6 +100,24 @@ void SceneGraph::drawSceneGraph(AiGinEObject * obj) {
 	}
 }
 
+void SceneGraph::printGraph() {
+	printSceneGraph((AiGinEObject*)this->getRootKnot(), "");
+}
+
+void SceneGraph::printSceneGraph(AiGinEObject* obj, string tabs) {
+	if(obj == NULL) return;
+
+	cout << tabs << obj << endl;
+
+	if(obj->right != NULL) {
+		this->printSceneGraph((AiGinEObject*)(obj->right), tabs += "\t");
+	}
+	if(obj->left != NULL) {
+		this->printSceneGraph((AiGinEObject*)(obj->left), tabs);
+	}
+
+}
+
 Knot* SceneGraph::findObject(AiGinEObject* obj){
 	return this->root; ;
 }

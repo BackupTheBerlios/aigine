@@ -34,7 +34,10 @@ public:
 
  //   void setTmpTestObject(Object3DS * tmpTestObject);
 
-    void drawSceneGraph(AiGinEObject*);
+    void drawSceneGraph(AiGinEObject* obj);
+	
+	void printGraph();
+	void printSceneGraph(AiGinEObject* obj, string tabs);
 
     //alle add- bzw. remove-Funktionen geben einen bool als Erfogsmeldung zurück
     //true -> Operation erfolgreich
