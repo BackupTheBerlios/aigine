@@ -19,7 +19,7 @@
 		<!-- Authentifizierungstyp -->
 		<property name="authTyp" value="nothing"/>
 		<!-- Adresse und Port des Managerdienstes -->
-		<property name="manager"value="http://localhost:2003/"/>
+		<property name="manager" value="http://localhost:2003/"/>
 	</category>
 	<category name="vtserver">
 		<!-- Typ der Anwendung -->
