@@ -5,6 +5,7 @@
 #include "GraphicPipeline.h"
 #include "StateManager.h"
 #include "Camera.h"
+#include "../Model/Vector3D.h"
 
 //____________________________________________________________________________
 GraphicPipeline::GraphicPipeline()
@@ -36,9 +37,7 @@ void GraphicPipeline::initOpenGL(int argc, char** argv){
 
 	glutSetCursor(9);
 
-	this->lnkCamera = new Camera(	new Point3D(5.0, 5.0, 5.0),
-									new Point3D(0.0, 0.0, 0.0),
-									new Point3D(0.0, 1.0, 0.0)	);								
+	this->lnkCamera = new Camera(	new Vector3D(5.0, 5.0, 5.0), new Vector3D(0.0, 0.0, 0.0), new Vector3D(0.0, 1.0, 0.0)	);								
 }
 
 //____________________________________________________________________________
@@ -64,9 +63,9 @@ void GraphicPipeline::initDisplay(){
    // Transformationsmatrix wird auf die Einheitsmatrix gesetzt
    glLoadIdentity ();
    // Kameraposition setzen
-   Point3D* pc = lnkCamera->getPosition();
-   Point3D* lap = lnkCamera->getLookAtPosition();
-   Point3D* nv = lnkCamera->getRotation();
+   Vector3D* pc = lnkCamera->getPosition();
+   Vector3D* lap = lnkCamera->getLookAtPosition();
+   Vector3D* nv = lnkCamera->getUpVector();
    gluLookAt (	pc->getX(), pc->getY(), pc->getZ(),    // Position
 				lap->getX(), lap->getY(), lap->getZ(), // Blickpunkt 
 				nv->getX(), nv->getY(), nv->getZ());   // Senkrechtvektor 

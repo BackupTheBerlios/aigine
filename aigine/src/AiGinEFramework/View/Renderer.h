@@ -13,13 +13,6 @@ class SceneManagement;
 /** @stereotype interface */
 class Renderer
 {
-private:
-
-    /**
-     * @supplierCardinality 1
-     * @clientCardinality 1
-     */
-    GraphicPipeline * lnkGraphicPipeline;
 };
 
 #endif //RENDERER_H

@@ -8,6 +8,7 @@
 
 #include "../Model/Translation3D.h"
 #include "../Model/Rotation3D.h"
+class Renderer;
 class MeshList;
 
 class Shader;
@@ -62,6 +63,12 @@ private:
 
     Translation3D translation;
     Rotation3D rotation;
+
+    /**
+     * @supplierCardinality 1
+     * @clientCardinality 1
+     */
+    Renderer * lnkRenderer;
 };
 
 #endif //AIGINEOBJECT_H
