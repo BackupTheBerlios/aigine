@@ -5,7 +5,5 @@ using namespace std;
 AiGinEObject::AiGinEObject(): Object3D(), Knot() {
 }
 
-void AiGinEObject::display()
-{
-	cout << this << endl;
-}
+
+void AiGinEObject::display() {}
