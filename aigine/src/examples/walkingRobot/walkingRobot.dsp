@@ -87,11 +87,11 @@ LINK32=link.exe
 # PROP Default_Filter "cpp;c;cxx;rc;def;r;odl;idl;hpj;bat"
 # Begin Source File
 
-SOURCE=..\..\AiGinEFramework\AgeObjects\ageObject3DS.cpp
+SOURCE=..\..\AiGinEFramework\Model\AgeObjects\ageObject3DS.cpp
 # End Source File
 # Begin Source File
 
-SOURCE=..\..\AiGinEFramework\AgeObjects\ageObjectPrim.cpp
+SOURCE=..\..\AiGinEFramework\Model\AgeObjects\ageObjectPrim.cpp
 # End Source File
 # Begin Source File
 
@@ -195,11 +195,11 @@ SOURCE=.\walkingRobot.cpp
 # PROP Default_Filter "h;hpp;hxx;hm;inl"
 # Begin Source File
 
-SOURCE=..\..\AiGinEFramework\AgeObjects\ageObject3DS.h
+SOURCE=..\..\AiGinEFramework\Model\AgeObjects\ageObject3DS.h
 # End Source File
 # Begin Source File
 
-SOURCE=..\..\AiGinEFramework\AgeObjects\ageObjectPrim.h
+SOURCE=..\..\AiGinEFramework\Model\AgeObjects\ageObjectPrim.h
 # End Source File
 # Begin Source File
 
