@@ -2,67 +2,81 @@
 
 #ifndef VECTOR2D_H
 #define VECTOR2D_H
-class Vector3D;
 
-/**
- * Vector2D dient dem AiGinE Object bei der verarbeitung von 3d informationen(texturen)
- * @author Tobias Harpering
- * @author Frank Otto 
- */
+#include "Makros.h"
+#include <Math.h>
+#include <iostream>
+using namespace std;
+
+// ******************************************************************
+// Die 2D-Vektor-Klasse
 class Vector2D
 {
-public:  
+public:
+	// Variablen
+	union
+	{
+		struct
+		{
+			float x;	// Koordinaten
+			float y;
+		};
 
-    /**
-     * Konstruktor, initialisiert alle Koordinaten mit den
-     * übergebenen Werten.
-     * @param x Koordinate.
-     * @param y Koordinate.
-     * @param z Koordinate.
-     */
-    Vector2D(float x, float y  );
+		struct
+		{
+			float u;	// Texturkoordinaten
+			float v;
+		};
 
-    /**
-     * Konstruktor, initialisiert alle Koordinaten mit 0.0.
-     */
+		float c[2];		// Array der Koordinaten
+	};
+
+	// Konstruktoren
 	Vector2D();
+	Vector2D(const float f);
+	Vector2D(const float _x, const float _y);
+	Vector2D(const float* pfComponent);
 
-    /**
-     * Vektoraddition.
-     * @param vector Summand
-     * @return Summe beider Vektoren.
-     */
-	Vector2D operator+(Vector2D vector);
+	// Casting-Operatoren
+	operator float* ();
 
-    /**
-     * Vektorsubtraktion
-     * @param vector Subtrahend.
-     * @return Differenz beider Vektoren.
-     */
-    Vector2D operator-(Vector2D vector);
+	// Arithmetische Operatoren
+	Vector2D operator + (const Vector2D& v) const;
+	Vector2D operator - (const Vector2D& v) const;
+	Vector2D operator - () const;
+	Vector2D operator * (const Vector2D& v) const;
+	Vector2D operator * (const float f) const;
+	Vector2D operator / (const Vector2D& v) const;
+	Vector2D operator / (const float f) const;
+	inline friend Vector2D operator * (const float f, const Vector2D& v)	{return Vector2D(v.x * f, v.y * f);}
 
-    /**
-     * Multiplikation von Vektor und reeler Zahl.
-     * @param num reele Zahl.
-     * @return Produkt.
-     */
-	Vector2D operator*(float num);
+	// Zuweisungsoperatoren
+	Vector2D operator = (const Vector2D& v);
+	Vector2D operator += (const Vector2D& v);
+	Vector2D operator -= (const Vector2D& v);
+	Vector2D operator *= (const Vector2D& v);
+	Vector2D operator *= (const float f);
+	Vector2D operator /= (const Vector2D& v);
+	Vector2D operator /= (const float f);
 
-    /**
-     * Division von Vektor und reeler Zahl.
-     * @param Divisor.
-     * @return Quotient.
-     */
-    Vector2D operator/(float num);
-
-    /**
-       * y Koordinate des Vektors
-       */
-    float y;
-
-    /**
-     * z Koordinate des Vektors
-     */
-    float x;
+	// Vergleichsoperatoren
+	bool operator == (const Vector2D& v) const;
+	bool operator != (const Vector2D& v) const;
 };
-#endif //VECTOR2D_H
+
+// ******************************************************************
+// Funktionen deklarieren
+float Vector2DLength(const Vector2D& v);
+float Vector2DLengthSq(const Vector2D& v);
+float Vector2DDot(const Vector2D& v1, const Vector2D& v2);
+float Vector2DAngle(const Vector2D& v1, const Vector2D& v2);
+Vector2D	Vector2DNormalize(const Vector2D& v);
+Vector2D	Vector2DNormalizeEx(const Vector2D& v);
+Vector2D	Vector2DInterpolateCoords(const Vector2D& v1, const Vector2D& v2, const float p);
+Vector2D	Vector2DInterpolateNormal(const Vector2D& v1, const Vector2D& v2, const float p);
+Vector2D	Vector2DMin(const Vector2D& v1, const Vector2D& v2);
+Vector2D	Vector2DMax(const Vector2D& v1, const Vector2D& v2);
+Vector2D	Vector2DRandom();
+//float FloatRandom(const float fMin, const float fMax);
+
+#endif //Vector2D_H

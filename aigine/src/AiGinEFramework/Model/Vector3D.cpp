@@ -1,102 +1,115 @@
-/* Game Engine Design 
- * Vector3D.cpp  
- */
-
 #include "Vector3D.h"
-#include <iostream>
-#include <math.h>
 
-using namespace std;
+// Konstruktoren
+Vector3D::Vector3D() {}
+Vector3D::Vector3D(const float f) : x(f), y(f), z(f) {}
+Vector3D::Vector3D(const float _x, const float _y, const float _z) : x(_x), y(_y), z(_z) {}
+Vector3D::Vector3D(const float* pfComponent) : x(pfComponent[0]), y(pfComponent[1]), z(pfComponent[2]) {}
 
-//____________________________________________________________________________
-Vector3D::Vector3D(float x, float y, float z){
-	this->x = x;
-	this->y = y;
-	this->z = z;
+// Casting-Operatoren
+Vector3D::operator float* () {
+	return (float*)(c);
 }
 
-//____________________________________________________________________________
-Vector3D Vector3D::operator+(Vector3D vVector)
-{
-	return Vector3D(vVector.x + this->x, vVector.y + this->y, vVector.z + this->z);
+// Arithmetische Operatoren
+Vector3D Vector3D::operator + (const Vector3D& v) const {
+	return Vector3D(x + v.x, y + v.y, z + v.z);
+}
+Vector3D Vector3D::operator - (const Vector3D& v) const {
+	return Vector3D(x - v.x, y - v.y, z - v.z);
+}
+Vector3D Vector3D::operator - () const {
+	return Vector3D(-x, -y, -z);
+}
+Vector3D Vector3D::operator * (const Vector3D& v) const {
+	return Vector3D(x * v.x, y * v.y, z * v.z);
+}
+Vector3D Vector3D::operator * (const float f) const {
+	return Vector3D(x * f, y * f, z * f);
+}
+Vector3D Vector3D::operator / (const Vector3D& v) const {
+	return Vector3D(x / v.x, y / v.y, z / v.z);
+}
+Vector3D Vector3D::operator / (const float f) const {
+	return Vector3D(x / f, y / f, z / f);
 }
 
-//____________________________________________________________________________
-Vector3D  Vector3D::operator-(Vector3D vVector)
-{
-	return Vector3D(this->x - vVector.x, this->y - vVector.y, this->z - vVector.z);
+// Zuweisungsoperatoren
+Vector3D Vector3D::operator = (const Vector3D& v) {
+	x = v.x; y = v.y; z = v.z; return *this;
 }
-	
-//____________________________________________________________________________
-Vector3D  Vector3D::operator*(float num)
-{
-	return Vector3D(this->x * num, this->y * num, this->z * num);
+Vector3D Vector3D::operator += (const Vector3D& v) {
+	x += v.x; y += v.y; z += v.z; return *this;
 }
-/**/
-//____________________________________________________________________________
-float Vector3D::skalarProdukt(Vector3D vector) {
-
-  cout << this->x << " * " << vector.x << " + " << endl;
-  cout << this->y << " * " << vector.y << " + " << endl;
-  cout << this->z << " * " << vector.z << "  " << endl;
-  return (this->x * vector.x) + (this->y * vector.y) + (this->z * vector.z);  
+Vector3D Vector3D::operator -= (const Vector3D& v) {
+	x -= v.x; y -= v.y; z -= v.z; return *this;
 }
-
-//____________________________________________________________________________
-Vector3D  Vector3D::operator/(float num)
-{
-	return Vector3D(this->x / num, this->y / num, this->z / num);
+Vector3D Vector3D::operator *= (const Vector3D& v) {
+	x *= v.x; y *= v.y; z *= v.z; return *this;
 }
-
-//____________________________________________________________________________
-Vector3D Vector3D::cross(Vector3D * vector1, Vector3D * vector2)
-{
-  Vector3D temp = Vector3D(0.0, 0.0, 0.0);
-  // bilde Vektorprodukt durch Berechnung der einzelnen Komponenten
-  temp.x = ((vector1->y * vector2->z) - (vector1->z * vector2->y));
-  temp.y = ((vector1->z * vector2->x) - (vector1->x * vector2->z));
-  temp.z = ((vector1->x * vector2->y) - (vector1->y * vector2->x));
-  return temp;
+Vector3D Vector3D::operator *= (const float f) {
+	x *= f; y *= f; z *= f; return *this;
 }
-
-//____________________________________________________________________________
-Vector3D Vector3D::getNormalVector(Vector3D vector)
-{
-    // Get the magnitude of our normal
-    float magn = magnitude(vector);
-
-    // Now that we have the magnitude, we can divide our vector by that magnitude.
-    // That will make our vector a total length of 1.
-    vector = vector / magn;
-
-    // Finally, return our normalized vector
-    return vector;
+Vector3D Vector3D::operator /= (const Vector3D& v) {
+	x /= v.x; y /= v.y; z /= v.z; return *this;
 }
-
-//____________________________________________________________________________
-float Vector3D::magnitude(Vector3D vector)
-{
-    // Here is the equation:  magnitude = sqrt(V.x^2 + V.y^2 + V.z^2) : Where V is the vector
-    return (float)sqrt((vector.x * vector.x) + (vector.y * vector.y) +
-       (vector.z * vector.z));
+Vector3D Vector3D::operator /= (const float f) {
+	x /= f; y /= f; z /= f; return *this;
 }
-
-
-//____________________________________________________________________________
-void Vector3D::print(){
+void Vector3D::print() {
 	cout << "x: " << this->x << "   y: " << this->y << "   z: " << this->z  << endl;
 }
-
-//____________________________________________________________________________
-void Vector3D::print(char* description){
+void Vector3D::print(char* description) {
 	cout << description;
 	print();
 }
 
-//____________________________________________________________________________
-Vector3D::Vector3D()
-{
-  this->x = 0.0;
-  this->y = 0.0;
-  this->z = 0.0;
+// Vergleichsoperatoren
+bool Vector3D::operator == (const Vector3D& v) const {
+	if(x != v.x) return false; if(y != v.y) return false; return z == v.z;
 }
+bool Vector3D::operator != (const Vector3D& v) const {
+	if(x != v.x) return true; if(y != v.y) return true; return z != v.z;
+}
+
+float Vector3DLength(const Vector3D& v) {
+	return sqrtf(v.x * v.x + v.y * v.y + v.z * v.z);
+}
+float Vector3DLengthSq(const Vector3D& v) {
+	return v.x * v.x + v.y * v.y + v.z * v.z;
+}
+float Vector3DDot(const Vector3D& v1, const Vector3D& v2) {
+	return v1.x * v2.x + v1.y * v2.y + v1.z * v2.z;
+}
+float Vector3DAngle(const Vector3D& v1, const Vector3D& v2) {
+	return acosf(Vector3DDot(Vector3DNormalizeEx(v1), Vector3DNormalizeEx(v2)));
+}
+Vector3D	Vector3DNormalize(const Vector3D& v) {
+	return v / sqrtf(v.x * v.x + v.y * v.y + v.z * v.z);
+}
+Vector3D	Vector3DNormalizeEx(const Vector3D& v) {
+	return v / (sqrtf(v.x * v.x + v.y * v.y + v.z * v.z) + 0.0001f);
+}
+Vector3D	Vector3DCross(const Vector3D& v1, const Vector3D& v2) {
+	return Vector3D(v1.y * v2.z - v1.z * v2.y, v1.z * v2.x - v1.x * v2.z, v1.x * v2.y - v1.y * v2.x);
+}
+Vector3D	Vector3DInterpolateCoords(const Vector3D& v1, const Vector3D& v2, const float p) {
+	return v1 + p * (v2 - v1);
+}
+Vector3D	Vector3DInterpolateNormal(const Vector3D& v1, const Vector3D& v2, const float p) {
+	return Vector3DNormalize(v1 + p * (v2 - v1));
+}
+Vector3D	Vector3DMin(const Vector3D& v1, const Vector3D& v2) {
+	return Vector3D(MIN(v1.x, v2.x), MIN(v1.y, v2.y), MIN(v1.z, v2.z));
+}
+Vector3D	Vector3DMax(const Vector3D& v1, const Vector3D& v2) {
+	return Vector3D(MAX(v1.x, v2.x), MAX(v1.y, v2.y), MAX(v1.z, v2.z));
+}
+Vector3D	Vector3DRandom() {
+	return Vector3DNormalizeEx(Vector3D(FloatRandom(-1.0f, 1.0f), FloatRandom(-1.0f, 1.0f), FloatRandom(-1.0f, 1.0f)));
+}
+/*
+float FloatRandom(const float fMin, const float fMax) {
+	return fMin + (fMax - fMin) * ((float)(rand() % 10001) / 10000.0f);
+}
+*/
