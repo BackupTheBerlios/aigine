@@ -1,4 +1,4 @@
-// Copyright MageLang Institute; Version $Id: ClassFileServer.java,v 1.3 2004/08/14 12:13:46 danny Exp $
+// Copyright MageLang Institute; Version $Id: ClassFileServer.java,v 1.4 2004/08/28 05:06:32 mr_nice Exp $
 
 /*
  * Copyright (c) 1996, 1996, 1997 Sun Microsystems, Inc. All Rights Reserved.
@@ -63,7 +63,7 @@ public class ClassFileServer extends ClassServer {
 	 */
 	public byte[] getBytes(String path)
 		throws IOException, ClassNotFoundException {
-		System.out.println("reading: " + path);
+		System.out.println("reading: " + path.replace('.', File.separatorChar)+ ".class");
 		File f =
 			new File(
 				classpath
@@ -73,7 +73,7 @@ public class ClassFileServer extends ClassServer {
 		int length = (int) (f.length());
 
 		if (length == 0) {
-			System.out.println("Zero length file");
+			System.out.println("Zero length file: "+ path);
 			throw new IOException("File length is zero: " + path);
 		} else {
 			FileInputStream fin = new FileInputStream(f);
