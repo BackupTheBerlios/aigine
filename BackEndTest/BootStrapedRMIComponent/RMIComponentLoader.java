@@ -1,11 +1,11 @@
 
-import java.io.FileInputStream;
+
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.net.MalformedURLException;
 import java.net.URL;
 import java.rmi.server.RMIClassLoader;
-import java.util.Properties;
+
 
 import interfaces.BootStrapedComponent;
 
@@ -42,18 +42,14 @@ public class RMIComponentLoader {
 	* den Zugriff auf den Klassenserver
 	* @see java.rmi.server.RMIClassLoader
 	 */
-	private URL url;
+	public URL url;
 
-	/**
-	 * Speicherung der gelesenen Properties fuer die
-	* Uebergabe an den Komponenten Thread.
-	 */
-	private Properties p;	
+
 	
 	/**
 	 * Name der zu verwendenen Property Datei.
 	 */
-	private static String PROPERTY_NAME;
+	private static String url_classServer;
 
 	/**
 	 * Name der zu ladenen Komponente.
@@ -83,14 +79,8 @@ public class RMIComponentLoader {
 			FileNotFoundException,
 			IOException {
 		System.out.println("=> RMIComponentLoader()");
-		
-		// Properties einlesen
-		p = new Properties();
-		FileInputStream fin = new FileInputStream(PROPERTY_NAME);			
-		p.load(fin);
-		System.out.println("geladene Properties:\n" + p);		
-		// URL lesen und Komponente laden
-		url = new URL(p.getProperty("codebase"));		
+		// uebergebenen URL lesen und Komponente laden vom Classserver laden
+		url = new URL(url_classServer);		
 		compClassName = "API.control.BootStrapedApplicationStarter";
 		
 		System.out.println("Asking for: " + url + " and " + compClassName);
@@ -107,7 +97,7 @@ public class RMIComponentLoader {
 
 		// Komponente initialisieren und starten
 		//component.run();
-		component.init(p);
+		component.init();
 	}
 
 	/**
@@ -118,11 +108,11 @@ public class RMIComponentLoader {
 	public static void main(String args[]) {
 		if (args.length < 1) {
 			System.out.println(
-				"Usage: java RMIComponentLoader PropertyFileName.prop [propName02.prop, propName03.prop ...]");
+				"Usage: java RMIComponentLoader ClassServerURL [e.g. http://localhost:2002/   ...]");
 			return;
 		}
 		
-		PROPERTY_NAME = args[0];
+    url_classServer = args[0];
 		
 		// SecurityManager setzen und RMIComponentLoader starten.
 		System.setSecurityManager(new RMIComponentBootstrapSecurityManager());
