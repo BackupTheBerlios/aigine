@@ -6,8 +6,6 @@
 #include <GL/glut.h>
 
 class SceneManagement;
-class Point3D;
-
 
 /**
  * "Keyboard" handelt die zugewiesenen Tastaturkommandos und für
@@ -31,7 +29,7 @@ public:
     /**
      * Funktion für OpenGL keyboard() Pointer.
      * Prüft welche Taste gedrückt wurde und für die zugewiesene
-	 * Methode auf.
+	   * Methode auf.
      */
     void keyAction(unsigned char key, int x, int y);    
 

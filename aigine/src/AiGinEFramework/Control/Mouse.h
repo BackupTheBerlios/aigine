@@ -3,7 +3,6 @@
 #ifndef MOUSE_H
 #define MOUSE_H
 
-#include <GL/glut.h>
 #include <iostream>
 using namespace std;
 
