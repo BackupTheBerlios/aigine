@@ -18,6 +18,8 @@ import API.model.AbstractDAO;
 import API.model.AbstractDTO;
 import API.model.RemoteObject;
 
+import org.postgresql.Driver;
+
 //import org.postgresql.jdbc3.Jdbc3PoolingDataSource;
 
 /**
@@ -32,6 +34,7 @@ import API.model.RemoteObject;
 
 public abstract class DbServer extends Server {
 	private Connection con = null ;
+	
 	final public int DUMMY_DAO = -1 ;
 //	private ArrayList theDAOs = new ArrayList() ;
 	private AbstractDAO[] theDAOs2 = null ;
@@ -52,6 +55,10 @@ public abstract class DbServer extends Server {
 		theDAOs.add()
 	} */
 	
+	/**
+	 * Diese Methode erzeugt ein AbstractDAO[] Array, welches die DbServer DAOs enthält.
+	 * Deren Konstruktoren muss jeweils die Connection übergeben werden!!!
+	 */
 	abstract protected AbstractDAO[] initDAOList() ;
 	abstract protected void initConnectionValues() ;
 	
@@ -69,7 +76,7 @@ public abstract class DbServer extends Server {
 				theDAO.insert(theDTO) ;
 			} catch (SQLException sqle) {
 				this.protokoll("Es ist eine SQLException bei INSERT aufgetreten:\n" +
-					sqle.getStackTrace()) ;
+					sqle.getMessage()) ;
 			}
 		}
 		return -1 ;
@@ -81,8 +88,8 @@ public abstract class DbServer extends Server {
 			try {
 				theDAO.update(theDTO) ;
 			} catch (SQLException sqle) {
-				this.protokoll("Es ist eine SQLException bei INSERT aufgetreten:\n" +
-					sqle.getStackTrace()) ;
+				this.protokoll("Es ist eine SQLException bei UPDATE aufgetreten:\n" +
+					sqle.getMessage()) ;
 			}
 		}
 		return -1 ;
@@ -96,7 +103,7 @@ public abstract class DbServer extends Server {
 				theDTOs = theDAO.loadList(parameter) ;
 			} catch (SQLException sqle) {
 				this.protokoll("Es ist eine SQLException bei loadList() aufgetreten:\n" +
-					sqle.getStackTrace()) ;
+					sqle.getMessage()) ;
 			}
 		}
 		return theDTOs ;
@@ -110,7 +117,7 @@ public abstract class DbServer extends Server {
 				theDTO = theDAO.load(parameter) ;
 			} catch (SQLException sqle) {
 				this.protokoll("Es ist eine SQLException bei load() aufgetreten:\n" +
-					sqle.getStackTrace()) ;
+					sqle.getMessage()) ;
 			}
 		}
 		return theDTO ;
@@ -131,8 +138,7 @@ public abstract class DbServer extends Server {
 		} catch (ClassNotFoundException cnfe) {
 //			hier Protokollfunktion verwenden
 			this.protokoll("--- Die JDBC-Treiberklasse des Datenbankservers konnte" +
-			" nicht gefunden werden!!!") ;
-			cnfe.printStackTrace() ;
+			" nicht gefunden werden!!!\n" + cnfe.getStackTrace()) ;
 			System.exit(5) ;
 		}
 		
@@ -144,8 +150,6 @@ public abstract class DbServer extends Server {
 			this.protokoll("--- Der Aufbau einer Connection ist mit folgender SQLException gescheitert:" +				sqle.getStackTrace() ) ;
 		}
 	}
-
-	
 
 	/**
 	 * @throws RemoteException
@@ -159,6 +163,28 @@ public abstract class DbServer extends Server {
 		this.theDAOs2 = this.initDAOList() ;
 //		this.initConnection("portaldb", "postgres", "postgres") ;
 	}
+	
+	/**
+	 * @param string
+	 */
+	public void setDbname(String string) {
+		dbname = string;
+	}
+
+	/**
+	 * @param string
+	 */
+	public void setDbpasswd(String string) {
+		dbpasswd = string;
+	}
+
+	/**
+	 * @param string
+	 */
+	public void setDbuser(String string) {
+		dbuser = string;
+	}
+	
 
 	/* Die nachfolgenden Methoden sind nur die notwendigen abstrakten Implementierungen,
 	 * die sich aus der Abstammung von Server ergeben. Sie werden weitgehend rausfallen. */
@@ -200,27 +226,18 @@ public abstract class DbServer extends Server {
 	public synchronized String register(RemoteObject remoteObject) {
 		return super.registerComponent(remoteObject);
 	}
-	
-	
 	/**
-	 * @param string
+	 * @return
 	 */
-	public void setDbname(String string) {
-		dbname = string;
+	public Connection getCon() {
+		return con;
 	}
 
 	/**
-	 * @param string
+	 * @param connection
 	 */
-	public void setDbpasswd(String string) {
-		dbpasswd = string;
-	}
-
-	/**
-	 * @param string
-	 */
-	public void setDbuser(String string) {
-		dbuser = string;
+	public void setCon(Connection connection) {
+		con = connection;
 	}
 
 }

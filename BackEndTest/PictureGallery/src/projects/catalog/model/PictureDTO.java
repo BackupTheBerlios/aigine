@@ -17,6 +17,7 @@ import API.model.AbstractDTO;
  */
 public class PictureDTO extends AbstractDTO implements Serializable {
 	
+	private String user_id ;
 	private String titel ;
 	private String comment ;
 	private Date created ;
@@ -26,7 +27,9 @@ public class PictureDTO extends AbstractDTO implements Serializable {
 		
 	}
 	
-	public PictureDTO(String theTitel, String theComment, Date theCreateDate, Date theUploadDate) {
+	public PictureDTO(String theID, String userID, String theTitel, String theComment, Date theCreateDate, Date theUploadDate) {
+		this.setID(theID) ;
+		this.user_id = userID ;
 		this.titel = theTitel ;
 		this.comment = theComment ;
 		this.created = theCreateDate ;
@@ -87,6 +90,20 @@ public class PictureDTO extends AbstractDTO implements Serializable {
 	 */
 	public void setUpload(Date date) {
 		upload = date;
+	}
+
+	/**
+	 * @return
+	 */
+	public String getUser_id() {
+		return user_id;
+	}
+
+	/**
+	 * @param string
+	 */
+	public void setUser_id(String string) {
+		user_id = string;
 	}
 
 }

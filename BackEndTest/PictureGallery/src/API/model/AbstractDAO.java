@@ -14,16 +14,12 @@ import java.util.Properties;
 
 /**
  * @author drichter
- *
+ * TODO Die Methode getRowNames() muss mehr als nur eine Kommagetrennte Liste liefern. Besser ist ein Array von Objekten, die neben ihrem
+ * Namen auch ihren Typ wissen.
  * Diese Klasse stellt die Grundlage für die konkreten DAO-Klassen dar.
  */
 public abstract class AbstractDAO {
 	Connection con = null ;
-
-/*	final public int EQUAL = 100 ;
-	final public int LIKE = 101 ;
-	final public int DIFF = 102 ;
-	final public int IN = 103 ; */
 
 	protected final String SQL_SELECT = "select * from " + getTableName();
 
@@ -87,7 +83,10 @@ public abstract class AbstractDAO {
 	}
 	
 	protected String propToSQL(Properties props) {
-		StringBuffer theBuffer = new StringBuffer("") ;
+		if (props.size() == 0)
+			return "" ;
+		
+		StringBuffer theBuffer = new StringBuffer(" WHERE ") ;
 		String keywOp = null ;
 		String op = null ;
 		String[] keyParts = null ; 
@@ -95,6 +94,7 @@ public abstract class AbstractDAO {
 		
 		while (enum1.hasMoreElements()) {
 			keywOp = new String((String) enum1.nextElement()) ;
+			System.out.println("  > keywOp: " + keywOp) ;
 			keyParts = keywOp.split("_") ;
 			op = translateOperation(keyParts[1]) ;
 			theBuffer.append(translateVarToCol(keyParts[0]) + op) ;
@@ -110,10 +110,16 @@ public abstract class AbstractDAO {
 	}
 	
 	protected ResultSet basicLoad(Properties props) throws SQLException {
-		StringBuffer sb = new StringBuffer(SQL_SELECT + " WHERE " + this.propToSQL(props) + " ;") ;
+		StringBuffer sb = new StringBuffer(SQL_SELECT + this.propToSQL(props) + " ;") ;
 		System.out.println("Dies ist mein fertiger SQL-Code: \n------------\t" + sb) ;
+/*		if (con == null)
+			System.out.println("\n--- Die Connection ist null!\n") ; */
 		Statement stmnt = this.con.createStatement() ;
 		ResultSet rs = stmnt.executeQuery(sb.toString()) ;
+/*		if (rs != null)
+			System.out.println("\n+++ Das ResultSet ist nicht leer!\n") ;
+		else
+			System.out.println("\n+++ Das ResultSet ist leer!\n") ; */
 		return rs ;
 	}
 	

@@ -13,7 +13,7 @@ import java.util.Hashtable;
 
 import API.control.DbServer;
 import projects.catalog.db.*;
-import projects.catalog.model.Category;
+import projects.catalog.model.CategoryDTO;
 import projects.catalog.model.PictureDTO;
 import projects.interfaces.CDbServerHandle;
 import API.interfaces.DbServerHandle;
@@ -128,7 +128,7 @@ public class CDBServerImpl extends DbServer implements CDbServerHandle {
 	 */
 	protected AbstractDAO[] initDAOList() {
 		ArrayList theList = new ArrayList() ;
-		PictureDAO theDao = new PictureDAO() ;
+		PictureDAO theDao = new PictureDAO(this.getCon()) ;
 		theList.add(theDao) ; // PICTURE = 0 
 		return (AbstractDAO[]) theList.toArray(new AbstractDAO[theList.size()]) ;
 	}

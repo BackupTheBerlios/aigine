@@ -14,19 +14,19 @@ import java.io.Serializable;
  * Komponenten mit den DBServer-Komponenten
  */
 public class AbstractDTO implements Serializable {
-	protected long ID = 0 ;
+	protected String ID = null ;
 	
 	/**
 	 * @return
 	 */
-	public long getID() {
+	public String getID() {
 		return ID;
 	}
 
 	/**
 	 * @param l
 	 */
-	public void setID(long l) {
-		ID = l;
+	public void setID(String theID) {
+		ID = theID;
 	}
 }

@@ -232,7 +232,7 @@ public class CProjectServerImpl extends Server implements CProjectServer {
 		if (dbserver != null) {
 			try {
 				Properties props = new Properties() ;
-				// TODO byDR Der Fall der leeren Property-Liste ist noch nicht implementiert
+				
 				pictures = (PictureDTO[]) dbserver.loadList(CDbServerHandle.PICTURE, props) ;
 				//dbresult = dbserver.getPictures("Pferde", 1, 0) ;
 			} catch (RemoteException re) {
@@ -347,7 +347,6 @@ public class CProjectServerImpl extends Server implements CProjectServer {
 			tempbc.addAttribute("class","wichtig") ;
 			tempbc.addAttribute("class","wichtig") ;
 			bcSubEnde1.setSubContent(tempbc) ;
-
 			
 //			bcEnde = tempbc ;
 			
@@ -355,13 +354,11 @@ public class CProjectServerImpl extends Server implements CProjectServer {
 			result.setTitle("Hauptbereich") ;
 			result.setStyle("main") ;
 			
-	//		<a href=\"catalog.html?block=kategorien&srv=CProjectServer&op=toplist\">test</a>
 		} else if (op.indexOf("showimages") == 0) {
 			result = showimages(requestProps) ;
 		} else if (op.indexOf("showimage") == 0) {
 			result = showimage(requestProps) ;
 		} else { 
-			WebRequestError = new String("unexpected Operation") ;
 			result = new Block("unexpected Block-Operation") ;
 			result.setTitle("internal Error") ;
 		}

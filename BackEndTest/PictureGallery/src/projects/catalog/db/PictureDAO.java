@@ -5,6 +5,7 @@
  * */
 package projects.catalog.db;
 
+import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
@@ -21,7 +22,11 @@ import API.model.AbstractDTO;
  * 
  */
 public class PictureDAO extends AbstractDAO {
-
+	
+	public PictureDAO (Connection con) {
+		super (con) ;
+	}
+	
 	/* (non-Javadoc)
 	 * @see API.model.AbstractDAO#getTableName()
 	 */
@@ -33,7 +38,7 @@ public class PictureDAO extends AbstractDAO {
 	 * @see API.model.AbstractDAO#getRowNames()
 	 */
 	protected String getRowNames() {
-		return "ID, titel, comment, created, upload" ;
+		return "ID, user_id, titel, thecomment, created, upload" ;
 	}
 	
 	/**
@@ -45,7 +50,8 @@ public class PictureDAO extends AbstractDAO {
 	private PictureDTO[] generateDTO(ResultSet rs) throws SQLException {
 		ArrayList theDTOs = new ArrayList() ;
 		while (rs.next()) {
-			theDTOs.add(new PictureDTO(rs.getString("titel"), rs.getString("comment"), rs.getDate("created"), rs.getDate("upload"))) ;
+//			System.out.println("  > Ich verarbeite nun ein ResultSet!!") ;
+			theDTOs.add(new PictureDTO(rs.getString("ID"), rs.getString("user_id"), rs.getString("titel"), rs.getString("thecomment"), rs.getDate("created"), rs.getDate("upload"))) ;
 		}
 		if (theDTOs.size() < 1) {
 			return null ;
