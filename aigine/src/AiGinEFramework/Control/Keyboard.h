@@ -2,10 +2,14 @@
 
 #ifndef KEYBOARD_H
 #define KEYBOARD_H
+#pragma warning (disable: 4786)
 
 #include <GL/glut.h>
+#include "../Utils/Comparator.h"
+#include <map>
+using namespace std;
 
-class SceneManagement;
+//class SceneManagement;
 
 /**
  * "Keyboard" handelt die zugewiesenen Tastaturkommandos und für
@@ -24,7 +28,7 @@ public:
 	/**
 	 * Konstruktor
 	 */
-	Keyboard(SceneManagement* sceneMan);
+	Keyboard(void (*func)());
 
     /**
      * Funktion für OpenGL keyboard() Pointer.
@@ -32,11 +36,15 @@ public:
 	   * Methode auf.
      */
     void keyAction(unsigned char key, int x, int y);
-
+	void keyActionUp(unsigned char key, int x, int y);
+	bool isKeyPressed(unsigned char key);
+	bool keysPressed();
 private:
 	/**
 	 * Zugewiesenes "SceneManagment".
 	 */
-	SceneManagement* sceneMan;
+	int keyCount;
+	void (*function)();
+	map<char , int> keys;
 };
 #endif //KEYBOARD_H
