@@ -8,6 +8,7 @@
 
 #include "../Model/Translation3D.h"
 #include "../Model/Rotation3D.h"
+#include "../Model/Scale3D.h"
 class Renderer;
 class MeshList;
 
@@ -24,6 +25,9 @@ class Mesh;
  * Werte des Shaders, und rendert dann die
  * einzelnen Meshes (wenn benötigt auch öfter als einmal).
  * @stereotype interface
+ * @author Tobias Harpering
+ * @author Danny Graef
+ * @author Frank Otto
  */
 
 class AiGinEObject
@@ -38,6 +42,10 @@ public:
     Rotation3D & getRotation();
 
     void setRotation(Rotation3D rotation);
+
+    Scale3D& getScale();
+
+    void setScale(Scale3D scale);
 
 private:
 
@@ -69,6 +77,7 @@ private:
      * @clientCardinality 1
      */
     Renderer * lnkRenderer;
+    Scale3D scale;
 };
 
 #endif //AIGINEOBJECT_H
