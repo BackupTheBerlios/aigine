@@ -14,6 +14,7 @@ import java.rmi.server.RMIClassLoader;
  * die RMI Kommunikationseinstellungen an.
  * @author danny
  * @since 05.05.2004
+ * @modified Franky
  *
  * @version 0.90
  * - Umstellung auf eine zu uebergebene Property Datei, die alle Informationen
@@ -45,9 +46,14 @@ public class RMIComponentLoader {
 
 	
 	/**
-	 * Name der zu verwendenen Property Datei.
+	 * url vom ClassServer.
 	 */
 	private static String url_classServer;
+	
+	/**
+	 * url vom jconfigserver.
+	 */
+	private static String url_JconfigServer;
 
 	/**
 	 * Name der zu ladenen Komponente.
@@ -68,7 +74,7 @@ public class RMIComponentLoader {
 	 * Konstruktor
 	 */
 	// TODO Verwendung einer Konfigurationsoberflche fr die Einstellung aller bentigten Parameter.
-	public RMIComponentLoader()
+	public RMIComponentLoader(String args[])
 		throws
 			MalformedURLException,
 			ClassNotFoundException,
@@ -77,6 +83,10 @@ public class RMIComponentLoader {
 			FileNotFoundException,
 			IOException {
 		System.out.println("=> RMIComponentLoader()");
+		
+		//		setzen der server Adressen
+		setClassServerFromArgs(args);
+		setJconfigServerFromArgs(args);
 		// uebergebenen URL lesen und Komponente laden vom Classserver laden
 		url = new URL(url_classServer);		
 		compClassName = "API.control.BootStrapedApplicationStarter";
@@ -98,24 +108,66 @@ public class RMIComponentLoader {
 		component.init();
 	}
 
+	
+	private void setClassServerFromArgs(String[] args) {
+		String c_url = getArgument(args,"-classServer");
+		if ( c_url != null ) {
+			url_classServer = c_url;
+		}
+		else {
+			//documentRoot = System.getProperty("java.io.tmpdir");
+			url_classServer = "http://localhost:2002/";
+		}
+	}
+    
+	private void setJconfigServerFromArgs(String[] args) {
+		String c_url = getArgument(args,"-jconfigServer");
+		if ( c_url != null ) {
+			try {
+				url_JconfigServer = c_url;
+				//port = Integer.parseInt(myPort);
+			}
+			catch (Exception e) {
+               }
+		}
+	}
+    /**
+     * holt uebergebenes Parameter aus Argument Array . 
+     * In der Form "-param Argument"
+     * @param args	aus main
+     * @param param	welchen parameter 
+     * @return Parameter
+     */
+    private String getArgument(String[] args,String param) {
+		String ret = null;
+		for ( int i = 0; i < args.length;i++) {
+			if ( args[i].equals(param)) {
+				if ( (i+1) <= args.length ) {
+					ret = args[i+1];
+				}
+			}
+		}
+		return ret;
+	}
+	
+	
+
 	/**
 	 * @param PropertyFileName
 	 */
 	// TODO Prfung der Parameter und Help Aufruf
 	// TODO Parameter fr GUI oder Shell Modus
 	public static void main(String args[]) {
-		if (args.length < 1) {
+		if (args.length < 2) {
 			System.out.println(
 				"Usage: java RMIComponentLoader ClassServerURL [e.g. http://localhost:2002/   ...]");
 			return;
 		}
-		
-    url_classServer = args[0];
-		
 		// SecurityManager setzen und RMIComponentLoader starten.
 		System.setSecurityManager(new RMIComponentBootstrapSecurityManager());
 		try {
-			rcl = new RMIComponentLoader();
+			rcl = new RMIComponentLoader(args);
+			
 		} catch (MalformedURLException e) {
 			e.printStackTrace();
 			System.out.println(
