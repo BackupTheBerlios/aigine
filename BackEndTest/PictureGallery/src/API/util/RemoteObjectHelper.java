@@ -44,16 +44,14 @@ public class RemoteObjectHelper {
 			ro.setManager(configuration.getProperty("manager","",category));
 			ro.setManagerName(configuration.getProperty("managerName","",category));
 //		}
-		
-    System.out.println("<= RemoteObjectHelper() > " + this);
-
+	System.out.println("<= RemoteObjectHelper() > " + this);
 	}
   /**
    * 
 	 * @return Konfiguriertes RemoteObject
 	 */
 	public RemoteObject getConfiguratedRemoteObject(){
-    return ro;
+	return ro;
   }
 
 
