@@ -30,10 +30,6 @@ public:
 
     void draw();
 
-    Object3DS * getTmpTestObject();
-
- //   void setTmpTestObject(Object3DS * tmpTestObject);
-
     void drawSceneGraph(AiGinEObject* obj);
 	
 	void printGraph();

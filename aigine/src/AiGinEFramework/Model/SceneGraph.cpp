@@ -15,43 +15,16 @@ using namespace std;
 SceneGraph::SceneGraph() : Tree() {
 }
 
-void SceneGraph::draw()
-{
+void SceneGraph::draw() {
 
    // TODO :: AiObjectTree abarbeiten und die einzelnen Objekte ausgeben.
 	drawSceneGraph((AiGinEObject*)this->getRootKnot());
-/*
-	glPushMatrix();        
-      glTranslatef(0.0, 0.0, 0.0);
-      this->tmpTestObject->renderObject();
-	  //glColor3f (1.0, 0.0, 0.0); // setzt die Farbe auf weiss
-	  //glutSolidTeapot(1.0);
-   glPopMatrix();
-
-*/
-  // glutSwapBuffers(); // Tauschen der Bildspeicher - for double buffer
-
 }
-void SceneGraph::addObject(AiGinEObject* object){}
 
-Object3DS* SceneGraph::getTmpTestObject(){ return tmpTestObject; }
+void SceneGraph::addObject(AiGinEObject* object) {
+}
 
-
-
-
-/*
-void SceneGraph::setTmpTestObject(Object3DS* tmpTestObject){ 
-		// Chrome Shader : TODO : Wenn das AiGinEObject ferrtig ist, muss das in den Shader
-						glBindTexture(GL_TEXTURE_2D, tmpTestObject->getTextureID(0));
-						glTexGenf(GL_S, GL_TEXTURE_GEN_MODE, GL_SPHERE_MAP);
-						glTexGenf(GL_T, GL_TEXTURE_GEN_MODE, GL_SPHERE_MAP);
-						glEnable(GL_TEXTURE_GEN_S);     // Enable spherical
-						glEnable(GL_TEXTURE_GEN_T);     // Environment Mapping
-
-	this->tmpTestObject = tmpTestObject; }
-*/
-
-bool SceneGraph::removeObject(AiGinEObject* object){
+bool SceneGraph::removeObject(AiGinEObject* object) {
 	return false;
 }
 
@@ -59,12 +32,12 @@ void SceneGraph::addRoot(AiGinEObject* rootObject) {
 	this->setRoot(rootObject);
 }
 
-bool SceneGraph::addChild(AiGinEObject* parentObject, AiGinEObject* childObject){
+bool SceneGraph::addChild(AiGinEObject* parentObject, AiGinEObject* childObject) {
 	this->addKnotRight(parentObject, childObject);
 	return true;
 }
 
-bool SceneGraph::addNext(AiGinEObject* parentObject, AiGinEObject* nextObject){
+bool SceneGraph::addNext(AiGinEObject* parentObject, AiGinEObject* nextObject) {
 	this->addKnotLeft(parentObject, nextObject);
 	return false;
 }
@@ -72,9 +45,6 @@ bool SceneGraph::addNext(AiGinEObject* parentObject, AiGinEObject* nextObject){
 void SceneGraph::drawSceneGraph(AiGinEObject * obj) {
 	if(obj == NULL) return;
 	glPushMatrix();
-	//(AiGinEObject(k->obj))->getTranslation();
-	//k->obj->getRotation()
-	//k->obj->draw();
 	
 	Translation3D * trans = obj->getTranslation();
 	glTranslatef(trans->x,trans->y,trans->z);
@@ -88,7 +58,6 @@ void SceneGraph::drawSceneGraph(AiGinEObject * obj) {
 
 	obj->display();
 
-//	((ageObject3DS*)obj)->display();
 	glPopMatrix();
 
 	if(obj->right != NULL) {
@@ -99,7 +68,6 @@ void SceneGraph::drawSceneGraph(AiGinEObject * obj) {
 		this->drawSceneGraph((AiGinEObject*)(obj->left));
 	}
 }
-
 
 void SceneGraph::printGraph() {
 	printSceneGraph((AiGinEObject*)this->getRootKnot(), "");
@@ -116,10 +84,8 @@ void SceneGraph::printSceneGraph(AiGinEObject* obj, string tabs) {
 	if(obj->left != NULL) {
 		this->printSceneGraph((AiGinEObject*)(obj->left), tabs);
 	}
-
 }
 
-Knot* SceneGraph::findObject(AiGinEObject* obj){
+Knot* SceneGraph::findObject(AiGinEObject* obj) {
 	return this->root; ;
 }
-
