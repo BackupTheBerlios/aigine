@@ -40,14 +40,10 @@ public class VTClientImpl implements VTClient {
 	public void init(RemoteObject compProps, ServerHandle server) {
 		System.out.println("=> VTClientImpl.init(" +			"RemoteObjectProperties " + compProps + " , Object" + server);
 		VTServer s = (VTServer) server;
-		
-		System.out.println(
-			"\tVTClientImpl.init() service inhalt: " + compProps);
+
 		frame.setTitle(compProps.getCompName());
 		setServerGrap(s);
-		System.out.println(
-			"\t Client bei Server regestriert "
-				+ "---------------------Allet schick!!!! HELDEN!!!");
+
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.getContentPane().add(statuslabel, BorderLayout.SOUTH);
 		
