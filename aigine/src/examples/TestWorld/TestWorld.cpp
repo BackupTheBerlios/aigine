@@ -47,6 +47,7 @@ void keyboard(unsigned char key, int x, int y)
 
 void timerFunc(int ms) {
 	robi->animRobot();
+	sm->display();
 	glutTimerFunc(ms,timerFunc,ms);
 }
 
@@ -63,38 +64,6 @@ int main(int argc, char** argv)
 	robi = new robot(sm);
 	robi->drawRobot();
 	sm->printGraph();
-
-
-
-/*	
-	//AiGinEObject * root = sm->addObject3DS("teekanne.3DS");
-
-	//ageObject3DS* rootGelenk = new ageObject3DS("rootGelenk.3DS");
-	AiGinEObject * root = sm->addObject3DS("rootGelenk.3DS");
-	root->setScale(new Scale3D(0.03,0.03,0.03));
-	root->setTranslation(new Translation3D(0,0,0));
-
-	AiGinEObject * arm01 = sm->addObject3DS("robot01.3DS",root,"child");
-	arm01->setTranslation(new Translation3D(0,1,0));
-	arm01->setScale( new Scale3D(0.03,0.03,0.03));
-
-	AiGinEObject * gelenk01 = sm->addObject3DS("gelenk01.3DS",arm01,"child");
-	gelenk01->setTranslation(new Translation3D(0,-0.5,0));
-	gelenk01->setScale( new Scale3D(0.007,0.007,0.007));
-	
-	AiGinEObject * arm02 = sm->addObject3DS("robot02.3DS",gelenk01,"child");
-	arm02->setTranslation(new Translation3D(0,2.2,0));
-	arm02->setScale( new Scale3D(0.03,0.03,0.03));
- /*   
-	AiGinEObject * gelenk02 = sm->addObject3DS("gelenk02.3DS",arm02,"child");
-	gelenk02->setTranslation(new Translation3D(0,-50,0));
-	gelenk02->setScale( new Scale3D(0.25,0.25,0.25));
-    
-	AiGinEObject * arm03 = sm->addObject3DS("robot03.3DS",gelenk02,"child");
-	arm03->setTranslation(new Translation3D(0,105,0));
-	arm03->setScale( new Scale3D(4,4,4));
-/**/
-
 	
 	// ... weitere Objekte laden
 	
