@@ -9,10 +9,12 @@
 #define TB_RAD_TO_DEG(x)		((x) * 57.295779513082320876798154814105f)		// Bogenmaß -> Grad
 
 #include <Math.h>
+#include <iostream>
+using namespace std;
 
 class Matrix4x4  
 {
-private:
+public:
 	union {
 		struct {
 			float	m11, m12, m13, m14,	// Elemente der Matrix
@@ -24,7 +26,6 @@ private:
 		float		n[16];				// Eindimensionales Array der Elemente
 	};	
 
-public:
 	Matrix4x4();
 	virtual ~Matrix4x4();
 	Matrix4x4(	float _m11, float _m12, float _m13, float _m14,
@@ -42,7 +43,7 @@ public:
 	Matrix4x4 operator - () const;
 	Matrix4x4 operator * (const Matrix4x4& m) const;
 	Matrix4x4 operator * (const float f) const;
-//	Matrix4x4 operator / (const Matrix4x4& m) const;
+	Matrix4x4 operator / (const Matrix4x4& m) const;
 	Matrix4x4 operator / (const float f) const;
 //	Matrix4x4 operator * (const float f, const Matrix4x4& m);
 
@@ -58,6 +59,9 @@ public:
 	// Vergleichsoperatoren
 	bool operator == (const Matrix4x4& m) const;
 	bool operator != (const Matrix4x4& m) const;
+
+
+};
 
 	Matrix4x4	Matrix4x4Identity();
 	//{return Matrix4x4(1.0f, 0.0f, 0.0f, 0.0f, 0.0f, 1.0f, 0.0f, 0.0f, 0.0f, 0.0f, 1.0f, 0.0f, 0.0f, 0.0f, 0.0f, 1.0f);}	// Identitätsmatrix liefern
@@ -76,6 +80,11 @@ public:
 //	Matrix4x4	Matrix4x4Camera(const Vector3D& vPos, const Vector3D& vLookAt, const Vector3D& vUp = Vector3D(0.0f, 1.0f, 0.0f));					// Kameramatrix erzeugen
 	Matrix4x4	Matrix4x4ToTex2DMatrix(const Matrix4x4& m);																								// In Texturmatrix umwandeln
 
-};
+
+	float Matrix2x2Det(Matrix4x4 m2x2);
+	float Matrix3x3Det(Matrix4x4 m3x3);
+//	float Matrix4x4Det(Matrix4x4 m4x4);
+	Matrix4x4 buildSubMatrix2x2(Matrix4x4 m3x3, int i, int k);
+	Matrix4x4 buildSubMatrix3x3(Matrix4x4 m4x4, int i, int k);
 
 #endif //MATRIX4X4_H

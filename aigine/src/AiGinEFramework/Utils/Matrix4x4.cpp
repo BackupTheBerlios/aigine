@@ -9,6 +9,10 @@
 //////////////////////////////////////////////////////////////////////
 
 Matrix4x4::Matrix4x4() {
+	this->m11 = 0.0; this->m12 = 0.0; this->m13 = 0.0; this->m14 = 0.0; 
+	this->m21 = 0.0; this->m22 = 0.0; this->m23 = 0.0; this->m24 = 0.0; 
+	this->m31 = 0.0; this->m32 = 0.0; this->m33 = 0.0; this->m34 = 0.0; 
+	this->m41 = 0.0; this->m42 = 0.0; this->m43 = 0.0; this->m44 = 0.0; 
 }
 
 Matrix4x4::~Matrix4x4() {
@@ -65,12 +69,11 @@ Matrix4x4 Matrix4x4::operator * (const float f) const {
 		m31 * f, m32 * f, m33 * f, m34 * f,
 		m41 * f, m42 * f, m43 * f, m44 * f);
 }
-/*
+
 Matrix4x4 Matrix4x4::operator / (const Matrix4x4& m) const {
-//	return Matrix4x4Invert(m);
-//return *this * Matrix4x4Invert(m);
+	return *this * Matrix4x4Invert(m);
 }
-/**/
+
 Matrix4x4 Matrix4x4::operator / (const float f) const {
 	return Matrix4x4(m11 / f, m12 / f, m13 / f, m14 / f,
 		m21 / f, m22 / f, m23 / f, m24 / f,
@@ -165,12 +168,19 @@ bool Matrix4x4::operator != (const Matrix4x4& m) const {
 	return m44 != m.m44;
 }
 
-Matrix4x4 Matrix4x4::Matrix4x4Identity() {
+
+
+
+
+//Hilfsfunktionen
+
+
+Matrix4x4 Matrix4x4Identity() {
 	return Matrix4x4(1.0f, 0.0f, 0.0f, 0.0f, 0.0f, 1.0f, 0.0f, 0.0f, 0.0f, 0.0f, 1.0f, 0.0f, 0.0f, 0.0f, 0.0f, 1.0f);
 }
-//	Matrix4x4 Matrix4x4::Matrix4x4Translation(const Vector3D& v) {}
+//	Matrix4x4 Matrix4x4Translation(const Vector3D& v) {}
 
-Matrix4x4	Matrix4x4::Matrix4x4RotationX(const float f) {
+Matrix4x4	Matrix4x4RotationX(const float f) {
 	Matrix4x4 mResult;
 	
 	// Rotationsmatrix berechnen
@@ -185,7 +195,7 @@ Matrix4x4	Matrix4x4::Matrix4x4RotationX(const float f) {
 	
 	return mResult;
 }
-Matrix4x4	Matrix4x4::Matrix4x4RotationY(const float f) {
+Matrix4x4	Matrix4x4RotationY(const float f) {
 	Matrix4x4 mResult;
 	
 	// Rotationsmatrix berechnen
@@ -200,7 +210,7 @@ Matrix4x4	Matrix4x4::Matrix4x4RotationY(const float f) {
 	
 	return mResult;
 }
-Matrix4x4	Matrix4x4::Matrix4x4RotationZ(const float f) {
+Matrix4x4	Matrix4x4RotationZ(const float f) {
 	Matrix4x4 mResult;
 	
 	// Rotationsmatrix berechnen
@@ -214,18 +224,72 @@ Matrix4x4	Matrix4x4::Matrix4x4RotationZ(const float f) {
 	
 	return mResult;
 }
-Matrix4x4 Matrix4x4::Matrix4x4Rotation(const float x, const float y, const float z) {
+Matrix4x4 Matrix4x4Rotation(const float x, const float y, const float z) {
 	return Matrix4x4RotationZ(z) * Matrix4x4RotationX(x) * Matrix4x4RotationY(y);
 }
-//	Matrix4x4	Matrix4x4::Matrix4x4RotationAxis(const Vector3D& v, const float f) {}
-//	Matrix4x4	Matrix4x4::Matrix4x4Scaling(const Vector3D& v);																									// Skalierungsmatrix berechnen
-//	Matrix4x4	Matrix4x4::Matrix4x4Axes(const Vector3D& vXAxis, const Vector3D& vYAxis, const Vector3D& vZAxis) {}
-float Matrix4x4::Matrix4x4Det(const Matrix4x4& m) {
-	return	m.m11 * (m.m22 * m.m33 - m.m23 * m.m32) -
-		m.m12 * (m.m21 * m.m33 - m.m23 * m.m31) +
-		m.m13 * (m.m21 * m.m32 - m.m22 * m.m31);
+//	Matrix4x4	Matrix4x4RotationAxis(const Vector3D& v, const float f) {}
+//	Matrix4x4	Matrix4x4Scaling(const Vector3D& v);																									// Skalierungsmatrix berechnen
+//	Matrix4x4	Matrix4x4Axes(const Vector3D& vXAxis, const Vector3D& vYAxis, const Vector3D& vZAxis) {}
+
+float Matrix2x2Det(Matrix4x4 m2x2) {
+	return 
+		m2x2.m11 * m2x2.m22 
+	-	m2x2.m12 * m2x2.m21;
 }
-Matrix4x4 Matrix4x4::Matrix4x4Invert(const Matrix4x4& m) {
+
+float Matrix3x3Det(Matrix4x4 m3x3) {
+	return
+		m3x3.m11 * Matrix2x2Det(buildSubMatrix2x2(m3x3,0,0))
+	-	m3x3.m12 * Matrix2x2Det(buildSubMatrix2x2(m3x3,0,1))
+	+	m3x3.m13 * Matrix2x2Det(buildSubMatrix2x2(m3x3,0,2));
+
+}
+
+float Matrix4x4Det(const Matrix4x4& m4x4) {
+	return 
+		m4x4.m11 * Matrix3x3Det(buildSubMatrix3x3(m4x4,0, 0))
+	-	m4x4.m12 * Matrix3x3Det(buildSubMatrix3x3(m4x4,0, 1))
+	+	m4x4.m13 * Matrix3x3Det(buildSubMatrix3x3(m4x4,0, 2))
+	-	m4x4.m14 * Matrix3x3Det(buildSubMatrix3x3(m4x4,0, 3));
+}
+
+Matrix4x4 buildSubMatrix2x2(Matrix4x4 m3x3, int i, int k) {
+	Matrix4x4 m2x2;
+	int devi = 0, devk = 0;
+	for(int j=0; j<2; j++) {
+		if(j == i) {
+			devi = 1;
+		}
+		for(int l=0; l<2; l++) {
+			if(l == k) {
+				devk = 1;
+			}
+			m2x2.m[j][l] = m3x3.m[j+devi][l+devk];
+		}
+		devk = 0;
+	}
+	return m2x2;
+}
+
+Matrix4x4 buildSubMatrix3x3(Matrix4x4 m4x4, int i, int k) {
+	Matrix4x4 m3x3;
+	int devi = 0, devk = 0;
+	for(int j=0; j<3; j++) {
+		if(j == i) {
+			devi = 1;
+		}
+		for(int l=0; l<3; l++) {
+			if(l == k) {
+				devk = 1;
+			}
+			m3x3.m[j][l] = m4x4.m[j+devi][l+devk];
+		}
+		devk = 0;
+	}
+	return m3x3;
+}
+
+Matrix4x4 Matrix4x4Invert(const Matrix4x4& m) {
 	// Determinante berechnen
 	float fInvDet(Matrix4x4Det(m));
 	if(fInvDet == 0.0f) return Matrix4x4Identity();
@@ -233,26 +297,29 @@ Matrix4x4 Matrix4x4::Matrix4x4Invert(const Matrix4x4& m) {
 	
 	// Invertierte Matrix berechnen
 	Matrix4x4 mResult;
-	mResult.m11 =  fInvDet * (m.m22 * m.m33 - m.m23 * m.m32);
-	mResult.m12 = -fInvDet * (m.m12 * m.m33 - m.m13 * m.m32);
-	mResult.m13 =  fInvDet * (m.m12 * m.m23 - m.m13 * m.m22);
-	mResult.m14 =  0.0f;
-	mResult.m21 = -fInvDet * (m.m21 * m.m33 - m.m23 * m.m31);
-	mResult.m22 =  fInvDet * (m.m11 * m.m33 - m.m13 * m.m31);
-	mResult.m23 = -fInvDet * (m.m11 * m.m23 - m.m13 * m.m21);
-	mResult.m24 =  0.0f;
-	mResult.m31 =  fInvDet * (m.m21 * m.m32 - m.m22 * m.m31);
-	mResult.m32 = -fInvDet * (m.m11 * m.m32 - m.m12 * m.m31);
-	mResult.m33 =  fInvDet * (m.m11 * m.m22 - m.m12 * m.m21);
-	mResult.m34 =  0.0f;
-	mResult.m41 = -(m.m41 * mResult.m11 + m.m42 * mResult.m21 + m.m43 * mResult.m31);
-	mResult.m42 = -(m.m41 * mResult.m12 + m.m42 * mResult.m22 + m.m43 * mResult.m32);
-	mResult.m43 = -(m.m41 * mResult.m13 + m.m42 * mResult.m23 + m.m43 * mResult.m33);
-	mResult.m44 =  1.0f;
-	
+	//mResult = m * fInvDet;
+
+	mResult.m[0][0] =  fInvDet * Matrix3x3Det(buildSubMatrix3x3( m, 0, 0));
+	mResult.m[1][0] = -fInvDet * Matrix3x3Det(buildSubMatrix3x3( m, 0, 1));
+	mResult.m[2][0] =  fInvDet * Matrix3x3Det(buildSubMatrix3x3( m, 0, 2));
+	mResult.m[3][0] = -fInvDet * Matrix3x3Det(buildSubMatrix3x3( m, 0, 3));
+	mResult.m[0][1] = -fInvDet * Matrix3x3Det(buildSubMatrix3x3( m, 1, 0));
+	mResult.m[1][1] =  fInvDet * Matrix3x3Det(buildSubMatrix3x3( m, 1, 1));
+	mResult.m[2][1] = -fInvDet * Matrix3x3Det(buildSubMatrix3x3( m, 1, 2));
+	mResult.m[3][1] =  fInvDet * Matrix3x3Det(buildSubMatrix3x3( m, 1, 3));
+	mResult.m[0][2] =  fInvDet * Matrix3x3Det(buildSubMatrix3x3( m, 2, 0));
+	mResult.m[1][2] = -fInvDet * Matrix3x3Det(buildSubMatrix3x3( m, 2, 1));
+	mResult.m[2][2] =  fInvDet * Matrix3x3Det(buildSubMatrix3x3( m, 2, 2));
+	mResult.m[3][2] = -fInvDet * Matrix3x3Det(buildSubMatrix3x3( m, 2, 3));
+	mResult.m[0][3] = -fInvDet * Matrix3x3Det(buildSubMatrix3x3( m, 3, 0));
+	mResult.m[1][3] =  fInvDet * Matrix3x3Det(buildSubMatrix3x3( m, 3, 1));
+	mResult.m[2][3] = -fInvDet * Matrix3x3Det(buildSubMatrix3x3( m, 3, 2));
+	mResult.m[3][3] =  fInvDet * Matrix3x3Det(buildSubMatrix3x3( m, 3, 3));
+
 	return mResult;
 }
-Matrix4x4	Matrix4x4::Matrix4x4Transpose(const Matrix4x4& m) {
+
+Matrix4x4	Matrix4x4Transpose(const Matrix4x4& m) {
 	// Matrix transponieren
 	return Matrix4x4(m.m11, m.m21, m.m31, m.m41,
 		m.m12, m.m22, m.m32, m.m42,
@@ -260,7 +327,7 @@ Matrix4x4	Matrix4x4::Matrix4x4Transpose(const Matrix4x4& m) {
 		m.m14, m.m24, m.m34, m.m44);
 }
 /*
-Matrix4x4	Matrix4x4::Matrix4x4Projection(const float fFOV, const float fAspect, const float fNearPlane, const float fFarPlane) {
+Matrix4x4	Matrix4x4Projection(const float fFOV, const float fAspect, const float fNearPlane, const float fFarPlane) {
 	Matrix4x4 mResult;
 	
 	// D3DX-Funktion benutzen
@@ -273,8 +340,8 @@ Matrix4x4	Matrix4x4::Matrix4x4Projection(const float fFOV, const float fAspect, 
 	return mResult;
 }
 /**/
-//	Matrix4x4	Matrix4x4::Matrix4x4Camera(const Vector3D& vPos, const Vector3D& vLookAt, const Vector3D& vUp = Vector3D(0.0f, 1.0f, 0.0f)) {}
-Matrix4x4	Matrix4x4::Matrix4x4ToTex2DMatrix(const Matrix4x4& m) {
+//	Matrix4x4	Matrix4x4Camera(const Vector3D& vPos, const Vector3D& vLookAt, const Vector3D& vUp = Vector3D(0.0f, 1.0f, 0.0f)) {}
+Matrix4x4	Matrix4x4ToTex2DMatrix(const Matrix4x4& m) {
 	return Matrix4x4(m.m11, m.m12, m.m14, 0.0f,
 		            m.m21, m.m22, m.m24, 0.0f,
 					m.m41, m.m42, m.m44, 0.0f,
