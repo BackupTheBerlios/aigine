@@ -4,6 +4,7 @@ import java.rmi.RemoteException;
 import java.util.Enumeration;
 
 import projects.interfaces.VTClient;
+import projects.interfaces.VTDatabaseServer;
 import projects.interfaces.VTLogicServer;
 import projects.voting.control.HelperXmlPersitence;
 import projects.voting.model.Vote;
@@ -22,10 +23,11 @@ public class VTLogicServerImpl extends Server implements VTLogicServer {
     /**
      * die Votes
      */
-    private VoteTable votes= null;
-    private HelperXmlPersitence hxp;
-    //private HelperDatabasePersistence hdp;
-    private VTLogicServer logicserver;
+//    private VoteTable votes= null;
+//    private HelperXmlPersitence hxp;
+//    //private HelperDatabasePersistence hdp;
+//    private VTLogicServer logicserver;
+	private VTDatabaseServer dbserver;
 
     /** 
      * Start des Servers und einlesen der Votes.
@@ -33,7 +35,7 @@ public class VTLogicServerImpl extends Server implements VTLogicServer {
      */
     public VTLogicServerImpl() throws RemoteException {
         System.out.println("=> VTLogicServerImpl.VTLogicServerImpl()");
-        hxp= new HelperXmlPersitence("shellvotes");
+       //hxp= new HelperXmlPersitence("shellvotes");
 		//hdp= new HelperDatabasePersistence("shellvotes", );
 		
         System.out.println("<= VTLogicServerImpl.VTLogicServerImpl()");
@@ -47,9 +49,7 @@ public class VTLogicServerImpl extends Server implements VTLogicServer {
 			System.out.println("=> VTLogicServerImpl.VTLogicServerImpl()");
 			//hxp= new HelperXmlPersitence("shellvotes");
 			//hdp= new HelperDatabasePersistence("shellvotes", );
-			logicserver = (VTLogicServer) manager;
-			
-			
+			dbserver = (VTDatabaseServer) manager;			
 			System.out.println("<= VTLogicServerImpl.VTLogicServerImpl()");
 		}
     /**
@@ -121,7 +121,8 @@ public class VTLogicServerImpl extends Server implements VTLogicServer {
      *
      */
     public synchronized void save() {
-        hxp.save();
+        //hxp.save();
+        
     }
 
     /**
