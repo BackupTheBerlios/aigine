@@ -18,7 +18,14 @@ import javax.swing.table.TableModel;
  * @author danny
  * @since 19.05.2004 17:32:47
  */
-public class JVoteTable extends JTable {
+public class JDataTable extends JTable {
+	
+	/**
+	 * Gibt den Zellrenderer für die Zelle zurück.
+	 * @param row
+	 * @param column
+	 * @return TableCellRenderer
+	 */
 	public TableCellRenderer getCellRenderer(int row, int column) {
 		TableColumn tableColumn = getColumnModel().getColumn(column);
 		TableCellRenderer renderer = tableColumn.getCellRenderer();
@@ -34,6 +41,12 @@ public class JVoteTable extends JTable {
 		return renderer;
 	}
 
+	/**
+	 * Gibt den Zelleditor für die Zelle zurück.
+	 * @param row
+	 * @param column
+	 * @return TableCellEditor
+	 */
 	public TableCellEditor getCellEditor(int row, int column) {
 		TableColumn tableColumn = getColumnModel().getColumn(column);
 		TableCellEditor editor = tableColumn.getCellEditor();
@@ -51,7 +64,6 @@ public class JVoteTable extends JTable {
 
 	/**
 	 * Adjusts the widths of a JTable columns
-	 * @param  table    the table
 	 */
 	public void resizeTableColumns() {
 		this.setAutoResizeMode(JTable.AUTO_RESIZE_OFF);
@@ -70,7 +82,7 @@ public class JVoteTable extends JTable {
 	 * @param  model  the table model
 	 * @param  fm     the font metrics
 	 */
-	public int determineColumnWidth(
+	private int determineColumnWidth(
 		TableColumn col,
 		TableModel model,
 		FontMetrics fm) {
