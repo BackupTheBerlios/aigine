@@ -3,8 +3,6 @@
 //////////////////////////////////////////////////////////////////////
 
 #include "../../AiGinEFramework/Model/SceneManagement.h"
-#include "../../AiGinEFramework/Model/ageObjectPrim.h"
-#include "../../AiGinEFramework/Model/AiGinEObject.h"
 #include <iostream>
 using namespace std;
 
