@@ -29,7 +29,7 @@ void SceneGraph::draw()
    glPopMatrix();
 
 */
-   glutSwapBuffers(); // Tauschen der Bildspeicher - for double buffer
+  // glutSwapBuffers(); // Tauschen der Bildspeicher - for double buffer
 
 }
 void SceneGraph::addObject(AiGinEObject* object){}

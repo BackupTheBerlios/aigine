@@ -37,6 +37,9 @@ SceneManagement::SceneManagement(): SceneGraph() {
 void SceneManagement::display() {
 	this->initDisplay(); // von Klasse GraphicPipeline
 	this->draw(); // von Klasse SceneGraph
+	//this->ImageMask();//hier wir die Image mask geladen !!! macht sie aber noch nicht so richtig
+	glutSwapBuffers(); // Tauschen der Bildspeicher - for double buffer
+
 }
 
 AiGinEObject * SceneManagement::addObject3DS(string fileName)
