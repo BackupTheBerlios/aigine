@@ -6,11 +6,14 @@
 package projects.catalog;
 
 import java.rmi.RemoteException;
+import java.util.Hashtable;
 
 import projects.interfaces.CProjectServer;
 import projects.interfaces.CManagerServer;
 
 import API.control.Server ;
+import API.control.web.Block;
+import API.control.web.BlockContent;
 import API.model.RemoteObject;
 import API.model.RemoteObjectTable;
 
@@ -22,6 +25,8 @@ import API.model.RemoteObjectTable;
  */
 public class CProjectServerImpl extends Server implements CProjectServer {
 	private CManagerServer manager;
+	private String WebRequestError = null;
+	
 	/**
 	 * Constructor for CProjectServerImpl object
 	 * 
@@ -122,4 +127,52 @@ public class CProjectServerImpl extends Server implements CProjectServer {
 	public void setManager(CManagerServer localmanager) {
 		this.manager = localmanager ;
 	}
+	
+	/**
+	* verarbeitet einen 'WebRequest' der momentan vom Webserver an beliebige andere Server geschickt werden kann
+	* 
+	* @author Dennis
+	* @since 16.09.2004
+	* @param Operation, welcher Block, Parameterpaare und evtl. später mit übertragenem Body
+	* @return Block (serializable)
+	* @throws RemoteException
+	*/
+	public Block executeWebRequest(String op, String whichBlock, Hashtable requestProps) throws RemoteException {
+		Block result = null ;
+		WebRequestError = null ;
+		System.out.println("\n\n>>> habe einen WebRequest erhalten: " + op) ;
+		if (op.indexOf("serverinfo") == 0) {
+			result = new Block(this.toString()) ;
+			result.setTitle("Serverinformation") ;
+		} else if (op.indexOf("userinfo") == 0) {
+			result = new Block("hier erscheinen dann wohl Userdaten, vllt aber auch vom LoginServer") ;
+			result.setTitle("Userinfos") ;
+			result.setStyle("copyright") ;
+		} else if (op.indexOf("seitenkopf") == 0) {
+			result = new Block("Auch dieses wird dynamisch vom CProjectServer generiert und kann daher flexibel eingesetzt werden!") ;
+			result.setTitle("Kopf des Portals") ;
+		} else if (op.indexOf("kategorien") == 0) {
+			result = new Block("Und dies ist die Kategoriennavigation ...") ;
+			result.setTitle("Kategorien") ;
+		} else if (op.indexOf("toplist") == 0) {
+			result = new Block("Mit DB-Hilfe erscheint hier dann die Topliste!") ;
+			result.setTitle("Toplist Bilder!!") ;
+		} else if (op.indexOf("main") == 0) {
+			BlockContent bc = new BlockContent("Hier soll dann die Musik spielen!") ;
+			BlockContent tempbc = new BlockContent("Und das dann auch noch in mehreren Elementen (hier: Absätzen), wie hier demonstriert!") ;
+			bc.setNachfolger(tempbc) ;
+			tempbc = new BlockContent("Und weil es so schön ist, hier noch ein Absatz ... muh") ;
+			bc.getNachfolger().setNachfolger(tempbc) ;
+			result = new Block(bc) ;
+			result.setTitle("Hauptbereich") ;
+			result.setStyle("main") ;
+		} else { 
+			WebRequestError = new String("unexpected Operation") ;
+			result = new Block("unexpected Block-Operation") ;
+			result.setTitle("internal Error") ;
+		}
+		System.out.println("\n\n  > ich antworte mit: " + result.getTitle()) ;
+		return result ;
+	}
+
 }
