@@ -62,6 +62,8 @@ int main(int argc, char** argv)
 
 	robi = new robot(sm);
 	robi->drawRobot();
+	sm->printGraph();
+
 
 
 /*	
