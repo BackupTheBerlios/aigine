@@ -25,7 +25,8 @@ class __tags {
 */
 class __options {
 }/**
-@__positions 
+@__positions <oigroup:<oiref:cpp#Class#ageObjectPrim:oiref>=10,10,200,558,1:oigroup>
+<oigroup:<oiref:cpp#Class#ageObject3DS:oiref>=230,10,163,158,1:oigroup> 
 */
 class __positions {
 }
