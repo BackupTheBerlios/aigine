@@ -26,13 +26,7 @@ Camera::Camera(Vector3D * position, Vector3D * lookAtPosition,
 
 //____________________________________________________________________________
 
-//____________________________________________________________________________
 
-//____________________________________________________________________________
-
-//____________________________________________________________________________
-
-//____________________________________________________________________________
 void Camera::setRotation(int mouseX, int mouseY, int * winSize)
 {
     // Mittelpunkt des Fensters mit binärem Shift ermitteln
@@ -179,7 +173,50 @@ void Camera::moveBack(float speed)
 {
     moveCamera(-speed);
 }
+//____________________________________________________________________________
+void Camera::setViewFogMode(bool trigger, float red, float green, float blue,
+							float alpha, float density, float start, float end, GLint fogmode, 
+							GLint glhint_target,GLint glhint_mode ) {
 
+	// Nebel:   zuerst Nebelfarbe im RGBA Format also {R,G,B,alpha} -->z.Z.Schwarz
+	float fogColor[4] = {red,green,blue,alpha};			
+
+	/* : 
+	fog mode:The params parameter is a
+	single integer or floating-point value that specifies the equation to be
+	used to compute the fog blend factor, f. Three symbolic constants are 
+	accepted: GL_LINEAR, GL_EXP, and GL_EXP2. 
+	The equations corresponding to these symbolic constants are defined in the 
+	following Remarks section. The default fog mode is GL_EXP
+	*/
+	glFogi(GL_FOG_MODE,fogmode);
+	
+	// unser fogColor wird uebergeben
+	glFogfv(GL_FOG_COLOR, fogColor);				
+
+	// Dichte :default ist 1.0 
+	glFogf(GL_FOG_DENSITY,density);				
+
+	/* Die Qualitaet des Nebels parameter siehe camera.h 
+	*/
+	glHint(glhint_target,glhint_mode);					
+
+	// der Anfang des Nebels von der Camera aus!
+	glFogf(GL_FOG_START,start);							
+
+	// "das Ende des Sichtbaren Bereiches" e.g. bei 30 beginnt der Nebel und ab 60 ist nichts mehr zusehen
+	glFogf(GL_FOG_END, end);						
+	
+	// und Feuer --> zum abschalten glDisable(GL_FOG);
+	if (trigger == true){	glEnable(GL_FOG);}
+	else {glDisable(GL_FOG);};
+	
+}
+//____________________________________________________________________________
+Vector3D * Camera::getUpVector() { 
+	return upVector;
+}
+//____________________________________________________________________________
 /**
  * @author
  * @return
@@ -201,4 +238,4 @@ void Camera::moveBack(float speed)
  * @param
  */
 Camera::~Camera() { }
-Vector3D * Camera::getUpVector() { return upVector; }
+

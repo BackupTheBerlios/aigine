@@ -15,7 +15,8 @@
 
 /**
  * Kamerasteuerung.
- * @author Danny Graef, Tobias Harpering
+ * @author Danny Graef, Tobias Harpering 
+ * @modified by Frank Otto
  * @since 2004-01-07
  */
 class Camera :  public LookAtObjects {
@@ -88,6 +89,24 @@ public:
      * @return Normalenvektor der Kamera
      */
     Vector3D * getUpVector();
+
+	/**
+     * Steuert die GL-Nebel Funktion
+     * @param trigger Nebel ein/aus
+	 * @param red float Wert rot von RGBA
+	 * @param green float Wert gruen von RGBA
+	 * @param blue float Wert blau von RGBA
+	 * @param alpha float Wert alpha von RGBA
+	 * @param density dichte des Nebels
+	 * @param start des Nebels von der Cameraposition aus 
+	 * @param end Ende des Sichtbaren Bereiches vom Start aus -->keine koordinate sondern relativ zum Start
+	 * @param fogmode  GL_LINEAR, GL_EXP, und GL_EXP2 Erleuterung im Quelltext! void glFogi(GL_FOG_MODE,GLint param);
+	 * @param glhint_target GL_FOG_HINT | GL_LINE_SMOOTH_HINT | GL_PERSPECTIVE_CORRECTION_HINT | GL_POINT_SMOOTH_HINT | GL_POLYGON_SMOOTH_HINT 
+	 * @param glhint_mode GL_FASTEST GL_NICEST GL_DONT_CARE 
+     */
+	void setViewFogMode(bool trigger, float red,float green ,float blue,
+								  float alpha, float density, float start, float end ,GLint fogmode,
+								  GLint glhint_target,GLint glhint_mode );
 
     /** Destruktor */
     ~Camera();

@@ -6,11 +6,15 @@
 
 #define GRAPHICPIPELINE_H
 
+#define map_nb 2
+
 #include <GL/glut.h>
+#include <gl/glaux.h>// ich weiss...
 #include "../View/Camera.h"
 
 
 class Light;
+
 class SceneGraph;
 
 class Renderer;
@@ -26,7 +30,7 @@ class StateManager;
  * - Verwaltung von mehreren Kameras - Projektion von 3D auf 2D - Viewport
  * - StateManager - Parameter für initOpenGL() und reshape() aus einer
  * Config-Datei lesen und in einem Hash speichern
- * @author Danny Graef, Tobias Harpering
+ * @author Danny Graef, Tobias Harpering ,Frank Otto
  * @date 2004-01-06
  */
 class GraphicPipeline
@@ -69,6 +73,12 @@ public:
 	/**Setzt das aktuelle Licht mit seinen Eigenschaften*/
 	int enableLight(Light * correntLight, int index);
 
+	/** initialisiert die Bilder fuer die Imagemask*/
+	void InitMask();
+
+	/** legt die ImageMask ueber den 3D-Screen -->ImageMask*/
+	void ImageMask();
+
 private:
     /** Größe des Fensters. */
     int * windowSize;
@@ -93,6 +103,18 @@ private:
      * @clientCardinality 1
      */
 	Light * lnkLight;
+
+
+	HDC g_hDC; // wird von GLswapBuffer benoetigt
+
+	void CreateTexture(GLuint textureArray[], LPSTR strFileName, int textureID);
+	GLuint g_Texture[map_nb];
+
+   	/** schaltet in die 2D Projektion um -->ImageMask*/
+	void OrthoMode(int left, int top, int right, int bottom);
+
+	/** schaltet in die 3D Projektion um -->ImageMask*/
+	void PerspectiveMode();
 
 };
 
