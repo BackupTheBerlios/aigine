@@ -79,3 +79,4 @@ AiGinEObject * SceneManagement::addObjectPrim(AiGinEObject* obj, AiGinEObject* p
 	return obj;
 }
 
+
