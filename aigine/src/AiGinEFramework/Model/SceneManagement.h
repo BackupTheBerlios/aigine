@@ -9,6 +9,8 @@
 #include <string>
 #include "../View/GraphicPipeline.h"
 #include "SceneGraph.h"
+#include "ageObjectPrim.h"
+#include "AiGinEObject.h"
 
 using namespace std;
 
