@@ -10,7 +10,7 @@
   <!-- externe Pfad angabe. kann ueber seine id angesprochen werden  @see <javac >tag-->
   <path id="base.path">
    		<pathelement path="${classpath}"/>
-   		<fileset dir="lib">
+   		<fileset dir="lib/">
       		<include name="**/*.jar"/>
    		</fileset>
    		<pathelement location="classes"/>
@@ -24,52 +24,56 @@
   </target>  
   
   <target name="build_classes">
-  		<mkdir dir="${build}"/>
-  		<!-- hier entpacke ich das lib-verzeichniss welches in vorm einer komplette .jar vorliegt-->
-		<unjar src="lib/lib.jar" dest="lib"></unjar>
+  		<mkdir dir="${build}"/>  		
 		<!-- der ganze rotz wird kompiliert --> 		
   	<javac srcdir="${src}" destdir="${build}">
   		<classpath refid="base.path"/><!--externe daten werden noch in lib gesucht -->
-  	</javac>
-  	
-  	<!-- hier ein paar beispiele wie aus dem inhalt eines Verzeichnisses eine .jar gemacht werden kann -->
-  	<!-- Put everything in ${build} into the 
-            Project-${DSTAMP}.jar file                         
-            -->
-    <!-- <jar jarfile="${build}/project.jar" 
-         	basedir="${build}"> 
-	</jar>-->
-	
-	<!--	<mkdir dir="${build}/lib"/>
-	<jar jarfile="lib/lib.jar" 
-            	basedir="lib">            		 	
-            </jar>
-      -->
-      
-      <!-- Nach dieser methode, die einzelnen relevanten jars in das bin zu verschieben und dort zu entpacken,
-      sollte erstmal alle weiteren externen archive behandelt werden (bis jemand rausfindet wie in die einzelnen jars 
-      reingefasst werden kann) -->
-     	<!--<move todir="${build}">
-    		<fileset dir="lib/hypersonic/"/>
-    		<fileset dir="lib/JConfig/"/>
-  		</move>
-  		 entpacken der zufor verschobenen datei (musste ich lieder hard angeben mit '*' war 
-  		das leider nicht zu machen :( )-->
-  		<!--<unjar src="${build}/hsqldb.jar" dest="${build}"></unjar>-->
-  		
+  	</javac>  		
   </target>
     
   <target name="build_rmics" description="kompiliert alle Proxies (fuer Klassen, die auf Impl enden)">
 	<rmic base="${build}" includes="**/*Impl.class">		
-	</rmic>
-		<unjar dest="${build}">  				
-  				<fileset dir="lib">
-        			<include name="**/*.jar"/>
-        			<!--<exclude name="**/tmp*.zip"/>-->
-    			</fileset>  		
-  		</unjar>
+	</rmic>	
   </target>
   
+   <target name="unjar_lib" description="extrahiert aus der lib.jar alle relevanten jar files">
+		<mkdir dir="lib/lib"/>		
+		<unjar dest="lib/lib">  				
+  				<fileset dir="lib/hibernate"/>
+  				<fileset dir="lib/hypersonic"/>
+  				<fileset dir="lib/JConfig">        			
+    		</fileset>  		
+  		</unjar>  			
+  </target>
+  
+  <target name="copy_libs" description="kopiert alle dateien die in lib/lib sind in das bin verzeichniss">
+  		 <copy todir="${build}">    		
+    		<fileset dir="lib/lib"/>    		
+  		</copy>
+  		<copy todir="${build}/org/hsqldb/">    		
+    		<fileset file="lib/hsqldb.gif"/>    		
+  		</copy>
+  		<copy todir="${build}/org/">
+    		<fileset file="lib/hsqldb.gif"/>    		
+  		</copy>
+  		
+  </target>
+  
+  <target name="jar_project" description="erstellen eines jarfiles mit den klassen des gesammten projectes">
+  </target>
+  
+  <target name="jar_lib" description="erstellen eines jarfiles mit dem inhalt von lib nach lib.jar">
+  		<mkdir dir="${build}/lib"/>
+		<jar jarfile="lib/lib.jar" 
+            	basedir="lib">  
+        </jar>
+  </target>
+  
+  <target name="unjar_lib" description="hier entpacke ich das lib-verzeichniss welches in vorm einer komplette .jar vorliegt">
+  		<unjar src="lib/lib.jar" dest="lib"></unjar>
+  </target>
+  
+ 
   <target name="clean" description="clean up" >
     <delete dir="${build}"/>    
   </target>
