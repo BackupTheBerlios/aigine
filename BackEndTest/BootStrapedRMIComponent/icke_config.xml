@@ -53,22 +53,6 @@
 		<property name="user" value="nice"/>
 		<property name="passwd" value="yourMama"/>
 	</category>
-	<category name="vtwebserver">
-		<!-- Typ der Anwendung -->
-		<property name="typ" value="service"/>
-		<!-- Pfad fuer den Klassenserver, der das Repository der RMIComponents zur Verfuegung stellt. -->
-		<property name="codebase" value="${server.path}"/>
-		<!-- Klassenname der zu ladenen Komponenten -->
-		<property name="compClassName" value="projects.voting.VTServerImpl"/>
-		<!-- Name der Komponente -->
-		<property name="compName" value="ManagerServer"/>
-		<!-- Domain Name des Serverdienstes der gestartet werden soll -->
-		<property name="hostname" value="localhost"/>
-		<!-- Port des Serverdienstes -->
-		<property name="port" value="2003"/>
-		<!-- Adresse und Port des Managerdienstes -->
-		<property name="manager" value="http://localhost:2004/"/>
-	</category>
 	<category name="vtwebservice">
 		<!-- Typ der Anwendung -->
 		<property name="typ" value="client"/>
