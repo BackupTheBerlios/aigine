@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="iso-8859-1" ?>
+<objects>
+<object name="RequestFrames" primary="rfs_id" />
+<object name="RequestFrame" primary="rf_id" foreign="rfs_id" />
+<object name="RequestBlock" primary="rb_id" foreign="rf_id" />
+</objects>
