@@ -78,7 +78,7 @@
    <target name="unjar_libs" description="Baut das Verzeichniss lib/lib/ und extrahiert alle relevanten jar files in dieses. Im [dist] aufruf enthalten!">
 		<mkdir dir="lib/lib"/>		
 		<unjar dest="lib/lib">  				
-  				<fileset dir="lib/hibernate"/>
+  				
   				<fileset dir="lib/hypersonic"/>
   				<fileset dir="lib/JConfig">        			
     		</fileset>  		
@@ -89,15 +89,7 @@
   		 <copy todir="${build}">    		
     		<fileset dir="lib/lib"/>    		
   		</copy>
-  		<copy todir="${build}/org/hsqldb/">    		
-    		<fileset file="res/hsqldb.gif"/>    		
-  		</copy>
-  		<copy todir="${build}/org/">
-    		<fileset file="res/hsqldb.gif"/>
-    	</copy>
-    	<copy todir="${build}/projects/voting/model">
-    		<fileset file="res/Vote.hbm.xml"/>    		
-  		</copy>
+ 		
   		
   </target>
   
