@@ -24,7 +24,7 @@ import API.model.RemoteObject;
 public abstract class Database extends Server {
 
 	private SessionFactory sessionFactory;
-	private Configuration dbVoteConfig;
+	private Configuration cfg;
 
 	/**
 	 * @throws RemoteException
@@ -33,15 +33,15 @@ public abstract class Database extends Server {
 		super();
 //		Vote dbvote = new Vote();
 		//System.out.println("Vote wird mal vorgeladen... mit der id "+ dbvote.getId());		
-		Configuration cfg = new Configuration();
-		dbVoteConfig = cfg;
+		Configuration dbVoteConfig = new Configuration();
+
 		System.out.println("Initializing Hibernate");
-		//dbVoteConfig = new Configuration();
+		//cfg = new Configuration();
 //		URL url = null;
 //		try {
 //			url = new URL(sessionConfigURL);
 //			System.out.println("reding the first url--------------------------1");
-//			dbVoteConfig = cfg.addURL(url);			
+//			cfg = cfg.addURL(url);			
 //		} catch (MappingException e1) {
 //			System.out.println(
 //			"\n\n<<<<<<<<<<<<<<<<<<your mamas foult>>>>>>>>>>>>>>>>>>>\n\n" +//			"the given path : " + url.getPath()+" | given port:"+url.getPort()+" | given file "+url.getFile());
@@ -113,8 +113,8 @@ public abstract class Database extends Server {
 	 * @return
 	 * Database.java
 	 */
-	public Configuration getDbVoteConfig() {
-		return dbVoteConfig;
+	public Configuration getCfg() {
+		return cfg;
 	}
 
 	/**
