@@ -33,6 +33,8 @@ void GraphicPipeline::initOpenGL(int argc, char** argv){
     // Ausgabe des Fensters
     glutCreateWindow (argv[0]);
 
+	glShadeModel (GL_SMOOTH);
+
 	/* // Definition der Lichteigenschaften
    GLfloat mat_specular[] = { 1.0, 1.0, 1.0, 1.0 }; // weiss
    //GLfloat mat_diffuse[] = { 1.0, 1.0, 1.0, 1.0 }; // weiss
@@ -45,6 +47,45 @@ void GraphicPipeline::initOpenGL(int argc, char** argv){
 
 	this->lnkLight = new Light(); //Konstruktor mit den standart Werten:
 												   //  Vector3D position, Vector3D lookAtPosition
+
+	float * lightGreen_defuse = new float[4];
+	lightGreen_defuse[0] = 0.8;
+	lightGreen_defuse[1] = 1.0;
+	lightGreen_defuse[2] = 0.8;
+	lightGreen_defuse[3] = 1.0;        // leichtes gruen	
+
+	Translation3D * lightpos = new Translation3D(3.0,-30.0,1.0); //die position des lichtes +10 in alle richtungen
+	this->lnkLight->setDiffuse(lightGreen_defuse);  // leichtes gruen
+	this->lnkLight->setTranslation(lightpos);
+
+	
+
+
+
+	//ambient Licht
+	//Light * ambientLight = new Light();
+
+	float * ambient = new float[4];
+	ambient[0] = 0.2;
+	ambient[1] = 0.2;
+	ambient[2] = 0.2;
+	ambient[3] = 1.0; 
+	this->lnkLight->setAmbient(ambient);
+	
+
+	this->enableLight(lnkLight,1);
+	//Translation3D * lightpos = new Translation3D(3.0,-30.0,1.0); //die position des lichtes +10 in alle richtungen
+
+
+
+
+
+
+	
+
+
+
+
 	
 	glEnable(GL_COLOR_MATERIAL);
 	glEnable(GL_DEPTH_TEST);
@@ -130,4 +171,49 @@ void GraphicPipeline::setCameraRotation(int mouseX, int mouseY) {
 void GraphicPipeline::addLightAt(Vector3D * position, Vector3D * lookAt) {
 	
 	
+}
+//____________________________________________________________________________
+char intToChar(int integer)
+{
+ return (char)integer+48;
+}
+//___enableLight________________________________________________________________
+/**setzt alle relevanten Gl befehle für das Licht*/
+
+int GraphicPipeline::enableLight(Light * currentLight, int index) {
+	int isSet = false;					
+	string lightCount = "GL_LIGHT";
+	lightCount += intToChar(index);
+
+	 glEnable(GL_LIGHTING);
+
+	
+	float * lightPosition = new float[4] ;
+	lightPosition[0] = currentLight->getTranslation()->x;
+	lightPosition[1] = currentLight->getTranslation()->y;
+	lightPosition[2] = currentLight->getTranslation()->z;
+	lightPosition[3] = currentLight->getPos_direct();
+
+   // farbiges licht hinzufuegen
+   glLightfv(GL_LIGHT0, GL_POSITION, lightPosition );
+
+   if(currentLight->getDiffuse() != NULL) 
+	   glLightfv(GL_LIGHT0, GL_DIFFUSE, currentLight->getDiffuse());
+	
+   if(currentLight->getAmbient() != NULL) 
+		glLightfv(GL_LIGHT0, GL_AMBIENT, currentLight->getAmbient());
+   
+   if(currentLight->getSpecular() != NULL) 
+		glLightfv(GL_LIGHT0, GL_SPECULAR, currentLight->getSpecular());
+
+   //for (int i = 0; i < index; i++) {
+		glEnable(GL_LIGHT0);
+   //}
+
+   
+		
+	
+
+
+	return isSet;
 }

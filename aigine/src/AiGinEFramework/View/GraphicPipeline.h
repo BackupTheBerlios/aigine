@@ -66,6 +66,9 @@ public:
     /** Ruft die Kamera Rotation auf. */
     void setCameraRotation(int mouseX, int mouseY);
 
+	/**Setzt das aktuelle Licht mit seinen Eigenschaften*/
+	int enableLight(Light * correntLight, int index);
+
 private:
     /** Größe des Fensters. */
     int * windowSize;
