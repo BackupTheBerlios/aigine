@@ -19,6 +19,7 @@ import API.interfaces.Application;
 import API.interfaces.Client;
 import API.interfaces.ServerHandle;
 import API.model.RemoteObject;
+import API.util.RemoteObjectHelper;
 /**
  * Wird vom RMIComponentLoader verwendet um die entsprechende Applikation
  * anhängig von der angegebenen <code>codebase</code> und dem
@@ -40,7 +41,7 @@ public class BootStrapedApplicationStarter implements BootStrapedComponent {
     /** Speicherung des Serverzugriffes. */
     protected ServerHandle server= null;
 
-
+    private RemoteObjectHelper roh;
     private int valid_auswahl;
     private String auswahl;
     private String category;
@@ -98,14 +99,6 @@ public class BootStrapedApplicationStarter implements BootStrapedComponent {
       for(int i = 0; i<categorynames.length; i++ ){
         System.out.println("| (" + i + ") "+categorynames[i]);
       }
-      
-      
-//      System.out.println("+-----Menue-------+");
-//      System.out.println("| (1) VTServer    |");
-//      System.out.println("| (2) VTClient    |");
-//      System.out.println("| (3) AdminClient |");
-//      System.out.println("+-----------------+\n");
-
     }
   
   
@@ -121,16 +114,17 @@ public class BootStrapedApplicationStarter implements BootStrapedComponent {
         // die notwendigen Paramter beim User abfragen.
         // TODO jConfig eine entsprechende DTD
         // so dass die Eigenschaften vorher geprüft werden können.
-   
+        System.out.println("=> BootStrapedApplicationStarter.init()");
         //konsolenabfrage...
         ausgabeMenue();
         int menueAuswahl = getIntAuswahl(0, categorynames.length,"Was soll´s denn sein: ");
         //hier wird der ausgewaehlte service (Categoryname) in category gespeichert 
         //ist kürzer;-) 
         category=categorynames[menueAuswahl];
-         
-        System.out.println("=> BootStrapedApplicationStarter.init()");
-        component= new RemoteObject(configuration,category);
+        //Remoteobject mit Konfig daten fuettern 
+        roh = new RemoteObjectHelper(configuration,category) ;
+        //zuweisen...
+        component= roh.getConfiguratedRemoteObject();
         try {
             compClass=
                 RMIClassLoader.loadClass(
