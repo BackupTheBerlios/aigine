@@ -29,31 +29,31 @@ Root.2.package_prefix=
 projectfile.encoding=Cp1252
 [editor]
 
-recent.file.0=F:\\cvs-develop\\aigine\\src\\TestWorld\\util\\Test.h
+recent.file.0=F:\\cvs-develop\\aigine\\src\\GraphicEngine\\GraphicPipeline.h
 
-recent.file.1=F:\\cvs-develop\\aigine\\src\\TestWorld\\util\\Thread.h
+recent.file.1=F:\\cvs-develop\\aigine\\src\\GraphicEngine\\SceneGraph.h
 
-recent.file.2=F:\\cvs-develop\\aigine\\src\\TestWorld\\util\\ThreadInterface.h
+recent.file.2=F:\\cvs-develop\\aigine\\src\\GraphicEngine\\AiGinEObject.h
 
-recent.file.3=F:\\cvs-develop\\aigine\\src\\TestWorld\\util\\Interface1.h
+recent.file.3=F:\\cvs-develop\\aigine\\src\\GraphicEngine\\Object.h
 
-recent.file.4=F:\\cvs-develop\\aigine\\src\\TestWorld\\Test.h
+recent.file.4=F:\\cvs-develop\\aigine\\src\\GraphicEngine\\SceneManagement.h
 
-recent.file.5=F:\\cvs-develop\\aigine\\src\\TestWorld\\Interface1.h
+recent.file.5=F:\\cvs-develop\\aigine\\src\\Model\\List.h
 
-recent.file.6=F:\\cvs-develop\\aigine\\src\\GraphicEngine\\SceneGraph.h
+recent.file.6=F:\\cvs-develop\\aigine\\src\\Model\\Liste.h
 
-recent.file.7=F:\\cvs-develop\\aigine\\src\\GraphicEngine\\Object.h
+recent.file.7=F:\\cvs-develop\\aigine\\src\\GraphicEngine\\ObjectList.h
 
-recent.file.8=F:\\cvs-develop\\aigine\\src\\Model\\Translation3D.h
+recent.file.8=F:\\cvs-develop\\aigine\\src\\GraphicEngine\\Renderer.h
 
-recent.file.9=F:\\cvs-develop\\aigine\\src\\Model\\Point3D.h
+recent.file.9=F:\\cvs-develop\\aigine\\src\\TestWorld\\TestWorld.cpp
 
 [workspace]
 
 Programmer. DebugWorkspace={{0,2,-1,0,0,0,0,0,0,1,0,50,75,25,-1,-1,-1,-1}${0,1,-1,0,0,0,0,1,0,1,1,50,75,25,-1,-1,-1,-1}${0,3,-1,0,0,0,0,0,0,1,0,50,50,25,-1,-1,-1,-1}${0,3,-1,0,0,0,0,0,0,1,0,50,50,25,-1,-1,-1,-1}${0,-1,-1,0,0,0,0,0,0,1,0,5,5,5,-1,-1,-1,-1}${0,4,-1,0,0,0,0,0,0,1,0,50,50,25,-1,-1,-1,-1}${0,0,-1,0,0,0,0,1,0,1,0,75,5,5,-1,-1,-1,-1}${0,7,-1,0,0,0,0,0,0,1,0,50,50,75,-1,-1,-1,-1}}
 
-Programmer.gameengine={{0,2,-1,0,0,0,0,1,0,1,1,60,75,25,-1,-1,-1,-1}${0,1,-1,0,0,0,0,1,0,1,0,60,75,25,-1,-1,-1,-1}${0,3,-1,0,0,0,0,1,0,1,0,50,50,25,-1,-1,-1,-1}${0,3,-1,0,0,0,0,1,0,1,0,50,50,25,-1,-1,-1,-1}${0,-1,-1,0,0,0,0,0,0,1,0,5,5,5,-1,-1,-1,-1}${0,4,-1,0,0,0,0,1,0,1,0,50,50,25,-1,-1,-1,-1}${0,0,-1,0,0,0,0,1,0,1,0,75,5,5,-1,-1,-1,-1}${0,7,-1,0,0,0,0,0,0,1,0,50,50,75,-1,-1,-1,-1}}
+Programmer.gameengine={{0,2,-1,0,0,0,0,1,0,1,1,61,75,25,-1,-1,-1,-1}${0,1,-1,0,0,0,0,1,0,1,0,61,75,25,-1,-1,-1,-1}${0,3,-1,0,0,0,0,1,0,1,0,57,50,25,-1,-1,-1,-1}${0,3,-1,0,0,0,0,1,0,1,0,57,50,25,-1,-1,-1,-1}${0,-1,-1,0,0,0,0,0,0,1,0,5,5,5,-1,-1,-1,-1}${0,4,-1,0,0,0,0,1,0,1,0,57,50,25,-1,-1,-1,-1}${0,0,-1,0,0,0,0,0,0,1,0,75,5,5,-1,-1,-1,-1}${0,7,-1,0,0,0,0,0,0,1,0,50,50,75,-1,-1,-1,-1}}
 
 names.Programmer={gameengine, DebugWorkspace }
 
@@ -111,7 +111,7 @@ cpp.rightMarginToIndents=80
 
 [genHTML]
 
-folder=C:\\tmp\\aigine\\publish
+folder=F:\\cvs-develop\\aigine\\publish
 
 generateFor=all_packages
 
@@ -125,3 +125,6 @@ navigationTree=false
 
 updatedependencies=true
 
+[vcs]
+option.cvs.mode=:local:
+provider.class=CVS LAN
