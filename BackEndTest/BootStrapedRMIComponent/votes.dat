@@ -1,0 +1,9 @@
+csh=0|csh
+zsh=0|zsh
+tcsh=0|tcsh
+sh=0|sh
+bash=0|The GNU Bourne Again Shell
+esh=0|The "easy shell", a small shell with Lisp-like syntax
+ksh=0|Official AT&T release of KornShell 93
+osh=0|An implementation of the UNIX 6th Edition shell
+pdksh=0|The Public Domain Korn Shell

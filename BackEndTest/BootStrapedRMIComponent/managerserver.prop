@@ -1,0 +1,12 @@
+# Typ der Anwendnung
+typ=manager
+# Pfad f\x{00FC}r den Klassenserver, der das Repository der RMIComponents zur Verf\x{00FC}gung stellt.
+codebase=http://localhost:2002/
+# Klassenname der zu ladenen Komponenten
+compClassName=server.manager.ManagerServerImpl
+# Name der Server Komponente, auf die zugegriffen werden soll
+compName=MangerServer
+# Domain Name des Serverdienstes der gestartet werden soll
+hostname=localhost
+# Port des Serverdienstes
+port=2004

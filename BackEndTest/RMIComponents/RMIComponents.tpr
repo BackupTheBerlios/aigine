@@ -1,0 +1,119 @@
+[Project]
+Language=java
+Root.0=$PROJECT_DIR$/src
+Root.0.access=writable
+Root.0.file_types=java_source;java_class
+Root.0.package_prefix=
+Root.1=$PROJECT_DIR$/diagrams
+Root.1.access=writable
+Root.1.file_types=diagram
+Root.1.package_prefix=
+Version=3.0
+Root.2=$TGH$/jdk/jre/lib/rt.jar
+Root.2.access=import
+Root.2.non_removable=
+Root.2.package_prefix=
+debugger.SkipClass.0=,com.sun.*,1
+debugger.SkipClass.1=,java.*,1
+debugger.SkipClass.2=,javax.*,1
+debugger.SkipClass.3=,org.omg.*,1
+debugger.SkipClass.4=,sun.*,1
+debugger.SmartStep=true
+[testingframework]
+none.created=true
+server.config.0.isLocal=true
+server.config.0.name=Test Suite - GUI
+server.config.1.isLocal=true
+server.config.1.name=Test Suite - No GUI
+server.config.2.isLocal=true
+server.config.2.name=JUnit
+server.config.3.isLocal=true
+server.config.3.name=Visual Script
+server.config.0.url=http://localhost:9080/tf
+server.config.1.url=http://localhost:9080/tf
+server.config.2.url=http://localhost:9080/tf
+server.config.3.url=http://localhost:9080/tf
+[option]
+dependencyLinks.inDeclarationsOnly=false
+dependencyLinks.showBetweenClasses=true
+hyperLinks.showSeeAsHyperlinks=true
+links=Rectilinear
+showgrid=false
+[editor]
+recent.file.0=H:\\daten\\ai@fhtw-berlin.de\\6_semester_ss04\\vsys\\beleg\\impl\\BackEndTest\\RMIComponents\\src\\API\\control\\BootStrapedApplicationStarter.java
+recent.file.1=H:\\daten\\ai@fhtw-berlin.de\\6_semester_ss04\\vsys\\beleg\\impl\\BackEndTest\\RMIComponents\\src\\projects\\voting\\control\\VTClientVoteAction.java
+recent.file.2=H:\\daten\\ai@fhtw-berlin.de\\6_semester_ss04\\vsys\\beleg\\impl\\BackEndTest\\RMIComponents\\src\\projects\\voting\\VTServerImpl.java
+recent.file.3=H:\\daten\\ai@fhtw-berlin.de\\6_semester_ss04\\vsys\\beleg\\impl\\BackEndTest\\RMIComponents\\src\\projects\\voting\\VTClientImpl.java
+recent.file.4=H:\\daten\\ai@fhtw-berlin.de\\6_semester_ss04\\vsys\\beleg\\impl\\BackEndTest\\RMIComponents\\src\\API\\control\\Server.java
+recent.file.5=H:\\daten\\ai@fhtw-berlin.de\\6_semester_ss04\\vsys\\beleg\\impl\\BackEndTest\\RMIComponents\\src\\projects\\voting\\model\\VTClientTableModel.java
+recent.file.6=H:\\daten\\ai@fhtw-berlin.de\\6_semester_ss04\\vsys\\beleg\\impl\\BackEndTest\\RMIComponents\\src\\API\\model\\RemoteObjectTable.java
+recent.file.7=H:\\daten\\ai@fhtw-berlin.de\\6_semester_ss04\\vsys\\beleg\\impl\\BackEndTest\\RMIComponents\\src\\API\\model\\RemoteObject.java
+recent.file.8=H:\\daten\\ai@fhtw-berlin.de\\6_semester_ss04\\vsys\\beleg\\impl\\BackEndTest\\RMIComponents\\src\\API\\interfaces\\Client.java
+recent.file.9=H:\\daten\\ai@fhtw-berlin.de\\6_semester_ss04\\vsys\\beleg\\impl\\BackEndTest\\RMIComponents\\src\\API\\interfaces\\Application.java
+[workspace]
+Programmer. DebugWorkspace={{0,2,-1,0,0,0,0,0,0,1,0,50,75,25,-1,-1,-1,-1}${0,1,-1,0,0,0,0,1,0,1,0,50,75,25,-1,-1,-1,-1}${0,3,-1,0,0,0,0,0,0,1,0,50,50,25,-1,-1,-1,-1}${0,3,-1,0,0,0,0,0,0,1,0,50,50,25,-1,-1,-1,-1}${0,-1,-1,0,0,0,0,0,0,1,0,5,5,5,-1,-1,-1,-1}${0,4,-1,0,0,0,0,0,0,1,0,50,50,25,-1,-1,-1,-1}${0,0,-1,0,0,0,0,1,0,1,1,75,5,5,-1,-1,-1,-1}${0,7,-1,0,0,0,0,0,0,1,0,50,50,75,-1,-1,-1,-1}}
+Programmer.RMIComponents={{0,2,-1,0,0,0,0,1,0,1,0,24,75,28,-1,-1,-1,-1}${0,1,-1,0,0,0,0,1,0,1,1,24,75,28,-1,-1,-1,-1}${0,3,-1,0,0,0,0,1,0,1,0,64,49,28,-1,-1,-1,-1}${0,3,-1,0,0,0,0,1,0,1,0,64,49,28,-1,-1,-1,-1}${0,-1,-1,0,0,0,0,0,0,1,0,5,5,5,-1,-1,-1,-1}${0,4,-1,0,0,0,0,1,0,1,0,64,49,28,-1,-1,-1,-1}${0,0,-1,0,0,0,0,1,0,1,0,68,5,5,-1,-1,-1,-1}${0,7,-1,0,0,0,0,0,0,1,0,50,50,75,-1,-1,-1,-1}}
+names.Programmer={RMIComponents, DebugWorkspace }
+[runtimeargs]
+applet_vmoptions0=-classic
+applet_vmoptions1=-classic
+applet_vmoptions2=-classic
+applet_vmoptions3=-classic
+applet_vmoptions4=-classic
+applic_args0=
+applic_args1=
+applic_args2=
+applic_args3=
+applic_args4=
+applic_mainclass0=
+applic_mainclass1=
+applic_mainclass2=com.togethersoft.testing.TestServer
+applic_mainclass3=com.togethersoft.testing.TestServer
+applic_mainclass4=
+applic_vmoptions0=
+applic_vmoptions1=-Dtestserver.port=9580 -Dtestserver.home=C:\\TogetherSoft\\Together6.0.1\\modules\\com\\togethersoft\\modules\\testingframework -Dtestserver.configuration="Test Suite - GUI" 
+applic_vmoptions2=-Dtestserver.port=9580 -Dtestserver.home=C:\\TogetherSoft\\Together6.0.1\\modules\\com\\togethersoft\\modules\\testingframework -Dtestserver.configuration="Test Suite - No GUI" 
+applic_vmoptions3=-Dtestserver.port=9080 -Dtestserver.home=C:\\TogetherSoft\\Together6.0.1\\modules\\com\\togethersoft\\modules\\testingframework -Dtestserver.configuration="JUnit" 
+applic_vmoptions4=-Dtestserver.port=10080 -Dtestserver.home=C:\\TogetherSoft\\Together6.0.1\\modules\\com\\togethersoft\\modules\\testingframework -Dtestserver.configuration="Visual Script" 
+confname0=NoName
+confname1=Test Suite - GUI
+confname2=Test Suite - No GUI
+confname3=JUnit
+confname4=Visual Script
+default=0
+jsp_vmoptions0=-classic
+jsp_vmoptions1=-classic
+jsp_vmoptions2=-classic
+jsp_vmoptions3=-classic
+jsp_vmoptions4=-classic
+[newDiagramExpert]
+includeInCurrentDiagram=false
+[lastOpenProjectName]
+Programmer=RMIComponents
+[compiler]
+cross-bootclasspath=C:/TogetherSoft/Together6.0.1/jdk/jre/lib/rt.jar
+[findusages]
+interface.derrived_interface=false
+interface.implementing_class=false
+interface.skip_import_statement=false
+interface.skip_itself=false
+interface.usages=true
+interface.usages_of_field=true
+interface.usages_of_method=true
+process_subpackages=false
+search_in_classpath=true
+search_in_current_package=false
+search_in_model=false
+search_in_selected=false
+search_in_whole_project=false
+[parser]
+java.java14syntax=true
+[genHTML]
+folder=C:\\TogetherSoft\\Together6.0.1\\out\\webpublish\\RMIComponents
+generateFor=all_packages
+includeDiagrams=true
+launchBrowser=true
+navigationTree=false
+[autoformat]
+java.docComment.keepEmptyLines=true
+java.docComment.keepEndOfLines=true

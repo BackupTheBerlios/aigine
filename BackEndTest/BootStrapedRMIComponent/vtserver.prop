@@ -1,0 +1,17 @@
+# Typ der Anwendung
+typ=server
+# Pfad für den Klassenserver, der das Repository der RMIComponents zur Verfügung stellt.
+codebase=http://localhost:2002/
+# Klassenname der zu ladenen Komponenten
+compClassName=projects.voting.VTServerImpl
+# Name der Komponente
+compName=VTServer
+# Domain Name des Serverdienstes der gestartet werden soll
+hostname=localhost
+# Port des Serverdienstes
+port=2003
+
+# Authentifizierungstyp
+authTyp=nothing
+
+

@@ -1,0 +1,54 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+<head>
+  <meta content="text/html; charset=ISO-8859-1"
+ http-equiv="content-type">
+  <title>RMI VT-Client und VT-Server in Java</title>
+</head>
+<body>
+/*<br>
+&nbsp;* VSYS Beleg: verteilte Anwendungen mit RMI<br>
+&nbsp;* 0503xxx, Dennis Richter<br>
+&nbsp;* 0503xxx, Frank Otto<br>
+&nbsp;* 0503xxx, Tobias Harpering<br>
+&nbsp;* 0503644, Danny Gr&auml;f<br>
+&nbsp;*/<br>
+<br>
+<h1>Aufbau:</h1>
+<p>Unterteilung in mehrere Projekte:<br>
+Ein Klassenserver bietet die Klassenbibliothek f&uuml;r die
+Komponenten, die
+vom Komponentenlader gestartet werden. Dabei wird eine zweistufige
+"BootStraped Strategie" eingesetzt. Der Komponentenlader l&auml;dt
+wiederum den eigentlichen Komponentenstarter, der dann erst die
+eigentlich angeforderte Komponente l&auml;dt und startet, dadurch steht
+einer Weiterentwiklung oder Anpassung des Ladeprozesses nichts im Wege.<br>
+</p>
+<h2>ClassServer/</h2>
+<p>Der Klassenserver stellt die notwendigen HTTP Zugriffe f&uuml;r das
+Herunterladen von Klassen zur Verf&uuml;gung. Beim Starten muss der zu
+verwendene Port und der Pfad mit den anzubietenen Klassen angegeben
+werden.<br>
+siehe: <a href="ClassServer/runhttp">ClassServer/runhttp</a><br>
+Aufruf: java ClassFileServer PORT PATH
+</p>
+<h2>BootStrapedRMIComponent/</h2>
+<p>
+Mit diesem Programm kann das auszuf&uuml;hrende Program vom Klassen
+Server geladen und
+gestartet werden, daf&uuml;r muss die Codebase (URI des Klassen
+Servers) und die zu ladene Klasse angegeben werden. Weiterhin
+m&uuml;ssen die RMI Kommunikationsparamater in der Konfiguration
+hinterlegt
+werden.<br>
+siehe Bsp.: <a href="BootStrapedRMIComponent/vtserver.prop">BootStrapedRMIComponent/vtserver.prop</a><br>
+Aufruf: java RMIComponentLoader CONFIG_FILE_NAME<br>
+</p>
+<h2>RMIComponents</h2>
+<h3>API</h3>
+<p>Framework f&uuml;r die von allen Komponenten ben&ouml;tigten
+Eigenschaften.<br>
+</p>
+<h3>Projects</h3>
+</body>
+</html>
