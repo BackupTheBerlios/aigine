@@ -9,13 +9,13 @@
 #include "../../AiGinEFramework/Control/Keyboard.h"
 #include "../../AiGinEFramework/Control/Mouse.h"
 
+#include "robot.h"
+
 SceneManagement* sm;
 Keyboard* kb;
 Mouse* m;
-AiGinEObject* knie;
-AiGinEObject* huefteR;
-AiGinEObject* beine;
-int dir;
+
+robot* robi;
 
 void display(void)
 {
@@ -45,99 +45,10 @@ void keyboard(unsigned char key, int x, int y)
 	kb->keyAction(key, x, y);
 }
 
-void littleAnim(int ms) {
-	if( knie->getRotation()->angle > 0) {
-		dir = -1;
-	}
-	if(knie->getRotation()->angle <= -45) {
-		dir = 1;
-	}
-	beine->getRotation()->y = 1;
-	beine->getRotation()->angle = ((int)beine->getRotation()->angle) % 360 + 5;
-	knie->getRotation()->angle += 2 * dir;
-	huefteR->getRotation()->angle -= 2 * dir;
-	cout << knie->getRotation()->angle << endl;
-	sm->display();
-	glutTimerFunc(ms, littleAnim, ms);
-
+void timerFunc(int ms) {
+	robi->animRobot();
+	glutTimerFunc(ms,timerFunc,ms);
 }
-
-void testPrimObjects() {
-
-	//Huefte
-	AiGinEObject* huefte = sm->addObjectPrim(new ageObjectPrim());
-	((ageObjectPrim*)huefte)->setCube(0.5);
-	((ageObjectPrim*)huefte)->setColor(255,0,0);
-	huefte->setTranslation(new Translation3D(0,6,0));
-	huefte->setScale(new Scale3D(6,1,1));
-	beine = huefte;
-
-	//Bein_Rechts
-	//Gelenk_Oben_Rechts
-	AiGinEObject* gelenk_o_r = sm->addObjectPrim(new ageObjectPrim(),huefte,"child");
-	((ageObjectPrim*)gelenk_o_r)->setSphere(0.25,100,100);
-	((ageObjectPrim*)gelenk_o_r)->setColor(0,255,0);
-	gelenk_o_r->setTranslation(new Translation3D(1.25,-0.5,0));
-	gelenk_o_r->setScale(new Scale3D(1,1,1));
-	gelenk_o_r->setRotation(new Rotation3D(45,1,0,0));
-	huefteR = gelenk_o_r;
-
-	//Segment_Oben_Rechts
-	AiGinEObject* seg_o_r = sm->addObjectPrim(new ageObjectPrim(),gelenk_o_r,"child");
-	((ageObjectPrim*)seg_o_r)->setCube(0.5);
-	((ageObjectPrim*)seg_o_r)->setColor(255,0,0);
-	seg_o_r->setTranslation(new Translation3D(0,-1.25,0));
-	seg_o_r->setScale(new Scale3D(1,4,1));
-
-	//Gelenk_Unten_Rechts
-	AiGinEObject* gelenk_u_r = sm->addObjectPrim(new ageObjectPrim(),seg_o_r,"child");
-	((ageObjectPrim*)gelenk_u_r)->setSphere(0.25,100,100);
-	((ageObjectPrim*)gelenk_u_r)->setColor(0,255,0);
-	gelenk_u_r->setTranslation(new Translation3D(0,-1.25,0));
-	gelenk_u_r->setScale(new Scale3D(1,1,1));
-	gelenk_u_r->setRotation(new Rotation3D(-45,1,0,0));
-	knie = gelenk_u_r;
-
-	//Segment_Unten_Rechts
-	AiGinEObject* seg_u_r = sm->addObjectPrim(new ageObjectPrim(),gelenk_u_r,"child");
-	((ageObjectPrim*)seg_u_r)->setCube(0.5);
-	((ageObjectPrim*)seg_u_r)->setColor(255,0,0);
-	seg_u_r->setTranslation(new Translation3D(0,-1.25,0));
-	seg_u_r->setScale(new Scale3D(1,4,1));
-
-
-
-	//Bein_Links
-	//Gelenk_Oben_Links	
-	AiGinEObject* gelenk_o_l = sm->addObjectPrim(new ageObjectPrim(),gelenk_o_r,"next");
-	((ageObjectPrim*)gelenk_o_l)->setSphere(0.25,100,100);
-	((ageObjectPrim*)gelenk_o_l)->setColor(0,255,0);
-	gelenk_o_l->setTranslation(new Translation3D(-1.25,-0.5,0));
-	gelenk_o_l->setScale(new Scale3D(1,1,1));
-
-	//Segment_Oben_Links
-	AiGinEObject* seg_o_l = sm->addObjectPrim(new ageObjectPrim(),gelenk_o_l,"child");
-	((ageObjectPrim*)seg_o_l)->setCube(0.5);
-	((ageObjectPrim*)seg_o_l)->setColor(255,0,0);
-	seg_o_l->setTranslation(new Translation3D(0,-1.25,0));
-	seg_o_l->setScale(new Scale3D(1,4,1));
-
-	//Gelenk_Unten_Links
-	AiGinEObject* gelenk_u_l = sm->addObjectPrim(new ageObjectPrim(),seg_o_l,"child");
-	((ageObjectPrim*)gelenk_u_l)->setSphere(0.25,100,100);
-	((ageObjectPrim*)gelenk_u_l)->setColor(0,255,0);
-	gelenk_u_l->setTranslation(new Translation3D(0,-1.25,0));
-	gelenk_u_l->setScale(new Scale3D(1,1,1));
-
-	//Segment_Unten_Links
-	AiGinEObject* seg_u_l = sm->addObjectPrim(new ageObjectPrim(),gelenk_u_l,"child");
-	((ageObjectPrim*)seg_u_l)->setCube(0.5);
-	((ageObjectPrim*)seg_u_l)->setColor(255,0,0);
-	seg_u_l->setTranslation(new Translation3D(0,-1.25,0));
-	seg_u_l->setScale(new Scale3D(1,4,1));
-
-}
-
 
 int main(int argc, char** argv)
 { 
@@ -147,7 +58,10 @@ int main(int argc, char** argv)
 	sm->initOpenGL(argc, argv);
 
 	// Aufbau des Levels
-	testPrimObjects();
+	//	testPrimObjects();
+
+	robi = new robot(sm);
+	robi->drawRobot();
 
 
 /*	
@@ -187,7 +101,7 @@ int main(int argc, char** argv)
     glutReshapeFunc(reshape); // .. fuer die Aenderung der Fenstergroesse
 	glutKeyboardFunc(keyboard); // .. fuer die Tastaturabfrage
 	glutPassiveMotionFunc(passivemotion); // fuer die Mausabfrage
-    glutTimerFunc(20,littleAnim, 20);
+    glutTimerFunc(20,timerFunc, 20);
     glutMainLoop(); // Kontrolle wird an GLUT uebergeben
     return 0;
 } 
