@@ -36,7 +36,7 @@
 	</rmic>	
   </target>
   
-   <target name="unjar_lib" description="extrahiert aus der lib.jar alle relevanten jar files">
+   <target name="unjar_other_lib" description="extrahiert aus der lib.jar alle relevanten jar files">
 		<mkdir dir="lib/lib"/>		
 		<unjar dest="lib/lib">  				
   				<fileset dir="lib/hibernate"/>
