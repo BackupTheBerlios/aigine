@@ -173,6 +173,7 @@ knot* Tree::getKnotPostorder() {
 		return NULL;
 	}
 }
+
 knot* Tree::getKnotLevelorder() {
 	return NULL;
 }
@@ -199,10 +200,3 @@ void Tree::buildPostorder(knot* k) {
 }
 void Tree::buildLevelorder(knot* k) {
 }
-void Tree::addToList(knot* k){}
-
-/*
-void main(int argc, char** argv) {
-	Tree* t = new Tree();
-}
-*/

@@ -26,7 +26,6 @@ private:
 	knot* list;
 	knot* rootKnot;
 	knot* temporaryKnot;
-	void addToList(knot* k);
 	knot* initKnot(knot* k);
 	void makeTest();
 	int actualListElement;
