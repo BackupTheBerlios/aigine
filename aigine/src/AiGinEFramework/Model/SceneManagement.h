@@ -32,14 +32,21 @@ class SceneManagement : public SceneGraph, public GraphicPipeline
 
 public:
     /** Konstruktor */
-    SceneManagenent();
+    SceneManagement();
 
     /**
-     * Lädt ein 3D Objekt aus einer Datei.
-     * @param fileType Typ der Datei
+     * Lädt ein 3D Objekt aus einer Datei und hängt es in die Wurzel des SceneGraph.
      * @param fileName Name der zu ladenen Datei
      */
-    void load(string fileType, string fileName);
+    AiGinEObject * addObject3DS(string fileName);
+
+    /**
+     * Lädt ein 3D Objekt aus einer Datei und hängt es an den parent entspr. von kind
+     * @param fileName Name der zu ladenen Datei
+     * @param parent Eltern-Objekt
+     * @param kind Als "Next"- bzw. "Child"-Objekt anhängen
+     */
+	AiGinEObject * addObject3DS(string fileName, AiGinEObject* parent, string kind);
 
     /**
      * Ausgabe der Szene. Ruft die Methoden von "GraphicPipeline" und

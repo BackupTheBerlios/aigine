@@ -24,23 +24,26 @@ class ObjectTree;
  */
 
 
-class SceneGraph
+class SceneGraph : public Tree
 {
 public:
 
-    void addObject(AiGinEObject * object);
+	SceneGraph();
+    void addObject(AiGinEObject*);
 
     void draw();
 
     Object3DS * getTmpTestObject();
 
-    void setTmpTestObject(Object3DS * tmpTestObject);
+ //   void setTmpTestObject(Object3DS * tmpTestObject);
 
-    void drawSceneGraph(knot * k);
+    void drawSceneGraph(AiGinEObject*);
 
     //alle add- bzw. remove-Funktionen geben einen bool als Erfogsmeldung zurück
     //true -> Operation erfolgreich
     //false -> Fehler (könnte gegen int ausgetauscht werden; 0->OK x ->Fehler Nr. x)
+	void addRoot(AiGinEObject* rootObject);
+
     bool addChild(AiGinEObject * parentObject, AiGinEObject * childObject);
 
     bool addNext(AiGinEObject * parentObject, AiGinEObject * nextObject);
@@ -50,9 +53,9 @@ public:
 private:
     ObjectTree * lnkObjectTree;
     Object3DS * tmpTestObject;
-    knot * root;
+    Knot * root;
     //sucht ihm Baum nach einem gegebenen Object
-    knot * findObject(AiGinEObject * obj);
+    Knot * findObject(AiGinEObject * obj);
 };
 
 #endif //SCENEGRAPH_H

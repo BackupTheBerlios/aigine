@@ -9,7 +9,7 @@
 //
 ////////////////////////////////////////////////////////////////////////
 #include "Tree.h"
-#include "windows.h"
+//#include "windows.h"
 #include <iostream>
 #include <string>
 using namespace std;
@@ -185,6 +185,9 @@ Knot* Tree::getRootKnot() {
 	return this->rootKnot;
 }
 
+void Tree::setRoot(Knot* k) {
+	this->rootKnot = k;
+}
 /**
 * @description 
 * @param 

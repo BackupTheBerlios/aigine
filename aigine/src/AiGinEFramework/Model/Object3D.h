@@ -62,17 +62,17 @@ public:
 
     ~Object3D();
 
-    Translation3D & getTranslation();
+    Translation3D *  getTranslation();
 
-    void setTranslation(Translation3D translation);
+    void setTranslation(Translation3D * translation);
 
-    Rotation3D & getRotation();
+    Rotation3D*  getRotation();
 
-    void setRotation(Rotation3D rotation);
+    void setRotation(Rotation3D * rotation);
 
-    Scale3D& getScale();
+    Scale3D* getScale();
 
-    void setScale(Scale3D scale);
+    void setScale(Scale3D * scale);
 
     /**
      * Init Funktion des Objektes. Zur Testzwecken mal ein kleines Object initiert 
@@ -94,9 +94,9 @@ private:
 	List <Mesh *> meshList;	// The faces information of the object
     
 	    
-    Translation3D translation;
-    Rotation3D rotation;  
-    Scale3D scale;
+    Translation3D * translation;
+    Rotation3D * rotation;  
+    Scale3D * scale;
 };
 
 #endif //OBJECT3D_H

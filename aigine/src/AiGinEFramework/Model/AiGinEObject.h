@@ -2,17 +2,19 @@
 
 #ifndef AIGINEOBJECT_H
 #define AIGINEOBJECT_H
-#include "Model/Object3D.h"
+#include "../Model/Object3D.h"
+#include "../Model/Knot.h"
+
 class Shader;
 class Renderer;
 
 /**
  * @stereotype interface 
  */
-class AiGinEObject : public Object3D
+class AiGinEObject : public Object3D, public Knot
 {
-private:    
 
+private:    
     /**
      * @supplierCardinality 1
      * @clientCardinality 1 
@@ -24,5 +26,11 @@ private:
      * @clientCardinality 1 
      */
     Shader * lnkShader;
+
+public:
+
+	AiGinEObject();
+	void display();
+
 };
 #endif //AIGINEOBJECT_H

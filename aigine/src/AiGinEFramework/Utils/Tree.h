@@ -26,9 +26,10 @@ private:
 	List<Knot*>* knotListInorder;
 	List<Knot*>* knotListPostorder;
 	List<Knot*>* knotListLevelorder;
-	
+
 public:	
 	Tree();
+	void setRoot(Knot* k);
 	bool addKnotLeft(Knot* paren, Knot* child);
 	bool addKnotRight(Knot* paren, Knot* child);
 	Knot* getRootKnot();
