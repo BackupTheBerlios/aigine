@@ -6,16 +6,16 @@
  */
 package projects.voting;
 
+import interfaces.PersistenceHelper;
+
 import java.rmi.RemoteException;
 import java.util.List;
 import java.util.Vector;
 
-import net.sf.hibernate.HibernateException;
-import net.sf.hibernate.Session;
-import net.sf.hibernate.SessionFactory;
-import net.sf.hibernate.Transaction;
 import projects.interfaces.VTDatabaseServer;
+import projects.interfaces.VTLogicServer;
 import projects.voting.model.DBVote;
+import projects.voting.model.VoteTable;
 import API.control.Database;
 import API.model.RemoteObject;
 
@@ -26,8 +26,13 @@ import API.model.RemoteObject;
  * Window&gt;Preferences&gt;Java&gt;Code Generation&gt;Code and Comments
  */
 public class VTDatabaseImpl extends Database implements VTDatabaseServer {
+	
+	
+	private PersistenceHelper storehelper;
 
-	private SessionFactory sessionFactory;
+	private VoteTable votes;
+
+	private VTLogicServer logicserver;
 
 	/**
 	 * 
@@ -43,60 +48,36 @@ public class VTDatabaseImpl extends Database implements VTDatabaseServer {
 	/* (non-Javadoc)
 	 * @see API.interfaces.ServerHandle#register(API.model.RemoteObject)
 	 */
-	public String register(RemoteObject service) throws RemoteException {
+	public String register(RemoteObject service) {
 		// TODO Auto-generated method stub
-		return null;
+		return super.register(service);
 	}
 
+	
+
 	/**
-	* 	
-	*/
-	public void storeVotes(Vector dataVector) {
+		* Speichert einzelne DBVotes in der Datenbank
+		* @param title		
+		
+	public void storeVote(DBVote vote) {
 		try {
 			Session session = sessionFactory.openSession();
 			Transaction tx = session.beginTransaction();
-
-			for (int i = 0; i < dataVector.size(); i++) {
-				DBVote vote = (DBVote) dataVector.get(i);
-				session.saveOrUpdate(vote);				
-			}
+			session.saveOrUpdate(vote);
 			tx.commit();
 			session.close();
 		} catch (HibernateException e) {
 			e.printStackTrace();
 		}
 	}
+*/
 	
-	/**
-		* Speichert einzelne DBVotes in der Datenbank
-		* @param title		
-		*/
-		public void storeVote(DBVote vote) {
-			try {
-				Session session = sessionFactory.openSession();
-				Transaction tx = session.beginTransaction();
-				session.saveOrUpdate(vote);				
-				tx.commit();
-				session.close();
-			} catch (HibernateException e) {
-				e.printStackTrace();
-			}
-		}
-
-	private List listVotes() {
-		try {
-			Session session = sessionFactory.openSession();
-			Transaction tx = session.beginTransaction();
-
-			List result = session.find("from Votes");
-
-			tx.commit();
-			session.close();
-
-			return result;
-		} catch (HibernateException e) {
-			throw new RuntimeException(e.getMessage());
-		}
+	public void save() {
+		storehelper.save();
+	}
+	public List listVotes() {
+		return storehelper.listVotes();
+		
 	}
 
 	/* (non-Javadoc)
@@ -105,6 +86,22 @@ public class VTDatabaseImpl extends Database implements VTDatabaseServer {
 	public void getDatabaseTable() {
 		// TODO Auto-generated method stub
 
+	}
+
+	/* (non-Javadoc)
+	 * @see projects.interfaces.VTDatabaseServer#storeVotes(java.util.Vector)
+	 */
+	public void storeVotes(Vector data) throws RemoteException {
+		// TODO Auto-generated method stub
+		
+	}
+
+	/* (non-Javadoc)
+	 * @see projects.interfaces.VTDatabaseServer#storeVote(projects.voting.model.DBVote)
+	 */
+	public void storeVote(DBVote vote) throws RemoteException {
+		// TODO Auto-generated method stub
+		
 	}
 
 }
