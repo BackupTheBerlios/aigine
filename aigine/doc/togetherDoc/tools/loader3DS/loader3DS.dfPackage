@@ -66,7 +66,34 @@ class __tags {
 */
 class __options {
 }/**
-@__positions 
+@__positions <oigroup:Composite#supplierCardinality#MemberLink#<oiref:cpp#Member#t3DModel#pMaterials:oiref>=133,491,26,16,0:oigroup>
+<oigroup:<oiref:cpp#Class#t3DObject:oiref>=10,200,124,251,1:oigroup>
+<oigroup:Composite#supplierCardinality#MemberLink#<oiref:cpp#Member#t3DModel#pObject:oiref>=138,390,26,16,0:oigroup>
+<oigroup:<oiref:cpp#Class#tFace:oiref>=230,210,106,123,1:oigroup>
+<oigroup:MemberLink#<oiref:cpp#Member#t3DObject#pVerts:oiref>=106,200,183,149:oigroup>
+<oigroup:<oiref:cpp#Class#tMaterialInfo:oiref>=10,490,119,219,1:oigroup>
+<oigroup:Composite#supplierCardinality#MemberLink#<oiref:cpp#Member#t3DObject#pTexVerts:oiref>=19,133,28,16,0:oigroup>
+<oigroup:MemberLink#<oiref:cpp#Member#Object3DS#model:oiref>=430,344,430,440,396,440:oigroup>
+<oigroup:<oiref:cpp#Class#CLoad3DS:oiref>=450,390,200,334,1:oigroup>
+<oigroup:<oiref:cpp#Class#tVector2:oiref>=10,10,83,123,1:oigroup>
+<oigroup:MemberLink#<oiref:cpp#Member#CLoad3DS#m_CurrentChunk:oiref>=450,652,364,652:oigroup>
+<oigroup:MemberLink#<oiref:cpp#Member#t3DObject#pTexVerts:oiref>=51,200,51,133:oigroup>
+<oigroup:<oiref:cpp#Class#tIndices:oiref>=220,10,144,155,1:oigroup>
+<oigroup:Composite#supplierCardinality#MemberLink#<oiref:cpp#Member#CLoad3DS#m_CurrentChunk:oiref>=368,632,28,16,0:oigroup>
+<oigroup:<oiref:cpp#Class#tVector3:oiref>=110,10,83,139,1:oigroup>
+<oigroup:MemberLink#<oiref:cpp#Member#t3DObject#pFaces:oiref>=134,271,230,271:oigroup>
+<oigroup:Composite#supplierCardinality#MemberLink#<oiref:cpp#Member#t3DObject#pNormals:oiref>=88,149,28,16,0:oigroup>
+<oigroup:MemberLink#<oiref:cpp#Member#Object3DS#load3ds:oiref>=515,344,515,390:oigroup>
+<oigroup:Composite#supplierCardinality#MemberLink#<oiref:cpp#Member#t3DObject#pVerts:oiref>=121,149,28,16,0:oigroup>
+<oigroup:<oiref:cpp#Class#t3DModel:oiref>=210,370,186,155,1:oigroup>
+<oigroup:MemberLink#<oiref:cpp#Member#t3DModel#pMaterials:oiref>=210,511,129,511:oigroup>
+<oigroup:MemberLink#<oiref:cpp#Member#t3DObject#pNormals:oiref>=78,200,147,149:oigroup>
+<oigroup:MemberLink#<oiref:cpp#Member#t3DModel#pObject:oiref>=210,410,134,410:oigroup>
+<oigroup:<oiref:cpp#Class#tChunk:oiref>=220,560,144,139,1:oigroup>
+<oigroup:Composite#supplierCardinality#MemberLink#<oiref:cpp#Member#t3DObject#pFaces:oiref>=198,251,28,16,0:oigroup>
+<oigroup:<oiref:cpp#Class#Object3DS:oiref>=380,10,200,334,1:oigroup>
+<oigroup:Composite#supplierCardinality#MemberLink#<oiref:cpp#Member#CLoad3DS#m_TempChunk:oiref>=368,586,28,16,0:oigroup>
+<oigroup:MemberLink#<oiref:cpp#Member#CLoad3DS#m_TempChunk:oiref>=450,606,364,606:oigroup> 
 */
 class __positions {
 }

@@ -1,0 +1,31 @@
+package id34fsbdpydoamddpydohaq;
+
+/**
+@version 2.0
+@physicalPackage
+@__modelType diagram 
+*/
+class diagram {
+/**
+@__ref <oiref:cpp#Class#ageObjectPrim:oiref><oihard>
+@__modelType reference 
+*/
+class reference {
+}/**
+@__ref <oiref:cpp#Class#ageObject3DS:oiref><oihard>
+@__modelType reference 
+*/
+class reference5 {
+}}/**
+@__tags
+@shapeType ClassDiagram*/
+class __tags {
+}/**
+@__options 
+*/
+class __options {
+}/**
+@__positions 
+*/
+class __positions {
+}

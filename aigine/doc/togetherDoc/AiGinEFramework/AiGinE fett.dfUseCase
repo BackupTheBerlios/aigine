@@ -1,0 +1,159 @@
+package id48kkedpydoamddpyhvy5k;
+
+/**
+@version 2.0
+@__modelType diagram 
+*/
+class diagram {
+/**
+@__ref <oiref:design#Class#id48kkedpydoamddpyhvy5k.node:oiref><oihard>
+@__modelType reference 
+*/
+class reference {
+}/**
+@__ref <oiref:design#Class#id48kkedpydoamddpyhvy5k.node211:oiref><oihard>
+@__modelType reference 
+*/
+class reference212 {
+}/**
+@__ref <oiref:design#Class#id48kkedpydoamddpyhvy5k.node213:oiref><oihard>
+@__modelType reference 
+*/
+class reference214 {
+}/**
+@__ref <oiref:design#Class#id48kkedpydoamddpyhvy5k.node232:oiref><oihard>
+@__modelType reference 
+*/
+class reference233 {
+}}/**
+
+@__tags
+@shapeType UseCaseDiagram 
+*/
+class __tags {
+}/**
+@__options option.links = Rectilinear 
+*/
+class __options {
+}/**
+@__positions <oigroup:<oiref:design#Class#id48kkedpydoamddpyhvy5k.node211.node215:oiref>=470,120,100,27,1:oigroup>
+<oigroup:<oiref:design#Class#id48kkedpydoamddpyhvy5k.node213.node.link217:oiref>=260,87,260,130,470,130:oigroup>
+<oigroup:<oiref:design#Class#id48kkedpydoamddpyhvy5k.node232.link:oiref>=700,133,570,133:oigroup>
+<oigroup:Composite#label#<oiref:design#Class#id48kkedpydoamddpyhvy5k.node211.node.link:oiref>=632,50,62,16,0:oigroup>
+<oigroup:<oiref:design#Class#id48kkedpydoamddpyhvy5k.node213.node.link:oiref>=318,73,470,73:oigroup>
+<oigroup:<oiref:design#Class#id48kkedpydoamddpyhvy5k.node:oiref>=10,40,64,77,1:oigroup>
+<oigroup:Composite#label#<oiref:design#Class#id48kkedpydoamddpyhvy5k.node232.link234:oiref>=622,180,62,16,0:oigroup>
+<oigroup:<oiref:design#Class#id48kkedpydoamddpyhvy5k.node213.node:oiref>=189,60,129,27,1:oigroup>
+<oigroup:<oiref:design#Class#id48kkedpydoamddpyhvy5k.node232:oiref>=700,110,74,77,1:oigroup>
+<oigroup:<oiref:design#Class#id48kkedpydoamddpyhvy5k.node211.node.link:oiref>=570,70,757,70,757,110:oigroup>
+<oigroup:Composite#<<extend>>#<oiref:design#Class#id48kkedpydoamddpyhvy5k.node213.node.link218:oiref>=335,180,72,16,0:oigroup>
+<oigroup:<oiref:design#Class#id48kkedpydoamddpyhvy5k.node.link:oiref>=74,73,189,73:oigroup>
+<oigroup:Composite#label#<oiref:design#Class#id48kkedpydoamddpyhvy5k.node.link:oiref>=100,53,62,16,0:oigroup>
+<oigroup:<oiref:design#Class#id48kkedpydoamddpyhvy5k.node211.node216:oiref>=470,190,100,27,1:oigroup>
+<oigroup:<oiref:design#Class#id48kkedpydoamddpyhvy5k.node213.node.link218:oiref>=242,87,242,200,470,200:oigroup>
+<oigroup:<oiref:design#Class#id48kkedpydoamddpyhvy5k.node232.link234:oiref>=757,187,757,200,570,200:oigroup>
+<oigroup:Composite#label#<oiref:design#Class#id48kkedpydoamddpyhvy5k.node232.link:oiref>=614,113,62,16,0:oigroup>
+<oigroup:<oiref:design#Class#id48kkedpydoamddpyhvy5k.node213:oiref>=160,10,160,270,0:oigroup>
+<oigroup:<oiref:design#Class#id48kkedpydoamddpyhvy5k.node211:oiref>=430,10,170,270,0:oigroup>
+<oigroup:Composite#<<extend>>#<oiref:design#Class#id48kkedpydoamddpyhvy5k.node213.node.link217:oiref>=334,110,72,16,0:oigroup>
+<oigroup:<oiref:design#Class#id48kkedpydoamddpyhvy5k.node211.node:oiref>=470,60,100,27,1:oigroup>
+<oigroup:Composite#<<extend>>#<oiref:design#Class#id48kkedpydoamddpyhvy5k.node213.node.link:oiref>=343,53,72,16,0:oigroup>
+*/
+class __positions {
+}/**
+@shapeType Actor
+@__modelType node
+@name Entwickler 
+*/
+class node {
+/**
+@shapeType CommunicatesLink
+@__modelType link
+@__ref <oiref:design#Class#id48kkedpydoamddpyhvy5k.node213.node:oiref><oihard>
+@label entwickelt 
+*/
+class link {
+}}/**
+@shapeType SystemBoundary
+@__modelType node
+@name AiGinE
+@backgroundColor 200,200,200 
+*/
+class node211 {
+/**
+@shapeType UseCase
+@__modelType node
+@name Model 
+*/
+class node {
+/**
+@shapeType CommunicatesLink
+@__modelType link
+@__ref <oiref:design#Class#id48kkedpydoamddpyhvy5k.node232:oiref><oihard>
+@label entwickelt 
+*/
+class link {
+}}/**
+@shapeType UseCase
+@__modelType node
+@name View 
+*/
+class node215 {
+}/**
+@shapeType UseCase
+@__modelType node
+@name Control 
+*/
+class node216 {
+}}/**
+@shapeType SystemBoundary
+@__modelType node
+@name Endanwendung
+@backgroundColor 200,200,200 
+*/
+class node213 {
+/**
+@shapeType UseCase
+@__modelType node
+@name 3D Umgebung 
+*/
+class node {
+/**
+@shapeType ExtendsLink
+@__modelType link
+@__ref <oiref:design#Class#id48kkedpydoamddpyhvy5k.node211.node:oiref><oihard> 
+*/
+class link {
+}/**
+@shapeType ExtendsLink
+@__modelType link
+@__ref <oiref:design#Class#id48kkedpydoamddpyhvy5k.node211.node215:oiref><oihard> 
+*/
+class link217 {
+}/**
+@shapeType ExtendsLink
+@__modelType link
+@__ref <oiref:design#Class#id48kkedpydoamddpyhvy5k.node211.node216:oiref><oihard> 
+*/
+class link218 {
+}}}/**
+@shapeType Actor
+@__modelType node
+@name AiGinECrew 
+*/
+class node232 {
+/**
+@shapeType CommunicatesLink
+@__modelType link
+@__ref <oiref:design#Class#id48kkedpydoamddpyhvy5k.node211.node215:oiref><oihard>
+@label entwickelt 
+*/
+class link {
+}/**
+@shapeType CommunicatesLink
+@__modelType link
+@__ref <oiref:design#Class#id48kkedpydoamddpyhvy5k.node211.node216:oiref><oihard>
+@label entwickelt 
+*/
+class link234 {
+}}

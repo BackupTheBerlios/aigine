@@ -1,0 +1,764 @@
+package id43j0jdpydoamddpyhnxvk;
+
+/**
+@version 2.0
+@__modelType diagram 
+*/
+class diagram {
+/**
+@shapeType Hyperlink
+@__modelType link
+@__ref <oiref:cpp#Member#Mouse#passivemotion#(#int#int#)#:oiref><oihard>
+@__reversed 
+*/
+class link {
+}/**
+@__ref <oiref:design#Class#id43j0jdpydoamddpyhnxvk.node:oiref><oihard>
+@__modelType reference 
+*/
+class reference {
+}/**
+@__ref <oiref:design#Class#id43j0jdpydoamddpyhnxvk.node155:oiref><oihard>
+@__modelType reference 
+*/
+class reference156 {
+}/**
+@__ref <oiref:design#Class#id43j0jdpydoamddpyhnxvk.node158:oiref><oihard>
+@__modelType reference 
+*/
+class reference159 {
+}/**
+@__ref <oiref:design#Class#id43j0jdpydoamddpyhnxvk.node162:oiref><oihard>
+@__modelType reference 
+*/
+class reference163 {
+}/**
+@__ref <oiref:design#Class#id43j0jdpydoamddpyhnxvk.node176:oiref><oihard>
+@__modelType reference 
+*/
+class reference177 {
+}/**
+@__ref <oiref:design#Class#id43j0jdpydoamddpyhnxvk.node199:oiref><oihard>
+@__modelType reference 
+*/
+class reference200 {
+}}/**
+@__tags
+@shapeType SequenceDiagram
+@__viewType collaborationView 
+*/
+class __tags {
+}/**
+@__options 
+*/
+class __options {
+}/**
+@__positions <oigroup:<oiref:design#Class#id43j0jdpydoamddpyhnxvk.node162.link201:oiref>=851,805,1274,805:oigroup>
+<oigroup:<oiref:design#Class#id43j0jdpydoamddpyhnxvk.node162.link178:oiref>=851,415,1161,415:oigroup>
+<oigroup:<oiref:design#Class#id43j0jdpydoamddpyhnxvk.node162.node166:oiref>=828,195,14,20,1:oigroup>
+<oigroup:<oiref:design#Class#id43j0jdpydoamddpyhnxvk.node155.link161:oiref>=:oigroup>
+<oigroup:Composite#$messageInplaceEditing#<oiref:design#Class#id43j0jdpydoamddpyhnxvk.node158.link164:oiref>=476,155,345,16,0:oigroup>
+<oigroup:<oiref:design#Class#id43j0jdpydoamddpyhnxvk.node162.link187:oiref>=851,555,851,549,891,549,891,561,860,561:oigroup>
+<oigroup:<oiref:design#Class#id43j0jdpydoamddpyhnxvk.node162.node175:oiref>=846,375,14,20,1:oigroup>
+<oigroup:<oiref:design#Class#id43j0jdpydoamddpyhnxvk.node199.node:oiref>=1274,805,14,50,1:oigroup>
+<oigroup:Composite#$messageInplaceEditing#<oiref:design#Class#id43j0jdpydoamddpyhnxvk.node162.link189:oiref>=873,601,302,16,0:oigroup>
+<oigroup:Composite#$messageInplaceEditing#<oiref:design#Class#id43j0jdpydoamddpyhnxvk.node176.link180:oiref>=1188,441,272,16,0:oigroup>
+<oigroup:Composite#$messageInplaceEditing#<oiref:design#Class#id43j0jdpydoamddpyhnxvk.node.link:oiref>=86,115,164,16,0:oigroup>
+<oigroup:<oiref:design#Class#id43j0jdpydoamddpyhnxvk.node176.node186:oiref>=1170,505,14,20,1:oigroup>
+<oigroup:Composite#$messageInplaceEditing#<oiref:design#Class#id43j0jdpydoamddpyhnxvk.node162.link201:oiref>=855,785,252,16,0:oigroup>
+<oigroup:Composite#$messageInplaceEditing#<oiref:design#Class#id43j0jdpydoamddpyhnxvk.node162.link178:oiref>=855,395,308,16,0:oigroup>
+<oigroup:<oiref:design#Class#id43j0jdpydoamddpyhnxvk.node162.link183:oiref>=851,485,1161,485:oigroup>
+<oigroup:<oiref:design#Class#id43j0jdpydoamddpyhnxvk.node155:oiref>=210,30,90,1035,1:oigroup>
+<oigroup:<oiref:design#Class#id43j0jdpydoamddpyhnxvk.node162.node207:oiref>=846,875,14,20,1:oigroup>
+<oigroup:<oiref:design#Class#id43j0jdpydoamddpyhnxvk.node155.node:oiref>=248,135,14,850,1:oigroup>
+<oigroup:Composite#$messageInplaceEditing#<oiref:design#Class#id43j0jdpydoamddpyhnxvk.node162.link187:oiref>=864,561,344,16,0:oigroup>
+<oigroup:<oiref:design#Class#id43j0jdpydoamddpyhnxvk.node162.link174:oiref>=851,375,851,369,891,369,891,381,860,381:oigroup>
+<oigroup:<oiref:design#Class#id43j0jdpydoamddpyhnxvk.node199.node204:oiref>=1283,825,14,20,1:oigroup>
+<oigroup:<oiref:design#Class#id43j0jdpydoamddpyhnxvk.node176.node184:oiref>=1161,485,14,50,1:oigroup>
+<oigroup:Composite#$messageInplaceEditing#<oiref:design#Class#id43j0jdpydoamddpyhnxvk.node162.link174:oiref>=864,381,251,16,0:oigroup>
+<oigroup:<oiref:design#Class#id43j0jdpydoamddpyhnxvk.node.link157:oiref>=:oigroup>
+<oigroup:<oiref:design#Class#id43j0jdpydoamddpyhnxvk.node176.node:oiref>=1161,415,14,50,1:oigroup>
+<oigroup:<oiref:design#Class#id43j0jdpydoamddpyhnxvk.node199.link203:oiref>=1288,825,1288,819,1328,819,1328,831,1297,831:oigroup>
+<oigroup:<oiref:design#Class#id43j0jdpydoamddpyhnxvk.node199.link205:oiref>=:oigroup>
+<oigroup:Composite#$messageInplaceEditing#<oiref:design#Class#id43j0jdpydoamddpyhnxvk.node162.link183:oiref>=855,465,304,16,0:oigroup>
+<oigroup:<oiref:design#Class#id43j0jdpydoamddpyhnxvk.node176.link185:oiref>=1175,505,1175,499,1215,499,1215,511,1184,511:oigroup>
+<oigroup:<oiref:design#Class#id43j0jdpydoamddpyhnxvk.node162:oiref>=771,30,111,1035,1:oigroup>
+<oigroup:<oiref:design#Class#id43j0jdpydoamddpyhnxvk.node158.link165:oiref>=:oigroup>
+<oigroup:<oiref:design#Class#id43j0jdpydoamddpyhnxvk.node162.link206:oiref>=851,875,851,869,891,869,891,881,860,881:oigroup>
+<oigroup:<oiref:design#Class#id43j0jdpydoamddpyhnxvk.node162.link208:oiref>=851,915,1274,915:oigroup>
+<oigroup:<oiref:design#Class#id43j0jdpydoamddpyhnxvk.node162.node198:oiref>=846,765,14,20,1:oigroup>
+<oigroup:Composite#$messageInplaceEditing#<oiref:design#Class#id43j0jdpydoamddpyhnxvk.node162.link208:oiref>=855,895,241,16,0:oigroup>
+<oigroup:<oiref:design#Class#id43j0jdpydoamddpyhnxvk.node158.node:oiref>=458,155,14,820,1:oigroup>
+<oigroup:Composite#$messageInplaceEditing#<oiref:design#Class#id43j0jdpydoamddpyhnxvk.node199.link203:oiref>=1301,831,141,16,0:oigroup>
+<oigroup:Composite#$messageInplaceEditing#<oiref:design#Class#id43j0jdpydoamddpyhnxvk.node176.link185:oiref>=1188,511,255,16,0:oigroup>
+<oigroup:<oiref:design#Class#id43j0jdpydoamddpyhnxvk.node199.node209:oiref>=1274,915,14,20,1:oigroup>
+<oigroup:<oiref:design#Class#id43j0jdpydoamddpyhnxvk.node162.node167:oiref>=828,235,14,20,1:oigroup>
+<oigroup:<oiref:design#Class#id43j0jdpydoamddpyhnxvk.node162.node169:oiref>=837,285,14,20,1:oigroup>
+<oigroup:<oiref:design#Class#id43j0jdpydoamddpyhnxvk.node155.link160:oiref>=262,155,458,155:oigroup>
+<oigroup:<oiref:design#Class#id43j0jdpydoamddpyhnxvk.node162.node194:oiref>=855,675,14,20,1:oigroup>
+<oigroup:<oiref:design#Class#id43j0jdpydoamddpyhnxvk.node162.node196:oiref>=846,725,14,20,1:oigroup>
+<oigroup:Composite#$messageInplaceEditing#<oiref:design#Class#id43j0jdpydoamddpyhnxvk.node162.link206:oiref>=864,881,247,16,0:oigroup>
+<oigroup:<oiref:design#Class#id43j0jdpydoamddpyhnxvk.node162.link197:oiref>=851,765,851,759,891,759,891,771,860,771:oigroup>
+<oigroup:<oiref:design#Class#id43j0jdpydoamddpyhnxvk.node162.link202:oiref>=:oigroup>
+<oigroup:<oiref:design#Class#id43j0jdpydoamddpyhnxvk.node162.link179:oiref>=:oigroup>
+<oigroup:<oiref:design#Class#id43j0jdpydoamddpyhnxvk.node176:oiref>=1123,30,90,1035,1:oigroup>
+<oigroup:<oiref:design#Class#id43j0jdpydoamddpyhnxvk.node162.node192:oiref>=855,635,14,20,1:oigroup>
+<oigroup:Composite#$messageInplaceEditing#<oiref:design#Class#id43j0jdpydoamddpyhnxvk.node155.link160:oiref>=266,135,194,16,0:oigroup>
+<oigroup:<oiref:design#Class#id43j0jdpydoamddpyhnxvk.node162.node172:oiref>=846,335,14,20,1:oigroup>
+<oigroup:<oiref:design#Class#id43j0jdpydoamddpyhnxvk.node158:oiref>=406,30,118,1035,1:oigroup>
+<oigroup:<oiref:design#Class#id43j0jdpydoamddpyhnxvk.node162.link193:oiref>=860,675,860,669,900,669,900,681,869,681:oigroup>
+<oigroup:<oiref:design#Class#id43j0jdpydoamddpyhnxvk.node162.link195:oiref>=851,725,851,719,891,719,891,731,860,731:oigroup>
+<oigroup:Composite#$messageInplaceEditing#<oiref:design#Class#id43j0jdpydoamddpyhnxvk.node162.link195:oiref>=864,731,244,16,0:oigroup>
+<oigroup:Composite#$messageInplaceEditing#<oiref:design#Class#id43j0jdpydoamddpyhnxvk.node162.link197:oiref>=864,771,251,16,0:oigroup>
+<oigroup:<oiref:design#Class#id43j0jdpydoamddpyhnxvk.node162.node190:oiref>=855,595,14,20,1:oigroup>
+<oigroup:<oiref:design#Class#id43j0jdpydoamddpyhnxvk.node:oiref>=30,30,90,1035,1:oigroup>
+<oigroup:<oiref:design#Class#id43j0jdpydoamddpyhnxvk.node162.node170:oiref>=837,315,14,630,1:oigroup>
+<oigroup:<oiref:design#Class#id43j0jdpydoamddpyhnxvk.node162.link191:oiref>=860,635,860,629,900,629,900,641,869,641:oigroup>
+<oigroup:<oiref:design#Class#id43j0jdpydoamddpyhnxvk.node.link:oiref>=82,135,248,135:oigroup>
+<oigroup:Composite#$messageInplaceEditing#<oiref:design#Class#id43j0jdpydoamddpyhnxvk.node162.link191:oiref>=873,641,261,16,0:oigroup>
+<oigroup:<oiref:design#Class#id43j0jdpydoamddpyhnxvk.node162.link171:oiref>=851,335,851,329,891,329,891,341,860,341:oigroup>
+<oigroup:<oiref:design#Class#id43j0jdpydoamddpyhnxvk.node162.node:oiref>=819,175,14,790,1:oigroup>
+<oigroup:Composite#$messageInplaceEditing#<oiref:design#Class#id43j0jdpydoamddpyhnxvk.node162.link193:oiref>=873,681,261,16,0:oigroup>
+<oigroup:<oiref:design#Class#id43j0jdpydoamddpyhnxvk.node162.link173:oiref>=:oigroup>
+<oigroup:<oiref:design#Class#id43j0jdpydoamddpyhnxvk.node176.node181:oiref>=1170,435,14,20,1:oigroup>
+<oigroup:<oiref:design#Class#id43j0jdpydoamddpyhnxvk.node176.link182:oiref>=:oigroup>
+<oigroup:<oiref:design#Class#id43j0jdpydoamddpyhnxvk.node162.node188:oiref>=846,555,14,150,1:oigroup>
+<oigroup:<oiref:design#Class#id43j0jdpydoamddpyhnxvk.node199:oiref>=1236,30,90,1035,1:oigroup>
+<oigroup:<oiref:design#Class#id43j0jdpydoamddpyhnxvk.node158.link164:oiref>=472,175,819,175:oigroup>
+<oigroup:<oiref:design#Class#id43j0jdpydoamddpyhnxvk.node162.node168:oiref>=828,265,14,690,1:oigroup>
+<oigroup:Composite#$messageInplaceEditing#<oiref:design#Class#id43j0jdpydoamddpyhnxvk.node162.link171:oiref>=864,341,247,16,0:oigroup>
+<oigroup:<oiref:design#Class#id43j0jdpydoamddpyhnxvk.node162.link189:oiref>=860,595,860,589,900,589,900,601,869,601:oigroup>
+<oigroup:<oiref:design#Class#id43j0jdpydoamddpyhnxvk.node176.link180:oiref>=1175,435,1175,429,1215,429,1215,441,1184,441:oigroup> 
+*/
+class __positions {
+}/**
+@shapeType Object
+@__modelType node
+@name Object1
+@stereotype actor 
+*/
+class node {
+/**
+@shapeType MessageLink
+@__modelType link
+@__ref <oiref:design#Class#id43j0jdpydoamddpyhnxvk.node155:oiref><oihard>
+@sendingInstant 135
+@processingDuration 850
+@sequenceNumber 1
+@diagram_uniqe_name <oiref:design#Class#id43j0jdpydoamddpyhnxvk.diagram:oiref>
+@operation <oiref:cpp#Member#Mouse#passivemotion#(#int#int#)#:oiref>
+@operationNameAsText 'passivemotion(int,int):void' 
+*/
+class link {
+}/**
+@shapeType CollaborationLink
+@__modelType link
+@__ref <oiref:design#Class#id43j0jdpydoamddpyhnxvk.node155:oiref><oihard> 
+*/
+class link157 {
+}}/**
+@shapeType Object
+@__modelType node
+@name initial 
+*/
+class node155 {
+/**
+@shapeType DependencyLink
+@__modelType link
+@__ref <oiref:cpp#Class#Mouse:oiref><oihard> 
+*/
+class link {
+}/**
+@shapeType Activation
+@__modelType node
+@name Activation1
+@activationMessage <oiref:design#Class#id43j0jdpydoamddpyhnxvk.node.link:oiref> 
+*/
+class node {
+}/**
+@shapeType MessageLink
+@__modelType link
+@__ref <oiref:design#Class#id43j0jdpydoamddpyhnxvk.node158:oiref><oihard>
+@sendingInstant 155
+@processingDuration 820
+@sequenceNumber 1.1
+@diagram_uniqe_name <oiref:design#Class#id43j0jdpydoamddpyhnxvk.diagram:oiref>
+@operation <oiref:cpp#Member#GraphicPipeline#setCameraRotation#(#int#int#)#:oiref>
+@operationNameAsText 'setCameraRotation(int,int):void'
+@arguments x, y 
+*/
+class link160 {
+}/**
+@shapeType CollaborationLink
+@__modelType link
+@__ref <oiref:design#Class#id43j0jdpydoamddpyhnxvk.node158:oiref><oihard> 
+*/
+class link161 {
+}}/**
+@shapeType Object
+@__modelType node
+@name sceneMan 
+*/
+class node158 {
+/**
+@shapeType DependencyLink
+@__modelType link
+@__ref <oiref:cpp#Class#SceneManagement:oiref><oihard> 
+*/
+class link {
+}/**
+@shapeType Activation
+@__modelType node
+@name Activation2
+@activationMessage <oiref:design#Class#id43j0jdpydoamddpyhnxvk.node155.link160:oiref> 
+*/
+class node {
+}/**
+@shapeType MessageLink
+@__modelType link
+@__ref <oiref:design#Class#id43j0jdpydoamddpyhnxvk.node162:oiref><oihard>
+@sendingInstant 175
+@processingDuration 790
+@sequenceNumber 1.1.1
+@diagram_uniqe_name <oiref:design#Class#id43j0jdpydoamddpyhnxvk.diagram:oiref>
+@operation <oiref:cpp#Member#Camera#setRotation#(#int#int#int*#)#:oiref>
+@operationNameAsText 'setRotation(int,int,int *):void'
+@arguments mouseX, mouseY, this->windowSize 
+*/
+class link164 {
+}/**
+@shapeType CollaborationLink
+@__modelType link
+@__ref <oiref:design#Class#id43j0jdpydoamddpyhnxvk.node162:oiref><oihard> 
+*/
+class link165 {
+}}/**
+@shapeType Object
+@__modelType node
+@name lnkCamera 
+*/
+class node162 {
+/**
+@shapeType DependencyLink
+@__modelType link
+@__ref <oiref:cpp#Class#Camera:oiref><oihard> 
+*/
+class link {
+}/**
+@shapeType Activation
+@__modelType node
+@name Activation3
+@activationMessage <oiref:design#Class#id43j0jdpydoamddpyhnxvk.node158.link164:oiref> 
+*/
+class node {
+}/**
+@shapeType StatementBlock
+@__modelType node
+@name StatementBlock1
+@initialInstant 195
+@processingDuration 20
+@statementType if
+@sequenceNumber 1.1.1.1
+@diagram_uniqe_name <oiref:design#Class#id43j0jdpydoamddpyhnxvk.diagram:oiref>
+@statementExpression (mouseX == middleX) && (mouseY == middleY) 
+*/
+class node166 {
+}/**
+@shapeType StatementBlock
+@__modelType node
+@name StatementBlock2
+@initialInstant 235
+@processingDuration 20
+@statementType if
+@sequenceNumber 1.1.1.2
+@diagram_uniqe_name <oiref:design#Class#id43j0jdpydoamddpyhnxvk.diagram:oiref>
+@statementExpression currentRotX > 1.0f 
+*/
+class node167 {
+}/**
+@shapeType StatementBlock
+@__modelType node
+@name StatementBlock3
+@initialInstant 265
+@processingDuration 690
+@statementType else
+@alternativeIfBlock <oiref:design#Class#id43j0jdpydoamddpyhnxvk.node162.node167:oiref>
+@sequenceNumber 1.1.1.3
+@diagram_uniqe_name <oiref:design#Class#id43j0jdpydoamddpyhnxvk.diagram:oiref> 
+*/
+class node168 {
+}/**
+@shapeType StatementBlock
+@__modelType node
+@name StatementBlock4
+@initialInstant 285
+@processingDuration 20
+@statementType if
+@sequenceNumber 1.1.1.3.1
+@diagram_uniqe_name <oiref:design#Class#id43j0jdpydoamddpyhnxvk.diagram:oiref>
+@statementExpression currentRotX < -1.0f 
+*/
+class node169 {
+}/**
+@shapeType StatementBlock
+@__modelType node
+@name StatementBlock5
+@initialInstant 315
+@processingDuration 630
+@statementType else
+@alternativeIfBlock <oiref:design#Class#id43j0jdpydoamddpyhnxvk.node162.node169:oiref>
+@sequenceNumber 1.1.1.3.2
+@diagram_uniqe_name <oiref:design#Class#id43j0jdpydoamddpyhnxvk.diagram:oiref> 
+*/
+class node170 {
+}/**
+@shapeType MessageLink
+@__modelType link
+@__ref <oiref:design#Class#id43j0jdpydoamddpyhnxvk.node162:oiref><oihard>
+@sendingInstant 335
+@processingDuration 20
+@sequenceNumber 1.1.1.3.2.1
+@diagram_uniqe_name <oiref:design#Class#id43j0jdpydoamddpyhnxvk.diagram:oiref>
+@operation <oiref:cpp#Member#LookAtObjects#getLookAtPosition#(##)#:oiref>
+@operationNameAsText 'getLookAtPosition():Vector3D *' 
+*/
+class link171 {
+}/**
+@shapeType Activation
+@__modelType node
+@name Activation4
+@activationMessage <oiref:design#Class#id43j0jdpydoamddpyhnxvk.node162.link171:oiref> 
+*/
+class node172 {
+}/**
+@shapeType CollaborationLink
+@__modelType link
+@__ref <oiref:design#Class#id43j0jdpydoamddpyhnxvk.node162:oiref><oihard> 
+*/
+class link173 {
+}/**
+@shapeType MessageLink
+@__modelType link
+@__ref <oiref:design#Class#id43j0jdpydoamddpyhnxvk.node162:oiref><oihard>
+@sendingInstant 375
+@processingDuration 20
+@sequenceNumber 1.1.1.3.2.2
+@diagram_uniqe_name <oiref:design#Class#id43j0jdpydoamddpyhnxvk.diagram:oiref>
+@operation <oiref:cpp#Member#Object3D#getTranslation#(##)#:oiref>
+@operationNameAsText 'getTranslation():Translation3D *' 
+*/
+class link174 {
+}/**
+@shapeType Activation
+@__modelType node
+@name Activation5
+@activationMessage <oiref:design#Class#id43j0jdpydoamddpyhnxvk.node162.link174:oiref> 
+*/
+class node175 {
+}/**
+@shapeType MessageLink
+@__modelType link
+@__ref <oiref:design#Class#id43j0jdpydoamddpyhnxvk.node176:oiref><oihard>
+@sendingInstant 415
+@processingDuration 50
+@sequenceNumber 1.1.1.3.2.3
+@diagram_uniqe_name <oiref:design#Class#id43j0jdpydoamddpyhnxvk.diagram:oiref>
+@operation <oiref:cpp#Member#Vector3D#cross#(#Vector3D*#Vector3D*#)#:oiref>
+@operationNameAsText 'cross(Vector3D *,Vector3D *):Vector3D'
+@arguments & temp, upVector
+@return zAxis 
+*/
+class link178 {
+}/**
+@shapeType CollaborationLink
+@__modelType link
+@__ref <oiref:design#Class#id43j0jdpydoamddpyhnxvk.node176:oiref><oihard> 
+*/
+class link179 {
+}/**
+@shapeType MessageLink
+@__modelType link
+@__ref <oiref:design#Class#id43j0jdpydoamddpyhnxvk.node176:oiref><oihard>
+@sendingInstant 485
+@processingDuration 50
+@sequenceNumber 1.1.1.3.2.4
+@diagram_uniqe_name <oiref:design#Class#id43j0jdpydoamddpyhnxvk.diagram:oiref>
+@operation <oiref:cpp#Member#Vector3D#getNormalVector#(#Vector3D#)#:oiref>
+@operationNameAsText 'getNormalVector(Vector3D):Vector3D'
+@arguments zAxis
+@return zAxis 
+*/
+class link183 {
+}/**
+@shapeType MessageLink
+@__modelType link
+@__ref <oiref:design#Class#id43j0jdpydoamddpyhnxvk.node162:oiref><oihard>
+@sendingInstant 555
+@processingDuration 150
+@sequenceNumber 1.1.1.3.2.5
+@diagram_uniqe_name <oiref:design#Class#id43j0jdpydoamddpyhnxvk.diagram:oiref>
+@operation <oiref:cpp#Member#LookAtObjects#rotateView#(#float#float#float#float#)#:oiref>
+@operationNameAsText 'rotateView(float,float,float,float):void'
+@arguments angleZ, zAxis.x, zAxis.y, zAxis.z 
+*/
+class link187 {
+}/**
+@shapeType Activation
+@__modelType node
+@name Activation10
+@activationMessage <oiref:design#Class#id43j0jdpydoamddpyhnxvk.node162.link187:oiref> 
+*/
+class node188 {
+}/**
+@shapeType MessageLink
+@__modelType link
+@__ref <oiref:design#Class#id43j0jdpydoamddpyhnxvk.node162:oiref><oihard>
+@sendingInstant 595
+@processingDuration 20
+@sequenceNumber 1.1.1.3.2.5.1
+@diagram_uniqe_name <oiref:design#Class#id43j0jdpydoamddpyhnxvk.diagram:oiref>
+@operation <oiref:cpp#Member#Vector3D#$$constructor$$#(#float#float#float#)#:oiref>
+@operationNameAsText '<constructor>(float,float,float)'
+@arguments 0.0, 0.0, 0.0
+@return vNewView*/
+class link189 {
+}/**
+@shapeType Activation
+@__modelType node
+@name Activation11
+@activationMessage <oiref:design#Class#id43j0jdpydoamddpyhnxvk.node162.link189:oiref> 
+*/
+class node190 {
+}/**
+@shapeType MessageLink
+@__modelType link
+@__ref <oiref:design#Class#id43j0jdpydoamddpyhnxvk.node162:oiref><oihard>
+@sendingInstant 635
+@processingDuration 20
+@sequenceNumber 1.1.1.3.2.5.2
+@diagram_uniqe_name <oiref:design#Class#id43j0jdpydoamddpyhnxvk.diagram:oiref>
+@operation <oiref:cpp#Member#Object3D#getTranslation#(##)#:oiref>
+@operationNameAsText 'getTranslation():Translation3D *' 
+*/
+class link191 {
+}/**
+@shapeType Activation
+@__modelType node
+@name Activation12
+@activationMessage <oiref:design#Class#id43j0jdpydoamddpyhnxvk.node162.link191:oiref> 
+*/
+class node192 {
+}/**
+@shapeType MessageLink
+@__modelType link
+@__ref <oiref:design#Class#id43j0jdpydoamddpyhnxvk.node162:oiref><oihard>
+@sendingInstant 675
+@processingDuration 20
+@sequenceNumber 1.1.1.3.2.5.3
+@diagram_uniqe_name <oiref:design#Class#id43j0jdpydoamddpyhnxvk.diagram:oiref>
+@operation <oiref:cpp#Member#Object3D#getTranslation#(##)#:oiref>
+@operationNameAsText 'getTranslation():Translation3D *' 
+*/
+class link193 {
+}/**
+@shapeType Activation
+@__modelType node
+@name Activation13
+@activationMessage <oiref:design#Class#id43j0jdpydoamddpyhnxvk.node162.link193:oiref> 
+*/
+class node194 {
+}/**
+@shapeType MessageLink
+@__modelType link
+@__ref <oiref:design#Class#id43j0jdpydoamddpyhnxvk.node162:oiref><oihard>
+@sendingInstant 725
+@processingDuration 20
+@sequenceNumber 1.1.1.3.2.6
+@diagram_uniqe_name <oiref:design#Class#id43j0jdpydoamddpyhnxvk.diagram:oiref>
+@operation <oiref:cpp#Member#LookAtObjects#rotateView#(#float#float#float#float#)#:oiref>
+@operationNameAsText 'rotateView(float,float,float,float):void'
+@arguments angleY, 0, 1, 0 
+*/
+class link195 {
+}/**
+@shapeType Activation
+@__modelType node
+@name Activation14
+@activationMessage <oiref:design#Class#id43j0jdpydoamddpyhnxvk.node162.link195:oiref> 
+*/
+class node196 {
+}/**
+@shapeType MessageLink
+@__modelType link
+@__ref <oiref:design#Class#id43j0jdpydoamddpyhnxvk.node162:oiref><oihard>
+@sendingInstant 765
+@processingDuration 20
+@sequenceNumber 1.1.1.3.2.7
+@diagram_uniqe_name <oiref:design#Class#id43j0jdpydoamddpyhnxvk.diagram:oiref>
+@operation <oiref:cpp#Member#Object3D#getTranslation#(##)#:oiref>
+@operationNameAsText 'getTranslation():Translation3D *' 
+*/
+class link197 {
+}/**
+@shapeType Activation
+@__modelType node
+@name Activation15
+@activationMessage <oiref:design#Class#id43j0jdpydoamddpyhnxvk.node162.link197:oiref> 
+*/
+class node198 {
+}/**
+@shapeType MessageLink
+@__modelType link
+@__ref <oiref:design#Class#id43j0jdpydoamddpyhnxvk.node199:oiref><oihard>
+@sendingInstant 805
+@processingDuration 50
+@sequenceNumber 1.1.1.3.2.8
+@diagram_uniqe_name <oiref:design#Class#id43j0jdpydoamddpyhnxvk.diagram:oiref>
+@operation <oiref:cpp#Member#Vector3D#print#(#char*#)#:oiref>
+@operationNameAsText 'print(char *):void'
+@arguments "\ngetTranslation() : " 
+*/
+class link201 {
+}/**
+@shapeType CollaborationLink
+@__modelType link
+@__ref <oiref:design#Class#id43j0jdpydoamddpyhnxvk.node199:oiref><oihard> 
+*/
+class link202 {
+}/**
+@shapeType MessageLink
+@__modelType link
+@__ref <oiref:design#Class#id43j0jdpydoamddpyhnxvk.node162:oiref><oihard>
+@sendingInstant 875
+@processingDuration 20
+@sequenceNumber 1.1.1.3.2.9
+@diagram_uniqe_name <oiref:design#Class#id43j0jdpydoamddpyhnxvk.diagram:oiref>
+@operation <oiref:cpp#Member#LookAtObjects#getLookAtPosition#(##)#:oiref>
+@operationNameAsText 'getLookAtPosition():Vector3D *' 
+*/
+class link206 {
+}/**
+@shapeType Activation
+@__modelType node
+@name Activation18
+@activationMessage <oiref:design#Class#id43j0jdpydoamddpyhnxvk.node162.link206:oiref> 
+*/
+class node207 {
+}/**
+@shapeType MessageLink
+@__modelType link
+@__ref <oiref:design#Class#id43j0jdpydoamddpyhnxvk.node199:oiref><oihard>
+@sendingInstant 915
+@processingDuration 20
+@sequenceNumber 1.1.1.3.2.10
+@diagram_uniqe_name <oiref:design#Class#id43j0jdpydoamddpyhnxvk.diagram:oiref>
+@operation <oiref:cpp#Member#Vector3D#print#(#char*#)#:oiref>
+@operationNameAsText 'print(char *):void'
+@arguments "lookAtPosition : " 
+*/
+class link208 {
+}}/**
+@shapeType Object
+@__modelType node
+@name static 
+*/
+class node176 {
+/**
+@shapeType DependencyLink
+@__modelType link
+@__ref <oiref:cpp#Class#Vector3D:oiref><oihard> 
+*/
+class link {
+}/**
+@shapeType Activation
+@__modelType node
+@name Activation6
+@activationMessage <oiref:design#Class#id43j0jdpydoamddpyhnxvk.node162.link178:oiref> 
+*/
+class node {
+}/**
+@shapeType MessageLink
+@__modelType link
+@__ref <oiref:design#Class#id43j0jdpydoamddpyhnxvk.node176:oiref><oihard>
+@sendingInstant 435
+@processingDuration 20
+@sequenceNumber 1.1.1.3.2.3.1
+@diagram_uniqe_name <oiref:design#Class#id43j0jdpydoamddpyhnxvk.diagram:oiref>
+@operation <oiref:cpp#Member#Vector3D#$$constructor$$#(#float#float#float#)#:oiref>
+@operationNameAsText '<constructor>(float,float,float)'
+@arguments 0.0, 0.0, 0.0
+@return temp*/
+class link180 {
+}/**
+@shapeType Activation
+@__modelType node
+@name Activation7
+@activationMessage <oiref:design#Class#id43j0jdpydoamddpyhnxvk.node176.link180:oiref> 
+*/
+class node181 {
+}/**
+@shapeType CollaborationLink
+@__modelType link
+@__ref <oiref:design#Class#id43j0jdpydoamddpyhnxvk.node176:oiref><oihard> 
+*/
+class link182 {
+}/**
+@shapeType Activation
+@__modelType node
+@name Activation8
+@activationMessage <oiref:design#Class#id43j0jdpydoamddpyhnxvk.node162.link183:oiref> 
+*/
+class node184 {
+}/**
+@shapeType MessageLink
+@__modelType link
+@__ref <oiref:design#Class#id43j0jdpydoamddpyhnxvk.node176:oiref><oihard>
+@sendingInstant 505
+@processingDuration 20
+@sequenceNumber 1.1.1.3.2.4.1
+@diagram_uniqe_name <oiref:design#Class#id43j0jdpydoamddpyhnxvk.diagram:oiref>
+@operation <oiref:cpp#Member#Vector3D#magnitude#(#Vector3D#)#:oiref>
+@operationNameAsText 'magnitude(Vector3D):float'
+@arguments vector
+@return magn 
+*/
+class link185 {
+}/**
+@shapeType Activation
+@__modelType node
+@name Activation9
+@activationMessage <oiref:design#Class#id43j0jdpydoamddpyhnxvk.node176.link185:oiref> 
+*/
+class node186 {
+}}/**
+@shapeType Object
+@__modelType node
+@name vector3D 
+*/
+class node199 {
+/**
+@shapeType DependencyLink
+@__modelType link
+@__ref <oiref:cpp#Class#Vector3D:oiref><oihard> 
+*/
+class link {
+}/**
+@shapeType Activation
+@__modelType node
+@name Activation16
+@activationMessage <oiref:design#Class#id43j0jdpydoamddpyhnxvk.node162.link201:oiref> 
+*/
+class node {
+}/**
+@shapeType MessageLink
+@__modelType link
+@__ref <oiref:design#Class#id43j0jdpydoamddpyhnxvk.node199:oiref><oihard>
+@sendingInstant 825
+@processingDuration 20
+@sequenceNumber 1.1.1.3.2.8.1
+@diagram_uniqe_name <oiref:design#Class#id43j0jdpydoamddpyhnxvk.diagram:oiref>
+@operation <oiref:cpp#Member#Vector3D#print#(##)#:oiref>
+@operationNameAsText 'print():void' 
+*/
+class link203 {
+}/**
+@shapeType Activation
+@__modelType node
+@name Activation17
+@activationMessage <oiref:design#Class#id43j0jdpydoamddpyhnxvk.node199.link203:oiref> 
+*/
+class node204 {
+}/**
+@shapeType CollaborationLink
+@__modelType link
+@__ref <oiref:design#Class#id43j0jdpydoamddpyhnxvk.node199:oiref><oihard> 
+*/
+class link205 {
+}/**
+@shapeType Activation
+@__modelType node
+@name Activation19
+@activationMessage <oiref:design#Class#id43j0jdpydoamddpyhnxvk.node162.link208:oiref> 
+*/
+class node209 {
+}}/**
+@__positions <oigroup:<oiref:design#Class#id43j0jdpydoamddpyhnxvk.node162.link201:oiref>=605,97,272,16,1:oigroup>
+<oigroup:<oiref:design#Class#id43j0jdpydoamddpyhnxvk.node162.link178:oiref>=186,200,328,16,1:oigroup>
+<oigroup:<oiref:design#Class#id43j0jdpydoamddpyhnxvk.node162.node166:oiref>=829,11,0,0,1:oigroup>
+<oigroup:<oiref:design#Class#id43j0jdpydoamddpyhnxvk.node155.link161:oiref>=1011,536,693,536:oigroup>
+<oigroup:Composite#$messageInplaceEditing#<oiref:design#Class#id43j0jdpydoamddpyhnxvk.node158.link164:oiref>=0,0,365,16,1:oigroup>
+<oigroup:<oiref:design#Class#id43j0jdpydoamddpyhnxvk.node162.link187:oiref>=533,342,364,16,1:oigroup>
+<oigroup:<oiref:design#Class#id43j0jdpydoamddpyhnxvk.node162.node175:oiref>=829,11,0,0,1:oigroup>
+<oigroup:<oiref:design#Class#id43j0jdpydoamddpyhnxvk.node199.node:oiref>=1189,-41,0,0,1:oigroup>
+<oigroup:Composite#$messageInplaceEditing#<oiref:design#Class#id43j0jdpydoamddpyhnxvk.node162.link189:oiref>=0,0,322,16,1:oigroup>
+<oigroup:Composite#$messageInplaceEditing#<oiref:design#Class#id43j0jdpydoamddpyhnxvk.node176.link180:oiref>=0,0,292,16,1:oigroup>
+<oigroup:Composite#$messageInplaceEditing#<oiref:design#Class#id43j0jdpydoamddpyhnxvk.node.link:oiref>=0,0,184,16,1:oigroup>
+<oigroup:<oiref:design#Class#id43j0jdpydoamddpyhnxvk.node176.node186:oiref>=-333,253,0,0,1:oigroup>
+<oigroup:Composite#$messageInplaceEditing#<oiref:design#Class#id43j0jdpydoamddpyhnxvk.node162.link201:oiref>=0,0,272,16,1:oigroup>
+<oigroup:Composite#$messageInplaceEditing#<oiref:design#Class#id43j0jdpydoamddpyhnxvk.node162.link178:oiref>=0,0,328,16,1:oigroup>
+<oigroup:<oiref:design#Class#id43j0jdpydoamddpyhnxvk.node162.link183:oiref>=186,218,324,16,1:oigroup>
+<oigroup:<oiref:design#Class#id43j0jdpydoamddpyhnxvk.node155:oiref>=1011,499,82,60,1:oigroup>
+<oigroup:<oiref:design#Class#id43j0jdpydoamddpyhnxvk.node162.node207:oiref>=829,11,0,0,1:oigroup>
+<oigroup:<oiref:design#Class#id43j0jdpydoamddpyhnxvk.node155.node:oiref>=1914,112,0,0,1:oigroup>
+<oigroup:Composite#$messageInplaceEditing#<oiref:design#Class#id43j0jdpydoamddpyhnxvk.node162.link187:oiref>=0,0,364,16,1:oigroup>
+<oigroup:<oiref:design#Class#id43j0jdpydoamddpyhnxvk.node162.link174:oiref>=533,324,271,16,1:oigroup>
+<oigroup:<oiref:design#Class#id43j0jdpydoamddpyhnxvk.node199.node204:oiref>=1189,-41,0,0,1:oigroup>
+<oigroup:<oiref:design#Class#id43j0jdpydoamddpyhnxvk.node176.node184:oiref>=-333,253,0,0,1:oigroup>
+<oigroup:Composite#$messageInplaceEditing#<oiref:design#Class#id43j0jdpydoamddpyhnxvk.node162.link174:oiref>=0,0,271,16,1:oigroup>
+<oigroup:<oiref:design#Class#id43j0jdpydoamddpyhnxvk.node.link157:oiref>=1052,297,1052,499:oigroup>
+<oigroup:<oiref:design#Class#id43j0jdpydoamddpyhnxvk.node176.node:oiref>=-333,253,0,0,1:oigroup>
+<oigroup:<oiref:design#Class#id43j0jdpydoamddpyhnxvk.node199.link203:oiref>=584,32,161,16,1:oigroup>
+<oigroup:<oiref:design#Class#id43j0jdpydoamddpyhnxvk.node199.link205:oiref>=648,10,648,32,682,32,682,-2,660,-2:oigroup>
+<oigroup:Composite#$messageInplaceEditing#<oiref:design#Class#id43j0jdpydoamddpyhnxvk.node162.link183:oiref>=0,0,324,16,1:oigroup>
+<oigroup:<oiref:design#Class#id43j0jdpydoamddpyhnxvk.node176.link185:oiref>=14,302,275,16,1:oigroup>
+<oigroup:<oiref:design#Class#id43j0jdpydoamddpyhnxvk.node162:oiref>=541,224,121,60,1:oigroup>
+<oigroup:<oiref:design#Class#id43j0jdpydoamddpyhnxvk.node158.link165:oiref>=601,514,601,284:oigroup>
+<oigroup:<oiref:design#Class#id43j0jdpydoamddpyhnxvk.node162.link206:oiref>=533,450,267,16,1:oigroup>
+<oigroup:<oiref:design#Class#id43j0jdpydoamddpyhnxvk.node162.link208:oiref>=605,115,261,16,1:oigroup>
+<oigroup:<oiref:design#Class#id43j0jdpydoamddpyhnxvk.node162.node198:oiref>=829,11,0,0,1:oigroup>
+<oigroup:Composite#$messageInplaceEditing#<oiref:design#Class#id43j0jdpydoamddpyhnxvk.node162.link208:oiref>=0,0,261,16,1:oigroup>
+<oigroup:<oiref:design#Class#id43j0jdpydoamddpyhnxvk.node158.node:oiref>=288,351,0,0,1:oigroup>
+<oigroup:Composite#$messageInplaceEditing#<oiref:design#Class#id43j0jdpydoamddpyhnxvk.node199.link203:oiref>=0,0,161,16,1:oigroup>
+<oigroup:Composite#$messageInplaceEditing#<oiref:design#Class#id43j0jdpydoamddpyhnxvk.node176.link185:oiref>=0,0,275,16,1:oigroup>
+<oigroup:<oiref:design#Class#id43j0jdpydoamddpyhnxvk.node199.node209:oiref>=1189,-41,0,0,1:oigroup>
+<oigroup:<oiref:design#Class#id43j0jdpydoamddpyhnxvk.node162.node167:oiref>=829,11,0,0,1:oigroup>
+<oigroup:<oiref:design#Class#id43j0jdpydoamddpyhnxvk.node162.node169:oiref>=829,11,0,0,1:oigroup>
+<oigroup:<oiref:design#Class#id43j0jdpydoamddpyhnxvk.node155.link160:oiref>=745,514,214,16,1:oigroup>
+<oigroup:<oiref:design#Class#id43j0jdpydoamddpyhnxvk.node162.node194:oiref>=829,11,0,0,1:oigroup>
+<oigroup:<oiref:design#Class#id43j0jdpydoamddpyhnxvk.node162.node196:oiref>=829,11,0,0,1:oigroup>
+<oigroup:Composite#$messageInplaceEditing#<oiref:design#Class#id43j0jdpydoamddpyhnxvk.node162.link206:oiref>=0,0,267,16,1:oigroup>
+<oigroup:<oiref:design#Class#id43j0jdpydoamddpyhnxvk.node162.link197:oiref>=533,432,271,16,1:oigroup>
+<oigroup:<oiref:design#Class#id43j0jdpydoamddpyhnxvk.node162.link202:oiref>=601,224,601,10:oigroup>
+<oigroup:<oiref:design#Class#id43j0jdpydoamddpyhnxvk.node162.link179:oiref>=541,240,155,240:oigroup>
+<oigroup:<oiref:design#Class#id43j0jdpydoamddpyhnxvk.node176:oiref>=56,202,99,60,1:oigroup>
+<oigroup:<oiref:design#Class#id43j0jdpydoamddpyhnxvk.node162.node192:oiref>=829,11,0,0,1:oigroup>
+<oigroup:Composite#$messageInplaceEditing#<oiref:design#Class#id43j0jdpydoamddpyhnxvk.node155.link160:oiref>=0,0,214,16,1:oigroup>
+<oigroup:<oiref:design#Class#id43j0jdpydoamddpyhnxvk.node162.node172:oiref>=829,11,0,0,1:oigroup>
+<oigroup:<oiref:design#Class#id43j0jdpydoamddpyhnxvk.node158:oiref>=510,514,183,60,1:oigroup>
+<oigroup:<oiref:design#Class#id43j0jdpydoamddpyhnxvk.node162.link193:oiref>=533,396,281,16,1:oigroup>
+<oigroup:<oiref:design#Class#id43j0jdpydoamddpyhnxvk.node162.link195:oiref>=533,414,264,16,1:oigroup>
+<oigroup:Composite#$messageInplaceEditing#<oiref:design#Class#id43j0jdpydoamddpyhnxvk.node162.link195:oiref>=0,0,264,16,1:oigroup>
+<oigroup:Composite#$messageInplaceEditing#<oiref:design#Class#id43j0jdpydoamddpyhnxvk.node162.link197:oiref>=0,0,271,16,1:oigroup>
+<oigroup:<oiref:design#Class#id43j0jdpydoamddpyhnxvk.node162.node190:oiref>=829,11,0,0,1:oigroup>
+<oigroup:<oiref:design#Class#id43j0jdpydoamddpyhnxvk.node:oiref>=1019,209,66,88,1:oigroup>
+<oigroup:<oiref:design#Class#id43j0jdpydoamddpyhnxvk.node162.node170:oiref>=829,11,0,0,1:oigroup>
+<oigroup:<oiref:design#Class#id43j0jdpydoamddpyhnxvk.node162.link191:oiref>=533,378,281,16,1:oigroup>
+<oigroup:<oiref:design#Class#id43j0jdpydoamddpyhnxvk.node.link:oiref>=1056,387,184,16,1:oigroup>
+<oigroup:Composite#$messageInplaceEditing#<oiref:design#Class#id43j0jdpydoamddpyhnxvk.node162.link191:oiref>=0,0,281,16,1:oigroup>
+<oigroup:<oiref:design#Class#id43j0jdpydoamddpyhnxvk.node162.link171:oiref>=533,306,267,16,1:oigroup>
+<oigroup:<oiref:design#Class#id43j0jdpydoamddpyhnxvk.node162.node:oiref>=829,11,0,0,1:oigroup>
+<oigroup:Composite#$messageInplaceEditing#<oiref:design#Class#id43j0jdpydoamddpyhnxvk.node162.link193:oiref>=0,0,281,16,1:oigroup>
+<oigroup:<oiref:design#Class#id43j0jdpydoamddpyhnxvk.node162.link173:oiref>=650,284,650,306,684,306,684,272,662,272:oigroup>
+<oigroup:<oiref:design#Class#id43j0jdpydoamddpyhnxvk.node176.node181:oiref>=-333,253,0,0,1:oigroup>
+<oigroup:<oiref:design#Class#id43j0jdpydoamddpyhnxvk.node176.link182:oiref>=143,262,143,284,177,284,177,250,155,250:oigroup>
+<oigroup:<oiref:design#Class#id43j0jdpydoamddpyhnxvk.node162.node188:oiref>=829,11,0,0,1:oigroup>
+<oigroup:<oiref:design#Class#id43j0jdpydoamddpyhnxvk.node199:oiref>=542,-50,118,60,1:oigroup>
+<oigroup:<oiref:design#Class#id43j0jdpydoamddpyhnxvk.node158.link164:oiref>=605,473,365,16,1:oigroup>
+<oigroup:<oiref:design#Class#id43j0jdpydoamddpyhnxvk.node162.node168:oiref>=829,11,0,0,1:oigroup>
+<oigroup:Composite#$messageInplaceEditing#<oiref:design#Class#id43j0jdpydoamddpyhnxvk.node162.link171:oiref>=0,0,267,16,1:oigroup>
+<oigroup:<oiref:design#Class#id43j0jdpydoamddpyhnxvk.node162.link189:oiref>=533,360,322,16,1:oigroup>
+<oigroup:<oiref:design#Class#id43j0jdpydoamddpyhnxvk.node176.link180:oiref>=14,284,292,16,1:oigroup>
+@__viewType collaborationView 
+*/
+class __positions210 {
+}

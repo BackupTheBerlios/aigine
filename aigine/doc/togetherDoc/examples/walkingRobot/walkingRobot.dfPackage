@@ -1,0 +1,41 @@
+package id94lbdpydoamddpydohga;
+
+/**
+@version 2.0
+@physicalPackage
+@__modelType diagram 
+*/
+class diagram {
+/**
+@__ref <oiref:design#Class#id2caxydpydoamddpydohhe.diagram:oiref><oihard>
+@__modelType reference
+@__fqn <oiref:#Package#examples.walkingRobot.data:oiref> 
+*/
+class reference {
+}/**
+@__ref <oiref:cpp#Class#anim_angles:oiref><oihard>
+@__modelType reference 
+*/
+class reference1 {
+}/**
+@__ref <oiref:cpp#Class#robot:oiref><oihard>
+@__modelType reference
+@hideAttributes*/
+class reference2 {
+}}/**
+@__tags
+@shapeType ClassDiagram 
+*/
+class __tags {
+}/**
+@__options 
+*/
+class __options {
+}/**
+@__positions <oigroup:MemberLink#<oiref:cpp#Member#robot#array:oiref>=160,170,97,170:oigroup>
+<oigroup:<oiref:cpp#Class#anim_angles:oiref>=10,10,87,331,1:oigroup>
+<oigroup:<oiref:cpp#Class#robot:oiref>=160,10,310,320,0:oigroup>
+<oigroup:<oiref:design#Class#id2caxydpydoamddpydohhe.diagram:oiref>=540,10,83,95,1:oigroup> 
+*/
+class __positions {
+}

@@ -13,7 +13,7 @@ class diagram {
 */
 class reference {
 }/**
-@__ref <oiref:design#Class#id1feddpucva8bdpucw1l2.diagram:oiref><oihard>
+@__ref <oiref:design#Class#id94lbdpydoamddpydohga.diagram:oiref><oihard>
 @__modelType reference
 @__fqn <oiref:#Package#examples.walkingRobot:oiref> 
 */
@@ -28,7 +28,8 @@ class __tags {
 */
 class __options {
 }/**
-@__positions <oigroup:<oiref:design#Class#id1dt26dpmvpybodpmwz4va.diagram:oiref>=10,10,78,78,1:oigroup>
+@__positions <oigroup:<oiref:design#Class#id94lbdpydoamddpydohga.diagram:oiref>=120,10,96,129,1:oigroup>
+<oigroup:<oiref:design#Class#id1dt26dpmvpybodpmwz4va.diagram:oiref>=10,10,83,104,1:oigroup>
 <oigroup:<oiref:design#Class#id1feddpucva8bdpucw1l2.diagram:oiref>=2,102,96,84,1:oigroup>
 */
 class __positions {

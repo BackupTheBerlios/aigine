@@ -1,0 +1,295 @@
+package id19ckddpydoamddpyicqwl;
+
+/**
+@version 2.0
+@__modelType diagram 
+*/
+class diagram {
+/**
+@shapeType Hyperlink
+@__modelType link
+@__ref <oiref:cpp#Member#SceneGraph#drawSceneGraph#(#AiGinEObject*#)#:oiref><oihard>
+@__reversed 
+*/
+class link {
+}/**
+@__ref <oiref:design#Class#id19ckddpydoamddpyicqwl.node:oiref><oihard>
+@__modelType reference 
+*/
+class reference {
+}/**
+@__ref <oiref:design#Class#id19ckddpydoamddpyicqwl.node235:oiref><oihard>
+@__modelType reference 
+*/
+class reference236 {
+}/**
+@__ref <oiref:design#Class#id19ckddpydoamddpyicqwl.node239:oiref><oihard>
+@__modelType reference 
+*/
+class reference240 {
+}}/**
+@__tags
+@shapeType SequenceDiagram 
+*/
+class __tags {
+}/**
+@__options 
+*/
+class __options {
+}/**
+@__positions <oigroup:<oiref:design#Class#id19ckddpydoamddpyicqwl.node.link:oiref>=82,135,314,135:oigroup>
+<oigroup:<oiref:design#Class#id19ckddpydoamddpyicqwl.node235.node255:oiref>=332,445,14,20,1:oigroup>
+<oigroup:<oiref:design#Class#id19ckddpydoamddpyicqwl.node235.node253:oiref>=323,425,14,50,1:oigroup>
+<oigroup:<oiref:design#Class#id19ckddpydoamddpyicqwl.node235.node249:oiref>=323,355,14,50,1:oigroup>
+<oigroup:<oiref:design#Class#id19ckddpydoamddpyicqwl.node239:oiref>=543,30,90,535,1:oigroup>
+<oigroup:<oiref:design#Class#id19ckddpydoamddpyicqwl.node235.node238:oiref>=323,155,14,20,1:oigroup>
+<oigroup:<oiref:design#Class#id19ckddpydoamddpyicqwl.node235:oiref>=276,30,90,535,1:oigroup>
+<oigroup:Composite#$messageInplaceEditing#<oiref:design#Class#id19ckddpydoamddpyicqwl.node235.link247:oiref>=332,295,105,16,0:oigroup>
+<oigroup:Composite#$messageInplaceEditing#<oiref:design#Class#id19ckddpydoamddpyicqwl.node235.link245:oiref>=332,255,188,16,0:oigroup>
+<oigroup:Composite#$messageInplaceEditing#<oiref:design#Class#id19ckddpydoamddpyicqwl.node.link:oiref>=86,115,230,16,0:oigroup>
+<oigroup:<oiref:design#Class#id19ckddpydoamddpyicqwl.node235.link252:oiref>=:oigroup>
+<oigroup:<oiref:design#Class#id19ckddpydoamddpyicqwl.node235.link250:oiref>=337,375,337,369,377,369,377,381,346,381:oigroup>
+<oigroup:<oiref:design#Class#id19ckddpydoamddpyicqwl.node235.link241:oiref>=328,195,581,195:oigroup>
+<oigroup:<oiref:design#Class#id19ckddpydoamddpyicqwl.node235.link247:oiref>=328,315,581,315:oigroup>
+<oigroup:<oiref:design#Class#id19ckddpydoamddpyicqwl.node235.link242:oiref>=:oigroup>
+<oigroup:<oiref:design#Class#id19ckddpydoamddpyicqwl.node239.node248:oiref>=581,315,14,20,1:oigroup>
+<oigroup:<oiref:design#Class#id19ckddpydoamddpyicqwl.node239.node:oiref>=581,195,14,20,1:oigroup>
+<oigroup:<oiref:design#Class#id19ckddpydoamddpyicqwl.node:oiref>=30,30,90,535,1:oigroup>
+<oigroup:<oiref:design#Class#id19ckddpydoamddpyicqwl.node.link237:oiref>=:oigroup>
+<oigroup:<oiref:design#Class#id19ckddpydoamddpyicqwl.node235.node251:oiref>=332,375,14,20,1:oigroup>
+<oigroup:Composite#$messageInplaceEditing#<oiref:design#Class#id19ckddpydoamddpyicqwl.node235.link254:oiref>=350,451,314,16,0:oigroup>
+<oigroup:Composite#$messageInplaceEditing#<oiref:design#Class#id19ckddpydoamddpyicqwl.node235.link243:oiref>=332,215,221,16,0:oigroup>
+<oigroup:Composite#$messageInplaceEditing#<oiref:design#Class#id19ckddpydoamddpyicqwl.node235.link250:oiref>=350,381,322,16,0:oigroup>
+<oigroup:Composite#$messageInplaceEditing#<oiref:design#Class#id19ckddpydoamddpyicqwl.node235.link241:oiref>=332,175,251,16,0:oigroup>
+<oigroup:<oiref:design#Class#id19ckddpydoamddpyicqwl.node235.link245:oiref>=328,275,581,275:oigroup>
+<oigroup:<oiref:design#Class#id19ckddpydoamddpyicqwl.node235.link254:oiref>=337,445,337,439,377,439,377,451,346,451:oigroup>
+<oigroup:<oiref:design#Class#id19ckddpydoamddpyicqwl.node235.link243:oiref>=328,235,581,235:oigroup>
+<oigroup:<oiref:design#Class#id19ckddpydoamddpyicqwl.node235.node:oiref>=314,135,14,350,1:oigroup>
+<oigroup:<oiref:design#Class#id19ckddpydoamddpyicqwl.node239.node246:oiref>=581,275,14,20,1:oigroup>
+<oigroup:<oiref:design#Class#id19ckddpydoamddpyicqwl.node239.node244:oiref>=581,235,14,20,1:oigroup> 
+*/
+class __positions {
+}/**
+@shapeType Object
+@__modelType node
+@name Object1
+@stereotype actor 
+*/
+class node {
+/**
+@shapeType MessageLink
+@__modelType link
+@__ref <oiref:design#Class#id19ckddpydoamddpyicqwl.node235:oiref><oihard>
+@sendingInstant 135
+@processingDuration 350
+@sequenceNumber 1
+@diagram_uniqe_name <oiref:design#Class#id19ckddpydoamddpyicqwl.diagram:oiref>
+@operation <oiref:cpp#Member#SceneGraph#drawSceneGraph#(#AiGinEObject*#)#:oiref>
+@operationNameAsText 'drawSceneGraph(AiGinEObject *):void' 
+*/
+class link {
+}/**
+@shapeType CollaborationLink
+@__modelType link
+@__ref <oiref:design#Class#id19ckddpydoamddpyicqwl.node235:oiref><oihard> 
+*/
+class link237 {
+}}/**
+@shapeType Object
+@__modelType node
+@name initial 
+*/
+class node235 {
+/**
+@shapeType DependencyLink
+@__modelType link
+@__ref <oiref:cpp#Class#SceneGraph:oiref><oihard> 
+*/
+class link {
+}/**
+@shapeType Activation
+@__modelType node
+@name Activation1
+@activationMessage <oiref:design#Class#id19ckddpydoamddpyicqwl.node.link:oiref> 
+*/
+class node {
+}/**
+@shapeType StatementBlock
+@__modelType node
+@name StatementBlock1
+@initialInstant 155
+@processingDuration 20
+@statementType if
+@sequenceNumber 1.1
+@diagram_uniqe_name <oiref:design#Class#id19ckddpydoamddpyicqwl.diagram:oiref>
+@statementExpression obj == NULL 
+*/
+class node238 {
+}/**
+@shapeType MessageLink
+@__modelType link
+@__ref <oiref:design#Class#id19ckddpydoamddpyicqwl.node239:oiref><oihard>
+@sendingInstant 195
+@processingDuration 20
+@sequenceNumber 1.2
+@diagram_uniqe_name <oiref:design#Class#id19ckddpydoamddpyicqwl.diagram:oiref>
+@operation <oiref:cpp#Member#Object3D#getTranslation#(##)#:oiref>
+@operationNameAsText 'getTranslation():Translation3D *'
+@return trans 
+*/
+class link241 {
+}/**
+@shapeType CollaborationLink
+@__modelType link
+@__ref <oiref:design#Class#id19ckddpydoamddpyicqwl.node239:oiref><oihard> 
+*/
+class link242 {
+}/**
+@shapeType MessageLink
+@__modelType link
+@__ref <oiref:design#Class#id19ckddpydoamddpyicqwl.node239:oiref><oihard>
+@sendingInstant 235
+@processingDuration 20
+@sequenceNumber 1.3
+@diagram_uniqe_name <oiref:design#Class#id19ckddpydoamddpyicqwl.diagram:oiref>
+@operation <oiref:cpp#Member#Object3D#getRotation#(##)#:oiref>
+@operationNameAsText 'getRotation():Rotation3D *'
+@return rotate 
+*/
+class link243 {
+}/**
+@shapeType MessageLink
+@__modelType link
+@__ref <oiref:design#Class#id19ckddpydoamddpyicqwl.node239:oiref><oihard>
+@sendingInstant 275
+@processingDuration 20
+@sequenceNumber 1.4
+@diagram_uniqe_name <oiref:design#Class#id19ckddpydoamddpyicqwl.diagram:oiref>
+@operation <oiref:cpp#Member#Object3D#getScale#(##)#:oiref>
+@operationNameAsText 'getScale():Scale3D *'
+@return scale 
+*/
+class link245 {
+}/**
+@shapeType MessageLink
+@__modelType link
+@__ref <oiref:design#Class#id19ckddpydoamddpyicqwl.node239:oiref><oihard>
+@sendingInstant 315
+@processingDuration 20
+@sequenceNumber 1.5
+@diagram_uniqe_name <oiref:design#Class#id19ckddpydoamddpyicqwl.diagram:oiref>
+@operation <oiref:cpp#Member#AiGinEObject#display#(##)#:oiref>
+@operationNameAsText 'display():void' 
+*/
+class link247 {
+}/**
+@shapeType StatementBlock
+@__modelType node
+@name StatementBlock2
+@initialInstant 355
+@processingDuration 50
+@statementType if
+@sequenceNumber 1.6
+@diagram_uniqe_name <oiref:design#Class#id19ckddpydoamddpyicqwl.diagram:oiref>
+@statementExpression obj->right != NULL 
+*/
+class node249 {
+}/**
+@shapeType MessageLink
+@__modelType link
+@__ref <oiref:design#Class#id19ckddpydoamddpyicqwl.node235:oiref><oihard>
+@sendingInstant 375
+@processingDuration 20
+@sequenceNumber 1.6.1
+@diagram_uniqe_name <oiref:design#Class#id19ckddpydoamddpyicqwl.diagram:oiref>
+@operation <oiref:cpp#Member#SceneGraph#drawSceneGraph#(#AiGinEObject*#)#:oiref>
+@operationNameAsText 'drawSceneGraph(AiGinEObject *):void'
+@arguments (AiGinEObject*)(obj->right) 
+*/
+class link250 {
+}/**
+@shapeType Activation
+@__modelType node
+@name Activation6
+@activationMessage <oiref:design#Class#id19ckddpydoamddpyicqwl.node235.link250:oiref> 
+*/
+class node251 {
+}/**
+@shapeType CollaborationLink
+@__modelType link
+@__ref <oiref:design#Class#id19ckddpydoamddpyicqwl.node235:oiref><oihard> 
+*/
+class link252 {
+}/**
+@shapeType StatementBlock
+@__modelType node
+@name StatementBlock3
+@initialInstant 425
+@processingDuration 50
+@statementType if
+@sequenceNumber 1.7
+@diagram_uniqe_name <oiref:design#Class#id19ckddpydoamddpyicqwl.diagram:oiref>
+@statementExpression obj->left != NULL 
+*/
+class node253 {
+}/**
+@shapeType MessageLink
+@__modelType link
+@__ref <oiref:design#Class#id19ckddpydoamddpyicqwl.node235:oiref><oihard>
+@sendingInstant 445
+@processingDuration 20
+@sequenceNumber 1.7.1
+@diagram_uniqe_name <oiref:design#Class#id19ckddpydoamddpyicqwl.diagram:oiref>
+@operation <oiref:cpp#Member#SceneGraph#drawSceneGraph#(#AiGinEObject*#)#:oiref>
+@operationNameAsText 'drawSceneGraph(AiGinEObject *):void'
+@arguments (AiGinEObject*)(obj->left) 
+*/
+class link254 {
+}/**
+@shapeType Activation
+@__modelType node
+@name Activation7
+@activationMessage <oiref:design#Class#id19ckddpydoamddpyicqwl.node235.link254:oiref> 
+*/
+class node255 {
+}}/**
+@shapeType Object
+@__modelType node
+@name obj 
+*/
+class node239 {
+/**
+@shapeType DependencyLink
+@__modelType link
+@__ref <oiref:cpp#Class#AiGinEObject:oiref><oihard> 
+*/
+class link {
+}/**
+@shapeType Activation
+@__modelType node
+@name Activation2
+@activationMessage <oiref:design#Class#id19ckddpydoamddpyicqwl.node235.link241:oiref> 
+*/
+class node {
+}/**
+@shapeType Activation
+@__modelType node
+@name Activation3
+@activationMessage <oiref:design#Class#id19ckddpydoamddpyicqwl.node235.link243:oiref> 
+*/
+class node244 {
+}/**
+@shapeType Activation
+@__modelType node
+@name Activation4
+@activationMessage <oiref:design#Class#id19ckddpydoamddpyicqwl.node235.link245:oiref> 
+*/
+class node246 {
+}/**
+@shapeType Activation
+@__modelType node
+@name Activation5
+@activationMessage <oiref:design#Class#id19ckddpydoamddpyicqwl.node235.link247:oiref> 
+*/
+class node248 {
+}}

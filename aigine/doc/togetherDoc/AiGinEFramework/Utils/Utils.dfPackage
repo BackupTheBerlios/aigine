@@ -21,6 +21,16 @@ class reference20 {
 @__modelType reference 
 */
 class reference21 {
+}/**
+@__ref <oiref:cpp#Class#Matrix4x4:oiref><oihard>
+@__modelType reference 
+*/
+class reference3 {
+}/**
+@__ref <oiref:cpp#Class#fileControl:oiref><oihard>
+@__modelType reference 
+*/
+class reference4 {
 }}/**
 @__tags
 @shapeType ClassDiagram 
@@ -31,9 +41,11 @@ class __tags {
 */
 class __options {
 }/**
-@__positions <oigroup:MemberLink#<oiref:cpp#Member#Knot#right:oiref>=617,152,617,178,659,178,659,136,633,136:oigroup>
+@__positions <oigroup:<oiref:cpp#Class#Matrix4x4:oiref>=520,240,200,549,1:oigroup>
+<oigroup:MemberLink#<oiref:cpp#Member#Knot#right:oiref>=617,152,617,178,659,178,659,136,633,136:oigroup>
 <oigroup:Composite#supplierCardinality#MemberLink#<oiref:cpp#Member#Knot#right:oiref>=637,116,28,16,0:oigroup>
 <oigroup:<oiref:cpp#Class#Knot:oiref>=550,10,83,142,1:oigroup>
+<oigroup:<oiref:cpp#Class#fileControl:oiref>=30,450,200,366,1:oigroup>
 <oigroup:Composite#supplierCardinality#MemberLink#<oiref:cpp#Member#Tree#rootKnot:oiref>=518,84,28,16,0:oigroup>
 <oigroup:MemberLink#<oiref:cpp#Member#Knot#left:oiref>=601,152,601,200,675,200,675,114,633,114:oigroup>
 <oigroup:MemberLink#<oiref:cpp#Member#Tree#temporaryKnot:oiref>=490,57,550,57:oigroup>

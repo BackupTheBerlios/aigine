@@ -30,20 +30,29 @@ class reference15 {
 @__fqn <oiref:#Package#AiGinEFramework.Control:oiref> 
 */
 class reference16 {
+}/**
+@__ref <oiref:design#Class#id3fvxydpydoamddpyj009v.diagram:oiref><oihard>
+@__modelType reference
+@__imported 
+*/
+class reference273 {
 }}/**
 @__tags
 @shapeType ClassDiagram 
 */
 class __tags {
 }/**
-@__options 
+@__options option.dependencyLinks.showBetweenClasses = true
+option.links = Rectilinear 
 */
 class __options {
 }/**
-@__positions <oigroup:<oiref:design#Class#id4zio5dpmvpybodpmwy8to.diagram:oiref>=300,10,69,84,1:oigroup>
-<oigroup:<oiref:design#Class#id4qsoadpmvpybodpmwyunt.diagram:oiref>=190,190,83,116,1:oigroup>
-<oigroup:<oiref:design#Class#id48sxfdpmvpybodpmwyup7.diagram:oiref>=170,10,105,132,1:oigroup>
-<oigroup:<oiref:design#Class#id2mjuhdpmvpybodpmwyumz.diagram:oiref>=20,10,124,295,1:oigroup>
+@__positions <oigroup:<oiref:design#Class#idyqn2dpydoamddpyizfio.diagram:oiref>=330,200,128,16,1:oigroup>
+<oigroup:<oiref:design#Class#id3fvxydpydoamddpyj009v.diagram:oiref>=346,170,54,104,1:oigroup>
+<oigroup:<oiref:design#Class#id4zio5dpmvpybodpmwy8to.diagram:oiref>=331,19,83,120,1:oigroup>
+<oigroup:<oiref:design#Class#id4qsoadpmvpybodpmwyunt.diagram:oiref>=193,208,83,168,1:oigroup>
+<oigroup:<oiref:design#Class#id48sxfdpmvpybodpmwyup7.diagram:oiref>=190,20,105,168,1:oigroup>
+<oigroup:<oiref:design#Class#id2mjuhdpmvpybodpmwyumz.diagram:oiref>=20,10,124,321,1:oigroup>
 */
 class __positions {
 }
