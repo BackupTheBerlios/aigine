@@ -102,11 +102,15 @@ private:
 	AiGinEObject* HandL;
 
 	AiGinEObject* drawModel(AiGinEObject* parent, string kind);
-	AiGinEObject* drawHead(AiGinEObject* parent, string kind);
-	AiGinEObject* drawTorso(AiGinEObject* parent, string kind);
+//	AiGinEObject* drawHead(AiGinEObject* parent, string kind);
+//	AiGinEObject* drawTorso(AiGinEObject* parent, string kind);
 
 	AiGinEObject* drawLeg(AiGinEObject* parent, string kind, string side);
 	AiGinEObject* drawArm(AiGinEObject* parent,  string kind, string side);
+
+	AiGinEObject* drawModel2(AiGinEObject* parent, string kind);
+	AiGinEObject* drawLeg2(AiGinEObject* parent, string kind, string side);
+	AiGinEObject* drawArm2(AiGinEObject* parent,  string kind, string side);
 
 	double findBaseMove(double langle_up, double langle_lo, double rangle_up, double rangle_lo);
 	void animateBody();

@@ -92,12 +92,13 @@ int main(int argc, char** argv)
 	// Aufbau des Levels
 	//	testPrimObjects();
 
+
+
 	robi = new robot(sm);
 	AiGinEObject* start = new AiGinEObject();
 	sm->addRoot(start);
 	AiGinEObject* robot = robi->drawRobot(start,"child");
 	start->setTranslation(new Translation3D(-20,15,-20));
-	
 	// ... weitere Objekte laden
 	
 	// Bekanntmachung der benoetigten Callback-Funktionen
@@ -106,7 +107,7 @@ int main(int argc, char** argv)
 	glutKeyboardFunc(keyboardDown); // .. fuer die Tastaturabfrage
 	glutKeyboardUpFunc(keyboardUp); // .. fuer die Tastaturabfrage
 	glutPassiveMotionFunc(passivemotion); // fuer die Mausabfrage
-    glutTimerFunc(1,timerFunc, 1);
+    glutTimerFunc(10,timerFunc, 10);
 	glutIdleFunc(idleFunc);
     glutMainLoop(); // Kontrolle wird an GLUT uebergeben
     return 0;
