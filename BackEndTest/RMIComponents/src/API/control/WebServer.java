@@ -18,6 +18,8 @@ import java.rmi.RemoteException;
 import java.util.HashMap;
 import java.util.Hashtable;
 
+import API.control.web.HeadFrame;
+
 import exceptions.HTTPException;
 
 /**
@@ -32,6 +34,11 @@ public abstract class WebServer implements Runnable {
 
     private ServerSocket server_socket;
     private HashMap mime_types;
+
+	/**
+	 * Für die Ausgabe des Headers.
+	 */
+	private HeadFrame header = new HeadFrame();
 
     private int port;
     private String root;
@@ -122,6 +129,8 @@ public abstract class WebServer implements Runnable {
                     out.writeBytes("\r\n");
 
                     if (!method.equals("HEAD")) {
+                    	// Den Inhalt schreiben
+                    	out.writeBytes(header.getHeader());
                         out.write(body, 0, body.length);
                     }
                 } catch (HTTPException e) {
