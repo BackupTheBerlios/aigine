@@ -14,6 +14,7 @@ class reference {
 }}/**
 @__tags
 @shapeType ClassDiagram 
+@backgroundColor 255,128,0
 */
 class __tags {
 }/**

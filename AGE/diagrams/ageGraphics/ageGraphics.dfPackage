@@ -25,8 +25,12 @@ class reference16 {
 */
 class reference17 {
 }}/**
+alles für 2D und 3D Grafik
+auf Direct3D und OpenGL basierend
+beinhaltet nützliche Funktionen, z.B. mathematische Hilfestellung
 @__tags
 @shapeType ClassDiagram 
+@backgroundColor 255,128,0
 */
 class __tags {
 }/**

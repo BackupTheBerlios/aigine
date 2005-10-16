@@ -25,8 +25,12 @@ class reference215 {
 */
 class reference216 {
 }}/**
+Voice- und Textchat
+Multiplayer Konfiguration und Design sowie Handle der Netzwerkkommunikation
+(Server- und Spieleliste, Clan- und Multi-Spielverwaltung)
 @__tags
 @shapeType ClassDiagram 
+@backgroundColor 255,0,0
 */
 class __tags {
 }/**

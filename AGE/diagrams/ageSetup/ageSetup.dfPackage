@@ -25,8 +25,16 @@ class reference222 {
 */
 class reference223 {
 }}/**
+Abfrage und Installation von benötigten Bibliotheken und Treibern
+alles an Hardware und Systemzugriffen für die verwendeten 
+Frameworks wird geprüft und notfalls installiert bzw. ein Konfiguration
+angeboten.
+- DirectX oder OpenGL-Version
+- Netzwerktreiber und Verbindung
+- Codecs für Media Zugriffe (divx, mpeg)
 @__tags
 @shapeType ClassDiagram 
+@backgroundColor 255,0,0
 */
 class __tags {
 }/**

@@ -9,6 +9,7 @@ class diagram {
 }/**
 @__tags
 @shapeType ClassDiagram 
+@backgroundColor 255,0,0
 */
 class __tags {
 }/**

@@ -25,8 +25,12 @@ class reference218 {
 */
 class reference219 {
 }}/**
+für Sound, Musik und Audioaufnahmen zuständig
+sowohl Effekte (Explosion etc.) als auch Hintergrundmusik
+- 3D Sound
 @__tags
 @shapeType ClassDiagram 
+@backgroundColor 255,0,0
 */
 class __tags {
 }/**

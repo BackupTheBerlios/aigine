@@ -25,8 +25,12 @@ class reference14 {
 */
 class reference15 {
 }}/**
+abspielen von Multimedia Dateien (mp3, mpeg Video)
+Wiedergabe von DVDs
+Steuerung von Aufnahmegeräten (Videokamera, EyeToy)
 @__tags
 @shapeType ClassDiagram 
+@backgroundColor 255,0,0
 */
 class __tags {
 }/**

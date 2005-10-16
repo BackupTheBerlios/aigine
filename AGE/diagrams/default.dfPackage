@@ -78,6 +78,26 @@ class reference12 {
 @__fqn <oiref:#Package#ageIntelligence:oiref> 
 */
 class reference13 {
+}/**
+@__ref <oiref:design#Class#id46ty6eeve530geeve53rd.node:oiref><oihard>
+@__modelType reference 
+*/
+class reference1 {
+}/**
+@__ref <oiref:design#Class#id46ty6eeve530geeve53rd.node2:oiref><oihard>
+@__modelType reference 
+*/
+class reference14 {
+}/**
+@__ref <oiref:design#Class#id46ty6eeve530geeve53rd.node15:oiref><oihard>
+@__modelType reference 
+*/
+class reference16 {
+}/**
+@__ref <oiref:design#Class#id46ty6eeve530geeve53rd.node17:oiref><oihard>
+@__modelType reference 
+*/
+class reference18 {
 }}/**
 @__tags
 @shapeType ClassDiagram 
@@ -88,18 +108,54 @@ class __tags {
 */
 class __options {
 }/**
-@__positions <oigroup:<oiref:design#Class#id29vf1eeve530geeve551t.diagram:oiref>=118,10,83,95,1:oigroup>
-<oigroup:<oiref:design#Class#idvca3eeve530geeve54uv.diagram:oiref>=544,530,83,136,1:oigroup>
-<oigroup:<oiref:design#Class#id2nrd7eeve530geeve54sp.diagram:oiref>=10,330,91,136,1:oigroup>
-<oigroup:<oiref:design#Class#id4ld91eeve530geeve54xg.diagram:oiref>=544,350,83,136,1:oigroup>
-<oigroup:<oiref:design#Class#id14x7neeve530geeve5502.diagram:oiref>=10,10,88,136,1:oigroup>
-<oigroup:<oiref:design#Class#id3gtgueeve530geeve54w6.diagram:oiref>=10,190,83,104,1:oigroup>
-<oigroup:<oiref:design#Class#id4nslzeeve530geeve551d.diagram:oiref>=544,190,83,120,1:oigroup>
-<oigroup:<oiref:design#Class#id4ttwseeve530geeve54yr.diagram:oiref>=221,10,83,136,1:oigroup>
-<oigroup:<oiref:design#Class#id2uyvleeve530geeve550x.diagram:oiref>=544,710,83,136,1:oigroup>
-<oigroup:<oiref:design#Class#idgv36eeve530geeve54zn.diagram:oiref>=544,10,91,136,1:oigroup>
-<oigroup:<oiref:design#Class#id16wykeeve530geeve54vq.diagram:oiref>=655,10,105,136,1:oigroup>
-<oigroup:<oiref:design#Class#id29ti2eeve530geeve54x1.diagram:oiref>=324,10,200,3256,1:oigroup> 
+@__positions <oigroup:<oiref:design#Class#id29vf1eeve530geeve551t.diagram:oiref>=400,390,110,140,0:oigroup>
+<oigroup:<oiref:design#Class#idvca3eeve530geeve54uv.diagram:oiref>=270,10,110,140,0:oigroup>
+<oigroup:<oiref:design#Class#id2nrd7eeve530geeve54sp.diagram:oiref>=140,10,110,140,0:oigroup>
+<oigroup:<oiref:design#Class#id46ty6eeve530geeve53rd.node17:oiref>=570,240,280,30,0:oigroup>
+<oigroup:<oiref:design#Class#id4ld91eeve530geeve54xg.diagram:oiref>=10,10,110,140,0:oigroup>
+<oigroup:<oiref:design#Class#id14x7neeve530geeve5502.diagram:oiref>=270,170,110,140,0:oigroup>
+<oigroup:<oiref:design#Class#id4ttwseeve530geeve54yr.diagram:oiref>=10,170,110,140,0:oigroup>
+<oigroup:<oiref:design#Class#id3gtgueeve530geeve54w6.diagram:oiref>=140,390,110,140,0:oigroup>
+<oigroup:<oiref:design#Class#id4nslzeeve530geeve551d.diagram:oiref>=10,390,110,140,0:oigroup>
+<oigroup:<oiref:design#Class#id2uyvleeve530geeve550x.diagram:oiref>=400,170,110,140,0:oigroup>
+<oigroup:<oiref:design#Class#idgv36eeve530geeve54zn.diagram:oiref>=140,170,110,140,0:oigroup>
+<oigroup:<oiref:design#Class#id16wykeeve530geeve54vq.diagram:oiref>=400,10,110,140,0:oigroup>
+<oigroup:<oiref:design#Class#id46ty6eeve530geeve53rd.node15:oiref>=570,140,280,30,0:oigroup>
+<oigroup:<oiref:design#Class#id46ty6eeve530geeve53rd.node2:oiref>=570,190,280,30,0:oigroup>
+<oigroup:<oiref:design#Class#id29ti2eeve530geeve54x1.diagram:oiref>=270,390,110,140,0:oigroup>
+<oigroup:<oiref:design#Class#id46ty6eeve530geeve53rd.node:oiref>=570,90,280,30,0:oigroup>
 */
 class __positions {
+}/**
+@shapeType Note
+@__modelType node
+@name Note1
+@text Bisher nicht definiert
+@backgroundColor 255,0,0 
+*/
+class node {
+}/**
+@shapeType Note
+@__modelType node
+@name Note1
+@text Definition abgeschlosssen
+@backgroundColor 255,255,0
+*/
+class node2 {
+}/**
+@shapeType Note
+@__modelType node
+@name Note1
+@text Teilweise definiert
+@backgroundColor 255,128,0
+*/
+class node15 {
+}/**
+@shapeType Note
+@__modelType node
+@name Note1
+@text Definition & Implementation abgeschlosssen
+@backgroundColor 0,255,0
+*/
+class node17 {
 }
