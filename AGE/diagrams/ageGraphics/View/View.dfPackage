@@ -7,12 +7,6 @@ package id4iiqldqs5a4tzdqs5ao9l;
 */
 class diagram {
 /**
-@__ref <oiref:cpp#Class#ageGV_GraphicPipeline:oiref><oihard>
-@__modelType reference
-@backgroundColor 255,153,0 
-*/
-class reference {
-}/**
 @__ref <oiref:design#Class#id4iiqldqs5a4tzdqs5ao9l.node:oiref><oihard>
 @__modelType reference 
 */

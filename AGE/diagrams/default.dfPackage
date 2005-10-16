@@ -7,12 +7,6 @@ package id46ty6eeve530geeve53rd;
 */
 class diagram {
 /**
-@__ref <oiref:design#Class#id4ttwseeve530geeve54yr.diagram:oiref><oihard>
-@__modelType reference
-@__fqn <oiref:#Package#ageMedia:oiref> 
-*/
-class reference {
-}/**
 @__ref <oiref:design#Class#id2nrd7eeve530geeve54sp.diagram:oiref><oihard>
 @__modelType reference
 @__fqn <oiref:#Package#ageGraphics:oiref> 
@@ -27,7 +21,7 @@ class reference4 {
 }/**
 @__ref <oiref:design#Class#idgv36eeve530geeve54zn.diagram:oiref><oihard>
 @__modelType reference
-@__fqn <oiref:#Package#ageMultiPlay:oiref> 
+@__fqn <oiref:#Package#agePhysics:oiref> 
 */
 class reference5 {
 }/**
@@ -69,7 +63,7 @@ class reference11 {
 }/**
 @__ref <oiref:design#Class#id2uyvleeve530geeve550x.diagram:oiref><oihard>
 @__modelType reference
-@__fqn <oiref:#Package#ageSetup:oiref> 
+@__fqn <oiref:#Package#ageData:oiref> 
 */
 class reference12 {
 }/**
@@ -99,6 +93,41 @@ class reference16 {
 */
 class reference18 {
 }}/**
+Programmierrichtlinien:
+- struct und enums werden zu Klassen!
+- Verwendung von Unions(unterschiedliche Zugriffsmöglichkeiten, z.B. Matrix=float[4][4] & float[16] & float m11, m12,...)
+
+Namensgebung:
+
+Packages:
+- alle Packages des Frameworks erhalten die Kennzeichnung "age*" (z.B. ageGraphics)
+- alle anderen werden direkt benannt (z.B. Math, Tools, Examples,stl)
+
+Klassen:
+- Klassen eines Frameworks werden durch age + Package Kürzel + [MVC] Zugehörigkeit + Name gekennzeichnet (z.B. ageIM_Keyboard und ageIC_Keyboard)
+
+MVC Richtlinie
+	V -> C -> M
+         ^
+        App.
+
+Model:
+alle Datenmodelle und die auf ihnen definierten Standard-Operatoren
+sowie alle für den Datentyp spezifischen Methoden, z.B.
+- ageGM_Matrix: Determinate, Inverse;
+die Funktionen für
+Rotation und Skalierung werden in einem entsprechenden
+Control (ageGC_Matrix) für die grafikspezifische Verwendung der
+Matrix ausgelagert.
+- Init-Funktion von ageGM_Model(laden aus Datei(3DS,obj,
+eigenes Format; nicht SceneGraph beschreibende Formate, wie VRML)
+
+Control
+Arbeitet auf dem Model. Stellt Funktionalität dar(implementiert Programmlogik)
+
+View
+Ausgabelkomponente
+Man beachte: Die Ausgabekomponenten sind immer im Kontext des Modells zu sehen. Also während bei ageGraphics die Viewkomponente logischerweise sehr umfangreich ist, kann sie in anderen Fällen durchaus leer sein bzw. aus Consolenausgaben und/oder einfachen Windoof-Tabellen, etc. bestehen.
 @__tags
 @shapeType ClassDiagram 
 */
@@ -108,22 +137,22 @@ class __tags {
 */
 class __options {
 }/**
-@__positions <oigroup:<oiref:design#Class#id29vf1eeve530geeve551t.diagram:oiref>=400,390,110,140,0:oigroup>
-<oigroup:<oiref:design#Class#idvca3eeve530geeve54uv.diagram:oiref>=270,10,110,140,0:oigroup>
-<oigroup:<oiref:design#Class#id2nrd7eeve530geeve54sp.diagram:oiref>=140,10,110,140,0:oigroup>
-<oigroup:<oiref:design#Class#id46ty6eeve530geeve53rd.node17:oiref>=570,240,280,30,0:oigroup>
+@__positions <oigroup:<oiref:design#Class#id29vf1eeve530geeve551t.diagram:oiref>=400,370,110,140,0:oigroup>
+<oigroup:<oiref:design#Class#idvca3eeve530geeve54uv.diagram:oiref>=400,10,110,140,0:oigroup>
+<oigroup:<oiref:design#Class#id2nrd7eeve530geeve54sp.diagram:oiref>=270,10,110,140,0:oigroup>
+<oigroup:<oiref:design#Class#id46ty6eeve530geeve53rd.node17:oiref>=620,280,280,30,0:oigroup>
 <oigroup:<oiref:design#Class#id4ld91eeve530geeve54xg.diagram:oiref>=10,10,110,140,0:oigroup>
-<oigroup:<oiref:design#Class#id14x7neeve530geeve5502.diagram:oiref>=270,170,110,140,0:oigroup>
-<oigroup:<oiref:design#Class#id4ttwseeve530geeve54yr.diagram:oiref>=10,170,110,140,0:oigroup>
-<oigroup:<oiref:design#Class#id3gtgueeve530geeve54w6.diagram:oiref>=140,390,110,140,0:oigroup>
-<oigroup:<oiref:design#Class#id4nslzeeve530geeve551d.diagram:oiref>=10,390,110,140,0:oigroup>
-<oigroup:<oiref:design#Class#id2uyvleeve530geeve550x.diagram:oiref>=400,170,110,140,0:oigroup>
-<oigroup:<oiref:design#Class#idgv36eeve530geeve54zn.diagram:oiref>=140,170,110,140,0:oigroup>
-<oigroup:<oiref:design#Class#id16wykeeve530geeve54vq.diagram:oiref>=400,10,110,140,0:oigroup>
-<oigroup:<oiref:design#Class#id46ty6eeve530geeve53rd.node15:oiref>=570,140,280,30,0:oigroup>
-<oigroup:<oiref:design#Class#id46ty6eeve530geeve53rd.node2:oiref>=570,190,280,30,0:oigroup>
-<oigroup:<oiref:design#Class#id29ti2eeve530geeve54x1.diagram:oiref>=270,390,110,140,0:oigroup>
-<oigroup:<oiref:design#Class#id46ty6eeve530geeve53rd.node:oiref>=570,90,280,30,0:oigroup>
+<oigroup:<oiref:design#Class#id14x7neeve530geeve5502.diagram:oiref>=140,170,110,140,0:oigroup>
+<oigroup:<oiref:design#Class#id4ttwseeve530geeve54yr.diagram:oiref>=450,210,110,140,0:oigroup>
+<oigroup:<oiref:design#Class#id3gtgueeve530geeve54w6.diagram:oiref>=140,370,110,140,0:oigroup>
+<oigroup:<oiref:design#Class#id4nslzeeve530geeve551d.diagram:oiref>=10,370,110,140,0:oigroup>
+<oigroup:<oiref:design#Class#id2uyvleeve530geeve550x.diagram:oiref>=140,10,110,140,0:oigroup>
+<oigroup:<oiref:design#Class#idgv36eeve530geeve54zn.diagram:oiref>=270,170,110,140,0:oigroup>
+<oigroup:<oiref:design#Class#id16wykeeve530geeve54vq.diagram:oiref>=10,170,110,140,0:oigroup>
+<oigroup:<oiref:design#Class#id46ty6eeve530geeve53rd.node15:oiref>=620,180,280,30,0:oigroup>
+<oigroup:<oiref:design#Class#id46ty6eeve530geeve53rd.node2:oiref>=620,230,280,30,0:oigroup>
+<oigroup:<oiref:design#Class#id29ti2eeve530geeve54x1.diagram:oiref>=270,370,110,140,0:oigroup>
+<oigroup:<oiref:design#Class#id46ty6eeve530geeve53rd.node:oiref>=620,130,280,30,0:oigroup>
 */
 class __positions {
 }/**

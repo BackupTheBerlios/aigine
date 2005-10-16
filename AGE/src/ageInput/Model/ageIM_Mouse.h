@@ -4,9 +4,8 @@
 #define AGEIM_MOUSE_H
 
 #include <iostream>
+#include "ageGraphics/ageGC_SceneManager.h"
 using namespace std;
-
-class ageGC_SceneManager;
 
 class ageIM_Mouse
 {

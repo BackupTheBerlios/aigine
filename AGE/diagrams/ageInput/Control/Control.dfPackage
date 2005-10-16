@@ -12,11 +12,6 @@ class diagram {
 */
 class reference {
 }/**
-@__ref <oiref:cpp#Class#ageIC_File:oiref><oihard>
-@__modelType reference 
-*/
-class reference56 {
-}/**
 @__ref <oiref:cpp#Class#ageIC_Mouse:oiref><oihard>
 @__modelType reference 
 */
@@ -32,7 +27,8 @@ class __tags {
 */
 class __options {
 }/**
-@__positions 
+@__positions <oigroup:<oiref:cpp#Class#ageIC_Mouse:oiref>=317,10,200,110,1:oigroup>
+<oigroup:<oiref:cpp#Class#ageIC_Keyboard:oiref>=10,10,131,190,1:oigroup> 
 */
 class __positions {
 }
