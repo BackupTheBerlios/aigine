@@ -1,4 +1,4 @@
-package id3l9ntdqs5a4tzdqs5aojw;
+package idgv36eeve530geeve54zn;
 
 /**
 @version 2.0
@@ -7,52 +7,26 @@ package id3l9ntdqs5a4tzdqs5aojw;
 */
 class diagram {
 /**
-@__ref <oiref:design#Class#idqeztdqs5a4tzdqs5aons.diagram:oiref><oihard>
-@__modelType reference
-@__fqn <oiref:#Package#ageMultiPlay.View:oiref> 
-*/
-class reference {
-}/**
 @__ref <oiref:design#Class#id3e387dqs5a4tzdqs5aom4.diagram:oiref><oihard>
 @__modelType reference
 @__fqn <oiref:#Package#ageMultiPlay.Model:oiref> 
 */
-class reference21 {
+class reference {
 }/**
 @__ref <oiref:design#Class#idbqmldqs5a4tzdqs5aola.diagram:oiref><oihard>
 @__modelType reference
 @__fqn <oiref:#Package#ageMultiPlay.Control:oiref> 
 */
-class reference22 {
+class reference215 {
 }/**
-@__ref <oiref:design#Class#id3l9ntdqs5a4tzdqs5aojw.node:oiref><oihard>
-@__modelType reference 
+@__ref <oiref:design#Class#idqeztdqs5a4tzdqs5aons.diagram:oiref><oihard>
+@__modelType reference
+@__fqn <oiref:#Package#ageMultiPlay.View:oiref> 
 */
-class reference31 {
-}/**
-@__ref <oiref:design#Class#id3l9ntdqs5a4tzdqs5aojw.node21:oiref><oihard>
-@__modelType reference 
-*/
-class reference32 {
-}/**
-@__ref <oiref:design#Class#id3l9ntdqs5a4tzdqs5aojw.node23:oiref><oihard>
-@__modelType reference 
-*/
-class reference33 {
-}/**
-@__ref <oiref:design#Class#id3l9ntdqs5a4tzdqs5aojw.node25:oiref><oihard>
-@__modelType reference 
-*/
-class reference34 {
+class reference216 {
 }}/**
-/** ageMultiPlay (dx: DirectPlay, port: *)
-Voice- und Textchat
-Multiplayer Konfiguration und Design sowie Handle der Netzwerkkommunikation
-(Server- und Spieleliste, Clan- und Multi-Spielverwaltung)
-*/
 @__tags
 @shapeType ClassDiagram 
-@backgroundColor 255,0,0
 */
 class __tags {
 }/**
@@ -60,45 +34,7 @@ class __tags {
 */
 class __options {
 }/**
-@__positions <oigroup:<oiref:design#Class#id3e387dqs5a4tzdqs5aom4.diagram:oiref>=83,10,53,57,1:oigroup>
-<oigroup:<oiref:design#Class#id3l9ntdqs5a4tzdqs5aojw.node25:oiref>=10,420,271,40,1:oigroup>
-<oigroup:<oiref:design#Class#id3l9ntdqs5a4tzdqs5aojw.node21:oiref>=10,300,270,40,0:oigroup>
-<oigroup:<oiref:design#Class#id3l9ntdqs5a4tzdqs5aojw.node23:oiref>=10,360,270,40,0:oigroup>
-<oigroup:<oiref:design#Class#idbqmldqs5a4tzdqs5aola.diagram:oiref>=160,10,60,57,1:oigroup>
-<oigroup:<oiref:design#Class#id3l9ntdqs5a4tzdqs5aojw.node:oiref>=10,240,270,40,0:oigroup>
-<oigroup:<oiref:design#Class#idqeztdqs5a4tzdqs5aons.diagram:oiref>=10,10,53,57,1:oigroup>
+@__positions 
 */
 class __positions {
-}/**
-@shapeType Note
-@__modelType node
-@name Note1
-@text Bisher nicht definiert
-@backgroundColor 255,0,0 
-*/
-class node {
-}/**
-@shapeType Note
-@__modelType node
-@name Note2
-@text Teilweise definiert
-@backgroundColor 255,153,0 
-*/
-class node21 {
-}/**
-@shapeType Note
-@__modelType node
-@name Note3
-@text Definition abgeschlossen
-@backgroundColor 255,255,0 
-*/
-class node23 {
-}/**
-@shapeType Note
-@__modelType node
-@name Note4
-@text Definition & Implementation abgeschlossen
-@backgroundColor 0,255,0 
-*/
-class node25 {
 }

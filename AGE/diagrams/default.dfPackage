@@ -1,4 +1,4 @@
-package id4ef1fdqs5a4tzdqs5aldu;
+package id46ty6eeve530geeve53rd;
 
 /**
 @version 2.0
@@ -7,133 +7,78 @@ package id4ef1fdqs5a4tzdqs5aldu;
 */
 class diagram {
 /**
-@__ref <oiref:design#Class#id1feddqs5a4tzdqs5aowy.diagram:oiref><oihard>
-@__modelType reference
-@__fqn <oiref:#Package#Math:oiref> 
-*/
-class reference {
-}/**
-@__ref <oiref:design#Class#id36gg3dqs5a4tzdqs5aoap.diagram:oiref><oihard>
-@__modelType reference
-@__fqn <oiref:#Package#ageInput:oiref> */
-class reference1 {
-}/**
-@__ref <oiref:design#Class#id1g9ijdqs5a4tzdqs5ao5p.diagram:oiref><oihard>
-@__modelType reference
-@__fqn <oiref:#Package#ageGraphics:oiref> 
-*/
-class reference2 {
-}/**
-@__ref <oiref:design#Class#id3ip5cdqs5a4tzdqs5aosi.diagram:oiref><oihard>
-@__modelType reference
-@__fqn <oiref:#Package#examples:oiref> 
-*/
-class reference3 {
-}/**
-@__ref <oiref:design#Class#idwh3xdqs5a4tzdqs5ap6f.diagram:oiref><oihard>
-@__modelType reference
-@__fqn <oiref:#Package#tools:oiref> 
-*/
-class reference4 {
-}/**
-@__ref <oiref:design#Class#id3rgtsdqs5a4tzdqs5aoom.diagram:oiref><oihard>
-@__modelType reference
-@__fqn <oiref:#Package#ageSetup:oiref> 
-*/
-class reference5 {
-}/**
-@__ref <oiref:design#Class#id1ir76dqs5a4tzdqs5aofz.diagram:oiref><oihard>
+@__ref <oiref:design#Class#id4ttwseeve530geeve54yr.diagram:oiref><oihard>
 @__modelType reference
 @__fqn <oiref:#Package#ageMedia:oiref> 
 */
-class reference6 {
+class reference {
 }/**
-@__ref <oiref:design#Class#id2n0ordqs5a4tzdqs5aoxs.diagram:oiref><oihard>
+@__ref <oiref:design#Class#id2nrd7eeve530geeve54sp.diagram:oiref><oihard>
 @__modelType reference
-@__fqn <oiref:#Package#ageAudio:oiref> 
+@__fqn <oiref:#Package#ageGraphics:oiref> 
 */
-class reference7 {
+class reference3 {
 }/**
-@__ref <oiref:design#Class#id3l9ntdqs5a4tzdqs5aojw.diagram:oiref><oihard>
-@__modelType reference
-@__fqn <oiref:#Package#ageMultiPlay:oiref> 
-*/
-class reference8 {
-}/**
-@__ref <oiref:design#Class#id43lxwdqs5a4tzdqs5ap1y.diagram:oiref><oihard>
-@__modelType reference
-@__fqn <oiref:#Package#ageNetwork:oiref> 
-*/
-class reference9 {
-}/**
-@__ref <oiref:design#Class#id4ef1fdqs5a4tzdqs5aldu.node:oiref><oihard>
-@__modelType reference 
-*/
-class reference20 {
-}/**
-@__ref <oiref:design#Class#id4ef1fdqs5a4tzdqs5aldu.node21:oiref><oihard>
-@__modelType reference 
-*/
-class reference22 {
-}/**
-@__ref <oiref:design#Class#id4ef1fdqs5a4tzdqs5aldu.node23:oiref><oihard>
-@__modelType reference 
-*/
-class reference24 {
-}/**
-@__ref <oiref:design#Class#id4ef1fdqs5a4tzdqs5aldu.node25:oiref><oihard>
-@__modelType reference 
-*/
-class reference26 {
-}/**
-@__ref <oiref:design#Class#id2abiieevamip4eevamzpy.diagram:oiref><oihard>
-@__modelType reference
-@__fqn <oiref:#Package#ageIntelligence:oiref> 
-*/
-class reference10 {
-}/**
-@__ref <oiref:design#Class#id4994jeevaykiaeevaynr2.diagram:oiref><oihard>
+@__ref <oiref:design#Class#id29ti2eeve530geeve54x1.diagram:oiref><oihard>
 @__modelType reference
 @__fqn <oiref:#Package#stl:oiref> 
 */
+class reference4 {
+}/**
+@__ref <oiref:design#Class#idgv36eeve530geeve54zn.diagram:oiref><oihard>
+@__modelType reference
+@__fqn <oiref:#Package#ageMultiPlay:oiref> 
+*/
+class reference5 {
+}/**
+@__ref <oiref:design#Class#id14x7neeve530geeve5502.diagram:oiref><oihard>
+@__modelType reference
+@__fqn <oiref:#Package#ageNetwork:oiref> 
+*/
+class reference6 {
+}/**
+@__ref <oiref:design#Class#id4nslzeeve530geeve551d.diagram:oiref><oihard>
+@__modelType reference
+@__fqn <oiref:#Package#examples:oiref> 
+*/
+class reference7 {
+}/**
+@__ref <oiref:design#Class#id29vf1eeve530geeve551t.diagram:oiref><oihard>
+@__modelType reference
+@__fqn <oiref:#Package#tools:oiref> 
+*/
+class reference8 {
+}/**
+@__ref <oiref:design#Class#id4ld91eeve530geeve54xg.diagram:oiref><oihard>
+@__modelType reference
+@__fqn <oiref:#Package#ageAudio:oiref> 
+*/
+class reference9 {
+}/**
+@__ref <oiref:design#Class#id3gtgueeve530geeve54w6.diagram:oiref><oihard>
+@__modelType reference
+@__fqn <oiref:#Package#Math:oiref> 
+*/
+class reference10 {
+}/**
+@__ref <oiref:design#Class#idvca3eeve530geeve54uv.diagram:oiref><oihard>
+@__modelType reference
+@__fqn <oiref:#Package#ageInput:oiref> 
+*/
 class reference11 {
+}/**
+@__ref <oiref:design#Class#id2uyvleeve530geeve550x.diagram:oiref><oihard>
+@__modelType reference
+@__fqn <oiref:#Package#ageSetup:oiref> 
+*/
+class reference12 {
+}/**
+@__ref <oiref:design#Class#id16wykeeve530geeve54vq.diagram:oiref><oihard>
+@__modelType reference
+@__fqn <oiref:#Package#ageIntelligence:oiref> 
+*/
+class reference13 {
 }}/**
-/** MVC Richtlinie
-	V -> C -> M
-         ^
-        App.
-
- * Model:
-alle Datenmodelle und die auf ihnen definierten Standard-Operatoren
-sowie alle für den Datentyp spezifischen Methoden, z.B.
-- ageGM_Matrix: Determinate, Inverse;
-die Funktionen für
-Rotation und Skalierung werden in einem entsprechenden
-Control (ageGC_Matrix) für die grafikspezifische Verwendung der
-Matrix ausgelagert.
-- Init-Funktion von ageGM_Model(laden aus Datei(3DS,obj,
-eigenes Format; nicht SceneGraph beschreibende Formate, wie VRML)
-
- * Control
-Arbeitet auf dem Model. Stellt Funktionalität dar(implementiert Programmlogik)
-
- * View
-Ausgabelkomponente
-Man beachte: Die Ausgabekomponenten sind immer im Kontext des Modells zu sehen. Also während bei ageGraphics die Viewkomponente logischerweise sehr umfangreich ist, kann sie in anderen Fällen durchaus leer sein bzw. aus Consolenausgaben und/oder einfachen Windoof-Tabellen, etc. bestehen. 
-*/
-
-/** Programmierrichtlinien:
-struct und enums werden zu Klassen! Verwendung von Unions(unterschiedliche
-Zugriffsmöglichkeiten, z.B. Matrix=float[4][4] & float[16] & float m11, m12,...)
- * Namensgebung:
- Packages:
- 	- alle Frameworks erhalten die Kennzeichnung "age*" (z.B. ageGraphics)
-    - alle anderen werden direkt benannt (z.B. Math, Tools, Examples)
- Klassen:
- 	- eines Frameworks werden durch age + Package Kürzel + [MVC] Zugehörigkeit +
-      Name gekennzeichnet (z.B. ageGM_Matrix und ageGC_Matrix)
-    - alle anderen werden
-*/
 @__tags
 @shapeType ClassDiagram 
 */
@@ -143,55 +88,18 @@ class __tags {
 */
 class __options {
 }/**
-@__positions <oigroup:<oiref:design#Class#id4ef1fdqs5a4tzdqs5aldu.node21:oiref>=560,80,270,40,0:oigroup>
-<oigroup:<oiref:design#Class#id1feddqs5a4tzdqs5aowy.diagram:oiref>=280,410,110,140,0:oigroup>
-<oigroup:<oiref:design#Class#id2abiieevamip4eevamzpy.diagram:oiref>=280,180,110,140,0:oigroup>
-<oigroup:<oiref:design#Class#id4ef1fdqs5a4tzdqs5aldu.node:oiref>=560,20,270,40,0:oigroup>
-<oigroup:<oiref:design#Class#id4ef1fdqs5a4tzdqs5aldu.node25:oiref>=560,200,271,40,1:oigroup>
-<oigroup:<oiref:design#Class#id1ir76dqs5a4tzdqs5aofz.diagram:oiref>=280,20,110,140,0:oigroup>
-<oigroup:<oiref:design#Class#id3l9ntdqs5a4tzdqs5aojw.diagram:oiref>=150,20,110,140,0:oigroup>
-<oigroup:<oiref:design#Class#id36gg3dqs5a4tzdqs5aoap.diagram:oiref>=150,180,110,140,0:oigroup>
-<oigroup:<oiref:design#Class#idwh3xdqs5a4tzdqs5ap6f.diagram:oiref>=150,410,110,140,0:oigroup>
-<oigroup:<oiref:design#Class#id43lxwdqs5a4tzdqs5ap1y.diagram:oiref>=410,20,110,140,0:oigroup>
-<oigroup:<oiref:design#Class#id4ef1fdqs5a4tzdqs5aldu.node23:oiref>=560,140,270,40,0:oigroup>
-<oigroup:<oiref:design#Class#id4994jeevaykiaeevaynr2.diagram:oiref>=20,410,110,140,0:oigroup>
-<oigroup:<oiref:design#Class#id2n0ordqs5a4tzdqs5aoxs.diagram:oiref>=20,180,110,140,0:oigroup>
-<oigroup:<oiref:design#Class#id3rgtsdqs5a4tzdqs5aoom.diagram:oiref>=410,180,110,140,0:oigroup>
-<oigroup:<oiref:design#Class#idads5eev9l4wbeev9vy67.diagram:oiref>=20,410,110,140,0:oigroup>
-<oigroup:<oiref:design#Class#id1g9ijdqs5a4tzdqs5ao5p.diagram:oiref>=20,20,110,140,0:oigroup>
-<oigroup:<oiref:design#Class#id3ip5cdqs5a4tzdqs5aosi.diagram:oiref>=410,410,110,140,0:oigroup>
+@__positions <oigroup:<oiref:design#Class#id29vf1eeve530geeve551t.diagram:oiref>=118,10,83,95,1:oigroup>
+<oigroup:<oiref:design#Class#idvca3eeve530geeve54uv.diagram:oiref>=544,530,83,136,1:oigroup>
+<oigroup:<oiref:design#Class#id2nrd7eeve530geeve54sp.diagram:oiref>=10,330,91,136,1:oigroup>
+<oigroup:<oiref:design#Class#id4ld91eeve530geeve54xg.diagram:oiref>=544,350,83,136,1:oigroup>
+<oigroup:<oiref:design#Class#id14x7neeve530geeve5502.diagram:oiref>=10,10,88,136,1:oigroup>
+<oigroup:<oiref:design#Class#id3gtgueeve530geeve54w6.diagram:oiref>=10,190,83,104,1:oigroup>
+<oigroup:<oiref:design#Class#id4nslzeeve530geeve551d.diagram:oiref>=544,190,83,120,1:oigroup>
+<oigroup:<oiref:design#Class#id4ttwseeve530geeve54yr.diagram:oiref>=221,10,83,136,1:oigroup>
+<oigroup:<oiref:design#Class#id2uyvleeve530geeve550x.diagram:oiref>=544,710,83,136,1:oigroup>
+<oigroup:<oiref:design#Class#idgv36eeve530geeve54zn.diagram:oiref>=544,10,91,136,1:oigroup>
+<oigroup:<oiref:design#Class#id16wykeeve530geeve54vq.diagram:oiref>=655,10,105,136,1:oigroup>
+<oigroup:<oiref:design#Class#id29ti2eeve530geeve54x1.diagram:oiref>=324,10,200,3256,1:oigroup> 
 */
 class __positions {
-}/**
-@shapeType Note
-@__modelType node
-@name Note1
-@text Bisher nicht definiert
-@backgroundColor 255,0,0 
-*/
-class node {
-}/**
-@shapeType Note
-@__modelType node
-@name Note2
-@text Teilweise definiert
-@backgroundColor 255,153,0 
-*/
-class node21 {
-}/**
-@shapeType Note
-@__modelType node
-@name Note3
-@text Definition abgeschlossen
-@backgroundColor 255,255,0 
-*/
-class node23 {
-}/**
-@shapeType Note
-@__modelType node
-@name Note4
-@text Definition & Implementation abgeschlossen
-@backgroundColor 0,255,0 
-*/
-class node25 {
 }

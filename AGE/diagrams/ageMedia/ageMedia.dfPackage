@@ -1,4 +1,4 @@
-package id1ir76dqs5a4tzdqs5aofz;
+package id4ttwseeve530geeve54yr;
 
 /**
 @version 2.0
@@ -7,9 +7,9 @@ package id1ir76dqs5a4tzdqs5aofz;
 */
 class diagram {
 /**
-@__ref <oiref:design#Class#id22vgadqs5a4tzdqs5aogt.diagram:oiref><oihard>
+@__ref <oiref:design#Class#id2ev9tdqs5a4tzdqs5aohx.diagram:oiref><oihard>
 @__modelType reference
-@__fqn <oiref:#Package#ageMedia.Control:oiref> 
+@__fqn <oiref:#Package#ageMedia.Model:oiref> 
 */
 class reference {
 }/**
@@ -17,42 +17,16 @@ class reference {
 @__modelType reference
 @__fqn <oiref:#Package#ageMedia.View:oiref> 
 */
-class reference17 {
+class reference14 {
 }/**
-@__ref <oiref:design#Class#id2ev9tdqs5a4tzdqs5aohx.diagram:oiref><oihard>
+@__ref <oiref:design#Class#id22vgadqs5a4tzdqs5aogt.diagram:oiref><oihard>
 @__modelType reference
-@__fqn <oiref:#Package#ageMedia.Model:oiref> 
+@__fqn <oiref:#Package#ageMedia.Control:oiref> 
 */
-class reference18 {
-}/**
-@__ref <oiref:design#Class#id1ir76dqs5a4tzdqs5aofz.node:oiref><oihard>
-@__modelType reference 
-*/
-class reference43 {
-}/**
-@__ref <oiref:design#Class#id1ir76dqs5a4tzdqs5aofz.node21:oiref><oihard>
-@__modelType reference 
-*/
-class reference44 {
-}/**
-@__ref <oiref:design#Class#id1ir76dqs5a4tzdqs5aofz.node23:oiref><oihard>
-@__modelType reference 
-*/
-class reference45 {
-}/**
-@__ref <oiref:design#Class#id1ir76dqs5a4tzdqs5aofz.node25:oiref><oihard>
-@__modelType reference 
-*/
-class reference46 {
+class reference15 {
 }}/**
-/** ageMedia (dx: DirectShow port: *)
-abspielen von Multimedia Dateien (mp3, mpeg Video)
-Wiedergabe von DVDs
-Steuerung von Aufnahmegeräten (Videokamera, EyeToy)
-*/
 @__tags
 @shapeType ClassDiagram 
-@backgroundColor 255,0,0
 */
 class __tags {
 }/**
@@ -60,45 +34,9 @@ class __tags {
 */
 class __options {
 }/**
-@__positions <oigroup:<oiref:design#Class#id1ir76dqs5a4tzdqs5aofz.node:oiref>=10,410,270,40,0:oigroup>
-<oigroup:<oiref:design#Class#id2ev9tdqs5a4tzdqs5aohx.diagram:oiref>=10,110,53,57,1:oigroup>
-<oigroup:<oiref:design#Class#id1we5cdqs5a4tzdqs5aoj1.diagram:oiref>=90,10,53,57,1:oigroup>
-<oigroup:<oiref:design#Class#id22vgadqs5a4tzdqs5aogt.diagram:oiref>=10,10,60,57,1:oigroup>
-<oigroup:<oiref:design#Class#id1ir76dqs5a4tzdqs5aofz.node23:oiref>=10,290,270,40,0:oigroup>
-<oigroup:<oiref:design#Class#id1ir76dqs5a4tzdqs5aofz.node25:oiref>=10,230,271,40,1:oigroup>
-<oigroup:<oiref:design#Class#id1ir76dqs5a4tzdqs5aofz.node21:oiref>=10,350,270,40,0:oigroup> 
+@__positions <oigroup:<oiref:design#Class#id22vgadqs5a4tzdqs5aogt.diagram:oiref>=10,150,83,95,1:oigroup>
+<oigroup:<oiref:design#Class#id1we5cdqs5a4tzdqs5aoj1.diagram:oiref>=113,10,83,95,1:oigroup>
+<oigroup:<oiref:design#Class#id2ev9tdqs5a4tzdqs5aohx.diagram:oiref>=10,10,83,95,1:oigroup> 
 */
 class __positions {
-}/**
-@shapeType Note
-@__modelType node
-@name Note1
-@text Bisher nicht definiert
-@backgroundColor 255,0,0 
-*/
-class node {
-}/**
-@shapeType Note
-@__modelType node
-@name Note2
-@text Teilweise definiert
-@backgroundColor 255,153,0 
-*/
-class node21 {
-}/**
-@shapeType Note
-@__modelType node
-@name Note3
-@text Definition abgeschlossen
-@backgroundColor 255,255,0 
-*/
-class node23 {
-}/**
-@shapeType Note
-@__modelType node
-@name Note4
-@text Definition & Implementation abgeschlossen
-@backgroundColor 0,255,0 
-*/
-class node25 {
 }

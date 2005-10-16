@@ -1,4 +1,4 @@
-package id2abiieevamip4eevamzpy;
+package id16wykeeve530geeve54vq;
 
 /**
 @version 2.0
@@ -13,44 +13,20 @@ class diagram {
 */
 class reference {
 }/**
-@__ref <oiref:design#Class#id4h25deevamip4eevamzpy.diagram:oiref><oihard>
-@__modelType reference
-@__fqn <oiref:#Package#ageIntelligence.Control:oiref> 
-*/
-class reference10 {
-}/**
 @__ref <oiref:design#Class#idbojceevamip4eevamzpy.diagram:oiref><oihard>
 @__modelType reference
 @__fqn <oiref:#Package#ageIntelligence.View:oiref> 
 */
-class reference11 {
+class reference224 {
 }/**
-@__ref <oiref:design#Class#id2abiieevamip4eevamzpy.node:oiref><oihard>
-@__modelType reference 
+@__ref <oiref:design#Class#id4h25deevamip4eevamzpy.diagram:oiref><oihard>
+@__modelType reference
+@__fqn <oiref:#Package#ageIntelligence.Control:oiref> 
 */
-class reference58 {
-}/**
-@__ref <oiref:design#Class#id2abiieevamip4eevamzpy.node21:oiref><oihard>
-@__modelType reference 
-*/
-class reference59 {
-}/**
-@__ref <oiref:design#Class#id2abiieevamip4eevamzpy.node23:oiref><oihard>
-@__modelType reference 
-*/
-class reference60 {
-}/**
-@__ref <oiref:design#Class#id2abiieevamip4eevamzpy.node25:oiref><oihard>
-@__modelType reference 
-*/
-class reference61 {
+class reference225 {
 }}/**
-/** ageIntelligence (dx: -, port: -)
-Funktionen zur Bildung von AI
-*/
 @__tags
 @shapeType ClassDiagram 
-@backgroundColor 255,0,0
 */
 class __tags {
 }/**
@@ -58,45 +34,7 @@ class __tags {
 */
 class __options {
 }/**
-@__positions <oigroup:<oiref:design#Class#id4h25deevamip4eevamzpy.diagram:oiref>=210,10,83,95,1:oigroup>
-<oigroup:<oiref:design#Class#idi9yjeevamip4eevamzpy.diagram:oiref>=110,10,83,95,1:oigroup>
-<oigroup:<oiref:design#Class#idbojceevamip4eevamzpy.diagram:oiref>=10,10,83,95,1:oigroup>
-<oigroup:<oiref:design#Class#id2abiieevamip4eevamzpy.node21:oiref>=10,310,270,40,0:oigroup>
-<oigroup:<oiref:design#Class#id2abiieevamip4eevamzpy.node23:oiref>=10,370,270,40,0:oigroup>
-<oigroup:<oiref:design#Class#id2abiieevamip4eevamzpy.node25:oiref>=10,430,271,40,1:oigroup>
-<oigroup:<oiref:design#Class#id2abiieevamip4eevamzpy.node:oiref>=10,250,270,40,0:oigroup>
+@__positions 
 */
 class __positions {
-}/**
-@shapeType Note
-@__modelType node
-@name Note1
-@text Bisher nicht definiert
-@backgroundColor 255,0,0 
-*/
-class node {
-}/**
-@shapeType Note
-@__modelType node
-@name Note2
-@text Teilweise definiert
-@backgroundColor 255,153,0 
-*/
-class node21 {
-}/**
-@shapeType Note
-@__modelType node
-@name Note3
-@text Definition abgeschlossen
-@backgroundColor 255,255,0 
-*/
-class node23 {
-}/**
-@shapeType Note
-@__modelType node
-@name Note4
-@text Definition & Implementation abgeschlossen
-@backgroundColor 0,255,0 
-*/
-class node25 {
 }

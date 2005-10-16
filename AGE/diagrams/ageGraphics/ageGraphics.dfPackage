@@ -1,4 +1,4 @@
-package id1g9ijdqs5a4tzdqs5ao5p;
+package id2nrd7eeve530geeve54sp;
 
 /**
 @version 2.0
@@ -7,52 +7,26 @@ package id1g9ijdqs5a4tzdqs5ao5p;
 */
 class diagram {
 /**
-@__ref <oiref:design#Class#id4iiqldqs5a4tzdqs5ao9l.diagram:oiref><oihard>
-@__modelType reference
-@__fqn <oiref:#Package#ageGraphics.View:oiref> 
-*/
-class reference {
-}/**
 @__ref <oiref:design#Class#id4bz9gdqs5a4tzdqs5ao7d.diagram:oiref><oihard>
 @__modelType reference
 @__fqn <oiref:#Package#ageGraphics.Model:oiref> 
 */
-class reference12 {
+class reference {
 }/**
 @__ref <oiref:design#Class#id4jvjudqs5a4tzdqs5ao6j.diagram:oiref><oihard>
 @__modelType reference
 @__fqn <oiref:#Package#ageGraphics.Control:oiref> 
 */
-class reference13 {
+class reference16 {
 }/**
-@__ref <oiref:design#Class#id1g9ijdqs5a4tzdqs5ao5p.node:oiref><oihard>
-@__modelType reference 
+@__ref <oiref:design#Class#id4iiqldqs5a4tzdqs5ao9l.diagram:oiref><oihard>
+@__modelType reference
+@__fqn <oiref:#Package#ageGraphics.View:oiref> 
 */
-class reference27 {
-}/**
-@__ref <oiref:design#Class#id1g9ijdqs5a4tzdqs5ao5p.node21:oiref><oihard>
-@__modelType reference 
-*/
-class reference28 {
-}/**
-@__ref <oiref:design#Class#id1g9ijdqs5a4tzdqs5ao5p.node23:oiref><oihard>
-@__modelType reference 
-*/
-class reference29 {
-}/**
-@__ref <oiref:design#Class#id1g9ijdqs5a4tzdqs5ao5p.node25:oiref><oihard>
-@__modelType reference 
-*/
-class reference30 {
+class reference17 {
 }}/**
-/** ageGraphics (dx: DirectX Graphics, port: OpenGL)
-alles für 2D und 3D Grafik
-auf Direct3D und OpenGL basierend
-beinhaltet nützliche Funktionen, z.B. mathematische Hilfestellung
-*/
 @__tags
 @shapeType ClassDiagram 
-@backgroundColor 255,153,0
 */
 class __tags {
 }/**
@@ -60,45 +34,7 @@ class __tags {
 */
 class __options {
 }/**
-@__positions <oigroup:<oiref:design#Class#id1g9ijdqs5a4tzdqs5ao5p.node25:oiref>=10,440,271,40,1:oigroup>
-<oigroup:<oiref:design#Class#id1g9ijdqs5a4tzdqs5ao5p.node23:oiref>=10,380,270,40,0:oigroup>
-<oigroup:<oiref:design#Class#id4bz9gdqs5a4tzdqs5ao7d.diagram:oiref>=310,20,138,292,1:oigroup>
-<oigroup:<oiref:design#Class#id1g9ijdqs5a4tzdqs5ao5p.node21:oiref>=10,320,270,40,0:oigroup>
-<oigroup:<oiref:design#Class#id4jvjudqs5a4tzdqs5ao6j.diagram:oiref>=110,20,147,132,1:oigroup>
-<oigroup:<oiref:design#Class#id4iiqldqs5a4tzdqs5ao9l.diagram:oiref>=500,20,145,68,1:oigroup>
-<oigroup:<oiref:design#Class#id1g9ijdqs5a4tzdqs5ao5p.node:oiref>=10,260,270,40,0:oigroup>
+@__positions 
 */
 class __positions {
-}/**
-@shapeType Note
-@__modelType node
-@name Note1
-@text Bisher nicht definiert
-@backgroundColor 255,0,0 
-*/
-class node {
-}/**
-@shapeType Note
-@__modelType node
-@name Note2
-@text Teilweise definiert
-@backgroundColor 255,153,0 
-*/
-class node21 {
-}/**
-@shapeType Note
-@__modelType node
-@name Note3
-@text Definition abgeschlossen
-@backgroundColor 255,255,0 
-*/
-class node23 {
-}/**
-@shapeType Note
-@__modelType node
-@name Note4
-@text Definition & Implementation abgeschlossen
-@backgroundColor 0,255,0 
-*/
-class node25 {
 }

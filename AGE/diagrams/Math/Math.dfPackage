@@ -1,4 +1,4 @@
-package id1feddqs5a4tzdqs5aowy;
+package id3gtgueeve530geeve54w6;
 
 /**
 @version 2.0
@@ -12,13 +12,8 @@ class diagram {
 */
 class reference {
 }}/**
-/** Math
-alle allgemeinen mathematischen Datentypen und Funktionen, die in mehreren
-Frameworks verwendet werden.
-*/
 @__tags
 @shapeType ClassDiagram 
-@backgroundColor 255,153,0
 */
 class __tags {
 }/**

@@ -1,4 +1,4 @@
-package id43lxwdqs5a4tzdqs5ap1y;
+package id14x7neeve530geeve5502;
 
 /**
 @version 2.0
@@ -17,40 +17,16 @@ class reference {
 @__modelType reference
 @__fqn <oiref:#Package#ageNetwork.Control:oiref> 
 */
-class reference23 {
+class reference1 {
 }/**
 @__ref <oiref:design#Class#id6a7odqs5a4tzdqs5ap51.diagram:oiref><oihard>
 @__modelType reference
 @__fqn <oiref:#Package#ageNetwork.View:oiref> 
 */
-class reference24 {
-}/**
-@__ref <oiref:design#Class#id43lxwdqs5a4tzdqs5ap1y.node:oiref><oihard>
-@__modelType reference 
-*/
-class reference47 {
-}/**
-@__ref <oiref:design#Class#id43lxwdqs5a4tzdqs5ap1y.node21:oiref><oihard>
-@__modelType reference 
-*/
-class reference48 {
-}/**
-@__ref <oiref:design#Class#id43lxwdqs5a4tzdqs5ap1y.node23:oiref><oihard>
-@__modelType reference 
-*/
-class reference49 {
-}/**
-@__ref <oiref:design#Class#id43lxwdqs5a4tzdqs5ap1y.node25:oiref><oihard>
-@__modelType reference 
-*/
-class reference50 {
+class reference2 {
 }}/**
-/** ageNetwork (dx: DirectPlay, port *)
-Netzwerkkommunikation (SOAP, UDDI, WSDL)
-*/
 @__tags
 @shapeType ClassDiagram 
-@backgroundColor 255,0,0
 */
 class __tags {
 }/**
@@ -58,45 +34,9 @@ class __tags {
 */
 class __options {
 }/**
-@__positions <oigroup:<oiref:design#Class#id6a7odqs5a4tzdqs5ap51.diagram:oiref>=10,110,53,57,1:oigroup>
-<oigroup:<oiref:design#Class#id33i83dqs5a4tzdqs5ap47.diagram:oiref>=10,10,53,57,1:oigroup>
-<oigroup:<oiref:design#Class#id43lxwdqs5a4tzdqs5ap1y.node23:oiref>=10,350,270,40,0:oigroup>
-<oigroup:<oiref:design#Class#id43lxwdqs5a4tzdqs5ap1y.node21:oiref>=10,290,270,40,0:oigroup>
-<oigroup:<oiref:design#Class#id43lxwdqs5a4tzdqs5ap1y.node25:oiref>=10,410,271,40,1:oigroup>
-<oigroup:<oiref:design#Class#idr1qdqs5a4tzdqs5ap33.diagram:oiref>=83,10,60,57,1:oigroup>
-<oigroup:<oiref:design#Class#id43lxwdqs5a4tzdqs5ap1y.node:oiref>=10,230,270,40,0:oigroup> 
+@__positions <oigroup:<oiref:design#Class#id6a7odqs5a4tzdqs5ap51.diagram:oiref>=10,150,83,95,1:oigroup>
+<oigroup:<oiref:design#Class#id33i83dqs5a4tzdqs5ap47.diagram:oiref>=10,10,83,95,1:oigroup>
+<oigroup:<oiref:design#Class#idr1qdqs5a4tzdqs5ap33.diagram:oiref>=113,10,83,95,1:oigroup> 
 */
 class __positions {
-}/**
-@shapeType Note
-@__modelType node
-@name Note1
-@text Bisher nicht definiert
-@backgroundColor 255,0,0 
-*/
-class node {
-}/**
-@shapeType Note
-@__modelType node
-@name Note2
-@text Teilweise definiert
-@backgroundColor 255,153,0 
-*/
-class node21 {
-}/**
-@shapeType Note
-@__modelType node
-@name Note3
-@text Definition abgeschlossen
-@backgroundColor 255,255,0 
-*/
-class node23 {
-}/**
-@shapeType Note
-@__modelType node
-@name Note4
-@text Definition & Implementation abgeschlossen
-@backgroundColor 0,255,0 
-*/
-class node25 {
 }
