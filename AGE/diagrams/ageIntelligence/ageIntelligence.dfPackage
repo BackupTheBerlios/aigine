@@ -45,6 +45,9 @@ class reference60 {
 */
 class reference61 {
 }}/**
+/** ageIntelligence (dx: -, port: -)
+Funktionen zur Bildung von AI
+*/
 @__tags
 @shapeType ClassDiagram 
 @backgroundColor 255,0,0

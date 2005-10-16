@@ -12,6 +12,10 @@ class diagram {
 */
 class reference {
 }}/**
+/** Math
+alle allgemeinen mathematischen Datentypen und Funktionen, die in mehreren
+Frameworks verwendet werden.
+*/
 @__tags
 @shapeType ClassDiagram 
 @backgroundColor 255,153,0

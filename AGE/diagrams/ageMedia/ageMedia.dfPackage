@@ -45,6 +45,11 @@ class reference45 {
 */
 class reference46 {
 }}/**
+/** ageMedia (dx: DirectShow port: *)
+abspielen von Multimedia Dateien (mp3, mpeg Video)
+Wiedergabe von DVDs
+Steuerung von Aufnahmegeräten (Videokamera, EyeToy)
+*/
 @__tags
 @shapeType ClassDiagram 
 @backgroundColor 255,0,0

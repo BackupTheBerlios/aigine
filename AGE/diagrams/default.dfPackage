@@ -98,6 +98,42 @@ class reference10 {
 */
 class reference11 {
 }}/**
+/** MVC Richtlinie
+	V -> C -> M
+         ^
+        App.
+
+ * Model:
+alle Datenmodelle und die auf ihnen definierten Standard-Operatoren
+sowie alle für den Datentyp spezifischen Methoden, z.B.
+- ageGM_Matrix: Determinate, Inverse;
+die Funktionen für
+Rotation und Skalierung werden in einem entsprechenden
+Control (ageGC_Matrix) für die grafikspezifische Verwendung der
+Matrix ausgelagert.
+- Init-Funktion von ageGM_Model(laden aus Datei(3DS,obj,
+eigenes Format; nicht SceneGraph beschreibende Formate, wie VRML)
+
+ * Control
+Arbeitet auf dem Model. Stellt Funktionalität dar(implementiert Programmlogik)
+
+ * View
+Ausgabelkomponente
+Man beachte: Die Ausgabekomponenten sind immer im Kontext des Modells zu sehen. Also während bei ageGraphics die Viewkomponente logischerweise sehr umfangreich ist, kann sie in anderen Fällen durchaus leer sein bzw. aus Consolenausgaben und/oder einfachen Windoof-Tabellen, etc. bestehen. 
+*/
+
+/** Programmierrichtlinien:
+struct und enums werden zu Klassen! Verwendung von Unions(unterschiedliche
+Zugriffsmöglichkeiten, z.B. Matrix=float[4][4] & float[16] & float m11, m12,...)
+ * Namensgebung:
+ Packages:
+ 	- alle Frameworks erhalten die Kennzeichnung "age*" (z.B. ageGraphics)
+    - alle anderen werden direkt benannt (z.B. Math, Tools, Examples)
+ Klassen:
+ 	- eines Frameworks werden durch age + Package Kürzel + [MVC] Zugehörigkeit +
+      Name gekennzeichnet (z.B. ageGM_Matrix und ageGC_Matrix)
+    - alle anderen werden
+*/
 @__tags
 @shapeType ClassDiagram 
 */

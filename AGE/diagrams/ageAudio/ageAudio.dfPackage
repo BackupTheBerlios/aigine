@@ -45,6 +45,11 @@ class reference53 {
 */
 class reference54 {
 }}/**
+/** ageAudio (dx: DirectX Audio, port: *)
+für Sound, Musik und Audioaufnahmen zuständig
+sowohl Effekte (Explosion etc.) als auch Hintergrundmusik
+- 3D Sound
+*/
 @__tags
 @shapeType ClassDiagram 
 @backgroundColor 255,0,0

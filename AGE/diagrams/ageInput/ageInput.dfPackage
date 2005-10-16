@@ -45,6 +45,10 @@ class reference60 {
 */
 class reference61 {
 }}/**
+/** ageInput (dx: DirectInput, port *)
+Eingabe (Gamepad, Mouse, Keyboard)
+- ForceFeedback
+*/
 @__tags
 @shapeType ClassDiagram 
 @backgroundColor 255,153,0

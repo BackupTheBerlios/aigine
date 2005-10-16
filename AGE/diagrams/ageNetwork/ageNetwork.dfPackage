@@ -45,6 +45,9 @@ class reference49 {
 */
 class reference50 {
 }}/**
+/** ageNetwork (dx: DirectPlay, port *)
+Netzwerkkommunikation (SOAP, UDDI, WSDL)
+*/
 @__tags
 @shapeType ClassDiagram 
 @backgroundColor 255,0,0

@@ -45,6 +45,11 @@ class reference29 {
 */
 class reference30 {
 }}/**
+/** ageGraphics (dx: DirectX Graphics, port: OpenGL)
+alles für 2D und 3D Grafik
+auf Direct3D und OpenGL basierend
+beinhaltet nützliche Funktionen, z.B. mathematische Hilfestellung
+*/
 @__tags
 @shapeType ClassDiagram 
 @backgroundColor 255,153,0

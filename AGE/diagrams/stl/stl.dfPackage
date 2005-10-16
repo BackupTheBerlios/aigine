@@ -137,11 +137,6 @@ class reference35 {
 */
 class reference36 {
 }/**
-@__ref <oiref:cpp#Class#_enum_stl_hashtable_h_147:oiref><oihard>
-@__modelType reference 
-*/
-class reference37 {
-}/**
 @__ref <oiref:cpp#Class#_Rb_tree:oiref><oihard>
 @__modelType reference 
 */
@@ -996,6 +991,11 @@ class reference207 {
 @__modelType reference 
 */
 class reference208 {
+}/**
+@__ref <oiref:cpp#Class#_enum_stl_hashtable_h_148:oiref><oihard>
+@__modelType reference 
+*/
+class reference1 {
 }}/**
 @__tags
 @shapeType ClassDiagram
