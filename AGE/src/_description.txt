@@ -41,6 +41,10 @@ angeboten.
 - Codecs für Media Zugriffe (divx, mpeg)
 */
 
+/** ageIntelligence (dx: -, port: -)
+Funktionen zur Bildung von AI
+*/
+
 /** Math
 alle allgemeinen mathematischen Datentypen und Funktionen, die in mehreren
 Frameworks verwendet werden.
