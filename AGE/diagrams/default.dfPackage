@@ -91,6 +91,12 @@ class reference26 {
 @__fqn <oiref:#Package#ageIntelligence:oiref> 
 */
 class reference10 {
+}/**
+@__ref <oiref:design#Class#id4994jeevaykiaeevaynr2.diagram:oiref><oihard>
+@__modelType reference
+@__fqn <oiref:#Package#stl:oiref> 
+*/
+class reference11 {
 }}/**
 @__tags
 @shapeType ClassDiagram 
@@ -112,6 +118,7 @@ class __options {
 <oigroup:<oiref:design#Class#idwh3xdqs5a4tzdqs5ap6f.diagram:oiref>=150,410,110,140,0:oigroup>
 <oigroup:<oiref:design#Class#id43lxwdqs5a4tzdqs5ap1y.diagram:oiref>=410,20,110,140,0:oigroup>
 <oigroup:<oiref:design#Class#id4ef1fdqs5a4tzdqs5aldu.node23:oiref>=560,140,270,40,0:oigroup>
+<oigroup:<oiref:design#Class#id4994jeevaykiaeevaynr2.diagram:oiref>=20,410,110,140,0:oigroup>
 <oigroup:<oiref:design#Class#id2n0ordqs5a4tzdqs5aoxs.diagram:oiref>=20,180,110,140,0:oigroup>
 <oigroup:<oiref:design#Class#id3rgtsdqs5a4tzdqs5aoom.diagram:oiref>=410,180,110,140,0:oigroup>
 <oigroup:<oiref:design#Class#idads5eev9l4wbeev9vy67.diagram:oiref>=20,410,110,140,0:oigroup>
