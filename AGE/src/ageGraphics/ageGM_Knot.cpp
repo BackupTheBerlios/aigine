@@ -2,7 +2,18 @@
 
 #include "ageGM_Knot.h"
 #include <iostream>
+#include <ageGM_Knot.h>
 using namespace std;
+ageGM_Knot::ageGM_Knot() {
+	 this->left = NULL;
+	 this->right= NULL;
+	 this->data = NULL;
+
+
+}
+ageGM_Knot::~ageGM_Knot() {
+
+}
 ageGM_Knot::ageGM_Knot() {
 	 this->left = NULL;
 	 this->right= NULL;

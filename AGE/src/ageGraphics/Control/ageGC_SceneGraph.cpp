@@ -6,11 +6,10 @@ using namespace std;
 
 
 #include "ageGC_SceneGraph.h"
-#include "../Model/AiGinEObject.h"
 #include "ageGraphics/Model/ageGM_Scale3D.h"
-class ageGM_Knot;
+#include "ageGraphics/ageGM_Knot.h"
+#include "ageGraphics/ageGM_ObjectTree1.h"
 class ageGC_Object;
-
 
 ageGC_SceneGraph::ageGC_SceneGraph() : Tree() {
 }

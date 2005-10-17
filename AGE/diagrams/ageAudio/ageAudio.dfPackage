@@ -38,7 +38,9 @@ class __tags {
 */
 class __options {
 }/**
-@__positions 
+@__positions <oigroup:<oiref:design#Class#id2a3fxdqs5a4tzdqs5aozq.diagram:oiref>=10,10,83,95,1:oigroup>
+<oigroup:<oiref:design#Class#id3ujy3dqs5a4tzdqs5ap0u.diagram:oiref>=10,150,83,95,1:oigroup>
+<oigroup:<oiref:design#Class#id1hxvjdqs5a4tzdqs5aoyw.diagram:oiref>=130,60,83,95,1:oigroup> 
 */
 class __positions {
 }

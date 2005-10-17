@@ -19,4 +19,15 @@ public:
 #endif //AGEGM_KNOT_H
 
 
+class ageGM_Knot  
+{
+public:
+	ageGM_Knot();
+	ageGM_Knot* left;
+	ageGM_Knot* right;
+	void* data;
+	virtual ~ageGM_Knot();
+
+};
+
 

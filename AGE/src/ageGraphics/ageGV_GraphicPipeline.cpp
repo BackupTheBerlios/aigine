@@ -7,6 +7,7 @@
 #include "ageGraphics/ageGM_Camera.h"
 #include "ageGraphics/ageGM_Vector3.h"
 #include "ageGraphics/ageGM_Light.h"
+#include "ageGM_Camera.h"
 ageGV_GraphicPipeline::ageGV_GraphicPipeline()
 {
 	this->windowSize = new int ;

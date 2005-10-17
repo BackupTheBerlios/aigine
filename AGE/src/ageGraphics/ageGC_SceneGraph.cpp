@@ -6,6 +6,8 @@
 #include "ageGraphics/ageGM_Knot.h"
 #include "ageGraphics/ageGM_ObjectTree.h"
 #include "ageGraphics/ageGC_Object.h"
+#include "ageGM_Knot.h"
+#include "ageGM_ObjectTree1.h"
 using namespace std;
 ageGC_SceneGraph::ageGC_SceneGraph() : Tree() {
 }

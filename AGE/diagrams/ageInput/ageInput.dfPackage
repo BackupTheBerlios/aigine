@@ -24,6 +24,31 @@ class reference220 {
 @__fqn <oiref:#Package#ageInput.Model:oiref> 
 */
 class reference221 {
+}/**
+@__ref <oiref:cpp#Class#ageIC_Mouse:oiref><oihard>
+@__modelType reference 
+*/
+class reference8 {
+}/**
+@__ref <oiref:cpp#Class#ageIC_File:oiref><oihard>
+@__modelType reference 
+*/
+class reference9 {
+}/**
+@__ref <oiref:cpp#Class#ageIC_Keyboard:oiref><oihard>
+@__modelType reference 
+*/
+class reference10 {
+}/**
+@__ref <oiref:cpp#Class#ageIM_Keyboard:oiref><oihard>
+@__modelType reference 
+*/
+class reference11 {
+}/**
+@__ref <oiref:cpp#Class#ageIM_Mouse:oiref><oihard>
+@__modelType reference 
+*/
+class reference12 {
 }}/**
 Eingabe (Gamepad, Mouse, Keyboard)
 - ForceFeedback
@@ -37,9 +62,14 @@ class __tags {
 */
 class __options {
 }/**
-@__positions <oigroup:<oiref:design#Class#id1hp5fdqs5a4tzdqs5aoc3.diagram:oiref>=10,10,105,120,1:oigroup>
-<oigroup:<oiref:design#Class#id13n7hdqs5a4tzdqs5aod7.diagram:oiref>=10,190,105,120,1:oigroup>
-<oigroup:<oiref:design#Class#id9vdvdqs5a4tzdqs5aoeb.diagram:oiref>=135,10,83,95,1:oigroup> 
+@__positions <oigroup:<oiref:cpp#Class#ageIC_Mouse:oiref>=245,8,200,110,1:oigroup>
+<oigroup:<oiref:design#Class#id1hp5fdqs5a4tzdqs5aoc3.diagram:oiref>=10,10,83,95,1:oigroup>
+<oigroup:<oiref:cpp#Class#ageIC_File:oiref>=187,130,136,366,1:oigroup>
+<oigroup:<oiref:design#Class#id13n7hdqs5a4tzdqs5aod7.diagram:oiref>=10,190,83,95,1:oigroup>
+<oigroup:<oiref:cpp#Class#ageIC_Keyboard:oiref>=335,128,200,190,1:oigroup>
+<oigroup:<oiref:design#Class#id9vdvdqs5a4tzdqs5aoeb.diagram:oiref>=135,10,83,95,1:oigroup>
+<oigroup:<oiref:cpp#Class#ageIM_Mouse:oiref>=549,291,200,110,1:oigroup>
+<oigroup:<oiref:cpp#Class#ageIM_Keyboard:oiref>=589,91,200,190,1:oigroup>
 */
 class __positions {
 }

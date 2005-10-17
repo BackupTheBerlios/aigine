@@ -10,7 +10,6 @@
 /**********************I N C L U D E*********************************/
 #include "ageGC_SceneManager.h"
 #include "ageGraphics/View/ageGV_GraphicPipeline.h"
-#include "../Model/AiGinEObject.h"
 class ageGC_Object;
 
 

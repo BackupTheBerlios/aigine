@@ -1,13 +1,11 @@
 /* Game Engine Design */
 
 #include "ageGM_Light.h"
-class ageGV_GraphicPipeline;
+#include "ageGraphics/ageGV_GraphicPipeline.h"
 class ageGM_Translation3D;
 class ageGM_Vector3;
 
 #define	BASEPOINT 0.0,0.0,0.0
-
-
 
 /**Std - Constructor
 *@param GraphicPipeline um auf deren funktion für das setzten des lichtes zureuck zu greifen

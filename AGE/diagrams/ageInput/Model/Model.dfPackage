@@ -6,17 +6,7 @@ package id13n7hdqs5a4tzdqs5aod7;
 @__modelType diagram 
 */
 class diagram {
-/**
-@__ref <oiref:cpp#Class#ageIM_Keyboard:oiref><oihard>
-@__modelType reference 
-*/
-class reference {
 }/**
-@__ref <oiref:cpp#Class#ageIM_Mouse:oiref><oihard>
-@__modelType reference 
-*/
-class reference55 {
-}}/**
 @__tags
 @shapeType ClassDiagram 
 @backgroundColor 255,153,0

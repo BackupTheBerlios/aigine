@@ -2,6 +2,7 @@
 
 #include "ageIC_Mouse.h"
 #include "ageGraphics/ageGC_SceneManager.h"
+#include "ageInput/ageIC_Mouse.h"
 
 void ageIC_Mouse::passivemotion(int x, int y){
 	this->sceneMan->setCameraRotation(x, y);

@@ -19,16 +19,16 @@ Root.2.srcControlProject=
 Version=3.0
 projectfile.encoding=Cp1252
 [editor]
-recent.file.0=C:\\wsb\\AGE\\src\\Math\\Matrix.h
-recent.file.1=C:\\wsb\\AGE\\src\\ageGraphics\\ageGM_Model.h
-recent.file.2=C:\\wsb\\AGE\\src\\ageGraphics\\ageGC_SceneGraph.h
-recent.file.3=C:\\wsb\\AGE\\src\\ageGraphics\\ageGM_Knot.h
-recent.file.4=C:\\wsb\\AGE\\src\\ageGraphics\\ageGC_Object.h
-recent.file.5=C:\\wsb\\AGE\\src\\ageGraphics\\ageGM_Vector2.h
-recent.file.6=C:\\wsb\\AGE\\src\\ageGraphics\\ageGM_Scale3D.h
-recent.file.7=C:\\wsb\\AGE\\src\\ageGraphics\\ageGM_Rotation3D.h
-recent.file.8=C:\\wsb\\AGE\\src\\ageGraphics\\ageGM_Translation3D.h
-recent.file.9=C:\\wsb\\AGE\\src\\ageGraphics\\ageGM_Vector3.h
+recent.file.0=C:\\wsb\\AGE\\src\\ageGraphics\\View\\ageGV_GraphicPipeline.h
+recent.file.1=C:\\wsb\\AGE\\src\\ageGraphics\\ageGC_SceneGraph.h
+recent.file.2=C:\\wsb\\AGE\\src\\ageGraphics\\Model\\ageGM_Camera.h
+recent.file.3=C:\\wsb\\AGE\\src\\ageInput\\Model\\ageIM_Keyboard.h
+recent.file.4=C:\\wsb\\AGE\\src\\ageIntelligence\\Control\\ageIC_Mouse.cpp
+recent.file.5=C:\\wsb\\AGE\\src\\ageInput\\Control\\ageIC_Keyboard.h
+recent.file.6=C:\\wsb\\AGE\\src\\Math\\Matrix.h
+recent.file.7=C:\\wsb\\AGE\\src\\ageGraphics\\ageGM_Model.h
+recent.file.8=C:\\wsb\\AGE\\src\\ageGraphics\\ageGM_Viewport.h
+recent.file.9=C:\\wsb\\AGE\\src\\ageGraphics\\ageGM_Knot.h
 [workspace]
 Programmer. DebugWorkspace={{0,2,-1,0,0,0,0,0,0,1,0,50,75,25,-1,-1,-1,-1}${0,1,-1,0,0,0,0,1,0,1,1,50,75,25,-1,-1,-1,-1}${0,3,-1,0,0,0,0,0,0,1,0,50,50,25,-1,-1,-1,-1}${0,3,-1,0,0,0,0,0,0,1,0,50,50,25,-1,-1,-1,-1}${0,-1,-1,0,0,0,0,0,0,1,0,5,5,5,-1,-1,-1,-1}${0,4,-1,0,0,0,0,0,0,1,0,50,50,25,-1,-1,-1,-1}${0,0,-1,0,0,0,0,1,0,1,0,75,5,5,-1,-1,-1,-1}${0,7,-1,0,0,0,0,0,0,1,0,50,50,75,-1,-1,-1,-1}}
 Programmer.aigine={{0,2,-1,0,0,0,0,1,0,1,0,50,75,25,-1,-1,-1,-1}${0,1,-1,0,0,0,0,1,0,1,1,50,75,25,-1,-1,-1,-1}${0,3,-1,0,0,0,0,1,0,1,0,50,50,25,-1,-1,-1,-1}${0,3,-1,0,0,0,0,1,0,1,0,50,50,25,-1,-1,-1,-1}${0,-1,-1,0,0,0,0,0,0,1,0,5,5,5,-1,-1,-1,-1}${0,4,-1,0,0,0,0,1,0,1,0,50,50,25,-1,-1,-1,-1}${0,0,-1,0,0,0,0,0,0,1,0,75,5,5,-1,-1,-1,-1}${0,7,-1,0,0,0,0,0,0,1,0,50,50,75,-1,-1,-1,-1}}
@@ -43,3 +43,5 @@ Developer.<default>={{0,2,-1,0,0,0,0,1,0,1,0,50,75,25,-1,-1,-1,-1}${0,1,-1,0,0,0
 [lastOpenProjectName]
 Programmer=<default>
 Developer=aigine
+[print]
+diagram=current
