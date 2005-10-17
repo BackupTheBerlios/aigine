@@ -8,8 +8,6 @@
 
 #include <GL/glut.h>
 
-#include "ageGraphics/Model/ageGM_Tree.h"
-#include "ageGraphics/Model/ageGM_Tree.h"
 #include "ageGraphics/ageGM_Tree.h"
 #include "ageGraphics/ageGM_Knot.h"
 #include "ageGraphics/ageGC_Object.h"

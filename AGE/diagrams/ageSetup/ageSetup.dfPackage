@@ -6,7 +6,25 @@ package id2uyvleeve530geeve550x;
 @__modelType diagram 
 */
 class diagram {
+/**
+@__ref <oiref:design#Class#id1tbt0dqs5a4tzdqs5aopq.diagram:oiref><oihard>
+@__modelType reference
+@__fqn <oiref:#Package#ageSetup.Control:oiref> 
+*/
+class reference {
 }/**
+@__ref <oiref:design#Class#id2guhbdqs5a4tzdqs5aoro.diagram:oiref><oihard>
+@__modelType reference
+@__fqn <oiref:#Package#ageSetup.View:oiref> 
+*/
+class reference1 {
+}/**
+@__ref <oiref:design#Class#id1jycvdqs5a4tzdqs5aoqk.diagram:oiref><oihard>
+@__modelType reference
+@__fqn <oiref:#Package#ageSetup.Model:oiref> 
+*/
+class reference2 {
+}}/**
 Abfrage und Installation von benötigten Bibliotheken und Treibern
 alles an Hardware und Systemzugriffen für die verwendeten 
 Frameworks wird geprüft und notfalls installiert bzw. ein Konfiguration

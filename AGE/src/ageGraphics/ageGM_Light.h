@@ -9,14 +9,12 @@
 
 
 #include "ageGM_LookAtObjects.h"
-#include "ageGraphics/View/ageGV_GraphicPipeline.h"
 #include "ageGM_Translation3D.h"
 #include "ageGM_LookAtObjects.h"
 #include "ageGraphics/ageGM_Translation3D.h"
 #include "ageGraphics/ageGM_Vector3.h"
 #include "ageGV_GraphicPipeline.h"
 #include "ageGM_Vector3.h"
-#include "ageGraphics/Model/ageGM_LookAtObjects.h"
 
 class ageGC_Object;
 

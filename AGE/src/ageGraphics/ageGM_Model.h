@@ -43,7 +43,6 @@ using namespace std;
 #include "ageGraphics/ageGM_Rotation3D.h"
 #include "ageGraphics/ageGM_Vector3.h"
 #include "ageGraphics/ageGM_Scale3D.h"
-#include "ageGraphics/Model/ageGM_List.h"
 class ageGM_Vector2;
 
 

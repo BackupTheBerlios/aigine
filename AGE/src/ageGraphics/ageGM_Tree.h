@@ -11,6 +11,7 @@
 #include "ageGM_List.h"
 #include "ageGM_Knot.h"
 #include <iostream>
+#include "ageGraphics/Model/ageGM_Knot.h"
 using namespace std;
 
 

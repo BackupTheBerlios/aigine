@@ -9,6 +9,8 @@
 #include "ageGraphics/Control/ageGC_Object.h"
 #include "ageGM_Vector3.h"
 #include "ageGraphics/Control/ageGC_Object.h"
+#include "ageGraphics/ageGM_Vector3.h"
+#include "ageGC_Object.h"
 
 
 

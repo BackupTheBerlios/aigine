@@ -11,10 +11,14 @@
 #include <GL/glut.h>
 //#include <gl/glaux.h>// ich weiss...
 #include "ageGraphics/Model/ageGM_Camera.h"
-class ageGM_Vector3;
+#include "ageGraphics/ageGM_Camera.h"
+#include "ageGraphics/ageGM_Vector3.h"
+#include "ageGraphics/ageGM_Light.h"
+#include "ageGM_Camera.h"
+#include "ageGM_Vector3.h"
+#include "ageGM_Light.h"
 
 
-class ageGM_Light;
 
 class ageGC_SceneGraph;
 

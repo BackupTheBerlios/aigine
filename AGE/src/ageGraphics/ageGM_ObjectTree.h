@@ -2,9 +2,9 @@
 
 
 
-#ifndef OBJECTLIST_H
+#ifndef AGEGM_OBJECTTREE_H
 
-#define OBJECTLIST_H
+#define AGEGM_OBJECTTREE_H
 
 
 class ageGC_Object;
@@ -27,4 +27,4 @@ private:
 
 };
 
-#endif //OBJECTLIST_H
+#endif //AGEGM_OBJECTTREE_H

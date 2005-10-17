@@ -7,10 +7,8 @@
 #define AGEGC_SCENEMANAGER_H
 
 #include <string>
-#include "ageGraphics/View/ageGV_GraphicPipeline.h"
 #include "ageGC_SceneGraph.h"
 
-#include "ageGraphics/View/ageGV_GraphicPipeline.h"
 #include "ageGraphics/ageGC_Object.h"
 #include "ageGV_GraphicPipeline.h"
 #include "ageGC_Object.h"

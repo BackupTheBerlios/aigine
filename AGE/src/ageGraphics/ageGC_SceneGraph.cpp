@@ -2,7 +2,6 @@
 
 #include "ageGC_SceneGraph.h"
 #include <iostream>
-#include "ageGraphics/Model/ageGM_Scale3D.h"
 #include "ageGraphics/ageGM_Knot.h"
 #include "ageGraphics/ageGM_ObjectTree.h"
 #include "ageGraphics/ageGC_Object.h"

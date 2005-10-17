@@ -3,11 +3,7 @@
 #ifndef AGEGC_OBJECT_H
 #define AGEGC_OBJECT_H
 #include "ageGM_Model.h"
-#include "ageGraphics/Model/ageGM_Knot.h"
 #include "ageGM_Model.h"
-#include "ageGraphics/Model/ageGM_Knot.h"
-#include "ageGraphics/Model/ageGM_Model.h"
-#include "ageGraphics/Model/ageGM_Knot.h"
 #include "ageGraphics/ageGM_Knot.h"
 #include "ageGraphics/ageGM_Model.h"
 #include "ageGM_Knot.h"

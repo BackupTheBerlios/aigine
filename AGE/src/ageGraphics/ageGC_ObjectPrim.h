@@ -10,7 +10,6 @@
 #include "ageGC_Object.h"
 #include "../../Control/fileControl.h"
 #include "ageGC_Object.h"
-#include "ageGraphics/Model/AiGinEObject.h"
 #include "ageGraphics/Control/ageGC_Object.h"
 
 /**

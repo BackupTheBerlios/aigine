@@ -19,12 +19,6 @@ class reference3 {
 */
 class reference4 {
 }/**
-@__ref <oiref:design#Class#idgv36eeve530geeve54zn.diagram:oiref><oihard>
-@__modelType reference
-@__fqn <oiref:#Package#agePhysics:oiref> 
-*/
-class reference5 {
-}/**
 @__ref <oiref:design#Class#id14x7neeve530geeve5502.diagram:oiref><oihard>
 @__modelType reference
 @__fqn <oiref:#Package#ageNetwork:oiref> 
@@ -92,6 +86,12 @@ class reference16 {
 @__modelType reference 
 */
 class reference18 {
+}/**
+@__ref <oiref:design#Class#id4g842eex1okyfeex1t4rj.diagram:oiref><oihard>
+@__modelType reference
+@__fqn <oiref:#Package#agePhysic:oiref> 
+*/
+class reference {
 }}/**
 Programmierrichtlinien:
 - struct und enums werden zu Klassen!
@@ -141,6 +141,7 @@ class __options {
 <oigroup:<oiref:design#Class#id14x7neeve530geeve5502.diagram:oiref>=140,300,110,140,0:oigroup>
 <oigroup:<oiref:design#Class#id4ld91eeve530geeve54xg.diagram:oiref>=10,10,110,240,0:oigroup>
 <oigroup:<oiref:design#Class#idvca3eeve530geeve54uv.diagram:oiref>=400,10,110,240,0:oigroup>
+<oigroup:<oiref:design#Class#id4g842eex1okyfeex1t4rj.diagram:oiref>=270,300,110,140,0:oigroup>
 <oigroup:<oiref:design#Class#id46ty6eeve530geeve53rd.node17:oiref>=620,280,280,30,0:oigroup>
 <oigroup:<oiref:design#Class#id2mjtleevjnyp5eevjo1fo.diagram:oiref>=523,145,83,136,1:oigroup>
 <oigroup:<oiref:design#Class#id46ty6eeve530geeve53rd.node15:oiref>=620,180,280,30,0:oigroup>
@@ -149,7 +150,6 @@ class __options {
 <oigroup:<oiref:design#Class#id29vf1eeve530geeve551t.diagram:oiref>=400,460,110,140,0:oigroup>
 <oigroup:<oiref:design#Class#id16wykeeve530geeve54vq.diagram:oiref>=10,300,110,140,0:oigroup>
 <oigroup:<oiref:design#Class#id3gtgueeve530geeve54w6.diagram:oiref>=140,460,110,140,0:oigroup>
-<oigroup:<oiref:design#Class#idgv36eeve530geeve54zn.diagram:oiref>=270,300,110,140,0:oigroup>
 <oigroup:<oiref:design#Class#id4ttwseeve530geeve54yr.diagram:oiref>=450,210,110,140,0:oigroup>
 <oigroup:<oiref:design#Class#id46ty6eeve530geeve53rd.node2:oiref>=620,230,280,30,0:oigroup>
 <oigroup:<oiref:design#Class#idupnleevjnyp5eevjo1hf.diagram:oiref>=419,221,91,136,1:oigroup>

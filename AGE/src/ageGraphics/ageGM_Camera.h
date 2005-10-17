@@ -11,6 +11,8 @@
 #include "ageGM_Vector3.h"
 #include "ageGM_LookAtObjects.h"
 #include "ageGM_LookAtObjects.h"
+#include "ageGraphics/Model/ageGM_LookAtObjects.h"
+#include "ageGraphics/Model/ageGM_Vector3.h"
 
 
 
