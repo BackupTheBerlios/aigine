@@ -185,7 +185,7 @@ class node15 {
 @shapeType Note
 @__modelType node
 @name Note1
-@text Definition & Implementation abgeschlosssen
+@text Implementation abgeschlosssen
 @backgroundColor 0,255,0
 */
 class node17 {

@@ -7,110 +7,150 @@ package id2nrd7eeve530geeve54sp;
 */
 class diagram {
 /**
-@__ref <oiref:cpp#Class#ageGM_Vector2:oiref><oihard>
+@__ref <oiref:cpp#Class#ageG_Vector2:oiref><oihard>
 @__modelType reference 
+@backgroundColor 255,128,0
 */
 class reference3 {
 }/**
-@__ref <oiref:cpp#Class#ageGM_Scale3D:oiref><oihard>
+@__ref <oiref:cpp#Class#ageG_Scale3D:oiref><oihard>
 @__modelType reference 
+@backgroundColor 255,128,0
 */
 class reference4 {
 }/**
-@__ref <oiref:cpp#Class#ageGC_SceneGraph:oiref><oihard>
+@__ref <oiref:cpp#Class#ageG_SceneGraph:oiref><oihard>
 @__modelType reference 
+@backgroundColor 255,128,0
 */
 class reference5 {
 }/**
-@__ref <oiref:cpp#Class#ageGM_Vector3:oiref><oihard>
+@__ref <oiref:cpp#Class#ageG_Vector3:oiref><oihard>
 @__modelType reference 
+@backgroundColor 255,128,0
 */
 class reference6 {
 }/**
-@__ref <oiref:cpp#Class#ageGC_SceneManager:oiref><oihard>
+@__ref <oiref:cpp#Class#ageG_SceneManager:oiref><oihard>
 @__modelType reference 
+@backgroundColor 255,128,0
 */
 class reference7 {
 }/**
-@__ref <oiref:cpp#Class#ageGM_Mesh:oiref><oihard>
+@__ref <oiref:cpp#Class#ageG_Mesh:oiref><oihard>
 @__modelType reference 
 */
 class reference8 {
 }/**
-@__ref <oiref:cpp#Class#ageGM_List:oiref><oihard>
+@__ref <oiref:cpp#Class#ageG_List:oiref><oihard>
 @__modelType reference 
+@backgroundColor 255,128,0
 */
 class reference9 {
 }/**
-@__ref <oiref:cpp#Class#ageGM_Model:oiref><oihard>
+@__ref <oiref:cpp#Class#ageG_Model:oiref><oihard>
 @__modelType reference 
+@backgroundColor 255,128,0
 */
 class reference11 {
 }/**
-@__ref <oiref:cpp#Class#ageGC_ObjectPrim:oiref><oihard>
+@__ref <oiref:cpp#Class#ageG_ObjectPrim:oiref><oihard>
 @__modelType reference 
+@backgroundColor 255,128,0
 */
 class reference12 {
 }/**
-@__ref <oiref:cpp#Class#ageGC_TextureManager:oiref><oihard>
+@__ref <oiref:cpp#Class#ageG_TextureManager:oiref><oihard>
 @__modelType reference 
+@backgroundColor 255,0,0
 */
 class reference13 {
 }/**
-@__ref <oiref:cpp#Class#ageGM_Light:oiref><oihard>
+@__ref <oiref:cpp#Class#ageG_Light:oiref><oihard>
 @__modelType reference 
+@backgroundColor 255,128,0
 */
 class reference14 {
 }/**
-@__ref <oiref:cpp#Class#ageGC_Object:oiref><oihard>
+@__ref <oiref:cpp#Class#ageG_Object:oiref><oihard>
 @__modelType reference 
+@backgroundColor 255,128,0
 */
 class reference15 {
 }/**
-@__ref <oiref:cpp#Class#ageGM_ObjectTree:oiref><oihard>
+@__ref <oiref:cpp#Class#ageG_ObjectTree:oiref><oihard>
 @__modelType reference 
+@backgroundColor 255,128,0
 */
 class reference16 {
 }/**
-@__ref <oiref:cpp#Class#ageGM_Translation3D:oiref><oihard>
+@__ref <oiref:cpp#Class#ageG_Translation3D:oiref><oihard>
 @__modelType reference 
+@backgroundColor 255,128,0
 */
 class reference17 {
 }/**
-@__ref <oiref:cpp#Class#ageGM_Rotation3D:oiref><oihard>
+@__ref <oiref:cpp#Class#ageG_Rotation3D:oiref><oihard>
 @__modelType reference 
+@backgroundColor 255,128,0
 */
 class reference18 {
 }/**
-@__ref <oiref:cpp#Class#ageGM_Viewport:oiref><oihard>
+@__ref <oiref:cpp#Class#ageG_Viewport:oiref><oihard>
 @__modelType reference 
+@backgroundColor 255,128,0
 */
 class reference19 {
 }/**
-@__ref <oiref:cpp#Class#ageGM_Tree:oiref><oihard>
+@__ref <oiref:cpp#Class#ageG_Tree:oiref><oihard>
 @__modelType reference 
+@backgroundColor 255,128,0
 */
 class reference {
 }/**
-@__ref <oiref:cpp#Class#ageGM_LookAtObjects:oiref><oihard>
+@__ref <oiref:cpp#Class#ageG_LookAtObjects:oiref><oihard>
 @__modelType reference 
+@backgroundColor 255,128,0
 */
 class reference1 {
 }/**
-@__ref <oiref:cpp#Class#ageGM_Camera:oiref><oihard>
+@__ref <oiref:cpp#Class#ageG_Camera:oiref><oihard>
 @__modelType reference 
+@backgroundColor 255,128,0
 */
 class reference2 {
 }/**
-@__ref <oiref:cpp#Class#ageGM_Knot:oiref><oihard>
+@__ref <oiref:cpp#Class#ageG_Knot:oiref><oihard>
 @__modelType reference 
+@backgroundColor 0,255,0
 */
 class reference10 {
 }/**
-@__ref <oiref:cpp#Class#ageGV_GraphicPipeline:oiref><oihard>
+@__ref <oiref:cpp#Class#ageG_GraphicPipeline:oiref><oihard>
 @__modelType reference 
+@backgroundColor 255,128,0
 */
 class reference20 {
+}/**
+@__ref <oiref:design#Class#id2nrd7eeve530geeve54sp.node:oiref><oihard>
+@__modelType reference 
+*/
+class reference21 {
+}/**
+@__ref <oiref:design#Class#id2nrd7eeve530geeve54sp.node2:oiref><oihard>
+@__modelType reference 
+*/
+class reference22 {
+}/**
+@__ref <oiref:design#Class#id2nrd7eeve530geeve54sp.node15:oiref><oihard>
+@__modelType reference 
+*/
+class reference23 {
+}/**
+@__ref <oiref:design#Class#id2nrd7eeve530geeve54sp.node17:oiref><oihard>
+@__modelType reference 
+*/
+class reference24 {
 }}/**
 alles für 2D und 3D Grafik
 auf Direct3D und OpenGL basierend
@@ -125,82 +165,131 @@ class __tags {
 */
 class __options {
 }/**
-@__positions <oigroup:<oiref:cpp#Class#ageGM_Translation3D:oiref>=612,274,145,85,1:oigroup>
-<oigroup:Composite#clientCardinality#MemberLink#<oiref:cpp#Member#ageGV_GraphicPipeline#lnkCamera:oiref>=903,1621,15,16,0:oigroup>
-<oigroup:Composite#supplierCardinality#MemberLink#<oiref:cpp#Member#ageGM_Light#lnkPipeline:oiref>=770,1591,28,16,0:oigroup>
-<oigroup:<oiref:cpp#Class#ageGM_Scale3D:oiref>=347,59,114,85,1:oigroup>
-<oigroup:MemberLink#<oiref:cpp#Member#ageGM_Tree#temporaryKnot:oiref>=1212,1340,1212,1222:oigroup>
-<oigroup:<oiref:cpp#Class#ageGV_GraphicPipeline:oiref>=722,1611,177,293,1:oigroup>
-<oigroup:<oiref:cpp#Class#ageGM_Viewport:oiref>=472,64,105,101,1:oigroup>
-<oigroup:Composite#supplierCardinality#MemberLink#<oiref:cpp#Member#ageGM_Model#directionVector3D:oiref>=348,419,28,16,0:oigroup>
-<oigroup:<oiref:cpp#Class#ageGC_ObjectPrim:oiref>=354,586,160,526,1:oigroup>
-<oigroup:MemberLink#<oiref:cpp#Member#ageGV_GraphicPipeline#lnkLight:oiref>=766,1611,535,1083,620,649:oigroup>
-<oigroup:MemberLink#<oiref:cpp#Member#ageGM_Tree#rootKnot:oiref>=1182,1340,1182,1222:oigroup>
-<oigroup:Composite#supplierCardinality#MemberLink#<oiref:cpp#Member#ageGC_SceneGraph#lnkObjectTree:oiref>=1401,1248,28,16,0:oigroup>
-<oigroup:<oiref:cpp#Class#ageGM_Model:oiref>=374,176,200,398,1:oigroup>
-<oigroup:Composite#supplierCardinality#MemberLink#<oiref:cpp#Member#ageGM_Tree#rootKnot:oiref>=1150,1222,28,16,0:oigroup>
-<oigroup:Composite#clientCardinality#MemberLink#<oiref:cpp#Member#ageGV_GraphicPipeline#lnkLight:oiref>=739,1591,15,16,0:oigroup>
-<oigroup:MemberLink#<oiref:cpp#Member#ageGM_Light#lnkPipeline:oiref>=647,649,591,1076,810,1611:oigroup>
-<oigroup:Composite#supplierCardinality#MemberLink#<oiref:cpp#Member#ageGM_Model#texVertices:oiref>=720,164,28,16,0:oigroup>
-<oigroup:MemberLink#<oiref:cpp#Member#ageGM_Model#scale:oiref>=423,176,423,144:oigroup>
-<oigroup:MemberLink#<oiref:cpp#Member#ageGM_Model#texVertices:oiref>=574,186,752,184:oigroup>
-<oigroup:MemberLink#<oiref:cpp#Member#ageGM_Knot#right:oiref>=1222,1222,1222,1257,1282,1257,1282,1197,1247,1197:oigroup>
-<oigroup:MemberLink#<oiref:cpp#Member#ageGM_Model#directionVector3D:oiref>=374,439,344,439:oigroup>
-<oigroup:Composite#supplierCardinality#MemberLink#<oiref:cpp#Member#ageGM_Model#rotation:oiref>=684,526,28,16,0:oigroup>
-<oigroup:<oiref:cpp#Class#ageGM_List:oiref>=714,646,200,414,1:oigroup>
-<oigroup:MemberLink#<oiref:cpp#Member#ageGM_LookAtObjects#lookAtPosition:oiref>=1515,1102,210,708:oigroup>
-<oigroup:<oiref:cpp#Class#ageGM_Light:oiref>=586,388,117,261,1:oigroup>
-<oigroup:Composite#supplierCardinality#MemberLink#<oiref:cpp#Member#ageGV_GraphicPipeline#lnkLight:oiref>=587,649,26,16,0:oigroup>
-<oigroup:<oiref:cpp#Extends#ageGC_SceneManager#ageGC_SceneGraph:oiref>=362,216,587,216:oigroup>
-<oigroup:<oiref:cpp#Class#ageGM_Vector2:oiref>=752,4,164,190,1:oigroup>
-<oigroup:Composite#clientCardinality#MemberLink#<oiref:cpp#Member#ageGM_ObjectTree#lnkObject:oiref>=1371,1248,15,16,0:oigroup>
-<oigroup:<oiref:cpp#Extends#ageGM_Light#ageGM_LookAtObjects:oiref>=675,649,1560,1102:oigroup>
-<oigroup:<oiref:cpp#Class#ageGM_LookAtObjects:oiref>=1405,1102,200,149,1:oigroup>
-<oigroup:<oiref:cpp#Class#ageGM_ObjectTree:oiref>=1370,1268,117,82,1:oigroup>
-<oigroup:MemberLink#<oiref:cpp#Member#ageGM_Knot#left:oiref>=1197,1222,1197,1282,1307,1282,1307,1172,1247,1172:oigroup>
-<oigroup:MemberLink#<oiref:cpp#Member#ageGC_SceneGraph#root:oiref>=742,212,995,212,1204,1080:oigroup>
-<oigroup:Composite#supplierCardinality#MemberLink#<oiref:cpp#Member#ageGC_SceneGraph#root:oiref>=1168,1060,28,16,0:oigroup>
-<oigroup:MemberLink#<oiref:cpp#Member#ageGM_ObjectTree#lnkObject:oiref>=1409,1268,308,152:oigroup>
-<oigroup:MemberLink#<oiref:cpp#Member#ageGM_Camera#upVector:oiref>=1515,1363,885,1122,938,820,277,708:oigroup>
-<oigroup:Composite#supplierCardinality#MemberLink#<oiref:cpp#Member#ageGM_Camera#upVector:oiref>=245,708,28,16,0:oigroup>
+@__positions <oigroup:MemberLink#<oiref:cpp#Member#ageG_List#_next:oiref>=270,-516,270,-426,440,-426,440,-596,350,-596:oigroup>
+<oigroup:Composite#supplierCardinality#MemberLink#<oiref:cpp#Member#ageG_SceneGraph#lnkObjectTree:oiref>=1040,-318,28,16,0:oigroup>
+<oigroup:<oiref:cpp#Extends#ageG_Translation3D#ageG_Vector3:oiref>=550,395,720,395:oigroup>
+<oigroup:<oiref:cpp#Class#ageG_Mesh:oiref>=929,1470,200,142,1:oigroup>
+<oigroup:MemberLink#<oiref:cpp#Member#ageG_Camera#upVector:oiref>=1288,290,920,290:oigroup>
+<oigroup:<oiref:cpp#Class#ageG_Scale3D:oiref>=430,240,120,100,0:oigroup>
+<oigroup:Composite#clientCardinality#MemberLink#<oiref:cpp#Member#ageG_GraphicPipeline#lnkCamera:oiref>=1481,151,15,16,0:oigroup>
+<oigroup:<oiref:cpp#Extends#ageG_SceneGraph#ageG_Tree:oiref>=1239,-499,1030,-570:oigroup>
+<oigroup:<oiref:cpp#Class#ageG_Translation3D:oiref>=430,360,120,85,0:oigroup>
+<oigroup:Composite#supplierCardinality#MemberLink#<oiref:cpp#Member#ageG_ObjectTree#lnkObject:oiref>=677,-279,26,16,0:oigroup>
+<oigroup:Composite#supplierCardinality#MemberLink#<oiref:cpp#Member#ageG_Light#lnkPipeline:oiref>=1468,-6,28,16,0:oigroup>
+<oigroup:MemberLink#<oiref:cpp#Member#ageG_Model#meshList:oiref>=160,20,160,-516:oigroup>
+<oigroup:Composite#supplierCardinality#MemberLink#<oiref:cpp#Member#ageG_Model#texVertices:oiref>=39,135,28,16,0:oigroup>
+<oigroup:MemberLink#<oiref:cpp#Member#ageG_SceneGraph#lnkObjectTree:oiref>=1239,-298,1036,-298:oigroup>
+<oigroup:<oiref:cpp#Extends#ageG_Object#ageG_Model:oiref>=600,-163,200,20:oigroup>
+<oigroup:Composite#supplierCardinality#MemberLink#<oiref:cpp#Member#ageG_Model#directionVector3D:oiref>=688,80,28,16,0:oigroup>
+<oigroup:Composite#supplierCardinality#MemberLink#<oiref:cpp#Member#ageG_GraphicPipeline#lnkCamera:oiref>=1462,151,26,16,0:oigroup>
+<oigroup:MemberLink#<oiref:cpp#Member#ageG_Knot#left:oiref>=528,-378,528,-318,638,-318,638,-428,578,-428:oigroup>
+<oigroup:MemberLink#<oiref:cpp#Member#ageG_ObjectTree#lnkObject:oiref>=929,-259,673,-259:oigroup>
+<oigroup:MemberLink#<oiref:cpp#Member#ageG_Mesh#texturCoordinates:oiref>=1062,1470,236,-516:oigroup>
+<oigroup:Composite#clientCardinality#MemberLink#<oiref:cpp#Member#ageG_GraphicPipeline#lnkLight:oiref>=1481,-63,15,16,0:oigroup>
+<oigroup:<oiref:cpp#Extends#ageG_LookAtObjects#ageG_Object:oiref>=1110,20,641,-163:oigroup>
+<oigroup:<oiref:design#Class#id2nrd7eeve530geeve54sp.node2:oiref>=1090,-840,210,30,0:oigroup>
+<oigroup:Composite#supplierCardinality#MemberLink#<oiref:cpp#Member#ageG_Model#scale:oiref>=398,270,28,16,0:oigroup>
+<oigroup:<oiref:cpp#Class#ageG_Model:oiref>=100,20,200,398,1:oigroup>
+<oigroup:MemberLink#<oiref:cpp#Member#ageG_Light#lnkPipeline:oiref>=1416,14,1500,14:oigroup>
+<oigroup:<oiref:cpp#Class#ageG_TextureManager:oiref>=400,-889,138,82,1:oigroup>
+<oigroup:Composite#supplierCardinality#MemberLink#<oiref:cpp#Member#ageG_SceneGraph#root:oiref>=582,-469,28,16,0:oigroup>
+<oigroup:<oiref:cpp#Class#ageG_ObjectTree:oiref>=929,-320,107,82,1:oigroup>
+<oigroup:Composite#supplierCardinality#MemberLink#<oiref:cpp#Member#ageG_List#_next:oiref>=354,-616,28,16,0:oigroup>
+<oigroup:<oiref:design#Class#id2nrd7eeve530geeve54sp.node17:oiref>=1090,-790,212,30,0:oigroup>
+<oigroup:MemberLink#<oiref:cpp#Member#ageG_Tree#knotListPreorder:oiref>=830,-695,350,-695:oigroup>
+<oigroup:<oiref:cpp#Class#ageG_List:oiref>=150,-930,200,414,1:oigroup>
+<oigroup:<oiref:cpp#Class#ageG_Vector2:oiref>=-120,60,155,190,1:oigroup>
+<oigroup:Composite#supplierCardinality#MemberLink#<oiref:cpp#Member#ageG_Model#normals:oiref>=688,50,28,16,0:oigroup>
+<oigroup:MemberLink#<oiref:cpp#Member#ageG_Knot#right:oiref>=553,-378,553,-343,613,-343,613,-403,578,-403:oigroup>
+<oigroup:MemberLink#<oiref:cpp#Member#ageG_Model#vertices:oiref>=300,40,720,41:oigroup>
+<oigroup:<oiref:cpp#Class#ageG_ObjectPrim:oiref>=-90,-539,160,526,1:oigroup>
+<oigroup:Composite#supplierCardinality#MemberLink#<oiref:cpp#Member#ageG_Camera#upVector:oiref>=924,270,28,16,0:oigroup>
+<oigroup:<oiref:cpp#Class#ageG_Viewport:oiref>=410,-742,95,101,1:oigroup>
+<oigroup:Composite#supplierCardinality#MemberLink#<oiref:cpp#Member#ageG_List#_before:oiref>=354,-576,28,16,0:oigroup>
+<oigroup:<oiref:design#Class#id2nrd7eeve530geeve54sp.node15:oiref>=1090,-880,210,30,0:oigroup>
+<oigroup:MemberLink#<oiref:cpp#Member#ageG_Model#texVertices:oiref>=100,155,35,155:oigroup>
+<oigroup:<oiref:cpp#Class#ageG_Light:oiref>=1301,-190,115,261,1:oigroup>
+<oigroup:MemberLink#<oiref:cpp#Member#ageG_Model#normals:oiref>=300,70,720,70:oigroup>
+<oigroup:<oiref:cpp#Extends#ageG_Object#ageG_Knot:oiref>=631,-280,570,-378:oigroup>
 <oigroup:<oiref:design#Class#id3fx4yeevjnyp5eevjo1di.diagram:oiref>=1118,1384,83,95,1:oigroup>
-<oigroup:<oiref:cpp#Class#ageGC_SceneGraph:oiref>=587,9,155,254,1:oigroup>
-<oigroup:<oiref:cpp#Class#ageGC_TextureManager:oiref>=721,373,146,82,1:oigroup>
-<oigroup:<oiref:cpp#Extends#ageGM_Translation3D#ageGM_Vector3:oiref>=684,359,277,406:oigroup>
-<oigroup:Composite#supplierCardinality#MemberLink#<oiref:cpp#Member#ageGM_ObjectTree#lnkObject:oiref>=278,152,26,16,0:oigroup>
-<oigroup:Composite#supplierCardinality#MemberLink#<oiref:cpp#Member#ageGM_Model#translation:oiref>=580,282,28,16,0:oigroup>
-<oigroup:<oiref:cpp#Extends#ageGC_SceneManager#ageGV_GraphicPipeline:oiref>=264,334,776,1611:oigroup>
-<oigroup:MemberLink#<oiref:cpp#Member#ageGV_GraphicPipeline#lnkCamera:oiref>=899,1641,1486,1641:oigroup>
-<oigroup:<oiref:cpp#Class#ageGM_Knot:oiref>=1120,1080,127,142,1:oigroup>
-<oigroup:MemberLink#<oiref:cpp#Member#ageGM_Model#vertices:oiref>=374,506,344,506:oigroup>
-<oigroup:<oiref:cpp#Class#ageGC_Object:oiref>=233,35,102,117,1:oigroup>
-<oigroup:MemberLink#<oiref:cpp#Member#ageGM_Model#normals:oiref>=374,472,344,472:oigroup>
-<oigroup:MemberLink#<oiref:cpp#Member#ageGM_Model#translation:oiref>=574,302,612,302:oigroup>
-<oigroup:<oiref:cpp#Class#ageGM_Tree:oiref>=1100,1340,200,430,1:oigroup>
-<oigroup:<oiref:cpp#Extends#ageGC_Object#ageGM_Knot:oiref>=283,152,1162,1080:oigroup>
-<oigroup:Composite#supplierCardinality#MemberLink#<oiref:cpp#Member#ageGM_Model#normals:oiref>=348,452,28,16,0:oigroup>
-<oigroup:<oiref:cpp#Class#ageGM_Rotation3D:oiref>=716,518,136,110,1:oigroup>
-<oigroup:<oiref:cpp#Extends#ageGC_Object#ageGM_Model:oiref>=335,132,374,216:oigroup>
-<oigroup:<oiref:cpp#Extends#ageGM_Scale3D#ageGM_Vector3:oiref>=385,144,210,406:oigroup>
-<oigroup:<oiref:cpp#Extends#ageGM_Camera#ageGM_LookAtObjects:oiref>=1545,1363,1545,1251:oigroup>
-<oigroup:Composite#supplierCardinality#MemberLink#<oiref:cpp#Member#ageGM_Tree#temporaryKnot:oiref>=1180,1222,28,16,0:oigroup>
-<oigroup:<oiref:cpp#Extends#ageGC_SceneGraph#ageGM_Tree:oiref>=638,263,1141,1340:oigroup>
-<oigroup:<oiref:cpp#Extends#ageGM_Rotation3D#ageGM_Vector3:oiref>=716,573,344,573:oigroup>
+<oigroup:<oiref:cpp#Class#ageG_GraphicPipeline:oiref>=1500,-100,170,293,1:oigroup>
+<oigroup:Composite#supplierCardinality#MemberLink#<oiref:cpp#Member#ageG_Model#vertices:oiref>=688,21,28,16,0:oigroup>
+<oigroup:Composite#supplierCardinality#MemberLink#<oiref:cpp#Member#ageG_Model#translation:oiref>=398,369,28,16,0:oigroup>
+<oigroup:MemberLink#<oiref:cpp#Member#ageG_List#_before:oiref>=310,-516,310,-466,400,-466,400,-556,350,-556:oigroup>
+<oigroup:<oiref:cpp#Class#ageG_LookAtObjects:oiref>=1010,20,200,149,1:oigroup>
+<oigroup:MemberLink#<oiref:cpp#Member#ageG_Model#scale:oiref>=300,290,430,290:oigroup>
+<oigroup:Composite#supplierCardinality#MemberLink#<oiref:cpp#Member#ageG_GraphicPipeline#lnkLight:oiref>=1420,-63,26,16,0:oigroup>
+<oigroup:<oiref:cpp#Class#ageG_Knot:oiref>=460,-520,118,142,1:oigroup>
+<oigroup:<oiref:cpp#Class#ageG_SceneManager:oiref>=1520,-450,186,165,1:oigroup>
+<oigroup:<oiref:cpp#Extends#ageG_Light#ageG_LookAtObjects:oiref>=1301,45,1210,45:oigroup>
+<oigroup:<oiref:cpp#Class#ageG_Rotation3D:oiref>=430,111,120,109,0:oigroup>
+<oigroup:Composite#supplierCardinality#MemberLink#<oiref:cpp#Member#ageG_List#_tmp:oiref>=354,-656,28,16,0:oigroup>
+<oigroup:<oiref:cpp#Class#ageG_Tree:oiref>=830,-960,200,430,1:oigroup>
+<oigroup:<oiref:cpp#Extends#ageG_ObjectPrim#ageG_Object:oiref>=70,-222,580,-222:oigroup>
+<oigroup:<oiref:cpp#Class#ageG_Object:oiref>=580,-280,93,117,1:oigroup>
+<oigroup:Composite#supplierCardinality#MemberLink#<oiref:cpp#Member#ageG_Knot#right:oiref>=582,-423,28,16,0:oigroup>
+<oigroup:MemberLink#<oiref:cpp#Member#ageG_Model#rotation:oiref>=300,165,430,165:oigroup>
 <oigroup:<oiref:design#Class#id1chineevjnyp5eevjo1d2.diagram:oiref>=1118,1184,83,95,1:oigroup>
-<oigroup:<oiref:cpp#Extends#ageGM_LookAtObjects#ageGC_Object:oiref>=1471,1102,983,970,273,152:oigroup>
-<oigroup:<oiref:cpp#Class#ageGC_SceneManager:oiref>=167,169,195,165,1:oigroup>
-<oigroup:Composite#supplierCardinality#MemberLink#<oiref:cpp#Member#ageGM_Knot#left:oiref>=1251,1152,28,16,0:oigroup>
-<oigroup:<oiref:cpp#Class#ageGM_Vector3:oiref>=144,406,200,302,1:oigroup>
-<oigroup:Composite#supplierCardinality#MemberLink#<oiref:cpp#Member#ageGM_Knot#right:oiref>=1251,1177,28,16,0:oigroup>
-<oigroup:<oiref:cpp#Extends#ageGC_ObjectPrim#ageGC_Object:oiref>=434,586,253,152:oigroup>
-<oigroup:<oiref:cpp#Class#ageGM_Camera:oiref>=1486,1363,179,309,1:oigroup>
-<oigroup:Composite#supplierCardinality#MemberLink#<oiref:cpp#Member#ageGM_LookAtObjects#lookAtPosition:oiref>=178,708,28,16,0:oigroup>
-<oigroup:Composite#supplierCardinality#MemberLink#<oiref:cpp#Member#ageGM_Model#vertices:oiref>=348,486,28,16,0:oigroup>
-<oigroup:Composite#supplierCardinality#MemberLink#<oiref:cpp#Member#ageGV_GraphicPipeline#lnkCamera:oiref>=1456,1621,26,16,0:oigroup>
-<oigroup:<oiref:cpp#Class#ageGM_Mesh:oiref>=14,6,200,142,1:oigroup>
-<oigroup:MemberLink#<oiref:cpp#Member#ageGC_SceneGraph#lnkObjectTree:oiref>=690,263,1448,1268:oigroup>
-<oigroup:Composite#supplierCardinality#MemberLink#<oiref:cpp#Member#ageGM_Model#scale:oiref>=391,144,28,16,0:oigroup>
-<oigroup:MemberLink#<oiref:cpp#Member#ageGM_Model#rotation:oiref>=574,546,716,546:oigroup>
+<oigroup:MemberLink#<oiref:cpp#Member#ageG_GraphicPipeline#lnkLight:oiref>=1500,-43,1416,-43:oigroup>
+<oigroup:MemberLink#<oiref:cpp#Member#ageG_Tree#knotListPostorder:oiref>=830,-813,350,-813:oigroup>
+<oigroup:<oiref:cpp#Extends#ageG_Scale3D#ageG_Vector3:oiref>=550,294,720,294:oigroup>
+<oigroup:<oiref:cpp#Extends#ageG_Camera#ageG_LookAtObjects:oiref>=1288,160,1210,159:oigroup>
+<oigroup:<oiref:cpp#Class#ageG_Vector3:oiref>=720,20,200,410,0:oigroup>
+<oigroup:MemberLink#<oiref:cpp#Member#ageG_Tree#knotListInorder:oiref>=830,-754,350,-754:oigroup>
+<oigroup:Composite#clientCardinality#MemberLink#<oiref:cpp#Member#ageG_ObjectTree#lnkObject:oiref>=910,-279,15,16,0:oigroup>
+<oigroup:Composite#supplierCardinality#MemberLink#<oiref:cpp#Member#ageG_Tree#rootKnot:oiref>=582,-507,28,16,0:oigroup>
+<oigroup:MemberLink#<oiref:cpp#Member#ageG_Model#translation:oiref>=300,389,430,389:oigroup>
+<oigroup:Composite#supplierCardinality#MemberLink#<oiref:cpp#Member#ageG_Knot#left:oiref>=582,-448,28,16,0:oigroup>
+<oigroup:MemberLink#<oiref:cpp#Member#ageG_Tree#knotListLevelorder:oiref>=830,-872,350,-872:oigroup>
+<oigroup:Composite#supplierCardinality#MemberLink#<oiref:cpp#Member#ageG_LookAtObjects#lookAtPosition:oiref>=924,49,28,16,0:oigroup>
+<oigroup:<oiref:cpp#Extends#ageG_Rotation3D#ageG_Vector3:oiref>=550,158,720,158:oigroup>
+<oigroup:Composite#supplierCardinality#MemberLink#<oiref:cpp#Member#ageG_Tree#temporaryKnot:oiref>=582,-533,28,16,0:oigroup>
+<oigroup:<oiref:cpp#Class#ageG_Camera:oiref>=1288,150,170,309,1:oigroup>
+<oigroup:<oiref:cpp#Class#ageG_SceneGraph:oiref>=1239,-530,146,254,1:oigroup>
+<oigroup:MemberLink#<oiref:cpp#Member#ageG_Model#directionVector3D:oiref>=300,100,720,100:oigroup>
+<oigroup:Composite#supplierCardinality#MemberLink#<oiref:cpp#Member#ageG_Model#rotation:oiref>=398,145,28,16,0:oigroup>
+<oigroup:MemberLink#<oiref:cpp#Member#ageG_SceneGraph#root:oiref>=1239,-449,578,-449:oigroup>
+<oigroup:MemberLink#<oiref:cpp#Member#ageG_Tree#temporaryKnot:oiref>=830,-610,578,-497:oigroup>
+<oigroup:<oiref:design#Class#id2nrd7eeve530geeve54sp.node:oiref>=1090,-930,210,30,0:oigroup>
+<oigroup:MemberLink#<oiref:cpp#Member#ageG_Tree#rootKnot:oiref>=830,-570,578,-474:oigroup>
+<oigroup:MemberLink#<oiref:cpp#Member#ageG_GraphicPipeline#lnkCamera:oiref>=1500,171,1458,171:oigroup>
+<oigroup:<oiref:cpp#Extends#ageG_SceneManager#ageG_GraphicPipeline:oiref>=1598,-285,1598,-100:oigroup>
+<oigroup:MemberLink#<oiref:cpp#Member#ageG_Mesh#vertexList:oiref>=995,1470,198,-516:oigroup>
+<oigroup:<oiref:cpp#Extends#ageG_SceneManager#ageG_SceneGraph:oiref>=1520,-368,1385,-368:oigroup>
+<oigroup:MemberLink#<oiref:cpp#Member#ageG_LookAtObjects#lookAtPosition:oiref>=1010,69,920,69:oigroup>
+<oigroup:MemberLink#<oiref:cpp#Member#ageG_List#_tmp:oiref>=246,-516,246,-386,464,-386,464,-636,350,-636:oigroup>
 */
 class __positions {
+}/**
+@shapeType Note
+@__modelType node
+@name Note1
+@text Bisher nicht definiert
+@backgroundColor 255,0,0 
+*/
+class node {
+}/**
+@shapeType Note
+@__modelType node
+@name Note1
+@text Definition abgeschlosssen
+@backgroundColor 255,255,0
+*/
+class node2 {
+}/**
+@shapeType Note
+@__modelType node
+@name Note1
+@text Teilweise definiert
+@backgroundColor 255,128,0
+*/
+class node15 {
+}/**
+@shapeType Note
+@__modelType node
+@name Note1
+@text Implementation abgeschlosssen
+@backgroundColor 0,255,0
+*/
+class node17 {
 }
