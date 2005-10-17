@@ -17,8 +17,7 @@ class __tags {
 */
 class __options {
 }/**
-@__positions <oigroup:<oiref:cpp#Class#ageIM_Mouse:oiref>=161,10,200,110,1:oigroup>
-<oigroup:<oiref:cpp#Class#ageIM_Keyboard:oiref>=10,10,131,190,1:oigroup> 
+@__positions 
 */
 class __positions {
 }

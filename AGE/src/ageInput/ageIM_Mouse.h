@@ -1,13 +1,14 @@
 /* Game Engine Design */
 
-#ifndef AGEIC_MOUSE_H
-#define AGEIC_MOUSE_H
+#ifndef AGEIM_MOUSE_H
+#define AGEIM_MOUSE_H
 
 #include <iostream>
 #include "ageGraphics/ageGC_SceneManager.h"
+#include "ageGC_SceneManager.h"
 using namespace std;
 
-class ageIC_Mouse
+class ageIM_Mouse
 {
 public: 
 	/**
@@ -15,7 +16,7 @@ public:
 	 * @param: a pointer to a SceneManagement- object who contains all further needed objects
 	 *	like camara, renderer and the SceneGraph
 	 */
-	ageIC_Mouse(ageGC_SceneManager* sceneMan);
+	ageIM_Mouse(ageGC_SceneManager* sceneMan);
 
 	/**
 	 * mouse movement depends to the normal vector of the camara object
@@ -31,4 +32,4 @@ private:
 	 */ 
 	ageGC_SceneManager* sceneMan;
 };
-#endif //AGEIC_MOUSE_H
+#endif //AGEIM_MOUSE_H

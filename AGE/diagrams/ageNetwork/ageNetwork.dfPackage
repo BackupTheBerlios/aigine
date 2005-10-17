@@ -6,25 +6,7 @@ package id14x7neeve530geeve5502;
 @__modelType diagram 
 */
 class diagram {
-/**
-@__ref <oiref:design#Class#id33i83dqs5a4tzdqs5ap47.diagram:oiref><oihard>
-@__modelType reference
-@__fqn <oiref:#Package#ageNetwork.Model:oiref> 
-*/
-class reference {
 }/**
-@__ref <oiref:design#Class#idr1qdqs5a4tzdqs5ap33.diagram:oiref><oihard>
-@__modelType reference
-@__fqn <oiref:#Package#ageNetwork.Control:oiref> 
-*/
-class reference1 {
-}/**
-@__ref <oiref:design#Class#id6a7odqs5a4tzdqs5ap51.diagram:oiref><oihard>
-@__modelType reference
-@__fqn <oiref:#Package#ageNetwork.View:oiref> 
-*/
-class reference2 {
-}}/**
 Netzwerkkommunikation (SOAP, UDDI, WSDL)
 @__tags
 @shapeType ClassDiagram 

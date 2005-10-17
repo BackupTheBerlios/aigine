@@ -1,11 +1,13 @@
 /* Game Engine Design */
 
-#ifndef AGEIC_KEYBOARD_H
-#define AGEIC_KEYBOARD_H
+#ifndef AGEIM_KEYBOARD_H
+#define AGEIM_KEYBOARD_H
 #pragma warning (disable: 4786)
 
 #include <GL/glut.h>
 #include <map>
+#include "stl_map.h"
+#include "stl/stl_map.h"
 using namespace std;
 
 //class SceneManagement;
@@ -21,13 +23,13 @@ using namespace std;
  * @author Danny Graef, Tobias Harpering, Frank Otto
  * @date 2004-01-06
  */
-class ageIC_Keyboard
+class ageIM_Keyboard
 {
 public:
 	/**
 	 * Konstruktor
 	 */
-	ageIC_Keyboard(void (*func)());
+	ageIM_Keyboard(void (*func)());
 
     /**
      * Funktion für OpenGL keyboard() Pointer.
@@ -44,6 +46,6 @@ private:
 	 */
 	int keyCount;
 	void (*function)();
-	map<char , int> keys;
+	map<_Key, _Tp, _Compare, _Alloc> keys;
 };
-#endif //AGEIC_KEYBOARD_H
+#endif //AGEIM_KEYBOARD_H

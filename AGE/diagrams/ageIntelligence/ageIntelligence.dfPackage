@@ -7,18 +7,6 @@ package id16wykeeve530geeve54vq;
 */
 class diagram {
 /**
-@__ref <oiref:design#Class#idi9yjeevamip4eevamzpy.diagram:oiref><oihard>
-@__modelType reference
-@__fqn <oiref:#Package#ageIntelligence.Model:oiref> 
-*/
-class reference {
-}/**
-@__ref <oiref:design#Class#idbojceevamip4eevamzpy.diagram:oiref><oihard>
-@__modelType reference
-@__fqn <oiref:#Package#ageIntelligence.View:oiref> 
-*/
-class reference224 {
-}/**
 @__ref <oiref:design#Class#id4h25deevamip4eevamzpy.diagram:oiref><oihard>
 @__modelType reference
 @__fqn <oiref:#Package#ageIntelligence.Control:oiref> 
@@ -36,7 +24,7 @@ class __tags {
 */
 class __options {
 }/**
-@__positions 
+@__positions <oigroup:<oiref:design#Class#id4h25deevamip4eevamzpy.diagram:oiref>=10,10,83,95,1:oigroup> 
 */
 class __positions {
 }

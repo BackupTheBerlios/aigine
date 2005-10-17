@@ -86,6 +86,31 @@ class reference18 {
 @__modelType reference 
 */
 class reference19 {
+}/**
+@__ref <oiref:cpp#Class#ageGM_Tree:oiref><oihard>
+@__modelType reference 
+*/
+class reference {
+}/**
+@__ref <oiref:cpp#Class#ageGM_LookAtObjects:oiref><oihard>
+@__modelType reference 
+*/
+class reference1 {
+}/**
+@__ref <oiref:cpp#Class#ageGM_Camera:oiref><oihard>
+@__modelType reference 
+*/
+class reference2 {
+}/**
+@__ref <oiref:cpp#Class#ageGM_Knot:oiref><oihard>
+@__modelType reference 
+*/
+class reference10 {
+}/**
+@__ref <oiref:cpp#Class#ageGV_GraphicPipeline:oiref><oihard>
+@__modelType reference 
+*/
+class reference20 {
 }}/**
 alles für 2D und 3D Grafik
 auf Direct3D und OpenGL basierend
