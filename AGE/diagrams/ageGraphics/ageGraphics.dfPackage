@@ -194,7 +194,6 @@ class __options {
 <oigroup:<oiref:cpp#Class#ageG_TextureManager:oiref>=400,-889,138,82,1:oigroup>
 <oigroup:Composite#supplierCardinality#MemberLink#<oiref:cpp#Member#ageG_SceneGraph#root:oiref>=582,-469,28,16,0:oigroup>
 <oigroup:<oiref:cpp#Class#ageG_ObjectTree:oiref>=929,-320,107,82,1:oigroup>
-<oigroup:Composite#supplierCardinality#MemberLink#<oiref:cpp#Member#ageG_List#_next:oiref>=354,-616,28,16,0:oigroup>
 <oigroup:<oiref:design#Class#id2nrd7eeve530geeve54sp.node17:oiref>=1090,-790,212,30,0:oigroup>
 <oigroup:MemberLink#<oiref:cpp#Member#ageG_Tree#knotListPreorder:oiref>=830,-695,350,-695:oigroup>
 <oigroup:<oiref:cpp#Class#ageG_List:oiref>=150,-930,200,414,1:oigroup>
@@ -205,7 +204,6 @@ class __options {
 <oigroup:<oiref:cpp#Class#ageG_ObjectPrim:oiref>=-90,-539,160,526,1:oigroup>
 <oigroup:Composite#supplierCardinality#MemberLink#<oiref:cpp#Member#ageG_Camera#upVector:oiref>=924,270,28,16,0:oigroup>
 <oigroup:<oiref:cpp#Class#ageG_Viewport:oiref>=410,-742,95,101,1:oigroup>
-<oigroup:Composite#supplierCardinality#MemberLink#<oiref:cpp#Member#ageG_List#_before:oiref>=354,-576,28,16,0:oigroup>
 <oigroup:<oiref:design#Class#id2nrd7eeve530geeve54sp.node15:oiref>=1090,-880,210,30,0:oigroup>
 <oigroup:MemberLink#<oiref:cpp#Member#ageG_Model#texVertices:oiref>=100,155,35,155:oigroup>
 <oigroup:<oiref:cpp#Class#ageG_Light:oiref>=1301,-190,115,261,1:oigroup>
@@ -223,7 +221,6 @@ class __options {
 <oigroup:<oiref:cpp#Class#ageG_SceneManager:oiref>=1520,-450,186,165,1:oigroup>
 <oigroup:<oiref:cpp#Extends#ageG_Light#ageG_LookAtObjects:oiref>=1301,45,1210,45:oigroup>
 <oigroup:<oiref:cpp#Class#ageG_Rotation3D:oiref>=430,111,120,109,0:oigroup>
-<oigroup:Composite#supplierCardinality#MemberLink#<oiref:cpp#Member#ageG_List#_tmp:oiref>=354,-656,28,16,0:oigroup>
 <oigroup:<oiref:cpp#Class#ageG_Tree:oiref>=830,-960,200,430,1:oigroup>
 <oigroup:<oiref:cpp#Extends#ageG_ObjectPrim#ageG_Object:oiref>=70,-222,580,-222:oigroup>
 <oigroup:<oiref:cpp#Class#ageG_Object:oiref>=580,-280,93,117,1:oigroup>
