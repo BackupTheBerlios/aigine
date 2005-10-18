@@ -18,6 +18,12 @@ class reference {
 @__fqn <oiref:#Package#examples.diffProof:oiref> 
 */
 class reference217 {
+}/**
+@__ref <oiref:design#Class#id2cahqeexv0opseey0cvtg.diagram:oiref><oihard>
+@__modelType reference
+@__fqn <oiref:#Package#examples.Test:oiref> 
+*/
+class reference44 {
 }}/**
 @__tags
 @shapeType ClassDiagram 
@@ -29,7 +35,9 @@ class __tags {
 */
 class __options {
 }/**
-@__positions 
+@__positions <oigroup:<oiref:design#Class#id2cahqeexv0opseey0cvtg.diagram:oiref>=246,42,83,95,1:oigroup>
+<oigroup:<oiref:design#Class#id2uarkdqs5a4tzdqs5aovu.diagram:oiref>=113,10,83,100,0:oigroup>
+<oigroup:<oiref:design#Class#id4sk89dqs5a4tzdqs5aotm.diagram:oiref>=10,10,83,104,1:oigroup> 
 */
 class __positions {
 }

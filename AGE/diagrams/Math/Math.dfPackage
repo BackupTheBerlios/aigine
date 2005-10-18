@@ -6,12 +6,7 @@ package id3gtgueeve530geeve54w6;
 @__modelType diagram 
 */
 class diagram {
-/**
-@__ref <oiref:cpp#Class#Matrix:oiref><oihard>
-@__modelType reference 
-*/
-class reference {
-}}/**
+}/**
 @__tags
 @shapeType ClassDiagram 
 @backgroundColor 255,128,0
@@ -22,7 +17,7 @@ class __tags {
 */
 class __options {
 }/**
-@__positions <oigroup:<oiref:cpp#Class#Matrix:oiref>=10,10,83,82,1:oigroup> 
+@__positions <oigroup:<oiref:cpp#Class#ageG_Matrix:oiref>=101,92,152,453,1:oigroup>
 */
 class __positions {
 }

@@ -151,6 +151,36 @@ class reference23 {
 @__modelType reference 
 */
 class reference24 {
+}/**
+@__ref <oiref:cpp#Class#ageG_Direct3D:oiref><oihard>
+@__modelType reference 
+@backgroundColor 255,255,0
+*/
+class reference26 {
+}/**
+@__ref <oiref:cpp#Class#ageG_D3DRenderStates:oiref><oihard>
+@__modelType reference 
+@backgroundColor 255,255,0
+*/
+class reference33 {
+}/**
+@__ref <oiref:cpp#Class#ageG_D3DTextureStageStates:oiref><oihard>
+@__modelType reference 
+@backgroundColor 255,255,0
+*/
+class reference34 {
+}/**
+@__ref <oiref:cpp#Class#ageG_D3DSamplerStates:oiref><oihard>
+@__modelType reference 
+@backgroundColor 255,255,0
+*/
+class reference35 {
+}/**
+@__ref <oiref:cpp#Class#ageG_Matrix:oiref><oihard>
+@__modelType reference
+@backgroundColor 255,255,0 
+*/
+class reference40 {
 }}/**
 alles für 2D und 3D Grafik
 auf Direct3D und OpenGL basierend
@@ -168,18 +198,27 @@ class __options {
 @__positions <oigroup:MemberLink#<oiref:cpp#Member#ageG_List#_next:oiref>=270,-516,270,-426,440,-426,440,-596,350,-596:oigroup>
 <oigroup:Composite#supplierCardinality#MemberLink#<oiref:cpp#Member#ageG_SceneGraph#lnkObjectTree:oiref>=1040,-318,28,16,0:oigroup>
 <oigroup:<oiref:cpp#Extends#ageG_Translation3D#ageG_Vector3:oiref>=550,395,720,395:oigroup>
-<oigroup:<oiref:cpp#Class#ageG_Mesh:oiref>=929,1470,200,142,1:oigroup>
+<oigroup:<oiref:cpp#Class#ageG_Mesh:oiref>=-99,-839,200,142,1:oigroup>
 <oigroup:MemberLink#<oiref:cpp#Member#ageG_Camera#upVector:oiref>=1288,290,920,290:oigroup>
 <oigroup:<oiref:cpp#Class#ageG_Scale3D:oiref>=430,240,120,100,0:oigroup>
 <oigroup:Composite#clientCardinality#MemberLink#<oiref:cpp#Member#ageG_GraphicPipeline#lnkCamera:oiref>=1481,151,15,16,0:oigroup>
 <oigroup:<oiref:cpp#Extends#ageG_SceneGraph#ageG_Tree:oiref>=1239,-499,1030,-570:oigroup>
+<oigroup:<oiref:cpp#Member#ageG_D3DRenderStates#SetRSF#(#D3DRENDERSTATETYPE#float#)#:oiref>=510,676,194,16,1:oigroup>
+<oigroup:<oiref:cpp#Class#tbD3DSS:oiref>=430,741,146,107,1:oigroup>
+<oigroup:<oiref:cpp#Class#ageG_D3DTextureStageStates:oiref>=210,820,191,160,0:oigroup>
 <oigroup:<oiref:cpp#Class#ageG_Translation3D:oiref>=430,360,120,85,0:oigroup>
 <oigroup:Composite#supplierCardinality#MemberLink#<oiref:cpp#Member#ageG_ObjectTree#lnkObject:oiref>=677,-279,26,16,0:oigroup>
+<oigroup:<oiref:cpp#Member#ageG_D3DRenderStates#SetRS#(#D3DRENDERSTATETYPE#DWORD#)#:oiref>=510,660,194,16,1:oigroup>
 <oigroup:Composite#supplierCardinality#MemberLink#<oiref:cpp#Member#ageG_Light#lnkPipeline:oiref>=1468,-6,28,16,0:oigroup>
 <oigroup:MemberLink#<oiref:cpp#Member#ageG_Model#meshList:oiref>=160,20,160,-516:oigroup>
+<oigroup:<oiref:cpp#Class#ageG_Matrix:oiref>=260,1230,152,453,1:oigroup>
+<oigroup:MemberLink#<oiref:cpp#Member#ageG_Direct3D#m_SS:oiref>=80,1070,210,1070:oigroup>
 <oigroup:Composite#supplierCardinality#MemberLink#<oiref:cpp#Member#ageG_Model#texVertices:oiref>=39,135,28,16,0:oigroup>
+<oigroup:<oiref:cpp#Member#ageG_D3DRenderStates#GetRSF#(#D3DRENDERSTATETYPE#)#:oiref>=510,708,194,16,1:oigroup>
 <oigroup:MemberLink#<oiref:cpp#Member#ageG_SceneGraph#lnkObjectTree:oiref>=1239,-298,1036,-298:oigroup>
+<oigroup:<oiref:cpp#Member#ageG_D3DSamplerStates#SetSS#(#DWORD#D3DSAMPLERSTATETYPE#DWORD#)#:oiref>=530,1000,194,16,1:oigroup>
 <oigroup:<oiref:cpp#Extends#ageG_Object#ageG_Model:oiref>=600,-163,200,20:oigroup>
+<oigroup:<oiref:cpp#Class#tbD3DTSS:oiref>=430,600,153,107,1:oigroup>
 <oigroup:Composite#supplierCardinality#MemberLink#<oiref:cpp#Member#ageG_Model#directionVector3D:oiref>=688,80,28,16,0:oigroup>
 <oigroup:Composite#supplierCardinality#MemberLink#<oiref:cpp#Member#ageG_GraphicPipeline#lnkCamera:oiref>=1462,151,26,16,0:oigroup>
 <oigroup:MemberLink#<oiref:cpp#Member#ageG_Knot#left:oiref>=528,-378,528,-318,638,-318,638,-428,578,-428:oigroup>
@@ -193,6 +232,7 @@ class __options {
 <oigroup:MemberLink#<oiref:cpp#Member#ageG_Light#lnkPipeline:oiref>=1416,14,1500,14:oigroup>
 <oigroup:<oiref:cpp#Class#ageG_TextureManager:oiref>=400,-889,138,82,1:oigroup>
 <oigroup:Composite#supplierCardinality#MemberLink#<oiref:cpp#Member#ageG_SceneGraph#root:oiref>=582,-469,28,16,0:oigroup>
+<oigroup:<oiref:cpp#Member#ageG_D3DRenderStates#GetRS#(#D3DRENDERSTATETYPE#)#:oiref>=510,692,194,16,1:oigroup>
 <oigroup:<oiref:cpp#Class#ageG_ObjectTree:oiref>=929,-320,107,82,1:oigroup>
 <oigroup:<oiref:design#Class#id2nrd7eeve530geeve54sp.node17:oiref>=1090,-790,212,30,0:oigroup>
 <oigroup:MemberLink#<oiref:cpp#Member#ageG_Tree#knotListPreorder:oiref>=830,-695,350,-695:oigroup>
@@ -207,40 +247,54 @@ class __options {
 <oigroup:<oiref:design#Class#id2nrd7eeve530geeve54sp.node15:oiref>=1090,-880,210,30,0:oigroup>
 <oigroup:MemberLink#<oiref:cpp#Member#ageG_Model#texVertices:oiref>=100,155,35,155:oigroup>
 <oigroup:<oiref:cpp#Class#ageG_Light:oiref>=1301,-190,115,261,1:oigroup>
+<oigroup:MemberLink#<oiref:cpp#Member#ageG_Direct3D#m_vScreenSize:oiref>=-43,520,-43,250:oigroup>
+<oigroup:<oiref:cpp#Member#ageG_D3DSamplerStates#SetSSF#(#DWORD#D3DSAMPLERSTATETYPE#float#)#:oiref>=530,1016,194,16,1:oigroup>
 <oigroup:MemberLink#<oiref:cpp#Member#ageG_Model#normals:oiref>=300,70,720,70:oigroup>
 <oigroup:<oiref:cpp#Extends#ageG_Object#ageG_Knot:oiref>=631,-280,570,-378:oigroup>
+<oigroup:<oiref:cpp#Member#ageG_D3DTextureStageStates#SetTSSF#(#DWORD#D3DTEXTURESTAGESTATETYPE#float#)#:oiref>=510,846,194,16,1:oigroup>
+<oigroup:<oiref:cpp#Member#ageG_D3DTextureStageStates#SetTSS#(#DWORD#D3DTEXTURESTAGESTATETYPE#DWORD#)#:oiref>=510,830,194,16,1:oigroup>
+<oigroup:MemberLink#<oiref:cpp#Member#ageG_Direct3D#m_TSS:oiref>=80,873,210,873:oigroup>
+<oigroup:<oiref:cpp#Class#ageG_D3DRenderStates:oiref>=210,650,191,161,0:oigroup>
 <oigroup:<oiref:design#Class#id3fx4yeevjnyp5eevjo1di.diagram:oiref>=1118,1384,83,95,1:oigroup>
 <oigroup:<oiref:cpp#Class#ageG_GraphicPipeline:oiref>=1500,-100,170,293,1:oigroup>
 <oigroup:Composite#supplierCardinality#MemberLink#<oiref:cpp#Member#ageG_Model#vertices:oiref>=688,21,28,16,0:oigroup>
+<oigroup:<oiref:cpp#Class#tbD3DRS:oiref>=430,880,141,107,1:oigroup>
 <oigroup:Composite#supplierCardinality#MemberLink#<oiref:cpp#Member#ageG_Model#translation:oiref>=398,369,28,16,0:oigroup>
 <oigroup:MemberLink#<oiref:cpp#Member#ageG_List#_before:oiref>=310,-516,310,-466,400,-466,400,-556,350,-556:oigroup>
 <oigroup:<oiref:cpp#Class#ageG_LookAtObjects:oiref>=1010,20,200,149,1:oigroup>
+<oigroup:<oiref:cpp#Member#ageG_D3DSamplerStates#GetSS#(#DWORD#D3DSAMPLERSTATETYPE#)#:oiref>=530,1032,194,16,1:oigroup>
+<oigroup:<oiref:cpp#Member#ageG_D3DSamplerStates#GetSSF#(#DWORD#D3DSAMPLERSTATETYPE#)#:oiref>=530,1048,194,16,1:oigroup>
 <oigroup:MemberLink#<oiref:cpp#Member#ageG_Model#scale:oiref>=300,290,430,290:oigroup>
+<oigroup:MemberLink#<oiref:cpp#Member#ageG_Direct3D#m_RS:oiref>=80,690,210,690:oigroup>
 <oigroup:Composite#supplierCardinality#MemberLink#<oiref:cpp#Member#ageG_GraphicPipeline#lnkLight:oiref>=1420,-63,26,16,0:oigroup>
+<oigroup:<oiref:cpp#Class#ageG_D3DSampleStates:oiref>=442,914,147,107,1:oigroup>
 <oigroup:<oiref:cpp#Class#ageG_Knot:oiref>=460,-520,118,142,1:oigroup>
-<oigroup:<oiref:cpp#Class#ageG_SceneManager:oiref>=1520,-450,186,165,1:oigroup>
 <oigroup:<oiref:cpp#Extends#ageG_Light#ageG_LookAtObjects:oiref>=1301,45,1210,45:oigroup>
+<oigroup:<oiref:cpp#Class#ageG_SceneManager:oiref>=1520,-450,186,165,1:oigroup>
 <oigroup:<oiref:cpp#Class#ageG_Rotation3D:oiref>=430,111,120,109,0:oigroup>
 <oigroup:<oiref:cpp#Class#ageG_Tree:oiref>=830,-960,200,430,1:oigroup>
 <oigroup:<oiref:cpp#Extends#ageG_ObjectPrim#ageG_Object:oiref>=70,-222,580,-222:oigroup>
 <oigroup:<oiref:cpp#Class#ageG_Object:oiref>=580,-280,93,117,1:oigroup>
 <oigroup:Composite#supplierCardinality#MemberLink#<oiref:cpp#Member#ageG_Knot#right:oiref>=582,-423,28,16,0:oigroup>
-<oigroup:MemberLink#<oiref:cpp#Member#ageG_Model#rotation:oiref>=300,165,430,165:oigroup>
 <oigroup:<oiref:design#Class#id1chineevjnyp5eevjo1d2.diagram:oiref>=1118,1184,83,95,1:oigroup>
+<oigroup:MemberLink#<oiref:cpp#Member#ageG_Model#rotation:oiref>=300,165,430,165:oigroup>
 <oigroup:MemberLink#<oiref:cpp#Member#ageG_GraphicPipeline#lnkLight:oiref>=1500,-43,1416,-43:oigroup>
 <oigroup:MemberLink#<oiref:cpp#Member#ageG_Tree#knotListPostorder:oiref>=830,-813,350,-813:oigroup>
-<oigroup:<oiref:cpp#Extends#ageG_Scale3D#ageG_Vector3:oiref>=550,294,720,294:oigroup>
+<oigroup:<oiref:cpp#Class#ageG_D3DSamplerStates:oiref>=210,990,191,160,0:oigroup>
 <oigroup:<oiref:cpp#Extends#ageG_Camera#ageG_LookAtObjects:oiref>=1288,160,1210,159:oigroup>
+<oigroup:<oiref:cpp#Extends#ageG_Scale3D#ageG_Vector3:oiref>=550,294,720,294:oigroup>
 <oigroup:<oiref:cpp#Class#ageG_Vector3:oiref>=720,20,200,410,0:oigroup>
 <oigroup:MemberLink#<oiref:cpp#Member#ageG_Tree#knotListInorder:oiref>=830,-754,350,-754:oigroup>
 <oigroup:Composite#clientCardinality#MemberLink#<oiref:cpp#Member#ageG_ObjectTree#lnkObject:oiref>=910,-279,15,16,0:oigroup>
 <oigroup:Composite#supplierCardinality#MemberLink#<oiref:cpp#Member#ageG_Tree#rootKnot:oiref>=582,-507,28,16,0:oigroup>
 <oigroup:MemberLink#<oiref:cpp#Member#ageG_Model#translation:oiref>=300,389,430,389:oigroup>
+<oigroup:<oiref:cpp#Member#ageG_D3DTextureStageStates#GetTSS#(#DWORD#D3DTEXTURESTAGESTATETYPE#)#:oiref>=510,862,194,16,1:oigroup>
 <oigroup:Composite#supplierCardinality#MemberLink#<oiref:cpp#Member#ageG_Knot#left:oiref>=582,-448,28,16,0:oigroup>
 <oigroup:MemberLink#<oiref:cpp#Member#ageG_Tree#knotListLevelorder:oiref>=830,-872,350,-872:oigroup>
 <oigroup:Composite#supplierCardinality#MemberLink#<oiref:cpp#Member#ageG_LookAtObjects#lookAtPosition:oiref>=924,49,28,16,0:oigroup>
 <oigroup:<oiref:cpp#Extends#ageG_Rotation3D#ageG_Vector3:oiref>=550,158,720,158:oigroup>
 <oigroup:Composite#supplierCardinality#MemberLink#<oiref:cpp#Member#ageG_Tree#temporaryKnot:oiref>=582,-533,28,16,0:oigroup>
+<oigroup:<oiref:cpp#Class#ageG_Direct3D:oiref>=-120,520,200,750,1:oigroup>
 <oigroup:<oiref:cpp#Class#ageG_Camera:oiref>=1288,150,170,309,1:oigroup>
 <oigroup:<oiref:cpp#Class#ageG_SceneGraph:oiref>=1239,-530,146,254,1:oigroup>
 <oigroup:MemberLink#<oiref:cpp#Member#ageG_Model#directionVector3D:oiref>=300,100,720,100:oigroup>
@@ -250,6 +304,7 @@ class __options {
 <oigroup:<oiref:design#Class#id2nrd7eeve530geeve54sp.node:oiref>=1090,-930,210,30,0:oigroup>
 <oigroup:MemberLink#<oiref:cpp#Member#ageG_Tree#rootKnot:oiref>=830,-570,578,-474:oigroup>
 <oigroup:MemberLink#<oiref:cpp#Member#ageG_GraphicPipeline#lnkCamera:oiref>=1500,171,1458,171:oigroup>
+<oigroup:<oiref:cpp#Member#ageG_D3DTextureStageStates#GetTSSF#(#DWORD#D3DTEXTURESTAGESTATETYPE#)#:oiref>=510,878,194,16,1:oigroup>
 <oigroup:<oiref:cpp#Extends#ageG_SceneManager#ageG_GraphicPipeline:oiref>=1598,-285,1598,-100:oigroup>
 <oigroup:MemberLink#<oiref:cpp#Member#ageG_Mesh#vertexList:oiref>=995,1470,198,-516:oigroup>
 <oigroup:<oiref:cpp#Extends#ageG_SceneManager#ageG_SceneGraph:oiref>=1520,-368,1385,-368:oigroup>

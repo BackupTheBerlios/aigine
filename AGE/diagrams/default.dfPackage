@@ -92,6 +92,12 @@ class reference18 {
 @__fqn <oiref:#Package#agePhysic:oiref> 
 */
 class reference {
+}/**
+@__ref <oiref:cpp#Class#age_Result:oiref><oihard>
+@__modelType reference
+@backgroundColor 0,255,0 
+*/
+class reference41 {
 }}/**
 Programmierrichtlinien:
 - struct und enums werden zu Klassen!
@@ -142,9 +148,9 @@ class __options {
 <oigroup:<oiref:design#Class#id4ld91eeve530geeve54xg.diagram:oiref>=10,10,110,240,0:oigroup>
 <oigroup:<oiref:design#Class#idvca3eeve530geeve54uv.diagram:oiref>=400,10,110,240,0:oigroup>
 <oigroup:<oiref:design#Class#id4g842eex1okyfeex1t4rj.diagram:oiref>=270,300,110,140,0:oigroup>
-<oigroup:<oiref:design#Class#id46ty6eeve530geeve53rd.node17:oiref>=620,280,280,30,0:oigroup>
+<oigroup:<oiref:design#Class#id46ty6eeve530geeve53rd.node17:oiref>=620,180,280,30,0:oigroup>
 <oigroup:<oiref:design#Class#id2mjtleevjnyp5eevjo1fo.diagram:oiref>=523,145,83,136,1:oigroup>
-<oigroup:<oiref:design#Class#id46ty6eeve530geeve53rd.node15:oiref>=620,180,280,30,0:oigroup>
+<oigroup:<oiref:design#Class#id46ty6eeve530geeve53rd.node15:oiref>=620,80,280,30,0:oigroup>
 <oigroup:<oiref:design#Class#id2uyvleeve530geeve550x.diagram:oiref>=140,10,110,240,0:oigroup>
 <oigroup:<oiref:design#Class#id2nrd7eeve530geeve54sp.diagram:oiref>=270,10,110,240,0:oigroup>
 <oigroup:<oiref:design#Class#id29vf1eeve530geeve551t.diagram:oiref>=400,460,110,140,0:oigroup>
@@ -152,9 +158,10 @@ class __options {
 <oigroup:<oiref:design#Class#id16wykeeve530geeve54vq.diagram:oiref>=10,300,110,140,0:oigroup>
 <oigroup:<oiref:design#Class#id3gtgueeve530geeve54w6.diagram:oiref>=140,460,110,140,0:oigroup>
 <oigroup:<oiref:design#Class#id4ttwseeve530geeve54yr.diagram:oiref>=450,210,110,140,0:oigroup>
-<oigroup:<oiref:design#Class#id46ty6eeve530geeve53rd.node2:oiref>=620,230,280,30,0:oigroup>
+<oigroup:<oiref:cpp#Class#age_Result:oiref>=630,270,134,171,1:oigroup>
+<oigroup:<oiref:design#Class#id46ty6eeve530geeve53rd.node2:oiref>=620,130,280,30,0:oigroup>
 <oigroup:<oiref:design#Class#idupnleevjnyp5eevjo1hf.diagram:oiref>=419,221,91,136,1:oigroup>
-<oigroup:<oiref:design#Class#id46ty6eeve530geeve53rd.node:oiref>=620,130,280,30,0:oigroup>
+<oigroup:<oiref:design#Class#id46ty6eeve530geeve53rd.node:oiref>=620,30,280,30,0:oigroup>
 <oigroup:<oiref:design#Class#id29ti2eeve530geeve54x1.diagram:oiref>=270,460,110,140,0:oigroup>
 */
 class __positions {
