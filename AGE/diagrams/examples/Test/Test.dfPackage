@@ -11,6 +11,12 @@ class diagram {
 @__modelType reference 
 */
 class reference {
+}/**
+@__ref <oiref:design#Class#id3kdbzeey8m5ydeey8m9n6.diagram:oiref><oihard>
+@__modelType reference
+@__fqn <oiref:#Package#examples.Test.test_age:oiref> 
+*/
+class reference1 {
 }}/**
 @__tags
 @shapeType ClassDiagram 

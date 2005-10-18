@@ -1194,6 +1194,13 @@ class reference213 {
 @backgroundColor 0,255,0
 */
 class reference214 {
+}/**
+@shapeType DependencyLink
+@__modelType link
+@__ref <oiref:design#Class#id46ty6eeve530geeve53rd.diagram:oiref><oihard>
+@automatic 
+*/
+class link {
 }}/**
 @__tags
 @shapeType ClassDiagram 

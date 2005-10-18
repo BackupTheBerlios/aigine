@@ -21,6 +21,27 @@ class reference3 {
 @__modelType reference 
 */
 class reference4 {
+}/**
+@shapeType DependencyLink
+@__modelType link
+@__ref <oiref:design#Class#id46ty6eeve530geeve53rd.diagram:oiref><oihard>
+@automatic 
+*/
+class link {
+}/**
+@shapeType DependencyLink
+@__modelType link
+@__ref <oiref:design#Class#id2nrd7eeve530geeve54sp.diagram:oiref><oihard>
+@automatic 
+*/
+class link2 {
+}/**
+@shapeType DependencyLink
+@__modelType link
+@__ref <oiref:design#Class#id29ti2eeve530geeve54x1.diagram:oiref><oihard>
+@automatic 
+*/
+class link3 {
 }}/**
 Eingabe (Gamepad, Mouse, Keyboard)
 - ForceFeedback
