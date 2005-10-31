@@ -19,102 +19,102 @@
 
 ********************************************************************/
 
-#include <TriBase.h>
+#include <AGE.h>
 
 // ******************************************************************
 // Konstruktor der tbVFile-Klasse
-tbVFile::tbVFile()
+ageD_VFile::ageD_VFile()
 {
 	// Alles zurücksetzen
-	ZeroMemory(this, sizeof(tbVFile));
+	ZeroMemory(this, sizeof(ageD_VFile));
 }
 
 // ******************************************************************
 // Destruktor der tbVFile-Klasse
-tbVFile::~tbVFile()
+ageD_VFile::~ageD_VFile()
 {
 	// Puffer löschen
-	TB_SAFE_MEMFREE(m_pBuffer);
+	AGE_SAFE_MEMFREE(m_pBuffer);
 }
 
 // ******************************************************************
 // Erstellen einer virtuellen Datei aus einer echten Datei
-tbResult tbVFile::Init(char* pcFilename)
+age_Result ageD_VFile::Init(char* pcFilename)
 {
 	// Parameter prüfen
-	if(pcFilename == NULL) TB_ERROR_NULL_POINTER("pcFilename", TB_ERROR);
+	if(pcFilename == NULL) AGE_ERROR_NULL_POINTER("pcFilename", AGE_ERROR);
 
 
 	// Datei laden
-	if(tbReadFile(pcFilename, &m_pBuffer)) TB_ERROR_FILE(pcFilename, TB_ERROR);
+	if(ageD_ReadFile(pcFilename, &m_pBuffer)) AGE_ERROR_FILE(pcFilename, AGE_ERROR);
 
 	// Größe eintragen
-	m_iSize = tbMemGetSize(m_pBuffer);
+	m_iSize = ageD_MemGetSize(m_pBuffer);
 
-	return TB_OK;
+	return AGE_OK;
 }
 
 // ******************************************************************
 // Virtuelle Datei aus Speicherbereich erstellen
-tbResult tbVFile::Init(void* pMemory,
+age_Result ageD_VFile::Init(void* pMemory,
 					   int iSize)
 {
 	// Parameter prüfen
-	if(pMemory == NULL)	TB_ERROR_NULL_POINTER("pMemory", TB_ERROR);
-	if(iSize <= 0)		TB_ERROR_INVALID_VALUE("iSize", TB_ERROR);
+	if(pMemory == NULL)	AGE_ERROR_NULL_POINTER("pMemory", AGE_ERROR);
+	if(iSize <= 0)		AGE_ERROR_INVALID_VALUE("iSize", AGE_ERROR);
 
 
 	// Kopie des Speicherbereichs anlegen und Daten ausfüllen
-	m_pBuffer = tbMemAlloc(iSize);
-	if(m_pBuffer == NULL) TB_ERROR_OUT_OF_MEMORY(TB_ERROR);
+	m_pBuffer = ageD_MemAlloc(iSize);
+	if(m_pBuffer == NULL) AGE_ERROR_OUT_OF_MEMORY(AGE_ERROR);
 
 	// Daten kopieren und Größe eintragen
 	memcpy(m_pBuffer, pMemory, iSize);
 	m_iSize = iSize;
 
-	return TB_OK;
+	return AGE_OK;
 }
 
 // ******************************************************************
 // Virtuelle Datei aus Ressource erstellen
-tbResult tbVFile::Init(HMODULE hModule,
+age_Result ageD_VFile::Init(HMODULE hModule,
 					   char* pcResourceName,
 					   char* pcResourceType)
 {
 	// Parameter prüfen
-	if(hModule == NULL)			TB_ERROR_NULL_POINTER("hModule", TB_ERROR);
-	if(pcResourceName == NULL)	TB_ERROR_NULL_POINTER("pcResourceName", TB_ERROR);
-	if(pcResourceType == NULL)	TB_ERROR_NULL_POINTER("pcResourceType", TB_ERROR);
+	if(hModule == NULL)			AGE_ERROR_NULL_POINTER("hModule", AGE_ERROR);
+	if(pcResourceName == NULL)	AGE_ERROR_NULL_POINTER("pcResourceName", AGE_ERROR);
+	if(pcResourceType == NULL)	AGE_ERROR_NULL_POINTER("pcResourceType", AGE_ERROR);
 
 
 	// Ressource suchen
 	HRSRC hResourceInfo = FindResource(hModule, pcResourceName, pcResourceType);
-	if(hResourceInfo == NULL) TB_ERROR_RESOURCE(pcResourceName, pcResourceType, TB_ERROR);
+	if(hResourceInfo == NULL) AGE_ERROR_RESOURCE(pcResourceName, pcResourceType,AGE_ERROR);
 
 	// Gefundene Ressource laden
 	HGLOBAL hResource = LoadResource(hModule, hResourceInfo);
-	if(hResource == NULL) TB_ERROR_RESOURCE(pcResourceName, pcResourceType, TB_ERROR);
+	if(hResource == NULL) AGE_ERROR_RESOURCE(pcResourceName, pcResourceType, AGE_ERROR);
 
 	// Größe eintragen und Kopie der Ressource anlegen
 	m_iSize = SizeofResource(hModule, hResourceInfo);
-	m_pBuffer = tbMemAlloc(m_iSize);
-	if(m_pBuffer == NULL) TB_ERROR_RESOURCE(pcResourceName, pcResourceType, TB_ERROR);
+	m_pBuffer = ageD_MemAlloc(m_iSize);
+	if(m_pBuffer == NULL) AGE_ERROR_RESOURCE(pcResourceName, pcResourceType, AGE_ERROR);
 
 	// Daten kopieren
 	memcpy(m_pBuffer, LockResource(hResource), m_iSize);
 
-	return TB_OK;
+	return AGE_OK;
 }
 
 // ******************************************************************
 // Lesen aus einer virtuellen Datei
-tbResult tbVFile::Read(int iNumBytes,
+age_Result ageD_VFile::Read(int iNumBytes,
 					   void* pOut)
 {
 	// Parameter prüfen
-	if(iNumBytes == 0)	return TB_OK;
-	if(iNumBytes < 0)	TB_ERROR_INVALID_VALUE("iNumBytes", TB_ERROR);
-	if(pOut == NULL)	TB_ERROR_NULL_POINTER("pOut", TB_ERROR);
+	if(iNumBytes == 0)	return AGE_OK;
+	if(iNumBytes < 0)	AGE_ERROR_INVALID_VALUE("iNumBytes", AGE_ERROR);
+	if(pOut == NULL)	AGE_ERROR_NULL_POINTER("pOut", AGE_ERROR);
 
 
 	BOOL bError = FALSE;
@@ -135,24 +135,24 @@ tbResult tbVFile::Read(int iNumBytes,
 
 	// Wurde das Ende der Datei weit überschritten, so wird ein Fehlercode
 	// zurückgeliefert.
-	return bError ? TB_ERROR : TB_OK;
+	return bError ? AGE_ERROR : AGE_OK;
 }
 
 // ******************************************************************
 // Speichern einer virtuellen Datei
-tbResult tbVFile::SaveToFile(char* pcFilename)
+age_Result ageD_VFile::SaveToFile(char* pcFilename)
 {
 	// Daten speichern
-	return tbWriteFile(pcFilename, m_pBuffer, m_iSize);
+	return ageWriteFile(pcFilename, m_pBuffer, m_iSize);
 }
 
 // ******************************************************************
 // Setzen des Lesezeigers
-tbResult tbVFile::Seek(tbVFileSeekOrigin Origin,
+age_Result ageD_VFile::Seek(tbVFileSeekOrigin Origin,
 					   int iOffset)
 {
 	// Parameter prüfen
-	if(Origin < 0 || Origin >= TB_VFSO_MAX) TB_ERROR_INVALID_VALUE("Origin", TB_ERROR);
+	if(Origin < 0 || Origin >= AGE_VFSO_MAX) AGE_ERROR_INVALID_VALUE("Origin", AGE_ERROR);
 
 
 	int iNewCursor;
@@ -160,9 +160,9 @@ tbResult tbVFile::Seek(tbVFileSeekOrigin Origin,
 	// Neue Cursorposition berechnen
 	switch(Origin)
 	{
-	case TB_VFSO_START:		iNewCursor = iOffset; break;
-	case TB_VFSO_END:		iNewCursor = m_iSize - 1 + iOffset; break;
-	case TB_VFSO_CURSOR:	iNewCursor = m_iCursor + iOffset; break;
+	case AGE_VFSO_START:		iNewCursor = iOffset; break;
+	case AGE_VFSO_END:		    iNewCursor = m_iSize - 1 + iOffset; break;
+	case AGE_VFSO_CURSOR:	    iNewCursor = m_iCursor + iOffset; break;
 	}
 
 	// Ist die neue Position in Ordnung? Falls ja - einsetzen!
@@ -170,11 +170,11 @@ tbResult tbVFile::Seek(tbVFileSeekOrigin Origin,
 	{
 		m_iCursor = iNewCursor;
 		m_bEOF = iNewCursor == m_iSize;
-		return TB_OK;
+		return AGE_OK;
 	}
 	else
 	{
-		TB_ERROR("Der Lesezeiger wäre außerhalb der virtuellen Datei!", TB_ERROR);
+		AGE_ERROR("Der Lesezeiger wäre außerhalb der virtuellen Datei!", AGE_ERROR);
 	}
 }
 

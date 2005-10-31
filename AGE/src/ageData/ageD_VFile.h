@@ -20,17 +20,17 @@
 ********************************************************************/
 
 // Aufzählung für die Seek-Methode der tbVFile-Klasse
-enum tbVFileSeekOrigin
+enum ageD_VFileSeekOrigin
 {
-	TB_VFSO_START,	// Start der Datei
-	TB_VFSO_END,	// Ende der Datei
-	TB_VFSO_CURSOR,	// Zeigerposition
-	TB_VFSO_MAX
+	AGE_VFSO_START,	// Start der Datei
+	AGE_VFSO_END,	// Ende der Datei
+	AGE_VFSO_CURSOR,	// Zeigerposition
+	AGE_VFSO_MAX
 };
 
 // ******************************************************************
 // Klasse für virtuelle Dateien
-class TRIBASE_API tbVFile
+class ageD_VFile
 {
 private:
 	// Variablen
@@ -41,16 +41,16 @@ private:
 
 public:
 	// Konstruktor und Destruktor
-	tbVFile();
-	~tbVFile();
+	ageD_VFile();
+	~ageD_VFile();
 
 	// Methoden
-	tbResult Init(char* pcFilename);											// Aus Datei initialisieren
-	tbResult Init(void* pMemory, int iSize);									// Aus Speicher initialisieren
-	tbResult Init(HMODULE hModule, char* pcResourceName, char* pcResourceType);	// Aus Ressource initialisieren
-	tbResult Read(int iNumBytes, void* pOut);									// Daten lesen
-	tbResult SaveToFile(char* pcFilename);										// Inhalt in Datei speichern
-	tbResult Seek(tbVFileSeekOrigin Origin, int iOffset);						// Zeiger setzen
+	age_Result Init(char* pcFilename);											// Aus Datei initialisieren
+	age_Result Init(void* pMemory, int iSize);									// Aus Speicher initialisieren
+    age_Result Init(HMODULE hModule, char* pcResourceName, char* pcResourceType);	// Aus Ressource initialisieren
+	age_Result Read(int iNumBytes, void* pOut);									// Daten lesen
+	age_Result SaveToFile(char* pcFilename);										// Inhalt in Datei speichern
+	age_Result Seek(ageD_VFileSeekOrigin Origin, int iOffset);						// Zeiger setzen
 
 	// Inline-Methoden
 	inline void*	GetBuffer()	{return m_pBuffer;}

@@ -1,7 +1,8 @@
 workspace.diagram.active = <oiref:design#Class#id2uyvleeve530geeve550x.diagram:oiref>
 workspace.diagram.open.0 = <oiref:design#Class#id2uyvleeve530geeve550x.diagram:oiref>
 favorites.root.0 = <oiref:design#Class#id2ygyedqk9k2etdqk9k8c6.diagram:oiref>
-workspace.editor.open.0 = C:\wsb\AGE\src\ageGraphics\ageG_Direct3D.cpp
-workspace.editor.active = C:\wsb\AGE\src\ageData\ageD_D3DEffect.h
+workspace.editor.open.0 = C:\wsb\AGE\src\ageData\ageD_Memory.cpp
+workspace.editor.active = C:\wsb\AGE\src\ageData\ageD_Memory.cpp
 workspace.editor.open.1 = C:\wsb\AGE\src\ageData\ageD_D3DEffect.h
 workspace.diagram.open.1 = <oiref:design#Class#id46ty6eeve530geeve53rd.diagram:oiref>
+workspace.editor.open.2 = C:\wsb\AGE\src\ageGraphics\ageG_Direct3D.cpp
