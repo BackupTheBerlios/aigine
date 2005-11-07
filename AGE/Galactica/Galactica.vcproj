@@ -1,0 +1,824 @@
+<?xml version="1.0" encoding="Windows-1252"?>
+<VisualStudioProject
+	ProjectType="Visual C++"
+	Version="7.10"
+	Name="Galactica"
+	SccProjectName=""
+	SccLocalPath="">
+	<Platforms>
+		<Platform
+			Name="Win32"/>
+	</Platforms>
+	<Configurations>
+		<Configuration
+			Name="Debug|Win32"
+			OutputDirectory=".\Debug"
+			IntermediateDirectory=".\Debug"
+			ConfigurationType="1"
+			UseOfMFC="0"
+			ATLMinimizesCRunTimeLibraryUsage="FALSE"
+			CharacterSet="2">
+			<Tool
+				Name="VCCLCompilerTool"
+				Optimization="0"
+				AdditionalIncludeDirectories="C:\wsb\TriBase\Include"
+				PreprocessorDefinitions="WIN32;_DEBUG;_WINDOWS"
+				BasicRuntimeChecks="3"
+				RuntimeLibrary="5"
+				UsePrecompiledHeader="2"
+				PrecompiledHeaderFile=".\Debug/Galactica.pch"
+				AssemblerListingLocation=".\Debug/"
+				ObjectFile=".\Debug/"
+				ProgramDataBaseFileName=".\Debug/"
+				WarningLevel="3"
+				SuppressStartupBanner="TRUE"
+				DebugInformationFormat="4"/>
+			<Tool
+				Name="VCCustomBuildTool"/>
+			<Tool
+				Name="VCLinkerTool"
+				AdditionalDependencies="tribased.lib d3d9.lib d3dx9d.lib dxerr9.lib dxguid.lib odbc32.lib odbccp32.lib"
+				OutputFile=".\Debug/Galactica.exe"
+				LinkIncremental="1"
+				SuppressStartupBanner="TRUE"
+				AdditionalLibraryDirectories="C:\wsb\TriBase\Debug"
+				GenerateDebugInformation="TRUE"
+				ProgramDatabaseFile=".\Debug/Galactica.pdb"
+				SubSystem="2"
+				TargetMachine="1"/>
+			<Tool
+				Name="VCMIDLTool"
+				PreprocessorDefinitions="_DEBUG"
+				MkTypLibCompatible="TRUE"
+				SuppressStartupBanner="TRUE"
+				TargetEnvironment="1"
+				TypeLibraryName=".\Debug/Galactica.tlb"
+				HeaderFileName=""/>
+			<Tool
+				Name="VCPostBuildEventTool"/>
+			<Tool
+				Name="VCPreBuildEventTool"/>
+			<Tool
+				Name="VCPreLinkEventTool"/>
+			<Tool
+				Name="VCResourceCompilerTool"
+				PreprocessorDefinitions="_DEBUG"
+				Culture="1031"/>
+			<Tool
+				Name="VCWebServiceProxyGeneratorTool"/>
+			<Tool
+				Name="VCXMLDataGeneratorTool"/>
+			<Tool
+				Name="VCWebDeploymentTool"/>
+			<Tool
+				Name="VCManagedWrapperGeneratorTool"/>
+			<Tool
+				Name="VCAuxiliaryManagedWrapperGeneratorTool"/>
+		</Configuration>
+		<Configuration
+			Name="Release|Win32"
+			OutputDirectory=".\Release"
+			IntermediateDirectory=".\Release"
+			ConfigurationType="1"
+			UseOfMFC="0"
+			ATLMinimizesCRunTimeLibraryUsage="FALSE"
+			CharacterSet="2">
+			<Tool
+				Name="VCCLCompilerTool"
+				Optimization="2"
+				InlineFunctionExpansion="2"
+				AdditionalIncludeDirectories="C:\wsb\TriBase\Include"
+				PreprocessorDefinitions="WIN32;NDEBUG;_WINDOWS"
+				StringPooling="TRUE"
+				RuntimeLibrary="4"
+				EnableFunctionLevelLinking="TRUE"
+				UsePrecompiledHeader="2"
+				PrecompiledHeaderFile=".\Release/Galactica.pch"
+				AssemblerListingLocation=".\Release/"
+				ObjectFile=".\Release/"
+				ProgramDataBaseFileName=".\Release/"
+				WarningLevel="3"
+				SuppressStartupBanner="TRUE"/>
+			<Tool
+				Name="VCCustomBuildTool"/>
+			<Tool
+				Name="VCLinkerTool"
+				AdditionalDependencies="tribase.lib d3d9.lib d3dx9.lib dxerr9.lib dxguid.lib odbc32.lib odbccp32.lib"
+				OutputFile=".\Release/Galactica.exe"
+				LinkIncremental="1"
+				SuppressStartupBanner="TRUE"
+				AdditionalLibraryDirectories="C:\wsb\TriBase\Release"
+				ProgramDatabaseFile=".\Release/Galactica.pdb"
+				SubSystem="2"
+				TargetMachine="1"/>
+			<Tool
+				Name="VCMIDLTool"
+				PreprocessorDefinitions="NDEBUG"
+				MkTypLibCompatible="TRUE"
+				SuppressStartupBanner="TRUE"
+				TargetEnvironment="1"
+				TypeLibraryName=".\Release/Galactica.tlb"
+				HeaderFileName=""/>
+			<Tool
+				Name="VCPostBuildEventTool"/>
+			<Tool
+				Name="VCPreBuildEventTool"/>
+			<Tool
+				Name="VCPreLinkEventTool"/>
+			<Tool
+				Name="VCResourceCompilerTool"
+				PreprocessorDefinitions="NDEBUG"
+				Culture="1031"/>
+			<Tool
+				Name="VCWebServiceProxyGeneratorTool"/>
+			<Tool
+				Name="VCXMLDataGeneratorTool"/>
+			<Tool
+				Name="VCWebDeploymentTool"/>
+			<Tool
+				Name="VCManagedWrapperGeneratorTool"/>
+			<Tool
+				Name="VCAuxiliaryManagedWrapperGeneratorTool"/>
+		</Configuration>
+	</Configurations>
+	<References>
+	</References>
+	<Files>
+		<Filter
+			Name="Quellcodedateien"
+			Filter="cpp;c;cxx;rc;def;r;odl;idl;hpj;bat">
+			<File
+				RelativePath="Galactica.cpp">
+				<FileConfiguration
+					Name="Debug|Win32">
+					<Tool
+						Name="VCCLCompilerTool"
+						Optimization="0"
+						PreprocessorDefinitions=""
+						BasicRuntimeChecks="3"/>
+				</FileConfiguration>
+				<FileConfiguration
+					Name="Release|Win32">
+					<Tool
+						Name="VCCLCompilerTool"
+						Optimization="2"
+						PreprocessorDefinitions=""/>
+				</FileConfiguration>
+			</File>
+			<File
+				RelativePath="Game.cpp">
+				<FileConfiguration
+					Name="Debug|Win32">
+					<Tool
+						Name="VCCLCompilerTool"
+						Optimization="0"
+						PreprocessorDefinitions=""
+						BasicRuntimeChecks="3"/>
+				</FileConfiguration>
+				<FileConfiguration
+					Name="Release|Win32">
+					<Tool
+						Name="VCCLCompilerTool"
+						Optimization="2"
+						PreprocessorDefinitions=""/>
+				</FileConfiguration>
+			</File>
+			<File
+				RelativePath="Intro.cpp">
+				<FileConfiguration
+					Name="Debug|Win32">
+					<Tool
+						Name="VCCLCompilerTool"
+						Optimization="0"
+						PreprocessorDefinitions=""
+						BasicRuntimeChecks="3"/>
+				</FileConfiguration>
+				<FileConfiguration
+					Name="Release|Win32">
+					<Tool
+						Name="VCCLCompilerTool"
+						Optimization="2"
+						PreprocessorDefinitions=""/>
+				</FileConfiguration>
+			</File>
+			<File
+				RelativePath="MainMenu.cpp">
+				<FileConfiguration
+					Name="Debug|Win32">
+					<Tool
+						Name="VCCLCompilerTool"
+						Optimization="0"
+						PreprocessorDefinitions=""
+						BasicRuntimeChecks="3"/>
+				</FileConfiguration>
+				<FileConfiguration
+					Name="Release|Win32">
+					<Tool
+						Name="VCCLCompilerTool"
+						Optimization="2"
+						PreprocessorDefinitions=""/>
+				</FileConfiguration>
+			</File>
+			<File
+				RelativePath="Projectile.cpp">
+				<FileConfiguration
+					Name="Debug|Win32">
+					<Tool
+						Name="VCCLCompilerTool"
+						Optimization="0"
+						PreprocessorDefinitions=""
+						BasicRuntimeChecks="3"/>
+				</FileConfiguration>
+				<FileConfiguration
+					Name="Release|Win32">
+					<Tool
+						Name="VCCLCompilerTool"
+						Optimization="2"
+						PreprocessorDefinitions=""/>
+				</FileConfiguration>
+			</File>
+			<File
+				RelativePath="Ship.cpp">
+				<FileConfiguration
+					Name="Debug|Win32">
+					<Tool
+						Name="VCCLCompilerTool"
+						Optimization="0"
+						PreprocessorDefinitions=""
+						BasicRuntimeChecks="3"/>
+				</FileConfiguration>
+				<FileConfiguration
+					Name="Release|Win32">
+					<Tool
+						Name="VCCLCompilerTool"
+						Optimization="2"
+						PreprocessorDefinitions=""/>
+				</FileConfiguration>
+			</File>
+		</Filter>
+		<Filter
+			Name="Header-Dateien"
+			Filter="h;hpp;hxx;hm;inl">
+			<File
+				RelativePath="Galactica.h">
+			</File>
+			<File
+				RelativePath="Game.h">
+			</File>
+			<File
+				RelativePath="Intro.h">
+			</File>
+			<File
+				RelativePath="MainMenu.h">
+			</File>
+			<File
+				RelativePath="Projectile.h">
+			</File>
+			<File
+				RelativePath="Ship.h">
+			</File>
+		</Filter>
+		<Filter
+			Name="Ressourcendateien"
+			Filter="ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe">
+			<File
+				RelativePath="Galactica.rc">
+			</File>
+			<File
+				RelativePath="Icon1.ico">
+			</File>
+		</Filter>
+		<Filter
+			Name="TriBase-Dateien"
+			Filter="">
+			<File
+				RelativePath="..\TriBase\Include\tb3DSReader.h">
+			</File>
+			<File
+				RelativePath="..\TriBase\Include\tbColor.h">
+			</File>
+			<File
+				RelativePath="..\TriBase\Include\tbConfig.h">
+			</File>
+			<File
+				RelativePath="..\TriBase\Include\tbDirect3D.h">
+			</File>
+			<File
+				RelativePath="..\TriBase\Include\tbDirectInput.h">
+			</File>
+			<File
+				RelativePath="..\TriBase\Include\tbDirectSound.h">
+			</File>
+			<File
+				RelativePath="..\TriBase\Include\tbDraw2D.h">
+			</File>
+			<File
+				RelativePath="..\TriBase\Include\tbEffect.h">
+			</File>
+			<File
+				RelativePath="..\TriBase\Include\tbFile.h">
+			</File>
+			<File
+				RelativePath="..\TriBase\Include\tbFont.h">
+			</File>
+			<File
+				RelativePath="..\TriBase\Include\tbIndexBuffer.h">
+			</File>
+			<File
+				RelativePath="..\TriBase\Include\tbList.h">
+			</File>
+			<File
+				RelativePath="..\TriBase\Include\tbLog.h">
+			</File>
+			<File
+				RelativePath="..\TriBase\Include\tbMatrix.h">
+			</File>
+			<File
+				RelativePath="..\TriBase\Include\tbMemory.h">
+			</File>
+			<File
+				RelativePath="..\TriBase\Include\tbModel.h">
+			</File>
+			<File
+				RelativePath="..\TriBase\Include\tbMusic.h">
+			</File>
+			<File
+				RelativePath="..\TriBase\Include\tbObject.h">
+			</File>
+			<File
+				RelativePath="..\TriBase\Include\tbParticleSystem.h">
+			</File>
+			<File
+				RelativePath="..\TriBase\Include\tbPlane.h">
+			</File>
+			<File
+				RelativePath="..\TriBase\Include\tbSkyBox.h">
+			</File>
+			<File
+				RelativePath="..\TriBase\Include\tbSound.h">
+			</File>
+			<File
+				RelativePath="..\TriBase\Include\tbSpriteEngine.h">
+			</File>
+			<File
+				RelativePath="..\TriBase\Include\tbTextureManager.h">
+			</File>
+			<File
+				RelativePath="..\TriBase\Include\tbUtils.h">
+			</File>
+			<File
+				RelativePath="..\TriBase\Include\tbVector2.h">
+			</File>
+			<File
+				RelativePath="..\TriBase\Include\tbVector3.h">
+			</File>
+			<File
+				RelativePath="..\TriBase\Include\tbVertexBuffer.h">
+			</File>
+			<File
+				RelativePath="..\TriBase\Include\tbVFile.h">
+			</File>
+			<File
+				RelativePath="..\TriBase\Include\TriBase.h">
+			</File>
+		</Filter>
+		<Filter
+			Name="DirectX-Dateien"
+			Filter="">
+			<File
+				RelativePath="..\..\Programmieren\DirectX 9 SDK\Include\activecf.h">
+			</File>
+			<File
+				RelativePath="..\..\Programmieren\DirectX 9 SDK\Include\amaudio.h">
+			</File>
+			<File
+				RelativePath="..\..\Programmieren\DirectX 9 SDK\Include\amparse.h">
+			</File>
+			<File
+				RelativePath="..\..\Programmieren\DirectX 9 SDK\Include\amstream.h">
+			</File>
+			<File
+				RelativePath="..\..\Programmieren\DirectX 9 SDK\Include\amva.h">
+			</File>
+			<File
+				RelativePath="..\..\Programmieren\DirectX 9 SDK\Include\Amvideo.h">
+			</File>
+			<File
+				RelativePath="..\..\Programmieren\DirectX 9 SDK\Include\atsmedia.h">
+			</File>
+			<File
+				RelativePath="..\..\Programmieren\DirectX 9 SDK\Include\audevcod.h">
+			</File>
+			<File
+				RelativePath="..\..\Programmieren\DirectX 9 SDK\Include\austream.h">
+			</File>
+			<File
+				RelativePath="..\..\Programmieren\DirectX 9 SDK\Include\aviriff.h">
+			</File>
+			<File
+				RelativePath="..\..\Programmieren\DirectX 9 SDK\Include\basetsd.h">
+			</File>
+			<File
+				RelativePath="..\..\Programmieren\DirectX 9 SDK\Include\bdaiface.h">
+			</File>
+			<File
+				RelativePath="..\..\Programmieren\DirectX 9 SDK\Include\bdamedia.h">
+			</File>
+			<File
+				RelativePath="..\..\Programmieren\DirectX 9 SDK\Include\Bdatif.h">
+			</File>
+			<File
+				RelativePath="..\..\Programmieren\DirectX 9 SDK\Include\bdatypes.h">
+			</File>
+			<File
+				RelativePath="..\..\Programmieren\DirectX 9 SDK\Include\comlite.h">
+			</File>
+			<File
+				RelativePath="..\..\Programmieren\DirectX 9 SDK\Include\control.h">
+			</File>
+			<File
+				RelativePath="..\..\Programmieren\DirectX 9 SDK\Include\d3d.h">
+			</File>
+			<File
+				RelativePath="..\..\Programmieren\DirectX 9 SDK\Include\d3d8.h">
+			</File>
+			<File
+				RelativePath="..\..\Programmieren\DirectX 9 SDK\Include\d3d8caps.h">
+			</File>
+			<File
+				RelativePath="..\..\Programmieren\DirectX 9 SDK\Include\d3d8types.h">
+			</File>
+			<File
+				RelativePath="..\..\Programmieren\DirectX 9 SDK\Include\d3d9.h">
+			</File>
+			<File
+				RelativePath="..\..\Programmieren\DirectX 9 SDK\Include\d3d9caps.h">
+			</File>
+			<File
+				RelativePath="..\..\Programmieren\DirectX 9 SDK\Include\d3d9types.h">
+			</File>
+			<File
+				RelativePath="..\..\Programmieren\DirectX 9 SDK\Include\d3dcaps.h">
+			</File>
+			<File
+				RelativePath="..\..\Programmieren\DirectX 9 SDK\Include\d3drm.h">
+			</File>
+			<File
+				RelativePath="..\..\Programmieren\DirectX 9 SDK\Include\d3drmdef.h">
+			</File>
+			<File
+				RelativePath="..\..\Programmieren\DirectX 9 SDK\Include\d3drmobj.h">
+			</File>
+			<File
+				RelativePath="..\..\Programmieren\DirectX 9 SDK\Include\d3drmwin.h">
+			</File>
+			<File
+				RelativePath="..\..\Programmieren\DirectX 9 SDK\Include\d3dtypes.h">
+			</File>
+			<File
+				RelativePath="..\..\Programmieren\DirectX 9 SDK\Include\d3dvec.inl">
+			</File>
+			<File
+				RelativePath="..\..\Programmieren\DirectX 9 SDK\Include\d3dx.h">
+			</File>
+			<File
+				RelativePath="..\..\Programmieren\DirectX 9 SDK\Include\d3dx8.h">
+			</File>
+			<File
+				RelativePath="..\..\Programmieren\DirectX 9 SDK\Include\d3dx8core.h">
+			</File>
+			<File
+				RelativePath="..\..\Programmieren\DirectX 9 SDK\Include\d3dx8effect.h">
+			</File>
+			<File
+				RelativePath="..\..\Programmieren\DirectX 9 SDK\Include\d3dx8math.h">
+			</File>
+			<File
+				RelativePath="..\..\Programmieren\DirectX 9 SDK\Include\d3dx8math.inl">
+			</File>
+			<File
+				RelativePath="..\..\Programmieren\DirectX 9 SDK\Include\d3dx8mesh.h">
+			</File>
+			<File
+				RelativePath="..\..\Programmieren\DirectX 9 SDK\Include\d3dx8shape.h">
+			</File>
+			<File
+				RelativePath="..\..\Programmieren\DirectX 9 SDK\Include\d3dx8tex.h">
+			</File>
+			<File
+				RelativePath="..\..\Programmieren\DirectX 9 SDK\Include\d3dx9.h">
+			</File>
+			<File
+				RelativePath="..\..\Programmieren\DirectX 9 SDK\Include\d3dx9anim.h">
+			</File>
+			<File
+				RelativePath="..\..\Programmieren\DirectX 9 SDK\Include\d3dx9core.h">
+			</File>
+			<File
+				RelativePath="..\..\Programmieren\DirectX 9 SDK\Include\d3dx9effect.h">
+			</File>
+			<File
+				RelativePath="..\..\Programmieren\DirectX 9 SDK\Include\d3dx9math.h">
+			</File>
+			<File
+				RelativePath="..\..\Programmieren\DirectX 9 SDK\Include\d3dx9math.inl">
+			</File>
+			<File
+				RelativePath="..\..\Programmieren\DirectX 9 SDK\Include\d3dx9mesh.h">
+			</File>
+			<File
+				RelativePath="..\..\Programmieren\DirectX 9 SDK\Include\d3dx9shader.h">
+			</File>
+			<File
+				RelativePath="..\..\Programmieren\DirectX 9 SDK\Include\d3dx9shape.h">
+			</File>
+			<File
+				RelativePath="..\..\Programmieren\DirectX 9 SDK\Include\d3dx9tex.h">
+			</File>
+			<File
+				RelativePath="..\..\Programmieren\DirectX 9 SDK\Include\d3dxcore.h">
+			</File>
+			<File
+				RelativePath="..\..\Programmieren\DirectX 9 SDK\Include\d3dxerr.h">
+			</File>
+			<File
+				RelativePath="..\..\Programmieren\DirectX 9 SDK\Include\d3dxmath.h">
+			</File>
+			<File
+				RelativePath="..\..\Programmieren\DirectX 9 SDK\Include\d3dxmath.inl">
+			</File>
+			<File
+				RelativePath="..\..\Programmieren\DirectX 9 SDK\Include\d3dxshapes.h">
+			</File>
+			<File
+				RelativePath="..\..\Programmieren\DirectX 9 SDK\Include\d3dxsprite.h">
+			</File>
+			<File
+				RelativePath="..\..\Programmieren\DirectX 9 SDK\Include\ddraw.h">
+			</File>
+			<File
+				RelativePath="..\..\Programmieren\DirectX 9 SDK\Include\ddstream.h">
+			</File>
+			<File
+				RelativePath="..\..\Programmieren\DirectX 9 SDK\Include\dinput.h">
+			</File>
+			<File
+				RelativePath="..\..\Programmieren\DirectX 9 SDK\Include\dinputd.h">
+			</File>
+			<File
+				RelativePath="..\..\Programmieren\DirectX 9 SDK\Include\dls1.h">
+			</File>
+			<File
+				RelativePath="..\..\Programmieren\DirectX 9 SDK\Include\dls2.h">
+			</File>
+			<File
+				RelativePath="..\..\Programmieren\DirectX 9 SDK\Include\dmdls.h">
+			</File>
+			<File
+				RelativePath="..\..\Programmieren\DirectX 9 SDK\Include\dmerror.h">
+			</File>
+			<File
+				RelativePath="..\..\Programmieren\DirectX 9 SDK\Include\dmksctrl.h">
+			</File>
+			<File
+				RelativePath="..\..\Programmieren\DirectX 9 SDK\Include\dmo.h">
+			</File>
+			<File
+				RelativePath="..\..\Programmieren\DirectX 9 SDK\Include\dmodshow.h">
+			</File>
+			<File
+				RelativePath="..\..\Programmieren\DirectX 9 SDK\Include\dmoimpl.h">
+			</File>
+			<File
+				RelativePath="..\..\Programmieren\DirectX 9 SDK\Include\dmoreg.h">
+			</File>
+			<File
+				RelativePath="..\..\Programmieren\DirectX 9 SDK\Include\dmort.h">
+			</File>
+			<File
+				RelativePath="..\..\Programmieren\DirectX 9 SDK\Include\dmplugin.h">
+			</File>
+			<File
+				RelativePath="..\..\Programmieren\DirectX 9 SDK\Include\dmusbuff.h">
+			</File>
+			<File
+				RelativePath="..\..\Programmieren\DirectX 9 SDK\Include\dmusicc.h">
+			</File>
+			<File
+				RelativePath="..\..\Programmieren\DirectX 9 SDK\Include\dmusicf.h">
+			</File>
+			<File
+				RelativePath="..\..\Programmieren\DirectX 9 SDK\Include\dmusici.h">
+			</File>
+			<File
+				RelativePath="..\..\Programmieren\DirectX 9 SDK\Include\dmusics.h">
+			</File>
+			<File
+				RelativePath="..\..\Programmieren\DirectX 9 SDK\Include\dpaddr.h">
+			</File>
+			<File
+				RelativePath="..\..\Programmieren\DirectX 9 SDK\Include\dplay.h">
+			</File>
+			<File
+				RelativePath="..\..\Programmieren\DirectX 9 SDK\Include\dplay8.h">
+			</File>
+			<File
+				RelativePath="..\..\Programmieren\DirectX 9 SDK\Include\dplobby.h">
+			</File>
+			<File
+				RelativePath="..\..\Programmieren\DirectX 9 SDK\Include\dplobby8.h">
+			</File>
+			<File
+				RelativePath="..\..\Programmieren\DirectX 9 SDK\Include\dpnathlp.h">
+			</File>
+			<File
+				RelativePath="..\..\Programmieren\DirectX 9 SDK\Include\dsconf.h">
+			</File>
+			<File
+				RelativePath="..\..\Programmieren\DirectX 9 SDK\Include\dsetup.h">
+			</File>
+			<File
+				RelativePath="..\..\Programmieren\DirectX 9 SDK\Include\DShow.h">
+			</File>
+			<File
+				RelativePath="..\..\Programmieren\DirectX 9 SDK\Include\dshowasf.h">
+			</File>
+			<File
+				RelativePath="..\..\Programmieren\DirectX 9 SDK\Include\dsound.h">
+			</File>
+			<File
+				RelativePath="..\..\Programmieren\DirectX 9 SDK\Include\dv.h">
+			</File>
+			<File
+				RelativePath="..\..\Programmieren\DirectX 9 SDK\Include\dvdevcod.h">
+			</File>
+			<File
+				RelativePath="..\..\Programmieren\DirectX 9 SDK\Include\dvdmedia.h">
+			</File>
+			<File
+				RelativePath="..\..\Programmieren\DirectX 9 SDK\Include\dvoice.h">
+			</File>
+			<File
+				RelativePath="..\..\Programmieren\DirectX 9 SDK\Include\dvp.h">
+			</File>
+			<File
+				RelativePath="..\..\Programmieren\DirectX 9 SDK\Include\dx7todx8.h">
+			</File>
+			<File
+				RelativePath="..\..\Programmieren\DirectX 9 SDK\Include\DxDiag.h">
+			</File>
+			<File
+				RelativePath="..\..\Programmieren\DirectX 9 SDK\Include\dxerr8.h">
+			</File>
+			<File
+				RelativePath="..\..\Programmieren\DirectX 9 SDK\Include\dxerr9.h">
+			</File>
+			<File
+				RelativePath="..\..\Programmieren\DirectX 9 SDK\Include\dxfile.h">
+			</File>
+			<File
+				RelativePath="..\..\Programmieren\DirectX 9 SDK\Include\dxtrans.h">
+			</File>
+			<File
+				RelativePath="..\..\Programmieren\DirectX 9 SDK\Include\dxva.h">
+			</File>
+			<File
+				RelativePath="..\..\Programmieren\DirectX 9 SDK\Include\edevctrl.h">
+			</File>
+			<File
+				RelativePath="..\..\Programmieren\DirectX 9 SDK\Include\edevdefs.h">
+			</File>
+			<File
+				RelativePath="..\..\Programmieren\DirectX 9 SDK\Include\errors.h">
+			</File>
+			<File
+				RelativePath="..\..\Programmieren\DirectX 9 SDK\Include\evcode.h">
+			</File>
+			<File
+				RelativePath="..\..\Programmieren\DirectX 9 SDK\Include\il21dec.h">
+			</File>
+			<File
+				RelativePath="..\..\Programmieren\DirectX 9 SDK\Include\Iwstdec.h">
+			</File>
+			<File
+				RelativePath="..\..\Programmieren\DirectX 9 SDK\Include\ks.h">
+			</File>
+			<File
+				RelativePath="..\..\Programmieren\DirectX 9 SDK\Include\ksguid.h">
+			</File>
+			<File
+				RelativePath="..\..\Programmieren\DirectX 9 SDK\Include\ksmedia.h">
+			</File>
+			<File
+				RelativePath="..\..\Programmieren\DirectX 9 SDK\Include\ksproxy.h">
+			</File>
+			<File
+				RelativePath="..\..\Programmieren\DirectX 9 SDK\Include\ksuuids.h">
+			</File>
+			<File
+				RelativePath="..\..\Programmieren\DirectX 9 SDK\Include\mediaerr.h">
+			</File>
+			<File
+				RelativePath="..\..\Programmieren\DirectX 9 SDK\Include\mediaobj.h">
+			</File>
+			<File
+				RelativePath="..\..\Programmieren\DirectX 9 SDK\Include\medparam.h">
+			</File>
+			<File
+				RelativePath="..\..\Programmieren\DirectX 9 SDK\Include\mixerocx.h">
+			</File>
+			<File
+				RelativePath="..\..\Programmieren\DirectX 9 SDK\Include\mmstream.h">
+			</File>
+			<File
+				RelativePath="..\..\Programmieren\DirectX 9 SDK\Include\mpconfig.h">
+			</File>
+			<File
+				RelativePath="..\..\Programmieren\DirectX 9 SDK\Include\Mpeg2Bits.h">
+			</File>
+			<File
+				RelativePath="..\..\Programmieren\DirectX 9 SDK\Include\mpeg2data.h">
+			</File>
+			<File
+				RelativePath="..\..\Programmieren\DirectX 9 SDK\Include\Mpeg2Error.h">
+			</File>
+			<File
+				RelativePath="..\..\Programmieren\DirectX 9 SDK\Include\mpegtype.h">
+			</File>
+			<File
+				RelativePath="..\..\Programmieren\DirectX 9 SDK\Include\Mstvca.h">
+			</File>
+			<File
+				RelativePath="..\..\Programmieren\DirectX 9 SDK\Include\Mstve.h">
+			</File>
+			<File
+				RelativePath="..\..\Programmieren\DirectX 9 SDK\Include\Msvidctl.h">
+			</File>
+			<File
+				RelativePath="..\..\Programmieren\DirectX 9 SDK\Include\multimon.h">
+			</File>
+			<File
+				RelativePath="..\..\Programmieren\DirectX 9 SDK\Include\playlist.h">
+			</File>
+			<File
+				RelativePath="..\..\Programmieren\DirectX 9 SDK\Include\qedit.h">
+			</File>
+			<File
+				RelativePath="..\..\Programmieren\DirectX 9 SDK\Include\qnetwork.h">
+			</File>
+			<File
+				RelativePath="..\..\Programmieren\DirectX 9 SDK\Include\regbag.h">
+			</File>
+			<File
+				RelativePath="..\..\Programmieren\DirectX 9 SDK\Include\rmxfguid.h">
+			</File>
+			<File
+				RelativePath="..\..\Programmieren\DirectX 9 SDK\Include\rmxftmpl.h">
+			</File>
+			<File
+				RelativePath="..\..\Programmieren\DirectX 9 SDK\Include\sbe.h">
+			</File>
+			<File
+				RelativePath="..\..\Programmieren\DirectX 9 SDK\Include\Segment.h">
+			</File>
+			<File
+				RelativePath="..\..\Programmieren\DirectX 9 SDK\Include\strmif.h">
+			</File>
+			<File
+				RelativePath="..\..\Programmieren\DirectX 9 SDK\Include\tune.h">
+			</File>
+			<File
+				RelativePath="..\..\Programmieren\DirectX 9 SDK\Include\tuner.h">
+			</File>
+			<File
+				RelativePath="..\..\Programmieren\DirectX 9 SDK\Include\tvratings.h">
+			</File>
+			<File
+				RelativePath="..\..\Programmieren\DirectX 9 SDK\Include\uuids.h">
+			</File>
+			<File
+				RelativePath="..\..\Programmieren\DirectX 9 SDK\Include\vfwmsgs.h">
+			</File>
+			<File
+				RelativePath="..\..\Programmieren\DirectX 9 SDK\Include\videoacc.h">
+			</File>
+			<File
+				RelativePath="..\..\Programmieren\DirectX 9 SDK\Include\vmr9.h">
+			</File>
+			<File
+				RelativePath="..\..\Programmieren\DirectX 9 SDK\Include\vpconfig.h">
+			</File>
+			<File
+				RelativePath="..\..\Programmieren\DirectX 9 SDK\Include\vpnotify.h">
+			</File>
+			<File
+				RelativePath="..\..\Programmieren\DirectX 9 SDK\Include\vptype.h">
+			</File>
+			<File
+				RelativePath="..\..\Programmieren\DirectX 9 SDK\Include\xprtdefs.h">
+			</File>
+		</Filter>
+	</Files>
+	<Globals>
+	</Globals>
+</VisualStudioProject>
