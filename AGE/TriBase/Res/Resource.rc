@@ -1,0 +1,198 @@
+//Microsoft Developer Studio generated resource script.
+//
+#include "Resource.h"
+
+#define APSTUDIO_READONLY_SYMBOLS
+/////////////////////////////////////////////////////////////////////////////
+//
+// Generated from the TEXTINCLUDE 2 resource.
+//
+#include "afxres.h"
+
+/////////////////////////////////////////////////////////////////////////////
+#undef APSTUDIO_READONLY_SYMBOLS
+
+/////////////////////////////////////////////////////////////////////////////
+// Deutsch (Deutschland) resources
+
+#if !defined(AFX_RESOURCE_DLL) || defined(AFX_TARG_DEU)
+#ifdef _WIN32
+LANGUAGE LANG_GERMAN, SUBLANG_GERMAN
+#pragma code_page(1252)
+#endif //_WIN32
+
+#ifdef APSTUDIO_INVOKED
+/////////////////////////////////////////////////////////////////////////////
+//
+// TEXTINCLUDE
+//
+
+1 TEXTINCLUDE MOVEABLE PURE 
+BEGIN
+    "Resource.h\0"
+END
+
+2 TEXTINCLUDE MOVEABLE PURE 
+BEGIN
+    "#include ""afxres.h""\r\n"
+    "\0"
+END
+
+3 TEXTINCLUDE MOVEABLE PURE 
+BEGIN
+    "\r\n"
+    "\0"
+END
+
+#endif    // APSTUDIO_INVOKED
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// Dialog
+//
+
+TB_IDD_CONFIG DIALOG DISCARDABLE  0, 0, 364, 316
+STYLE DS_MODALFRAME | DS_FIXEDSYS | DS_CENTER | WS_POPUP | WS_CAPTION | 
+    WS_SYSMENU
+CAPTION "TriBase-Engine-Konfigurationsdialog"
+FONT 8, "MS Shell Dlg"
+BEGIN
+    LTEXT           "Wählen Sie einen &Adapter:",IDC_STATIC,10,20,86,8
+    COMBOBOX        TB_IDC_D3DC_ADAPTERS,100,20,126,60,CBS_DROPDOWNLIST | 
+                    WS_VSCROLL | WS_TABSTOP
+    LTEXT           "&Gerätetyp:",IDC_STATIC,10,38,36,8
+    COMBOBOX        TB_IDC_D3DC_DEVICE_TYPES,100,39,126,60,CBS_DROPDOWNLIST | 
+                    WS_VSCROLL | WS_TABSTOP
+    LTEXT           "Fenstermodus oder Vollbildmodus?",IDC_STATIC,10,62,78,
+                    18
+    CONTROL         "&Fenstermodus",TB_IDC_D3DC_WINDOWED_MODE,"Button",
+                    BS_AUTORADIOBUTTON,100,62,61,10
+    CONTROL         "&Vollbildmodus",TB_IDC_D3DC_FULLSCREEN_MODE,"Button",
+                    BS_AUTORADIOBUTTON,100,74,58,10
+    LTEXT           "Vi&deomodus:",IDC_STATIC,10,92,42,8
+    COMBOBOX        TB_IDC_D3DC_VIDEO_MODES,100,92,126,120,CBS_DROPDOWNLIST | 
+                    WS_VSCROLL | WS_TABSTOP
+    LTEXT           "Bild&pufferformat:",IDC_STATIC,10,110,56,8
+    COMBOBOX        TB_IDC_D3DC_BACK_BUFFER_FORMATS,100,111,126,60,
+                    CBS_DROPDOWNLIST | WS_VSCROLL | WS_TABSTOP
+    LTEXT           "&Z-Stencil-Buffer-Format:",IDC_STATIC,10,128,79,8
+    COMBOBOX        TB_IDC_D3DC_Z_STENCIL_BUFFER_FORMATS,100,127,126,60,
+                    CBS_DROPDOWNLIST | WS_VSCROLL | WS_TABSTOP
+    LTEXT           "Multi-Sampling-&Typ:",IDC_STATIC,10,146,64,8
+    COMBOBOX        TB_IDC_D3DC_MULTI_SAMPLING_TYPES,100,146,126,60,
+                    CBS_DROPDOWNLIST | WS_VSCROLL | WS_TABSTOP
+    LTEXT           "Multi-Sampling-&Qualität:",IDC_STATIC,10,164,77,8
+    COMBOBOX        TB_IDC_D3DC_MULTI_SAMPLING_QUALITIES,100,164,126,60,
+                    CBS_DROPDOWNLIST | WS_VSCROLL | WS_TABSTOP
+    LTEXT           "Ha&rdware oder Softwaretransformation und -Beleuchtung?",
+                    IDC_STATIC,10,188,78,24
+    CONTROL         "&Hardware",TB_IDC_D3DC_HARDWARE_TNL,"Button",
+                    BS_AUTORADIOBUTTON,100,188,47,10
+    CONTROL         "Soft&ware",TB_IDC_D3DC_SOFTWARE_TNL,"Button",
+                    BS_AUTORADIOBUTTON,100,200,44,10
+    DEFPUSHBUTTON   "&OK",TB_IDC_C_OK,305,295,48,14
+    PUSHBUTTON      "A&bbrechen",TB_IDC_C_CANCEL,251,295,50,14
+    LTEXT           "Beschreibung und Hinweise:",IDC_STATIC,235,100,90,8
+    EDITTEXT        TB_IDC_C_DESCRIPTION,235,110,120,175,ES_MULTILINE | 
+                    ES_AUTOVSCROLL | ES_READONLY | ES_WANTRETURN | 
+                    WS_VSCROLL
+    PUSHBUTTON      "Spe&ichern...",TB_IDC_C_SAVE,5,295,50,14
+    PUSHBUTTON      "&Laden...",TB_IDC_C_LOAD,59,295,50,14
+    CONTROL         102,IDC_STATIC,"Static",SS_BITMAP,235,10,120,83
+    GROUPBOX        "Direct3D",IDC_STATIC,5,5,225,215
+    GROUPBOX        "DirectSound",IDC_STATIC,5,225,225,60
+    LTEXT           "&Soundtreiber:",IDC_STATIC,10,240,45,8
+    COMBOBOX        TB_IDC_DSC_DRIVERS,100,240,126,60,CBS_DROPDOWNLIST | 
+                    WS_VSCROLL | WS_TABSTOP
+    LTEXT           "Bits pro Sample:",IDC_STATIC,10,255,52,8
+    CONTROL         "&8",TB_IDC_DSC_8_BITS,"Button",BS_AUTORADIOBUTTON,100,
+                    255,20,10
+    CONTROL         "1&6",TB_IDC_DSC_16_BITS,"Button",BS_AUTORADIOBUTTON,140,
+                    255,24,10
+    LTEXT           "Sa&mpling-Frequenz (Hz):",IDC_STATIC,10,270,78,8
+    CONTROL         "11&025",TB_IDC_DSC_11025_HZ,"Button",BS_AUTORADIOBUTTON,
+                    100,270,36,10
+    CONTROL         "220&50",TB_IDC_DSC_22050_HZ,"Button",BS_AUTORADIOBUTTON,
+                    140,270,36,10
+    CONTROL         "&44100",TB_IDC_DSC_44100_HZ,"Button",BS_AUTORADIOBUTTON,
+                    180,270,36,10
+END
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// Bitmap
+//
+
+TB_IDB_BITMAP1          BITMAP  MOVEABLE PURE   "Bitmap1.bmp"
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// Icon
+//
+
+// Icon with lowest ID value placed first to ensure application icon
+// remains consistent on all systems.
+TB_IDI_ICON1            ICON    DISCARDABLE     "Icon1.ico"
+
+#ifndef _MAC
+/////////////////////////////////////////////////////////////////////////////
+//
+// Version
+//
+
+TB_VS_VERSION_INFO VERSIONINFO
+ FILEVERSION 1,0,0,0
+ PRODUCTVERSION 1,0,0,0
+ FILEFLAGSMASK 0x3fL
+#ifdef _DEBUG
+ FILEFLAGS 0x29L
+#else
+ FILEFLAGS 0x28L
+#endif
+ FILEOS 0x4L
+ FILETYPE 0x0L
+ FILESUBTYPE 0x0L
+BEGIN
+    BLOCK "StringFileInfo"
+    BEGIN
+        BLOCK "040704b0"
+        BEGIN
+            VALUE "Comments", "---\0"
+            VALUE "CompanyName", "Scherfgen-Software\0"
+            VALUE "FileDescription", "TriBase-Engine\0"
+            VALUE "FileVersion", "1, 0, 0, 0\0"
+            VALUE "InternalName", "TriBase\0"
+            VALUE "LegalCopyright", "Copyright © 2002\0"
+            VALUE "LegalTrademarks", "---\0"
+            VALUE "OriginalFilename", "TriBase(D).dll\0"
+            VALUE "PrivateBuild", "---\0"
+            VALUE "ProductName", "Scherfgen-Software TriBase-Engine\0"
+            VALUE "ProductVersion", "1, 0, 0, 0\0"
+            VALUE "SpecialBuild", "---\0"
+        END
+    END
+    BLOCK "VarFileInfo"
+    BEGIN
+        VALUE "Translation", 0x407, 1200
+    END
+END
+
+#endif    // !_MAC
+
+#endif    // Deutsch (Deutschland) resources
+/////////////////////////////////////////////////////////////////////////////
+
+
+
+#ifndef APSTUDIO_INVOKED
+/////////////////////////////////////////////////////////////////////////////
+//
+// Generated from the TEXTINCLUDE 3 resource.
+//
+
+
+/////////////////////////////////////////////////////////////////////////////
+#endif    // not APSTUDIO_INVOKED
+
