@@ -9,7 +9,7 @@
 
 #include <TriBase.h>
 //#include "Ship.h"
-//#include "Intro.h"
+#include "Intro.h"
 //#include "MainMenu.h"
 //#include "Projectile.h"
 //#include "Game.h"
@@ -33,14 +33,14 @@ public:
 	PDIRECT3DSTATEBLOCK9	m_pStateBlock;	// Statusblock für Direct3D
 
 	// Die Spielzustände
-//	CIntro*					m_pIntro;		// Intro
+	CIntro*					m_pIntro;		// Intro
 //	CMainMenu*				m_pMainMenu;	// Hauptmenü
 //	CGame*					m_pGame;		// Spiel
 	EGameState				m_GameState;	// Aktueller Spielzustand
 	float					m_fTime;		// Stoppuhr
 
 	// Schriftarten
-//	tbFont*					m_pFont1;		// Erste Schriftart
+	tbFont*					m_pMonotypeCorsiva18;		// Erste Schriftart
 //	tbFont*					m_pFont2;		// Zweite Schriftart
 
 	// Musik
@@ -60,8 +60,12 @@ public:
 
 // Globale Variablen
 extern CSpaceRunner*	g_pSpaceRunner;
-//extern float*		g_pfButtons;
-//extern BOOL*		g_pbButtons;
-//extern BOOL*		g_pbOldButtons;
-//extern float*		g_pfOldButtons;
+extern float*		g_pfButtons;
+extern BOOL*		g_pbButtons;
+extern BOOL*		g_pbOldButtons;
+extern float*		g_pfOldButtons;
 //extern int			g_aiTeam[4][32];
+
+// Globale Funktionen
+inline BOOL WasButtonPressed(int iButton)	{return !g_pbOldButtons[iButton] && g_pbButtons[iButton];}
+inline BOOL WasButtonReleased(int iButton)	{return g_pbOldButtons[iButton] && !g_pbButtons[iButton];}

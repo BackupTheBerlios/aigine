@@ -12,6 +12,10 @@
 
 // Globale Variablen
 CSpaceRunner*	g_pSpaceRunner = NULL;
+float*		g_pfButtons = NULL;
+BOOL*		g_pbButtons = NULL;
+BOOL*		g_pbOldButtons = NULL;
+float*		g_pfOldButtons = NULL;
 
 
 int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, char* pcCommandLine, int iShowCommand) {
@@ -37,7 +41,7 @@ int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, char* pcCommand
 	}
 
 	// Spiel laufen lassen
-/*	if(g_pSpaceRunner->Run())
+	if(g_pSpaceRunner->Run())
 	{
 		g_pSpaceRunner->Exit();
 		TB_SAFE_DELETE(g_pSpaceRunner);
@@ -45,7 +49,7 @@ int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, char* pcCommand
 			       "Fehler", MB_OK | MB_ICONEXCLAMATION);
 		return 1;
 	}
-*/
+
 	// Spiel verlassen
 	g_pSpaceRunner->Exit();
 	TB_SAFE_DELETE(g_pSpaceRunner);
@@ -71,7 +75,7 @@ tbResult CSpaceRunner::Init()
 	if(Load()) TB_ERROR("Fehler beim Laden des Spiels!", TB_ERROR);
 
 	// Klassen für alle Spielzustände erstellen
-//	m_pIntro = new CIntro;
+	m_pIntro = new CIntro;
 //	m_pMainMenu = new CMainMenu;
 //	m_pGame = new CGame;
 
@@ -80,7 +84,7 @@ tbResult CSpaceRunner::Init()
 //	m_pGame->LoadWeaponTypes(FALSE);
 
 	// Wir beginnen beim Intro!
-//	SetGameState(GS_INTRO);
+	SetGameState(GS_INTRO);
 
 	return TB_OK;
 }
@@ -96,7 +100,7 @@ tbResult CSpaceRunner::Exit()
 	Unload();
 
 	// Die Klassen für die Spielzustände löschen
-//	TB_SAFE_DELETE(m_pIntro);
+	TB_SAFE_DELETE(m_pIntro);
 //	TB_SAFE_DELETE(m_pMainMenu);
 //	TB_SAFE_DELETE(m_pGame);
 
@@ -112,7 +116,6 @@ tbResult CSpaceRunner::Load()
 {
 	// Direct3D initialisieren
 	if(tbDirect3D::Init(&m_Config, "Space Runner", NULL, LoadIcon(GetModuleHandle(NULL), MAKEINTRESOURCE(IDI_ICON1)))) {
-//	if(tbDirect3D::Init(&m_Config, "Space Runner", NULL, NULL, NULL))) {
 		// Fehler!
 		TB_ERROR("Fehler beim Initialisieren von Direct3D!", TB_ERROR);
 	}
@@ -134,14 +137,14 @@ tbResult CSpaceRunner::Load()
 	}
 
 	// Speicher für die analogen Knöpfe reservieren
-//	g_pfButtons = new float[tbDirectInput::GetNumButtons()];
-//	g_pbButtons = new BOOL[tbDirectInput::GetNumButtons()];
-//	g_pbOldButtons = new BOOL[tbDirectInput::GetNumButtons()];
-//	g_pfOldButtons = new float[tbDirectInput::GetNumButtons()];
-//	ZeroMemory(g_pfButtons, tbDirectInput::GetNumButtons() * sizeof(float));
-//	ZeroMemory(g_pbButtons, tbDirectInput::GetNumButtons() * sizeof(BOOL));
-//	ZeroMemory(g_pbOldButtons, tbDirectInput::GetNumButtons() * sizeof(BOOL));
-//	ZeroMemory(g_pfOldButtons, tbDirectInput::GetNumButtons() * sizeof(float));
+	g_pfButtons = new float[tbDirectInput::GetNumButtons()];
+	g_pbButtons = new BOOL[tbDirectInput::GetNumButtons()];
+	g_pbOldButtons = new BOOL[tbDirectInput::GetNumButtons()];
+	g_pfOldButtons = new float[tbDirectInput::GetNumButtons()];
+	ZeroMemory(g_pfButtons, tbDirectInput::GetNumButtons() * sizeof(float));
+	ZeroMemory(g_pbButtons, tbDirectInput::GetNumButtons() * sizeof(BOOL));
+	ZeroMemory(g_pbOldButtons, tbDirectInput::GetNumButtons() * sizeof(BOOL));
+	ZeroMemory(g_pfOldButtons, tbDirectInput::GetNumButtons() * sizeof(float));
 
 	// Und nun noch DirectSound...
 	if(tbDirectSound::Init(&m_Config, NULL, DSSCL_PRIORITY, TRUE)) {
@@ -155,7 +158,7 @@ tbResult CSpaceRunner::Load()
 	// ------------------------------------------------------------------
 
 	// Schriftarten laden
-//	m_pFont1 = new tbFont(); if(m_pFont1->Init("Data\\Font1.tga", "Data\\Font1.tbf")) TB_ERROR("Fehler beim Laden einer Schriftart!", TB_ERROR);
+	m_pMonotypeCorsiva18 = new tbFont(); if(m_pMonotypeCorsiva18->Init("Data\\Monotype_Corsiva_18.tga", "Data\\Monotype_Corsiva_18.tbf")) TB_ERROR("Fehler beim Laden einer Schriftart!", TB_ERROR);
 //	m_pFont2 = new tbFont(); if(m_pFont2->Init("Data\\Font2.tga", "Data\\Font2.tbf")) TB_ERROR("Fehler beim Laden einer Schriftart!", TB_ERROR);
 
 	// Musik laden
@@ -171,7 +174,7 @@ tbResult CSpaceRunner::Load()
 // Entlädt das Spiel
 tbResult CSpaceRunner::Unload() {
 	// Schriftarten löschen
-//	TB_SAFE_DELETE(m_pFont1);
+	TB_SAFE_DELETE(m_pMonotypeCorsiva18);
 //	TB_SAFE_DELETE(m_pFont2);
 
 	// Musik löschen
@@ -180,8 +183,8 @@ tbResult CSpaceRunner::Unload() {
 
 	// DirectX-Klassen löschen
 	TB_SAFE_RELEASE(m_pStateBlock);
-//	TB_SAFE_DELETE_ARRAY(g_pfButtons);
-//	TB_SAFE_DELETE_ARRAY(g_pbButtons);
+	TB_SAFE_DELETE_ARRAY(g_pfButtons);
+	TB_SAFE_DELETE_ARRAY(g_pbButtons);
 	tbDirect3D::Exit();
 	tbDirectInput::Exit();
 	tbDirectSound::Exit();
@@ -218,7 +221,7 @@ tbResult CSpaceRunner::SetGameState(EGameState NewGameState)
 	// Alten Spielzustand entladen
 	switch(m_GameState)
 	{
-//	case GS_INTRO:		m_pIntro->Exit();			break;
+	case GS_INTRO:		m_pIntro->Exit();			break;
 //	case GS_MAIN_MENU:	m_pMainMenu->Exit();		break;
 //	case GS_GAME:		m_pGame->Exit();			break;
 	}
@@ -238,7 +241,7 @@ tbResult CSpaceRunner::SetGameState(EGameState NewGameState)
 	m_GameState = NewGameState;
 	switch(m_GameState)
 	{
-//	case GS_INTRO:		r = m_pIntro->Init();		break;
+	case GS_INTRO:		r = m_pIntro->Init();		break;
 //	case GS_MAIN_MENU:	r = m_pMainMenu->Init();	break;
 //	case GS_GAME:		r = m_pGame->Init();		break;
 	}
@@ -259,9 +262,9 @@ tbResult CSpaceRunner::Move(float fTime)
 
 
 	// Eingabegeräte abfragen, alten Status kopieren
-//	memcpy(g_pbOldButtons, g_pbButtons, tbDirectInput::GetNumButtons() * sizeof(BOOL));
-//	memcpy(g_pfOldButtons, g_pfButtons, tbDirectInput::GetNumButtons() * sizeof(float));
-//	tbDirectInput::GetState(g_pfButtons, g_pbButtons);
+	memcpy(g_pbOldButtons, g_pbButtons, tbDirectInput::GetNumButtons() * sizeof(BOOL));
+	memcpy(g_pfOldButtons, g_pfButtons, tbDirectInput::GetNumButtons() * sizeof(float));
+	tbDirectInput::GetState(g_pfButtons, g_pbButtons);
 
 	// Screenshots werden mit SysRq gemacht.
 /*	if(WasButtonPressed(TB_KEY_SYSRQ))
@@ -283,7 +286,7 @@ tbResult CSpaceRunner::Move(float fTime)
 	// Aktuellen Spielzustand bewegen
 	switch(m_GameState)
 	{
-//	case GS_INTRO:		r = m_pIntro->Move(fTime);		break;
+	case GS_INTRO:		r = m_pIntro->Move(fTime);		break;
 //	case GS_MAIN_MENU:	r = m_pMainMenu->Move(fTime);	break;
 //	case GS_GAME:		r = m_pGame->Move(fTime);		break;
 	}
@@ -306,7 +309,7 @@ tbResult CSpaceRunner::Render(float fTime)
 	// Aktuellen Spielzustand rendern
 	switch(m_GameState)
 	{
-//	case GS_INTRO:		r = m_pIntro->Render(fTime);	break;
+	case GS_INTRO:		r = m_pIntro->Render(fTime);	break;
 //	case GS_MAIN_MENU:	r = m_pMainMenu->Render(fTime);	break;
 //	case GS_GAME:		r = m_pGame->Render(fTime);		break;
 	}
@@ -325,7 +328,7 @@ tbResult CSpaceRunner::Render(float fTime)
 		// Aktuellen Spielzustand entladen
 		switch(m_GameState)
 		{
-//		case GS_INTRO:		m_pIntro->Unload();		break;
+		case GS_INTRO:		m_pIntro->Unload();		break;
 //		case GS_MAIN_MENU:	m_pMainMenu->Unload();	break;
 //		case GS_GAME:		m_pGame->Unload();		break;
 		}
@@ -337,7 +340,7 @@ tbResult CSpaceRunner::Render(float fTime)
 		// Aktuellen Spielstatus neu laden
 		switch(m_GameState)
 		{
-//		case GS_INTRO:		m_pIntro->Load();		break;
+		case GS_INTRO:		m_pIntro->Load();		break;
 //		case GS_MAIN_MENU:	m_pMainMenu->Load();	break;
 //		case GS_GAME:		m_pGame->Load();		break;
 		}
