@@ -1,0 +1,21 @@
+Microsoft Visual Studio Solution File, Format Version 8.00
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "SpaceRunner", "SpaceRuner.vcproj", "{6883021A-A5CC-417C-84C3-6D9AF760FF70}"
+	ProjectSection(ProjectDependencies) = postProject
+	EndProjectSection
+EndProject
+Global
+	GlobalSection(SolutionConfiguration) = preSolution
+		Debug = Debug
+		Release = Release
+	EndGlobalSection
+	GlobalSection(ProjectConfiguration) = postSolution
+		{6883021A-A5CC-417C-84C3-6D9AF760FF70}.Debug.ActiveCfg = Debug|Win32
+		{6883021A-A5CC-417C-84C3-6D9AF760FF70}.Debug.Build.0 = Debug|Win32
+		{6883021A-A5CC-417C-84C3-6D9AF760FF70}.Release.ActiveCfg = Release|Win32
+		{6883021A-A5CC-417C-84C3-6D9AF760FF70}.Release.Build.0 = Release|Win32
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+	EndGlobalSection
+	GlobalSection(ExtensibilityAddIns) = postSolution
+	EndGlobalSection
+EndGlobal
