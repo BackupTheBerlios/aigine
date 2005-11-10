@@ -76,7 +76,7 @@ tbResult CSpaceRunner::Init()
 
 	// Klassen für alle Spielzustände erstellen
 	m_pIntro = new CIntro;
-//	m_pMainMenu = new CMainMenu;
+	m_pMenu = new CMenu;
 //	m_pGame = new CGame;
 
 	// Schiffs- und Waffentypen laden (noch ohne Modelle)
@@ -101,7 +101,7 @@ tbResult CSpaceRunner::Exit()
 
 	// Die Klassen für die Spielzustände löschen
 	TB_SAFE_DELETE(m_pIntro);
-//	TB_SAFE_DELETE(m_pMainMenu);
+	TB_SAFE_DELETE(m_pMenu);
 //	TB_SAFE_DELETE(m_pGame);
 
 	// Die Engine herunterfahren
@@ -159,11 +159,11 @@ tbResult CSpaceRunner::Load()
 
 	// Schriftarten laden
 	m_pMonotypeCorsiva18 = new tbFont(); if(m_pMonotypeCorsiva18->Init("Data\\Monotype_Corsiva_18.tga", "Data\\Monotype_Corsiva_18.tbf")) TB_ERROR("Fehler beim Laden einer Schriftart!", TB_ERROR);
-//	m_pFont2 = new tbFont(); if(m_pFont2->Init("Data\\Font2.tga", "Data\\Font2.tbf")) TB_ERROR("Fehler beim Laden einer Schriftart!", TB_ERROR);
+	m_pBradleyHandITC22 = new tbFont(); if(m_pBradleyHandITC22->Init("Data\\Bradley_Hand_ITC_22.tga", "Data\\Bradley_Hand_ITC_22.tbf")) TB_ERROR("Fehler beim Laden einer Schriftart!", TB_ERROR);
 
 	// Musik laden
-//	m_pBriefing = new tbMusic;
-//	if(m_pBriefing->Init("Data\\Briefing.mp3")) TB_ERROR("Fehler beim Laden der Briefing-Musik!", TB_ERROR);
+	m_pTitle = new tbMusic;
+	if(m_pTitle->Init("Data\\Title.mp3")) TB_ERROR("Fehler beim Laden der Titel-Musik!", TB_ERROR);
 //	m_pAction = new tbMusic;
 //	if(m_pAction->Init("Data\\Action.mp3")) TB_ERROR("Fehler beim Laden der Action-Musik!", TB_ERROR);
 
@@ -175,10 +175,10 @@ tbResult CSpaceRunner::Load()
 tbResult CSpaceRunner::Unload() {
 	// Schriftarten löschen
 	TB_SAFE_DELETE(m_pMonotypeCorsiva18);
-//	TB_SAFE_DELETE(m_pFont2);
+	TB_SAFE_DELETE(m_pBradleyHandITC22);
 
 	// Musik löschen
-//	TB_SAFE_DELETE(m_pBriefing);
+	TB_SAFE_DELETE(m_pTitle);
 //	TB_SAFE_DELETE(m_pAction);
 
 	// DirectX-Klassen löschen
@@ -222,7 +222,7 @@ tbResult CSpaceRunner::SetGameState(EGameState NewGameState)
 	switch(m_GameState)
 	{
 	case GS_INTRO:		m_pIntro->Exit();			break;
-//	case GS_MAIN_MENU:	m_pMainMenu->Exit();		break;
+	case GS_MENU:		m_pMenu->Exit();			break;
 //	case GS_GAME:		m_pGame->Exit();			break;
 	}
 
@@ -242,7 +242,7 @@ tbResult CSpaceRunner::SetGameState(EGameState NewGameState)
 	switch(m_GameState)
 	{
 	case GS_INTRO:		r = m_pIntro->Init();		break;
-//	case GS_MAIN_MENU:	r = m_pMainMenu->Init();	break;
+	case GS_MENU:		r = m_pMenu->Init();		break;
 //	case GS_GAME:		r = m_pGame->Init();		break;
 	}
 
@@ -287,7 +287,7 @@ tbResult CSpaceRunner::Move(float fTime)
 	switch(m_GameState)
 	{
 	case GS_INTRO:		r = m_pIntro->Move(fTime);		break;
-//	case GS_MAIN_MENU:	r = m_pMainMenu->Move(fTime);	break;
+	case GS_MENU:		r = m_pMenu->Move(fTime);		break;
 //	case GS_GAME:		r = m_pGame->Move(fTime);		break;
 	}
 
@@ -310,7 +310,7 @@ tbResult CSpaceRunner::Render(float fTime)
 	switch(m_GameState)
 	{
 	case GS_INTRO:		r = m_pIntro->Render(fTime);	break;
-//	case GS_MAIN_MENU:	r = m_pMainMenu->Render(fTime);	break;
+	case GS_MENU:		r = m_pMenu->Render(fTime);		break;
 //	case GS_GAME:		r = m_pGame->Render(fTime);		break;
 	}
 
@@ -329,7 +329,7 @@ tbResult CSpaceRunner::Render(float fTime)
 		switch(m_GameState)
 		{
 		case GS_INTRO:		m_pIntro->Unload();		break;
-//		case GS_MAIN_MENU:	m_pMainMenu->Unload();	break;
+		case GS_MENU:		m_pMenu->Unload();		break;
 //		case GS_GAME:		m_pGame->Unload();		break;
 		}
 
@@ -341,7 +341,7 @@ tbResult CSpaceRunner::Render(float fTime)
 		switch(m_GameState)
 		{
 		case GS_INTRO:		m_pIntro->Load();		break;
-//		case GS_MAIN_MENU:	m_pMainMenu->Load();	break;
+		case GS_MENU:		m_pMenu->Load();		break;
 //		case GS_GAME:		m_pGame->Load();		break;
 		}
 	}

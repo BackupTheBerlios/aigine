@@ -28,13 +28,13 @@ tbResult CIntro::Init()
 	// Laden...
 	if(Load()) TB_ERROR("Fehler beim Laden des Spielzustands!", TB_ERROR);
 
-/*	// Briefing-Musik abspielen
-	if(g_pSpaceRunner->m_pBriefing->GetState() != State_Running)
+	// Briefing-Musik abspielen
+	if(g_pSpaceRunner->m_pTitle->GetState() != State_Running)
 	{
 		// Mit Looping...
-		g_pSpaceRunner->m_pBriefing->Play();
+		g_pSpaceRunner->m_pTitle->Play();
 	}
-*/
+
 	return TB_OK;
 }
 
@@ -52,6 +52,7 @@ tbResult CIntro::Exit()
 // Lädt den Spielzustand
 tbResult CIntro::Load()
 {
+
 	// Titelbild laden
 	m_pTitle = tbTextureManager::GetTexture("Data\\Title.jpg", TRUE, D3DX_DEFAULT, D3DX_DEFAULT, 1);
 	if(m_pTitle == NULL) TB_ERROR("Fehler beim Laden von Data\\Title.jpg!", TB_ERROR);
@@ -79,12 +80,11 @@ tbResult CIntro::Move(float fTime)
 	   WasButtonPressed(TB_KEY_SPACE) ||
 	   WasButtonPressed(TB_MOUSE_BUTTON(0)))
 	{
-		PostQuitMessage(0);
-//		g_pSpaceRunner->SetGameState(GS_NONE);
+		g_pSpaceRunner->SetGameState(GS_MENU);
 	}
 
 	// Musik überprüfen
-//	g_pGalactica->m_pBriefing->Process();
+	g_pSpaceRunner->m_pTitle->Process();
 
 	return TB_OK;
 }

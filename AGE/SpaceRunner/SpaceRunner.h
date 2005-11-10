@@ -10,7 +10,7 @@
 #include <TriBase.h>
 //#include "Ship.h"
 #include "Intro.h"
-//#include "MainMenu.h"
+#include "Menu.h"
 //#include "Projectile.h"
 //#include "Game.h"
 #include "Resource.h"
@@ -20,7 +20,7 @@
 enum EGameState {
 	GS_NONE,		// Kein Spielzustand
 	GS_INTRO,		// Intro
-	GS_MAIN_MENU,	// Hauptmenü
+	GS_MENU,		// Hauptmenü
 	GS_GAME			// Spiel
 };
 
@@ -34,17 +34,17 @@ public:
 
 	// Die Spielzustände
 	CIntro*					m_pIntro;		// Intro
-//	CMainMenu*				m_pMainMenu;	// Hauptmenü
+	CMenu*					m_pMenu;		// Hauptmenü
 //	CGame*					m_pGame;		// Spiel
 	EGameState				m_GameState;	// Aktueller Spielzustand
 	float					m_fTime;		// Stoppuhr
 
 	// Schriftarten
 	tbFont*					m_pMonotypeCorsiva18;		// Erste Schriftart
-//	tbFont*					m_pFont2;		// Zweite Schriftart
+	tbFont*					m_pBradleyHandITC22;		// Zweite Schriftart
 
 	// Musik
-//	tbMusic*				m_pBriefing;	// Briefing-Musik
+	tbMusic*				m_pTitle;	// title-Musik
 //	tbMusic*				m_pAction;		// Action-Musik
 
 	// Methoden
