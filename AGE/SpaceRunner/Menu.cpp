@@ -48,6 +48,11 @@ tbResult CMenu::Exit() {
 
 // Nachrichtenfunktion für das Hauptmenü
 tbResult MenuMsgProc(int iID, tbGUIMessage* pMsg, tbGUI* pGUI) {
+	switch(pMsg->Type) {
+		case TB_GMT_ELEMENTCLICKED:
+				PostQuitMessage(0);
+
+	}
 /*	switch(pMsg->Type) {
 
 	case TB_GMT_ELEMENTCLICKED:
