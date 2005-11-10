@@ -137,10 +137,11 @@ tbResult CIntro::Render(float fTime)
 	tbDirect3D::GetDevice()->DrawPrimitiveUP(D3DPT_TRIANGLESTRIP, 2, aVertex, sizeof(STitleVertex));
 
 	// ------------------------------------------------------------------
-
 	// Text anzeigen
 	g_pSpaceRunner->m_pMonotypeCorsiva18->Begin();
-	g_pSpaceRunner->m_pMonotypeCorsiva18->DrawText(tbVector2(1.0f, 0.9f), "Powered by TriBase\nV 0.0.1", TB_FF_RELATIVE | TB_FF_RELATIVESCALING | TB_FF_ALIGN_HRIGHT);
+	g_pSpaceRunner->m_pMonotypeCorsiva18->DrawText(tbVector2(1.0f, 0.85f), "Powered by TriBase", TB_FF_RELATIVE | TB_FF_RELATIVESCALING | TB_FF_ALIGN_HRIGHT);
+	g_pSpaceRunner->m_pMonotypeCorsiva18->DrawText(tbVector2(0.9f, 0.9f), "Version", TB_FF_RELATIVE | TB_FF_RELATIVESCALING | TB_FF_ALIGN_HRIGHT);
+	g_pSpaceRunner->m_pMonotypeCorsiva18->DrawText(tbVector2(1.0f, 0.9f), VERSION, TB_FF_RELATIVE | TB_FF_RELATIVESCALING | TB_FF_ALIGN_HRIGHT);
 	g_pSpaceRunner->m_pMonotypeCorsiva18->End();
 
 	// ------------------------------------------------------------------

@@ -50,9 +50,21 @@ tbResult CMenu::Exit() {
 tbResult MenuMsgProc(int iID, tbGUIMessage* pMsg, tbGUI* pGUI) {
 	switch(pMsg->Type) {
 		case TB_GMT_ELEMENTCLICKED:
-				PostQuitMessage(0);
-
+			switch(iID) {
+				case 101:
+					PostQuitMessage(0);
+					break;
+				case 102:
+					PostQuitMessage(0);
+					break;
+				case 103:
+					PostQuitMessage(0);
+					break;
+			}
 	}
+	return TB_OK;
+}
+//				PostQuitMessage(0);
 /*	switch(pMsg->Type) {
 
 	case TB_GMT_ELEMENTCLICKED:
@@ -176,8 +188,6 @@ tbResult MenuMsgProc(int iID, tbGUIMessage* pMsg, tbGUI* pGUI) {
 		break;
 	}
 */
-	return TB_OK;
-}
 
 // __________________________________________________________________
 // Lädt den Spielzustand

@@ -7,7 +7,10 @@
 **	Definition allgemeiner Spielfunktionen
 */
 
+#define VERSION "0.0.2"
+
 #include <TriBase.h>
+#include <string.h>
 //#include "Ship.h"
 #include "Intro.h"
 #include "Menu.h"
