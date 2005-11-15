@@ -179,6 +179,20 @@ public:
 				  BOOL bGenerateExtraData = TRUE,
 				  BOOL bExtraDataOnly = FALSE);
 
+		// Mit einer Primitiven(pcPrimName)initialisieren
+	tbResult Init(char* pcTubeType,	//Tube, TubeCurved45
+				  tbVector3 startPos,
+				  tbVector3 endPos,
+				  float radius,
+				  char* pcTexturePrefix = "",
+				  char* pcTexturePostfix = "",
+		          D3DPOOL VBPool = D3DPOOL_DEFAULT,
+				  DWORD dwVBUsage = D3DUSAGE_WRITEONLY,
+				  D3DPOOL IBPool = D3DPOOL_DEFAULT,
+				  DWORD dwIBUsage = D3DUSAGE_WRITEONLY,
+				  BOOL bGenerateExtraData = TRUE,
+				  BOOL bExtraDataOnly = FALSE);
+
 	tbResult LoadEffectTextures(DWORD dwEffect, char* pcTexturePrefix = "", char* pcTexturePostfix = "");		// Lädt die Texturen eines Effekts
 	tbResult Render(int iFrom = -1, int iTo = -1, BOOL bRenderOpaque = TRUE, BOOL bRenderAlphaBlended = TRUE);	// Rendert das Modell
 	tbResult UpdateExtraData();																				// Aktualisiert die Kollisionsdaten
