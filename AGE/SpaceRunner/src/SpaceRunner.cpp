@@ -158,9 +158,8 @@ tbResult CSpaceRunner::Load()
 	// ------------------------------------------------------------------
 
 	// Schriftarten laden
-	m_pMonotypeCorsiva18 = new tbFont(); if(m_pMonotypeCorsiva18->Init("Data\\Monotype_Corsiva_18.tga", "Data\\Monotype_Corsiva_18.tbf")) TB_ERROR("Fehler beim Laden einer Schriftart!", TB_ERROR);
-	m_pBradleyHandITC22 = new tbFont(); if(m_pBradleyHandITC22->Init("Data\\Bradley_Hand_ITC_22.tga", "Data\\Bradley_Hand_ITC_22.tbf")) TB_ERROR("Fehler beim Laden einer Schriftart!", TB_ERROR);
-	m_pCourier24 = new tbFont(); if(m_pCourier24->Init("Data\\Courier_24.tga", "Data\\Courier_24.tbf")) TB_ERROR("Fehler beim Laden einer Schriftart!", TB_ERROR);
+	m_pCourier_New_6_12 = new tbFont(); if(m_pCourier_New_6_12->Init("Data\\Courier_New_6_12.tga", "Data\\Courier_New_6_12.tbf")) TB_ERROR("Fehler beim Laden einer Schriftart!", TB_ERROR);
+	m_pCourier_New_6_18 = new tbFont(); if(m_pCourier_New_6_18->Init("Data\\Courier_New_6_18.tga", "Data\\Courier_New_6_18.tbf")) TB_ERROR("Fehler beim Laden einer Schriftart!", TB_ERROR);
 
 	// Musik laden
 	m_pTitle = new tbMusic;
@@ -175,8 +174,8 @@ tbResult CSpaceRunner::Load()
 // Entlädt das Spiel
 tbResult CSpaceRunner::Unload() {
 	// Schriftarten löschen
-	TB_SAFE_DELETE(m_pMonotypeCorsiva18);
-	TB_SAFE_DELETE(m_pBradleyHandITC22);
+	TB_SAFE_DELETE(m_pCourier_New_6_12);
+	TB_SAFE_DELETE(m_pCourier_New_6_18);
 
 	// Musik löschen
 	TB_SAFE_DELETE(m_pTitle);

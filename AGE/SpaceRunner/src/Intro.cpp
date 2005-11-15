@@ -112,7 +112,7 @@ tbResult CIntro::Render(float fTime)
 	// Links unten
 	aVertex[0].vPosition = tbVector3(0.0f, tbDirect3D::GetScreenSize().y, 0.5f);
 	aVertex[0].fRHW = 1.0f;
-//	aVertex[0].Color = tbColor(1.0f, 0.8f, 0.8f);
+	aVertex[0].Color = tbColor(1.0f, 0.8f, 0.8f);
 	aVertex[0].vTex0 = tbVector2(0.0f, 1.0f);
 
 	// Links oben
@@ -138,11 +138,11 @@ tbResult CIntro::Render(float fTime)
 
 	// ------------------------------------------------------------------
 	// Text anzeigen
-	g_pSpaceRunner->m_pCourier24->Begin();
-	g_pSpaceRunner->m_pCourier24->DrawText(tbVector2(1.0f, 0.85f), "Powered by TriBase", TB_FF_RELATIVE | TB_FF_RELATIVESCALING | TB_FF_ALIGN_HRIGHT);
-	g_pSpaceRunner->m_pCourier24->DrawText(tbVector2(0.9f, 0.9f), "Version", TB_FF_RELATIVE | TB_FF_RELATIVESCALING | TB_FF_ALIGN_HRIGHT);
-	g_pSpaceRunner->m_pCourier24->DrawText(tbVector2(1.0f, 0.9f), VERSION, TB_FF_RELATIVE | TB_FF_RELATIVESCALING | TB_FF_ALIGN_HRIGHT);
-	g_pSpaceRunner->m_pCourier24->End();
+	g_pSpaceRunner->m_pCourier_New_6_12->Begin();
+	g_pSpaceRunner->m_pCourier_New_6_12->DrawText(tbVector2(1.0f, 0.85f), "Powered by TriBase", TB_FF_RELATIVE | TB_FF_RELATIVESCALING | TB_FF_ALIGN_HRIGHT);
+	g_pSpaceRunner->m_pCourier_New_6_12->DrawText(tbVector2(0.9f, 0.9f), "Version", TB_FF_RELATIVE | TB_FF_RELATIVESCALING | TB_FF_ALIGN_HRIGHT);
+	g_pSpaceRunner->m_pCourier_New_6_12->DrawText(tbVector2(1.0f, 0.9f), VERSION, TB_FF_RELATIVE | TB_FF_RELATIVESCALING | TB_FF_ALIGN_HRIGHT);
+	g_pSpaceRunner->m_pCourier_New_6_12->End();
 
 	// ------------------------------------------------------------------
 

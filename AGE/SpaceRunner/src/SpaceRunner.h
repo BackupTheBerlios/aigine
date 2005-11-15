@@ -43,9 +43,8 @@ public:
 	float					m_fTime;		// Stoppuhr
 
 	// Schriftarten
-	tbFont*					m_pMonotypeCorsiva18;		// Erste Schriftart
-	tbFont*					m_pBradleyHandITC22;		// Zweite Schriftart
-	tbFont*					m_pCourier24;				// Dritte Schriftart
+	tbFont*					m_pCourier_New_6_12;		// Erste Schriftart
+	tbFont*					m_pCourier_New_6_18;		// Zweite Schriftart
 
 	// Musik
 	tbMusic*				m_pTitle;	// title-Musik

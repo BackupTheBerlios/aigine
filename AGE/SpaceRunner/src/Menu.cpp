@@ -206,10 +206,10 @@ tbResult MenuMsgProc(int iID, tbGUIMessage* pMsg, tbGUI* pGUI) {
 // Lädt den Spielzustand
 tbResult CMenu::Load()
 {
-//	CGame* pGame;
+	CGame* pGame;
 
 	// Zeiger kopieren
-//	pGame = g_pGalactica->m_pGame;
+	pGame = g_pSpaceRunner->m_pGame;
 
 	// Hintergrundbild laden
 	m_pBackground = tbTextureManager::GetTexture("Data\\Menu.jpg", TRUE, D3DX_DEFAULT, D3DX_DEFAULT, 1);
@@ -218,7 +218,7 @@ tbResult CMenu::Load()
 	// Skin der Benutzeroberfläche erstellen
 	m_GUISkin.pSkinTexture			= tbTextureManager::GetTexture("Data\\GUI.bmp", TRUE, D3DX_DEFAULT, D3DX_DEFAULT, 1, D3DFMT_UNKNOWN, 0, D3DPOOL_MANAGED, D3DX_DEFAULT, D3DX_DEFAULT, D3DCOLOR_XRGB(255, 0, 255));
 	m_GUISkin.pEffect				= new tbEffect; m_GUISkin.pEffect->Init("Data\\GUI.fx"); m_GUISkin.pEffect->GetEffect()->SetTexture("Texture", m_GUISkin.pSkinTexture);
-	m_GUISkin.pFont					= g_pSpaceRunner->m_pBradleyHandITC22;
+	m_GUISkin.pFont					= g_pSpaceRunner->m_pCourier_New_6_18;
 	m_GUISkin.vCursorSize			= tbVector2(32.0f, 32.0f);
 	m_GUISkin.CursorColor1			= tbColor(1.0f, 1.0f, 1.0f, 0.75f);
 	m_GUISkin.CursorColor2			= tbColor(1.0f, 1.0f, 1.0f, 0.75f);
@@ -288,8 +288,8 @@ tbResult CMenu::Load()
 	m_pGUI->CreateButton(201, 1, tbVector2(50.0f, 50.0f), tbVector2(120.0f, 50.0f), "OK");
 	m_pGUI->CreateFrame(202, 1, tbVector2(230.0f, 50.0f), tbVector2(520.0f, 510.0f));
 	m_pGUI->CreateText(203, 1, tbVector2(250.0f, 70.0f), "Steuerung");
-//	m_pGUI->CreateCheckBox(204, 1, tbVector2(450.0f, 70.0f), tbVector2(32.0f), "Joystick benutzen", g_pSpaceRunner->m_pGame->m_bUseJoystick);
-//	m_pGUI->GetElement(204)->Enable(tbDirectInput::GetNumButtons() > 122);
+	m_pGUI->CreateCheckBox(204, 1, tbVector2(450.0f, 70.0f), tbVector2(32.0f), "Joystick benutzen", g_pSpaceRunner->m_pGame->m_bUseJoystick);
+	m_pGUI->GetElement(204)->Enable(tbDirectInput::GetNumButtons() > 122);
 	m_pGUI->CreateText(205, 1, tbVector2(250.0f, 120.0f), "Aktion", tbColor(1.0f, 0.75f, 0.75f));
 	m_pGUI->CreateText(206, 1, tbVector2(250.0f, 150.0f), "Lenkung\nSchubkontrolle\nVoller Stopp\nLaser abfeuern\nRaketen abfeuern\nNächstes Ziel\nAuto-Aim an/aus\nRadarreichweite erhöhen\nRadarreichweite verringern\nSelbstzerstörung\nCockpitkamera\nJagdkamera\nFreie Jagdkamera\nJagdkamera von vorne\nFlyBy-Kamera\nPadlock-Kamera\nRaketenkamera\nJagdraketenkamera\nFlyBy-Raketenkamera", m_pGUI->GetSkin().EnabledTextColor, tbVector2(0.85f, 1.0f));
 	m_pGUI->CreateText(207, 1, tbVector2(450.0f, 120.0f), "Joystick", tbColor(1.0f, 0.75f, 0.75f));
