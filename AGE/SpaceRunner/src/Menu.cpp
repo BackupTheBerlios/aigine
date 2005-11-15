@@ -51,26 +51,80 @@ tbResult MenuMsgProc(int iID, tbGUIMessage* pMsg, tbGUI* pGUI) {
 	switch(pMsg->Type) {
 		case TB_GMT_ELEMENTCLICKED:
 			switch(iID) {
-				case 101:
-					pGUI->SetCurrentPage(2);
+				case 101: {
+					tbGUIList*	pTeamList;
+					int			iNumShips = 0;
+
+					g_pSpaceRunner->m_pGame->m_bUseJoystick = ((tbGUICheckBox*)(pGUI->GetElement(204)))->IsChecked();
+
+					// Team-Array leeren (-1 steht für "kein Schiff")
+					for(int i = 0; i < 32; i++) {
+						g_Ships[i] = -1;
+					}
+					pTeamList = (tbGUIList*)(pGUI->GetElement(106));
+					for(int j = 0; j < pTeamList->GetNumEntries() && j < 32; j++) {
+					// Schiff hinzufügen
+						g_Ships[j] = ((SShipType*)(pTeamList->GetEntryByOrder(j)->pData))->iIndex;
+						iNumShips++;
+					}
+
+					if(iNumShips > 0) pGUI->SetCurrentPage(2);
 					break;
+					}
 				case 102:
 					pGUI->SetCurrentPage(1);
 					break;
 				case 103:
 					PostQuitMessage(0);
 					break;
+				case 122: // Schiff zu einem Team hinzufügen
+				{
+					tbGUIList* pShipList;
+					tbGUIList* pTeamList;
+					SShipType* pShipType;
+
+					pShipList = (tbGUIList*)(pGUI->GetElement(106));
+					pTeamList = (tbGUIList*)(pGUI->GetElement(iID - 1));
+					pShipType = (SShipType*)(pShipList->GetSelectedEntry()->pData);
+					pTeamList->AddEntry(pShipType->acName, pShipType);
+				 }
+					break;
+				case 123: // Schiff aus einem Team löschen
+				{
+					tbGUIList* pTeamList;
+
+					pTeamList = (tbGUIList*)(pGUI->GetElement(iID - 2));
+					pTeamList->DeleteEntry(pTeamList->GetCursor());
+				 }
+					break;
+
 				case 201: // OK
 					pGUI->SetCurrentPage(0);
 					break;
 			}
 			break;
+		case TB_GMT_SELECTION:
+			switch(iID) {
+				case 106: {
+
+					tbGUIList* pList;
+					tbGUIText* pText;
+					SShipType* pShipType;
+	
+					pList = (tbGUIList*)(pGUI->GetElement(106));
+					pText = (tbGUIText*)(pGUI->GetElement(108));
+					pShipType = (SShipType*)(pList->GetSelectedEntry()->pData);
+					pText->SetText(pShipType->acDesc);
+			  }
+			  break;
+		}
+		break;		
 		case TB_GMT_RENDER:
 			if(pGUI->GetCurrentPage() == 2) {
 			// Aha - der Ladebildschirm wird angezeigt! Jetzt setzen wir
 			// g_bStartGame auf TRUE, damit das Spiel gleich gestartet werden kann.
-				//g_bStartGame = TRUE;
-				PostQuitMessage(0);
+			g_bStartGame = TRUE;
+	//			PostQuitMessage(0);
 			}
 			break;
 
@@ -249,7 +303,7 @@ tbResult CMenu::Load()
 	m_pGUI->CreateButton(102, 0, tbVector2(50.0f, 120.0f), tbVector2(120.0f, 50.0f), "Steuerung");
 	m_pGUI->CreateButton(103, 0, tbVector2(50.0f, 190.0f), tbVector2(120.0f, 50.0f), "Spiel beenden");
 	m_pGUI->CreateFrame(104, 0, tbVector2(230.0f, 50.0f), tbVector2(520.0f, 510.0f));
-/*
+
 	m_pGUI->CreateText(105, 0, tbVector2(250.0f, 70.0f), "Schiffs- und Teamauswahl");
 	
 	m_pGUI->CreateText(105, 0, tbVector2(250.0f, 110.0f), "Verfügbare Schiffstypen");
@@ -259,7 +313,6 @@ tbResult CMenu::Load()
 		((tbGUIList*)(m_pGUI->GetElement(106)))->AddEntry(pGame->m_aShipType[i].acName,
 			                                              &pGame->m_aShipType[i]);
 	}
-
 	m_pGUI->CreateFrame(107, 0, tbVector2(490.0f, 140.0f), tbVector2(240.0f, 120.0f));
 	m_pGUI->CreateText(108, 0, tbVector2(500.0f, 150.0f), "");
 
@@ -268,21 +321,6 @@ tbResult CMenu::Load()
 	m_pGUI->CreateButton(122, 0, tbVector2(320.0f, 270.0f), tbVector2(30.0f, 30.0f), "+");
 	m_pGUI->CreateButton(123, 0, tbVector2(355.0f, 270.0f), tbVector2(30.0f, 30.0f), "-");
 
-	m_pGUI->CreateText(130, 0, tbVector2(500.0f, 270.0f), "Team 2");
-	m_pGUI->CreateList(131, 0, tbVector2(500.0f, 300.0f), tbVector2(192.0f, 100.0f), 20.0f);
-	m_pGUI->CreateButton(132, 0, tbVector2(570.0f, 270.0f), tbVector2(30.0f, 30.0f), "+");
-	m_pGUI->CreateButton(133, 0, tbVector2(605.0f, 270.0f), tbVector2(30.0f, 30.0f), "-");
-
-	m_pGUI->CreateText(140, 0, tbVector2(250.0f, 410.0f), "Team 3");
-	m_pGUI->CreateList(141, 0, tbVector2(250.0f, 440.0f), tbVector2(192.0f, 100.0f), 20.0f);
-	m_pGUI->CreateButton(142, 0, tbVector2(320.0f, 410.0f), tbVector2(30.0f, 30.0f), "+");
-	m_pGUI->CreateButton(143, 0, tbVector2(355.0f, 410.0f), tbVector2(30.0f, 30.0f), "-");
-
-	m_pGUI->CreateText(150, 0, tbVector2(500.0f, 410.0f), "Team 4");
-	m_pGUI->CreateList(151, 0, tbVector2(500.0f, 440.0f), tbVector2(192.0f, 100.0f), 20.0f);
-	m_pGUI->CreateButton(152, 0, tbVector2(570.0f, 410.0f), tbVector2(30.0f, 30.0f), "+");
-	m_pGUI->CreateButton(153, 0, tbVector2(605.0f, 410.0f), tbVector2(30.0f, 30.0f), "-");
-*/
 	// Zweite Seite
 	m_pGUI->CreateFrame(200, 1, tbVector2(10.0f, 10.0f), tbVector2(780.0f, 580.0f));
 	m_pGUI->CreateButton(201, 1, tbVector2(50.0f, 50.0f), tbVector2(120.0f, 50.0f), "OK");
@@ -336,8 +374,9 @@ tbResult CMenu::Move(float fTime)
 
 	if(g_bStartGame == TRUE)
 	{
+		//TODO: game zum laufen bringen. Hier "einschalten"
 		// Spiel starten
-		//g_SpaceRunner->SetGameState(GS_GAME);
+//		g_pSpaceRunner->SetGameState(GS_GAME);
 		PostQuitMessage(0);
 	}
 

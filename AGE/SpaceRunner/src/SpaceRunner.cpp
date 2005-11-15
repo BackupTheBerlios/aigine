@@ -16,6 +16,7 @@ float*		g_pfButtons = NULL;
 BOOL*		g_pbButtons = NULL;
 BOOL*		g_pbOldButtons = NULL;
 float*		g_pfOldButtons = NULL;
+int			g_Ships[32];
 
 
 int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, char* pcCommandLine, int iShowCommand) {
@@ -80,7 +81,7 @@ tbResult CSpaceRunner::Init()
 	m_pGame = new CGame;
 
 	// Schiffs- und Waffentypen laden (noch ohne Modelle)
-//	m_pGame->LoadShipTypes(FALSE);
+	m_pGame->LoadShipTypes(FALSE);
 //	m_pGame->LoadWeaponTypes(FALSE);
 
 	// Wir beginnen beim Intro!

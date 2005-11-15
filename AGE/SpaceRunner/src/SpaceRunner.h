@@ -67,7 +67,7 @@ extern float*		g_pfButtons;
 extern BOOL*		g_pbButtons;
 extern BOOL*		g_pbOldButtons;
 extern float*		g_pfOldButtons;
-//extern int			g_aiTeam[4][32];
+extern int			g_Ships[32];
 
 // Globale Funktionen
 inline BOOL WasButtonPressed(int iButton)	{return !g_pbOldButtons[iButton] && g_pbButtons[iButton];}

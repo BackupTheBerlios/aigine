@@ -671,7 +671,7 @@ tbResult CGame::ReadINIString(char* pcSection,
 	// String lesen
 	GetPrivateProfileString(pcSection, pcKey, "[NOT FOUND]",
 		                    pcOut, iBufferSize,
-							"Data\\Galactica.ini");
+							"Data\\SpaceRunner.ini");
 
 	return TB_OK;
 }
