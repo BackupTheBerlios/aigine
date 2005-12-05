@@ -38,9 +38,16 @@ tbResult CGame::Init()
 	if(Load()) TB_ERROR("Fehler beim Laden des Spielzustands!", TB_ERROR);
 
 	// Kameramodus: Cockpit, Radarreichweite: 4000
-	m_CameraMode = CM_COCKPIT;
+//	m_CameraMode = CM_COCKPIT;
+	//MOD: free_cam
+	m_CameraMode = CM_FREE;
+	m_vCameraPos = tbVector3(0.0,0.0,0.0);
+	m_vCameraLookAt = tbVector3(0.0,0.0,1.0);
+	m_vCameraUp = tbVector3(0.0,1.0,0.0);
+	m_fFOV = TB_DEG_TO_RAD(70.0f);
+
 	m_vCameraPos = tbVector3(0.0f);
-	m_fRadarRange = 4000.0f;
+//	m_fRadarRange = 4000.0f;
 
 	// Schiffe erstellen
 	// Team 1
@@ -103,13 +110,15 @@ tbResult CGame::Init()
 	m_apcCameraMode[CM_MISSILE]			= "Raketenkamera";
 	m_apcCameraMode[CM_MISSILECHASE]	= "Jagdraketenkamera";
 	m_apcCameraMode[CM_MISSILEFLYBY]	= "Fly-By-Raketenkamera";
+	m_apcCameraMode[CM_FREE]			= "Free Camera";
+
 
 	m_fTime = 0.0f;
 
 	// Briefing-Musik stoppen und Action-Musik starten
-/*
-	g_pSpaceRunner->m_pBriefing->Stop();
-	g_pSpaceRunner->m_pAction->Play(TRUE);
+
+	g_pSpaceRunner->m_pTitle->Stop();
+/*	g_pSpaceRunner->m_pAction->Play(TRUE);
 */
 	return TB_OK;
 }
@@ -119,8 +128,8 @@ tbResult CGame::Init()
 tbResult CGame::Exit()
 {
 	// Schiffe und Projektile löschen
-	ZeroMemory(m_aShip, 32 * sizeof(CShip));
-	ZeroMemory(m_aProjectile, 256 * sizeof(CProjectile));
+//	ZeroMemory(m_aShip, 32 * sizeof(CShip));
+//	ZeroMemory(m_aProjectile, 256 * sizeof(CProjectile));
 
 	// Entladen...
 	Unload();
@@ -135,6 +144,10 @@ tbResult CGame::Exit()
 // Lädt den Spielzustand
 tbResult CGame::Load()
 {
+
+	//MOD: Camera-Objekt erstellen
+	//this->m_camera = new CCamera();
+
 	// Textur der Sky-Box laden
 	m_pSkyBoxTex = tbTextureManager::GetCubeTexture("Data\\SkyBox.dds", TRUE, D3DX_DEFAULT, 1);
 	if(m_pSkyBoxTex == NULL) TB_WARNING("Fehler beim Laden der Sky-Box-Textur!")
@@ -163,9 +176,9 @@ tbResult CGame::Load()
 	// ------------------------------------------------------------------
 
 	// Die Sprite-, Schiffstypen und die Waffentypen (mit Modellen) laden
-	if(LoadSpriteTypes()) TB_ERROR("Fehler beim Laden der Sprite-Typen!", TB_ERROR);
-	if(LoadShipTypes(TRUE)) TB_ERROR("Fehler beim Laden der Schiffstypen!", TB_ERROR);
-	if(LoadWeaponTypes(TRUE)) TB_ERROR("Fehler beim Laden der Waffentypen!", TB_ERROR);
+//	if(LoadSpriteTypes()) TB_ERROR("Fehler beim Laden der Sprite-Typen!", TB_ERROR);
+//	if(LoadShipTypes(TRUE)) TB_ERROR("Fehler beim Laden der Schiffstypen!", TB_ERROR);
+//	if(LoadWeaponTypes(TRUE)) TB_ERROR("Fehler beim Laden der Waffentypen!", TB_ERROR);
 
 	// ------------------------------------------------------------------
 
@@ -191,7 +204,7 @@ tbResult CGame::Load()
 	// ------------------------------------------------------------------
 
 	// Hüllentreffersound laden
-	m_pHullHitSound = new tbSound;
+/*	m_pHullHitSound = new tbSound;
 	if(m_pHullHitSound->Init("Data\\HullHit.wav",
 		                     DSBCAPS_STATIC | DSBCAPS_LOCDEFER | DSBCAPS_CTRL3D | DSBCAPS_CTRLFREQUENCY | DSBCAPS_MUTE3DATMAXDISTANCE,
 							 DS3DALG_HRTF_FULL, 16))
@@ -202,9 +215,9 @@ tbResult CGame::Load()
 
 	// Minimale und maximale Distanzen setzen
 	m_pHullHitSound->SetDistances(200.0f, 2000.0f);
-
+*/
 	// Explosionssound laden
-	m_pExplosionSound = new tbSound;
+/*	m_pExplosionSound = new tbSound;
 	if(m_pExplosionSound->Init("Data\\Explosion.wav",
 							   DSBCAPS_STATIC | DSBCAPS_LOCDEFER | DSBCAPS_CTRL3D | DSBCAPS_CTRLFREQUENCY | DSBCAPS_MUTE3DATMAXDISTANCE,
 							   DS3DALG_HRTF_FULL, 16))
@@ -215,9 +228,9 @@ tbResult CGame::Load()
 
 	// Minimale und maximale Distanzen setzen
 	m_pExplosionSound->SetDistances(1000.0f, 6000.0f);
-
+*/
 	// Kollisionssound laden
-	m_pCollisionSound = new tbSound;
+/*	m_pCollisionSound = new tbSound;
 	if(m_pCollisionSound->Init("Data\\Collision.wav",
 							   DSBCAPS_STATIC | DSBCAPS_LOCDEFER | DSBCAPS_CTRL3D | DSBCAPS_CTRLFREQUENCY | DSBCAPS_MUTE3DATMAXDISTANCE,
 							   DS3DALG_HRTF_FULL, 4))
@@ -228,16 +241,16 @@ tbResult CGame::Load()
 
 	// Minimale und maximale Distanzen setzen
 	m_pCollisionSound->SetDistances(200.0f, 2000.0f);
-
+*/
 	// ------------------------------------------------------------------
 
 	// Cockpitmodell laden
-	m_pCockpitModel = new tbModel;
-	if(m_pCockpitModel->Init("Data\\Cockpit.tbm", "Data\\")) TB_ERROR("Fehler beim Laden des Cockpitmodells!", TB_ERROR);
+//	m_pCockpitModel = new tbModel;
+//	if(m_pCockpitModel->Init("Data\\Cockpit.tbm", "Data\\")) TB_ERROR("Fehler beim Laden des Cockpitmodells!", TB_ERROR);
 
 	// Zeichenklasse für die Radartextur erstellen
-	m_pRadar = new tbDraw2D;
-	if(m_pRadar->Init((PDIRECT3DTEXTURE9)(m_pCockpitModel->GetEffects()[2].apTexture[0]), 0)) TB_ERROR("Fehler beim Initialisieren des Radars!", TB_ERROR);
+//	m_pRadar = new tbDraw2D;
+//	if(m_pRadar->Init((PDIRECT3DTEXTURE9)(m_pCockpitModel->GetEffects()[2].apTexture[0]), 0)) TB_ERROR("Fehler beim Initialisieren des Radars!", TB_ERROR);
 
 	return TB_OK;
 }
@@ -247,46 +260,47 @@ tbResult CGame::Load()
 tbResult CGame::Unload()
 {
 	// Sky-Box und Sky-Box-Textur löschen
+	/*
 	if(m_pSkyBox != NULL)
 	{
 		TB_SAFE_DELETE(m_pSkyBox);
 		tbTextureManager::ReleaseTexture(m_pSkyBoxTex);
 	}
-
+*/
 	// Sprite-Engine, Sprites-Textur und Partikelsystem löschen
-	TB_SAFE_DELETE(m_pSprites);
-	if(m_pSpritesEffect != NULL) m_pSpritesEffect->GetEffect()->SetTexture("Texture", NULL);
-	TB_SAFE_DELETE(m_pSpritesEffect);
-	tbTextureManager::ReleaseTexture(m_pSpritesTex);
-	TB_SAFE_DELETE(m_pPSystem);
+//	TB_SAFE_DELETE(m_pSprites);
+//	if(m_pSpritesEffect != NULL) m_pSpritesEffect->GetEffect()->SetTexture("Texture", NULL);
+//	TB_SAFE_DELETE(m_pSpritesEffect);
+//	tbTextureManager::ReleaseTexture(m_pSpritesTex);
+//	TB_SAFE_DELETE(m_pPSystem);
 
 	// Sounds löschen
-	TB_SAFE_DELETE(m_pHullHitSound);
-	TB_SAFE_DELETE(m_pExplosionSound);
-	TB_SAFE_DELETE(m_pCollisionSound);
+//	TB_SAFE_DELETE(m_pHullHitSound);
+//	TB_SAFE_DELETE(m_pExplosionSound);
+//	TB_SAFE_DELETE(m_pCollisionSound);
 
 	// Cockpitmodell und Zeichenklasse für das Radar löschen
-	TB_SAFE_DELETE(m_pRadar);
-	TB_SAFE_DELETE(m_pCockpitModel);
+//	TB_SAFE_DELETE(m_pRadar);
+//	TB_SAFE_DELETE(m_pCockpitModel);
 
 	// Die Schiffstypen löschen
-	for(int iType = 0; iType < m_iNumShipTypes; iType++)
+/*	for(int iType = 0; iType < m_iNumShipTypes; iType++)
 	{
 		TB_SAFE_DELETE(m_aShipType[iType].pModel);
 		TB_SAFE_DELETE(m_aShipType[iType].pCollisionModel);
 		TB_SAFE_DELETE(m_aShipType[iType].pEngineSound);
 		TB_SAFE_DELETE(m_aShipType[iType].pShieldSound);
 	}
-
+*/
 	// Die Waffentypen löschen
-	for(iType = 0; iType < m_iNumWeaponTypes; iType++)
+/*	for(iType = 0; iType < m_iNumWeaponTypes; iType++)
 	{
-		TB_SAFE_DELETE(m_aWeaponType[iType].pLauncherModel);
+//		TB_SAFE_DELETE(m_aWeaponType[iType].pLauncherModel);
 		TB_SAFE_DELETE(m_aWeaponType[iType].pProjectileModel);
 		TB_SAFE_DELETE(m_aWeaponType[iType].pLauncherSound);
 		TB_SAFE_DELETE(m_aWeaponType[iType].pExplosionSound);
 	}
-
+*/
 	return TB_OK;
 }
 
@@ -315,8 +329,8 @@ tbResult CGame::Move(float fTime)
 	m_pPSystem->Move(fTime);
 
 	// Schiffe und Projektile bewegen
-	MoveProjectiles(fTime);
-	MoveShips(fTime);
+//	MoveProjectiles(fTime);
+//	MoveShips(fTime);
 
 	// Stoppuhr aktualisieren
 	m_fTime += fTime;
@@ -325,6 +339,7 @@ tbResult CGame::Move(float fTime)
 
 	// Wenn die Escape-Taste gedrückt wird, geht's zurück ins Hauptmenü.
 	if(g_pbButtons[TB_KEY_ESCAPE]) g_pSpaceRunner->SetGameState(GS_MENU);
+
 
 	// Die F-Tasten bestimmen den Kameramodus
 	if(g_pbButtons[TB_KEY_F1]) m_CameraMode = CM_COCKPIT;
@@ -525,8 +540,8 @@ tbResult CGame::Render(float fTime)
 	tbDirect3D::SetRSF(D3DRS_FOGEND, 5000.0f);
 
 	// Schiffe und Projektile rendern
-	RenderShips(fTime);
-	RenderProjectiles(fTime);
+//	RenderShips(fTime);
+//	RenderProjectiles(fTime);
 
 	// "Sternenfeld" rendern
 	RenderStarfield(fTime);
@@ -550,14 +565,14 @@ tbResult CGame::Render(float fTime)
 	// ------------------------------------------------------------------
 
 	// Eventuell Cockpit und Anzeigen rendern
-	if(m_CameraMode == CM_COCKPIT) RenderCockpit(fTime);
-
+//	if(m_CameraMode == CM_COCKPIT) RenderCockpit(fTime);
+/*
 	if(m_pSkyBox != NULL)
 	{
 		// Blenden der Sonne rendern
 		RenderSunFlares(fTime);
 	}
-
+*/
 	// ------------------------------------------------------------------
 /*
 	g_pSpaceRunner->m_pFont1->Begin();
@@ -591,6 +606,7 @@ tbResult CGame::Render(float fTime)
 
 // __________________________________________________________________
 // Liest einen int-Wert aus der INI-Datei
+/*
 int CGame::ReadINIInt(char* pcSection,
 					  char* pcKey)
 {
@@ -603,9 +619,10 @@ int CGame::ReadINIInt(char* pcSection,
 	// In int-Wert umwandeln
 	return atoi(acString);
 }
-
+*/
 // __________________________________________________________________
 // Liest einen float-Wert aus der INI-Datei
+/*
 float CGame::ReadINIFloat(char* pcSection,
 						  char* pcKey)
 {
@@ -622,9 +639,10 @@ float CGame::ReadINIFloat(char* pcSection,
 
 	return fValue;
 }
-
+*/
 // __________________________________________________________________
 // Liest einen tbVector3-Wert aus der INI-Datei
+/*
 tbVector3 CGame::ReadINIVector3(char* pcSection,
 								char* pcKey)
 {
@@ -641,9 +659,10 @@ tbVector3 CGame::ReadINIVector3(char* pcSection,
 
 	return vValue;
 }
-
+*/
 // __________________________________________________________________
 // Liest einen tbColor-Wert aus der INI-Datei
+/*
 tbColor CGame::ReadINIColor(char* pcSection,
 							char* pcKey)
 {
@@ -660,9 +679,10 @@ tbColor CGame::ReadINIColor(char* pcSection,
 
 	return Value;
 }
-
+*/
 // __________________________________________________________________
 // Liest einen String aus der INI-Datei
+/*
 tbResult CGame::ReadINIString(char* pcSection,
 							  char* pcKey,
 							  char* pcOut,
@@ -675,9 +695,10 @@ tbResult CGame::ReadINIString(char* pcSection,
 
 	return TB_OK;
 }
-
+*/
 // __________________________________________________________________
 // Lädt die Sprite-Typen
+/*
 tbResult CGame::LoadSpriteTypes()
 {
 	tbColor	Sprite;
@@ -699,9 +720,10 @@ tbResult CGame::LoadSpriteTypes()
 
 	return TB_OK;
 }
-
+*/
 // __________________________________________________________________
 // Lädt die Schiffstypen
+/*
 tbResult CGame::LoadShipTypes(BOOL bFullLoad)
 {
 	char		acSection[256];
@@ -854,9 +876,10 @@ tbResult CGame::LoadShipTypes(BOOL bFullLoad)
 
 	return TB_OK;
 }
-
+*/
 // __________________________________________________________________
 // Lädt die Waffentypen
+/*
 tbResult CGame::LoadWeaponTypes(BOOL bFullLoad)
 {
 	char			acSection[256];
@@ -1002,13 +1025,14 @@ tbResult CGame::LoadWeaponTypes(BOOL bFullLoad)
 
 	return TB_OK;
 }
+*/
 
 // __________________________________________________________________
 // Setzt die Kamera
 tbResult CGame::SetupCamera()
 {
 	float			fDist;
-	CProjectile*	pMissile = NULL;
+//	CProjectile*	pMissile = NULL;
 	tbMatrix		mCamera;
 	tbMatrix		mProjection;
 	tbVector3		vDirToTarget;
@@ -1017,6 +1041,33 @@ tbResult CGame::SetupCamera()
 	// Position, Blickpunkt, Nach-Oben-Vektor und Blickfeld je nach Kameramodus setzen
 	switch(m_CameraMode)
 	{
+	case CM_FREE:
+	//MOD: S.Blaum
+		m_vCameraPos = tbVector3(0.0, 0.0, 0.0);
+		m_vCameraLookAt = tbVector3(0.0,0.0,1.0);
+		m_vCameraUp = tbVector3(0.0,1.0,0.0);
+		m_fFOV = TB_DEG_TO_RAD(70.0f);
+		//TODO: Kamera frei bewegen
+/*
+		if(g_pbButtons[TB_KEY_UP]) {
+			m_vCameraPos = tbVector3(0.0, 0.0, 0.0);
+			m_vCameraLookAt = tbVector3(0.0,0.0,1.0);
+			m_vCameraUp = tbVector3(0.0,1.0,0.0);
+			m_fFOV = TB_DEG_TO_RAD(70.0f);
+		}
+
+		if(g_pbButtons[TB_KEY_DOWN]); 
+		if(g_pbButtons[TB_KEY_LEFT]) {
+			m_vCameraPos = tbVector3(m_vCameraPos.x - 0.1, 0.0, 0.0);
+			m_vCameraLookAt = tbVector3(m_vCameraLookAt.x - 0.1,0.0,1.0);
+			m_vCameraUp = tbVector3(0.0,1.0,0.0);
+			m_fFOV = TB_DEG_TO_RAD(70.0f);
+		}
+		if(g_pbButtons[TB_KEY_RIGHT]);
+*/
+		break;
+
+/*
 	case CM_COCKPIT:
 		// Die Kamera befindet sich im Cockpit.
 		// Wo das liegt (relativ zum Schiff), ist in der Variablen vCockpitPos
@@ -1157,7 +1208,7 @@ tbResult CGame::SetupCamera()
 		}
 		break;
 		}
-	}
+*/	}
 
 #ifdef _3D_GLASSES_
 	static DWORD dwFrame;
@@ -1189,6 +1240,7 @@ tbResult CGame::SetupCamera()
 
 // __________________________________________________________________
 // Erstellt ein Schiff
+/*
 int CGame::CreateShip(int iTeam,
 					  int iType)
 {
@@ -1252,9 +1304,10 @@ int CGame::CreateShip(int iTeam,
 	// Kein Platz mehr!
 	return -1;
 }
-
+*/
 // __________________________________________________________________
 // Bewegt alle Schiffe
+/*
 tbResult CGame::MoveShips(float fTime)
 {
 	BOOL		abChecked[32][32];
@@ -1385,9 +1438,10 @@ tbResult CGame::MoveShips(float fTime)
 
 	return TB_OK;
 }
-
+*/
 // __________________________________________________________________
 // Rendert alle Schiffe
+/*
 tbResult CGame::RenderShips(float fTime)
 {
 	// Jedes Schiff durchgehen
@@ -1415,9 +1469,10 @@ tbResult CGame::RenderShips(float fTime)
 
 	return TB_OK;
 }
-
+*/
 // __________________________________________________________________
 // Bewegt alle Projektile
+/*
 tbResult CGame::MoveProjectiles(float fTime)
 {
 	// Jedes Projektil durchgehen
@@ -1433,9 +1488,10 @@ tbResult CGame::MoveProjectiles(float fTime)
 
 	return TB_OK;
 }
-
+*/
 // __________________________________________________________________
 // Rendert alle Projektile
+/*
 tbResult CGame::RenderProjectiles(float fTime)
 {
 	// Jedes Projektil durchgehen
@@ -1451,9 +1507,10 @@ tbResult CGame::RenderProjectiles(float fTime)
 
 	return TB_OK;
 }
-
+*/
 // __________________________________________________________________
 // Rendert das "Sternenfeld"
+
 tbResult CGame::RenderStarfield(float fTime)
 {
 	int			iSeed;
@@ -1532,6 +1589,7 @@ tbResult CGame::RenderPlain(float fTime)
 
 // __________________________________________________________________
 // Rendert das Cockpit
+/*
 tbResult CGame::RenderCockpit(float fTime)
 {
 	static tbVector3	vCockpitShaking;
@@ -1755,7 +1813,7 @@ tbResult CGame::RenderCockpit(float fTime)
 	tbDirect3D::SetRS(D3DRS_ALPHABLENDENABLE, FALSE);
 
 	// ------------------------------------------------------------------
-/*
+
 	g_pSapceRunner->m_pFont2->Begin();
 
 	// Radarreichweite anzeigen
@@ -1866,12 +1924,13 @@ tbResult CGame::RenderCockpit(float fTime)
 	}
 
 	g_pGalactica->m_pFont2->End();
-*/
+
 	return TB_OK;
 }
-
+*/
 // __________________________________________________________________
 // Rendert das Radar
+/*
 tbResult CGame::RenderRadar(float fTime)
 {
 	tbVector3	vRelPos;
@@ -2032,9 +2091,10 @@ tbResult CGame::RenderRadar(float fTime)
 
 	return TB_OK;
 }
-
+*/
 // __________________________________________________________________
 // Rendert das Blenden der Sonne
+/*
 tbResult CGame::RenderSunFlares(float fTime)
 {
 	SHUDVertex	aVertex[4];
@@ -2091,9 +2151,10 @@ tbResult CGame::RenderSunFlares(float fTime)
 
 	return TB_OK;
 }
-
+*/
 // __________________________________________________________________
 // Prüft, ob zwei Schiffe kollidieren
+/*
 BOOL CGame::ShipHitsShip(CShip* pShipA,
 						 CShip* pShipB,
 						 tbVector3* pvOut)
@@ -2103,5 +2164,5 @@ BOOL CGame::ShipHitsShip(CShip* pShipA,
 		                    pShipB->m_pType->pCollisionModel, pShipB->m_mMatrix, pShipB->m_mInvMatrix,
 							pvOut);
 }
-
+*/
 // __________________________________________________________________

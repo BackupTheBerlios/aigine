@@ -81,7 +81,7 @@ tbResult CSpaceRunner::Init()
 	m_pGame = new CGame;
 
 	// Schiffs- und Waffentypen laden (noch ohne Modelle)
-	m_pGame->LoadShipTypes(FALSE);
+//	m_pGame->LoadShipTypes(FALSE);
 //	m_pGame->LoadWeaponTypes(FALSE);
 
 	// Wir beginnen beim Intro!
@@ -198,7 +198,6 @@ tbResult CSpaceRunner::Unload() {
 // Move- und Render-Funktion (Kapselung)
 tbResult Move(float fTime) {return g_pSpaceRunner->Move(fTime);}
 tbResult Render(float fTime) {return g_pSpaceRunner->Render(fTime);}
-
 // __________________________________________________________________
 // Lässt das Spiel laufen
 tbResult CSpaceRunner::Run()

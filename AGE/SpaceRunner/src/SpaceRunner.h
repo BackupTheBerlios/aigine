@@ -11,12 +11,13 @@
 
 #include <TriBase.h>
 #include <string.h>
-#include "Ship.h"
+//#include "Ship.h"
 #include "Intro.h"
 #include "Menu.h"
-#include "Projectile.h"
+//#include "Projectile.h"
 #include "Game.h"
 #include "Resource.h"
+#include "Camera.h"
 
 
 // Spielzustände
