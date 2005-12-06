@@ -2,7 +2,7 @@
 **	Space Runner
 **	=========
 **
-**	Caméra.cpp
+**	Camera.cpp
 **	--------
 **	kamera-Objekt
 */
@@ -11,21 +11,34 @@
 
 // __________________________________________________________________
 // Bewegt ein Schiff
-tbResult CCamera::Move(float fTime)
+tbResult CCamera::MoveCamera(float fTime)
 {
 	tbVector3	vPosition;
+	
+
+	//SetRotation(tbVector3(0.0f, 0.0f, 0.0f));
+	//SetVelocity(tbVector3(0.0f, 0.0f, 0.0f));
 
 	Control(fTime);
 
+	if(m_fThrottle < -1.0f) m_fThrottle = -1.0f;
+	else if(m_fThrottle > 1.0f) m_fThrottle = 1.0f;
+	if(m_vSteering.x < -1.0f) m_vSteering.x = -1.0f;
+	else if(m_vSteering.x > 1.0f) m_vSteering.x = 1.0f;
+	if(m_vSteering.y < -1.0f) m_vSteering.y = -1.0f;
+	else if(m_vSteering.y > 1.0f) m_vSteering.y = 1.0f;
+	if(m_vSteering.z < -1.0f) m_vSteering.z = -1.0f;
+	else if(m_vSteering.z > 1.0f) m_vSteering.z = 1.0f;
+
 	// Antriebskraft nach vorne wirken lassen
-	//AddVelocityRel(tbVector3(0.0f, 0.0f, 0.0f));
+	AddVelocityAbs(tbVector3(0.0f, 0.0f, m_fThrottle * 400.0f));
 
 	// Schiff drehen
-	//AddRotationRel(0.0f);
+	AddRotationAbs(m_vSteering * TB_DEG_TO_RAD(45.0f));
 
 	// Bewegungen durchführen (tbObject)
 	Move(fTime);
-
+	Update();
 	return TB_OK;
 }
 
@@ -44,22 +57,14 @@ tbResult CCamera::Control(float fTime)
 	int			iNumWeapons;
 
 
+	// Relative Schubkontrolle
+	m_fThrottle = g_pfButtons[TB_KEY_ADD] - g_pfButtons[TB_KEY_SUBTRACT];
+	if(g_pbButtons[TB_KEY_BACK]) m_fThrottle = 0.0f;
 
 	// Lenkung
 	m_vSteering.x = g_pfButtons[TB_KEY_UP] - g_pfButtons[TB_KEY_DOWN];
 	m_vSteering.y = g_pfButtons[TB_KEY_RIGHT] - g_pfButtons[TB_KEY_LEFT];
 	m_vSteering.z = g_pfButtons[TB_KEY_Q] - g_pfButtons[TB_KEY_W];
-
-
-	// Lenkung...
-	m_vSteering = tbVector3(0.0f);
-	if(vAimAtRel.x < 0.0f) m_vSteering.y = -1.0f;
-	if(vAimAtRel.x > 0.0f) m_vSteering.y = 1.0f;
-	if(vAimAtRel.y < 0.0f) m_vSteering.x = 1.0f;
-	if(vAimAtRel.y > 0.0f) m_vSteering.x = -1.0f;
-	m_vSteering.x += tbFloatRandom(-0.5f, 0.5f);
-	m_vSteering.y += tbFloatRandom(-0.5f, 0.5f);
-	m_vSteering.z += tbFloatRandom(-0.5f, 0.5f);
 
 
 	return TB_OK;

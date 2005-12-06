@@ -62,8 +62,9 @@ public:
 	float					m_fFOV;					// Sichtfeld
 	tbPlane					m_aViewFrustum[6];		// View-Frustum
 
-//	CCamera					m_camera;				//Camera-Object
-
+	CCamera					m_aCamera[1];
+	CCamera*				m_pCamera;				//Camera-Object
+	
 //	CShip					m_aShip[32];			// Die Schiffe
 //	CShip*					m_pPlayer;				// Zeiger auf das Schiff des Spielers
 //	CProjectile				m_aProjectile[256];		// Die Projektile
@@ -82,13 +83,15 @@ public:
 //	int			ReadINIInt(char* pcSection, char* pcKey);									// Liest einen int-Wert aus der INI-Datei
 //	float		ReadINIFloat(char* pcSection, char* pcKey);									// Liest einen float-Wert aus der INI-Datei
 //	tbVector3	ReadINIVector3(char* pcSection, char* pcKey);								// Liest einen 3D-Vektor aus der INI-Datei
-//	tbColor		ReadINIColor(char* pcSection, char* pcKey);									// Liest eine Farbe (4D-Vektor) aus der INI-Datei
-//	tbResult	ReadINIString(char* pcSection, char* pcKey, char* pcOut, int iBufferSize);	// Liest einen String aus der INI-Datei
-//	tbResult	LoadSpriteTypes();															// Lädt die Sprite-Typen
+	tbColor		ReadINIColor(char* pcSection, char* pcKey);									// Liest eine Farbe (4D-Vektor) aus der INI-Datei
+	tbResult	ReadINIString(char* pcSection, char* pcKey, char* pcOut, int iBufferSize);	// Liest einen String aus der INI-Datei
+	tbResult	LoadSpriteTypes();															// Lädt die Sprite-Typen
 //	tbResult	LoadShipTypes(BOOL bFullLoad);												// Lädt die Schiffstypen
 //	tbResult	LoadWeaponTypes(BOOL bFullLoad);											// Lädt die Waffentypen
 	tbResult	SetupCamera();																// Setzt die Kamera
 
+	int			CreateCamera();
+	tbResult	MoveCameras(float fTime);
 //	int			CreateShip(int iTeam, int iType);											// Erstellt ein Schiff
 //	tbResult	MoveShips(float fTime);														// Bewegt alle Schiffe
 //	tbResult	RenderShips(float fTime);													// Rendert alle Schiffe

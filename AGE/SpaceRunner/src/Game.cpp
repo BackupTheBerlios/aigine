@@ -32,7 +32,7 @@ CGame::CGame()
 // Initialisiert den Spielzustand
 tbResult CGame::Init()
 {
-	int iShip;
+//	int iShip;
 
 	// Laden...
 	if(Load()) TB_ERROR("Fehler beim Laden des Spielzustands!", TB_ERROR);
@@ -41,12 +41,13 @@ tbResult CGame::Init()
 //	m_CameraMode = CM_COCKPIT;
 	//MOD: free_cam
 	m_CameraMode = CM_FREE;
-	m_vCameraPos = tbVector3(0.0,0.0,0.0);
-	m_vCameraLookAt = tbVector3(0.0,0.0,1.0);
-	m_vCameraUp = tbVector3(0.0,1.0,0.0);
-	m_fFOV = TB_DEG_TO_RAD(70.0f);
 
 	m_vCameraPos = tbVector3(0.0f);
+
+	CreateCamera();
+
+	m_pCamera = &m_aCamera[0];
+
 //	m_fRadarRange = 4000.0f;
 
 	// Schiffe erstellen
@@ -130,6 +131,7 @@ tbResult CGame::Exit()
 	// Schiffe und Projektile löschen
 //	ZeroMemory(m_aShip, 32 * sizeof(CShip));
 //	ZeroMemory(m_aProjectile, 256 * sizeof(CProjectile));
+	ZeroMemory(m_aCamera, 1 * sizeof(CCamera));
 
 	// Entladen...
 	Unload();
@@ -144,9 +146,6 @@ tbResult CGame::Exit()
 // Lädt den Spielzustand
 tbResult CGame::Load()
 {
-
-	//MOD: Camera-Objekt erstellen
-	//this->m_camera = new CCamera();
 
 	// Textur der Sky-Box laden
 	m_pSkyBoxTex = tbTextureManager::GetCubeTexture("Data\\SkyBox.dds", TRUE, D3DX_DEFAULT, 1);
@@ -176,7 +175,7 @@ tbResult CGame::Load()
 	// ------------------------------------------------------------------
 
 	// Die Sprite-, Schiffstypen und die Waffentypen (mit Modellen) laden
-//	if(LoadSpriteTypes()) TB_ERROR("Fehler beim Laden der Sprite-Typen!", TB_ERROR);
+	if(LoadSpriteTypes()) TB_ERROR("Fehler beim Laden der Sprite-Typen!", TB_ERROR);
 //	if(LoadShipTypes(TRUE)) TB_ERROR("Fehler beim Laden der Schiffstypen!", TB_ERROR);
 //	if(LoadWeaponTypes(TRUE)) TB_ERROR("Fehler beim Laden der Waffentypen!", TB_ERROR);
 
@@ -260,19 +259,21 @@ tbResult CGame::Load()
 tbResult CGame::Unload()
 {
 	// Sky-Box und Sky-Box-Textur löschen
-	/*
 	if(m_pSkyBox != NULL)
 	{
 		TB_SAFE_DELETE(m_pSkyBox);
 		tbTextureManager::ReleaseTexture(m_pSkyBoxTex);
 	}
-*/
+
+	//Kamera löschen
+	//TB_SAFE_DELETE(m_pCamera);
+
 	// Sprite-Engine, Sprites-Textur und Partikelsystem löschen
-//	TB_SAFE_DELETE(m_pSprites);
-//	if(m_pSpritesEffect != NULL) m_pSpritesEffect->GetEffect()->SetTexture("Texture", NULL);
-//	TB_SAFE_DELETE(m_pSpritesEffect);
-//	tbTextureManager::ReleaseTexture(m_pSpritesTex);
-//	TB_SAFE_DELETE(m_pPSystem);
+	TB_SAFE_DELETE(m_pSprites);
+	if(m_pSpritesEffect != NULL) m_pSpritesEffect->GetEffect()->SetTexture("Texture", NULL);
+	TB_SAFE_DELETE(m_pSpritesEffect);
+	tbTextureManager::ReleaseTexture(m_pSpritesTex);
+	TB_SAFE_DELETE(m_pPSystem);
 
 	// Sounds löschen
 //	TB_SAFE_DELETE(m_pHullHitSound);
@@ -332,6 +333,8 @@ tbResult CGame::Move(float fTime)
 //	MoveProjectiles(fTime);
 //	MoveShips(fTime);
 
+	//Kamera bewegen
+	MoveCameras(fTime);
 	// Stoppuhr aktualisieren
 	m_fTime += fTime;
 
@@ -662,7 +665,6 @@ tbVector3 CGame::ReadINIVector3(char* pcSection,
 */
 // __________________________________________________________________
 // Liest einen tbColor-Wert aus der INI-Datei
-/*
 tbColor CGame::ReadINIColor(char* pcSection,
 							char* pcKey)
 {
@@ -679,10 +681,8 @@ tbColor CGame::ReadINIColor(char* pcSection,
 
 	return Value;
 }
-*/
 // __________________________________________________________________
 // Liest einen String aus der INI-Datei
-/*
 tbResult CGame::ReadINIString(char* pcSection,
 							  char* pcKey,
 							  char* pcOut,
@@ -695,10 +695,8 @@ tbResult CGame::ReadINIString(char* pcSection,
 
 	return TB_OK;
 }
-*/
 // __________________________________________________________________
 // Lädt die Sprite-Typen
-/*
 tbResult CGame::LoadSpriteTypes()
 {
 	tbColor	Sprite;
@@ -720,7 +718,6 @@ tbResult CGame::LoadSpriteTypes()
 
 	return TB_OK;
 }
-*/
 // __________________________________________________________________
 // Lädt die Schiffstypen
 /*
@@ -1043,28 +1040,10 @@ tbResult CGame::SetupCamera()
 	{
 	case CM_FREE:
 	//MOD: S.Blaum
-		m_vCameraPos = tbVector3(0.0, 0.0, 0.0);
-		m_vCameraLookAt = tbVector3(0.0,0.0,1.0);
-		m_vCameraUp = tbVector3(0.0,1.0,0.0);
+		m_vCameraPos = m_pCamera->RelToAbsPos(m_pCamera->GetPosition());
+		m_vCameraLookAt = m_vCameraPos + m_pCamera->m_vZAxis;
+		m_vCameraUp = m_pCamera->m_vYAxis;
 		m_fFOV = TB_DEG_TO_RAD(70.0f);
-		//TODO: Kamera frei bewegen
-/*
-		if(g_pbButtons[TB_KEY_UP]) {
-			m_vCameraPos = tbVector3(0.0, 0.0, 0.0);
-			m_vCameraLookAt = tbVector3(0.0,0.0,1.0);
-			m_vCameraUp = tbVector3(0.0,1.0,0.0);
-			m_fFOV = TB_DEG_TO_RAD(70.0f);
-		}
-
-		if(g_pbButtons[TB_KEY_DOWN]); 
-		if(g_pbButtons[TB_KEY_LEFT]) {
-			m_vCameraPos = tbVector3(m_vCameraPos.x - 0.1, 0.0, 0.0);
-			m_vCameraLookAt = tbVector3(m_vCameraLookAt.x - 0.1,0.0,1.0);
-			m_vCameraUp = tbVector3(0.0,1.0,0.0);
-			m_fFOV = TB_DEG_TO_RAD(70.0f);
-		}
-		if(g_pbButtons[TB_KEY_RIGHT]);
-*/
 		break;
 
 /*
@@ -1239,6 +1218,26 @@ tbResult CGame::SetupCamera()
 }
 
 // __________________________________________________________________
+//Erstellt die kamera
+int CGame::CreateCamera() {
+	CCamera* pCam;
+	pCam = &m_aCamera[0];
+	ZeroMemory(pCam, sizeof(CCamera));
+
+	pCam->m_pGame = this;
+
+
+
+	pCam->Reset();
+	pCam->m_fMass = 0.0f;
+	pCam->m_fMovementFriction = 0.0f;
+	pCam->m_fRotationFriction = 0.0f;
+	pCam->m_fRadius = 1.0f;
+	pCam->m_fThrottle = 0.0f;
+
+	return 0;
+}
+
 // Erstellt ein Schiff
 /*
 int CGame::CreateShip(int iTeam,
@@ -1306,6 +1305,12 @@ int CGame::CreateShip(int iTeam,
 }
 */
 // __________________________________________________________________
+//Bewegt die Kamera
+tbResult CGame::MoveCameras(float fTime) {
+	m_pCamera->MoveCamera(fTime);
+	return TB_OK;
+}
+
 // Bewegt alle Schiffe
 /*
 tbResult CGame::MoveShips(float fTime)
