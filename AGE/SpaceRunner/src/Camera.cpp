@@ -31,10 +31,12 @@ tbResult CCamera::MoveCamera(float fTime)
 	else if(m_vSteering.z > 1.0f) m_vSteering.z = 1.0f;
 
 	// Antriebskraft nach vorne wirken lassen
-	AddVelocityAbs(tbVector3(0.0f, 0.0f, m_fThrottle * 400.0f));
+//	AddVelocityAbs(tbVector3(0.0f, 0.0f, m_fThrottle * 400.0f));
+	AddVelocityRel(tbVector3(0.0f, 0.0f, m_fThrottle * 400.0f));
 
 	// Schiff drehen
-	AddRotationAbs(m_vSteering * TB_DEG_TO_RAD(45.0f));
+//	AddRotationAbs(m_vSteering * TB_DEG_TO_RAD(45.0f));
+	AddRotationRel(m_vSteering * TB_DEG_TO_RAD(45.0f));
 
 	// Bewegungen durchführen (tbObject)
 	Move(fTime);

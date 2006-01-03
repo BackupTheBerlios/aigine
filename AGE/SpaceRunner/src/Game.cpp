@@ -1040,7 +1040,8 @@ tbResult CGame::SetupCamera()
 	{
 	case CM_FREE:
 	//MOD: S.Blaum
-		m_vCameraPos = m_pCamera->RelToAbsPos(m_pCamera->GetPosition());
+//		m_vCameraPos = m_pCamera->RelToAbsPos(m_pCamera->GetPosition());
+		m_vCameraPos = m_pCamera->GetPosition();
 		m_vCameraLookAt = m_vCameraPos + m_pCamera->m_vZAxis;
 		m_vCameraUp = m_pCamera->m_vYAxis;
 		m_fFOV = TB_DEG_TO_RAD(70.0f);
