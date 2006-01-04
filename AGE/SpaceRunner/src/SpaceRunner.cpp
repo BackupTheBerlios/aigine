@@ -81,7 +81,7 @@ tbResult CSpaceRunner::Init()
 	m_pGame = new CGame;
 
 	// Schiffs- und Waffentypen laden (noch ohne Modelle)
-//	m_pGame->LoadShipTypes(FALSE);
+	m_pGame->LoadShipTypes(FALSE);
 //	m_pGame->LoadWeaponTypes(FALSE);
 
 	// Wir beginnen beim Intro!

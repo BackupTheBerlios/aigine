@@ -7,11 +7,11 @@
 **	Definition allgemeiner Spielfunktionen
 */
 
-#define VERSION "0.0.3"
+#define VERSION "0.0.4"
 
 #include <TriBase.h>
 #include <string.h>
-//#include "Ship.h"
+#include "Ship.h"
 #include "Camera.h"
 #include "Intro.h"
 #include "Menu.h"
@@ -68,7 +68,7 @@ extern float*		g_pfButtons;
 extern BOOL*		g_pbButtons;
 extern BOOL*		g_pbOldButtons;
 extern float*		g_pfOldButtons;
-//extern int			g_Ships[32];
+extern int			g_Ships[32];
 
 // Globale Funktionen
 inline BOOL WasButtonPressed(int iButton)	{return !g_pbOldButtons[iButton] && g_pbButtons[iButton];}

@@ -37,17 +37,10 @@ tbResult CShip::MoveShip(float fTime)
 	else if(m_vSteering.z > 1.0f) m_vSteering.z = 1.0f;
 
 	// Antriebskraft nach vorne wirken lassen
-	AddVelocityRel(tbVector3(0.0f, 0.0f,
-	                         m_fThrottle *
-							 m_pType->fMaxAccel *
-							 m_fEngineEfficiency *
-							 fTime));
+//	AddVelocityRel(tbVector3(0.0f, 0.0f, m_fThrottle * m_pType->fMaxAccel * m_fEngineEfficiency * fTime));
 
 	// Schiff drehen
-	AddRotationRel(m_vSteering *
-	               TB_DEG_TO_RAD(m_pType->fMaxAngularAccel) *
-				   m_fEngineEfficiency *
-				   fTime);
+//	AddRotationRel(m_vSteering * TB_DEG_TO_RAD(m_pType->fMaxAngularAccel) * m_fEngineEfficiency * fTime);
 
 	// Bewegungen durchführen (tbObject)
 	Move(fTime);
@@ -158,12 +151,12 @@ tbResult CShip::MoveShip(float fTime)
 				// 4 Explosionssounds abspielen
 				if(i < 4)
 				{
-					iSound = m_pGame->m_pExplosionSound->PlayAvailableBuffer();
+//					iSound = m_pGame->m_pExplosionSound->PlayAvailableBuffer();
 					if(iSound != -1)
 					{
 						// Zufällige Frequenz und die 3D-Position setzen
-						m_pGame->m_pExplosionSound->SetFrequency((DWORD)(iSound), tbIntRandom(14100, 44100));
-						m_pGame->m_pExplosionSound->SetPosition((DWORD)(iSound), vPosition);
+//						m_pGame->m_pExplosionSound->SetFrequency((DWORD)(iSound), tbIntRandom(14100, 44100));
+//						m_pGame->m_pExplosionSound->SetPosition((DWORD)(iSound), vPosition);
 					}
 				}
 			}
@@ -221,12 +214,12 @@ tbResult CShip::MoveShip(float fTime)
 					// 2 Explosionssounds abspielen
 					if(i < 2)
 					{
-						iSound = m_pGame->m_pExplosionSound->PlayAvailableBuffer();
+//						iSound = m_pGame->m_pExplosionSound->PlayAvailableBuffer();
 						if(iSound != -1)
 						{
 							// Zufällige Frequenz und die 3D-Position setzen
-							m_pGame->m_pExplosionSound->SetFrequency((DWORD)(iSound), tbIntRandom(24100, 44100));
-							m_pGame->m_pExplosionSound->SetPosition((DWORD)(iSound), vPosition);
+//							m_pGame->m_pExplosionSound->SetFrequency((DWORD)(iSound), tbIntRandom(24100, 44100));
+//							m_pGame->m_pExplosionSound->SetPosition((DWORD)(iSound), vPosition);
 						}
 					}
 				}
@@ -341,6 +334,7 @@ tbResult CShip::UpdateSound(float fTime)
 
 // __________________________________________________________________
 // Feuert eine Waffe des Schiffs ab
+/*
 tbResult CShip::Fire(int iWeapon)
 {
 	CProjectile*	pProjectile;
@@ -480,7 +474,7 @@ tbResult CShip::Fire(int iWeapon)
 
 	return TB_OK;
 }
-
+*/
 // __________________________________________________________________
 // Steuert das Schiff
 tbResult CShip::Control(float fTime)
@@ -549,7 +543,7 @@ tbResult CShip::Control(float fTime)
 				if(m_pType->apWeaponType[w]->bIsLaserWeapon)
 				{
 					// Feuer!
-					Fire(w);
+//					Fire(w);
 				}
 			}
 		}
@@ -562,7 +556,7 @@ tbResult CShip::Control(float fTime)
 				if(!m_pType->apWeaponType[w]->bIsLaserWeapon)
 				{
 					// Feuer!
-					Fire(w);
+//					Fire(w);
 				}
 			}
 		}
@@ -746,14 +740,14 @@ tbResult CShip::Control(float fTime)
 					if((m_pType->apWeaponType[w]->bAutoAim && m_bAutoAim && fabsf(fAngle) <= TB_DEG_TO_RAD(m_pType->apWeaponType[w]->fMaxAutoAimAngle)) ||
 					   (!m_pType->apWeaponType[w]->bAutoAim && fabsf(fAngle) <= TB_DEG_TO_RAD(10.0f)))
 					{
-						Fire(w);
+//						Fire(w);
 					}
 				}
 				else
 				{
 					// Raketen werden abgefeuert, wenn das Ziel eine Mindestentfernung
 					// von 300 Einheiten hat oder der Winkel sehr klein ist.
-					if(fDistance > 300.0f || fabsf(fAngle) <= TB_DEG_TO_RAD(10.0f)) Fire(w);
+//					if(fDistance > 300.0f || fabsf(fAngle) <= TB_DEG_TO_RAD(10.0f)) Fire(w);
 				}
 			}
 		}
