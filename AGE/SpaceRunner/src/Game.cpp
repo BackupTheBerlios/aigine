@@ -102,7 +102,7 @@ tbResult CGame::Init()
 //	for(int s = 0; s <= iShip; s++) m_aShip[s].m_iTarget = tbIntRandom(0, iShip);
 
 	// Namen der Kameramodi eintragen
-	m_apcCameraMode[CM_COCKPIT]			= "";
+	m_apcCameraMode[CM_COCKPIT]			= "Cockpitkamera";
 	m_apcCameraMode[CM_CHASE]			= "Jagdkamera";
 	m_apcCameraMode[CM_FREECHASE]		= "Freie Jagdkamera";
 	m_apcCameraMode[CM_FRONTCHASE]		= "Jagdkamera von vorne";
@@ -345,15 +345,15 @@ tbResult CGame::Move(float fTime)
 
 
 	// Die F-Tasten bestimmen den Kameramodus
-	if(g_pbButtons[TB_KEY_F1]) m_CameraMode = CM_COCKPIT;
-	if(g_pbButtons[TB_KEY_F2]) m_CameraMode = CM_CHASE;
-	if(g_pbButtons[TB_KEY_F3]) m_CameraMode = CM_FREECHASE;
-	if(g_pbButtons[TB_KEY_F4]) m_CameraMode = CM_FRONTCHASE;
-	if(g_pbButtons[TB_KEY_F5]) m_CameraMode = CM_FLYBY;
-	if(g_pbButtons[TB_KEY_F6]) m_CameraMode = CM_PADLOCK;
-	if(g_pbButtons[TB_KEY_F7]) m_CameraMode = CM_MISSILE;
-	if(g_pbButtons[TB_KEY_F8]) m_CameraMode = CM_MISSILECHASE;
-	if(g_pbButtons[TB_KEY_F9]) m_CameraMode = CM_MISSILEFLYBY;
+	if(g_pbButtons[TB_KEY_F1]) m_CameraMode = CM_FREE;
+	if(g_pbButtons[TB_KEY_F2]) m_CameraMode = CM_COCKPIT;
+	if(g_pbButtons[TB_KEY_F3]) m_CameraMode = CM_CHASE;
+//	if(g_pbButtons[TB_KEY_F4]) m_CameraMode = CM_FRONTCHASE;
+//	if(g_pbButtons[TB_KEY_F5]) m_CameraMode = CM_FLYBY;
+//	if(g_pbButtons[TB_KEY_F6]) m_CameraMode = CM_PADLOCK;
+//	if(g_pbButtons[TB_KEY_F7]) m_CameraMode = CM_MISSILE;
+//	if(g_pbButtons[TB_KEY_F8]) m_CameraMode = CM_MISSILECHASE;
+//	if(g_pbButtons[TB_KEY_F9]) m_CameraMode = CM_MISSILEFLYBY;
 
 	// Musik verarbeiten
 //	g_pSpaceRunner->m_pAction->Process();
@@ -465,15 +465,15 @@ tbResult CGame::Render(float fTime)
 
 		// ------------------------------------------------------------------
 
-		g_pGalactica->m_pFont1->Begin();
+		g_pGalactica->m_pCourier_New_6_12->Begin();
 
 		// Name des Kameramodus anzeigen
-		g_pGalactica->m_pFont1->DrawText(tbVector2(10.0f, 10.0f), m_apcCameraMode[m_CameraMode]);
+		g_pGalactica->m_pCourier_New_6_12->DrawText(tbVector2(10.0f, 10.0f), m_apcCameraMode[m_CameraMode]);
 
 		if(m_bPaused)
 		{
 			// "Pause"-Text anzeigen
-			g_pGalactica->m_pFont1->DrawText(tbVector2(0.5f, 0.5f), "[ P A U S E ]",
+			g_pGalactica->m_pCourier_New_6_12->DrawText(tbVector2(0.5f, 0.5f), "[ P A U S E ]",
 											 TB_FF_ALIGN_HCENTER | TB_FF_ALIGN_VCENTER |
 											 TB_FF_RELATIVE | TB_FF_RELATIVESCALING);
 		}
@@ -482,10 +482,10 @@ tbResult CGame::Render(float fTime)
 		{
 			// Framerate anzeigen
 			sprintf(acText, "FPS: %.2f", 1.0f / fTime);
-			g_pGalactica->m_pFont1->DrawText(tbVector2(10.0f, 30.0f), acText);
+			g_pGalactica->m_pCourier_New_6_12->DrawText(tbVector2(10.0f, 30.0f), acText);
 		}
 
-		g_pGalactica->m_pFont1->End();
+		g_pGalactica->m_pCourier_New_6_12->End();
 
 		// Szene beenden
 		tbDirect3D::EndScene();
@@ -577,16 +577,16 @@ tbResult CGame::Render(float fTime)
 	}
 */
 	// ------------------------------------------------------------------
-/*
-	g_pSpaceRunner->m_pFont1->Begin();
+
+	g_pSpaceRunner->m_pCourier_New_6_12->Begin();
 
 	// Name des Kameramodus anzeigen
-	g_pSpaceRunner->m_pFont1->DrawText(tbVector2(10.0f, 10.0f), m_apcCameraMode[m_CameraMode]);
+	g_pSpaceRunner->m_pCourier_New_6_12->DrawText(tbVector2(10.0f, 10.0f), m_apcCameraMode[m_CameraMode]);
 
 	if(m_bPaused)
 	{
 		// "Pause"-Text anzeigen
-		g_pSpaceRunner->m_pFont1->DrawText(tbVector2(0.5f, 0.5f), "[ P A U S E ]",
+		g_pSpaceRunner->m_pCourier_New_6_12->DrawText(tbVector2(0.5f, 0.5f), "[ P A U S E ]",
 			                             TB_FF_ALIGN_HCENTER | TB_FF_ALIGN_VCENTER |
 										 TB_FF_RELATIVE | TB_FF_RELATIVESCALING);
 	}
@@ -595,11 +595,11 @@ tbResult CGame::Render(float fTime)
 	{
 		// Framerate anzeigen
 		sprintf(acText, "FPS: %.2f", 1.0f / fTime);
-		g_pSSpaceRunner->m_pFont1->DrawText(tbVector2(10.0f, 30.0f), acText);
+		g_pSpaceRunner->m_pCourier_New_6_12->DrawText(tbVector2(10.0f, 30.0f), acText);
 	}
 
-	g_pSpaceRunner->m_pFont1->End();
-*/
+	g_pSpaceRunner->m_pCourier_New_6_12->End();
+
 	// Szene beenden
 	tbDirect3D::EndScene();
 #endif
@@ -609,8 +609,7 @@ tbResult CGame::Render(float fTime)
 
 // __________________________________________________________________
 // Liest einen int-Wert aus der INI-Datei
-int CGame::ReadINIInt(char* pcSection,
-					  char* pcKey)
+int CGame::ReadINIInt(char* pcSection, char* pcKey)
 {
 	char acString[256];
 
@@ -1042,7 +1041,7 @@ tbResult CGame::SetupCamera()
 		m_fFOV = TB_DEG_TO_RAD(70.0f);
 		break;
 
-/*
+
 	case CM_COCKPIT:
 		// Die Kamera befindet sich im Cockpit.
 		// Wo das liegt (relativ zum Schiff), ist in der Variablen vCockpitPos
@@ -1060,7 +1059,7 @@ tbResult CGame::SetupCamera()
 		m_vCameraUp = m_pPlayer->m_vYAxis;
 		m_fFOV = TB_DEG_TO_RAD(80.0f);
 		break;
-
+/*
 	case CM_FREECHASE:
 		// Die Kamera befindet sich hinter und über dem Schiff.
 		m_vCameraPos = m_pPlayer->RelToAbsPos(tbVector3(0.0f, m_pPlayer->m_pType->pModel->GetBoundingSphereRadius() * 0.5f, -m_pPlayer->m_pType->pModel->GetBoundingSphereRadius() * 2.5f));

@@ -24,7 +24,13 @@ tbResult CShip::MoveShip(float fTime)
 	m_fSensorsEfficiency = 1.0f - (m_fSensorsDamage / m_pType->fMaxSensorsDamage);
 
 	// Schiff steuern (lassen)
-	Control(fTime);
+		//Schiff ist AI-Schiff
+	//oder
+	//Spieler im Cockpit-Modus und dieses Schiff ist Spielerschiff
+	if(m_iIndex > 0 || (m_pGame->m_CameraMode == CM_COCKPIT && m_iIndex == 0)) {
+
+		Control(fTime);
+	}
 
 	// Schub und Lenkung begrenzen
 	if(m_fThrottle < -0.5f) m_fThrottle = -0.5f;
@@ -37,10 +43,10 @@ tbResult CShip::MoveShip(float fTime)
 	else if(m_vSteering.z > 1.0f) m_vSteering.z = 1.0f;
 
 	// Antriebskraft nach vorne wirken lassen
-//	AddVelocityRel(tbVector3(0.0f, 0.0f, m_fThrottle * m_pType->fMaxAccel * m_fEngineEfficiency * fTime));
+	AddVelocityRel(tbVector3(0.0f, 0.0f, m_fThrottle * m_pType->fMaxAccel * m_fEngineEfficiency * fTime));
 
 	// Schiff drehen
-//	AddRotationRel(m_vSteering * TB_DEG_TO_RAD(m_pType->fMaxAngularAccel) * m_fEngineEfficiency * fTime);
+	AddRotationRel(m_vSteering * TB_DEG_TO_RAD(m_pType->fMaxAngularAccel) * m_fEngineEfficiency * fTime);
 
 	// Bewegungen durchführen (tbObject)
 	Move(fTime);
