@@ -19,11 +19,7 @@ tbResult CCamera::MoveCamera(float fTime)
 	//SetRotation(tbVector3(0.0f, 0.0f, 0.0f));
 	//SetVelocity(tbVector3(0.0f, 0.0f, 0.0f));
 
-	//Spieler im free camera-Modus?
-	if(m_pGame->m_CameraMode == CM_FREE) {
-
-		Control(fTime);
-	}
+	Control(fTime);
 
 	if(m_fThrottle < -1.0f) m_fThrottle = -1.0f;
 	else if(m_fThrottle > 1.0f) m_fThrottle = 1.0f;

@@ -331,10 +331,16 @@ tbResult CGame::Move(float fTime)
 
 	// Schiffe und Projektile bewegen
 //	MoveProjectiles(fTime);
-	MoveShips(fTime);
 
-	//Kamera bewegen
-	MoveCameras(fTime);
+	//Spieler im free camera-Modus?
+	if(m_CameraMode == CM_FREE) {
+		//Kamera bewegen
+		MoveCameras(fTime);
+	}
+    
+	MoveShips(fTime);
+	
+
 	// Stoppuhr aktualisieren
 	m_fTime += fTime;
 

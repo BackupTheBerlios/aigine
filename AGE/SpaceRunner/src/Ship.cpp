@@ -23,14 +23,7 @@ tbResult CShip::MoveShip(float fTime)
 	m_fShieldEfficiency = 1.0f - (m_fShieldDamage / m_pType->fMaxShieldDamage);
 	m_fSensorsEfficiency = 1.0f - (m_fSensorsDamage / m_pType->fMaxSensorsDamage);
 
-	// Schiff steuern (lassen)
-		//Schiff ist AI-Schiff
-	//oder
-	//Spieler im Cockpit-Modus und dieses Schiff ist Spielerschiff
-	if(m_iIndex > 0 || (m_pGame->m_CameraMode == CM_COCKPIT && m_iIndex == 0)) {
-
-		Control(fTime);
-	}
+	Control(fTime);
 
 	// Schub und Lenkung begrenzen
 	if(m_fThrottle < -0.5f) m_fThrottle = -0.5f;
@@ -506,7 +499,7 @@ tbResult CShip::Control(float fTime)
 	else if(!m_pGame->m_aShip[m_iTarget].m_bExists || m_pGame->m_aShip[m_iTarget].m_fExplosionCountDown != 0.0f) m_iTarget = FindNextTarget(m_iTarget, this == m_pGame->m_pPlayer ? -1 : m_iTeam);
 
 	// Spieler oder Computer?
-	if(m_pGame->m_pPlayer == this)
+	if(m_pGame->m_pPlayer == this && m_pGame->m_CameraMode != CM_FREE)
 	{
 		if(m_pGame->m_bUseJoystick)
 		{
@@ -589,11 +582,11 @@ tbResult CShip::Control(float fTime)
 	else
 	{
 		// Zeiger auf das aktuelle Zielschiff bestimmen.
-		// Ist kein Ziel ausgewählt, so kreist das Schiff.
+		// Ist kein Ziel ausgewählt, so bewegt sich das Schiff nicht.
 		if(m_iTarget == -1)
 		{
-			m_vSteering = tbVector3(0.0f, 0.1f, 0.0f);
-			m_fThrottle = 0.25f;
+			m_vSteering = tbVector3(0.0f, 0.0f, 0.0f);
+			m_fThrottle = 0.0f;
 
 			return TB_OK;
 		}
