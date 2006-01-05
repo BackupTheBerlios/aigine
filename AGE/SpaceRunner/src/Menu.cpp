@@ -62,15 +62,16 @@ tbResult MenuMsgProc(int iID, tbGUIMessage* pMsg, tbGUI* pGUI) {
 					for(int i = 0; i < 32; i++) {
 						g_Ships[i] = -1;
 					}
-					pTeamList = (tbGUIList*)(pGUI->GetElement(106));
+					pTeamList = (tbGUIList*)(pGUI->GetElement(121));
 					for(int j = 0; j < pTeamList->GetNumEntries() && j < 32; j++) {
 					// Schiff hinzufügen
+						TB_INFO("Schiff hinzugefügt");
 						g_Ships[j] = ((SShipType*)(pTeamList->GetEntryByOrder(j)->pData))->iIndex;
 						iNumShips++;
 					}
 
 					if(iNumShips > 0) pGUI->SetCurrentPage(2);
-					pGUI->SetCurrentPage(2);
+//					pGUI->SetCurrentPage(2);
 					break;
 					}
 				case 102:
