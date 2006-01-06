@@ -40,7 +40,6 @@ tbResult CShip::MoveShip(float fTime)
 
 	// Schiff drehen
 	AddRotationRel(m_vSteering * TB_DEG_TO_RAD(m_pType->fMaxAngularAccel) * m_fEngineEfficiency * fTime);
-
 	// Bewegungen durchführen (tbObject)
 	Move(fTime);
 
