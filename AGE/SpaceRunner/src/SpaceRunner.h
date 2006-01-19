@@ -12,6 +12,7 @@
 #include <TriBase.h>
 #include <string.h>
 #include "Ship.h"
+#include "CheckPoint.h"
 #include "Camera.h"
 #include "Intro.h"
 #include "Menu.h"

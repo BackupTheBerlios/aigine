@@ -5,6 +5,7 @@
 **	Camera.h
 **	------
 **	Camera-Objekt für die freie Kamera
+**	SBlaum
 */
 
 class CGame;

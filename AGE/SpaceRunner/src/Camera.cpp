@@ -5,6 +5,7 @@
 **	Camera.cpp
 **	--------
 **	kamera-Objekt
+**	SBlaum
 */
 
 #include "SpaceRunner.h"

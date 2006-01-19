@@ -1433,10 +1433,10 @@ tbResult CGame::MoveShips(float fTime)
 				m_pCollisionSound->SetFrequency((DWORD)(iSound), tbIntRandom(34100, 44100));
 				m_pCollisionSound->SetPosition((DWORD)(iSound), vCollision);
 			}
-
+*/
 			abChecked[s1][s2] = TRUE;
 			abChecked[s2][s1] = TRUE;
-*/
+
 		}
 	}
 
