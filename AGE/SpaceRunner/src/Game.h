@@ -52,8 +52,10 @@ public:
 
 	int						m_iNumShipTypes;		// Anzahl der Schiffstypen
 	int						m_iNumWeaponTypes;		// Anzahl der Waffentypen
+	int						m_iNumCheckPointTypes;	// Anzahl der CheckPointtypen
 	SShipType				m_aShipType[256];		// Die Schiffstypen
 	SWeaponType				m_aWeaponType[256];		// Wie Waffentypen
+	SCheckPointType			m_aCheckPointType[256];	//Die CheckPointTypen
 
 	ECameraMode				m_CameraMode;			// Kameramodus;
 	tbVector3				m_vCameraPos;			// Position der Kamera
@@ -67,6 +69,8 @@ public:
 	
 	CShip					m_aShip[32];			// Die Schiffe
 	CShip*					m_pPlayer;				// Zeiger auf das Schiff des Spielers
+	CCheckPoint				m_aCheckPoint[64];		// Die CheckPoints
+
 //	CProjectile				m_aProjectile[256];		// Die Projektile
 
 	// Konstruktor
@@ -88,13 +92,16 @@ public:
 	tbResult	LoadSpriteTypes();															// Lädt die Sprite-Typen
 	tbResult	LoadShipTypes(BOOL bFullLoad);												// Lädt die Schiffstypen
 //	tbResult	LoadWeaponTypes(BOOL bFullLoad);											// Lädt die Waffentypen
+	tbResult	LoadCheckPointTypes(BOOL bFullLoad);
 	tbResult	SetupCamera();																// Setzt die Kamera
 
 	int			CreateCamera();
 	tbResult	MoveCameras(float fTime);
 	int			CreateShip(int iTeam, int iType);											// Erstellt ein Schiff
+	int			CreateCheckPoint(int iType);
 	tbResult	MoveShips(float fTime);														// Bewegt alle Schiffe
 	tbResult	RenderShips(float fTime);													// Rendert alle Schiffe
+	tbResult	RenderCheckPoints(float fTime);													// Rendert alle Schiffe
 
 //	tbResult	MoveProjectiles(float fTime);												// Bewegt alle Projektile
 //	tbResult	RenderProjectiles(float fTime);												// Rendert alle Projektile

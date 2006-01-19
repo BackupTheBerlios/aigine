@@ -33,6 +33,7 @@ CGame::CGame()
 tbResult CGame::Init()
 {
 	int iShip;
+	int iCheckPoint;
 
 	// Laden...
 	if(Load()) TB_ERROR("Fehler beim Laden des Spielzustands!", TB_ERROR);
@@ -49,6 +50,20 @@ tbResult CGame::Init()
 	m_pCamera = &m_aCamera[0];
 
 //	m_fRadarRange = 4000.0f;
+
+	for(int j = 0; j < 64; j++) {
+		g_CheckPoints[j] = -1;
+	}
+
+	g_CheckPoints[0] = 0;
+
+	for(int i = 0; i < 64; i++) {
+		if(g_CheckPoints[i] != -1) {
+            iCheckPoint = CreateCheckPoint(g_CheckPoints[i]);
+			m_aCheckPoint[iCheckPoint].SetPosition(tbVector3((float)(i) * 100.0f, 0.0f, -2500.0f) + tbVector3Random() * 20.0f);
+//			m_aCheckPoint[iCheckPoint].Align(tbVector3(0.0f, 0.0f, 1.0f) + tbVector3Random() * 0.25f);
+		}
+	}
 
 	// Schiffe erstellen
 	// Team 1
@@ -178,6 +193,8 @@ tbResult CGame::Load()
 	if(LoadSpriteTypes()) TB_ERROR("Fehler beim Laden der Sprite-Typen!", TB_ERROR);
 	if(LoadShipTypes(TRUE)) TB_ERROR("Fehler beim Laden der Schiffstypen!", TB_ERROR);
 //	if(LoadWeaponTypes(TRUE)) TB_ERROR("Fehler beim Laden der Waffentypen!", TB_ERROR);
+	if(LoadCheckPointTypes(TRUE)) TB_ERROR("Fehler beim Laden der CheckPointtypen!", TB_ERROR);
+
 
 	// ------------------------------------------------------------------
 
@@ -551,6 +568,7 @@ tbResult CGame::Render(float fTime)
 	// Schiffe und Projektile rendern
 	RenderShips(fTime);
 //	RenderProjectiles(fTime);
+	RenderCheckPoints(fTime);
 
 	// "Sternenfeld" rendern
 	RenderStarfield(fTime);
@@ -718,6 +736,58 @@ tbResult CGame::LoadSpriteTypes()
 	}
 
 	return TB_OK;
+}
+// __________________________________________________________________
+//Lädt die CheckPoints
+tbResult CGame::LoadCheckPointTypes(BOOL bFullLoad) {
+	char		acSection[256];
+	char		acKey[256];
+	SCheckPointType*	pType;
+
+	// Anzahl der CheckPointTypen lesen
+	m_iNumCheckPointTypes = ReadINIInt("Checkpoints", "NumCheckPointTypes");
+	if(m_iNumCheckPointTypes == 12345678) TB_ERROR("!!Fehler beim Lesen der INI-Datei!", TB_ERROR);
+	
+	for(int iType = 0; iType < m_iNumCheckPointTypes; iType++) {
+		// Namen der Sektion der Daten dieses Schiffs generieren
+		sprintf(acSection, "Checkpoint%d", iType + 1);
+		pType = &m_aCheckPointType[iType];
+		pType->iIndex = iType;
+		
+		// Name des Models und des Kollisionsmodels lesen
+		ReadINIString(acSection, "Model", pType->acModel, 256);
+		ReadINIString(acSection, "CollisionModel", pType->acCollisionModel, 256);
+
+		if(bFullLoad)
+		{
+			// Logbucheintrag erzeugen
+			tbWriteToLog("Lade ´CheckPoint-Typ aus \"%s\"...", pType->acModel);
+
+			// Modell laden
+			pType->pModel = new tbModel;
+			if(pType->pModel->Init(pType->acModel, "Data\\", "",
+				                   D3DPOOL_DEFAULT, 0, D3DPOOL_DEFAULT, 0,
+								   FALSE, FALSE))
+			{
+				// Fehler!
+				TB_ERROR("Fehler beim Laden eines ChekPointmodells!", TB_ERROR);
+			}
+
+			// Kollisionsmodell laden
+			pType->pCollisionModel = new tbModel;
+			if(pType->pCollisionModel->Init(pType->acCollisionModel, "Data\\", "",
+											D3DPOOL_DEFAULT, 0, D3DPOOL_DEFAULT, 0,
+											TRUE, TRUE))
+			{
+				// Fehler!
+				TB_ERROR("Fehler beim Laden eines CheckPointkollisionsmodells!", TB_ERROR);
+			}
+		}
+
+	}
+
+	return TB_OK;
+	
 }
 // __________________________________________________________________
 // Lädt die Schiffstypen
@@ -1303,6 +1373,40 @@ int CGame::CreateShip(int iTeam,
 	// Kein Platz mehr!
 	return -1;
 }
+
+// Erstellt ein Schiff
+int CGame::CreateCheckPoint(int iType)
+{
+	CCheckPoint* pCheckPoint;
+
+	// Freies Schiff suchen
+	for(int iCheckPoint = 0; iCheckPoint < 64; iCheckPoint++)
+	{
+		pCheckPoint = &m_aCheckPoint[iCheckPoint];
+		if(!pCheckPoint->m_bExists)
+		{
+			// Freies Schiff gefunden!
+			// Speicherbereich zurücksetzen.
+			ZeroMemory(pCheckPoint, sizeof(CCheckPoint));
+
+			// Standardwerte eintragen
+			pCheckPoint->m_pGame = this;
+			pCheckPoint->m_bExists = TRUE;
+			pCheckPoint->m_iIndex = iCheckPoint;
+
+			// Typ kopieren
+			pCheckPoint->m_pType = &m_aCheckPointType[iType];
+
+			pCheckPoint->Reset();
+
+			// Index des Schiffs liefern
+			return iCheckPoint;
+		}
+	}
+
+	// Kein Platz mehr!
+	return -1;
+}
 // __________________________________________________________________
 //Bewegt die Kamera
 tbResult CGame::MoveCameras(float fTime) {
@@ -1467,6 +1571,27 @@ tbResult CGame::RenderShips(float fTime)
 
 			// Sound des Schiffs aktualisieren
 			m_aShip[iShip].UpdateSound(fTime);
+		}
+	}
+
+	return TB_OK;
+}
+// __________________________________________________________________
+// Rendert alle Schiffe
+tbResult CGame::RenderCheckPoints(float fTime)
+{
+	// Jedes Schiff durchgehen
+	for(int iCheckPoint = 0; iCheckPoint < 32; iCheckPoint++)
+	{
+		// Existiert das Schiff?
+		if(m_aCheckPoint[iCheckPoint].m_bExists)
+		{
+			// Ist es sichtbar?
+			if(m_aCheckPoint[iCheckPoint].IsVisible())
+			{
+				// Rendern!
+				m_aCheckPoint[iCheckPoint].Render(fTime);
+			}
 		}
 	}
 
