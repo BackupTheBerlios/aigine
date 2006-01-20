@@ -54,18 +54,27 @@ tbResult CGame::Init()
 	for(int j = 0; j < 64; j++) {
 		g_CheckPoints[j] = -1;
 	}
+	char acSection[256];
 
-	for(int k = 0; k < 16;k++) {
+	int numCheckPoints = ReadINIInt("Level", "NumCheckPoints");
+
+	for(int k = 0; k < numCheckPoints;k++) {
         g_CheckPoints[k] = 0;
 	}
+
+
 
 	for(int i = 0; i < 64; i++) {
 		if(g_CheckPoints[i] != -1) {
             iCheckPoint = CreateCheckPoint(g_CheckPoints[i]);
-			m_aCheckPoint[iCheckPoint].SetPosition(tbVector3((float)(i) * 100.0f, 100.0f, -2500.0f) + tbVector3Random() * 20.0f);
+			sprintf(acSection, "CheckPointPosition%d", i + 1);
+			tbVector3 pos = ReadINIVector3("Level",acSection); 
+			m_aCheckPoint[iCheckPoint].SetPosition(pos);
+//			m_aCheckPoint[iCheckPoint].SetPosition(tbVector3((float)(i) * 100.0f, 100.0f, -2500.0f) + tbVector3Random() * 20.0f);
 //			m_aCheckPoint[iCheckPoint].Align(tbVector3(0.0f, 0.0f, 1.0f) + tbVector3Random() * 0.25f);
 		}
 	}
+
 	m_aCheckPoint[0].m_isActive = TRUE;
 
 	// Schiffe erstellen
