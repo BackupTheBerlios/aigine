@@ -32,7 +32,8 @@ tbResult CMenu::Init() {
 	if(g_pSpaceRunner->m_pTitle->GetState() != State_Running) {
 		// Mit Looping...
 		//TODO: Musik wider anschalten
-//		g_pSpaceRunner->m_pTitle->Play();
+		g_pSpaceRunner->m_pAction->Stop();
+		g_pSpaceRunner->m_pTitle->Play();
 	}
 
 	return TB_OK;
@@ -385,7 +386,7 @@ tbResult CMenu::Move(float fTime)
 
 	// Musik überprüfen
 	//TODO: Music wider anmachen
-//	g_pSpaceRunner->m_pTitle->Process();
+	g_pSpaceRunner->m_pTitle->Process();
 
 	return TB_OK;
 }

@@ -50,7 +50,7 @@ public:
 
 	// Musik
 	tbMusic*				m_pTitle;	// title-Musik
-//	tbMusic*				m_pAction;		// Action-Musik
+	tbMusic*				m_pAction;		// Action-Musik
 
 	// Methoden
 	tbResult Init();								// Initialisiert das Spiel komplett

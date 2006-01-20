@@ -165,9 +165,9 @@ tbResult CSpaceRunner::Load()
 
 	// Musik laden
 	m_pTitle = new tbMusic;
-	if(m_pTitle->Init("Data\\Title.mp3")) TB_ERROR("Fehler beim Laden der Titel-Musik!", TB_ERROR);
-//	m_pAction = new tbMusic;
-//	if(m_pAction->Init("Data\\Action.mp3")) TB_ERROR("Fehler beim Laden der Action-Musik!", TB_ERROR);
+	if(m_pTitle->Init("Data\\2-05CandyLove.mp3")) TB_ERROR("Fehler beim Laden der Titel-Musik!", TB_ERROR);
+	m_pAction = new tbMusic;
+	if(m_pAction->Init("Data\\05BurnBurn.mp3")) TB_ERROR("Fehler beim Laden der Action-Musik!", TB_ERROR);
 
 	return TB_OK;
 }

@@ -146,8 +146,8 @@ tbResult CGame::Init()
 	// Briefing-Musik stoppen und Action-Musik starten
 
 	g_pSpaceRunner->m_pTitle->Stop();
-/*	g_pSpaceRunner->m_pAction->Play(TRUE);
-*/
+	g_pSpaceRunner->m_pAction->Play(TRUE);
+
 	return TB_OK;
 }
 
@@ -279,6 +279,8 @@ tbResult CGame::Load()
 	// Zeichenklasse für die Radartextur erstellen
 //	m_pRadar = new tbDraw2D;
 //	if(m_pRadar->Init((PDIRECT3DTEXTURE9)(m_pCockpitModel->GetEffects()[2].apTexture[0]), 0)) TB_ERROR("Fehler beim Initialisieren des Radars!", TB_ERROR);
+	
+//	m_aCheckPoint[0].m_isActive = TRUE;
 
 	return TB_OK;
 }
@@ -391,7 +393,7 @@ tbResult CGame::Move(float fTime)
 //	if(g_pbButtons[TB_KEY_F9]) m_CameraMode = CM_MISSILEFLYBY;
 
 	// Musik verarbeiten
-//	g_pSpaceRunner->m_pAction->Process();
+	g_pSpaceRunner->m_pAction->Process();
 
 	return TB_OK;
 }
@@ -1425,7 +1427,7 @@ int CGame::CreateCheckPoint(int iType)
 			return iCheckPoint;
 		}
 	}
-	m_aCheckPoint[0].m_isActive = true;
+	//m_aCheckPoint[0].m_isActive = true;
 
 	// Kein Platz mehr!
 	return -1;
@@ -1578,7 +1580,12 @@ tbResult CGame::MoveShips(float fTime)
 
 			pCheckPoint->m_isActive = false;
 			pCheckPoint->m_bExists = false;
-
+			
+#ifdef _DEBUG
+			char text[256];
+			sprintf(text, "pCheckPoint->m_iIndex = %d", pCheckPoint->m_iIndex);
+			TB_INFO(text);
+#endif
 			m_aCheckPoint[pCheckPoint->m_iIndex+1].m_isActive = TRUE;
 		}
 	}

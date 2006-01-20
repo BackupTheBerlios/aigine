@@ -36,7 +36,7 @@ tbResult CIntro::Init()
 	}
 
 	//TODO: Music wider an machen
-	g_pSpaceRunner->m_pTitle->Stop();
+//	g_pSpaceRunner->m_pTitle->Stop();
 
 	return TB_OK;
 }
