@@ -30,6 +30,7 @@ public:
 
 	BOOL		m_bExists;					// Existiert dder CheckPoint?
 	int			m_iIndex;					// Index im Array
+	BOOL		m_isActive;					// Ist aktiver CheckPoint?
 	
 	SCheckPointType*	m_pType;					// Zeiger auf CheckPointTypstruktur
 

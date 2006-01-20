@@ -55,15 +55,18 @@ tbResult CGame::Init()
 		g_CheckPoints[j] = -1;
 	}
 
-	g_CheckPoints[0] = 0;
+	for(int k = 0; k < 16;k++) {
+        g_CheckPoints[k] = 0;
+	}
 
 	for(int i = 0; i < 64; i++) {
 		if(g_CheckPoints[i] != -1) {
             iCheckPoint = CreateCheckPoint(g_CheckPoints[i]);
-			m_aCheckPoint[iCheckPoint].SetPosition(tbVector3((float)(i) * 100.0f, 0.0f, -2500.0f) + tbVector3Random() * 20.0f);
+			m_aCheckPoint[iCheckPoint].SetPosition(tbVector3((float)(i) * 100.0f, 100.0f, -2500.0f) + tbVector3Random() * 20.0f);
 //			m_aCheckPoint[iCheckPoint].Align(tbVector3(0.0f, 0.0f, 1.0f) + tbVector3Random() * 0.25f);
 		}
 	}
+	m_aCheckPoint[0].m_isActive = TRUE;
 
 	// Schiffe erstellen
 	// Team 1
@@ -1403,6 +1406,7 @@ int CGame::CreateCheckPoint(int iType)
 			return iCheckPoint;
 		}
 	}
+	m_aCheckPoint[0].m_isActive = true;
 
 	// Kein Platz mehr!
 	return -1;
@@ -1420,6 +1424,7 @@ tbResult CGame::MoveShips(float fTime)
 	BOOL		abChecked[32][32];
 	CShip*		pShip1;
 	CShip*		pShip2;
+	CCheckPoint*	pCheckPoint;
 	int			iSound;
 	tbVector3	vPosition;
 	tbVector3	vCollision;
@@ -1541,6 +1546,21 @@ tbResult CGame::MoveShips(float fTime)
 			abChecked[s1][s2] = TRUE;
 			abChecked[s2][s1] = TRUE;
 
+		}
+		for(int cp = 0; cp < 64; cp++) {
+            pShip1 = &m_aShip[0];
+			pCheckPoint = &m_aCheckPoint[cp];
+
+			if(!pShip1->m_bExists || !pCheckPoint->m_bExists) continue;
+
+			if(!pCheckPoint->m_isActive) continue;
+
+			if(!ShipHitsCheckPoint(pShip1, pCheckPoint, &vCollision)) continue;
+
+			pCheckPoint->m_isActive = false;
+			pCheckPoint->m_bExists = false;
+
+			m_aCheckPoint[pCheckPoint->m_iIndex+1].m_isActive = TRUE;
 		}
 	}
 
@@ -2289,6 +2309,15 @@ BOOL CGame::ShipHitsShip(CShip* pShipA,
 	// Prüfen, ob die Kollisionsmodelle der Schiffe sich schneiden
 	return tbModelHitsModel(pShipA->m_pType->pCollisionModel, pShipA->m_mMatrix, pShipA->m_mInvMatrix,
 		                    pShipB->m_pType->pCollisionModel, pShipB->m_mMatrix, pShipB->m_mInvMatrix,
+							pvOut);
+}
+
+BOOL CGame::ShipHitsCheckPoint(CShip* pShip,
+								CCheckPoint* pCheckPoint,
+								tbVector3* pvOut)
+{
+	return tbModelHitsModel(pShip->m_pType->pCollisionModel, pShip->m_mMatrix, pShip->m_mInvMatrix,
+		                    pCheckPoint->m_pType->pCollisionModel, pCheckPoint->m_mMatrix, pCheckPoint->m_mInvMatrix,
 							pvOut);
 }
 

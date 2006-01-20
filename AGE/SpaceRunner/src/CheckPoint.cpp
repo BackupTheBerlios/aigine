@@ -19,7 +19,6 @@ tbResult CCheckPoint::Render(float fTime)
 	
 	// Das Schiffmodell rendern
 	m_pType->pModel->Render();
-
 	// ------------------------------------------------------------------
 
 	return TB_OK;

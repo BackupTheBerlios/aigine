@@ -112,6 +112,6 @@ public:
 //	tbResult	RenderSunFlares(float fTime);												// Rendert das Blenden der Sonne
 	tbResult	RenderPlain(float fTime);
 	BOOL		ShipHitsShip(CShip* pShipA, CShip* pShipB, tbVector3* pvOut);				// Kollidieren zwei Schiffe?
+	BOOL		ShipHitsCheckPoint(CShip* pShip, CCheckPoint* pCheckPoint, tbVector3* pvOut);
 };
-
 // __________________________________________________________________
