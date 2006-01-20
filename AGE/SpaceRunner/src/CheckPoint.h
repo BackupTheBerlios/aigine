@@ -15,8 +15,10 @@ struct SCheckPointType
 {
 	int				iIndex;						// Index in der Liste
 	char			acModel[256];				// Name der Modelldatei
+	char			acModelActive[256];
 	char			acCollisionModel[256];		// Name des Kollisionsmodells
 	tbModel*		pModel;						// Modell des CheckPointTyps
+	tbModel*		pModelActive;
 	tbModel*		pCollisionModel;			// Kollisionsmodell
 };
 

@@ -760,6 +760,7 @@ tbResult CGame::LoadCheckPointTypes(BOOL bFullLoad) {
 		// Name des Models und des Kollisionsmodels lesen
 		ReadINIString(acSection, "Model", pType->acModel, 256);
 		ReadINIString(acSection, "CollisionModel", pType->acCollisionModel, 256);
+		ReadINIString(acSection, "ModelActive", pType->acModelActive, 256);
 
 		if(bFullLoad)
 		{
@@ -769,6 +770,15 @@ tbResult CGame::LoadCheckPointTypes(BOOL bFullLoad) {
 			// Modell laden
 			pType->pModel = new tbModel;
 			if(pType->pModel->Init(pType->acModel, "Data\\", "",
+				                   D3DPOOL_DEFAULT, 0, D3DPOOL_DEFAULT, 0,
+								   FALSE, FALSE))
+			{
+				// Fehler!
+				TB_ERROR("Fehler beim Laden eines ChekPointmodells!", TB_ERROR);
+			}
+			// Modell(Active) laden
+			pType->pModelActive = new tbModel;
+			if(pType->pModelActive->Init(pType->acModelActive, "Data\\", "",
 				                   D3DPOOL_DEFAULT, 0, D3DPOOL_DEFAULT, 0,
 								   FALSE, FALSE))
 			{
@@ -1609,6 +1619,7 @@ tbResult CGame::RenderCheckPoints(float fTime)
 			// Ist es sichtbar?
 			if(m_aCheckPoint[iCheckPoint].IsVisible())
 			{
+//				m_aCheckPoint[iCheckPoint]
 				// Rendern!
 				m_aCheckPoint[iCheckPoint].Render(fTime);
 			}

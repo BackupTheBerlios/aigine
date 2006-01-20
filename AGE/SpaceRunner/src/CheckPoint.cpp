@@ -17,8 +17,11 @@ tbResult CCheckPoint::Render(float fTime)
 	Update();
 	tbDirect3D::SetTransform(D3DTS_WORLD, m_mMatrix);
 	
-	// Das Schiffmodell rendern
-	m_pType->pModel->Render();
+	if(!m_isActive) {
+        m_pType->pModel->Render();
+	} else {
+		m_pType->pModelActive->Render();
+	}
 	// ------------------------------------------------------------------
 
 	return TB_OK;
