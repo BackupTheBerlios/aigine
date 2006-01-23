@@ -159,6 +159,7 @@ tbResult CGame::Exit()
 	ZeroMemory(m_aShip, 32 * sizeof(CShip));
 //	ZeroMemory(m_aProjectile, 256 * sizeof(CProjectile));
 	ZeroMemory(m_aCamera, 1 * sizeof(CCamera));
+	ZeroMemory(m_aCheckPoint, 64 * sizeof(CCheckPoint));
 
 	// Entladen...
 	Unload();
@@ -323,6 +324,13 @@ tbResult CGame::Unload()
 		TB_SAFE_DELETE(m_aShipType[iType].pEngineSound);
 		TB_SAFE_DELETE(m_aShipType[iType].pShieldSound);
 	}
+
+	for(int iCPType = 0; iCPType < m_iNumCheckPointTypes; iCPType++) {
+		TB_SAFE_DELETE(m_aCheckPointType[iCPType].pModel);
+		TB_SAFE_DELETE(m_aCheckPointType[iCPType].pModelActive);
+		TB_SAFE_DELETE(m_aCheckPointType[iCPType].pCollisionModel);
+	}
+
 
 	// Die Waffentypen löschen
 /*	for(iType = 0; iType < m_iNumWeaponTypes; iType++)
