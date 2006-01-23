@@ -1155,7 +1155,10 @@ tbResult CGame::SetupCamera()
 	case CM_CHASE:
 		// Die Kamera befindet sich hinter und über dem Schiff.
 		m_vCameraPos = m_pPlayer->RelToAbsPos(tbVector3(0.0f, m_pPlayer->m_pType->pModel->GetBoundingSphereRadius() * 0.5f, -m_pPlayer->m_pType->pModel->GetBoundingSphereRadius() * 2.5f));
-		m_vCameraLookAt = m_vCameraPos + m_pPlayer->m_vZAxis;
+
+		m_vCameraLookAt = m_vCameraPos + m_pPlayer->m_vZAxis; 
+//		m_vCameraLookAt = m_vCameraPos + m_pPlayer->m_vVelocity; 
+		
 		m_vCameraUp = m_pPlayer->m_vYAxis;
 		m_fFOV = TB_DEG_TO_RAD(80.0f);
 		break;
