@@ -7,7 +7,10 @@
 **	Definition allgemeiner Spielfunktionen
 */
 
-#define VERSION "0.0.5"
+#define VERSION "0.0.5-("__DATE__")-("__TIME__")"
+#pragma message("Build: " VERSION)
+
+//#define WITH_MUSIC
 
 #include <TriBase.h>
 #include <string.h>

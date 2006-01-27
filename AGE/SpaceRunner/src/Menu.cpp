@@ -28,13 +28,14 @@ tbResult CMenu::Init() {
 	// Laden...
 	if(Load()) TB_ERROR("Fehler beim Laden des Spielzustands!", TB_ERROR);
 
+#ifdef WITH_MUSIC
 	// Briefing-Musik abspielen
 	if(g_pSpaceRunner->m_pTitle->GetState() != State_Running) {
 		// Mit Looping...
-		//TODO: Musik wider anschalten
 		g_pSpaceRunner->m_pAction->Stop();
 		g_pSpaceRunner->m_pTitle->Play();
 	}
+#endif
 
 	return TB_OK;
 }

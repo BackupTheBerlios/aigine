@@ -144,10 +144,10 @@ tbResult CGame::Init()
 	m_fTime = 0.0f;
 
 	// Briefing-Musik stoppen und Action-Musik starten
-
+#ifdef WITH_MUSIC
 	g_pSpaceRunner->m_pTitle->Stop();
 	g_pSpaceRunner->m_pAction->Play(TRUE);
-
+#endif
 	return TB_OK;
 }
 
