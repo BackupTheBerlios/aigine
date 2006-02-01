@@ -21,8 +21,8 @@
 			<Tool
 				Name="VCCLCompilerTool"
 				Optimization="0"
-				AdditionalIncludeDirectories="C:\wsb\TriBase\Include"
-				PreprocessorDefinitions="WIN32;_DEBUG;_WINDOWS;_USRDLL;TRIBASE_EXPORTS"
+				AdditionalIncludeDirectories="C:\wsb\AGE\TriBase\Include"
+				PreprocessorDefinitions="WIN32;_DEBUG;_WINDOWS;_USRDLL;TRIBASE_EXPORTS´;_WIN32_DCOM"
 				BasicRuntimeChecks="3"
 				RuntimeLibrary="1"
 				UsePrecompiledHeader="2"
@@ -42,7 +42,7 @@
 				OutputFile="Debug/TriBaseD.dll"
 				LinkIncremental="1"
 				SuppressStartupBanner="TRUE"
-				AdditionalLibraryDirectories="C:\wsb\TriBase\Lib"
+				AdditionalLibraryDirectories="C:\wsb\AGE\TriBase\Lib"
 				GenerateDebugInformation="TRUE"
 				ProgramDatabaseFile=".\Debug/TriBaseD.pdb"
 				ImportLibrary=".\Debug/TriBaseD.lib"
@@ -94,7 +94,7 @@ COPY &quot;$(OutDir)&quot;\TriBaseD.dll &quot;$(WinDir)&quot;\System32
 				Optimization="2"
 				InlineFunctionExpansion="2"
 				ImproveFloatingPointConsistency="TRUE"
-				AdditionalIncludeDirectories="C:\wsb\TriBase\Include;C:\wsb\TriBase\Include\DShowBaseClasses;&quot;C:\Programme\Microsoft DirectX 9.0 SDK (October 2005)\Include&quot;"
+				AdditionalIncludeDirectories="C:\wsb\AGE\TriBase\Include;C:\wsb\AGE\TriBase\Include\DShowBaseClasses;&quot;C:\Programme\Microsoft DirectX 9.0 SDK (October 2005)\Include&quot;"
 				PreprocessorDefinitions="WIN32;NDEBUG;_WINDOWS;_USRDLL;TRIBASE_EXPORTS"
 				StringPooling="TRUE"
 				RuntimeLibrary="0"
@@ -114,7 +114,7 @@ COPY &quot;$(OutDir)&quot;\TriBaseD.dll &quot;$(WinDir)&quot;\System32
 				OutputFile=".\Release/TriBase.dll"
 				LinkIncremental="1"
 				SuppressStartupBanner="TRUE"
-				AdditionalLibraryDirectories="C:\wsb\TriBase\Lib;&quot;C:\Programme\Microsoft DirectX 9.0 SDK (October 2005)\Lib\x86&quot;"
+				AdditionalLibraryDirectories="C:\wsb\AGE\TriBase\Lib;&quot;C:\Programme\Microsoft DirectX 9.0 SDK (October 2005)\Lib\x86&quot;"
 				ProgramDatabaseFile=".\Release/TriBase.pdb"
 				ImportLibrary=".\Release/TriBase.lib"
 				TargetMachine="1"/>
@@ -255,6 +255,14 @@ COPY &quot;$(OutDir)&quot;\TriBase.dll &quot;$(WinDir)&quot;\System32
 						Name="VCCLCompilerTool"
 						Optimization="2"
 						PreprocessorDefinitions="WIN32;NDEBUG;_WINDOWS;_MBCS;_USRDLL;TRIBASE_EXPORTS;$(NoInherit)"/>
+				</FileConfiguration>
+			</File>
+			<File
+				RelativePath=".\Src\tbClient.cpp">
+				<FileConfiguration
+					Name="Debug|Win32">
+					<Tool
+						Name="VCCLCompilerTool"/>
 				</FileConfiguration>
 			</File>
 			<File
@@ -920,6 +928,15 @@ COPY &quot;$(OutDir)&quot;\TriBase.dll &quot;$(WinDir)&quot;\System32
 				</FileConfiguration>
 			</File>
 			<File
+				RelativePath=".\Src\tbServer.cpp">
+				<FileConfiguration
+					Name="Debug|Win32">
+					<Tool
+						Name="VCCLCompilerTool"
+						PreprocessorDefinitions="TRIBASE_EXPORTS"/>
+				</FileConfiguration>
+			</File>
+			<File
 				RelativePath="Src\tbShadowVolume.cpp">
 				<FileConfiguration
 					Name="Debug|Win32">
@@ -1193,6 +1210,9 @@ COPY &quot;$(OutDir)&quot;\TriBase.dll &quot;$(WinDir)&quot;\System32
 				RelativePath="Include\tbButtonHandler.h">
 			</File>
 			<File
+				RelativePath=".\Include\tbClient.h">
+			</File>
+			<File
 				RelativePath="Include\tbColor.h">
 			</File>
 			<File
@@ -1260,6 +1280,9 @@ COPY &quot;$(OutDir)&quot;\TriBase.dll &quot;$(WinDir)&quot;\System32
 			</File>
 			<File
 				RelativePath="Include\tbPlane.h">
+			</File>
+			<File
+				RelativePath=".\Include\tbServer.h">
 			</File>
 			<File
 				RelativePath="Include\tbShadowVolume.h">
@@ -1504,6 +1527,12 @@ COPY &quot;$(OutDir)&quot;\TriBase.dll &quot;$(WinDir)&quot;\System32
 			</File>
 			<File
 				RelativePath="..\..\Programme\Microsoft DirectX 9.0 SDK (October 2005)\Include\dxtrans.h">
+			</File>
+			<File
+				RelativePath=".\Src\dxutil.cpp">
+			</File>
+			<File
+				RelativePath=".\Include\dxutil.h">
 			</File>
 			<File
 				RelativePath="..\..\Programme\Microsoft DirectX 9.0 SDK (October 2005)\Include\multimon.h">

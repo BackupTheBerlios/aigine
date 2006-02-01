@@ -89,9 +89,13 @@ TRIBASE_API tbResult tbInit()
 
 	// Speichermanager initialisieren
 	if(tbMemInit()) TB_ERROR("Initialisierung des Speichermanagers fehlgeschlagen!", TB_ERROR);
+	
+	//Server initialisieren
+	//if(tbServerInit()) TB_ERROR("Initialisierung des Servers fehlgeschlagen!", TB_ERROR);
 
 	// COM initialisieren
 	if(FAILED(CoInitialize(NULL))) TB_ERROR("COM-Initialisierung fehlgeschlagen!", TB_ERROR);
+
 
 	// Uhr und Zufallsgenerator initialisieren
 	QueryPerformanceFrequency((LARGE_INTEGER*)(&tb_g_llFrequency));

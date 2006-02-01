@@ -21,6 +21,7 @@
 	Snorky
 	[24.9.03]
 
+
 ********************************************************************/
 
 #ifdef TRIBASE_EXPORTS
@@ -30,7 +31,7 @@
 #endif
 
 #define DIRECTINPUT_VERSION (0x0800)
-#include <Windows.h>
+#include <windows.h>
 #include <StdIO.h>
 #include <Sys\\Stat.h>
 #include <Math.h>
@@ -41,6 +42,12 @@
 #include <DShow.h>
 #include <DXErr9.h>
 #include <DShowBaseClasses\\Streams.h>
+
+//mod.:S.Blaum
+#include <commctrl.h>
+#include <dplay8.h>
+#include <dxutil.h>
+
 
 #ifdef _DEBUG
 	#define TB_DLL_HANDLE (GetModuleHandle("TriBaseD.dll"))
@@ -59,6 +66,43 @@
 #define TB_DEG_TO_RAD(x)		((x) * 0.0174532925199432957692369076848f)		// Grad -> Bogenmaß
 #define TB_RAD_TO_DEG(x)		((x) * 57.295779513082320876798154814105f)		// Bogenmaß -> Grad
 
+
+//Server-Status
+#define SERVER_ANGEHALTEN		0
+#define SERVER_GESTARTET		1
+#define SERVER_SPIELBEREIT		2
+#define SERVER_SPIEL_LAEUFT		3
+
+#define MAX_PLAYERS				64
+#define MAX_NAMLEN  32
+
+#define FREI       1
+#define RESERVIERT 2
+#define BESETZT    3
+
+#define MSG_SPIELERLISTE  1001
+
+struct spieler
+	{
+    DPNID dpnid;
+	char status; // FREI, BESETZT oder RESERVIERT
+    char name[MAX_NAMLEN]; 
+	};
+
+struct msg_spielerliste
+	{
+	DWORD msgid;
+	DWORD angemeldet;
+	DWORD maximum;
+	spieler sp[MAX_PLAYERS];
+	};
+
+//Client
+#define WM_SERVERLISTE_AKTUALISIEREN		WM_APP
+#define WM_SPIELER_AKTUALISIEREN			WM_APP+1
+
+
+
 #if _MSC_VER >= 1300
 	#define __TB_FUNCTION__ (__FUNCTION__)
 #else
@@ -76,6 +120,12 @@
 #define TB_ERROR_FILE(f, r)				{tbWriteToLog("<tr><td><font size=\"2\"><b><font color=\"#FF0000\">FEHLER:</font></b> Die Datei <i>%s</i> konnte nicht geöffnet, gelesen, erstellt oder beschrieben werden!</font></td><td><font size=\"2\"> (<i>%s</i>, Zeile <i>%d</i>, Funktion <i>%s</i>)</font></td></tr>", (f), tbRemoveDir(__FILE__), __LINE__, __TB_FUNCTION__); return (r);}
 #define TB_ERROR_RESOURCE(n, t, r)		{tbWriteToLog("<tr><td><font size=\"2\"><b><font color=\"#FF0000\">FEHLER:</font></b> Fehler beim Zugreifen auf die Ressource <i>%d</i> vom Typ <i>%d</i>!</font></td><td><font size=\"2\"> (<i>%s</i>, Zeile <i>%d</i>, Funktion <i>%s</i>)</font></td></tr>", (n), (t), tbRemoveDir(__FILE__), __LINE__, __TB_FUNCTION__); return (r);}
 #define TB_ERROR_DIRECTX(f, x, r)		{tbWriteToLog("<tr><td><font size=\"2\"><b><font color=\"#FF0000\">FEHLER:</font></b> Der Aufruf von <i>%s</i> verursachte den DirectX-Fehler <i>%s</i>! Beschreibung: <i>%s</i></font></td><td><font size=\"2\"> (<i>%s</i>, Zeile <i>%d</i>, Funktion <i>%s</i>)</font></td></tr>", (f), DXGetErrorString9((x)), DXGetErrorDescription9((x)), tbRemoveDir(__FILE__), __LINE__, __TB_FUNCTION__); return (r);}
+
+
+//guid
+// {72B3DD44-2E6F-4d70-9093-C10D0003B592}
+static const GUID tb_guid = { 0x72b3dd44, 0x2e6f, 0x4d70, { 0x90, 0x93, 0xc1, 0xd, 0x0, 0x3, 0xb5, 0x92 } };
+
 
 // ******************************************************************
 // Statuscodes
@@ -150,6 +200,8 @@ TRIBASE_API	tbResult tbSetFramebrake(double dFramebrake = 0.0);												// Se
 #include "tbShadowVolume.h"
 #include "tbVideo.h"
 #include "tbOctree.h"
+#include "tbServer.h"
+#include "tbClient.h"
 
 #include "tbINIReader.h"
 #include "tb2DPrimitives.h"

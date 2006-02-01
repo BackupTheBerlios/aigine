@@ -42,10 +42,16 @@ PDIRECT3D9	g_pD3DTemp;		// Temporäre IDirect3D9-Schnittstelle
 tbConfig*	g_pConfig;		// Auszufüllende Konfigurationsstruktur
 tbConfig	g_TempConfig;	// Temporäre Konfigurationsstruktur
 
+tbServer*	myServer;
+tbClient*	myClient;
+HWND mein_clientdialog = 0;
+HWND mein_serverdialog = 0;
+
 // ******************************************************************
 // Funktionsdeklarationen
 INT_PTR CALLBACK D3DEnumDialogProc(HWND hDlg, unsigned int uiMsg, WPARAM WParam, LPARAM LParam);
-
+HRESULT WINAPI server_messagehandler( PVOID pvUserContext, DWORD dwMessageType, PVOID pMessage);
+HRESULT WINAPI client_messagehandler( PVOID pvUserContext, DWORD dwMessageType, PVOID pMessage);
 // ******************************************************************
 // Diese Funktion löscht die Daten einer ganzen Liste.
 tbResult DeleteListData(HWND hDlg,
@@ -738,6 +744,309 @@ tbResult SetConfig(HWND hDlg,
 	return TB_OK;
 }
 
+
+HRESULT WINAPI server_messagehandler( PVOID pvUserContext, DWORD dwMessageType, PVOID pMessage)
+{
+	int ret = S_OK;
+
+	myServer->lock();
+
+    switch( dwMessageType)
+		{
+	case DPN_MSGID_INDICATE_CONNECT:
+		if( myServer->status == SERVER_SPIEL_LAEUFT)
+			ret = !S_OK;
+		else
+			((PDPNMSG_INDICATE_CONNECT)pMessage)->pvPlayerContext = (void *)myServer->reservierung();
+		break;
+	case DPN_MSGID_INDICATED_CONNECT_ABORTED:
+		myServer->storno((PDPNMSG_INDICATED_CONNECT_ABORTED)pMessage);
+		break;
+    case DPN_MSGID_CREATE_PLAYER:
+		if((int)((PDPNMSG_CREATE_PLAYER)pMessage)->pvPlayerContext != -1) // nicht der Server selbst
+			{
+ 			myServer->buchung( (PDPNMSG_CREATE_PLAYER)pMessage);
+			PostMessage( mein_serverdialog, WM_SPIELER_AKTUALISIEREN, 0, 0);
+			}
+        break;
+		}
+	myServer->unlock();
+
+    return ret;
+}
+HRESULT WINAPI client_messagehandler( PVOID pvUserContext, DWORD dwMessageType, PVOID pMessage)
+{
+	myClient->lock();
+    switch( dwMessageType)
+		{
+    case DPN_MSGID_ENUM_HOSTS_RESPONSE:
+		if( myClient->host_hinzufuegen((PDPNMSG_ENUM_HOSTS_RESPONSE)pMessage))
+			{
+			if( mein_clientdialog)
+				PostMessage( mein_clientdialog, WM_SERVERLISTE_AKTUALISIEREN, 0, 0 );
+			}
+		break;
+		}
+	myClient->unlock();
+    return S_OK;
+}
+
+void chatlisten_initialisieren( HWND hDlg)
+	{
+	HWND lst;
+	LVCOLUMN lvc;
+
+	//server
+	lst = GetDlgItem(hDlg, IDC_CHATLISTE_SERVER);
+	ListView_SetExtendedListViewStyleEx( lst, LVS_EX_FULLROWSELECT|LVS_EX_GRIDLINES, LVS_EX_FULLROWSELECT|LVS_EX_GRIDLINES);
+	lvc.mask = LVCF_TEXT|LVCF_WIDTH|LVCF_FMT;
+	lvc.fmt = LVCFMT_LEFT;
+	lvc.cx = 120;
+	lvc.pszText = "Name";
+	ListView_InsertColumn( lst, 0, &lvc);
+	lvc.cx = 360;
+	lvc.pszText = "Text";
+	ListView_InsertColumn( lst, 1, &lvc);
+
+	//client
+	lst = GetDlgItem(hDlg, IDC_CHATLISTE_CLIENT);
+	ListView_SetExtendedListViewStyleEx( lst, LVS_EX_FULLROWSELECT|LVS_EX_GRIDLINES, LVS_EX_FULLROWSELECT|LVS_EX_GRIDLINES);
+	lvc.mask = LVCF_TEXT|LVCF_WIDTH|LVCF_FMT;
+	lvc.fmt = LVCFMT_LEFT;
+	lvc.cx = 120;
+	lvc.pszText = "Name";
+	ListView_InsertColumn( lst, 0, &lvc);
+	lvc.cx = 300;
+	lvc.pszText = "Text";
+	ListView_InsertColumn( lst, 1, &lvc);
+
+	}
+
+
+void spielerlisten_initialisieren( HWND hDlg)
+	{
+	HWND lst;
+	LVCOLUMN lvc;
+	//server
+	lst = GetDlgItem(hDlg, IDC_SPIELERLISTE_SERVER);
+	ListView_SetExtendedListViewStyleEx( lst, LVS_EX_FULLROWSELECT|LVS_EX_GRIDLINES, LVS_EX_FULLROWSELECT|LVS_EX_GRIDLINES);
+	lvc.mask = LVCF_TEXT|LVCF_WIDTH|LVCF_FMT;
+	lvc.fmt = LVCFMT_LEFT;
+	lvc.cx = 36;
+	lvc.pszText = "Nr";
+	ListView_InsertColumn( lst, 0, &lvc);
+	lvc.cx = 96;
+	lvc.pszText = "Name";
+	ListView_InsertColumn( lst, 1, &lvc);
+	lvc.fmt = LVCFMT_RIGHT;
+	lvc.cx = 96;
+	lvc.pszText = "Joystick X";
+	ListView_InsertColumn( lst, 2, &lvc);
+	lvc.cx = 96;
+	lvc.pszText = "Joystick Z";
+	ListView_InsertColumn( lst, 3, &lvc);
+
+	//client
+	lst = GetDlgItem(hDlg, IDC_SPIELERLISTE_CLIENT);
+	ListView_SetExtendedListViewStyleEx( lst, LVS_EX_FULLROWSELECT|LVS_EX_GRIDLINES, LVS_EX_FULLROWSELECT|LVS_EX_GRIDLINES);
+	lvc.mask = LVCF_TEXT|LVCF_WIDTH|LVCF_FMT;
+	lvc.fmt = LVCFMT_LEFT;
+	lvc.cx = 30;
+	lvc.pszText = "Nr";
+	ListView_InsertColumn( lst, 0, &lvc);
+	lvc.cx = 180;
+	lvc.pszText = "Name";
+	ListView_InsertColumn( lst, 1, &lvc);
+	}
+
+void serverliste_initialisieren( HWND hDlg)
+	{
+	HWND lst;
+	LVCOLUMN lvc;
+
+	lst = GetDlgItem(hDlg, IDC_HOSTLISTE);
+	ListView_SetExtendedListViewStyleEx( lst, LVS_EX_FULLROWSELECT|LVS_EX_GRIDLINES, LVS_EX_FULLROWSELECT|LVS_EX_GRIDLINES);
+
+	lvc.mask = LVCF_TEXT|LVCF_WIDTH|LVCF_FMT;
+	lvc.fmt = LVCFMT_LEFT;
+	lvc.cx = 120;
+	lvc.pszText = "Session";
+	ListView_InsertColumn( lst, 0, &lvc);
+	lvc.cx = 120;
+	lvc.pszText = "IP-Adresse";
+	ListView_InsertColumn( lst, 1, &lvc);
+	lvc.cx = 120;
+	lvc.pszText = "Portnummer";
+	ListView_InsertColumn( lst, 2, &lvc);
+	lvc.cx = 80;
+	lvc.pszText = "Latenzzeit";
+	ListView_InsertColumn( lst, 3, &lvc);
+	}
+
+void listen_initialisieren(HWND hDlg) {
+	chatlisten_initialisieren(hDlg);
+	spielerlisten_initialisieren(hDlg);
+	serverliste_initialisieren(hDlg);
+}
+void display_serverstate( HWND hDlg)
+	{
+	int st;
+
+	switch( myServer->status)
+		{
+	case SERVER_ANGEHALTEN:
+        SetDlgItemText( hDlg, IDC_STATUS, "Server angehalten");
+		SetDlgItemText( hDlg, IDC_START, "Server starten");
+		SetDlgItemText( hDlg, IDC_SESSION_NAME, myServer->sessionname);
+		SetDlgItemInt( hDlg, IDC_PORT, myServer->portnummer, FALSE );
+		SetDlgItemInt( hDlg, IDC_MAXSPIELER, myServer->maxspieler, FALSE );
+		break;
+	case SERVER_GESTARTET:
+		SetDlgItemText( hDlg, IDC_STATUS, "Server läuft");
+        SetDlgItemText( hDlg, IDC_START, "Spiel laden");
+		break;
+		}
+	st = (myServer->status == SERVER_ANGEHALTEN);
+	EnableWindow( GetDlgItem(hDlg, IDC_SESSION_NAME), st);
+	EnableWindow( GetDlgItem(hDlg, IDC_PORT), st);
+	EnableWindow( GetDlgItem(hDlg, IDC_MAXSPIELER), st);
+	}
+
+void display_spieler( HWND hDlg )
+	{
+	HWND lst;
+	DWORD i;
+	char buf[128];
+	msg_spielerliste slist;
+	LVITEM lvi;
+
+	myServer->lock();
+	slist = myServer->slist;
+	myServer->unlock();
+	lst = GetDlgItem(hDlg, IDC_SPIELERLISTE_SERVER);
+    SendMessage( lst, LVM_DELETEALLITEMS, 0, 0 );
+	ZeroMemory( &lvi, sizeof(lvi));
+	lvi.mask = LVIF_TEXT;
+	lvi.pszText = buf;
+	for( i = 0; i < slist.maximum; i++)
+		{
+		lvi.iItem = i;
+		sprintf( buf, "%d", i+1);
+		ListView_InsertItem( lst, &lvi);
+		if( slist.sp[i].status == BESETZT)
+			ListView_SetItemText( lst, i, 1, slist.sp[i].name);		
+		}
+	EnableWindow( GetDlgItem(hDlg, IDC_CHAT), slist.angemeldet); 
+	}
+
+void serverliste_aktualisieren( HWND hDlg)
+	{
+	HWND lst;
+	DWORD i;
+	char buf[128];
+	LVITEM lvi;
+	host *h;
+
+	lst = GetDlgItem(hDlg, IDC_HOSTLISTE);
+    SendMessage( lst, LVM_DELETEALLITEMS, 0, 0 );
+
+	ZeroMemory( &lvi, sizeof(lvi));
+	lvi.mask = LVIF_TEXT|LVIF_PARAM;
+
+	myClient->lock();
+	for( i = 0, h = myClient->hlist; h ; h = h->next, i++)
+		{
+		lvi.iItem = i;
+		lvi.pszText = h->sessionname;
+		lvi.lParam = (LPARAM)h;
+		ListView_InsertItem( lst, &lvi);
+		ListView_SetItemText( lst, i, 1, h->hostname);
+		sprintf( buf, "%d", h->portnummer);
+		ListView_SetItemText( lst, i, 2, buf);
+		sprintf( buf, "%d", h->latenz);
+		ListView_SetItemText( lst, i, 3, buf);
+		if( h == myClient->myhost)
+			ListView_SetItemState( lst, i, LVIS_FOCUSED|LVIS_SELECTED, LVIS_FOCUSED|LVIS_SELECTED);
+		}
+
+	myClient->unlock();
+	}
+	
+void next_serverstate( HWND hDlg)
+	{
+	char sessionname[64];
+	int portnummer;
+	int maxsp;
+	int hr;
+	
+
+	switch( g_pConfig->DirectPlay.status)
+		{
+	case SERVER_ANGEHALTEN:
+		SetCursor( LoadCursor(NULL, IDC_WAIT));
+		GetDlgItemText( hDlg, IDC_SESSION_NAME, sessionname, 64);
+		portnummer = GetDlgItemInt( hDlg, IDC_PORT, 0, FALSE);
+		maxsp = GetDlgItemInt( hDlg, IDC_MAXSPIELER, 0, 0);
+		if( maxsp < 2)
+			maxsp = 2;
+		if( maxsp > MAX_PLAYERS)
+			maxsp = MAX_PLAYERS;
+		SetDlgItemInt( hDlg, IDC_MAXSPIELER, maxsp, FALSE );
+		hr = myServer->start( server_messagehandler, sessionname, portnummer, maxsp);
+//		hr = myServer->start2( sessionname, portnummer, maxsp);
+//		hr = S_OK;
+		if( hr == S_OK)
+			{
+				SetDlgItemText( hDlg, IDC_IP_ADRESSE, myServer->hostname);
+				myServer->status = SERVER_GESTARTET;
+			}
+		else
+			{
+			MessageBox( hDlg, DXGetErrorDescription9( hr), "Duell-Meldung", MB_OK | MB_ICONERROR | MB_SETFOREGROUND);
+			myServer->stop();
+			}
+		SetCursor( LoadCursor(NULL, IDC_ARROW));
+		break;
+		}
+	}
+void anmeldung( HWND hDlg)
+	{
+	HWND lst;
+	LVITEM lvi;
+	int ix;
+	host *h;
+	HRESULT hr;
+
+	lst = GetDlgItem(hDlg, IDC_HOSTLISTE);
+	if( ListView_GetSelectedCount( lst) == 1)
+		{
+		ix = ListView_GetSelectionMark( lst);
+		GetDlgItemText( hDlg, IDC_SPIELER, myClient->spielername, 64);
+		if( isalnum(myClient->spielername[0]))
+			{
+			lvi.iItem = ix;
+			lvi.iSubItem = 0;
+			lvi.mask = LVIF_PARAM;
+			ListView_GetItem( lst, &lvi);
+			h = (host *)lvi.lParam;
+			hr = myClient->anmelden( h);
+			if( hr == S_OK)
+				{
+				SetDlgItemText( hDlg, IDC_ANMELDEN, "Abmelden");
+				EnableWindow( GetDlgItem(hDlg, IDC_SPIELER), FALSE);
+				EnableWindow( GetDlgItem(hDlg, IDC_CHAT), TRUE);
+				SetDlgItemText( hDlg, IDC_SESSION, h->sessionname);
+				}
+//			else
+				//MessageBox( hDlg, DXGetErrorDescription8( hr), "Duell-Meldung", MB_OK | MB_ICONERROR | MB_SETFOREGROUND);
+			}
+//		else
+			//MessageBox( hDlg, "Gib erst einen Spielernamen ein!", "Duell-Meldung", MB_OK | MB_ICONERROR | MB_SETFOREGROUND);
+		}
+//	else
+		//MessageBox( hDlg, "Kein Server ausgewählt!", "Duell-Meldung", MB_OK | MB_ICONERROR | MB_SETFOREGROUND);
+	}
+
 // ******************************************************************
 // Dialogfunktion
 INT_PTR CALLBACK D3DEnumDialogProc(HWND hDlg,
@@ -747,6 +1056,9 @@ INT_PTR CALLBACK D3DEnumDialogProc(HWND hDlg,
 {
 	char  acFilename[256];
 	FILE* pFile;
+
+	char buf[256];
+	DWORD p;
 
 
 	// Nachricht verarbeiten
@@ -768,9 +1080,21 @@ INT_PTR CALLBACK D3DEnumDialogProc(HWND hDlg,
 		EnumMultiSamplingTypes(hDlg);
 		EnumMultiSamplingQualities(hDlg);
 
+		listen_initialisieren(hDlg);
+		display_serverstate(hDlg);
+
+		mein_clientdialog = hDlg;
+		mein_serverdialog = hDlg;
+
 		// DirectSound-Treiber auflisten
 		EnumSoundDrivers(hDlg);
 		break;
+    case WM_SERVERLISTE_AKTUALISIEREN:
+		serverliste_aktualisieren( hDlg);
+		break;
+    case WM_SPIELER_AKTUALISIEREN:
+ 		display_spieler( hDlg);
+       break;
 
 	case WM_CLOSE:
 		// Code 2 zurückliefern; das bedeutet: Dialog abgebrochen
@@ -792,6 +1116,24 @@ INT_PTR CALLBACK D3DEnumDialogProc(HWND hDlg,
 	case WM_COMMAND:		
 		switch(LOWORD(WParam))
 		{
+		case IDC_START:
+			next_serverstate( hDlg);
+			display_serverstate( hDlg);
+			display_spieler( hDlg);
+			break;
+		case IDC_SUCHEN:
+			GetDlgItemText( hDlg, IDC_SERVER_IP, buf, 64);
+			p = GetDlgItemInt( hDlg, IDC_PORTNUMMER, 0, FALSE);
+			myClient->host_suchen(buf[0] ? buf : 0, p);
+			break;
+		case IDC_ANMELDEN:
+			SetCursor( LoadCursor(NULL, IDC_WAIT));
+			myClient->client->CancelAsyncOperation( NULL, DPNCANCEL_ENUM);
+			if( !myClient->myhost)
+				anmeldung( hDlg);
+
+			SetCursor( LoadCursor(NULL, IDC_ARROW));
+			break;
 		case TB_IDC_D3DC_ADAPTERS:
 			if(HIWORD(WParam) == CBN_SELCHANGE)
 			{
@@ -1023,10 +1365,19 @@ INT_PTR CALLBACK D3DEnumDialogProc(HWND hDlg,
 TRIBASE_API tbResult tbDoConfigDialog(tbConfig* pOut)
 {
 	int iResult;
-
+	int hr;
+	myServer = new tbServer();
+	myClient = new tbClient();
+	
+	//hr = 
+	myClient->init( client_messagehandler);
+/*	if( hr < 0)
+		{
+		MessageBox( 0, DXGetErrorDescription8( hr), "Duell-Meldung", MB_OK | MB_ICONERROR | MB_SETFOREGROUND);
+		}
+*/
 	// Parameter prüfen
 	if(pOut == NULL) TB_ERROR_NULL_POINTER("pOut", TB_ERROR);
-
 
 	TB_INFO("Der Konfigurationsdialog wird aufgerufen...");
 
@@ -1042,6 +1393,7 @@ TRIBASE_API tbResult tbDoConfigDialog(tbConfig* pOut)
 		MessageBox(NULL, "Die IDirect3D9-Schnittstelle konnte nicht generiert werden! DirectX 9 oder höher wird benötigt!", "Fehler", MB_OK | MB_ICONEXCLAMATION);
 		TB_ERROR("Die IDirect3D9-Schnittstelle konnte nicht generiert werden! DirectX 9 oder höher wird benötigt!", TB_ERROR);
 	}
+
 
 	// Dialogfenster aufrufen
 	iResult = (int)(DialogBox(tb_g_DLLHandle,

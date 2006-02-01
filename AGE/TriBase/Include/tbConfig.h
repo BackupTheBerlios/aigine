@@ -43,6 +43,16 @@ struct TRIBASE_API tbConfig
 		DWORD				dwSampleRate;			// Sampling-Frequenz
 		DWORD				dwNumBitsPerSample;		// Anzahl der Bits pro Sample
 	} DirectSound;
+
+	struct
+	{
+		int					status;
+		char				sessionname[64];
+		char				hostName[64];
+		int					portnumber;
+		int					maxplayer;
+//		int					hr;
+	} DirectPlay;
 };
 
 // ******************************************************************
