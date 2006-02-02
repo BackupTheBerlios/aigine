@@ -81,6 +81,9 @@
 #define BESETZT    3
 
 #define MSG_SPIELERLISTE  1001
+#define MSG_SPIELERINDEX  1002
+
+#define NETWORK_MSGID( p) (*((DWORD *) (p)))
 
 struct spieler
 	{
@@ -97,10 +100,18 @@ struct msg_spielerliste
 	spieler sp[MAX_PLAYERS];
 	};
 
+struct msg_spielerindex
+{
+	DWORD msgid;
+	DWORD index;
+};
+
+
 //Client
 #define WM_SERVERLISTE_AKTUALISIEREN		WM_APP
 #define WM_SPIELER_AKTUALISIEREN			WM_APP+1
-
+#define WM_SPIELERLISTE_AKTUALISIEREN		WM_APP+2
+#define WM_SPIELERINDEX_AKTUALISIEREN		WM_APP+3
 
 
 #if _MSC_VER >= 1300

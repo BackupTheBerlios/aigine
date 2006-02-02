@@ -23,6 +23,10 @@ class tbClient
 
 		char spielername[64];
 
+		msg_spielerliste slist;
+		DWORD index;
+
+
 		void reset();
 		tbClient();
 		~tbClient();

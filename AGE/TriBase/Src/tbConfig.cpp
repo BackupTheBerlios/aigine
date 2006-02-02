@@ -786,6 +786,24 @@ HRESULT WINAPI client_messagehandler( PVOID pvUserContext, DWORD dwMessageType, 
 				PostMessage( mein_clientdialog, WM_SERVERLISTE_AKTUALISIEREN, 0, 0 );
 			}
 		break;
+// V05 Beginn
+    case DPN_MSGID_RECEIVE:
+        PBYTE rd = ((PDPNMSG_RECEIVE)pMessage)->pReceiveData;
+        switch( NETWORK_MSGID( rd))
+			{
+		case MSG_SPIELERINDEX:
+			myClient->index = ((msg_spielerindex *)rd)->index;
+            if( mein_clientdialog)
+                PostMessage( mein_clientdialog, WM_SPIELERINDEX_AKTUALISIEREN, 0, 0 );
+			break;
+		case MSG_SPIELERLISTE:
+			myClient->slist = *(msg_spielerliste *)rd;
+            if( mein_clientdialog)
+                PostMessage( mein_clientdialog, WM_SPIELERLISTE_AKTUALISIEREN, 0, 0 );
+			break;
+			}
+        break;
+// V05 Ende
 		}
 	myClient->unlock();
     return S_OK;
@@ -971,6 +989,45 @@ void serverliste_aktualisieren( HWND hDlg)
 
 	myClient->unlock();
 	}
+VOID spielerliste_aktualisieren( HWND hDlg)
+	{
+	HWND lst;
+	DWORD i;
+	char buf[128];
+	msg_spielerliste slist;
+	LVITEM lvi;
+
+	myClient->lock();
+	slist = myClient->slist;
+	myClient->unlock();
+
+	lst = GetDlgItem(hDlg, IDC_SPIELERLISTE_CLIENT);
+    SendMessage( lst, LVM_DELETEALLITEMS, 0, 0 );
+	ZeroMemory( &lvi, sizeof(lvi));
+	lvi.mask = LVIF_TEXT;
+	lvi.pszText = buf;
+
+	for( i = 0; i < slist.maximum; i++)
+		{
+		lvi.iItem = i;
+		sprintf( buf, "%d", i+1);
+		ListView_InsertItem( lst, &lvi);
+		if( slist.sp[i].status == BESETZT)
+			ListView_SetItemText( lst, i, 1, slist.sp[i].name);		
+		}
+	}
+
+void spielerindex_aktualisieren( HWND hDlg)
+	{
+	int ix;
+
+	myClient->lock();
+	ix = myClient->index;
+	myClient->unlock();
+	SetDlgItemInt( hDlg, IDC_SPIELERINDEX, ix + 1, FALSE);
+	}
+
+
 	
 void next_serverstate( HWND hDlg)
 	{
@@ -1094,7 +1151,13 @@ INT_PTR CALLBACK D3DEnumDialogProc(HWND hDlg,
 		break;
     case WM_SPIELER_AKTUALISIEREN:
  		display_spieler( hDlg);
-       break;
+	    break;
+    case WM_SPIELERLISTE_AKTUALISIEREN:
+		spielerliste_aktualisieren( hDlg);
+		break;
+    case WM_SPIELERINDEX_AKTUALISIEREN:
+		spielerindex_aktualisieren( hDlg);
+		break;
 
 	case WM_CLOSE:
 		// Code 2 zurückliefern; das bedeutet: Dialog abgebrochen

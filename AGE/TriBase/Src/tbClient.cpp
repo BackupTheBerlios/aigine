@@ -4,11 +4,17 @@
 void tbClient::reset()
 	{
 	host *h;
+	int i;
 
 	if( client)
 		client->Close(0);
 	client = 0;
 	myhost = 0;
+	index = -1;
+	slist.angemeldet = 0;
+	slist.maximum = 0;
+	for( i = 0; i < MAX_PLAYERS; i++)
+		slist.sp[i].status = FREI;
 	while( h = hlist)
 		{
 		hlist = h->next;

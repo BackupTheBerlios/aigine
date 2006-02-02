@@ -151,6 +151,10 @@ int tbServer::buchung( PDPNMSG_CREATE_PLAYER msg)
 	slist.sp[pnr].status = BESETZT;
 	slist.sp[ pnr].dpnid = msg->dpnidPlayer;
 	DXUtil_ConvertWideStringToGeneric( slist.sp[ pnr].name, playinfo->pwszName, MAX_NAMLEN);
+
+	send_spielerliste();
+	send_spielerindex( msg->dpnidPlayer, pnr);
+
 	unlock();
     free( playinfo);
 	return hr;
@@ -180,3 +184,34 @@ int tbServer::reservierung()
 	unlock();
 	return pnr;
 	}
+
+void tbServer::send_spielerliste()
+	{
+	msg_spielerliste sl;
+    DPN_BUFFER_DESC bdsc;
+    DPNHANDLE async;
+
+	lock();
+	sl = slist;
+	unlock();
+
+    bdsc.dwBufferSize = sizeof( msg_spielerliste);
+    bdsc.pBufferData  = (BYTE*) &sl;
+
+    server->SendTo( DPNID_ALL_PLAYERS_GROUP, &bdsc, 1, 0, NULL, &async, DPNSEND_GUARANTEED|DPNSEND_NOLOOPBACK);
+	}
+
+void tbServer::send_spielerindex( DPNID id, int ix)
+	{
+	msg_spielerindex six;
+    DPN_BUFFER_DESC bdsc;
+    DPNHANDLE async;
+
+	six.msgid = MSG_SPIELERINDEX;
+	six.index = ix;
+    bdsc.dwBufferSize = sizeof( msg_spielerindex);
+    bdsc.pBufferData  = (BYTE*)&six;
+
+    server->SendTo( id, &bdsc, 1, 0, NULL, &async, DPNSEND_GUARANTEED);
+	}
+

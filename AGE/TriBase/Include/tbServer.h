@@ -49,4 +49,7 @@ class TRIBASE_API tbServer {
 		void storno( PDPNMSG_INDICATED_CONNECT_ABORTED m);
 		int buchung( PDPNMSG_CREATE_PLAYER msg);
 
+		void send_spielerliste();
+		void send_spielerindex( DPNID id, int ix);
+
 };
