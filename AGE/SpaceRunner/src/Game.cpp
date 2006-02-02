@@ -25,7 +25,7 @@ struct SHUDVertex
 CGame::CGame()
 {
 	ZeroMemory(this, sizeof(CGame));
-	m_bUseJoystick = tbDirectInput::GetNumButtons() > 122;
+	m_bUseJoystick = FALSE;		//tbDirectInput::GetNumButtons() > 122;
 }
 
 // __________________________________________________________________
@@ -33,10 +33,28 @@ CGame::CGame()
 tbResult CGame::Init()
 {
 	int iShip;
+
+	int iTunnel;
+	
+
 	int iCheckPoint;
+
 
 	// Laden...
 	if(Load()) TB_ERROR("Fehler beim Laden des Spielzustands!", TB_ERROR);
+
+	
+	for (int k = 0; k < 4; k++) {
+
+		if(g_Tunnels[k] != -1) {
+		
+			iTunnel = CreateTunnel(0, g_Tunnels[k]);
+			m_aElement[iTunnel].SetPosition(tbVector3((float)(k) * 100.0f, 0.0f, -2500.0f) + tbVector3Random() * 20.0f);
+			m_aElement[iTunnel].Align(tbVector3(0.0f, 0.0f, 1.0f) + tbVector3Random() * 0.25f);
+		}
+	}
+
+
 
 	// Kameramodus: Cockpit, Radarreichweite: 4000
 //	m_CameraMode = CM_COCKPIT;
@@ -209,6 +227,8 @@ tbResult CGame::Load()
 	if(LoadCheckPointTypes(TRUE)) TB_ERROR("Fehler beim Laden der CheckPointtypen!", TB_ERROR);
 
 
+	if(this->LoadTunnelType(TRUE)) TB_ERROR("Fehler beim Laden der TunnelTypen!", TB_ERROR);
+
 	// ------------------------------------------------------------------
 
 	for(int iType = 0; iType < 1024; iType++)
@@ -225,6 +245,8 @@ tbResult CGame::Load()
 		m_pSprites->GetSpriteTypes()[iType].vBottomRight /= tbVector2(255.0f, 255.0f);
 		m_pSprites->GetSpriteTypes()[iType].vBottomLeft /= tbVector2(255.0f, 255.0f);
 	}
+
+	
 
 	// Partikelsystem erstellen
 	m_pPSystem = new tbParticleSystem;
@@ -480,7 +502,12 @@ tbResult CGame::Render(float fTime)
 		RenderStarfield(fTime);
 
 		//Ebene zu Testzwecken rendern
-		RenderPlain(fTime);
+		//RenderPlain(fTime);
+
+		//
+		//Streckenelemente renderen
+		//this->RenderTunnel(fTime  );
+		
 
 		// Partikel und Sprites rendern
 		if(!m_bPaused)
@@ -510,15 +537,16 @@ tbResult CGame::Render(float fTime)
 
 		// ------------------------------------------------------------------
 
-		g_pGalactica->m_pCourier_New_6_12->Begin();
+		//g_pGalactica->m_pCourier_New_6_12->Begin();
+		g_pSpaceRunner->m_pCourier_New_6_18->Begin();
 
 		// Name des Kameramodus anzeigen
-		g_pGalactica->m_pCourier_New_6_12->DrawText(tbVector2(10.0f, 10.0f), m_apcCameraMode[m_CameraMode]);
+		g_pSpaceRunner->m_pCourier_New_6_18->DrawText(tbVector2(10.0f, 10.0f), m_apcCameraMode[m_CameraMode]);
 
 		if(m_bPaused)
 		{
 			// "Pause"-Text anzeigen
-			g_pGalactica->m_pCourier_New_6_12->DrawText(tbVector2(0.5f, 0.5f), "[ P A U S E ]",
+			g_pSpaceRunner->m_pCourier_New_6_18->DrawText(tbVector2(0.5f, 0.5f), "[ P A U S E ]",
 											 TB_FF_ALIGN_HCENTER | TB_FF_ALIGN_VCENTER |
 											 TB_FF_RELATIVE | TB_FF_RELATIVESCALING);
 		}
@@ -527,10 +555,10 @@ tbResult CGame::Render(float fTime)
 		{
 			// Framerate anzeigen
 			sprintf(acText, "FPS: %.2f", 1.0f / fTime);
-			g_pGalactica->m_pCourier_New_6_12->DrawText(tbVector2(10.0f, 30.0f), acText);
+			g_pSpaceRunner->m_pCourier_New_6_18->DrawText(tbVector2(10.0f, 30.0f), acText);
 		}
 
-		g_pGalactica->m_pCourier_New_6_12->End();
+		g_pSpaceRunner->m_pCourier_New_6_18->End();
 
 		// Szene beenden
 		tbDirect3D::EndScene();
@@ -614,25 +642,25 @@ tbResult CGame::Render(float fTime)
 	// ------------------------------------------------------------------
 
 	// Eventuell Cockpit und Anzeigen rendern
-//	if(m_CameraMode == CM_COCKPIT) RenderCockpit(fTime);
-/*
-	if(m_pSkyBox != NULL)
-	{
-		// Blenden der Sonne rendern
-		RenderSunFlares(fTime);
-	}
-*/
+	if(m_CameraMode == CM_COCKPIT) RenderCockpit(fTime);
+
+	//if(m_pSkyBox != NULL)
+	//{
+	//	// Blenden der Sonne rendern
+	//	RenderSunFlares(fTime);
+	//}
+
 	// ------------------------------------------------------------------
 
-	g_pSpaceRunner->m_pCourier_New_6_12->Begin();
+	g_pSpaceRunner->m_pCourier_New_6_18->Begin();
 
 	// Name des Kameramodus anzeigen
-	g_pSpaceRunner->m_pCourier_New_6_12->DrawText(tbVector2(10.0f, 10.0f), m_apcCameraMode[m_CameraMode]);
+	g_pSpaceRunner->m_pCourier_New_6_18->DrawText(tbVector2(10.0f, 10.0f), m_apcCameraMode[m_CameraMode]);
 
 	if(m_bPaused)
 	{
 		// "Pause"-Text anzeigen
-		g_pSpaceRunner->m_pCourier_New_6_12->DrawText(tbVector2(0.5f, 0.5f), "[ P A U S E ]",
+		g_pSpaceRunner->m_pCourier_New_6_18->DrawText(tbVector2(0.5f, 0.5f), "[ P A U S E ]",
 			                             TB_FF_ALIGN_HCENTER | TB_FF_ALIGN_VCENTER |
 										 TB_FF_RELATIVE | TB_FF_RELATIVESCALING);
 	}
@@ -641,10 +669,10 @@ tbResult CGame::Render(float fTime)
 	{
 		// Framerate anzeigen
 		sprintf(acText, "FPS: %.2f", 1.0f / fTime);
-		g_pSpaceRunner->m_pCourier_New_6_12->DrawText(tbVector2(10.0f, 30.0f), acText);
+		g_pSpaceRunner->m_pCourier_New_6_18->DrawText(tbVector2(10.0f, 30.0f), acText);
 	}
 
-	g_pSpaceRunner->m_pCourier_New_6_12->End();
+	g_pSpaceRunner->m_pCourier_New_6_18->End();
 
 	// Szene beenden
 	tbDirect3D::EndScene();
@@ -975,6 +1003,74 @@ tbResult CGame::LoadShipTypes(BOOL bFullLoad)
 
 	return TB_OK;
 }
+
+
+//_______________________________________________________________
+// Läd eine Rennstrecke //TODO: Generische Algorithmen einbinden oder Designer schreiben :)
+tbResult CGame::LoadTunnelType(BOOL bFullLoad) {
+	int iLength = 5;
+	char		acSection[256];
+	char		acKey[256];
+	SRoadElementType*	pType;
+
+
+	// Anzahl der Tunnelypen lesen
+	m_iNumElementTypes = ReadINIInt("Circuit", "NumDriftElements");
+	if(m_iNumElementTypes == 12345678) TB_ERROR("Fehler beim Lesen der INI-Datei!", TB_ERROR);
+
+	// Die Elmente duchgehen und die Information aus der .ini auslesen
+	for(int iType = 0; iType < m_iNumShipTypes; iType++)
+	{
+		// Namen der Sektion der Daten dieser Elemente generieren
+		sprintf(acSection, "Element%d", iType + 1);
+		pType = &m_aElementType[iType];
+		pType->iIndex = iType;
+
+		// Name, Beschreibung, Modell- und Ssounddateiname lesen
+		ReadINIString(acSection, "Name", pType->acName, 256);				
+		ReadINIString(acSection, "Model", pType->acModel, 256);
+		ReadINIString(acSection, "CollisionModel", pType->acCollisionModel, 256);
+		if(bFullLoad)
+		{
+			// Logbucheintrag erzeugen
+			tbWriteToLog("Lade Elementtype \"%s\" aus \"%s\"...", pType->acName, pType->acModel);
+
+			// Modell laden
+			pType->pModel = new tbModel;
+			if(pType->pModel->Init(pType->acModel, "Data\\", "",
+				                   D3DPOOL_DEFAULT, 0, D3DPOOL_DEFAULT, 0,
+								   FALSE, FALSE))
+			{
+				// Fehler!
+				TB_ERROR("Fehler beim Laden eines Schiffsmodells!", TB_ERROR);
+			}
+
+			// Kollisionsmodell laden
+			pType->pCollisionModel = new tbModel;
+			if(pType->pCollisionModel->Init(pType->acCollisionModel, "Data\\", "",
+											D3DPOOL_DEFAULT, 0, D3DPOOL_DEFAULT, 0,
+											TRUE, TRUE))
+			{
+				// Fehler!
+				TB_ERROR("Fehler beim Laden eines Schiffskollisionsmodells!", TB_ERROR);
+			}
+		}
+		// Alle restlichen Tunnelparameter laden
+		pType->iRoadType				= ReadINIInt(acSection, "RoadType");
+		pType->fMass					= ReadINIFloat(acSection, "Mass");
+		pType->fMovementFriction		= ReadINIFloat(acSection, "MovementFriction");
+		
+	}
+	for (int i=0; i < iLength; i++) {
+		///DriftElement* pDrift;		
+		g_Tunnels[i] = 0;
+
+		//this->m_aElement[i] = pDrift;
+	}
+	return TB_OK;
+	
+}
+
 
 // __________________________________________________________________
 // Lädt die Waffentypen
@@ -1344,6 +1440,11 @@ int CGame::CreateCamera() {
 	return 0;
 }
 
+
+int CreateCoordinate(tbVector3 vPos) {
+	
+	return 0;
+}
 // Erstellt ein Schiff
 int CGame::CreateShip(int iTeam,
 					  int iType)
@@ -1409,6 +1510,32 @@ int CGame::CreateShip(int iTeam,
 	return -1;
 }
 
+
+
+
+/**
+ * Erstellt ein Tunnelstück der Rennstrecke
+ */
+int CGame::CreateTunnel(int iTunnel, int iType) {
+	//local variables
+	CDriftElement* pRoad;
+
+
+	pRoad = &m_aElement[iTunnel];
+	ZeroMemory(pRoad, sizeof(CDriftElement));	
+	pRoad->m_pGame = this;
+	pRoad->Reset();
+	pRoad->m_pType = &m_aElementType[iType];
+	pRoad->m_fMass = pRoad->m_pType->fMass;
+	pRoad->m_fMovementFriction = pRoad->m_pType->fMovementFriction;
+	pRoad->m_fRadius = pRoad->m_pType->pModel->GetBoundingSphereRadius();
+	
+	return 0;
+
+	
+}
+
+
 // Erstellt ein Schiff
 int CGame::CreateCheckPoint(int iType)
 {
@@ -1443,6 +1570,7 @@ int CGame::CreateCheckPoint(int iType)
 	// Kein Platz mehr!
 	return -1;
 }
+
 // __________________________________________________________________
 //Bewegt die Kamera
 tbResult CGame::MoveCameras(float fTime) {
@@ -1775,7 +1903,7 @@ tbResult CGame::RenderPlain(float fTime)
 
 // __________________________________________________________________
 // Rendert das Cockpit
-/*
+
 tbResult CGame::RenderCockpit(float fTime)
 {
 	static tbVector3	vCockpitShaking;
@@ -1797,7 +1925,7 @@ tbResult CGame::RenderCockpit(float fTime)
 	if(!m_pPlayer->m_bExists) return TB_OK;
 
 	// Radar rendern
-	RenderRadar(fTime);
+	//RenderRadar(fTime);
 
 	// Cockpitmodell rendern
 	tbDirect3D::SetTransform(D3DTS_WORLD, tbMatrixTranslation(m_pPlayer->m_pType->vCockpitPos + tbVector3(0.0f, -10.0f, 5.0f) + m_pPlayer->m_vCockpitShaking) * m_pPlayer->m_mMatrix);
@@ -1999,37 +2127,38 @@ tbResult CGame::RenderCockpit(float fTime)
 	tbDirect3D::SetRS(D3DRS_ALPHABLENDENABLE, FALSE);
 
 	// ------------------------------------------------------------------
+	
 
-	g_pSapceRunner->m_pFont2->Begin();
+	g_pSpaceRunner->m_pCourier_New_6_18->Begin(); //>m_pFont2->Begin();
 
 	// Radarreichweite anzeigen
 	sprintf(acText, "Radar: %.0f", m_fRadarRange);
-	g_pSpaceRunner->m_pFont2->DrawText(tbVector2(0.025f, 0.92f), acText, TB_FF_RELATIVE | TB_FF_RELATIVESCALING);
+	g_pSpaceRunner->m_pCourier_New_6_18->DrawText(tbVector2(0.025f, 0.92f), acText, TB_FF_RELATIVE | TB_FF_RELATIVESCALING);
 
 	// Auto-Aim-Status anzeigen
 	sprintf(acText, m_pPlayer->m_bAutoAim ? "Auto-Aim ein" : "Auto-Aim aus");
-	g_pSpaceRunner->m_pFont2->DrawText(tbVector2(0.025f, 0.95f), acText, TB_FF_RELATIVE | TB_FF_RELATIVESCALING);
+	g_pSpaceRunner->m_pCourier_New_6_18->DrawText(tbVector2(0.025f, 0.95f), acText, TB_FF_RELATIVE | TB_FF_RELATIVESCALING);
 
 	// Status aller Systeme anzeigen:
 	// Hülle
 	sprintf(acText, "Hülle:\t\t%.0f%%", m_pPlayer->m_fHullEfficiency * 100.0f);
 	Color = tbColor(1.0f - m_pPlayer->m_fHullEfficiency, m_pPlayer->m_fHullEfficiency, 0.0f);
-	g_pSpaceRunner->m_pFont2->DrawText(tbVector2(0.17f, 0.86f), acText, TB_FF_RELATIVE | TB_FF_RELATIVESCALING, -1, Color, Color);
+	g_pSpaceRunner->m_pCourier_New_6_18->DrawText(tbVector2(0.17f, 0.86f), acText, TB_FF_RELATIVE | TB_FF_RELATIVESCALING, -1, Color, Color);
 
 	// Antrieb
 	sprintf(acText, "Antrieb:\t%.0f%%", m_pPlayer->m_fEngineEfficiency * 100.0f);
 	Color = tbColor(1.0f - m_pPlayer->m_fEngineEfficiency, m_pPlayer->m_fEngineEfficiency, 0.0f);
-	g_pSpaceRunner->m_pFont2->DrawText(tbVector2(0.17f, 0.89f), acText, TB_FF_RELATIVE | TB_FF_RELATIVESCALING, -1, Color, Color);
+	g_pSpaceRunner->m_pCourier_New_6_18->DrawText(tbVector2(0.17f, 0.89f), acText, TB_FF_RELATIVE | TB_FF_RELATIVESCALING, -1, Color, Color);
 
 	// Schildgenerator
 	sprintf(acText, "Schilde:\t%.0f%%", m_pPlayer->m_fShieldEfficiency * 100.0f);
 	Color = tbColor(1.0f - m_pPlayer->m_fShieldEfficiency, m_pPlayer->m_fShieldEfficiency, 0.0f);
-	g_pSpaceRunner->m_pFont2->DrawText(tbVector2(0.17f, 0.92f), acText, TB_FF_RELATIVE | TB_FF_RELATIVESCALING, -1, Color, Color);
+	g_pSpaceRunner->m_pCourier_New_6_18->DrawText(tbVector2(0.17f, 0.92f), acText, TB_FF_RELATIVE | TB_FF_RELATIVESCALING, -1, Color, Color);
 
 	// Sensoren
 	sprintf(acText, "Sensoren:\t%.0f%%", m_pPlayer->m_fSensorsEfficiency * 100.0f);
 	Color = tbColor(1.0f - m_pPlayer->m_fSensorsEfficiency, m_pPlayer->m_fSensorsEfficiency, 0.0f);
-	g_pSpaceRunner->m_pFont2->DrawText(tbVector2(0.17f, 0.95f), acText, TB_FF_RELATIVE | TB_FF_RELATIVESCALING, -1, Color, Color);
+	g_pSpaceRunner->m_pCourier_New_6_18->DrawText(tbVector2(0.17f, 0.95f), acText, TB_FF_RELATIVE | TB_FF_RELATIVESCALING, -1, Color, Color);
 
 	// Alle Waffen durchgehen.
 	// Bestimmen, bei welcher y-Koordinate die erste Waffe angezeigt wird.
@@ -2060,24 +2189,24 @@ tbResult CGame::RenderCockpit(float fTime)
 		}
 
 		// Text rendern
-		g_pGalactica->m_pFont2->DrawText(tbVector2(0.35f, fWeaponStartY + 0.03f * (float)(iWeapon)), acText, TB_FF_RELATIVE | TB_FF_RELATIVESCALING, -1, Color, Color);
+		g_pSpaceRunner->m_pCourier_New_6_18->DrawText(tbVector2(0.35f, fWeaponStartY + 0.03f * (float)(iWeapon)), acText, TB_FF_RELATIVE | TB_FF_RELATIVESCALING, -1, Color, Color);
 	}
 
 	// Schub anzeigen
 	sprintf(acText, "Schub: %.0f%%", m_pPlayer->m_fThrottle * 100.0f);
-	g_pGalactica->m_pFont2->DrawText(tbVector2(0.62f, 0.86f), acText, TB_FF_RELATIVE | TB_FF_RELATIVESCALING);
+	g_pSpaceRunner->m_pCourier_New_6_18->DrawText(tbVector2(0.62f, 0.86f), acText, TB_FF_RELATIVE | TB_FF_RELATIVESCALING);
 
 	// Geschwindigkeit anzeigen
 	sprintf(acText, "v = %.0f", tbVector3Length(m_pPlayer->m_vVelocity));
-	g_pGalactica->m_pFont2->DrawText(tbVector2(0.62f, 0.89f), acText, TB_FF_RELATIVE | TB_FF_RELATIVESCALING);
+	g_pSpaceRunner->m_pCourier_New_6_18->DrawText(tbVector2(0.62f, 0.89f), acText, TB_FF_RELATIVE | TB_FF_RELATIVESCALING);
 
 	// Schildenergie anzeigen
 	sprintf(acText, "Schilde: %.0f%%", (m_pPlayer->m_fShieldEnergy / m_pPlayer->m_pType->fMaxShieldEnergy) * 100.0f);
-	g_pGalactica->m_pFont2->DrawText(tbVector2(0.62f, 0.92f), acText, TB_FF_RELATIVE | TB_FF_RELATIVESCALING);
+	g_pSpaceRunner->m_pCourier_New_6_18->DrawText(tbVector2(0.62f, 0.92f), acText, TB_FF_RELATIVE | TB_FF_RELATIVESCALING);
 
 	// Waffenenergie anzeigen
 	sprintf(acText, "Waffen: %.0f%%", (m_pPlayer->m_fWeaponEnergy / m_pPlayer->m_pType->fMaxWeaponEnergy) * 100.0f);
-	g_pGalactica->m_pFont2->DrawText(tbVector2(0.62f, 0.95f), acText, TB_FF_RELATIVE | TB_FF_RELATIVESCALING);
+	g_pSpaceRunner->m_pCourier_New_6_18->DrawText(tbVector2(0.62f, 0.95f), acText, TB_FF_RELATIVE | TB_FF_RELATIVESCALING);
 
 	// ------------------------------------------------------------------
 
@@ -2091,7 +2220,7 @@ tbResult CGame::RenderCockpit(float fTime)
 		sprintf(acText, "Ziel: %s", pTarget->m_pType->acName);
 		if(pTarget->m_iTeam != m_pPlayer->m_iTeam) Color = tbColor(1.0f, 0.5f, 0.5f);
 		else Color = tbColor(0.5f, 1.0f, 0.5f);
-		g_pGalactica->m_pFont2->DrawText(tbVector2(0.78f, 0.8f), acText, TB_FF_RELATIVE | TB_FF_RELATIVESCALING, -1, Color, Color);
+		g_pSpaceRunner->m_pCourier_New_6_18->DrawText(tbVector2(0.78f, 0.8f), acText, TB_FF_RELATIVE | TB_FF_RELATIVESCALING, -1, Color, Color);
 
 		// Genauere Informationen anzeigen
 		sprintf(acText, "d = %.0f, v = %.0f\nHülle: %.0f%%\nAntrieb: %.0f%%\nSchilde: %.0f%% (%.0f%%)\nSensoren: %.0f%%",
@@ -2105,15 +2234,38 @@ tbResult CGame::RenderCockpit(float fTime)
 
 		if(pTarget->m_iTeam != m_pPlayer->m_iTeam) Color = tbColor(1.0f, 0.75f, 0.75f);
 		else Color = tbColor(0.75f, 1.0f, 0.75f);
-		g_pGalactica->m_pFont2->DrawText(tbVector2(0.78f, 0.83f), acText, TB_FF_RELATIVE | TB_FF_RELATIVESCALING,
+		g_pSpaceRunner->m_pCourier_New_6_18->DrawText(tbVector2(0.78f, 0.83f), acText, TB_FF_RELATIVE | TB_FF_RELATIVESCALING,
 			                             -1, Color, Color, tbVector2(1.0f), -2.0f, 0.25f, -8.0f);
 	}
 
-	g_pGalactica->m_pFont2->End();
+	g_pSpaceRunner->m_pCourier_New_6_18->End();
 
 	return TB_OK;
 }
-*/
+
+
+
+
+/**
+ *
+ */
+tbResult CGame::RenderTunnel(float fTime, tbMatrix m_transform) {
+	int iTunnel = 0;
+
+	for (iTunnel = 0; iTunnel < 4; iTunnel++) {
+		tbDirect3D::SetTransform ( 
+			D3DTS_WORLD, 
+			tbMatrixTranslation (
+				m_pPlayer->m_pType->vCockpitPos + tbVector3(0.0f, -10.0f, 5.0f) + m_pPlayer->m_vCockpitShaking) * m_pPlayer->m_mMatrix
+		);
+		this->m_aElement[iTunnel].Render(fTime);
+
+	}
+
+	return TB_OK;
+}
+
+
 // __________________________________________________________________
 // Rendert das Radar
 /*

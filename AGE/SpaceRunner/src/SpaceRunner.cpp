@@ -18,6 +18,7 @@ BOOL*		g_pbOldButtons = NULL;
 float*		g_pfOldButtons = NULL;
 int			g_Ships[32];
 int			g_CheckPoints[64];
+int			g_Tunnels[64];
 
 
 int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, char* pcCommandLine, int iShowCommand) {

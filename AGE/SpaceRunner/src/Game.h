@@ -7,6 +7,8 @@
 **	Das Spiel
 */
 
+#include "DriftElement.h"
+
 // __________________________________________________________________
 // Kameramodi
 enum ECameraMode
@@ -46,7 +48,7 @@ public:
 //	tbSound*				m_pExplosionSound;		// Sound für Explosionen
 //	tbSound*				m_pCollisionSound;		// Sound für Kollisionen
 
-//	tbModel*				m_pCockpitModel;		// Cockpitmodell
+	tbModel*				m_pCockpitModel;		// Cockpitmodell
 //	tbDraw2D*				m_pRadar;				// Zeichenklasse für das Radar
 	float					m_fRadarRange;			// Radarreichweite
 
@@ -68,10 +70,16 @@ public:
 	CCamera*				m_pCamera;				//Camera-Object
 	
 	CShip					m_aShip[32];			// Die Schiffe
+	
 	CShip*					m_pPlayer;				// Zeiger auf das Schiff des Spielers
 	CCheckPoint				m_aCheckPoint[64];		// Die CheckPoints
 
 //	CProjectile				m_aProjectile[256];		// Die Projektile
+
+	int						m_iNumElementTypes;		// Anzahl der Streckenypen
+	SRoadElementType		m_aElementType[256];	//Die Streckentypen	
+	CDriftElement			m_aElement[100];		//Die Streckenstücke
+	CDriftElement*			m_pRoadElement;			//Steckenobjekt
 
 	// Konstruktor
 	CGame();
@@ -92,9 +100,12 @@ public:
 	tbResult	LoadSpriteTypes();															// Lädt die Sprite-Typen
 	tbResult	LoadShipTypes(BOOL bFullLoad);												// Lädt die Schiffstypen
 //	tbResult	LoadWeaponTypes(BOOL bFullLoad);											// Lädt die Waffentypen
+	tbResult	LoadTunnelType(int iTNum);	
+	int			CreateTunnel(int iTeam, int iType);											// Erstellt eine Rennstrecke
+// CheckPoints werden geladen und konfigurierut
 	tbResult	LoadCheckPointTypes(BOOL bFullLoad);
-	tbResult	SetupCamera();																// Setzt die Kamera
 
+	tbResult	SetupCamera();																// Setzt die Kamera
 	int			CreateCamera();
 	tbResult	MoveCameras(float fTime);
 	int			CreateShip(int iTeam, int iType);											// Erstellt ein Schiff
@@ -105,11 +116,13 @@ public:
 
 //	tbResult	MoveProjectiles(float fTime);												// Bewegt alle Projektile
 //	tbResult	RenderProjectiles(float fTime);												// Rendert alle Projektile
-
+	
+	int			RenderCoordinate(tbVector3 vPos);											// Rendert ein Koordinatensystem
 	tbResult	RenderStarfield(float fTime);												// Rendert das "Sternenfeld"
-//	tbResult	RenderCockpit(float fTime);													// Rendert das Cockpit
+	tbResult	RenderCockpit(float fTime);													// Rendert das Cockpit
 //	tbResult	RenderRadar(float fTime);													// Rendert das Radar
 //	tbResult	RenderSunFlares(float fTime);												// Rendert das Blenden der Sonne
+	tbResult	RenderTunnel(float fTime, tbMatrix m_transform);
 	tbResult	RenderPlain(float fTime);
 	BOOL		ShipHitsShip(CShip* pShipA, CShip* pShipB, tbVector3* pvOut);				// Kollidieren zwei Schiffe?
 	BOOL		ShipHitsCheckPoint(CShip* pShip, CCheckPoint* pCheckPoint, tbVector3* pvOut);
