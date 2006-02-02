@@ -13,7 +13,7 @@ struct host
 	int latenz;
 	};
 
-class tbClient
+class TRIBASE_API tbClient
 	{
 	public:
 		CRITICAL_SECTION critsec;
