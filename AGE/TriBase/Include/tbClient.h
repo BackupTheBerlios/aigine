@@ -1,5 +1,7 @@
 
 
+HRESULT WINAPI client_messagehandler( PVOID pvUserContext, DWORD dwMessageType, PVOID pMessage);
+
 
 struct host
 	{
@@ -16,30 +18,45 @@ struct host
 class TRIBASE_API tbClient
 	{
 	public:
-		CRITICAL_SECTION critsec;
-		IDirectPlay8Client *client;
-		host *hlist;
-		host *myhost;
+		static CRITICAL_SECTION critsec;
+		static IDirectPlay8Client *client;
+		static host *hlist;
+		static host *myhost;
 
-		char spielername[64];
+		static char spielername[64];
 
-		msg_spielerliste slist;
-		DWORD index;
+		static msg_spielerliste slist;
+		static DWORD index;
 
+		static HWND mein_clientdialog;
 
-		void reset();
-		tbClient();
-		~tbClient();
+		static void reset();
+		//tbClient();
+		//~tbClient();
 
-		void lock() { EnterCriticalSection( &critsec);}
-		void unlock() { LeaveCriticalSection( &critsec);}
+		static void lock() { EnterCriticalSection( &critsec);}
+		static void unlock() { LeaveCriticalSection( &critsec);}
 
-		int init( PFNDPNMESSAGEHANDLER pfn);
-		int host_suchen( char *host, DWORD port);
-		int host_hinzufuegen( PDPNMSG_ENUM_HOSTS_RESPONSE msg);
+		static int init( /*PFNDPNMESSAGEHANDLER pfn*/);
+		static int host_suchen( char *host, DWORD port);
+		static int host_hinzufuegen( PDPNMSG_ENUM_HOSTS_RESPONSE msg);
 
-		HRESULT anmelden( host *h);
+		static HRESULT anmelden( host *h);
 
-		void chat( char *text);
+		static void chat( char *text);
 
 	};
+
+TRIBASE_API tbResult tbClientInit();
+
+TRIBASE_API void anmeldung( HWND hDlg);
+
+TRIBASE_API void abmeldung( HWND hDlg);
+
+TRIBASE_API void client_chatliste_aktualisieren( HWND hDlg, msg_chat *cm);
+
+TRIBASE_API void serverliste_aktualisieren( HWND hDlg);
+
+TRIBASE_API void spielerliste_aktualisieren( HWND hDlg);
+
+TRIBASE_API void spielerindex_aktualisieren( HWND hDlg);

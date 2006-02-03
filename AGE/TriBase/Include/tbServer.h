@@ -18,40 +18,47 @@
 	Sebastian Blaum
 
 ********************************************************************/
-
+HRESULT WINAPI server_messagehandler( PVOID pvUserContext, DWORD dwMessageType, PVOID pMessage);
 
 class TRIBASE_API tbServer {
 
 	public:
-		CRITICAL_SECTION critsec;
-		int status;
-		char hostname[64];
-		char sessionname[64];
-		DWORD portnummer;
-		int maxspieler;
-		IDirectPlay8Server *server;
+		static CRITICAL_SECTION critsec;
+		static int status;
+		static char hostname[64];
+		static char sessionname[64];
+		static DWORD portnummer;
+		static int maxspieler;
+		static IDirectPlay8Server *server;
 
-		msg_spielerliste slist;
+		static HWND mein_serverdialog;
 
-		tbServer();
-		~tbServer();
+		static msg_spielerliste slist;
 
-		tbResult Init();
-		tbResult Exit();
+		static inline void lock() { EnterCriticalSection( &critsec);}
+		static inline void unlock() { LeaveCriticalSection( &critsec);}
 
-		inline void lock() { EnterCriticalSection( &critsec);}
-		inline void unlock() { LeaveCriticalSection( &critsec);}
+		static int start( PFNDPNMESSAGEHANDLER msghandler, char *sname, int pno, int maxsp);
+		static void stop();
 
-		int start( PFNDPNMESSAGEHANDLER msghandler, char *sname, int pno, int maxsp);
-		void stop();
+		static int reservierung();
+		static void storno( PDPNMSG_INDICATED_CONNECT_ABORTED m);
+		static int buchung( PDPNMSG_CREATE_PLAYER msg);
+		static void remove_player( int pnr);
 
-		int reservierung();
-		void storno( PDPNMSG_INDICATED_CONNECT_ABORTED m);
-		int buchung( PDPNMSG_CREATE_PLAYER msg);
-		void remove_player( int pnr);
-
-		void send_spielerliste();
-		void send_spielerindex( DPNID id, int ix);
-		void send_chatmessage( msg_chat *cm);
+		static void send_spielerliste();
+		static void send_spielerindex( DPNID id, int ix);
+		static void send_chatmessage( msg_chat *cm);
 
 };
+
+TRIBASE_API tbResult tbServerInit();
+TRIBASE_API tbResult tbServerExit();
+
+TRIBASE_API void next_serverstate( HWND hDlg);
+
+TRIBASE_API void server_chatliste_aktualisieren( HWND hDlg, msg_chat *cm);
+
+TRIBASE_API void display_spieler( HWND hDlg );
+TRIBASE_API void display_serverstate( HWND hDlg);
+TRIBASE_API void kill_players( HWND hDlg);
