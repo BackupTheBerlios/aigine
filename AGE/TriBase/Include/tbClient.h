@@ -1,9 +1,28 @@
+/********************************************************************
+	 _________        __    _____
+	/\___  ___\      /\_\  /\  __\
+	\/__/\ \__/ _  __\/_/_ \ \ \_\\   ____    _____      __
+	    \ \ \  /\`´__\ /\ \ \ \  __\ /\ __\_ /\  __\   /´__`\
+	     \ \ \ \ \ \/  \ \ \ \ \ \_\\\ \\_\ \\ \____\ /\  __/
+	      \ \_\ \ \_\   \ \_\ \ \____\\ \___\ \ \____\\ \____\
+	       \/_/  \/_/    \/_/  \/____/ \/__/   \/____/ \/____/
 
+	tbServer.h
+	=========
+	Diese Datei ist Teil der TriBase-Engine.
+
+	Zweck:
+	Bereitstellen eines Clients
+
+	Autor:
+	Sebastian Blaum
+
+********************************************************************/
 
 HRESULT WINAPI client_messagehandler( PVOID pvUserContext, DWORD dwMessageType, PVOID pMessage);
 
 
-struct host
+struct TRIBASE_API host
 	{
 	host *next;
 	GUID instance;
