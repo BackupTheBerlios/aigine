@@ -744,71 +744,6 @@ tbResult SetConfig(HWND hDlg,
 	return TB_OK;
 }
 
-
-HRESULT WINAPI server_messagehandler( PVOID pvUserContext, DWORD dwMessageType, PVOID pMessage)
-{
-	int ret = S_OK;
-
-	myServer->lock();
-
-    switch( dwMessageType)
-		{
-	case DPN_MSGID_INDICATE_CONNECT:
-		if( myServer->status == SERVER_SPIEL_LAEUFT)
-			ret = !S_OK;
-		else
-			((PDPNMSG_INDICATE_CONNECT)pMessage)->pvPlayerContext = (void *)myServer->reservierung();
-		break;
-	case DPN_MSGID_INDICATED_CONNECT_ABORTED:
-		myServer->storno((PDPNMSG_INDICATED_CONNECT_ABORTED)pMessage);
-		break;
-    case DPN_MSGID_CREATE_PLAYER:
-		if((int)((PDPNMSG_CREATE_PLAYER)pMessage)->pvPlayerContext != -1) // nicht der Server selbst
-			{
- 			myServer->buchung( (PDPNMSG_CREATE_PLAYER)pMessage);
-			PostMessage( mein_serverdialog, WM_SPIELER_AKTUALISIEREN, 0, 0);
-			}
-        break;
-		}
-	myServer->unlock();
-
-    return ret;
-}
-HRESULT WINAPI client_messagehandler( PVOID pvUserContext, DWORD dwMessageType, PVOID pMessage)
-{
-	myClient->lock();
-    switch( dwMessageType)
-		{
-    case DPN_MSGID_ENUM_HOSTS_RESPONSE:
-		if( myClient->host_hinzufuegen((PDPNMSG_ENUM_HOSTS_RESPONSE)pMessage))
-			{
-			if( mein_clientdialog)
-				PostMessage( mein_clientdialog, WM_SERVERLISTE_AKTUALISIEREN, 0, 0 );
-			}
-		break;
-// V05 Beginn
-    case DPN_MSGID_RECEIVE:
-        PBYTE rd = ((PDPNMSG_RECEIVE)pMessage)->pReceiveData;
-        switch( NETWORK_MSGID( rd))
-			{
-		case MSG_SPIELERINDEX:
-			myClient->index = ((msg_spielerindex *)rd)->index;
-            if( mein_clientdialog)
-                PostMessage( mein_clientdialog, WM_SPIELERINDEX_AKTUALISIEREN, 0, 0 );
-			break;
-		case MSG_SPIELERLISTE:
-			myClient->slist = *(msg_spielerliste *)rd;
-            if( mein_clientdialog)
-                PostMessage( mein_clientdialog, WM_SPIELERLISTE_AKTUALISIEREN, 0, 0 );
-			break;
-			}
-        break;
-// V05 Ende
-		}
-	myClient->unlock();
-    return S_OK;
-}
-
 void chatlisten_initialisieren( HWND hDlg)
 	{
 	HWND lst;
@@ -840,6 +775,54 @@ void chatlisten_initialisieren( HWND hDlg)
 
 	}
 
+
+void server_chatliste_aktualisieren( HWND hDlg, msg_chat *cm)
+	{
+	HWND lst;
+	LVITEM lvi;
+	int i;
+
+	lst = GetDlgItem(hDlg, IDC_CHATLISTE_SERVER);
+
+	ZeroMemory( &lvi, sizeof(lvi));
+	lvi.mask = LVIF_TEXT;
+	lvi.iItem = 0;
+	if( cm->spielerindex >= 0)
+		lvi.pszText = myServer->slist.sp[cm->spielerindex].name;
+	else
+		lvi.pszText = "Server";
+	ListView_InsertItem( lst, &lvi);
+	ListView_SetItemText( lst, 0, 1, cm->text);		
+	i = ListView_GetItemCount( lst);
+	if( i > 20)
+		ListView_DeleteItem( lst, i-1);
+
+
+
+	}
+
+void client_chatliste_aktualisieren( HWND hDlg, msg_chat *cm)
+	{
+	HWND lst;
+	LVITEM lvi;
+	int i;
+
+		lst = GetDlgItem(hDlg, IDC_CHATLISTE_CLIENT);
+
+	ZeroMemory( &lvi, sizeof(lvi));
+	lvi.mask = LVIF_TEXT;
+	lvi.iItem = 0;
+	if( cm->spielerindex >= 0)
+		lvi.pszText = myClient->slist.sp[cm->spielerindex].name;
+	else
+		lvi.pszText = "Server";
+	ListView_InsertItem( lst, &lvi);
+	ListView_SetItemText( lst, 0, 1, cm->text);		
+	i = ListView_GetItemCount( lst);
+	if( i > 20)
+		ListView_DeleteItem( lst, i-1);
+
+}
 
 void spielerlisten_initialisieren( HWND hDlg)
 	{
@@ -954,7 +937,7 @@ void display_spieler( HWND hDlg )
 		if( slist.sp[i].status == BESETZT)
 			ListView_SetItemText( lst, i, 1, slist.sp[i].name);		
 		}
-	EnableWindow( GetDlgItem(hDlg, IDC_CHAT), slist.angemeldet); 
+	EnableWindow( GetDlgItem(hDlg, IDC_CHAT_SERVER), slist.angemeldet); 
 	}
 
 void serverliste_aktualisieren( HWND hDlg)
@@ -1091,7 +1074,7 @@ void anmeldung( HWND hDlg)
 				{
 				SetDlgItemText( hDlg, IDC_ANMELDEN, "Abmelden");
 				EnableWindow( GetDlgItem(hDlg, IDC_SPIELER), FALSE);
-				EnableWindow( GetDlgItem(hDlg, IDC_CHAT), TRUE);
+				EnableWindow( GetDlgItem(hDlg, IDC_CHAT_CLIENT), TRUE);
 				SetDlgItemText( hDlg, IDC_SESSION, h->sessionname);
 				}
 //			else
@@ -1103,6 +1086,123 @@ void anmeldung( HWND hDlg)
 //	else
 		//MessageBox( hDlg, "Kein Server ausgewählt!", "Duell-Meldung", MB_OK | MB_ICONERROR | MB_SETFOREGROUND);
 	}
+
+void abmeldung( HWND hDlg)
+	{
+	myClient->lock();
+	myClient->reset();
+	myClient->init( client_messagehandler);
+	serverliste_aktualisieren( hDlg);
+	spielerliste_aktualisieren( hDlg);
+	myClient->unlock();
+	SetDlgItemText( hDlg, IDC_ANMELDEN, "Anmelden");
+    EnableWindow( GetDlgItem(hDlg, IDC_SPIELER), TRUE);
+    EnableWindow( GetDlgItem(hDlg, IDC_CHAT_CLIENT), FALSE);
+    SetDlgItemText( hDlg, IDC_SESSION, "");
+    SetDlgItemText( hDlg, IDC_SPIELERINDEX, "");
+	}
+
+void kill_players( HWND hDlg)
+	{
+	HWND lst;
+	DWORD i;
+
+	myServer->lock();
+	lst = GetDlgItem(hDlg, IDC_SPIELERLISTE_SERVER);
+	for( i = 0; i < myServer->slist.maximum; i++)
+		{
+		if( (myServer->slist.sp[i].status == BESETZT) && ListView_GetItemState( lst, i, LVIS_SELECTED))
+			myServer->server->DestroyClient( myServer->slist.sp[i].dpnid, 0, 0, 0);
+		}
+	myServer->unlock();
+}
+
+HRESULT WINAPI server_messagehandler( PVOID pvUserContext, DWORD dwMessageType, PVOID pMessage)
+{
+	int ret = S_OK;
+
+	myServer->lock();
+
+    switch( dwMessageType)
+		{
+	case DPN_MSGID_INDICATE_CONNECT:
+		if( myServer->status == SERVER_SPIEL_LAEUFT)
+			ret = !S_OK;
+		else
+			((PDPNMSG_INDICATE_CONNECT)pMessage)->pvPlayerContext = (void *)myServer->reservierung();
+		break;
+	case DPN_MSGID_INDICATED_CONNECT_ABORTED:
+		myServer->storno((PDPNMSG_INDICATED_CONNECT_ABORTED)pMessage);
+		break;
+    case DPN_MSGID_CREATE_PLAYER:
+		if((int)((PDPNMSG_CREATE_PLAYER)pMessage)->pvPlayerContext != -1) // nicht der Server selbst
+			{
+ 			myServer->buchung( (PDPNMSG_CREATE_PLAYER)pMessage);
+			PostMessage( mein_serverdialog, WM_SPIELER_AKTUALISIEREN, 0, 0);
+			}
+        break;
+   case DPN_MSGID_DESTROY_PLAYER:
+		myServer->remove_player( (int)((PDPNMSG_DESTROY_PLAYER)pMessage)->pvPlayerContext);
+		PostMessage( mein_serverdialog, WM_SPIELER_AKTUALISIEREN, 0, 0);
+        break;
+   case DPN_MSGID_RECEIVE:
+        PBYTE rd = ((PDPNMSG_RECEIVE)pMessage)->pReceiveData;
+        switch( NETWORK_MSGID( rd))
+			{
+		case MSG_CHAT:
+			myServer->send_chatmessage( (msg_chat *)rd);
+			server_chatliste_aktualisieren( mein_serverdialog, (msg_chat *)rd);
+			break;
+			}
+
+		}
+	myServer->unlock();
+
+    return ret;
+}
+HRESULT WINAPI client_messagehandler( PVOID pvUserContext, DWORD dwMessageType, PVOID pMessage)
+{
+	myClient->lock();
+    switch( dwMessageType)
+		{
+    case DPN_MSGID_ENUM_HOSTS_RESPONSE:
+		if( myClient->host_hinzufuegen((PDPNMSG_ENUM_HOSTS_RESPONSE)pMessage))
+			{
+			if( mein_clientdialog)
+				PostMessage( mein_clientdialog, WM_SERVERLISTE_AKTUALISIEREN, 0, 0 );
+			}
+		break;
+    case DPN_MSGID_TERMINATE_SESSION:
+		if( mein_clientdialog)
+			PostMessage( mein_clientdialog, WM_SERVER_TERMINATE, 0, 0);
+        break;
+
+    case DPN_MSGID_RECEIVE:
+        PBYTE rd = ((PDPNMSG_RECEIVE)pMessage)->pReceiveData;
+        switch( NETWORK_MSGID( rd))
+			{
+		case MSG_SPIELERINDEX:
+			myClient->index = ((msg_spielerindex *)rd)->index;
+            if( mein_clientdialog)
+                PostMessage( mein_clientdialog, WM_SPIELERINDEX_AKTUALISIEREN, 0, 0 );
+			break;
+		case MSG_SPIELERLISTE:
+			myClient->slist = *(msg_spielerliste *)rd;
+            if( mein_clientdialog)
+                PostMessage( mein_clientdialog, WM_SPIELERLISTE_AKTUALISIEREN, 0, 0 );
+			break;
+		case MSG_CHAT:
+			if( mein_clientdialog)
+				client_chatliste_aktualisieren( mein_clientdialog, (msg_chat *)rd);
+			break;
+
+			}
+        break;
+		}
+	myClient->unlock();
+    return S_OK;
+}
+
 
 // ******************************************************************
 // Dialogfunktion
@@ -1158,6 +1258,10 @@ INT_PTR CALLBACK D3DEnumDialogProc(HWND hDlg,
     case WM_SPIELERINDEX_AKTUALISIEREN:
 		spielerindex_aktualisieren( hDlg);
 		break;
+	case WM_SERVER_TERMINATE:
+		MessageBox( hDlg, "Abbruch der Server-Verbindung", "Duell-Meldung", MB_OK | MB_ICONERROR | MB_SETFOREGROUND);
+		abmeldung( hDlg);
+		break;
 
 	case WM_CLOSE:
 		// Code 2 zurückliefern; das bedeutet: Dialog abgebrochen
@@ -1184,6 +1288,25 @@ INT_PTR CALLBACK D3DEnumDialogProc(HWND hDlg,
 			display_serverstate( hDlg);
 			display_spieler( hDlg);
 			break;
+		case IDC_KILL:
+			kill_players( hDlg);
+			break;
+		case IDC_CHAT_SERVER:
+			msg_chat cm;
+			cm.msgid = MSG_CHAT;
+			cm.spielerindex = -1; // Server
+			GetDlgItemText( hDlg, IDC_CHATMESSAGE_SERVER, cm.text, 256);
+			myServer->send_chatmessage( &cm);
+			myServer->lock();
+			server_chatliste_aktualisieren( hDlg, &cm);
+			myServer->unlock();
+			SetDlgItemText( hDlg, IDC_CHATMESSAGE_SERVER, "");
+			break;
+		case IDC_CHAT_CLIENT:
+			GetDlgItemText( hDlg, IDC_CHATMESSAGE_CLIENT, buf, 256);
+			myClient->chat( buf);
+			SetDlgItemText( hDlg, IDC_CHATMESSAGE_CLIENT, "");
+			break;
 		case IDC_SUCHEN:
 			GetDlgItemText( hDlg, IDC_SERVER_IP, buf, 64);
 			p = GetDlgItemInt( hDlg, IDC_PORTNUMMER, 0, FALSE);
@@ -1194,7 +1317,8 @@ INT_PTR CALLBACK D3DEnumDialogProc(HWND hDlg,
 			myClient->client->CancelAsyncOperation( NULL, DPNCANCEL_ENUM);
 			if( !myClient->myhost)
 				anmeldung( hDlg);
-
+			else
+				abmeldung( hDlg);
 			SetCursor( LoadCursor(NULL, IDC_ARROW));
 			break;
 		case TB_IDC_D3DC_ADAPTERS:

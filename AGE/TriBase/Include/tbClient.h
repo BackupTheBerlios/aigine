@@ -39,4 +39,7 @@ class TRIBASE_API tbClient
 		int host_hinzufuegen( PDPNMSG_ENUM_HOSTS_RESPONSE msg);
 
 		HRESULT anmelden( host *h);
+
+		void chat( char *text);
+
 	};

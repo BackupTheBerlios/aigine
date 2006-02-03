@@ -41,9 +41,9 @@ tbResult tbServer::Init() {
 
 	server = 0;
 	hostname[0] = 0;
-	maxspieler = 4;
-	strcpy( sessionname, "Duell");
-	portnummer = 4711;
+	maxspieler = 2;
+	strcpy( sessionname, "TriBase-Server");
+	portnummer = 14711;
 	status = SERVER_ANGEHALTEN;
 
 	slist.msgid = MSG_SPIELERLISTE;
@@ -185,6 +185,15 @@ int tbServer::reservierung()
 	return pnr;
 	}
 
+void tbServer::remove_player( int pnr)
+	{
+	lock();
+	slist.sp[pnr].status = FREI;
+	slist.angemeldet--;
+	unlock();
+	send_spielerliste();
+	}
+
 void tbServer::send_spielerliste()
 	{
 	msg_spielerliste sl;
@@ -215,3 +224,16 @@ void tbServer::send_spielerindex( DPNID id, int ix)
     server->SendTo( id, &bdsc, 1, 0, NULL, &async, DPNSEND_GUARANTEED);
 	}
 
+
+void tbServer::send_chatmessage( msg_chat *cm)
+	{
+    DPN_BUFFER_DESC bdsc;
+    DPNHANDLE async;
+
+	if( !server)
+		return;
+    bdsc.dwBufferSize = sizeof( msg_chat);
+    bdsc.pBufferData = (BYTE*)cm;
+
+    server->SendTo( DPNID_ALL_PLAYERS_GROUP, &bdsc, 1, 0, NULL, &async, DPNSEND_GUARANTEED|DPNSEND_NOLOOPBACK);
+	}

@@ -37,8 +37,8 @@
 #define IDC_STATUS                      1029
 #define IDC_SPIELFELD                   1030
 #define IDC_MAXSPIELER                  1031
-#define IDC_CHATMESSAGE                 1032
-#define IDC_CHAT                        1033
+#define IDC_CHATMESSAGE_SERVER          1032
+#define IDC_CHAT_SERVER                 1033
 #define IDC_SPIELERLISTE_SERVER         1034
 #define IDC_AUTO                        1035
 #define IDC_CHATLISTE_SERVER            1036
@@ -48,8 +48,8 @@
 #define IDC_SPIELER                     1040
 #define IDC_SPIELERINDEX                1043
 #define IDC_SUCHEN                      1044
-#define IDC_CHATMESSAGE2                1045
-#define IDC_CHAT2                       1046
+#define IDC_CHATMESSAGE_CLIENT          1045
+#define IDC_CHAT_CLIENT                 1046
 #define IDC_CHATLISTE_CLIENT            1047
 #define IDC_SPIELERLISTE_CLIENT         1050
 #define IDC_HOSTLISTE                   1059

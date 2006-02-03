@@ -80,8 +80,10 @@
 #define RESERVIERT 2
 #define BESETZT    3
 
-#define MSG_SPIELERLISTE  1001
-#define MSG_SPIELERINDEX  1002
+#define MSG_SPIELERLISTE	1001
+#define MSG_SPIELERINDEX	1002
+#define MSG_CHAT			1003
+
 
 #define NETWORK_MSGID( p) (*((DWORD *) (p)))
 
@@ -106,13 +108,19 @@ struct msg_spielerindex
 	DWORD index;
 };
 
+struct msg_chat
+	{
+	DWORD msgid;
+	int spielerindex;
+	char text[256];
+	};
 
-//Client
+
 #define WM_SERVERLISTE_AKTUALISIEREN		WM_APP
 #define WM_SPIELER_AKTUALISIEREN			WM_APP+1
 #define WM_SPIELERLISTE_AKTUALISIEREN		WM_APP+2
 #define WM_SPIELERINDEX_AKTUALISIEREN		WM_APP+3
-
+#define WM_SERVER_TERMINATE					WM_APP+4
 
 #if _MSC_VER >= 1300
 	#define __TB_FUNCTION__ (__FUNCTION__)

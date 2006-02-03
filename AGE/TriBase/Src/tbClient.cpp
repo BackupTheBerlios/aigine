@@ -164,3 +164,18 @@ HRESULT tbClient::anmelden( host *h)
 	myhost = h;
 	return hr;
 }
+void tbClient::chat( char *text)
+	{
+	msg_chat cm;
+    DPN_BUFFER_DESC bdsc;
+    DPNHANDLE async;
+
+	cm.msgid = MSG_CHAT;
+	cm.spielerindex = index;
+	strcpy( cm.text, text);
+
+    bdsc.dwBufferSize = sizeof( msg_chat);
+    bdsc.pBufferData  = (BYTE*) &cm;
+
+	client->Send( &bdsc, 1, 0, 0, &async, DPNSEND_GUARANTEED);
+	}

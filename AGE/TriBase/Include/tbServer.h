@@ -48,8 +48,10 @@ class TRIBASE_API tbServer {
 		int reservierung();
 		void storno( PDPNMSG_INDICATED_CONNECT_ABORTED m);
 		int buchung( PDPNMSG_CREATE_PLAYER msg);
+		void remove_player( int pnr);
 
 		void send_spielerliste();
 		void send_spielerindex( DPNID id, int ix);
+		void send_chatmessage( msg_chat *cm);
 
 };
