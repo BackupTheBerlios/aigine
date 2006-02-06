@@ -32,8 +32,7 @@ msg_spielerliste tbServer::slist;
 
 
 
-int tbServer::start( PFNDPNMESSAGEHANDLER msghandler, char *sname, int pno, int maxsp)
-	{
+int tbServer::start( PFNDPNMESSAGEHANDLER msghandler, char *sname, int pno, int maxsp) {
     HRESULT hr;
     PDIRECTPLAY8ADDRESS adr = 0;
     DPN_APPLICATION_DESC adsc;
@@ -82,21 +81,18 @@ int tbServer::start( PFNDPNMESSAGEHANDLER msghandler, char *sname, int pno, int 
 	if( adr)
 		adr->Release();
 	return hr;
-	}
+}
 
-void tbServer::stop()
-	{
-    if( server)
-		{
+void tbServer::stop() {
+    if( server) {
         server->Close( 0);
         server->Release();
 		server = 0;
-		}
-	status = SERVER_ANGEHALTEN;
 	}
+	status = SERVER_ANGEHALTEN;
+}
 
-int tbServer::buchung( PDPNMSG_CREATE_PLAYER msg)
-	{
+int tbServer::buchung( PDPNMSG_CREATE_PLAYER msg) {
     HRESULT hr;
     DWORD size = 0;
     DPN_PLAYER_INFO* playinfo = 0;
@@ -108,11 +104,10 @@ int tbServer::buchung( PDPNMSG_CREATE_PLAYER msg)
     playinfo = (DPN_PLAYER_INFO*)calloc( 1, size);
     playinfo->dwSize = sizeof( DPN_PLAYER_INFO);
     hr = server->GetClientInfo( msg->dpnidPlayer, playinfo, &size, 0 );
-    if( hr < 0)
-		{
+    if( hr < 0) {
 		free( playinfo);
         return hr;
-		}
+	}
 
 	lock();
 	pnr = (int)msg->pvPlayerContext;
@@ -126,44 +121,39 @@ int tbServer::buchung( PDPNMSG_CREATE_PLAYER msg)
 	unlock();
     free( playinfo);
 	return hr;
-	}
-void tbServer::storno( PDPNMSG_INDICATED_CONNECT_ABORTED m)
-	{
+}
+
+void tbServer::storno( PDPNMSG_INDICATED_CONNECT_ABORTED m) {
 	lock();
 	slist.sp[(int)m->pvPlayerContext].status = FREI;
 	slist.angemeldet--;
 	unlock();
-	}
+}
 
-int tbServer::reservierung()
-	{
+int tbServer::reservierung() {
 	int pnr;
 
 	lock();
-	for( pnr = 0; pnr < MAX_PLAYERS; pnr++)
-		{
-		if( slist.sp[pnr].status == FREI)
-			{
+	for( pnr = 0; pnr < MAX_PLAYERS; pnr++) {
+		if( slist.sp[pnr].status == FREI) {
 			slist.sp[pnr].status = RESERVIERT;
 			slist.angemeldet++;
 			break;
-			}
 		}
+	}
 	unlock();
 	return pnr;
-	}
+}
 
-void tbServer::remove_player( int pnr)
-	{
+void tbServer::remove_player( int pnr) {
 	lock();
 	slist.sp[pnr].status = FREI;
 	slist.angemeldet--;
 	unlock();
 	send_spielerliste();
-	}
+}
 
-void tbServer::send_spielerliste()
-	{
+void tbServer::send_spielerliste() {
 	msg_spielerliste sl;
     DPN_BUFFER_DESC bdsc;
     DPNHANDLE async;
@@ -176,10 +166,9 @@ void tbServer::send_spielerliste()
     bdsc.pBufferData  = (BYTE*) &sl;
 
     server->SendTo( DPNID_ALL_PLAYERS_GROUP, &bdsc, 1, 0, NULL, &async, DPNSEND_GUARANTEED|DPNSEND_NOLOOPBACK);
-	}
+}
 
-void tbServer::send_spielerindex( DPNID id, int ix)
-	{
+void tbServer::send_spielerindex( DPNID id, int ix) {
 	msg_spielerindex six;
     DPN_BUFFER_DESC bdsc;
     DPNHANDLE async;
@@ -190,21 +179,18 @@ void tbServer::send_spielerindex( DPNID id, int ix)
     bdsc.pBufferData  = (BYTE*)&six;
 
     server->SendTo( id, &bdsc, 1, 0, NULL, &async, DPNSEND_GUARANTEED);
-	}
+}
 
-
-void tbServer::send_chatmessage( msg_chat *cm)
-	{
+void tbServer::send_chatmessage( msg_chat *cm) {
     DPN_BUFFER_DESC bdsc;
     DPNHANDLE async;
 
-	if( !server)
-		return;
+	if( !server) return;
     bdsc.dwBufferSize = sizeof( msg_chat);
     bdsc.pBufferData = (BYTE*)cm;
 
     server->SendTo( DPNID_ALL_PLAYERS_GROUP, &bdsc, 1, 0, NULL, &async, DPNSEND_GUARANTEED|DPNSEND_NOLOOPBACK);
-	}
+}
 
 tbResult tbServerInit() {
 
@@ -231,23 +217,20 @@ tbResult tbServerInit() {
 	return TB_OK;
 }
 
-tbResult tbServerExit()
-{
+tbResult tbServerExit() {
     DeleteCriticalSection( &tbServer::critsec);
     CoUninitialize();
 	return TB_OK;
 }
 
-	void next_serverstate( HWND hDlg)
-	{
+void next_serverstate( HWND hDlg) {
 	char sessionname[64];
 	int portnummer;
 	int maxsp;
 	int hr;
 	
 
-	switch( tbServer::status)
-		{
+	switch( tbServer::status) {
 	case SERVER_ANGEHALTEN:
 		SetCursor( LoadCursor(NULL, IDC_WAIT));
 		GetDlgItemText( hDlg, IDC_SESSION_NAME, sessionname, 64);
@@ -259,25 +242,20 @@ tbResult tbServerExit()
 			maxsp = MAX_PLAYERS;
 		SetDlgItemInt( hDlg, IDC_MAXSPIELER, maxsp, FALSE );
 		hr = tbServer::start( server_messagehandler, sessionname, portnummer, maxsp);
-//		hr = myServer->start2( sessionname, portnummer, maxsp);
-//		hr = S_OK;
-		if( hr == S_OK)
-			{
+		if( hr == S_OK) {
 				SetDlgItemText( hDlg, IDC_IP_ADRESSE, tbServer::hostname);
 				tbServer::status = SERVER_GESTARTET;
-			}
-		else
-			{
+		}
+		else {
 			MessageBox( hDlg, DXGetErrorDescription9( hr), "Duell-Meldung", MB_OK | MB_ICONERROR | MB_SETFOREGROUND);
 			tbServer::stop();
-			}
+		}
 		SetCursor( LoadCursor(NULL, IDC_ARROW));
 		break;
-		}
 	}
+}
 
-void server_chatliste_aktualisieren( HWND hDlg, msg_chat *cm)
-	{
+void server_chatliste_aktualisieren( HWND hDlg, msg_chat *cm) {
 	HWND lst;
 	LVITEM lvi;
 	int i;
@@ -296,19 +274,14 @@ void server_chatliste_aktualisieren( HWND hDlg, msg_chat *cm)
 	i = ListView_GetItemCount( lst);
 	if( i > 20)
 		ListView_DeleteItem( lst, i-1);
+}
 
-
-
-	}
-
-HRESULT WINAPI server_messagehandler( PVOID pvUserContext, DWORD dwMessageType, PVOID pMessage)
-{
+HRESULT WINAPI server_messagehandler( PVOID pvUserContext, DWORD dwMessageType, PVOID pMessage) {
 	int ret = S_OK;
 
 	tbServer::lock();
 
-    switch( dwMessageType)
-		{
+    switch( dwMessageType) {
 	case DPN_MSGID_INDICATE_CONNECT:
 		if( tbServer::status == SERVER_SPIEL_LAEUFT)
 			ret = !S_OK;
@@ -319,11 +292,10 @@ HRESULT WINAPI server_messagehandler( PVOID pvUserContext, DWORD dwMessageType, 
 		tbServer::storno((PDPNMSG_INDICATED_CONNECT_ABORTED)pMessage);
 		break;
     case DPN_MSGID_CREATE_PLAYER:
-		if((int)((PDPNMSG_CREATE_PLAYER)pMessage)->pvPlayerContext != -1) // nicht der Server selbst
-			{
+		if((int)((PDPNMSG_CREATE_PLAYER)pMessage)->pvPlayerContext != -1) { // nicht der Server selbst
  			tbServer::buchung( (PDPNMSG_CREATE_PLAYER)pMessage);
 			PostMessage( tbServer::mein_serverdialog, WM_SPIELER_AKTUALISIEREN, 0, 0);
-			}
+		}
         break;
    case DPN_MSGID_DESTROY_PLAYER:
 		tbServer::remove_player( (int)((PDPNMSG_DESTROY_PLAYER)pMessage)->pvPlayerContext);
@@ -331,22 +303,18 @@ HRESULT WINAPI server_messagehandler( PVOID pvUserContext, DWORD dwMessageType, 
         break;
    case DPN_MSGID_RECEIVE:
         PBYTE rd = ((PDPNMSG_RECEIVE)pMessage)->pReceiveData;
-        switch( NETWORK_MSGID( rd))
-			{
+        switch( NETWORK_MSGID( rd)) {
 		case MSG_CHAT:
 			tbServer::send_chatmessage( (msg_chat *)rd);
 			server_chatliste_aktualisieren( tbServer::mein_serverdialog, (msg_chat *)rd);
 			break;
-			}
-
 		}
+	}
 	tbServer::unlock();
-
     return ret;
 }
 
-void display_spieler( HWND hDlg )
-	{
+void display_spieler( HWND hDlg ) {
 	HWND lst;
 	DWORD i;
 	char buf[128];
@@ -361,23 +329,20 @@ void display_spieler( HWND hDlg )
 	ZeroMemory( &lvi, sizeof(lvi));
 	lvi.mask = LVIF_TEXT;
 	lvi.pszText = buf;
-	for( i = 0; i < slist.maximum; i++)
-		{
+	for( i = 0; i < slist.maximum; i++) {
 		lvi.iItem = i;
 		sprintf( buf, "%d", i+1);
 		ListView_InsertItem( lst, &lvi);
 		if( slist.sp[i].status == BESETZT)
 			ListView_SetItemText( lst, i, 1, slist.sp[i].name);		
-		}
-	EnableWindow( GetDlgItem(hDlg, IDC_CHAT_SERVER), slist.angemeldet); 
 	}
+	EnableWindow( GetDlgItem(hDlg, IDC_CHAT_SERVER), slist.angemeldet); 
+}
 
-	void display_serverstate( HWND hDlg)
-	{
+void display_serverstate( HWND hDlg) {
 	int st;
 
-	switch( tbServer::status)
-		{
+	switch( tbServer::status) {
 	case SERVER_ANGEHALTEN:
         SetDlgItemText( hDlg, IDC_STATUS, "Server angehalten");
 		SetDlgItemText( hDlg, IDC_START, "Server starten");
@@ -389,24 +354,22 @@ void display_spieler( HWND hDlg )
 		SetDlgItemText( hDlg, IDC_STATUS, "Server läuft");
         SetDlgItemText( hDlg, IDC_START, "Spiel laden");
 		break;
-		}
+	}
 	st = (tbServer::status == SERVER_ANGEHALTEN);
 	EnableWindow( GetDlgItem(hDlg, IDC_SESSION_NAME), st);
 	EnableWindow( GetDlgItem(hDlg, IDC_PORT), st);
 	EnableWindow( GetDlgItem(hDlg, IDC_MAXSPIELER), st);
-	}
+}
 
-	void kill_players( HWND hDlg)
-	{
+void kill_players( HWND hDlg) {
 	HWND lst;
 	DWORD i;
 
 	tbServer::lock();
 	lst = GetDlgItem(hDlg, IDC_SPIELERLISTE_SERVER);
-	for( i = 0; i < tbServer::slist.maximum; i++)
-		{
+	for( i = 0; i < tbServer::slist.maximum; i++) {
 		if( (tbServer::slist.sp[i].status == BESETZT) && ListView_GetItemState( lst, i, LVIS_SELECTED))
 			tbServer::server->DestroyClient( tbServer::slist.sp[i].dpnid, 0, 0, 0);
-		}
+	}
 	tbServer::unlock();
 }

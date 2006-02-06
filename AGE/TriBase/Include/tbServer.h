@@ -54,11 +54,8 @@ class TRIBASE_API tbServer {
 
 TRIBASE_API tbResult tbServerInit();
 TRIBASE_API tbResult tbServerExit();
-
 TRIBASE_API void next_serverstate( HWND hDlg);
-
 TRIBASE_API void server_chatliste_aktualisieren( HWND hDlg, msg_chat *cm);
-
 TRIBASE_API void display_spieler( HWND hDlg );
 TRIBASE_API void display_serverstate( HWND hDlg);
 TRIBASE_API void kill_players( HWND hDlg);

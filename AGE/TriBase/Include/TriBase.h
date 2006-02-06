@@ -21,6 +21,9 @@
 	Snorky
 	[24.9.03]
 
+	Bearbeitet:
+	S.Blaum
+
 
 ********************************************************************/
 
@@ -74,46 +77,42 @@
 #define SERVER_SPIEL_LAEUFT		3
 
 #define MAX_PLAYERS				64
-#define MAX_NAMLEN  32
+#define MAX_NAMLEN				32
 
-#define FREI       1
-#define RESERVIERT 2
-#define BESETZT    3
+#define FREI					1
+#define RESERVIERT				2
+#define BESETZT					3
 
-#define MSG_SPIELERLISTE	1001
-#define MSG_SPIELERINDEX	1002
-#define MSG_CHAT			1003
+#define MSG_SPIELERLISTE		1001
+#define MSG_SPIELERINDEX		1002
+#define MSG_CHAT				1003
 
 
 #define NETWORK_MSGID( p) (*((DWORD *) (p)))
 
-struct spieler
-	{
+struct spieler {
     DPNID dpnid;
 	char status; // FREI, BESETZT oder RESERVIERT
     char name[MAX_NAMLEN]; 
-	};
+};
 
-struct msg_spielerliste
-	{
+struct msg_spielerliste {
 	DWORD msgid;
 	DWORD angemeldet;
 	DWORD maximum;
 	spieler sp[MAX_PLAYERS];
-	};
+};
 
-struct msg_spielerindex
-{
+struct msg_spielerindex {
 	DWORD msgid;
 	DWORD index;
 };
 
-struct msg_chat
-	{
+struct msg_chat {
 	DWORD msgid;
 	int spielerindex;
 	char text[256];
-	};
+};
 
 
 #define WM_SERVERLISTE_AKTUALISIEREN		WM_APP

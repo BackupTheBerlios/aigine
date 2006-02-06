@@ -1251,18 +1251,10 @@ TRIBASE_API tbResult tbDoConfigDialog(tbConfig* pOut)
 {
 	int iResult;
 	int hr;
-	//myServer = new tbServer();
-	//myClient = new tbClient();
 	
-	tbClientInit();
-	tbServerInit();
-	//hr = 
-	//tbClient::init( /*client_messagehandler*/);
-/*	if( hr < 0)
-		{
-		MessageBox( 0, DXGetErrorDescription8( hr), "Duell-Meldung", MB_OK | MB_ICONERROR | MB_SETFOREGROUND);
-		}
-*/
+//	tbClientInit();
+//	tbServerInit();
+
 	// Parameter prüfen
 	if(pOut == NULL) TB_ERROR_NULL_POINTER("pOut", TB_ERROR);
 
