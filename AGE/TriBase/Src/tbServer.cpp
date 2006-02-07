@@ -192,6 +192,10 @@ void tbServer::send_chatmessage( msg_chat *cm) {
     server->SendTo( DPNID_ALL_PLAYERS_GROUP, &bdsc, 1, 0, NULL, &async, DPNSEND_GUARANTEED|DPNSEND_NOLOOPBACK);
 }
 
+tbResult tbServer::Init() {
+	return tbServerInit();
+}
+
 tbResult tbServerInit() {
 
 	int i;

@@ -30,10 +30,10 @@ class TRIBASE_API tbServer {
 		static DWORD portnummer;
 		static int maxspieler;
 		static IDirectPlay8Server *server;
-
 		static HWND mein_serverdialog;
-
 		static msg_spielerliste slist;
+
+		static tbResult Init();
 
 		static inline void lock() { EnterCriticalSection( &critsec);}
 		static inline void unlock() { LeaveCriticalSection( &critsec);}
