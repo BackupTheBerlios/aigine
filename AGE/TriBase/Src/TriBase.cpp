@@ -93,11 +93,12 @@ TRIBASE_API tbResult tbInit()
 	//Server initialisieren
 	//if(tbServerInit()) TB_ERROR("Initialisierung des Servers fehlgeschlagen!", TB_ERROR);
 
-	tbClientInit();
-	tbServerInit();
 
 	// COM initialisieren
 	if(FAILED(CoInitialize(NULL))) TB_ERROR("COM-Initialisierung fehlgeschlagen!", TB_ERROR);
+
+	tbClientInit();
+	tbServerInit();
 
 
 	// Uhr und Zufallsgenerator initialisieren

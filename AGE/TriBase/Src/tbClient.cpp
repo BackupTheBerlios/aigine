@@ -207,7 +207,7 @@ tbResult tbClientInit() {
 	tbClient::hlist = 0;
 	tbClient::reset();
 
-    CoInitializeEx( NULL, COINIT_MULTITHREADED);
+	CoInitializeEx( NULL, COINIT_MULTITHREADED);
 	InitializeCriticalSection( &tbClient::critsec);
 
 	tbClient::init();
