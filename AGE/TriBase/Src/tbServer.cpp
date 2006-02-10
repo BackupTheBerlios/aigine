@@ -218,7 +218,7 @@ tbResult tbServer::Init() {
 }
 
 tbResult tbServer::Exit() {
-	stop();
+	//stop();
     DeleteCriticalSection( &tbServer::critsec);
 	m_bInitialized = FALSE;
 	TB_INFO("Der Server wurde heruntergefahren.");
