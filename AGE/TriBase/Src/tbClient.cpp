@@ -1,6 +1,7 @@
 
 #include <TriBase.h>
 
+BOOL tbClient::m_bInitialized = FALSE;
 CRITICAL_SECTION tbClient::critsec;
 IDirectPlay8Client *tbClient::client;
 host *tbClient::hlist;
@@ -8,7 +9,6 @@ host *tbClient::myhost;
 char tbClient::spielername[64];
 msg_spielerliste tbClient::slist;
 DWORD tbClient::index;
-HWND tbClient::mein_clientdialog;
 
 void tbClient::reset() {
 	host *h;
@@ -104,61 +104,6 @@ int tbClient::host_hinzufuegen( PDPNMSG_ENUM_HOSTS_RESPONSE msg) {
 	return 1;
 }
 
-int tbClient::init( /*PFNDPNMESSAGEHANDLER msghandler*/) {
-	HRESULT hr;
-	DPN_CAPS caps;
-
-    hr = CoCreateInstance( CLSID_DirectPlay8Client, NULL, CLSCTX_INPROC_SERVER,IID_IDirectPlay8Client,(LPVOID*)&client);
-	if( hr < 0)
-		return hr;
-	hr = client->Initialize( 0, client_messagehandler, 0);
-	if( hr < 0)
-		return hr;
-	caps.dwSize = sizeof( DPN_CAPS);
-	caps.dwConnectTimeout = 5000;
-	caps.dwConnectRetries = 1;
-	caps.dwTimeoutUntilKeepAlive = 1000;
-	caps.dwFlags = 0;
-	hr = client->SetCaps( &caps, 0);
-	return hr;
-}
-
-HRESULT WINAPI client_messagehandler( PVOID pvUserContext, DWORD dwMessageType, PVOID pMessage) {
-	tbClient::lock();
-    switch( dwMessageType) {
-    case DPN_MSGID_ENUM_HOSTS_RESPONSE:
-		if( tbClient::host_hinzufuegen((PDPNMSG_ENUM_HOSTS_RESPONSE)pMessage)) {
-			if( tbClient::mein_clientdialog)
-				PostMessage( tbClient::mein_clientdialog, WM_SERVERLISTE_AKTUALISIEREN, 0, 0 );
-		}
-		break;
-    case DPN_MSGID_TERMINATE_SESSION:
-		if( tbClient::mein_clientdialog)
-			PostMessage( tbClient::mein_clientdialog, WM_SERVER_TERMINATE, 0, 0);
-        break;
-    case DPN_MSGID_RECEIVE:
-        PBYTE rd = ((PDPNMSG_RECEIVE)pMessage)->pReceiveData;
-        switch( NETWORK_MSGID( rd)) {
-		case MSG_SPIELERINDEX:
-			tbClient::index = ((msg_spielerindex *)rd)->index;
-            if( tbClient::mein_clientdialog)
-                PostMessage( tbClient::mein_clientdialog, WM_SPIELERINDEX_AKTUALISIEREN, 0, 0 );
-			break;
-		case MSG_SPIELERLISTE:
-			tbClient::slist = *(msg_spielerliste *)rd;
-            if( tbClient::mein_clientdialog)
-                PostMessage( tbClient::mein_clientdialog, WM_SPIELERLISTE_AKTUALISIEREN, 0, 0 );
-			break;
-		case MSG_CHAT:
-			if( tbClient::mein_clientdialog)
-				client_chatliste_aktualisieren( tbClient::mein_clientdialog, (msg_chat *)rd);
-			break;
-		}
-        break;
-	}
-	tbClient::unlock();
-    return S_OK;
-}
 
 HRESULT tbClient::anmelden( host *h) {
 	DPN_PLAYER_INFO pinfo;
@@ -202,7 +147,7 @@ void tbClient::chat( char *text) {
 	client->Send( &bdsc, 1, 0, 0, &async, DPNSEND_GUARANTEED);
 }
 
-tbResult tbClientInit() {
+tbResult tbClient::Init(PFNDPNMESSAGEHANDLER msghandler) {
 	tbClient::client = 0;
 	tbClient::hlist = 0;
 	tbClient::reset();
@@ -210,141 +155,51 @@ tbResult tbClientInit() {
 	CoInitializeEx( NULL, COINIT_MULTITHREADED);
 	InitializeCriticalSection( &tbClient::critsec);
 
-	tbClient::init();
+	HRESULT hr;
+	DPN_CAPS caps;
+
+    hr = CoCreateInstance( CLSID_DirectPlay8Client, NULL, CLSCTX_INPROC_SERVER,IID_IDirectPlay8Client,(LPVOID*)&client);
+	if( hr < 0)
+		return TB_ERROR;
+	hr = client->Initialize( 0, msghandler, 0);
+	if( hr < 0)
+		return TB_ERROR;
+	caps.dwSize = sizeof( DPN_CAPS);
+	caps.dwConnectTimeout = 5000;
+	caps.dwConnectRetries = 1;
+	caps.dwTimeoutUntilKeepAlive = 1000;
+	caps.dwFlags = 0;
+	hr = client->SetCaps( &caps, 0);
+
+	TB_INFO("Client wurde initialisiert!");
+	m_bInitialized = TRUE;
 
 	return TB_OK;
 }
 
-void anmeldung( HWND hDlg) {
-	HWND lst;
-	LVITEM lvi;
-	int ix;
-	host *h;
+int tbClient::reInit(PFNDPNMESSAGEHANDLER msghandler) {
 	HRESULT hr;
+	DPN_CAPS caps;
 
-	lst = GetDlgItem(hDlg, IDC_HOSTLISTE);
-	if( ListView_GetSelectedCount( lst) == 1) {
-		ix = ListView_GetSelectionMark( lst);
-		GetDlgItemText( hDlg, IDC_SPIELER, tbClient::spielername, 64);
-		if( isalnum(tbClient::spielername[0])) {
-			lvi.iItem = ix;
-			lvi.iSubItem = 0;
-			lvi.mask = LVIF_PARAM;
-			ListView_GetItem( lst, &lvi);
-			h = (host *)lvi.lParam;
-			hr = tbClient::anmelden( h);
-			if( hr == S_OK) {
-				SetDlgItemText( hDlg, IDC_ANMELDEN, "Abmelden");
-				EnableWindow( GetDlgItem(hDlg, IDC_SPIELER), FALSE);
-				EnableWindow( GetDlgItem(hDlg, IDC_CHAT_CLIENT), TRUE);
-				SetDlgItemText( hDlg, IDC_SESSION, h->sessionname);
-			}
-//			else
-				//MessageBox( hDlg, DXGetErrorDescription8( hr), "Duell-Meldung", MB_OK | MB_ICONERROR | MB_SETFOREGROUND);
-		}
-//		else
-			//MessageBox( hDlg, "Gib erst einen Spielernamen ein!", "Duell-Meldung", MB_OK | MB_ICONERROR | MB_SETFOREGROUND);
-	}
-//	else
-		//MessageBox( hDlg, "Kein Server ausgewählt!", "Duell-Meldung", MB_OK | MB_ICONERROR | MB_SETFOREGROUND);
+    hr = CoCreateInstance( CLSID_DirectPlay8Client, NULL, CLSCTX_INPROC_SERVER,IID_IDirectPlay8Client,(LPVOID*)&client);
+	if( hr < 0)
+		return hr;
+    hr = client->Initialize( 0, msghandler, 0);
+	if( hr < 0)
+		return hr;
+	caps.dwSize = sizeof( DPN_CAPS);
+	caps.dwConnectTimeout = 5000;
+	caps.dwConnectRetries = 1;
+	caps.dwTimeoutUntilKeepAlive = 1000;
+	caps.dwFlags = 0;
+	hr = client->SetCaps( &caps, 0);
+	return hr;
 }
 
-void abmeldung( HWND hDlg) {
-	tbClient::lock();
-	tbClient::reset();
-	tbClient::init( /*client_messagehandler*/);
-	serverliste_aktualisieren( hDlg);
-	spielerliste_aktualisieren( hDlg);
-	tbClient::unlock();
-	SetDlgItemText( hDlg, IDC_ANMELDEN, "Anmelden");
-    EnableWindow( GetDlgItem(hDlg, IDC_SPIELER), TRUE);
-    EnableWindow( GetDlgItem(hDlg, IDC_CHAT_CLIENT), FALSE);
-    SetDlgItemText( hDlg, IDC_SESSION, "");
-    SetDlgItemText( hDlg, IDC_SPIELERINDEX, "");
-}
-
-void client_chatliste_aktualisieren( HWND hDlg, msg_chat *cm) {
-	HWND lst;
-	LVITEM lvi;
-	int i;
-
-		lst = GetDlgItem(hDlg, IDC_CHATLISTE_CLIENT);
-
-	ZeroMemory( &lvi, sizeof(lvi));
-	lvi.mask = LVIF_TEXT;
-	lvi.iItem = 0;
-	if( cm->spielerindex >= 0)
-		lvi.pszText = tbClient::slist.sp[cm->spielerindex].name;
-	else
-		lvi.pszText = "Server";
-	ListView_InsertItem( lst, &lvi);
-	ListView_SetItemText( lst, 0, 1, cm->text);		
-	i = ListView_GetItemCount( lst);
-	if( i > 20)
-		ListView_DeleteItem( lst, i-1);
-}
-
-void serverliste_aktualisieren( HWND hDlg) {
-	HWND lst;
-	DWORD i;
-	char buf[128];
-	LVITEM lvi;
-	host *h;
-
-	lst = GetDlgItem(hDlg, IDC_HOSTLISTE);
-    SendMessage( lst, LVM_DELETEALLITEMS, 0, 0 );
-
-	ZeroMemory( &lvi, sizeof(lvi));
-	lvi.mask = LVIF_TEXT|LVIF_PARAM;
-
-	tbClient::lock();
-	for( i = 0, h = tbClient::hlist; h ; h = h->next, i++) {
-		lvi.iItem = i;
-		lvi.pszText = h->sessionname;
-		lvi.lParam = (LPARAM)h;
-		ListView_InsertItem( lst, &lvi);
-		ListView_SetItemText( lst, i, 1, h->hostname);
-		sprintf( buf, "%d", h->portnummer);
-		ListView_SetItemText( lst, i, 2, buf);
-		sprintf( buf, "%d", h->latenz);
-		ListView_SetItemText( lst, i, 3, buf);
-		if( h == tbClient::myhost)
-			ListView_SetItemState( lst, i, LVIS_FOCUSED|LVIS_SELECTED, LVIS_FOCUSED|LVIS_SELECTED);
-	}
-	tbClient::unlock();
-}
-
-void spielerliste_aktualisieren( HWND hDlg) {
-	HWND lst;
-	DWORD i;
-	char buf[128];
-	msg_spielerliste slist;
-	LVITEM lvi;
-
-	tbClient::lock();
-	slist = tbClient::slist;
-	tbClient::unlock();
-
-	lst = GetDlgItem(hDlg, IDC_SPIELERLISTE_CLIENT);
-    SendMessage( lst, LVM_DELETEALLITEMS, 0, 0 );
-	ZeroMemory( &lvi, sizeof(lvi));
-	lvi.mask = LVIF_TEXT;
-	lvi.pszText = buf;
-
-	for( i = 0; i < slist.maximum; i++) {
-		lvi.iItem = i;
-		sprintf( buf, "%d", i+1);
-		ListView_InsertItem( lst, &lvi);
-		if( slist.sp[i].status == BESETZT)
-			ListView_SetItemText( lst, i, 1, slist.sp[i].name);		
-	}
-}
-
-void spielerindex_aktualisieren( HWND hDlg) {
-	int ix;
-
-	tbClient::lock();
-	ix = tbClient::index;
-	tbClient::unlock();
-	SetDlgItemInt( hDlg, IDC_SPIELERINDEX, ix + 1, FALSE);
+tbResult tbClient::Exit() {
+	reset();
+	DeleteCriticalSection( &tbClient::critsec);
+ 	m_bInitialized = FALSE;
+	TB_INFO("Der Client wurde heruntergefahren.");
+	return TB_OK;
 }

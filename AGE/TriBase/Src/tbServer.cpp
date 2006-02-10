@@ -20,6 +20,7 @@
 ********************************************************************/
 #include <TriBase.h>
 
+BOOL tbServer::m_bInitialized = FALSE;
 CRITICAL_SECTION tbServer::critsec;
 int tbServer::status;
 char tbServer::hostname[64];
@@ -27,7 +28,6 @@ char tbServer::sessionname[64];
 DWORD tbServer::portnummer;
 int tbServer::maxspieler;
 IDirectPlay8Server *tbServer::server;
-HWND tbServer::mein_serverdialog;
 msg_spielerliste tbServer::slist;
 
 
@@ -43,7 +43,6 @@ int tbServer::start( PFNDPNMESSAGEHANDLER msghandler, char *sname, int pno, int 
 
 	strcpy( sessionname, sname);
 	portnummer = pno;
-//	maxspieler = maxsp;
 
 	slist.maximum = maxspieler = maxsp;
 
@@ -193,11 +192,6 @@ void tbServer::send_chatmessage( msg_chat *cm) {
 }
 
 tbResult tbServer::Init() {
-	return tbServerInit();
-}
-
-tbResult tbServerInit() {
-
 	int i;
 
 	CoInitializeEx( NULL, COINIT_MULTITHREADED);
@@ -218,162 +212,16 @@ tbResult tbServerInit() {
 		tbServer::slist.sp[i].status = FREI;
 	}
 
+	TB_INFO("Server wurde initialisiert!");
+    m_bInitialized = TRUE;
 	return TB_OK;
 }
 
-tbResult tbServerExit() {
+tbResult tbServer::Exit() {
+	stop();
     DeleteCriticalSection( &tbServer::critsec);
-    CoUninitialize();
+	m_bInitialized = FALSE;
+	TB_INFO("Der Server wurde heruntergefahren.");
 	return TB_OK;
 }
 
-void next_serverstate( HWND hDlg) {
-	char sessionname[64];
-	int portnummer;
-	int maxsp;
-	int hr;
-	
-
-	switch( tbServer::status) {
-	case SERVER_ANGEHALTEN:
-		SetCursor( LoadCursor(NULL, IDC_WAIT));
-		GetDlgItemText( hDlg, IDC_SESSION_NAME, sessionname, 64);
-		portnummer = GetDlgItemInt( hDlg, IDC_PORT, 0, FALSE);
-		maxsp = GetDlgItemInt( hDlg, IDC_MAXSPIELER, 0, 0);
-		if( maxsp < 2)
-			maxsp = 2;
-		if( maxsp > MAX_PLAYERS)
-			maxsp = MAX_PLAYERS;
-		SetDlgItemInt( hDlg, IDC_MAXSPIELER, maxsp, FALSE );
-		hr = tbServer::start( server_messagehandler, sessionname, portnummer, maxsp);
-		if( hr == S_OK) {
-				SetDlgItemText( hDlg, IDC_IP_ADRESSE, tbServer::hostname);
-				tbServer::status = SERVER_GESTARTET;
-		}
-		else {
-			MessageBox( hDlg, DXGetErrorDescription9( hr), "Duell-Meldung", MB_OK | MB_ICONERROR | MB_SETFOREGROUND);
-			tbServer::stop();
-		}
-		SetCursor( LoadCursor(NULL, IDC_ARROW));
-		break;
-	}
-}
-
-void server_chatliste_aktualisieren( HWND hDlg, msg_chat *cm) {
-	HWND lst;
-	LVITEM lvi;
-	int i;
-
-	lst = GetDlgItem(hDlg, IDC_CHATLISTE_SERVER);
-
-	ZeroMemory( &lvi, sizeof(lvi));
-	lvi.mask = LVIF_TEXT;
-	lvi.iItem = 0;
-	if( cm->spielerindex >= 0)
-		lvi.pszText = tbServer::slist.sp[cm->spielerindex].name;
-	else
-		lvi.pszText = "Server";
-	ListView_InsertItem( lst, &lvi);
-	ListView_SetItemText( lst, 0, 1, cm->text);		
-	i = ListView_GetItemCount( lst);
-	if( i > 20)
-		ListView_DeleteItem( lst, i-1);
-}
-
-HRESULT WINAPI server_messagehandler( PVOID pvUserContext, DWORD dwMessageType, PVOID pMessage) {
-	int ret = S_OK;
-
-	tbServer::lock();
-
-    switch( dwMessageType) {
-	case DPN_MSGID_INDICATE_CONNECT:
-		if( tbServer::status == SERVER_SPIEL_LAEUFT)
-			ret = !S_OK;
-		else
-			((PDPNMSG_INDICATE_CONNECT)pMessage)->pvPlayerContext = (void *)tbServer::reservierung();
-		break;
-	case DPN_MSGID_INDICATED_CONNECT_ABORTED:
-		tbServer::storno((PDPNMSG_INDICATED_CONNECT_ABORTED)pMessage);
-		break;
-    case DPN_MSGID_CREATE_PLAYER:
-		if((int)((PDPNMSG_CREATE_PLAYER)pMessage)->pvPlayerContext != -1) { // nicht der Server selbst
- 			tbServer::buchung( (PDPNMSG_CREATE_PLAYER)pMessage);
-			PostMessage( tbServer::mein_serverdialog, WM_SPIELER_AKTUALISIEREN, 0, 0);
-		}
-        break;
-   case DPN_MSGID_DESTROY_PLAYER:
-		tbServer::remove_player( (int)((PDPNMSG_DESTROY_PLAYER)pMessage)->pvPlayerContext);
-		PostMessage( tbServer::mein_serverdialog, WM_SPIELER_AKTUALISIEREN, 0, 0);
-        break;
-   case DPN_MSGID_RECEIVE:
-        PBYTE rd = ((PDPNMSG_RECEIVE)pMessage)->pReceiveData;
-        switch( NETWORK_MSGID( rd)) {
-		case MSG_CHAT:
-			tbServer::send_chatmessage( (msg_chat *)rd);
-			server_chatliste_aktualisieren( tbServer::mein_serverdialog, (msg_chat *)rd);
-			break;
-		}
-	}
-	tbServer::unlock();
-    return ret;
-}
-
-void display_spieler( HWND hDlg ) {
-	HWND lst;
-	DWORD i;
-	char buf[128];
-	msg_spielerliste slist;
-	LVITEM lvi;
-
-	tbServer::lock();
-	slist = tbServer::slist;
-	tbServer::unlock();
-	lst = GetDlgItem(hDlg, IDC_SPIELERLISTE_SERVER);
-    SendMessage( lst, LVM_DELETEALLITEMS, 0, 0 );
-	ZeroMemory( &lvi, sizeof(lvi));
-	lvi.mask = LVIF_TEXT;
-	lvi.pszText = buf;
-	for( i = 0; i < slist.maximum; i++) {
-		lvi.iItem = i;
-		sprintf( buf, "%d", i+1);
-		ListView_InsertItem( lst, &lvi);
-		if( slist.sp[i].status == BESETZT)
-			ListView_SetItemText( lst, i, 1, slist.sp[i].name);		
-	}
-	EnableWindow( GetDlgItem(hDlg, IDC_CHAT_SERVER), slist.angemeldet); 
-}
-
-void display_serverstate( HWND hDlg) {
-	int st;
-
-	switch( tbServer::status) {
-	case SERVER_ANGEHALTEN:
-        SetDlgItemText( hDlg, IDC_STATUS, "Server angehalten");
-		SetDlgItemText( hDlg, IDC_START, "Server starten");
-		SetDlgItemText( hDlg, IDC_SESSION_NAME, tbServer::sessionname);
-		SetDlgItemInt( hDlg, IDC_PORT, tbServer::portnummer, FALSE );
-		SetDlgItemInt( hDlg, IDC_MAXSPIELER, tbServer::maxspieler, FALSE );
-		break;
-	case SERVER_GESTARTET:
-		SetDlgItemText( hDlg, IDC_STATUS, "Server läuft");
-        SetDlgItemText( hDlg, IDC_START, "Spiel laden");
-		break;
-	}
-	st = (tbServer::status == SERVER_ANGEHALTEN);
-	EnableWindow( GetDlgItem(hDlg, IDC_SESSION_NAME), st);
-	EnableWindow( GetDlgItem(hDlg, IDC_PORT), st);
-	EnableWindow( GetDlgItem(hDlg, IDC_MAXSPIELER), st);
-}
-
-void kill_players( HWND hDlg) {
-	HWND lst;
-	DWORD i;
-
-	tbServer::lock();
-	lst = GetDlgItem(hDlg, IDC_SPIELERLISTE_SERVER);
-	for( i = 0; i < tbServer::slist.maximum; i++) {
-		if( (tbServer::slist.sp[i].status == BESETZT) && ListView_GetItemState( lst, i, LVIS_SELECTED))
-			tbServer::server->DestroyClient( tbServer::slist.sp[i].dpnid, 0, 0, 0);
-	}
-	tbServer::unlock();
-}

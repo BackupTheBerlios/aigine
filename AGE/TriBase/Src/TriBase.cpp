@@ -89,16 +89,11 @@ TRIBASE_API tbResult tbInit()
 
 	// Speichermanager initialisieren
 	if(tbMemInit()) TB_ERROR("Initialisierung des Speichermanagers fehlgeschlagen!", TB_ERROR);
-	
-	//Server initialisieren
-	//if(tbServerInit()) TB_ERROR("Initialisierung des Servers fehlgeschlagen!", TB_ERROR);
-
 
 	// COM initialisieren
 	if(FAILED(CoInitialize(NULL))) TB_ERROR("COM-Initialisierung fehlgeschlagen!", TB_ERROR);
 
-	tbClientInit();
-	//tbServerInit();
+	//tbClient::Init();
 	tbServer::Init();
 
 	// Uhr und Zufallsgenerator initialisieren
@@ -141,6 +136,18 @@ TRIBASE_API tbResult tbExit()
 	{
 		TB_WARNING("DirectSound wurde nicht heruntergefahren! Wird automatisch erledigt...");
 		tbDirectSound::Exit();
+	}
+
+	//Client runterfahren
+	if(tbClient::IsInitialized()) {
+		TB_WARNING("Client wurde nicht heruntergefahren! Wird automatisch erledigt...");
+		tbClient::Exit();
+	}
+
+	//Server runterfahren
+	if(tbServer::IsInitialized()) {
+		TB_WARNING("Server wurde nicht heruntergefahren! Wird automatisch erledigt...");
+		tbServer::Exit();
 	}
 
 	// Eventuell alle Texturen löschen

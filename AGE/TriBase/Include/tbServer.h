@@ -18,11 +18,12 @@
 	Sebastian Blaum
 
 ********************************************************************/
-HRESULT WINAPI server_messagehandler( PVOID pvUserContext, DWORD dwMessageType, PVOID pMessage);
 
 class TRIBASE_API tbServer {
-
-	public:
+private:
+		static BOOL	m_bInitialized;
+	
+public:
 		static CRITICAL_SECTION critsec;
 		static int status;
 		static char hostname[64];
@@ -30,13 +31,13 @@ class TRIBASE_API tbServer {
 		static DWORD portnummer;
 		static int maxspieler;
 		static IDirectPlay8Server *server;
-		static HWND mein_serverdialog;
 		static msg_spielerliste slist;
 
 		static tbResult Init();
+		static tbResult Exit();
 
-		static inline void lock() { EnterCriticalSection( &critsec);}
-		static inline void unlock() { LeaveCriticalSection( &critsec);}
+		static inline void lock() { EnterCriticalSection( &tbServer::critsec);}
+		static inline void unlock() { LeaveCriticalSection( &tbServer::critsec);}
 
 		static int start( PFNDPNMESSAGEHANDLER msghandler, char *sname, int pno, int maxsp);
 		static void stop();
@@ -50,12 +51,6 @@ class TRIBASE_API tbServer {
 		static void send_spielerindex( DPNID id, int ix);
 		static void send_chatmessage( msg_chat *cm);
 
-};
+		static inline BOOL					IsInitialized()	{return m_bInitialized;}
 
-TRIBASE_API tbResult tbServerInit();
-TRIBASE_API tbResult tbServerExit();
-TRIBASE_API void next_serverstate( HWND hDlg);
-TRIBASE_API void server_chatliste_aktualisieren( HWND hDlg, msg_chat *cm);
-TRIBASE_API void display_spieler( HWND hDlg );
-TRIBASE_API void display_serverstate( HWND hDlg);
-TRIBASE_API void kill_players( HWND hDlg);
+};

@@ -48,6 +48,7 @@
 
 //mod.:S.Blaum
 #include <commctrl.h>
+#include <dplay.h>
 #include <dplay8.h>
 #include <dxutil.h>
 
@@ -86,6 +87,7 @@
 #define MSG_SPIELERLISTE		1001
 #define MSG_SPIELERINDEX		1002
 #define MSG_CHAT				1003
+#define MSG_TEST				2222
 
 
 #define NETWORK_MSGID( p) (*((DWORD *) (p)))
@@ -179,6 +181,7 @@ TRIBASE_API tbResult tbDelay(DWORD dwDuration);															// Pause machen
 TRIBASE_API tbResult tbSetAppActive(BOOL bActive);														// Aktivierungsstatus der Anwendung setzen
 TRIBASE_API	tbResult tbSetFramebrake(double dFramebrake = 0.0);												// Setzen der neuen Frameratenbegrenzung
 
+HRESULT WINAPI client_messagehandler( PVOID pvUserContext, DWORD dwMessageType, PVOID pMessage);
 // ******************************************************************
 
 // Headerdateien der Engine einbinden

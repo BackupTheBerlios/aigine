@@ -43,16 +43,6 @@ struct TRIBASE_API tbConfig
 		DWORD				dwSampleRate;			// Sampling-Frequenz
 		DWORD				dwNumBitsPerSample;		// Anzahl der Bits pro Sample
 	} DirectSound;
-
-	struct
-	{
-		int					status;
-		char				sessionname[64];
-		char				hostName[64];
-		int					portnumber;
-		int					maxplayer;
-//		int					hr;
-	} DirectPlay;
 };
 
 // ******************************************************************
@@ -60,3 +50,17 @@ struct TRIBASE_API tbConfig
 TRIBASE_API tbResult tbDoConfigDialog(tbConfig* pOut);	// Konfigurationsdialog aufrufen
 
 // ******************************************************************
+
+TRIBASE_API void anmeldung( HWND hDlg);
+TRIBASE_API void abmeldung( HWND hDlg);
+TRIBASE_API void client_chatliste_aktualisieren( HWND hDlg, msg_chat *cm);
+TRIBASE_API void serverliste_aktualisieren( HWND hDlg);
+TRIBASE_API void spielerliste_aktualisieren( HWND hDlg);
+TRIBASE_API void spielerindex_aktualisieren( HWND hDlg);
+
+TRIBASE_API void next_serverstate( HWND hDlg);
+TRIBASE_API void server_chatliste_aktualisieren( HWND hDlg, msg_chat *cm);
+TRIBASE_API void display_spieler( HWND hDlg );
+TRIBASE_API void display_serverstate( HWND hDlg);
+TRIBASE_API void kill_players( HWND hDlg);
+
