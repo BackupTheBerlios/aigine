@@ -94,7 +94,7 @@ TRIBASE_API tbResult tbInit()
 	if(FAILED(CoInitialize(NULL))) TB_ERROR("COM-Initialisierung fehlgeschlagen!", TB_ERROR);
 
 	//tbClient::Init();
-	tbServer::Init();
+	//tbServer::Init();
 
 	// Uhr und Zufallsgenerator initialisieren
 	QueryPerformanceFrequency((LARGE_INTEGER*)(&tb_g_llFrequency));

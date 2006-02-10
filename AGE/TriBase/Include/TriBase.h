@@ -181,7 +181,7 @@ TRIBASE_API tbResult tbDelay(DWORD dwDuration);															// Pause machen
 TRIBASE_API tbResult tbSetAppActive(BOOL bActive);														// Aktivierungsstatus der Anwendung setzen
 TRIBASE_API	tbResult tbSetFramebrake(double dFramebrake = 0.0);												// Setzen der neuen Frameratenbegrenzung
 
-HRESULT WINAPI client_messagehandler( PVOID pvUserContext, DWORD dwMessageType, PVOID pMessage);
+//HRESULT WINAPI client_messagehandler( PVOID pvUserContext, DWORD dwMessageType, PVOID pMessage);
 // ******************************************************************
 
 // Headerdateien der Engine einbinden

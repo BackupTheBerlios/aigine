@@ -1202,7 +1202,7 @@ TRIBASE_API tbResult tbDoConfigDialog(tbConfig* pOut)
 	int hr;
 	
 	tbClient::Init(client_messagehandler);
-	//tbServer::Init();
+	tbServer::Init();
 
 	// Parameter prüfen
 	if(pOut == NULL) TB_ERROR_NULL_POINTER("pOut", TB_ERROR);
@@ -1235,7 +1235,11 @@ TRIBASE_API tbResult tbDoConfigDialog(tbConfig* pOut)
 	// Rückgabewert des Dialogfensters auswerten
 	if(iResult == 0) return TB_OK;					// Alles OK!
 	else if(iResult == 1) return TB_ERROR;			// Fehler!
-	else if(iResult == 2) return TB_CANCELED;	// Dialog abgebrochen
+	else if(iResult == 2) {
+		tbClient::Exit();
+		tbServer::Exit();
+		return TB_CANCELED;	// Dialog abgebrochen
+	}
 }
 
 //Client
