@@ -194,7 +194,7 @@ void tbServer::send_chatmessage( msg_chat *cm) {
 tbResult tbServer::Init() {
 	int i;
 
-	CoInitializeEx( NULL, COINIT_MULTITHREADED);
+	//CoInitializeEx( NULL, COINIT_MULTITHREADED);
 	InitializeCriticalSection( &tbServer::critsec);
 
 	tbServer::server = 0;
