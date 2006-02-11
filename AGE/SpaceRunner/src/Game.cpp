@@ -29,7 +29,12 @@ struct SHUDVertex
 CGame::CGame()
 {
 	ZeroMemory(this, sizeof(CGame));
-	m_bUseJoystick = FALSE;		//tbDirectInput::GetNumButtons() > 122;
+	m_bUseJoystick = tbDirectInput::GetNumButtons() > 122; //FALSE;
+	//Force Feedback initialisierung	by mrnice
+	g_dwNumForceFeedbackAxis = 0;	
+	pEffect = NULL;					
+	//pdwNumForceFeedbackAxis = 0;
+
 }
 
 // __________________________________________________________________
@@ -37,7 +42,6 @@ CGame::CGame()
 tbResult CGame::Init()
 {
 	int iShip;
-
 	int iTunnel;
 
 	int iCheckPoint;
@@ -50,19 +54,15 @@ tbResult CGame::Init()
 
 		if(g_Tunnels[k] != -1) {
 		
-			iTunnel = CreateTunnel(0, g_Tunnels[k]);
+			iTunnel = CreateTunnel( g_Tunnels[k]);
 			m_aElement[iTunnel].SetPosition(tbVector3((float)(k) * 100.0f, 0.0f, -2500.0f) + tbVector3Random() * 20.0f);
 			m_aElement[iTunnel].Align(tbVector3(0.0f, 0.0f, 1.0f) + tbVector3Random() * 0.25f);
 		}
 	}
-
-
-
 	// Kameramodus: Cockpit, Radarreichweite: 4000
 //	m_CameraMode = CM_COCKPIT;
 	//MOD: free_cam
 	m_CameraMode = CM_FREE;
-
 	m_vCameraPos = tbVector3(0.0f);
 
 	CreateCamera();
@@ -427,7 +427,7 @@ tbResult CGame::Move(float fTime)
 
 	// Die F-Tasten bestimmen den Kameramodus
 	if(g_pbButtons[TB_KEY_F1]) m_CameraMode = CM_FREE;
-	if(g_pbButtons[TB_KEY_F2]) m_CameraMode = CM_COCKPIT;
+	//if(g_pbButtons[TB_KEY_F2]) m_CameraMode = CM_COCKPIT;
 	if(g_pbButtons[TB_KEY_F3]) m_CameraMode = CM_CHASE;
 //	if(g_pbButtons[TB_KEY_F4]) m_CameraMode = CM_FRONTCHASE;
 //	if(g_pbButtons[TB_KEY_F5]) m_CameraMode = CM_FLYBY;
@@ -1528,15 +1528,15 @@ int CGame::CreateShip(int iTeam,
 
 
 /**
- * Erstellt ein Tunnelstück der Rennstrecke
+ * Erstellt eine Rennstrecke aus den Angaben in der Inidatei
  */
 
-int CGame::CreateTunnel(int iTunnel, int iType) {
+int CGame::CreateTunnel( int iType) {
 	//local variables
 	CDriftElement* pRoad;
 
 
-	pRoad = &m_aElement[iTunnel];
+	pRoad = &m_aElement[0];
 	ZeroMemory(pRoad, sizeof(CDriftElement));	
 	pRoad->m_pGame = this;
 	pRoad->Reset();

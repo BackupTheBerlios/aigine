@@ -101,7 +101,7 @@ public:
 	tbResult	LoadShipTypes(BOOL bFullLoad);												// Lädt die Schiffstypen
 //	tbResult	LoadWeaponTypes(BOOL bFullLoad);											// Lädt die Waffentypen
 	tbResult	LoadTunnelType(int iTNum);	
-	int			CreateTunnel(int iTeam, int iType);											// Erstellt eine Rennstrecke
+	int			CreateTunnel(int iType);											// Erstellt eine Rennstrecke
 // CheckPoints werden geladen und konfigurierut
 	tbResult	LoadCheckPointTypes(BOOL bFullLoad);
 

@@ -54,8 +54,8 @@ tbResult CIntro::Load()
 {
 
 	// Titelbild laden
-	m_pTitle = tbTextureManager::GetTexture("Data\\Title.jpg", TRUE, D3DX_DEFAULT, D3DX_DEFAULT, 1);
-	if(m_pTitle == NULL) TB_ERROR("Fehler beim Laden von Data\\Title.jpg!", TB_ERROR);
+	m_pTitle = tbTextureManager::GetTexture("Data\\menu_tobi.jpg", TRUE, D3DX_DEFAULT, D3DX_DEFAULT, 1);
+	if(m_pTitle == NULL) TB_ERROR("Fehler beim Laden von Data\\menu_tobi.jpg!", TB_ERROR);
 
 	return TB_OK;
 }

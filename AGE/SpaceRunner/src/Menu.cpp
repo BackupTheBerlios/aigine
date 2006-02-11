@@ -318,6 +318,14 @@ tbResult CMenu::Load()
 		((tbGUIList*)(m_pGUI->GetElement(106)))->AddEntry(pGame->m_aShipType[i].acName,
 			                                              &pGame->m_aShipType[i]);
 	}
+	//erstelle Liste mit möglichen Rennstrecken    by mrnice
+	m_pGUI->CreateText(120, 0, tbVector2(490.0f, 270.0f), "Wähle eine Rennstrecke");
+	m_pGUI->CreateList(400, 0, tbVector2(490.0f, 300.0f), tbVector2(192.0f, 100.0f), 20.0f);
+	for(int i = 0; i < pGame->m_iNumElementTypes; i++)	{
+		((tbGUIList*)(m_pGUI->GetElement(400)))->AddEntry(pGame->m_aElementType->acName,
+														&pGame->m_aElementType[i]);
+	}
+	/**end of mrnice*/
 	m_pGUI->CreateFrame(107, 0, tbVector2(490.0f, 140.0f), tbVector2(240.0f, 120.0f));
 	m_pGUI->CreateText(108, 0, tbVector2(500.0f, 150.0f), "");
 
