@@ -89,8 +89,8 @@
 #define MSG_CHAT				1003
 #define MSG_TEST				2222
 
-
 #define NETWORK_MSGID( p) (*((DWORD *) (p)))
+
 
 struct spieler {
     DPNID dpnid;
@@ -170,16 +170,27 @@ extern float	tb_g_fTime;				// Zeitzähler
 extern double	tb_g_dNumSecsPassed;	// Vergangene Sekunden seit letztem Frame
 extern double	tb_g_dFramebrake;		// Framebremse, die maximale Framezahl umgerechnet mit Kehrwert
 
+extern HWND mein_clientdialog;
+extern HWND mein_serverdialog;
+
+extern HRESULT (* callFunc)(PVOID, DWORD, PVOID);
+//extern PFNDPNMESSAGEHANDLER callFunc;
+
 // ******************************************************************
 // Funktionen deklarieren
 TRIBASE_API tbResult tbInit();																			// Engine initialisieren
 TRIBASE_API tbResult tbExit();																			// Engine herunterfahren
 TRIBASE_API tbResult tbDoMessageLoop(tbResult (* pMoveProc)(float), 
 									 tbResult (* pRenderProc)(float),
+									 HRESULT  (* pClientHandler)( PVOID , DWORD , PVOID),
 									 double dMaxFPS = 1000);											// Nachrichtenschleife
 TRIBASE_API tbResult tbDelay(DWORD dwDuration);															// Pause machen
 TRIBASE_API tbResult tbSetAppActive(BOOL bActive);														// Aktivierungsstatus der Anwendung setzen
-TRIBASE_API	tbResult tbSetFramebrake(double dFramebrake = 0.0);												// Setzen der neuen Frameratenbegrenzung
+TRIBASE_API	tbResult tbSetFramebrake(double dFramebrake = 0.0);											// Setzen der neuen Frameratenbegrenzung
+
+HRESULT WINAPI server_messagehandler( PVOID pvUserContext, DWORD dwMessageType, PVOID pMessage);
+HRESULT WINAPI client_messagehandler( PVOID pvUserContext, DWORD dwMessageType, PVOID pMessage);
+
 
 //HRESULT WINAPI client_messagehandler( PVOID pvUserContext, DWORD dwMessageType, PVOID pMessage);
 // ******************************************************************

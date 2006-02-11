@@ -224,4 +224,3 @@ tbResult tbServer::Exit() {
 	TB_INFO("Der Server wurde heruntergefahren.");
 	return TB_OK;
 }
-

@@ -59,7 +59,7 @@ public:
 
 		static HRESULT anmelden( host *h);
 		static void chat( char *text);
-
+		static void send_msg(void* msg);
 		static inline BOOL					IsInitialized()	{return m_bInitialized;}
 };
 

@@ -7,7 +7,7 @@
 **	Das Spiel
 */
 
-#include "DriftElement.h"
+//#include "DriftElement.h"
 
 // __________________________________________________________________
 // Kameramodi
@@ -74,7 +74,7 @@ public:
 	CShip*					m_pPlayer;				// Zeiger auf das Schiff des Spielers
 	CCheckPoint				m_aCheckPoint[64];		// Die CheckPoints
 
-//	CProjectile				m_aProjectile[256];		// Die Projektile
+	//CProjectile				m_aProjectile[256];		// Die Projektile
 
 	int						m_iNumElementTypes;		// Anzahl der Streckenypen
 	SRoadElementType		m_aElementType[256];	//Die Streckentypen	
@@ -126,5 +126,6 @@ public:
 	tbResult	RenderPlain(float fTime);
 	BOOL		ShipHitsShip(CShip* pShipA, CShip* pShipB, tbVector3* pvOut);				// Kollidieren zwei Schiffe?
 	BOOL		ShipHitsCheckPoint(CShip* pShip, CCheckPoint* pCheckPoint, tbVector3* pvOut);
+
 };
 // __________________________________________________________________

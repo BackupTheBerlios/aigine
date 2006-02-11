@@ -19,6 +19,9 @@ float*		g_pfOldButtons = NULL;
 int			g_Ships[32];
 int			g_CheckPoints[64];
 int			g_Tunnels[64];
+HRESULT (* callFunc)(PVOID, DWORD, PVOID);
+
+
 
 
 int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, char* pcCommandLine, int iShowCommand) {
@@ -31,6 +34,7 @@ int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, char* pcCommand
 	{
 		// Der Konfigurationsdialog wurde abgebrochen!
 		// Das Programm "leise" verlassen.
+		//g_pSpaceRunner->Exit();
 		TB_SAFE_DELETE(g_pSpaceRunner);
 		return 0;
 	}
@@ -61,6 +65,7 @@ int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, char* pcCommand
 }
 
 // Initialisiert das Spiel komplett
+
 tbResult CSpaceRunner::Init()
 {
 	tbResult r;
@@ -71,6 +76,7 @@ tbResult CSpaceRunner::Init()
 	// Die TriBase-Engine initialisieren und den Konfigurationsdialog aufrufen
 	if(tbInit()) return TB_ERROR;
 	r = tbDoConfigDialog(&m_Config);
+//	::callFunc = ::clientmessagehandler;
 	if(r == TB_CANCELED) return TB_CANCELED;
 	else if(r) TB_ERROR("Engine konnte nicht initialisiert werden!", r);
 
@@ -200,12 +206,15 @@ tbResult CSpaceRunner::Unload() {
 // Move- und Render-Funktion (Kapselung)
 tbResult Move(float fTime) {return g_pSpaceRunner->Move(fTime);}
 tbResult Render(float fTime) {return g_pSpaceRunner->Render(fTime);}
+HRESULT clientmessagehandler( PVOID pvUserContext, DWORD dwMessageType, PVOID pMessage) {return g_pSpaceRunner->clientmessagehandler(pvUserContext,dwMessageType,pMessage);}
+
+
 // __________________________________________________________________
 // Lässt das Spiel laufen
 tbResult CSpaceRunner::Run()
 {
 	// Nachrichtenschleife betreten
-	if(tbDoMessageLoop(::Move, ::Render))
+	if(tbDoMessageLoop(::Move, ::Render, ::clientmessagehandler))
 	{
 		// Fehler!
 		TB_ERROR("Fehler in der Nachrichtenschleife!", TB_ERROR);
@@ -349,4 +358,47 @@ tbResult CSpaceRunner::Render(float fTime)
 	}
 
 	return TB_OK;
+}
+
+void CSpaceRunner::send_gameStart(msg_spielstart* msg) {
+	DPN_BUFFER_DESC bdsc;
+    DPNHANDLE async;
+
+	if( !tbServer::server) return;
+	bdsc.dwBufferSize = sizeof( msg);
+	bdsc.pBufferData = (BYTE*)msg;
+
+	tbServer::server->SendTo( DPNID_ALL_PLAYERS_GROUP, &bdsc, 1, 0, NULL, &async, DPNSEND_GUARANTEED|DPNSEND_NOLOOPBACK);
+
+}
+
+void CSpaceRunner::send_gameEnd(int winner) {
+	DPN_BUFFER_DESC bdsc;
+    DPNHANDLE async;
+
+	msg_spielende m;
+
+	m.msgid = MSG_SPIELENDE;
+	m.winner = winner;
+	bdsc.dwBufferSize = sizeof(msg_spielende);
+	bdsc.pBufferData = (BYTE*) &m;
+
+	tbServer::server->SendTo(DPNID_ALL_PLAYERS_GROUP, &bdsc, 1, 0, NULL, &async, DPNSEND_GUARANTEED|DPNSEND_NOLOOPBACK);
+}
+
+HRESULT CSpaceRunner::clientmessagehandler( PVOID pvUserContext, DWORD dwMessageType, PVOID pMessage) {
+	tbClient::lock();
+	TB_WARNING("CSpaceRunner::clientmessagehandler aufgerufen..");
+    switch( dwMessageType) {
+    case DPN_MSGID_RECEIVE:
+        PBYTE rd = ((PDPNMSG_RECEIVE)pMessage)->pReceiveData;
+        switch( NETWORK_MSGID( rd)) {
+		case MSG_SPIELSTART:
+			TB_WARNING("MSG_SPIELSTART geschickt");
+			break;
+		}
+        break;
+	}
+	tbClient::unlock();
+    return S_OK;
 }

@@ -20,8 +20,10 @@
 #include "Intro.h"
 #include "Menu.h"
 //#include "Projectile.h"
+#include "DriftElement.h"
 #include "Game.h"
 #include "Resource.h"
+
 
 
 // Spielzustände
@@ -31,6 +33,23 @@ enum EGameState {
 	GS_MENU,		// Hauptmenü
 	GS_GAME			// Spiel
 };
+
+#define MSG_SPIELSTART			1004
+#define MSG_SPIELENDE			1005
+
+//Network Messages
+struct msg_spielstart {
+	DWORD			msgid;
+	unsigned int	numCheckPoints;
+	CCheckPoint		checkPoints[64];
+	tbVector3		poitions[64];
+};
+
+struct msg_spielende {
+	DWORD			msgid;
+	int				winner;
+};
+
 
 // CGalactica-Klasse
 class CSpaceRunner {
@@ -55,6 +74,8 @@ public:
 	tbMusic*				m_pTitle;	// title-Musik
 	tbMusic*				m_pAction;		// Action-Musik
 
+	
+
 	// Methoden
 	tbResult Init();								// Initialisiert das Spiel komplett
 	tbResult Exit();								// Fährt das Spiel herunter
@@ -64,6 +85,11 @@ public:
 	tbResult SetGameState(EGameState NewGameState);	// Setzt einen neuen Spielzustand
 	tbResult Move(float fTime);						// Bewegt das Spiel
 	tbResult Render(float fTime);					// Rendert das Spiel
+
+	HRESULT	clientmessagehandler( PVOID pvUserContext, DWORD dwMessageType, PVOID pMessage);
+
+	void send_gameStart(msg_spielstart* msg);
+	void send_gameEnd(int winner);
 };
 
 // Globale Variablen

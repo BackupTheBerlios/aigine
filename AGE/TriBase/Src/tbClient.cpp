@@ -203,3 +203,14 @@ tbResult tbClient::Exit() {
 	TB_INFO("Der Client wurde heruntergefahren.");
 	return TB_OK;
 }
+
+void tbClient::send_msg(void* msg) {
+	DPN_BUFFER_DESC bdsc;
+    DPNHANDLE async;
+
+	if( !client) return;
+    bdsc.dwBufferSize = sizeof( msg);
+    bdsc.pBufferData = (BYTE*)msg;
+
+    client->Send( &bdsc, 1, 0, 0, &async, DPNSEND_GUARANTEED);
+}

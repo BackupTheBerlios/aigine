@@ -9,6 +9,10 @@
 
 #include "SpaceRunner.h"
 
+//HRESULT clientmessagehandler( PVOID pvUserContext, DWORD dwMessageType, PVOID pMessage);
+//PFNDPNMESSAGEHANDLER callFunc;
+//extern HRESULT (* callFunc)(PVOID, DWORD, PVOID);
+//HRESULT (* callFunc)(PVOID, DWORD, PVOID) = clientmessagehandler;
 // __________________________________________________________________
 // Vertizes für das HUD
 #define HUD_FVF (D3DFVF_XYZRHW | D3DFVF_DIFFUSE | D3DFVF_TEX1)
@@ -35,10 +39,8 @@ tbResult CGame::Init()
 	int iShip;
 
 	int iTunnel;
-	
 
 	int iCheckPoint;
-
 
 	// Laden...
 	if(Load()) TB_ERROR("Fehler beim Laden des Spielzustands!", TB_ERROR);
@@ -93,7 +95,19 @@ tbResult CGame::Init()
 		}
 	}
 
+
 	m_aCheckPoint[0].m_isActive = TRUE;
+
+	if(tbServer::IsInitialized()) {
+		msg_spielstart message;
+		message.msgid = MSG_SPIELSTART;
+		message.numCheckPoints = 64;
+		for (int i =0; i<64; i++) {
+			message.checkPoints[i] = m_aCheckPoint[i];
+		}
+
+		g_pSpaceRunner->send_gameStart(&message);
+	}
 
 	// Schiffe erstellen
 	// Team 1
@@ -227,7 +241,7 @@ tbResult CGame::Load()
 	if(LoadCheckPointTypes(TRUE)) TB_ERROR("Fehler beim Laden der CheckPointtypen!", TB_ERROR);
 
 
-	if(this->LoadTunnelType(TRUE)) TB_ERROR("Fehler beim Laden der TunnelTypen!", TB_ERROR);
+	if(LoadTunnelType(TRUE)) TB_ERROR("Fehler beim Laden der TunnelTypen!", TB_ERROR);
 
 	// ------------------------------------------------------------------
 
@@ -296,8 +310,8 @@ tbResult CGame::Load()
 	// ------------------------------------------------------------------
 
 	// Cockpitmodell laden
-//	m_pCockpitModel = new tbModel;
-//	if(m_pCockpitModel->Init("Data\\Cockpit.tbm", "Data\\")) TB_ERROR("Fehler beim Laden des Cockpitmodells!", TB_ERROR);
+	m_pCockpitModel = new tbModel;
+	if(m_pCockpitModel->Init("Data\\Cockpit.tbm", "Data\\")) TB_ERROR("Fehler beim Laden des Cockpitmodells!", TB_ERROR);
 
 	// Zeichenklasse für die Radartextur erstellen
 //	m_pRadar = new tbDraw2D;
@@ -812,7 +826,7 @@ tbResult CGame::LoadCheckPointTypes(BOOL bFullLoad) {
 		if(bFullLoad)
 		{
 			// Logbucheintrag erzeugen
-			tbWriteToLog("Lade ´CheckPoint-Typ aus \"%s\"...", pType->acModel);
+			tbWriteToLog("Lade CheckPoint-Typ aus \"%s\"...", pType->acModel);
 
 			// Modell laden
 			pType->pModel = new tbModel;
@@ -1007,6 +1021,7 @@ tbResult CGame::LoadShipTypes(BOOL bFullLoad)
 
 //_______________________________________________________________
 // Läd eine Rennstrecke //TODO: Generische Algorithmen einbinden oder Designer schreiben :)
+
 tbResult CGame::LoadTunnelType(BOOL bFullLoad) {
 	int iLength = 5;
 	char		acSection[256];
@@ -1019,7 +1034,7 @@ tbResult CGame::LoadTunnelType(BOOL bFullLoad) {
 	if(m_iNumElementTypes == 12345678) TB_ERROR("Fehler beim Lesen der INI-Datei!", TB_ERROR);
 
 	// Die Elmente duchgehen und die Information aus der .ini auslesen
-	for(int iType = 0; iType < m_iNumShipTypes; iType++)
+	for(int iType = 0; iType < m_iNumElementTypes; iType++)
 	{
 		// Namen der Sektion der Daten dieser Elemente generieren
 		sprintf(acSection, "Element%d", iType + 1);
@@ -1070,7 +1085,6 @@ tbResult CGame::LoadTunnelType(BOOL bFullLoad) {
 	return TB_OK;
 	
 }
-
 
 // __________________________________________________________________
 // Lädt die Waffentypen
@@ -1516,6 +1530,7 @@ int CGame::CreateShip(int iTeam,
 /**
  * Erstellt ein Tunnelstück der Rennstrecke
  */
+
 int CGame::CreateTunnel(int iTunnel, int iType) {
 	//local variables
 	CDriftElement* pRoad;
@@ -1534,7 +1549,6 @@ int CGame::CreateTunnel(int iTunnel, int iType) {
 
 	
 }
-
 
 // Erstellt ein Schiff
 int CGame::CreateCheckPoint(int iType)
@@ -2249,6 +2263,7 @@ tbResult CGame::RenderCockpit(float fTime)
 /**
  *
  */
+
 tbResult CGame::RenderTunnel(float fTime, tbMatrix m_transform) {
 	int iTunnel = 0;
 

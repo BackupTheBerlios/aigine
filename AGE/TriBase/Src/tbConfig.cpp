@@ -43,14 +43,12 @@ tbConfig*	g_pConfig;		// Auszufüllende Konfigurationsstruktur
 tbConfig	g_TempConfig;	// Temporäre Konfigurationsstruktur
 
 //tbClient*	myClient;
-HWND mein_clientdialog = 0;
-HWND mein_serverdialog = 0;
 
 // ******************************************************************
 // Funktionsdeklarationen
 INT_PTR CALLBACK D3DEnumDialogProc(HWND hDlg, unsigned int uiMsg, WPARAM WParam, LPARAM LParam);
-HRESULT WINAPI server_messagehandler( PVOID pvUserContext, DWORD dwMessageType, PVOID pMessage);
-HRESULT WINAPI client_messagehandler( PVOID pvUserContext, DWORD dwMessageType, PVOID pMessage);
+//HRESULT WINAPI server_messagehandler( PVOID pvUserContext, DWORD dwMessageType, PVOID pMessage);
+//HRESULT WINAPI client_messagehandler( PVOID pvUserContext, DWORD dwMessageType, PVOID pMessage);
 
 // ******************************************************************
 // Diese Funktion löscht die Daten einer ganzen Liste.
@@ -1201,8 +1199,8 @@ TRIBASE_API tbResult tbDoConfigDialog(tbConfig* pOut)
 	int iResult;
 	int hr;
 	
-	tbClient::Init(client_messagehandler);
-	tbServer::Init();
+//	tbClient::Init(client_messagehandler);
+//	tbServer::Init();
 
 	// Parameter prüfen
 	if(pOut == NULL) TB_ERROR_NULL_POINTER("pOut", TB_ERROR);
@@ -1379,42 +1377,7 @@ TRIBASE_API void spielerindex_aktualisieren( HWND hDlg) {
 	SetDlgItemInt( hDlg, IDC_SPIELERINDEX, ix + 1, FALSE);
 }
 
-HRESULT WINAPI client_messagehandler( PVOID pvUserContext, DWORD dwMessageType, PVOID pMessage) {
-	tbClient::lock();
-    switch( dwMessageType) {
-    case DPN_MSGID_ENUM_HOSTS_RESPONSE:
-		if( tbClient::host_hinzufuegen((PDPNMSG_ENUM_HOSTS_RESPONSE)pMessage)) {
-			if( mein_clientdialog)
-				PostMessage( mein_clientdialog, WM_SERVERLISTE_AKTUALISIEREN, 0, 0 );
-		}
-		break;
-    case DPN_MSGID_TERMINATE_SESSION:
-		if( mein_clientdialog)
-			PostMessage( mein_clientdialog, WM_SERVER_TERMINATE, 0, 0);
-        break;
-    case DPN_MSGID_RECEIVE:
-        PBYTE rd = ((PDPNMSG_RECEIVE)pMessage)->pReceiveData;
-        switch( NETWORK_MSGID( rd)) {
-		case MSG_SPIELERINDEX:
-			tbClient::index = ((msg_spielerindex *)rd)->index;
-            if( mein_clientdialog)
-                PostMessage( mein_clientdialog, WM_SPIELERINDEX_AKTUALISIEREN, 0, 0 );
-			break;
-		case MSG_SPIELERLISTE:
-			tbClient::slist = *(msg_spielerliste *)rd;
-            if( mein_clientdialog)
-                PostMessage( mein_clientdialog, WM_SPIELERLISTE_AKTUALISIEREN, 0, 0 );
-			break;
-		case MSG_CHAT:
-			if( mein_clientdialog)
-				client_chatliste_aktualisieren( mein_clientdialog, (msg_chat *)rd);
-			break;
-		}
-        break;
-	}
-	tbClient::unlock();
-    return S_OK;
-}
+
 //Server
 TRIBASE_API void next_serverstate( HWND hDlg) {
 	char sessionname[64];
@@ -1530,40 +1493,3 @@ TRIBASE_API void kill_players( HWND hDlg) {
 	tbServer::unlock();
 }
 
-HRESULT WINAPI server_messagehandler( PVOID pvUserContext, DWORD dwMessageType, PVOID pMessage) {
-	int ret = S_OK;
-
-	tbServer::lock();
-
-    switch( dwMessageType) {
-	case DPN_MSGID_INDICATE_CONNECT:
-		if( tbServer::status == SERVER_SPIEL_LAEUFT)
-			ret = !S_OK;
-		else
-			((PDPNMSG_INDICATE_CONNECT)pMessage)->pvPlayerContext = (void *)tbServer::reservierung();
-		break;
-	case DPN_MSGID_INDICATED_CONNECT_ABORTED:
-		tbServer::storno((PDPNMSG_INDICATED_CONNECT_ABORTED)pMessage);
-		break;
-    case DPN_MSGID_CREATE_PLAYER:
-		if((int)((PDPNMSG_CREATE_PLAYER)pMessage)->pvPlayerContext != -1) { // nicht der Server selbst
- 			tbServer::buchung( (PDPNMSG_CREATE_PLAYER)pMessage);
-			PostMessage( mein_serverdialog, WM_SPIELER_AKTUALISIEREN, 0, 0);
-		}
-        break;
-   case DPN_MSGID_DESTROY_PLAYER:
-		tbServer::remove_player( (int)((PDPNMSG_DESTROY_PLAYER)pMessage)->pvPlayerContext);
-		PostMessage( mein_serverdialog, WM_SPIELER_AKTUALISIEREN, 0, 0);
-        break;
-   case DPN_MSGID_RECEIVE:
-        PBYTE rd = ((PDPNMSG_RECEIVE)pMessage)->pReceiveData;
-        switch( NETWORK_MSGID( rd)) {
-		case MSG_CHAT:
-			tbServer::send_chatmessage( (msg_chat *)rd);
-			server_chatliste_aktualisieren( mein_serverdialog, (msg_chat *)rd);
-			break;
-		}
-	}
-	tbServer::unlock();
-    return ret;
-}
