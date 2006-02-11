@@ -31,20 +31,43 @@ CGame::CGame()
 	ZeroMemory(this, sizeof(CGame));
 	m_bUseJoystick = tbDirectInput::GetNumButtons() > 122; //FALSE;
 	//Force Feedback initialisierung	by mrnice
-	g_dwNumForceFeedbackAxis = 0;	
-	pEffect = NULL;					
+//	g_dwNumForceFeedbackAxis = 0;	
+//	pEffect = NULL;					
 	//pdwNumForceFeedbackAxis = 0;
 
 }
 
 // __________________________________________________________________
 // Initialisiert den Spielzustand
+void CGame::CreateAllCheckPoints() {
+	int iCheckPoint;
+	for(int j = 0; j < 64; j++) {
+		g_CheckPoints[j] = -1;
+	}
+	char acSection[256];
+	int numCheckPoints = ReadINIInt("Level", "NumCheckPoints");
+
+	for(int k = 0; k < numCheckPoints;k++) {
+        g_CheckPoints[k] = 0;
+	}
+
+	for(int i = 0; i < 64; i++) {
+		if(g_CheckPoints[i] != -1) {
+            iCheckPoint = CreateCheckPoint(g_CheckPoints[i]);
+			sprintf(acSection, "CheckPointPosition%d", i + 1);
+			tbVector3 pos = ReadINIVector3("Level",acSection); 
+			m_aCheckPoint[iCheckPoint].SetPosition(pos);
+		}
+	}
+	m_aCheckPoint[0].m_isActive = TRUE;
+}
+
 tbResult CGame::Init()
 {
 	int iShip;
 	int iTunnel;
 
-	int iCheckPoint;
+
 
 	// Laden...
 	if(Load()) TB_ERROR("Fehler beim Laden des Spielzustands!", TB_ERROR);
@@ -71,34 +94,19 @@ tbResult CGame::Init()
 
 //	m_fRadarRange = 4000.0f;
 
-	for(int j = 0; j < 64; j++) {
-		g_CheckPoints[j] = -1;
-	}
-	char acSection[256];
-
-	int numCheckPoints = ReadINIInt("Level", "NumCheckPoints");
-
-	for(int k = 0; k < numCheckPoints;k++) {
-        g_CheckPoints[k] = 0;
-	}
-
-
-
-	for(int i = 0; i < 64; i++) {
-		if(g_CheckPoints[i] != -1) {
-            iCheckPoint = CreateCheckPoint(g_CheckPoints[i]);
-			sprintf(acSection, "CheckPointPosition%d", i + 1);
-			tbVector3 pos = ReadINIVector3("Level",acSection); 
-			m_aCheckPoint[iCheckPoint].SetPosition(pos);
-//			m_aCheckPoint[iCheckPoint].SetPosition(tbVector3((float)(i) * 100.0f, 100.0f, -2500.0f) + tbVector3Random() * 20.0f);
-//			m_aCheckPoint[iCheckPoint].Align(tbVector3(0.0f, 0.0f, 1.0f) + tbVector3Random() * 0.25f);
-		}
-	}
-
-
-	m_aCheckPoint[0].m_isActive = TRUE;
-
 	if(tbServer::IsInitialized()) {
+
+		CreateAllCheckPoints();
+		msg_spielstart message;
+		message.msgid = MSG_SPIELSTART;
+		message.numCheckPoints = 64;
+		for (int i =0; i<64; i++) {
+			message.checkPoints[i] = g_pSpaceRunner->m_pGame->m_aCheckPoint[i];
+		}
+
+		g_pSpaceRunner->send_gameStart(&message);
+
+/*
 		msg_spielstart message;
 		message.msgid = MSG_SPIELSTART;
 		message.numCheckPoints = 64;
@@ -107,6 +115,7 @@ tbResult CGame::Init()
 		}
 
 		g_pSpaceRunner->send_gameStart(&message);
+*/
 	}
 
 	// Schiffe erstellen

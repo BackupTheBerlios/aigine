@@ -71,8 +71,9 @@ tbResult MenuMsgProc(int iID, tbGUIMessage* pMsg, tbGUI* pGUI) {
 						g_Ships[j] = ((SShipType*)(pTeamList->GetEntryByOrder(j)->pData))->iIndex;
 						iNumShips++;
 					}
-
-					if(iNumShips > 0) pGUI->SetCurrentPage(2);
+					if(tbServer::IsInitialized()) {
+						if(iNumShips > 0) pGUI->SetCurrentPage(2);
+					}
 //					pGUI->SetCurrentPage(2);
 					break;
 					}
@@ -128,7 +129,10 @@ tbResult MenuMsgProc(int iID, tbGUIMessage* pMsg, tbGUI* pGUI) {
 			if(pGUI->GetCurrentPage() == 2) {
 			// Aha - der Ladebildschirm wird angezeigt! Jetzt setzen wir
 			// g_bStartGame auf TRUE, damit das Spiel gleich gestartet werden kann.
-			g_bStartGame = TRUE;
+				if(tbServer::IsInitialized()) {
+					g_bStartGame = TRUE;
+				}
+
 	//			PostQuitMessage(0);
 			}
 			break;
@@ -387,9 +391,9 @@ tbResult CMenu::Move(float fTime)
 
 	if(g_bStartGame == TRUE)
 	{
-		//TODO: game zum laufen bringen. Hier "einschalten"
 		// Spiel starten
-		g_pSpaceRunner->SetGameState(GS_GAME);
+		if(tbServer::IsInitialized()) g_pSpaceRunner->SetGameState(GS_GAME);
+		//g_pSpaceRunner->SetGameState(GS_GAME);
 //		PostQuitMessage(0);
 	}
 

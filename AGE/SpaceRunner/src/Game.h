@@ -109,6 +109,7 @@ public:
 	int			CreateCamera();
 	tbResult	MoveCameras(float fTime);
 	int			CreateShip(int iTeam, int iType);											// Erstellt ein Schiff
+	void		CreateAllCheckPoints();
 	int			CreateCheckPoint(int iType);
 	tbResult	MoveShips(float fTime);														// Bewegt alle Schiffe
 	tbResult	RenderShips(float fTime);													// Rendert alle Schiffe

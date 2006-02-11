@@ -19,7 +19,8 @@ float*		g_pfOldButtons = NULL;
 int			g_Ships[32];
 int			g_CheckPoints[64];
 int			g_Tunnels[64];
-HRESULT (* callFunc)(PVOID, DWORD, PVOID);
+HRESULT (* clientCallFunc)(PVOID, DWORD, PVOID);
+HRESULT (* serverCallFunc)(PVOID, DWORD, PVOID);
 
 
 
@@ -207,6 +208,7 @@ tbResult CSpaceRunner::Unload() {
 tbResult Move(float fTime) {return g_pSpaceRunner->Move(fTime);}
 tbResult Render(float fTime) {return g_pSpaceRunner->Render(fTime);}
 HRESULT clientmessagehandler( PVOID pvUserContext, DWORD dwMessageType, PVOID pMessage) {return g_pSpaceRunner->clientmessagehandler(pvUserContext,dwMessageType,pMessage);}
+HRESULT servermessagehandler( PVOID pvUserContext, DWORD dwMessageType, PVOID pMessage) {return g_pSpaceRunner->servermessagehandler(pvUserContext,dwMessageType,pMessage);}
 
 
 // __________________________________________________________________
@@ -214,7 +216,7 @@ HRESULT clientmessagehandler( PVOID pvUserContext, DWORD dwMessageType, PVOID pM
 tbResult CSpaceRunner::Run()
 {
 	// Nachrichtenschleife betreten
-	if(tbDoMessageLoop(::Move, ::Render, ::clientmessagehandler))
+	if(tbDoMessageLoop(::Move, ::Render, ::clientmessagehandler, ::servermessagehandler))
 	{
 		// Fehler!
 		TB_ERROR("Fehler in der Nachrichtenschleife!", TB_ERROR);
@@ -277,23 +279,6 @@ tbResult CSpaceRunner::Move(float fTime)
 	memcpy(g_pfOldButtons, g_pfButtons, tbDirectInput::GetNumButtons() * sizeof(float));
 	tbDirectInput::GetState(g_pfButtons, g_pbButtons);
 
-	// Screenshots werden mit SysRq gemacht.
-/*	if(WasButtonPressed(TB_KEY_SYSRQ))
-	{
-		// Freien Screenshot suchen
-		for(int iShot = 1; iShot < 100000; iShot++)
-		{
-			// Existiert dieser Screenshot schon?
-			sprintf(acFilename, "Screenshot%d.bmp", iShot);
-			if(!tbFileExists(acFilename)) break;
-		}
-
-		// Bildpuffer abfragen und in Datei speichern
-		tbDirect3D::GetDevice()->GetBackBuffer(0, 0, D3DBACKBUFFER_TYPE_MONO, &pBackBuffer);
-		D3DXSaveSurfaceToFile(acFilename, D3DXIFF_BMP, pBackBuffer, NULL, NULL);
-		pBackBuffer->Release();
-	}
-*/
 	// Aktuellen Spielzustand bewegen
 	switch(m_GameState)
 	{
@@ -388,17 +373,41 @@ void CSpaceRunner::send_gameEnd(int winner) {
 
 HRESULT CSpaceRunner::clientmessagehandler( PVOID pvUserContext, DWORD dwMessageType, PVOID pMessage) {
 	tbClient::lock();
-	TB_WARNING("CSpaceRunner::clientmessagehandler aufgerufen..");
     switch( dwMessageType) {
     case DPN_MSGID_RECEIVE:
         PBYTE rd = ((PDPNMSG_RECEIVE)pMessage)->pReceiveData;
         switch( NETWORK_MSGID( rd)) {
 		case MSG_SPIELSTART:
 			TB_WARNING("MSG_SPIELSTART geschickt");
+			//CheckPoints erstellen
+			for (int i=64; i < 64; i++) m_pGame->m_aCheckPoint[i] = ((msg_spielstart*)rd)->checkPoints[i];
+			//g_bStartGame = TRUE;
+			if(!tbServer::IsInitialized()) g_pSpaceRunner->SetGameState(GS_GAME);
+			//SetGameState(GS_GAME);
+			break;
+		case MSG_SPIELENDE:
+			TB_WARNING("MSG_SPIELENDE geschickt");
 			break;
 		}
         break;
 	}
 	tbClient::unlock();
+    return S_OK;
+}
+
+HRESULT CSpaceRunner::servermessagehandler( PVOID pvUserContext, DWORD dwMessageType, PVOID pMessage) {
+	tbServer::lock();
+    switch( dwMessageType) {
+	case DPN_MSGID_RECEIVE:
+        PBYTE rd = ((PDPNMSG_RECEIVE)pMessage)->pReceiveData;
+        switch( NETWORK_MSGID( rd)) {
+		case MSG_CHAT:
+			//tbServer::send_chatmessage( (msg_chat *)rd);
+			//server_chatliste_aktualisieren( mein_serverdialog, (msg_chat *)rd);
+			break;
+		}
+		break;
+	}
+	tbServer::unlock();
     return S_OK;
 }

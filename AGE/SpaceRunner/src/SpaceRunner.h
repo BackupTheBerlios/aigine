@@ -87,6 +87,7 @@ public:
 	tbResult Render(float fTime);					// Rendert das Spiel
 
 	HRESULT	clientmessagehandler( PVOID pvUserContext, DWORD dwMessageType, PVOID pMessage);
+	HRESULT	servermessagehandler( PVOID pvUserContext, DWORD dwMessageType, PVOID pMessage);
 
 	void send_gameStart(msg_spielstart* msg);
 	void send_gameEnd(int winner);
