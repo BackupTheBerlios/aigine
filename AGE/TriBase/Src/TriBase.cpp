@@ -40,7 +40,9 @@ double		tb_g_dFramebrake = 1000.0;	// Framebremse, die maximale Framezahl
 
 HWND		mein_clientdialog = 0;
 HWND		mein_serverdialog = 0;
-HRESULT (* callFunc)(PVOID, DWORD, PVOID);
+HRESULT (* clientCallFunc)(PVOID, DWORD, PVOID);
+HRESULT (* serverCallFunc)(PVOID, DWORD, PVOID);
+
 //PFNDPNMESSAGEHANDLER callFunc;
 // ******************************************************************
 // DLL-Hauptfunktion
@@ -200,6 +202,7 @@ TRIBASE_API	tbResult tbSetFramebrake(double dFramebrake)
 TRIBASE_API tbResult tbDoMessageLoop(tbResult (* pMoveProc)(float),
 									 tbResult (* pRenderProc)(float),
 									 HRESULT  (* pClientHandler)( PVOID , DWORD , PVOID),
+									 HRESULT  (* pServerHandler)( PVOID , DWORD , PVOID),
 									 double dMaxFPS)
 {
 	MSG			Message;		// Nachricht
@@ -208,7 +211,8 @@ TRIBASE_API tbResult tbDoMessageLoop(tbResult (* pMoveProc)(float),
 	double		dTime;			// Zeitspanne in Sekunden
 	BOOL		bQuit = FALSE;
 
-	callFunc = pClientHandler;
+	clientCallFunc = pClientHandler;
+	serverCallFunc = pServerHandler;
 	// Frameratenbremse setzen
 	tbSetFramebrake(dMaxFPS);
 
@@ -335,6 +339,12 @@ HRESULT WINAPI server_messagehandler( PVOID pvUserContext, DWORD dwMessageType, 
 			tbServer::send_chatmessage( (msg_chat *)rd);
 			server_chatliste_aktualisieren( mein_serverdialog, (msg_chat *)rd);
 			break;
+		default:
+			if(serverCallFunc != NULL) {
+				serverCallFunc(pvUserContext, dwMessageType, pMessage);
+			}
+			else TB_WARNING("serverCallFunc ist NULL");
+
 		}
 	}
 	tbServer::unlock();
@@ -372,11 +382,10 @@ HRESULT WINAPI client_messagehandler( PVOID pvUserContext, DWORD dwMessageType, 
 				client_chatliste_aktualisieren( mein_clientdialog, (msg_chat *)rd);
 			break;
 		default:
-			if(callFunc != NULL) {
-				callFunc(pvUserContext, dwMessageType, pMessage);
-				TB_WARNING("callFunc wird aufgerufen..!");
+			if(clientCallFunc != NULL) {
+				clientCallFunc(pvUserContext, dwMessageType, pMessage);
 			}
-			else TB_WARNING("callFunc ist NULL");
+			else TB_WARNING("clientCallFunc ist NULL");
 		}
         break;
 	}

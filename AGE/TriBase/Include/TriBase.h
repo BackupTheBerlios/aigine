@@ -173,7 +173,8 @@ extern double	tb_g_dFramebrake;		// Framebremse, die maximale Framezahl umgerech
 extern HWND mein_clientdialog;
 extern HWND mein_serverdialog;
 
-extern HRESULT (* callFunc)(PVOID, DWORD, PVOID);
+extern HRESULT (* clientCallFunc)(PVOID, DWORD, PVOID);
+extern HRESULT (* serverCallFunc)(PVOID, DWORD, PVOID);
 //extern PFNDPNMESSAGEHANDLER callFunc;
 
 // ******************************************************************
@@ -183,6 +184,7 @@ TRIBASE_API tbResult tbExit();																			// Engine herunterfahren
 TRIBASE_API tbResult tbDoMessageLoop(tbResult (* pMoveProc)(float), 
 									 tbResult (* pRenderProc)(float),
 									 HRESULT  (* pClientHandler)( PVOID , DWORD , PVOID),
+									 HRESULT  (* pServerHandler)( PVOID , DWORD , PVOID),
 									 double dMaxFPS = 1000);											// Nachrichtenschleife
 TRIBASE_API tbResult tbDelay(DWORD dwDuration);															// Pause machen
 TRIBASE_API tbResult tbSetAppActive(BOOL bActive);														// Aktivierungsstatus der Anwendung setzen
