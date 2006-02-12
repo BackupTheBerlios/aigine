@@ -177,6 +177,9 @@ tbResult CSpaceRunner::Load()
 	m_pAction = new tbMusic;
 	if(m_pAction->Init("Data\\05BurnBurn.mp3")) TB_ERROR("Fehler beim Laden der Action-Musik!", TB_ERROR);
 
+	m_clientsReady = 0;
+	m_serverReady = false;
+
 	return TB_OK;
 }
 
@@ -371,6 +374,39 @@ void CSpaceRunner::send_gameEnd(int winner) {
 	tbServer::server->SendTo(DPNID_ALL_PLAYERS_GROUP, &bdsc, 1, 0, NULL, &async, DPNSEND_GUARANTEED|DPNSEND_NOLOOPBACK);
 }
 
+void CSpaceRunner::send_playership(int ship) {
+	msg_playerShip ps;
+    DPN_BUFFER_DESC bdsc;
+    DPNHANDLE async;
+
+	ps.msgid = MSG_PLAYERSHIP;
+	ps.playerIndex = (int)tbClient::index;
+	ps.shipType = ship;
+
+    bdsc.dwBufferSize = sizeof( msg_playerShip);
+    bdsc.pBufferData  = (BYTE*) &ps;
+
+	tbClient::client->Send( &bdsc, 1, 0, 0, &async, DPNSEND_GUARANTEED);
+
+}
+
+void CSpaceRunner::send_ships(CShip ships[32]) {
+	DPN_BUFFER_DESC bdsc;
+    DPNHANDLE async;
+
+	msg_ships m;
+
+	m.msgid = MSG_SHIPS;
+	for(int i=0;i<32;i++) {
+		m.ships[i] = ships[i];
+	}
+	bdsc.dwBufferSize = sizeof(msg_ships);
+	bdsc.pBufferData = (BYTE*) &m;
+
+	tbServer::server->SendTo(DPNID_ALL_PLAYERS_GROUP, &bdsc, 1, 0, NULL, &async, DPNSEND_GUARANTEED|DPNSEND_NOLOOPBACK);
+
+}
+
 HRESULT CSpaceRunner::clientmessagehandler( PVOID pvUserContext, DWORD dwMessageType, PVOID pMessage) {
 	tbClient::lock();
     switch( dwMessageType) {
@@ -388,6 +424,13 @@ HRESULT CSpaceRunner::clientmessagehandler( PVOID pvUserContext, DWORD dwMessage
 		case MSG_SPIELENDE:
 			TB_WARNING("MSG_SPIELENDE geschickt");
 			break;
+		case MSG_SHIPS:
+			TB_WARNING("MSG_SHIPS geschickt");
+			for (int i=0;i<32;i++) {
+				m_pGame->m_aShip[i] = (CShip)((msg_ships*)rd)->ships[i];
+			}
+			m_serverReady = true;
+			break;
 		}
         break;
 	}
@@ -396,14 +439,18 @@ HRESULT CSpaceRunner::clientmessagehandler( PVOID pvUserContext, DWORD dwMessage
 }
 
 HRESULT CSpaceRunner::servermessagehandler( PVOID pvUserContext, DWORD dwMessageType, PVOID pMessage) {
+	TB_WARNING("servermassegehandler aufgerufen...");
 	tbServer::lock();
     switch( dwMessageType) {
 	case DPN_MSGID_RECEIVE:
         PBYTE rd = ((PDPNMSG_RECEIVE)pMessage)->pReceiveData;
         switch( NETWORK_MSGID( rd)) {
-		case MSG_CHAT:
+		case MSG_PLAYERSHIP:
+			TB_WARNING("MSG_PLAYERSHIPS geschickt");
 			//tbServer::send_chatmessage( (msg_chat *)rd);
 			//server_chatliste_aktualisieren( mein_serverdialog, (msg_chat *)rd);
+			g_Ships[((msg_playerShip*)rd)->playerIndex] = (int)((msg_playerShip*)rd)->shipType;
+			m_clientsReady++;
 			break;
 		}
 		break;

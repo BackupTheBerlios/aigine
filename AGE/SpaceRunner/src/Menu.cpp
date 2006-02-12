@@ -392,13 +392,13 @@ tbResult CMenu::Move(float fTime)
 	if(g_bStartGame == TRUE)
 	{
 		// Spiel starten
+		g_pSpaceRunner->send_playership(g_Ships[0]);
 		if(tbServer::IsInitialized()) g_pSpaceRunner->SetGameState(GS_GAME);
 		//g_pSpaceRunner->SetGameState(GS_GAME);
 //		PostQuitMessage(0);
 	}
 
-	// Musik überprüfen
-	//TODO: Music wider anmachen
+
 	g_pSpaceRunner->m_pTitle->Process();
 
 	return TB_OK;

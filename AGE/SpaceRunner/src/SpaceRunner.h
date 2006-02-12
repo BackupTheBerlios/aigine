@@ -36,13 +36,15 @@ enum EGameState {
 
 #define MSG_SPIELSTART			1004
 #define MSG_SPIELENDE			1005
+#define MSG_PLAYERSHIP			1006
+#define MSG_SHIPS				1007
 
 //Network Messages
 struct msg_spielstart {
 	DWORD			msgid;
 	unsigned int	numCheckPoints;
 	CCheckPoint		checkPoints[64];
-	tbVector3		poitions[64];
+//	tbVector3		poitions[64];
 };
 
 struct msg_spielende {
@@ -50,6 +52,16 @@ struct msg_spielende {
 	int				winner;
 };
 
+struct msg_playerShip {
+	DWORD			msgid;
+	int				playerIndex;
+	int				shipType;
+};
+
+struct msg_ships {
+	DWORD			msgid;
+	CShip			ships[32];
+};
 
 // CGalactica-Klasse
 class CSpaceRunner {
@@ -74,6 +86,9 @@ public:
 	tbMusic*				m_pTitle;	// title-Musik
 	tbMusic*				m_pAction;		// Action-Musik
 
+	int						m_clientsReady;
+	BOOL					m_serverReady;
+
 	
 
 	// Methoden
@@ -91,6 +106,8 @@ public:
 
 	void send_gameStart(msg_spielstart* msg);
 	void send_gameEnd(int winner);
+	void send_playership(int ship);
+	void send_ships(CShip ships[32]);
 };
 
 // Globale Variablen

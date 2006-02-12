@@ -94,6 +94,8 @@ tbResult CGame::Init()
 
 //	m_fRadarRange = 4000.0f;
 
+	//g_pSpaceRunner->send_playership(g_Ships[0]);
+
 	if(tbServer::IsInitialized()) {
 
 		CreateAllCheckPoints();
@@ -105,34 +107,43 @@ tbResult CGame::Init()
 		}
 
 		g_pSpaceRunner->send_gameStart(&message);
+		
+	}
 
-/*
-		msg_spielstart message;
-		message.msgid = MSG_SPIELSTART;
-		message.numCheckPoints = 64;
-		for (int i =0; i<64; i++) {
-			message.checkPoints[i] = m_aCheckPoint[i];
+	//g_pSpaceRunner->send_playership(g_Ships[0]);
+
+	if(tbServer::IsInitialized()) {
+
+		while(tbServer::slist.angemeldet != g_pSpaceRunner->m_clientsReady) {
+
 		}
-
-		g_pSpaceRunner->send_gameStart(&message);
-*/
+			// Schiffe erstellen
+		for(int i = 0; i < 32; i++) {
+			if(g_Ships[i] != -1) {
+				iShip = CreateShip(0, g_Ships[i]);
+				m_aShip[iShip].SetPosition(tbVector3((float)(i) * 100.0f, 0.0f, -2500.0f) + tbVector3Random() * 20.0f);
+				m_aShip[iShip].Align(tbVector3(0.0f, 0.0f, 1.0f) + tbVector3Random() * 0.25f);
+			}
+		}
+		g_pSpaceRunner->send_ships(m_aShip);
 	}
 
 
-	// Schiffe erstellen
-	for(int i = 0; i < 32; i++)
-	{
-		//tbServer::slist.sp->status
-		if(g_Ships[i] != -1)
-		{
+	while(!g_pSpaceRunner->m_serverReady && !tbServer::IsInitialized()) {
+	}
+	for(int i = 0; i < 32; i++) {
+		if(g_Ships[i] != -1) {
 			iShip = CreateShip(0, g_Ships[i]);
 			m_aShip[iShip].SetPosition(tbVector3((float)(i) * 100.0f, 0.0f, -2500.0f) + tbVector3Random() * 20.0f);
 			m_aShip[iShip].Align(tbVector3(0.0f, 0.0f, 1.0f) + tbVector3Random() * 0.25f);
 		}
 	}
 
+
+
 	// Der Spieler spielt immer das erste Schiff.
-	m_pPlayer = &m_aShip[0];
+	m_pPlayer = &m_aShip[tbClient::index];
+
 
 	// Allen Schiffen zufällige Ziele zuweisen
 //	for(int s = 0; s <= iShip; s++) m_aShip[s].m_iTarget = tbIntRandom(0, iShip);
@@ -613,6 +624,8 @@ tbResult CGame::Render(float fTime)
 
 	// "Sternenfeld" rendern
 	RenderStarfield(fTime);
+
+	//RenderTunnel(fTime);
 
 	// Partikel und Sprites rendern
 	if(!m_bPaused)
