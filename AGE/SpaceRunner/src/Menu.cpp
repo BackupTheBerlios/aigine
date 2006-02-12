@@ -71,6 +71,7 @@ tbResult MenuMsgProc(int iID, tbGUIMessage* pMsg, tbGUI* pGUI) {
 						g_Ships[j] = ((SShipType*)(pTeamList->GetEntryByOrder(j)->pData))->iIndex;
 						iNumShips++;
 					}
+					g_pSpaceRunner->send_playership(g_Ships[0]);
 					if(tbServer::IsInitialized()) {
 						if(iNumShips > 0) pGUI->SetCurrentPage(2);
 					}
@@ -392,7 +393,7 @@ tbResult CMenu::Move(float fTime)
 	if(g_bStartGame == TRUE)
 	{
 		// Spiel starten
-		g_pSpaceRunner->send_playership(g_Ships[0]);
+		
 		if(tbServer::status == SERVER_GESTARTET) g_pSpaceRunner->SetGameState(GS_GAME);
 		//g_pSpaceRunner->SetGameState(GS_GAME);
 //		PostQuitMessage(0);
