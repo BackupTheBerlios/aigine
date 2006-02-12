@@ -178,7 +178,6 @@ tbResult CSpaceRunner::Load()
 	if(m_pAction->Init("Data\\05BurnBurn.mp3")) TB_ERROR("Fehler beim Laden der Action-Musik!", TB_ERROR);
 
 	m_clientsReady = 0;
-	m_serverReady = FALSE;
 
 	return TB_OK;
 }
@@ -424,7 +423,6 @@ HRESULT CSpaceRunner::clientmessagehandler( PVOID pvUserContext, DWORD dwMessage
 					m_pGame->m_aCheckPoint[iCP].m_vPosition.y = ((msg_spielstart*)rd)->checkPointY[i];
 					m_pGame->m_aCheckPoint[iCP].m_vPosition.z = ((msg_spielstart*)rd)->checkPointZ[i];
 				}
-				m_serverReady = TRUE;
 				g_pSpaceRunner->SetGameState(GS_GAME);
 			}
 			break;

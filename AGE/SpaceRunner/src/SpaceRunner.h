@@ -91,7 +91,7 @@ public:
 	tbMusic*				m_pAction;		// Action-Musik
 
 	int						m_clientsReady;
-	BOOL					m_serverReady;
+	//BOOL					m_serverReady;
 
 	
 

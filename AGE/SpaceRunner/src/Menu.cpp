@@ -72,9 +72,7 @@ tbResult MenuMsgProc(int iID, tbGUIMessage* pMsg, tbGUI* pGUI) {
 						iNumShips++;
 					}
 					g_pSpaceRunner->send_playership(g_Ships[0]);
-					if(tbServer::IsInitialized()) {
-						if(iNumShips > 0) pGUI->SetCurrentPage(2);
-					}
+					if(iNumShips > 0) pGUI->SetCurrentPage(2);
 //					pGUI->SetCurrentPage(2);
 					break;
 					}
