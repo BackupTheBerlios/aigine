@@ -118,10 +118,11 @@ tbResult CGame::Init()
 */
 	}
 
+
 	// Schiffe erstellen
-	// Team 1
 	for(int i = 0; i < 32; i++)
 	{
+		//tbServer::slist.sp->status
 		if(g_Ships[i] != -1)
 		{
 			iShip = CreateShip(0, g_Ships[i]);
@@ -129,40 +130,7 @@ tbResult CGame::Init()
 			m_aShip[iShip].Align(tbVector3(0.0f, 0.0f, 1.0f) + tbVector3Random() * 0.25f);
 		}
 	}
-/*
-	// Team 2
-	for(i = 0; i < 32; i++)
-	{
-		if(g_aiTeam[1][i] != -1)
-		{
-			iShip = CreateShip(1, g_aiTeam[1][i]);
-			m_aShip[iShip].SetPosition(tbVector3((float)(i) * 100.0f, 0.0f, 2500.0f) + tbVector3Random() * 20.0f);
-			m_aShip[iShip].Align(tbVector3(0.0f, 0.0f, -1.0f) + tbVector3Random() * 0.25f);
-		}
-	}
 
-	// Team 3
-	for(i = 0; i < 32; i++)
-	{
-		if(g_aiTeam[2][i] != -1)
-		{
-			iShip = CreateShip(2, g_aiTeam[2][i]);
-			m_aShip[iShip].SetPosition(tbVector3(-2500.0f, 0.0f, (float)(i) * 100.0f) + tbVector3Random() * 20.0f);
-			m_aShip[iShip].Align(tbVector3(1.0f, 0.0f, 0.0f) + tbVector3Random() * 0.25f);
-		}
-	}
-
-	// Team 4
-	for(i = 0; i < 32; i++)
-	{
-		if(g_aiTeam[3][i] != -1)
-		{
-			iShip = CreateShip(3, g_aiTeam[3][i]);
-			m_aShip[iShip].SetPosition(tbVector3(2500.0f, 0.0f, (float)(i) * 100.0f) + tbVector3Random() * 20.0f);
-			m_aShip[iShip].Align(tbVector3(-1.0f, 0.0f, 0.0f) + tbVector3Random() * 0.25f);
-		}
-	}
-*/
 	// Der Spieler spielt immer das erste Schiff.
 	m_pPlayer = &m_aShip[0];
 
@@ -436,7 +404,7 @@ tbResult CGame::Move(float fTime)
 
 	// Die F-Tasten bestimmen den Kameramodus
 	if(g_pbButtons[TB_KEY_F1]) m_CameraMode = CM_FREE;
-	//if(g_pbButtons[TB_KEY_F2]) m_CameraMode = CM_COCKPIT;
+	if(g_pbButtons[TB_KEY_F2]) m_CameraMode = CM_COCKPIT;
 	if(g_pbButtons[TB_KEY_F3]) m_CameraMode = CM_CHASE;
 //	if(g_pbButtons[TB_KEY_F4]) m_CameraMode = CM_FRONTCHASE;
 //	if(g_pbButtons[TB_KEY_F5]) m_CameraMode = CM_FLYBY;
