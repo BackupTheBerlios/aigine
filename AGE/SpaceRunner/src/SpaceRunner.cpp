@@ -417,7 +417,7 @@ HRESULT CSpaceRunner::clientmessagehandler( PVOID pvUserContext, DWORD dwMessage
 			//CheckPoints erstellen
 			if(tbServer::status != SERVER_GESTARTET) {
 				int iCP;
-				for (int i = 0; i < 64; i++) {
+				for (int i = 0; i < ((msg_spielstart*)rd)->numCheckPoints; i++) {
 					iCP = m_pGame->CreateCheckPoint(((msg_spielstart*)rd)->checkPoints[i]);
 					m_pGame->m_aCheckPoint[iCP].m_vPosition.x = ((msg_spielstart*)rd)->checkPointX[i];
 					m_pGame->m_aCheckPoint[iCP].m_vPosition.y = ((msg_spielstart*)rd)->checkPointY[i];

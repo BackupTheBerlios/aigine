@@ -98,10 +98,31 @@ tbResult CGame::Init()
 
 	if(tbServer::status == SERVER_GESTARTET) {
 
-		CreateAllCheckPoints();
+//		CreateAllCheckPoints();
+			int iCheckPoint;
+	for(int j = 0; j < 64; j++) {
+		g_CheckPoints[j] = -1;
+	}
+	char acSection[256];
+	int numCheckPoints = ReadINIInt("Level", "NumCheckPoints");
+
+	for(int k = 0; k < numCheckPoints;k++) {
+        g_CheckPoints[k] = 0;
+	}
+
+	for(int i = 0; i < 64; i++) {
+		if(g_CheckPoints[i] != -1) {
+            iCheckPoint = CreateCheckPoint(g_CheckPoints[i]);
+			sprintf(acSection, "CheckPointPosition%d", i + 1);
+			tbVector3 pos = ReadINIVector3("Level",acSection); 
+			m_aCheckPoint[iCheckPoint].SetPosition(pos);
+		}
+	}
+	m_aCheckPoint[0].m_isActive = TRUE;
+
 		msg_spielstart message;
 		message.msgid = MSG_SPIELSTART;
-		message.numCheckPoints = 64;
+		message.numCheckPoints = numCheckPoints;
 		while(tbServer::slist.angemeldet != g_pSpaceRunner->m_clientsReady) {
 		}
 
