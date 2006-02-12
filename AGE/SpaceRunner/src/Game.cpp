@@ -160,7 +160,8 @@ tbResult CGame::Init()
 
 
 	// Der Spieler spielt immer das erste Schiff.
-	m_pPlayer = &m_aShip[tbClient::index];
+	//m_pPlayer = &m_aShip[tbClient::index];
+	m_pPlayer = &m_aShip[0];
 
 
 	// Allen Schiffen zufällige Ziele zuweisen
