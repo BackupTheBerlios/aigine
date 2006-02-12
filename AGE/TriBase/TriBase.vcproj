@@ -21,7 +21,7 @@
 			<Tool
 				Name="VCCLCompilerTool"
 				Optimization="0"
-				AdditionalIncludeDirectories="C:\wsb\AGE\TriBase\Include"
+				AdditionalIncludeDirectories=".\Include"
 				PreprocessorDefinitions="WIN32;_DEBUG;_WINDOWS;_USRDLL;TRIBASE_EXPORTS;_WIN32_DCOM"
 				BasicRuntimeChecks="3"
 				RuntimeLibrary="1"
@@ -42,7 +42,7 @@
 				OutputFile="Debug/TriBaseD.dll"
 				LinkIncremental="1"
 				SuppressStartupBanner="TRUE"
-				AdditionalLibraryDirectories="C:\wsb\AGE\TriBase\Lib"
+				AdditionalLibraryDirectories=".\Lib"
 				GenerateDebugInformation="TRUE"
 				ProgramDatabaseFile=".\Debug/TriBaseD.pdb"
 				ImportLibrary=".\Debug/TriBaseD.lib"
@@ -114,7 +114,7 @@ COPY &quot;$(OutDir)&quot;\TriBaseD.dll &quot;$(WinDir)&quot;\System32
 				OutputFile=".\Release/TriBase.dll"
 				LinkIncremental="1"
 				SuppressStartupBanner="TRUE"
-				AdditionalLibraryDirectories="C:\wsb\AGE\TriBase\Lib"
+				AdditionalLibraryDirectories=".\Lib"
 				ProgramDatabaseFile=".\Release/TriBase.pdb"
 				ImportLibrary=".\Release/TriBase.lib"
 				TargetMachine="1"/>
