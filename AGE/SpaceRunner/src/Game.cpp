@@ -96,14 +96,26 @@ tbResult CGame::Init()
 
 	//g_pSpaceRunner->send_playership(g_Ships[0]);
 
-	if(tbServer::IsInitialized()) {
+	if(tbServer::status == SERVER_GESTARTET) {
 
 		CreateAllCheckPoints();
 		msg_spielstart message;
 		message.msgid = MSG_SPIELSTART;
 		message.numCheckPoints = 64;
+		while(tbServer::slist.angemeldet != g_pSpaceRunner->m_clientsReady) {
+		}
+
 		for (int i =0; i<64; i++) {
 			message.checkPoints[i] = g_pSpaceRunner->m_pGame->m_aCheckPoint[i];
+		}
+			// Schiffe erstellen
+		for(int i = 0; i < 32; i++) {
+			if(g_Ships[i] != -1) {
+				iShip = CreateShip(0, g_Ships[i]);
+				m_aShip[iShip].SetPosition(tbVector3((float)(i) * 100.0f, 0.0f, -2500.0f) + tbVector3Random() * 20.0f);
+				m_aShip[iShip].Align(tbVector3(0.0f, 0.0f, 1.0f) + tbVector3Random() * 0.25f);
+			}
+				message.ships[i] = g_Ships[i];
 		}
 
 		g_pSpaceRunner->send_gameStart(&message);
@@ -111,7 +123,7 @@ tbResult CGame::Init()
 	}
 
 	//g_pSpaceRunner->send_playership(g_Ships[0]);
-
+/*
 	if(tbServer::IsInitialized()) {
 
 		while(tbServer::slist.angemeldet != g_pSpaceRunner->m_clientsReady) {
@@ -127,18 +139,20 @@ tbResult CGame::Init()
 		}
 		g_pSpaceRunner->send_ships(m_aShip);
 	}
-
-
-	while(!g_pSpaceRunner->m_serverReady && !tbServer::IsInitialized()) {
+*/
+/*
+	while(g_pSpaceRunner->m_serverReady == FALSE && !tbServer::IsInitialized()) {
 	}
-	for(int i = 0; i < 32; i++) {
-		if(g_Ships[i] != -1) {
-			iShip = CreateShip(0, g_Ships[i]);
-			m_aShip[iShip].SetPosition(tbVector3((float)(i) * 100.0f, 0.0f, -2500.0f) + tbVector3Random() * 20.0f);
-			m_aShip[iShip].Align(tbVector3(0.0f, 0.0f, 1.0f) + tbVector3Random() * 0.25f);
+*/
+	if(tbServer::status != SERVER_GESTARTET) {
+		for(int i = 0; i < 32; i++) {
+			if(g_Ships[i] != -1) {
+				iShip = CreateShip(0, g_Ships[i]);
+				m_aShip[iShip].SetPosition(tbVector3((float)(i) * 100.0f, 0.0f, -2500.0f) + tbVector3Random() * 20.0f);
+				m_aShip[iShip].Align(tbVector3(0.0f, 0.0f, 1.0f) + tbVector3Random() * 0.25f);
+			}
 		}
 	}
-
 
 
 	// Der Spieler spielt immer das erste Schiff.

@@ -178,7 +178,7 @@ tbResult CSpaceRunner::Load()
 	if(m_pAction->Init("Data\\05BurnBurn.mp3")) TB_ERROR("Fehler beim Laden der Action-Musik!", TB_ERROR);
 
 	m_clientsReady = 0;
-	m_serverReady = false;
+	m_serverReady = FALSE;
 
 	return TB_OK;
 }
@@ -416,21 +416,24 @@ HRESULT CSpaceRunner::clientmessagehandler( PVOID pvUserContext, DWORD dwMessage
 		case MSG_SPIELSTART:
 			TB_WARNING("MSG_SPIELSTART geschickt");
 			//CheckPoints erstellen
-			for (int i=64; i < 64; i++) m_pGame->m_aCheckPoint[i] = ((msg_spielstart*)rd)->checkPoints[i];
-			//g_bStartGame = TRUE;
-			if(!tbServer::IsInitialized()) g_pSpaceRunner->SetGameState(GS_GAME);
-			//SetGameState(GS_GAME);
+			if(tbServer::status != SERVER_GESTARTET) {
+				for (int i = 0; i < 64; i++) m_pGame->m_aCheckPoint[i] = ((msg_spielstart*)rd)->checkPoints[i];
+				for (int i = 0; i < 32; i++) g_Ships[i] = (int)((msg_spielstart*)rd)->ships[i];
+				m_serverReady = TRUE;
+				g_pSpaceRunner->SetGameState(GS_GAME);
+			}
 			break;
 		case MSG_SPIELENDE:
 			TB_WARNING("MSG_SPIELENDE geschickt");
 			break;
-		case MSG_SHIPS:
+/*		case MSG_SHIPS:
 			TB_WARNING("MSG_SHIPS geschickt");
 			for (int i=0;i<32;i++) {
 				m_pGame->m_aShip[i] = (CShip)((msg_ships*)rd)->ships[i];
 			}
-			m_serverReady = true;
+			m_serverReady = TRUE;
 			break;
+*/
 		}
         break;
 	}

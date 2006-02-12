@@ -393,7 +393,7 @@ tbResult CMenu::Move(float fTime)
 	{
 		// Spiel starten
 		g_pSpaceRunner->send_playership(g_Ships[0]);
-		if(tbServer::IsInitialized()) g_pSpaceRunner->SetGameState(GS_GAME);
+		if(tbServer::status == SERVER_GESTARTET) g_pSpaceRunner->SetGameState(GS_GAME);
 		//g_pSpaceRunner->SetGameState(GS_GAME);
 //		PostQuitMessage(0);
 	}
