@@ -417,8 +417,13 @@ HRESULT CSpaceRunner::clientmessagehandler( PVOID pvUserContext, DWORD dwMessage
 			TB_WARNING("MSG_SPIELSTART geschickt");
 			//CheckPoints erstellen
 			if(tbServer::status != SERVER_GESTARTET) {
-				for (int i = 0; i < 64; i++) m_pGame->m_aCheckPoint[i] = ((msg_spielstart*)rd)->checkPoints[i];
-				for (int i = 0; i < 32; i++) g_Ships[i] = (int)((msg_spielstart*)rd)->ships[i];
+				int iCP;
+				for (int i = 0; i < 64; i++) {
+					iCP = m_pGame->CreateCheckPoint(((msg_spielstart*)rd)->checkPoints[i]);
+					m_pGame->m_aCheckPoint[iCP].m_vPosition.x = ((msg_spielstart*)rd)->checkPointX[i];
+					m_pGame->m_aCheckPoint[iCP].m_vPosition.y = ((msg_spielstart*)rd)->checkPointY[i];
+					m_pGame->m_aCheckPoint[iCP].m_vPosition.z = ((msg_spielstart*)rd)->checkPointZ[i];
+				}
 				m_serverReady = TRUE;
 				g_pSpaceRunner->SetGameState(GS_GAME);
 			}

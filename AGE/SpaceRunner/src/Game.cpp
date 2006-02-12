@@ -106,7 +106,11 @@ tbResult CGame::Init()
 		}
 
 		for (int i =0; i<64; i++) {
-			message.checkPoints[i] = g_pSpaceRunner->m_pGame->m_aCheckPoint[i];
+			message.checkPoints[i] = g_CheckPoints[i];
+			message.checkPointX[i] = m_aCheckPoint[i].m_vPosition.x;
+			message.checkPointY[i] = m_aCheckPoint[i].m_vPosition.y;
+			message.checkPointZ[i] = m_aCheckPoint[i].m_vPosition.z;
+
 		}
 			// Schiffe erstellen
 		for(int i = 0; i < 32; i++) {

@@ -42,8 +42,11 @@ enum EGameState {
 //Network Messages
 struct msg_spielstart {
 	DWORD			msgid;
-	unsigned int	numCheckPoints;
-	CCheckPoint		checkPoints[64];
+	int				numCheckPoints;
+	int				checkPoints[64];
+	float			checkPointX[64];
+	float			checkPointY[64];
+	float			checkPointZ[64];
 	int				ships[32];
 //	tbVector3		poitions[64];
 };
