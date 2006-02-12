@@ -130,7 +130,7 @@ tbResult MenuMsgProc(int iID, tbGUIMessage* pMsg, tbGUI* pGUI) {
 			if(pGUI->GetCurrentPage() == 2) {
 			// Aha - der Ladebildschirm wird angezeigt! Jetzt setzen wir
 			// g_bStartGame auf TRUE, damit das Spiel gleich gestartet werden kann.
-				if(tbServer::IsInitialized()) {
+				if(tbServer::status == SERVER_GESTARTET) {
 					g_bStartGame = TRUE;
 				}
 
