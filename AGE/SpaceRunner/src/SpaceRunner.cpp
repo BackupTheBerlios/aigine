@@ -271,7 +271,7 @@ tbResult CSpaceRunner::SetGameState(EGameState NewGameState)
 // Bewegt das Spiel
 tbResult CSpaceRunner::Move(float fTime)
 {
-	PDIRECT3DSURFACE9	pBackBuffer;
+//	PDIRECT3DSURFACE9	pBackBuffer;
 	char				acFilename[256] = "";
 	tbResult			r = TB_OK;
 
@@ -350,6 +350,7 @@ tbResult CSpaceRunner::Render(float fTime)
 void CSpaceRunner::send_gameStart() {
 	DPN_BUFFER_DESC bdsc;
 //    DPNHANDLE async;
+	tbServer::lock();
 
 	if( !tbServer::server) return;
 	bdsc.dwBufferSize = sizeof( message_spst);
@@ -357,6 +358,7 @@ void CSpaceRunner::send_gameStart() {
 
 	tbServer::server->SendTo( DPNID_ALL_PLAYERS_GROUP, &bdsc, 1, 0, NULL, 0, DPNSEND_SYNC|DPNSEND_GUARANTEED|DPNSEND_NOLOOPBACK);
 
+	tbServer::unlock();
 }
 
 void CSpaceRunner::send_gameEnd(int winner) {
@@ -389,26 +391,20 @@ void CSpaceRunner::send_playership(int ship) {
 
 }
 
-void CSpaceRunner::send_ships(CShip ships[32]) {
+void CSpaceRunner::send_move() {
 	DPN_BUFFER_DESC bdsc;
     DPNHANDLE async;
 
-	msg_ships m;
+	tbServer::lock();
+	bdsc.dwBufferSize = sizeof(message_move);
+	bdsc.pBufferData = (BYTE*) &message_move;
 
-	m.msgid = MSG_SHIPS;
-	for(int i=0;i<32;i++) {
-		m.ships[i] = ships[i];
-	}
-	bdsc.dwBufferSize = sizeof(msg_ships);
-	bdsc.pBufferData = (BYTE*) &m;
+	tbServer::server->SendTo(DPNID_ALL_PLAYERS_GROUP, &bdsc, 1, 0, NULL, &async, DPNSEND_NOLOOPBACK);
 
-	tbServer::server->SendTo(DPNID_ALL_PLAYERS_GROUP, &bdsc, 1, 0, NULL, &async, DPNSEND_GUARANTEED|DPNSEND_NOLOOPBACK);
-
+	tbServer::unlock();
 }
 
 HRESULT CSpaceRunner::clientmessagehandler( PVOID pvUserContext, DWORD dwMessageType, PVOID pMessage) {
-	int point, num;
-	float X,Y,Z;
 	tbClient::lock();
     switch( dwMessageType) {
     case DPN_MSGID_RECEIVE:
@@ -437,6 +433,7 @@ HRESULT CSpaceRunner::clientmessagehandler( PVOID pvUserContext, DWORD dwMessage
 			break;
 		case MSG_SPIELENDE:
 			TB_WARNING("MSG_SPIELENDE geschickt");
+			g_pSpaceRunner->SetGameState(GS_MENU);
 			break;
 /*		case MSG_SHIPS:
 			TB_WARNING("MSG_SHIPS geschickt");

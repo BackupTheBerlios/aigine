@@ -38,6 +38,8 @@ enum EGameState {
 #define MSG_SPIELENDE			1005
 #define MSG_PLAYERSHIP			1006
 #define MSG_SHIPS				1007
+#define MSG_CONTROL				1008
+#define MSG_MOVE				1009
 
 //Network Messages
 struct msg_spielstart {
@@ -46,10 +48,6 @@ struct msg_spielstart {
 	int				checkPoints[64];
 	tbVector3		pos[64];
 	int				ships[32];
-//	tbVector3		shipPos[64];
-//	tbVector3		shipAlign[64];
-//	CShip			ships[32];
-//	tbVector3		poitions[64];
 };
 
 struct msg_spielende {
@@ -63,8 +61,13 @@ struct msg_playerShip {
 	int				shipType;
 };
 
-struct msg_ships {
+struct msg_control {
 	DWORD			msgid;
+};
+
+struct msg_move {
+	DWORD			msgid;
+	CCheckPoint		checkPoints[64];
 	CShip			ships[32];
 };
 
@@ -94,6 +97,7 @@ public:
 	int						m_clientsReady;
 	//BOOL					m_serverReady;
 	msg_spielstart			message_spst;
+	msg_move				message_move;
 
 	
 
@@ -113,7 +117,8 @@ public:
 	void send_gameStart();
 	void send_gameEnd(int winner);
 	void send_playership(int ship);
-	void send_ships(CShip ships[32]);
+//	void send_ships(CShip ships[32]);
+	void send_move();
 };
 
 // Globale Variablen

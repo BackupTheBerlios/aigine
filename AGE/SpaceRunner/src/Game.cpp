@@ -68,14 +68,7 @@ tbResult CGame::Init()
 {
 	int iShip;
 	int iTunnel;
-
-
-
 	// Laden...
-
-
-
-
 
 	if(tbServer::status == SERVER_GESTARTET) {
 		if(Load()) TB_ERROR("Fehler beim Laden des Spielzustands!", TB_ERROR);
@@ -137,17 +130,6 @@ tbResult CGame::Init()
 		}
 		m_aCheckPoint[0].m_isActive = TRUE;
 
-		
-		
-/*
-		for (int i =0; i<numCheckPoints; i++) {
-		//	message.checkPoints[i] = g_CheckPoints[i];
-			message.checkPointX[i] = m_aCheckPoint[i].m_vPosition.x;
-			message.checkPointY[i] = m_aCheckPoint[i].m_vPosition.y;
-			message.checkPointZ[i] = m_aCheckPoint[i].m_vPosition.z;
-
-		}
-*/
 		//warten auf schiff-info von client
 		while(tbServer::slist.angemeldet != g_pSpaceRunner->m_clientsReady) {
 		}
@@ -165,28 +147,6 @@ tbResult CGame::Init()
 		
 	}
 
-	//g_pSpaceRunner->send_playership(g_Ships[0]);
-/*
-	if(tbServer::IsInitialized()) {
-
-		while(tbServer::slist.angemeldet != g_pSpaceRunner->m_clientsReady) {
-
-		}
-			// Schiffe erstellen
-		for(int i = 0; i < 32; i++) {
-			if(g_Ships[i] != -1) {
-				iShip = CreateShip(0, g_Ships[i]);
-				m_aShip[iShip].SetPosition(tbVector3((float)(i) * 100.0f, 0.0f, -2500.0f) + tbVector3Random() * 20.0f);
-				m_aShip[iShip].Align(tbVector3(0.0f, 0.0f, 1.0f) + tbVector3Random() * 0.25f);
-			}
-		}
-		g_pSpaceRunner->send_ships(m_aShip);
-	}
-*/
-/*
-	while(g_pSpaceRunner->m_serverReady == FALSE && !tbServer::IsInitialized()) {
-	}
-*/
 	if(tbServer::status != SERVER_GESTARTET) {
 		for(int i = 0; i < 32; i++) {
 			if(g_Ships[i] != -1) {
@@ -198,13 +158,9 @@ tbResult CGame::Init()
 	}
 
 
-	// Der Spieler spielt immer das erste Schiff.
+	// Der Spieler spielt das Schiff mit seinem Index.
 	m_pPlayer = &m_aShip[tbClient::index];
-	//m_pPlayer = &m_aShip[0];
 
-
-	// Allen Schiffen zufällige Ziele zuweisen
-//	for(int s = 0; s <= iShip; s++) m_aShip[s].m_iTarget = tbIntRandom(0, iShip);
 
 	// Namen der Kameramodi eintragen
 	m_apcCameraMode[CM_COCKPIT]			= "Cockpitkamera";
@@ -233,6 +189,9 @@ tbResult CGame::Init()
 // Fährt den Spielzustand herunter
 tbResult CGame::Exit()
 {
+	if(tbServer::status == SERVER_GESTARTET) {
+        g_pSpaceRunner->send_gameEnd(-1);
+	}
 	// Schiffe und Projektile löschen
 	ZeroMemory(m_aShip, 32 * sizeof(CShip));
 //	ZeroMemory(m_aProjectile, 256 * sizeof(CProjectile));
