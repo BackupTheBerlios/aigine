@@ -75,12 +75,12 @@ tbResult CGame::Init()
 
 
 
-#ifdef DT
+
 
 	if(tbServer::status == SERVER_GESTARTET) {
 		if(Load()) TB_ERROR("Fehler beim Laden des Spielzustands!", TB_ERROR);
 	}
-	
+#ifdef DT
 	for (int k = 0; k < 4; k++) {
 
 		if(g_Tunnels[k] != -1) {
