@@ -376,7 +376,7 @@ void CSpaceRunner::send_gameEnd(int winner) {
 void CSpaceRunner::send_playership(int ship) {
 	msg_playerShip ps;
     DPN_BUFFER_DESC bdsc;
-    DPNHANDLE async;
+//    DPNHANDLE async;
 
 	ps.msgid = MSG_PLAYERSHIP;
 	ps.playerIndex = (int)tbClient::index;
@@ -385,7 +385,7 @@ void CSpaceRunner::send_playership(int ship) {
     bdsc.dwBufferSize = sizeof( msg_playerShip);
     bdsc.pBufferData  = (BYTE*) &ps;
 
-	tbClient::client->Send( &bdsc, 1, 0, 0, &async, DPNSEND_GUARANTEED);
+	tbClient::client->Send( &bdsc, 1, 0, 0, 0, DPNSEND_SYNC|DPNSEND_GUARANTEED);
 
 }
 
@@ -458,6 +458,7 @@ HRESULT CSpaceRunner::servermessagehandler( PVOID pvUserContext, DWORD dwMessage
 	tbServer::lock();
     switch( dwMessageType) {
 	case DPN_MSGID_RECEIVE:
+
         PBYTE rd = ((PDPNMSG_RECEIVE)pMessage)->pReceiveData;
         switch( NETWORK_MSGID( rd)) {
 		case MSG_PLAYERSHIP:
