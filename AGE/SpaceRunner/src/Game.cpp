@@ -8,6 +8,7 @@
 */
 
 #include "SpaceRunner.h"
+msg_spielstart			message;
 
 //HRESULT clientmessagehandler( PVOID pvUserContext, DWORD dwMessageType, PVOID pMessage);
 //PFNDPNMESSAGEHANDLER callFunc;
@@ -39,13 +40,14 @@ CGame::CGame()
 
 // __________________________________________________________________
 // Initialisiert den Spielzustand
+/*
 void CGame::CreateAllCheckPoints() {
 	int iCheckPoint;
 	for(int j = 0; j < 64; j++) {
 		g_CheckPoints[j] = -1;
 	}
 	char acSection[256];
-	int numCheckPoints = ReadINIInt("Level", "NumCheckPoints");
+//	numCheckPoints = ReadINIInt("Level", "NumCheckPoints");
 
 	for(int k = 0; k < numCheckPoints;k++) {
         g_CheckPoints[k] = 0;
@@ -61,7 +63,7 @@ void CGame::CreateAllCheckPoints() {
 	}
 	m_aCheckPoint[0].m_isActive = TRUE;
 }
-
+*/
 tbResult CGame::Init()
 {
 	int iShip;
@@ -99,41 +101,50 @@ tbResult CGame::Init()
 
 	if(tbServer::status == SERVER_GESTARTET) {
 
-//		CreateAllCheckPoints();
-			int iCheckPoint;
-	for(int j = 0; j < 64; j++) {
-		g_CheckPoints[j] = -1;
-	}
-	char acSection[256];
-	int numCheckPoints = ReadINIInt("Level", "NumCheckPoints");
-
-	for(int k = 0; k < numCheckPoints;k++) {
-        g_CheckPoints[k] = 0;
-	}
-
-	for(int i = 0; i < 64; i++) {
-		if(g_CheckPoints[i] != -1) {
-            iCheckPoint = CreateCheckPoint(g_CheckPoints[i]);
-			sprintf(acSection, "CheckPointPosition%d", i + 1);
-			tbVector3 pos = ReadINIVector3("Level",acSection); 
-			m_aCheckPoint[iCheckPoint].SetPosition(pos);
-		}
-	}
-	m_aCheckPoint[0].m_isActive = TRUE;
-
-		msg_spielstart message;
 		message.msgid = MSG_SPIELSTART;
+//		CreateAllCheckPoints();
+		int iCheckPoint;
+		for(int j = 0; j < 64; j++) {
+			g_CheckPoints[j] = -1;
+		}
+		
+		char acSection[256];
+		int numCheckPoints = ReadINIInt("Level", "NumCheckPoints");
 		message.numCheckPoints = numCheckPoints;
-		while(tbServer::slist.angemeldet != g_pSpaceRunner->m_clientsReady) {
+
+		for(int k = 0; k < numCheckPoints;k++) {
+			g_CheckPoints[k] = 0;
+			message.checkPoints[k] = 0;
 		}
 
-		for (int i =0; i<64; i++) {
-			message.checkPoints[i] = g_CheckPoints[i];
+		for(int i = 0; i < 64; i++) {
+			if(g_CheckPoints[i] != -1) {
+				iCheckPoint = CreateCheckPoint(g_CheckPoints[i]);
+				sprintf(acSection, "CheckPointPosition%d", i + 1);
+				tbVector3 pos = ReadINIVector3("Level",acSection); 
+				m_aCheckPoint[iCheckPoint].SetPosition(pos);
+				message.checkPointX[i] = pos.x;
+				message.checkPointY[i] = pos.y;
+				message.checkPointZ[i] = pos.z;
+			}
+		}
+		m_aCheckPoint[0].m_isActive = TRUE;
+
+		
+		
+/*
+		for (int i =0; i<numCheckPoints; i++) {
+		//	message.checkPoints[i] = g_CheckPoints[i];
 			message.checkPointX[i] = m_aCheckPoint[i].m_vPosition.x;
 			message.checkPointY[i] = m_aCheckPoint[i].m_vPosition.y;
 			message.checkPointZ[i] = m_aCheckPoint[i].m_vPosition.z;
 
 		}
+*/
+		//warten auf schiff-info von client
+		while(tbServer::slist.angemeldet != g_pSpaceRunner->m_clientsReady) {
+		}
+
 			// Schiffe erstellen
 		for(int i = 0; i < 32; i++) {
 			if(g_Ships[i] != -1) {

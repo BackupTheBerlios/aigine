@@ -92,6 +92,7 @@ public:
 
 	int						m_clientsReady;
 	//BOOL					m_serverReady;
+	//msg_spielstart			message;
 
 	
 
