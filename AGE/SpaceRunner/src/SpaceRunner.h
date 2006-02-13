@@ -45,10 +45,9 @@ struct msg_spielstart {
 	int				numCheckPoints;
 	int				checkPoints[64];
 	tbVector3		pos[64];
-//	float			checkPointX[64];
-//	float			checkPointY[64];
-//	float			checkPointZ[64];
-//	int				ships;
+	int				ships;
+	tbVector3		shipPos[64];
+	tbVector3		shipAlign[64];
 //	CShip			ships[32];
 //	tbVector3		poitions[64];
 };

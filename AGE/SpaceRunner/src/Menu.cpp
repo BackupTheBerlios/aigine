@@ -25,6 +25,9 @@ BOOL g_bStartGame = FALSE;
 // __________________________________________________________________
 // Initialisiert den Spielzustand
 tbResult CMenu::Init() {
+	for(int i = 0; i < 32; i++) {
+		g_Ships[i] = -1;
+	}
 	// Laden...
 	if(Load()) TB_ERROR("Fehler beim Laden des Spielzustands!", TB_ERROR);
 
@@ -61,9 +64,9 @@ tbResult MenuMsgProc(int iID, tbGUIMessage* pMsg, tbGUI* pGUI) {
 					g_pSpaceRunner->m_pGame->m_bUseJoystick = ((tbGUICheckBox*)(pGUI->GetElement(204)))->IsChecked();
 
 					// Team-Array leeren (-1 steht für "kein Schiff")
-					for(int i = 0; i < 32; i++) {
-						g_Ships[i] = -1;
-					}
+			//		for(int i = 0; i < 32; i++) {
+			//			g_Ships[i] = -1;
+			//		}
 					pTeamList = (tbGUIList*)(pGUI->GetElement(121));
 					for(int j = 0; j < pTeamList->GetNumEntries() && j < 32; j++) {
 					// Schiff hinzufügen
