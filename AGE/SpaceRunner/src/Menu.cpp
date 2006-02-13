@@ -395,7 +395,7 @@ tbResult CMenu::Move(float fTime)
 	{
 		// Spiel starten
 		
-		if(tbServer::status == SERVER_GESTARTET) g_pSpaceRunner->SetGameState(GS_GAME);
+		g_pSpaceRunner->SetGameState(GS_GAME);
 		//g_pSpaceRunner->SetGameState(GS_GAME);
 //		PostQuitMessage(0);
 	}

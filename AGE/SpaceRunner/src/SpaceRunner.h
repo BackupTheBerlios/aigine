@@ -125,6 +125,7 @@ extern float*		g_pfOldButtons;
 extern int			g_Ships[32];
 extern int			g_CheckPoints[64];
 extern int			g_Tunnels[64];
+extern BOOL			g_bStartGame;
 
 // Globale Funktionen
 inline BOOL WasButtonPressed(int iButton)	{return !g_pbOldButtons[iButton] && g_pbButtons[iButton];}

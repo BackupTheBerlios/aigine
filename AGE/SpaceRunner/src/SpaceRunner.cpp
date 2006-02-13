@@ -432,7 +432,7 @@ HRESULT CSpaceRunner::clientmessagehandler( PVOID pvUserContext, DWORD dwMessage
 				for(int j = 0; j < 32; j++) {
 					g_Ships[j] = ((msg_spielstart*)rd)->ships[j];
 				}
-				g_pSpaceRunner->SetGameState(GS_GAME);
+				g_bStartGame = TRUE;
 			}
 			break;
 		case MSG_SPIELENDE:
