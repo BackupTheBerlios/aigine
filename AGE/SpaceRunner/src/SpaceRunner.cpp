@@ -407,6 +407,8 @@ void CSpaceRunner::send_ships(CShip ships[32]) {
 }
 
 HRESULT CSpaceRunner::clientmessagehandler( PVOID pvUserContext, DWORD dwMessageType, PVOID pMessage) {
+	int point, num;
+	float X,Y,Z;
 	tbClient::lock();
     switch( dwMessageType) {
     case DPN_MSGID_RECEIVE:
@@ -416,7 +418,13 @@ HRESULT CSpaceRunner::clientmessagehandler( PVOID pvUserContext, DWORD dwMessage
 			TB_WARNING("MSG_SPIELSTART geschickt");
 			//CheckPoints erstellen
 			//
-			((msg_spielstart*)rd)->numCheckPoints;
+			for (int i = 0; i < ((msg_spielstart*)rd)->numCheckPoints; i++) {
+				num = ((msg_spielstart*)rd)->numCheckPoints;
+				point = ((msg_spielstart*)rd)->checkPoints[0];
+				X = ((msg_spielstart*)rd)->checkPointX[0];
+				Y = ((msg_spielstart*)rd)->checkPointY[0];
+				Z = ((msg_spielstart*)rd)->checkPointZ[0];
+			}
 			if(tbServer::status != SERVER_GESTARTET) {
 				if(m_pGame->Load()) TB_ERROR("Fehler beim Laden des Spielzustands!", TB_ERROR);
 				int iCP;
