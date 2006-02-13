@@ -72,6 +72,11 @@ tbResult CGame::Init()
 
 
 	// Laden...
+
+
+
+#ifdef DT
+
 	if(tbServer::status == SERVER_GESTARTET) {
 		if(Load()) TB_ERROR("Fehler beim Laden des Spielzustands!", TB_ERROR);
 	}
@@ -85,6 +90,7 @@ tbResult CGame::Init()
 			m_aElement[iTunnel].Align(tbVector3(0.0f, 0.0f, 1.0f) + tbVector3Random() * 0.25f);
 		}
 	}
+#endif
 	// Kameramodus: Cockpit, Radarreichweite: 4000
 //	m_CameraMode = CM_COCKPIT;
 	//MOD: free_cam
@@ -280,8 +286,10 @@ tbResult CGame::Load()
 //	if(LoadWeaponTypes(TRUE)) TB_ERROR("Fehler beim Laden der Waffentypen!", TB_ERROR);
 	if(LoadCheckPointTypes(TRUE)) TB_ERROR("Fehler beim Laden der CheckPointtypen!", TB_ERROR);
 
-
+#ifdef DT
 	if(LoadTunnelType(TRUE)) TB_ERROR("Fehler beim Laden der TunnelTypen!", TB_ERROR);
+#endif
+	
 
 	// ------------------------------------------------------------------
 
@@ -558,10 +566,10 @@ tbResult CGame::Render(float fTime)
 		//Ebene zu Testzwecken rendern
 		//RenderPlain(fTime);
 
-		//
+	#ifdef DT
 		//Streckenelemente renderen
-		//this->RenderTunnel(fTime  );
-		
+		this->RenderTunnel(fTime  );
+	#endif
 
 		// Partikel und Sprites rendern
 		if(!m_bPaused)
@@ -676,9 +684,9 @@ tbResult CGame::Render(float fTime)
 
 	// "Sternenfeld" rendern
 	RenderStarfield(fTime);
-
-	//RenderTunnel(fTime);
-
+	#ifdef DT
+		RenderTunnel(fTime,NULL);
+	#endif
 	// Partikel und Sprites rendern
 	if(!m_bPaused)
 	{
@@ -2306,15 +2314,15 @@ tbResult CGame::RenderCockpit(float fTime)
  *
  */
 
-tbResult CGame::RenderTunnel(float fTime, tbMatrix m_transform) {
+tbResult CGame::RenderTunnel(float fTime, tbMatrix m_transform = NULL) {
 	int iTunnel = 0;
 
 	for (iTunnel = 0; iTunnel < 4; iTunnel++) {
-		tbDirect3D::SetTransform ( 
+		/*tbDirect3D::SetTransform ( 
 			D3DTS_WORLD, 
 			tbMatrixTranslation (
 				m_pPlayer->m_pType->vCockpitPos + tbVector3(0.0f, -10.0f, 5.0f) + m_pPlayer->m_vCockpitShaking) * m_pPlayer->m_mMatrix
-		);
+		);*/
 		this->m_aElement[iTunnel].Render(fTime);
 
 	}
