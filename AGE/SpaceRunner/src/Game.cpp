@@ -1808,7 +1808,7 @@ tbResult CGame::RenderShips(float fTime)
 		{
 			// Wenn die Kamera im Cockpitmodus ist und das Schiff
 			// das Schiff des Spielers ist, muss es nicht gezeichnet werden.
-			if(!(m_CameraMode == CM_COCKPIT && iShip == 0))
+			if(!(m_CameraMode == CM_COCKPIT && iShip == tbClient::index))
 			{
 				// Ist es sichtbar?
 				if(m_aShip[iShip].IsVisible())
