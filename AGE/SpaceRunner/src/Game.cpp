@@ -159,8 +159,8 @@ tbResult CGame::Init()
 				m_aShip[iShip].SetPosition(tbVector3((float)(i) * 100.0f, 0.0f, -2500.0f) + tbVector3Random() * 20.0f);
 				m_aShip[iShip].Align(tbVector3(0.0f, 0.0f, 1.0f) + tbVector3Random() * 0.25f);
 			}
+			g_pSpaceRunner->message_spst.ships[i] = g_Ships[i];
 		}
-
 		g_pSpaceRunner->send_gameStart();
 		
 	}

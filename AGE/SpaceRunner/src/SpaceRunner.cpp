@@ -429,6 +429,9 @@ HRESULT CSpaceRunner::clientmessagehandler( PVOID pvUserContext, DWORD dwMessage
 //					p.z = ((msg_spielstart*)rd)->checkPointZ[i];
 					m_pGame->m_aCheckPoint[iCP].SetPosition(p);
 				}
+				for(int j = 0; j < 32; j++) {
+					g_Ships[j] = ((msg_spielstart*)rd)->ships[j];
+				}
 				g_pSpaceRunner->SetGameState(GS_GAME);
 			}
 			break;
