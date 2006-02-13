@@ -416,7 +416,7 @@ HRESULT CSpaceRunner::clientmessagehandler( PVOID pvUserContext, DWORD dwMessage
 			TB_WARNING("MSG_SPIELSTART geschickt");
 			//CheckPoints erstellen
 			if(tbServer::status != SERVER_GESTARTET) {
-				if(Load()) TB_ERROR("Fehler beim Laden des Spielzustands!", TB_ERROR);
+				if(m_pGame->Load()) TB_ERROR("Fehler beim Laden des Spielzustands!", TB_ERROR);
 				int iCP;
 				for (int i = 0; i < ((msg_spielstart*)rd)->numCheckPoints; i++) {
 					iCP = m_pGame->CreateCheckPoint(((msg_spielstart*)rd)->checkPoints[i]);
