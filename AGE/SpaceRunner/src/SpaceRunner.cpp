@@ -417,14 +417,6 @@ HRESULT CSpaceRunner::clientmessagehandler( PVOID pvUserContext, DWORD dwMessage
 		case MSG_SPIELSTART:
 			TB_WARNING("MSG_SPIELSTART geschickt");
 			//CheckPoints erstellen
-			//
-			for (int i = 0; i < ((msg_spielstart*)rd)->numCheckPoints; i++) {
-				num = ((msg_spielstart*)rd)->numCheckPoints;
-				point = ((msg_spielstart*)rd)->checkPoints[0];
-				X = ((msg_spielstart*)rd)->checkPointX[0];
-				Y = ((msg_spielstart*)rd)->checkPointY[0];
-				Z = ((msg_spielstart*)rd)->checkPointZ[0];
-			}
 			if(tbServer::status != SERVER_GESTARTET) {
 				if(m_pGame->Load()) TB_ERROR("Fehler beim Laden des Spielzustands!", TB_ERROR);
 				int iCP;
@@ -435,11 +427,6 @@ HRESULT CSpaceRunner::clientmessagehandler( PVOID pvUserContext, DWORD dwMessage
 					p.y = ((msg_spielstart*)rd)->checkPointY[i];
 					p.z = ((msg_spielstart*)rd)->checkPointZ[i];
 					m_pGame->m_aCheckPoint[iCP].SetPosition(p);
-					/*
-					m_pGame->m_aCheckPoint[iCP].m_vPosition.x = ((msg_spielstart*)rd)->checkPointX[i];
-					m_pGame->m_aCheckPoint[iCP].m_vPosition.y = ((msg_spielstart*)rd)->checkPointY[i];
-					m_pGame->m_aCheckPoint[iCP].m_vPosition.z = ((msg_spielstart*)rd)->checkPointZ[i];
-					*/
 				}
 				g_pSpaceRunner->SetGameState(GS_GAME);
 			}
