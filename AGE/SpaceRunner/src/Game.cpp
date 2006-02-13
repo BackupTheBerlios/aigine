@@ -189,9 +189,11 @@ tbResult CGame::Init()
 // Fährt den Spielzustand herunter
 tbResult CGame::Exit()
 {
+	/* NETWORK
 	if(tbServer::status == SERVER_GESTARTET) {
         g_pSpaceRunner->send_gameEnd(-1);
 	}
+	*/
 	// Schiffe und Projektile löschen
 	ZeroMemory(m_aShip, 32 * sizeof(CShip));
 //	ZeroMemory(m_aProjectile, 256 * sizeof(CProjectile));
@@ -391,6 +393,7 @@ tbResult CGame::Unload()
 // Bewegt den Spielzustand
 tbResult CGame::Move(float fTime)
 {
+	g_pSpaceRunner->message_move.msgid = MSG_MOVE;
 	if(m_fTime == 0.0f)
 	{
 		m_fTime += fTime;
@@ -419,10 +422,21 @@ tbResult CGame::Move(float fTime)
 		//Kamera bewegen
 		MoveCameras(fTime);
 	}
-    
-	MoveShips(fTime);
+/*	NETWORK    
+	// Jedes Schiff durchgehen
+	for(int iShip = 0; iShip < 32; iShip++)
+	{
+		// Existiert das Schiff?
+		if(m_aShip[iShip].m_bExists)
+		{
+			// Bewegen!
+			m_aShip[iShip].Control(fTime);
+		}
+	}
+	if(tbServer::status == SERVER_GESTARTET) MoveShips(fTime);
 	
-
+*/
+	MoveShips(fTime);
 	// Stoppuhr aktualisieren
 	m_fTime += fTime;
 
@@ -445,6 +459,8 @@ tbResult CGame::Move(float fTime)
 
 	// Musik verarbeiten
 	g_pSpaceRunner->m_pAction->Process();
+
+	//g_pSpaceRunner->send_move();
 
 	return TB_OK;
 }
@@ -1729,9 +1745,13 @@ tbResult CGame::MoveShips(float fTime)
 			abChecked[s1][s2] = TRUE;
 			abChecked[s2][s1] = TRUE;
 
+			g_pSpaceRunner->message_move.ships[s1] = m_aShip[s1];
+			g_pSpaceRunner->message_move.ships[s2] = m_aShip[s2];
+
 		}
+
 		for(int cp = 0; cp < 64; cp++) {
-            pShip1 = &m_aShip[0];
+            pShip1 = &m_aShip[s1];
 			pCheckPoint = &m_aCheckPoint[cp];
 
 			if(!pShip1->m_bExists || !pCheckPoint->m_bExists) continue;
@@ -1749,6 +1769,7 @@ tbResult CGame::MoveShips(float fTime)
 			TB_INFO(text);
 #endif
 			m_aCheckPoint[pCheckPoint->m_iIndex+1].m_isActive = TRUE;
+			g_pSpaceRunner->message_move.checkPoints[cp] = m_aCheckPoint[cp];
 		}
 	}
 

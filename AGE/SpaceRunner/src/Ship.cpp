@@ -23,6 +23,12 @@ tbResult CShip::MoveShip(float fTime)
 	m_fShieldEfficiency = 1.0f - (m_fShieldDamage / m_pType->fMaxShieldDamage);
 	m_fSensorsEfficiency = 1.0f - (m_fSensorsDamage / m_pType->fMaxSensorsDamage);
 
+	/* NETWORK
+	if(tbServer::status == SERVER_GESTARTET) {
+        Control(fTime);
+	}
+*/
+
 	Control(fTime);
 
 	// Schub und Lenkung begrenzen
@@ -490,6 +496,8 @@ tbResult CShip::Control(float fTime)
 	CShip*		pTarget;
 	CShip*		pShip;
 
+	g_pSpaceRunner->message_control.msgid = MSG_CONTROL;
+
 
 	// Wenn das Ziel des Schiffs ungültig ist, zerstört wurde oder es gerade explodiert,
 	// wird ein neues gewählt.
@@ -527,10 +535,14 @@ tbResult CShip::Control(float fTime)
 		m_fThrottle -= g_pfButtons[TB_KEY_SUBTRACT] * 0.5f * fTime;
 		if(g_pbButtons[TB_KEY_BACK]) m_fThrottle = 0.0f;
 
+		g_pSpaceRunner->message_control.throttle[m_iIndex] = m_fThrottle;
+
 		// Lenkung
 		m_vSteering.x = g_pfButtons[TB_KEY_UP] - g_pfButtons[TB_KEY_DOWN];
 		m_vSteering.y = g_pfButtons[TB_KEY_RIGHT] - g_pfButtons[TB_KEY_LEFT];
 		m_vSteering.z = g_pfButtons[TB_KEY_Q] - g_pfButtons[TB_KEY_W];
+
+		g_pSpaceRunner->message_control.steering[m_iIndex] = m_vSteering;
 
 		// Waffen
 		if(g_pbButtons[TB_KEY_LSHIFT])

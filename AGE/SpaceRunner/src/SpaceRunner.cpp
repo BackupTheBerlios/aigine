@@ -435,14 +435,17 @@ HRESULT CSpaceRunner::clientmessagehandler( PVOID pvUserContext, DWORD dwMessage
 			TB_WARNING("MSG_SPIELENDE geschickt");
 			g_pSpaceRunner->SetGameState(GS_MENU);
 			break;
-/*		case MSG_SHIPS:
-			TB_WARNING("MSG_SHIPS geschickt");
-			for (int i=0;i<32;i++) {
-				m_pGame->m_aShip[i] = (CShip)((msg_ships*)rd)->ships[i];
+		case MSG_MOVE:
+			TB_WARNING("MSG_MOVE geschickt");
+			for( int i = 0; i < 64; i++) {
+				g_pSpaceRunner->m_pGame->m_aCheckPoint[i] = ((msg_move*)rd)->checkPoints[i];
 			}
-			m_serverReady = TRUE;
+			for( int j = 0; j < 32; j++) {
+				g_pSpaceRunner->m_pGame->m_aShip[j] = ((msg_move*)rd)->ships[j];
+			}
+
 			break;
-*/
+
 		}
         break;
 	}
@@ -465,8 +468,11 @@ HRESULT CSpaceRunner::servermessagehandler( PVOID pvUserContext, DWORD dwMessage
 			g_Ships[((msg_playerShip*)rd)->playerIndex] = (int)((msg_playerShip*)rd)->shipType;
 			m_clientsReady++;
 			break;
+        case MSG_CONTROL:
+			TB_WARNING("MSG_CONTROL geschickt");
+			break;
 		}
-		break;
+        break;
 	}
 	tbServer::unlock();
     return S_OK;
