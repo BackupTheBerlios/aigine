@@ -349,7 +349,7 @@ tbResult CSpaceRunner::Render(float fTime)
 
 void CSpaceRunner::send_gameStart() {
 	DPN_BUFFER_DESC bdsc;
-    DPNHANDLE async;
+//    DPNHANDLE async;
 
 	if( !tbServer::server) return;
 	bdsc.dwBufferSize = sizeof( message_spst);
@@ -423,9 +423,10 @@ HRESULT CSpaceRunner::clientmessagehandler( PVOID pvUserContext, DWORD dwMessage
 				tbVector3 p;
 				for (int i = 0; i < ((msg_spielstart*)rd)->numCheckPoints; i++) {
 					iCP = m_pGame->CreateCheckPoint(((msg_spielstart*)rd)->checkPoints[i]);
-					p.x = ((msg_spielstart*)rd)->checkPointX[i];
-					p.y = ((msg_spielstart*)rd)->checkPointY[i];
-					p.z = ((msg_spielstart*)rd)->checkPointZ[i];
+					p = ((msg_spielstart*)rd)->pos[i];
+//					p.x = ((msg_spielstart*)rd)->checkPointX[i];
+//					p.y = ((msg_spielstart*)rd)->checkPointY[i];
+//					p.z = ((msg_spielstart*)rd)->checkPointZ[i];
 					m_pGame->m_aCheckPoint[iCP].SetPosition(p);
 				}
 				g_pSpaceRunner->SetGameState(GS_GAME);

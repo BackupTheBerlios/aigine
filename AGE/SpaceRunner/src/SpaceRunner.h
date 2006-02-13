@@ -44,10 +44,12 @@ struct msg_spielstart {
 	DWORD			msgid;
 	int				numCheckPoints;
 	int				checkPoints[64];
-	float			checkPointX[64];
-	float			checkPointY[64];
-	float			checkPointZ[64];
-	int				ships[32];
+	tbVector3		pos[64];
+//	float			checkPointX[64];
+//	float			checkPointY[64];
+//	float			checkPointZ[64];
+//	int				ships;
+//	CShip			ships[32];
 //	tbVector3		poitions[64];
 };
 

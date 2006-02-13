@@ -129,9 +129,10 @@ tbResult CGame::Init()
 				sprintf(acSection, "CheckPointPosition%d", i + 1);
 				tbVector3 pos = ReadINIVector3("Level",acSection); 
 				m_aCheckPoint[iCheckPoint].SetPosition(pos);
-				g_pSpaceRunner->message_spst.checkPointX[i] = pos.x;
-				g_pSpaceRunner->message_spst.checkPointY[i] = pos.y;
-				g_pSpaceRunner->message_spst.checkPointZ[i] = pos.z;
+				g_pSpaceRunner->message_spst.pos[i] = pos;
+//				g_pSpaceRunner->message_spst.checkPointX[i] = pos.x;
+//				g_pSpaceRunner->message_spst.checkPointY[i] = pos.y;
+//				g_pSpaceRunner->message_spst.checkPointZ[i] = pos.z;
 			}
 		}
 		m_aCheckPoint[0].m_isActive = TRUE;
@@ -158,7 +159,6 @@ tbResult CGame::Init()
 				m_aShip[iShip].SetPosition(tbVector3((float)(i) * 100.0f, 0.0f, -2500.0f) + tbVector3Random() * 20.0f);
 				m_aShip[iShip].Align(tbVector3(0.0f, 0.0f, 1.0f) + tbVector3Random() * 0.25f);
 			}
-				g_pSpaceRunner->message_spst.ships[i] = g_Ships[i];
 		}
 
 		g_pSpaceRunner->send_gameStart();
