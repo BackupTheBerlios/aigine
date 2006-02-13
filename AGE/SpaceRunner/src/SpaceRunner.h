@@ -92,7 +92,7 @@ public:
 
 	int						m_clientsReady;
 	//BOOL					m_serverReady;
-	//msg_spielstart			message;
+	msg_spielstart			message_spst;
 
 	
 
@@ -109,7 +109,7 @@ public:
 	HRESULT	clientmessagehandler( PVOID pvUserContext, DWORD dwMessageType, PVOID pMessage);
 	HRESULT	servermessagehandler( PVOID pvUserContext, DWORD dwMessageType, PVOID pMessage);
 
-	void send_gameStart(msg_spielstart* msg);
+	void send_gameStart();
 	void send_gameEnd(int winner);
 	void send_playership(int ship);
 	void send_ships(CShip ships[32]);

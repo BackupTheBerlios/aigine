@@ -8,7 +8,7 @@
 */
 
 #include "SpaceRunner.h"
-msg_spielstart			message;
+//msg_spielstart			message;
 
 //HRESULT clientmessagehandler( PVOID pvUserContext, DWORD dwMessageType, PVOID pMessage);
 //PFNDPNMESSAGEHANDLER callFunc;
@@ -101,7 +101,7 @@ tbResult CGame::Init()
 
 	if(tbServer::status == SERVER_GESTARTET) {
 
-		message.msgid = MSG_SPIELSTART;
+		g_pSpaceRunner->message_spst.msgid = MSG_SPIELSTART;
 //		CreateAllCheckPoints();
 		int iCheckPoint;
 		for(int j = 0; j < 64; j++) {
@@ -110,11 +110,11 @@ tbResult CGame::Init()
 		
 		char acSection[256];
 		int numCheckPoints = ReadINIInt("Level", "NumCheckPoints");
-		message.numCheckPoints = numCheckPoints;
+		g_pSpaceRunner->message_spst.numCheckPoints = numCheckPoints;
 
 		for(int k = 0; k < numCheckPoints;k++) {
 			g_CheckPoints[k] = 0;
-			message.checkPoints[k] = 0;
+			g_pSpaceRunner->message_spst.checkPoints[k] = 0;
 		}
 
 		for(int i = 0; i < 64; i++) {
@@ -123,9 +123,9 @@ tbResult CGame::Init()
 				sprintf(acSection, "CheckPointPosition%d", i + 1);
 				tbVector3 pos = ReadINIVector3("Level",acSection); 
 				m_aCheckPoint[iCheckPoint].SetPosition(pos);
-				message.checkPointX[i] = pos.x;
-				message.checkPointY[i] = pos.y;
-				message.checkPointZ[i] = pos.z;
+				g_pSpaceRunner->message_spst.checkPointX[i] = pos.x;
+				g_pSpaceRunner->message_spst.checkPointY[i] = pos.y;
+				g_pSpaceRunner->message_spst.checkPointZ[i] = pos.z;
 			}
 		}
 		m_aCheckPoint[0].m_isActive = TRUE;
@@ -152,10 +152,10 @@ tbResult CGame::Init()
 				m_aShip[iShip].SetPosition(tbVector3((float)(i) * 100.0f, 0.0f, -2500.0f) + tbVector3Random() * 20.0f);
 				m_aShip[iShip].Align(tbVector3(0.0f, 0.0f, 1.0f) + tbVector3Random() * 0.25f);
 			}
-				message.ships[i] = g_Ships[i];
+				g_pSpaceRunner->message_spst.ships[i] = g_Ships[i];
 		}
 
-		g_pSpaceRunner->send_gameStart(&message);
+		g_pSpaceRunner->send_gameStart();
 		
 	}
 

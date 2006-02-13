@@ -347,15 +347,15 @@ tbResult CSpaceRunner::Render(float fTime)
 	return TB_OK;
 }
 
-void CSpaceRunner::send_gameStart(msg_spielstart* msg) {
+void CSpaceRunner::send_gameStart() {
 	DPN_BUFFER_DESC bdsc;
     DPNHANDLE async;
 
 	if( !tbServer::server) return;
-	bdsc.dwBufferSize = sizeof( msg);
-	bdsc.pBufferData = (BYTE*)msg;
+	bdsc.dwBufferSize = sizeof( message_spst);
+	bdsc.pBufferData = (BYTE*)&message_spst;
 
-	tbServer::server->SendTo( DPNID_ALL_PLAYERS_GROUP, &bdsc, 1, 0, NULL, &async, DPNSEND_GUARANTEED|DPNSEND_NOLOOPBACK);
+	tbServer::server->SendTo( DPNID_ALL_PLAYERS_GROUP, &bdsc, 1, 0, NULL, 0, DPNSEND_SYNC|DPNSEND_GUARANTEED|DPNSEND_NOLOOPBACK);
 
 }
 
@@ -415,6 +415,7 @@ HRESULT CSpaceRunner::clientmessagehandler( PVOID pvUserContext, DWORD dwMessage
 		case MSG_SPIELSTART:
 			TB_WARNING("MSG_SPIELSTART geschickt");
 			//CheckPoints erstellen
+			//((msg_spielstart*)rd)->numCheckPoints;
 			if(tbServer::status != SERVER_GESTARTET) {
 				if(m_pGame->Load()) TB_ERROR("Fehler beim Laden des Spielzustands!", TB_ERROR);
 				int iCP;
