@@ -395,6 +395,15 @@ void CSpaceRunner::send_move() {
 	DPN_BUFFER_DESC bdsc;
     DPNHANDLE async;
 
+	message_move.msgid = MSG_MOVE;
+
+	for(int i = 0; i < 32; i++) { 
+		message_move.ships[i] = m_pGame->m_aShip[i];
+	}
+	for(int j = 0; j < 64; j++) {
+        message_move.checkPoints[j] = m_pGame->m_aCheckPoint[j];
+	}
+
 	tbServer::lock();
 	bdsc.dwBufferSize = sizeof(message_move);
 	bdsc.pBufferData = (BYTE*) &message_move;
@@ -402,6 +411,18 @@ void CSpaceRunner::send_move() {
 	tbServer::server->SendTo(DPNID_ALL_PLAYERS_GROUP, &bdsc, 1, 0, NULL, &async, DPNSEND_NOLOOPBACK);
 
 	tbServer::unlock();
+}
+void CSpaceRunner::send_control() {
+	DPN_BUFFER_DESC bdsc;
+    DPNHANDLE async;
+
+	message_control.msgid = MSG_CONTROL;
+	message_control.playerIndex = (int)tbClient::index;
+
+	bdsc.dwBufferSize = sizeof(message_control);
+	bdsc.pBufferData = (BYTE*) &message_control;
+
+	tbClient::client->Send(&bdsc, 1, 0, 0, &async, NULL/* DPNSEND_NOLOOPBACK*/ );
 }
 
 HRESULT CSpaceRunner::clientmessagehandler( PVOID pvUserContext, DWORD dwMessageType, PVOID pMessage) {
@@ -411,7 +432,7 @@ HRESULT CSpaceRunner::clientmessagehandler( PVOID pvUserContext, DWORD dwMessage
         PBYTE rd = ((PDPNMSG_RECEIVE)pMessage)->pReceiveData;
         switch( NETWORK_MSGID( rd)) {
 		case MSG_SPIELSTART:
-			TB_WARNING("MSG_SPIELSTART geschickt");
+			TB_INFO("MSG_SPIELSTART geschickt");
 			//CheckPoints erstellen
 			if(tbServer::status != SERVER_GESTARTET) {
 				if(m_pGame->Load()) TB_ERROR("Fehler beim Laden des Spielzustands!", TB_ERROR);
@@ -420,9 +441,6 @@ HRESULT CSpaceRunner::clientmessagehandler( PVOID pvUserContext, DWORD dwMessage
 				for (int i = 0; i < ((msg_spielstart*)rd)->numCheckPoints; i++) {
 					iCP = m_pGame->CreateCheckPoint(((msg_spielstart*)rd)->checkPoints[i]);
 					p = ((msg_spielstart*)rd)->pos[i];
-//					p.x = ((msg_spielstart*)rd)->checkPointX[i];
-//					p.y = ((msg_spielstart*)rd)->checkPointY[i];
-//					p.z = ((msg_spielstart*)rd)->checkPointZ[i];
 					m_pGame->m_aCheckPoint[iCP].SetPosition(p);
 				}
 				for(int j = 0; j < 32; j++) {
@@ -432,18 +450,19 @@ HRESULT CSpaceRunner::clientmessagehandler( PVOID pvUserContext, DWORD dwMessage
 			}
 			break;
 		case MSG_SPIELENDE:
-			TB_WARNING("MSG_SPIELENDE geschickt");
+			TB_INFO("MSG_SPIELENDE geschickt");
 			g_pSpaceRunner->SetGameState(GS_MENU);
 			break;
 		case MSG_MOVE:
-			TB_WARNING("MSG_MOVE geschickt");
-			for( int i = 0; i < 64; i++) {
-				g_pSpaceRunner->m_pGame->m_aCheckPoint[i] = ((msg_move*)rd)->checkPoints[i];
+			//TB_WARNING("MSG_MOVE geschickt");
+			if(tbServer::status != SERVER_GESTARTET) {
+				for( int i = 0; i < 64; i++) {
+					g_pSpaceRunner->m_pGame->m_aCheckPoint[i] = ((msg_move*)rd)->checkPoints[i];
+				}
+				for( int j = 0; j < 32; j++) {
+					g_pSpaceRunner->m_pGame->m_aShip[j] = ((msg_move*)rd)->ships[j];
+				}
 			}
-			for( int j = 0; j < 32; j++) {
-				g_pSpaceRunner->m_pGame->m_aShip[j] = ((msg_move*)rd)->ships[j];
-			}
-
 			break;
 
 		}
@@ -454,7 +473,7 @@ HRESULT CSpaceRunner::clientmessagehandler( PVOID pvUserContext, DWORD dwMessage
 }
 
 HRESULT CSpaceRunner::servermessagehandler( PVOID pvUserContext, DWORD dwMessageType, PVOID pMessage) {
-	TB_WARNING("servermassegehandler aufgerufen...");
+	//TB_WARNING("servermassegehandler aufgerufen...");
 	tbServer::lock();
     switch( dwMessageType) {
 	case DPN_MSGID_RECEIVE:
@@ -462,14 +481,17 @@ HRESULT CSpaceRunner::servermessagehandler( PVOID pvUserContext, DWORD dwMessage
         PBYTE rd = ((PDPNMSG_RECEIVE)pMessage)->pReceiveData;
         switch( NETWORK_MSGID( rd)) {
 		case MSG_PLAYERSHIP:
-			TB_WARNING("MSG_PLAYERSHIPS geschickt");
-			//tbServer::send_chatmessage( (msg_chat *)rd);
-			//server_chatliste_aktualisieren( mein_serverdialog, (msg_chat *)rd);
+			TB_INFO("MSG_PLAYERSHIP geschickt");
 			g_Ships[((msg_playerShip*)rd)->playerIndex] = (int)((msg_playerShip*)rd)->shipType;
 			m_clientsReady++;
 			break;
         case MSG_CONTROL:
-			TB_WARNING("MSG_CONTROL geschickt");
+			TB_INFO("MSG_CONTROL geschickt");
+			if(tbServer::status == SERVER_GESTARTET && tbClient::index != ((msg_playerShip*)rd)->playerIndex) {
+				m_pGame->m_aShip[((msg_playerShip*)rd)->playerIndex].m_vSteering = (tbVector3)((msg_control*)rd)->steering;
+				m_pGame->m_aShip[((msg_playerShip*)rd)->playerIndex].m_fThrottle = - (float)((msg_control*)rd)->throttle;
+			}
+
 			break;
 		}
         break;

@@ -29,7 +29,7 @@ tbResult CShip::MoveShip(float fTime)
 	}
 */
 
-	Control(fTime);
+	//Control(fTime);
 
 	// Schub und Lenkung begrenzen
 	if(m_fThrottle < -0.5f) m_fThrottle = -0.5f;
@@ -535,14 +535,14 @@ tbResult CShip::Control(float fTime)
 		m_fThrottle -= g_pfButtons[TB_KEY_SUBTRACT] * 0.5f * fTime;
 		if(g_pbButtons[TB_KEY_BACK]) m_fThrottle = 0.0f;
 
-		g_pSpaceRunner->message_control.throttle[m_iIndex] = m_fThrottle;
+		g_pSpaceRunner->message_control.throttle = m_fThrottle;
 
 		// Lenkung
 		m_vSteering.x = g_pfButtons[TB_KEY_UP] - g_pfButtons[TB_KEY_DOWN];
 		m_vSteering.y = g_pfButtons[TB_KEY_RIGHT] - g_pfButtons[TB_KEY_LEFT];
 		m_vSteering.z = g_pfButtons[TB_KEY_Q] - g_pfButtons[TB_KEY_W];
 
-		g_pSpaceRunner->message_control.steering[m_iIndex] = m_vSteering;
+		g_pSpaceRunner->message_control.steering = m_vSteering;
 
 		// Waffen
 		if(g_pbButtons[TB_KEY_LSHIFT])
@@ -589,6 +589,8 @@ tbResult CShip::Control(float fTime)
 		if(g_pbButtons[TB_KEY_NEXT]) m_pGame->m_fRadarRange -= fTime * 2000.0f;
 		if(m_pGame->m_fRadarRange > 32000.0f) m_pGame->m_fRadarRange = 32000.0f;
 		if(m_pGame->m_fRadarRange < 100.0f) m_pGame->m_fRadarRange = 100.0f;
+
+		g_pSpaceRunner->send_control();
 	}
 	else
 	{

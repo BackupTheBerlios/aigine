@@ -63,8 +63,9 @@ struct msg_playerShip {
 
 struct msg_control {
 	DWORD			msgid;
-	float			throttle[32];
-	tbVector3		steering[32];
+	int				playerIndex;
+	float			throttle;
+	tbVector3		steering;
 };
 
 struct msg_move {
@@ -122,7 +123,7 @@ public:
 	void send_playership(int ship);
 //	void send_ships(CShip ships[32]);
 	void send_move();
-//	void send_control();
+	void send_control();
 };
 
 // Globale Variablen
