@@ -479,29 +479,29 @@ HRESULT CSpaceRunner::clientmessagehandler( PVOID pvUserContext, DWORD dwMessage
 //					g_pSpaceRunner->m_pGame->m_aCheckPoint[i].Update();
 				}
 				for( int j = 0; j < 32; j++) {
-					//g_pSpaceRunner->m_pGame->m_aShip[j] = ((msg_move*)rd)->ships[j];
-					g_pSpaceRunner->m_pGame->m_aShip[j].m_bExists = ((msg_move*)rd)->ships[j].m_bExists;
-					g_pSpaceRunner->m_pGame->m_aShip[j].m_fMass = ((msg_move*)rd)->ships[j].m_fMass;
-					g_pSpaceRunner->m_pGame->m_aShip[j].m_fMovementFriction = ((msg_move*)rd)->ships[j].m_fMovementFriction;
-					g_pSpaceRunner->m_pGame->m_aShip[j].m_fRadius = ((msg_move*)rd)->ships[j].m_fRadius;
-					g_pSpaceRunner->m_pGame->m_aShip[j].m_fRotationFriction = ((msg_move*)rd)->ships[j].m_fRotationFriction;
+//					g_pSpaceRunner->m_pGame->m_aShip[j] = ((msg_move*)rd)->ships[j];
+//					g_pSpaceRunner->m_pGame->m_aShip[j].m_bExists = ((msg_move*)rd)->ships[j].m_bExists;
+//					g_pSpaceRunner->m_pGame->m_aShip[j].m_fMass = ((msg_move*)rd)->ships[j].m_fMass;
+//					g_pSpaceRunner->m_pGame->m_aShip[j].m_fMovementFriction = ((msg_move*)rd)->ships[j].m_fMovementFriction;
+//					g_pSpaceRunner->m_pGame->m_aShip[j].m_fRadius = ((msg_move*)rd)->ships[j].m_fRadius;
+//					g_pSpaceRunner->m_pGame->m_aShip[j].m_fRotationFriction = ((msg_move*)rd)->ships[j].m_fRotationFriction;
 //					g_pSpaceRunner->m_pGame->m_aShip[j].m_iIndex = ((msg_move*)rd)->ships[j].m_iIndex;
 					g_pSpaceRunner->m_pGame->m_aShip[j].m_mInvMatrix = ((msg_move*)rd)->ships[j].m_mInvMatrix;
 					g_pSpaceRunner->m_pGame->m_aShip[j].m_mMatrix = ((msg_move*)rd)->ships[j].m_mMatrix;
 
 
 
-					g_pSpaceRunner->m_pGame->m_aShip[j].m_vPosition = ((msg_move*)rd)->ships[j].m_vPosition;
-					g_pSpaceRunner->m_pGame->m_aShip[j].m_vRotation = ((msg_move*)rd)->ships[j].m_vRotation;
-					g_pSpaceRunner->m_pGame->m_aShip[j].m_vScaling = ((msg_move*)rd)->ships[j].m_vScaling;
-					g_pSpaceRunner->m_pGame->m_aShip[j].m_vVelocity = ((msg_move*)rd)->ships[j].m_vVelocity;
-					g_pSpaceRunner->m_pGame->m_aShip[j].m_vXAxis = ((msg_move*)rd)->ships[j].m_vXAxis;
-					g_pSpaceRunner->m_pGame->m_aShip[j].m_vYAxis = ((msg_move*)rd)->ships[j].m_vYAxis;
-					g_pSpaceRunner->m_pGame->m_aShip[j].m_vZAxis = ((msg_move*)rd)->ships[j].m_vZAxis;
+//					g_pSpaceRunner->m_pGame->m_aShip[j].m_vPosition = ((msg_move*)rd)->ships[j].m_vPosition;
+//					g_pSpaceRunner->m_pGame->m_aShip[j].m_vRotation = ((msg_move*)rd)->ships[j].m_vRotation;
+//					g_pSpaceRunner->m_pGame->m_aShip[j].m_vScaling = ((msg_move*)rd)->ships[j].m_vScaling;
+//					g_pSpaceRunner->m_pGame->m_aShip[j].m_vVelocity = ((msg_move*)rd)->ships[j].m_vVelocity;
+//					g_pSpaceRunner->m_pGame->m_aShip[j].m_vXAxis = ((msg_move*)rd)->ships[j].m_vXAxis;
+//					g_pSpaceRunner->m_pGame->m_aShip[j].m_vYAxis = ((msg_move*)rd)->ships[j].m_vYAxis;
+//					g_pSpaceRunner->m_pGame->m_aShip[j].m_vZAxis = ((msg_move*)rd)->ships[j].m_vZAxis;
 		//			g_pSpaceRunner->m_pGame->m_aShip[j].AddVelocityRel(tbVector3(0.0f, 0.0f, g_pSpaceRunner->m_pGame->m_aShip[j].m_fThrottle * g_pSpaceRunner->m_pGame->m_aShip[j].m_pType->fMaxAccel * g_pSpaceRunner->m_pGame->m_aShip[j].m_fEngineEfficiency * this->m_fTime));
 			//		g_pSpaceRunner->m_pGame->m_aShip[j].AddRotationRel(g_pSpaceRunner->m_pGame->m_aShip[j].m_vSteering * TB_DEG_TO_RAD(g_pSpaceRunner->m_pGame->m_aShip[j].m_pType->fMaxAngularAccel) * g_pSpaceRunner->m_pGame->m_aShip[j].m_fEngineEfficiency * this->m_fTime);
-					this->m_fTime = ((msg_move*)rd)->fTime;
-					g_pSpaceRunner->m_pGame->m_aShip[j].Move(this->m_fTime);
+//					this->m_fTime = ((msg_move*)rd)->fTime;
+//					g_pSpaceRunner->m_pGame->m_aShip[j].Move(this->m_fTime);
 				}
 				tbClient::unlock();
 			}
