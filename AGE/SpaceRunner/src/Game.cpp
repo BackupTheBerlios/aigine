@@ -461,7 +461,8 @@ tbResult CGame::Move(float fTime)
 
 	if(tbServer::status == SERVER_GESTARTET) {
 		MoveShips(fTime);
-        g_pSpaceRunner->send_move(fTime);
+        g_pSpaceRunner->send_move(m_fTime);
+		//m_fTime += fTime;
 	}
 
 //	MoveShips(fTime);
