@@ -8,7 +8,7 @@
 */
 
 #include "SpaceRunner.h"
-#define FF_DIVIDE 200
+//#define FF_DIVIDE 200
 
 // __________________________________________________________________
 // Bewegt ein Schiff
@@ -855,6 +855,7 @@ void CShip::DoDamage(tbVector3 vHit,
 	}
 }
 
+#ifdef FF
 //-----------------------------------------------------------------------------
 // Name: SetDeviceForcesXY()
 // setzt die ForceFeedback Kraft für x und y achsen
@@ -925,7 +926,7 @@ INT CShip::CoordToForce( INT nCoord )
     return nForce;
 }
 
-
+#endif
 // __________________________________________________________________
 // Findet nächstes Ziel
 int CShip::FindNextTarget(int iStart,

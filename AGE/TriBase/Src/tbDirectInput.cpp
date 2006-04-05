@@ -22,7 +22,7 @@
 ********************************************************************/
 
 #include <TriBase.h>
-#define FF
+//#define FF
 
 // ******************************************************************
 BOOL				tbDirectInput::m_bInitialized = FALSE;
@@ -1155,8 +1155,12 @@ tbResult GetJoystickState(LPDIRECTINPUTDEVICE8 pDevice,
 
 	// Den Joystick abfragen
 	pDevice->Poll();
-	if(FAILED(pDevice->GetDeviceState(sizeof(DIJOYSTATE2), &JoyState)))
-	{
+#ifdef FF
+	if(FAILED(pDevice->GetDeviceState(sizeof(DIJOYSTATE2), &JoyState))) {
+#else
+	if(FAILED(pDevice->GetDeviceState(sizeof(DIJOYSTATE), &JoyState))){
+#endif
+	
 		// Versuchen, den Zugriff auf das Gerät wieder zu aktivieren
 		if(FAILED(pDevice->Acquire()))
 		{
@@ -1166,8 +1170,12 @@ tbResult GetJoystickState(LPDIRECTINPUTDEVICE8 pDevice,
 		else
 		{
 			// Noch einmal versuchen, die Daten abzufragen
-			if(FAILED(hResult = pDevice->GetDeviceState(sizeof(DIJOYSTATE2), &JoyState)))
-			{
+#ifdef FF
+			if(FAILED(hResult = pDevice->GetDeviceState(sizeof(DIJOYSTATE2), &JoyState))){
+#else
+			if(FAILED(hResult = pDevice->GetDeviceState(sizeof(DIJOYSTATE), &JoyState))){
+#endif
+			
 				// Fehler!
 				TB_ERROR_DIRECTX("pDevice->GetDeviceState", hResult, TB_ERROR);
 			}

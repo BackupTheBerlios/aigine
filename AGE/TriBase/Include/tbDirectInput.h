@@ -18,7 +18,7 @@
 	David Scherfgen
 
 ********************************************************************/
-#define FF
+//#define FF
 // Tastaturdefinitionen
 #define TB_KEY_ESCAPE		(0)
 #define TB_KEY_F1			(1)

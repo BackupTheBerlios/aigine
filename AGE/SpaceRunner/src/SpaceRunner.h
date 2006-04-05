@@ -9,7 +9,7 @@
 
 #define VERSION "0.0.5-("__DATE__")-("__TIME__")"
 #pragma message("Build: " VERSION)
-#define FF
+//#define FF
 //#define WITH_MUSIC
 
 #include <TriBase.h>
