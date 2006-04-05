@@ -428,6 +428,8 @@ void CSpaceRunner::send_control() {
 
 HRESULT CSpaceRunner::clientmessagehandler( PVOID pvUserContext, DWORD dwMessageType, PVOID pMessage) {
 	tbClient::lock();
+	CShip*		pShip;
+
     switch( dwMessageType) {
     case DPN_MSGID_RECEIVE:
         PBYTE rd = ((PDPNMSG_RECEIVE)pMessage)->pReceiveData;
@@ -479,6 +481,7 @@ HRESULT CSpaceRunner::clientmessagehandler( PVOID pvUserContext, DWORD dwMessage
 //					g_pSpaceRunner->m_pGame->m_aCheckPoint[i].Update();
 				}
 				for( int j = 0; j < 32; j++) {
+					pShip = &g_pSpaceRunner->m_pGame->m_aShip[j];
 //					g_pSpaceRunner->m_pGame->m_aShip[j] = ((msg_move*)rd)->ships[j];
 //					g_pSpaceRunner->m_pGame->m_aShip[j].m_bExists = ((msg_move*)rd)->ships[j].m_bExists;
 //					g_pSpaceRunner->m_pGame->m_aShip[j].m_fMass = ((msg_move*)rd)->ships[j].m_fMass;
@@ -486,8 +489,8 @@ HRESULT CSpaceRunner::clientmessagehandler( PVOID pvUserContext, DWORD dwMessage
 //					g_pSpaceRunner->m_pGame->m_aShip[j].m_fRadius = ((msg_move*)rd)->ships[j].m_fRadius;
 //					g_pSpaceRunner->m_pGame->m_aShip[j].m_fRotationFriction = ((msg_move*)rd)->ships[j].m_fRotationFriction;
 //					g_pSpaceRunner->m_pGame->m_aShip[j].m_iIndex = ((msg_move*)rd)->ships[j].m_iIndex;
-					g_pSpaceRunner->m_pGame->m_aShip[j].m_mInvMatrix = ((msg_move*)rd)->ships[j].m_mInvMatrix;
-					g_pSpaceRunner->m_pGame->m_aShip[j].m_mMatrix = ((msg_move*)rd)->ships[j].m_mMatrix;
+					pShip->m_mInvMatrix = ((msg_move*)rd)->ships[j].m_mInvMatrix;
+					pShip->m_mMatrix = ((msg_move*)rd)->ships[j].m_mMatrix;
 
 
 
