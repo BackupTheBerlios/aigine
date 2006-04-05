@@ -8,6 +8,7 @@
 */
 
 #include "SpaceRunner.h"
+#define FF_DIVIDE 200
 
 // __________________________________________________________________
 // Bewegt ein Schiff
@@ -774,10 +775,57 @@ void CShip::DoDamage(tbVector3 vHit,
 					 float fPower)
 {
 	float fDistance;
+#ifdef FF
+	HRESULT hr;
+	DWORD   dwCurrentTime;
+#endif
 
 	// Die Trefferposition in das Koordinatensystem des Schiffs umrechnen
 	vHit = AbsToRelPos(vHit);
+#ifdef FF
+	// Force Feedback effekt wird gestartet
+	if(m_pEffect && fPower > 0 ) {
+		
+		// Make sure the device is acquired, if we are gaining focus.
+        this->m_pJoyDevice->Acquire();
+		if (FAILED(hr = m_pEffect->Start(1, 0)))
+		{
+			// Schade !
+			TB_WARNING("Fehler beim Starten des ForceFeedback Effectes");
+		}
+		
+		dwCurrentTime = timeGetTime();
+        
+		if( dwCurrentTime - g_dwLastEffectSet > 100 )
+		{
+			// Don't allow setting effect more often than
+			// 100ms since every time an effect is set, the
+			// device will jerk.
+			//
+			// Note: This is not neccessary, and is specific to this sample
 
+
+			g_dwLastEffectSet = dwCurrentTime;
+			int y = vHit.x;
+			int x = vHit.y;
+			//x -= FEEDBACK_WINDOW_X;
+			//y -= FEEDBACK_WINDOW_Y;
+
+			g_nXForce = CoordToForce( x );
+			g_nYForce = CoordToForce( y );
+
+			//hr = SetDeviceForcesXY();
+			hr = this->SetDeviceForcesXY(vHit, fPower);
+			if( hr == TB_NOT_FOUND ){
+				TB_WARNING( "Fehler beim initialisieren, des ForceFeedback Effectes ( NOT_FOUND ) ");
+			} else if (hr == TB_OK ) {
+				g_dwLastEffectSet = dwCurrentTime;
+			}else {
+				TB_WARNING( "Fehler beim initialisieren, des ForceFeedback Effectes ( ELSE )");
+			}
+		}		
+	}
+#endif
 	// Dem Schiff Schaden hinzufügen.
 	// Die Hülle bekommt den vollen Anteil ab.
 	m_fHullDamage += tbFloatRandom(0.9f, 1.1f) * fPower;
@@ -806,6 +854,77 @@ void CShip::DoDamage(tbVector3 vHit,
 		m_afWeaponDamage[w] += tbFloatRandom(0.9f, 1.1f) * (fPower / fDistance);
 	}
 }
+
+//-----------------------------------------------------------------------------
+// Name: SetDeviceForcesXY()
+// setzt die ForceFeedback Kraft für x und y achsen
+// by mrnice
+//-----------------------------------------------------------------------------
+HRESULT CShip::SetDeviceForcesXY(tbVector3 vHit, float fPower)
+{
+    // Modifying an effect is basically the same as creating a new one, except
+    // you need only specify the parameters you are modifying
+    LONG rglDirection[2] = { 0, 0 };
+	DWORD NumFFAxis = 2;
+    DICONSTANTFORCE cf;
+	DIPERIODIC diPeriodic;      // type-specific parameters
+	
+	//if( tbDirectInput::GetNumForceFeedbackAxis() == 1 )
+ //   {
+ //       // If only one force feedback axis, then apply only one direction and 
+ //       // keep the direction at zero
+ //       cf.lMagnitude = LONG(-vHit.x);
+ //       rglDirection[0] = 0;
+ //   }
+ //   else
+    
+        // If two force feedback axis, then apply magnitude from both directions 
+	rglDirection[0] = LONG(vHit.x);//LONG(this->g_nXForce);
+	rglDirection[1] = LONG(vHit.y);
+	diPeriodic.dwMagnitude = fPower * 100;
+	/*cf.lMagnitude = (DWORD)sqrt( (double)g_nXForce * (double)g_nXForce +
+                                 (double)g_nYForce * (double)g_nYForce );
+    */
+
+    DIEFFECT eff;
+    ZeroMemory( &eff, sizeof(eff) );
+    eff.dwSize                = sizeof(DIEFFECT);
+    eff.dwFlags               = DIEFF_CARTESIAN | DIEFF_OBJECTOFFSETS;
+	eff.cAxes                 = NumFFAxis;//tbDirectInput::GetNumForceFeedbackAxis();
+    eff.rglDirection          = rglDirection;
+
+    //eff.lpEnvelope            = 0;
+    eff.cbTypeSpecificParams  = sizeof(diPeriodic);
+    eff.lpvTypeSpecificParams = &diPeriodic;
+    eff.dwStartDelay            = 0;
+
+    // Now set the new parameters and start the effect immediately.
+	return m_pEffect->SetParameters( &eff, DIEP_DIRECTION |
+                                           DIEP_TYPESPECIFICPARAMS |
+                                           DIEP_START );
+	
+}
+
+//-----------------------------------------------------------------------------
+// Name: CoordToForce()
+// Desc: Convert a coordinate 0 <= nCoord <= FEEDBACK_WINDOW_WIDTH 
+//       to a force value in the range -DI_FFNOMINALMAX to +DI_FFNOMINALMAX.
+//-----------------------------------------------------------------------------
+INT CShip::CoordToForce( INT nCoord )
+{
+    INT nForce = MulDiv( nCoord, 2 * DI_FFNOMINALMAX, FF_DIVIDE )
+                 - DI_FFNOMINALMAX;
+
+    // Keep force within bounds
+    if( nForce < -DI_FFNOMINALMAX ) 
+        nForce = -DI_FFNOMINALMAX;
+
+    if( nForce > +DI_FFNOMINALMAX ) 
+        nForce = +DI_FFNOMINALMAX;
+
+    return nForce;
+}
+
 
 // __________________________________________________________________
 // Findet nächstes Ziel

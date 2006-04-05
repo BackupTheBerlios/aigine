@@ -16,10 +16,13 @@
 
 	Autor:
 	David Scherfgen
+	edit by:
+	Tobias Harpering s0503936
 
 ********************************************************************/
 
 #include <TriBase.h>
+#define FF
 
 // ******************************************************************
 BOOL				tbDirectInput::m_bInitialized = FALSE;
@@ -29,7 +32,17 @@ DWORD				tbDirectInput::m_dwNumButtons = 0;
 tbInputDeviceInfo*	tbDirectInput::m_pDevices = NULL;
 tbButtonInfo*		tbDirectInput::m_pButtons = NULL;
 HWND				tbDirectInput::m_hWindow = NULL;
+#ifdef FF
+BOOL				tbDirectInput::m_dwEffectFound	= FALSE;
+DWORD				tbDirectInput::m_dwNumFFAxis	= 0;
+//LPDIRECTINPUT8      tbDirectInput::g_pDI			= NULL;
+LPDIRECTINPUTEFFECT	tbDirectInput::m_pEffect		=NULL;
+
+
+DWORD				tbDirectInput::m_dwCoopLevel = DISCL_EXCLUSIVE | DISCL_FOREGROUND;
+#else
 DWORD				tbDirectInput::m_dwCoopLevel = 0;
+#endif
 
 // ******************************************************************
 // Globale Variablen
@@ -254,7 +267,123 @@ char tb_g_acKeyToChar[108 * 3] = {0,      0,     0,		// TB_KEY_ESCAPE
 								  0,      0,     0,		// TB_KEY_DECIMAL
 								  '^',    '°',   0};	// TB_KEY_CIRCONFLEX
 
+
 // ******************************************************************
+// Rückruffunktion für die Eingabegeräte
+
+#ifdef FF
+BOOL CALLBACK EnumDevicesCallback(LPCDIDEVICEINSTANCE pDeviceInstance,
+								  LPVOID pRef)
+{
+	
+	// Prüfen, ob es sich um die Tastatur, die Maus oder einen Joystick handelt
+	if(pDeviceInstance->guidInstance == GUID_SysKeyboard)
+	{
+		// Es ist die Tastatur!
+		if(InitKeyboard()) {TB_WARNING("Fehler beim Initialisieren der Tastatur!");}
+		else TB_INFO("Initialisierung der Tastatur komplett!");
+	}
+	else if(pDeviceInstance->guidInstance == GUID_SysMouse)
+	{
+		// Es ist die Maus!
+		if(InitMouse()) {TB_WARNING("Fehler beim Initialisieren der Maus!");}
+		else TB_INFO("Initialisierung der Maus komplett!");
+	}
+	
+	return DIENUM_STOP;
+}
+#else 
+// ******************************************************************
+// Rückruffunktion für die Eingabegeräte
+BOOL CALLBACK EnumDevicesCallback(LPCDIDEVICEINSTANCE pDeviceInstance,
+								  LPVOID pRef)
+{
+	// Prüfen, ob es sich um die Tastatur, die Maus oder einen Joystick handelt
+	if(pDeviceInstance->guidInstance == GUID_SysKeyboard)
+	{
+		// Es ist die Tastatur!
+		if(InitKeyboard()) {TB_WARNING("Fehler beim Initialisieren der Tastatur!");}
+		else TB_INFO("Initialisierung der Tastatur komplett!");
+	}
+	else if(pDeviceInstance->guidInstance == GUID_SysMouse)
+	{
+		// Es ist die Maus!
+		if(InitMouse()) {TB_WARNING("Fehler beim Initialisieren der Maus!");}
+		else TB_INFO("Initialisierung der Maus komplett!");
+	}
+	else
+	{
+		// Es ist ein Joystick!
+		if(InitJoystick(pDeviceInstance, *((DWORD*)(pRef)))) {TB_WARNING("Fehler beim Initialisieren des Joysticks!");}
+		else
+		{
+			TB_INFO("Initialisierung des Joysticks komplett!");
+			
+			// Anzahl der Joysticks im Referenzparameter erhöhen
+			(*((DWORD*)(pRef)))++;
+		}
+	}
+
+	// Der Nächste bitte!
+	return DIENUM_CONTINUE;
+}
+
+#endif
+
+#ifdef FF
+//-----------------------------------------------------------------------------
+// Name: EnumFFDevicesCallback()
+// Desc: Called once for each enumerated force feedback device. If we find
+//       one, create a device interface on it so we can play with it.
+//-----------------------------------------------------------------------------
+BOOL CALLBACK EnumFFDevicesCallback( LPCDIDEVICEINSTANCE pDeviceInstance, 
+                                     LPVOID pRef )
+{    
+	
+	
+	// Obtain an interface to the enumerated force feedback device.
+	if(InitJoystick(pDeviceInstance, *((DWORD*)(pRef)))) {TB_WARNING("Fehler beim Initialisieren des FFJoysticks!");}
+		else
+		{
+			TB_INFO("Initialisierung des Joysticks komplett!");
+			// Anzahl der Joysticks im Referenzparameter erhöhen
+			(*((DWORD*)(pRef)))++;
+		}
+
+	TB_INFO("[MRnice]Initialisierung des ForceFeedback Joysticks erfolgreich !");
+	//return DIENUM_CONTINUE;
+	return DIENUM_STOP;
+	
+}
+
+//********************************************************************
+//Rückruffunktion für die ForceFeedback Effekte die das Gerät unterstützt
+//@autor mrnice
+BOOL CALLBACK DIEnumEffectsCallback( LPCDIEFFECTINFO pei, LPVOID pv)
+{
+    *((GUID *)pv) = pei->guid;
+	tbDirectInput::SetEffectFound(TRUE) ;
+    return DIENUM_STOP;  // one is enough
+}
+
+
+//-----------------------------------------------------------------------------
+// Name: EnumAxesCallback()
+// Desc: Callback function for enumerating the axes on a joystick and counting
+//       each force feedback enabled axis
+//-----------------------------------------------------------------------------
+BOOL CALLBACK EnumAxesCallback( const DIDEVICEOBJECTINSTANCE* pdidoi,
+                                VOID* pContext )
+{
+    DWORD* pdwNumForceFeedbackAxis = (DWORD*) pContext;
+
+    if( (pdidoi->dwFlags & DIDOI_FFACTUATOR) != 0 )
+        (*pdwNumForceFeedbackAxis)++;
+
+    return DIENUM_CONTINUE;
+}
+#endif
+// ****************************************************************
 // Funktion zum Initialisieren der Tastatur
 tbResult InitKeyboard()
 {
@@ -484,7 +613,8 @@ tbResult InitJoystick(LPCDIDEVICEINSTANCE pDeviceInstance,
 	DIPROPRANGE				Range;		// Struktur für Achsenskalierung
 	DIPROPDWORD				DeadZone;	// Struktur für die tote Zone
 	DIPROPDWORD				Saturation;	// Struktur für die Sättigung
-
+	
+	
 
 	// Die Geräteliste und die Knopfliste erweitern
 	tbDirectInput::m_dwNumDevices++;
@@ -502,7 +632,152 @@ tbResult InitJoystick(LPCDIDEVICEINSTANCE pDeviceInstance,
 		// Fehler!
 		TB_ERROR_DIRECTX("tbDirectInput::m_pDirectInput->CreateDevice", hResult, TB_ERROR);
 	}
+	
+#ifdef FF  //Force Feedback initialisierung	by mrnice
+	DIPERIODIC  diPeriodic;
+	DIENVELOPE  diEnvelope;
+	DIPROPDWORD dipdw;
+	HRESULT     hr;
+	LPDIRECTINPUTEFFECT lpEffect = NULL;
+	
+    if( NULL == pDevice )
+    {
+        MessageBox( NULL, TEXT("Force feedback device not found. ")
+                          TEXT("No Joistick available! Please check the cable conection."), 
+                          TEXT("SpaceRunner"), MB_ICONERROR | MB_OK );
+        EndDialog( tbDirectInput::m_hWindow, 0 );
+    
+    }
+    // Set the data format to "simple joystick" - a predefined data format. A
+    // data format specifies which controls on a device we are interested in,
+    // and how they should be reported.
+    //
+    // This tells DirectInput that we will be passing a DIJOYSTATE structure to
+    // IDirectInputDevice8::GetDeviceState(). Even though we won't actually do
+    // it in this sample. But setting the data format is important so that the
+    // DIJOFS_* values work properly.
+    if( FAILED( hr = pDevice->SetDataFormat( &c_dfDIJoystick2 ) ) )
+		TB_ERROR_DIRECTX("(FF)pDevice->SetDataFormat", hr, TB_ERROR);
+      
+    // Set the cooperative level to let DInput know how this device should
+    // interact with the system and with other DInput applications.
+    // Exclusive access is required in order to perform force feedback.
+    if( FAILED( hr = pDevice->SetCooperativeLevel( tbDirectInput::m_hWindow,
+                                                     DISCL_EXCLUSIVE | 
+                                                     DISCL_FOREGROUND ) ) )
+    {
+		TB_ERROR_DIRECTX("(FF)pDevice->SetCooperativeLevel(...)", hr, TB_ERROR);
+    }
 
+	
+	// Since we will be playing force feedback effects, we should disable the
+    // auto-centering spring.
+    dipdw.diph.dwSize       = sizeof(DIPROPDWORD);
+    dipdw.diph.dwHeaderSize = sizeof(DIPROPHEADER);
+    dipdw.diph.dwObj        = 0;
+    dipdw.diph.dwHow        = DIPH_DEVICE;
+    dipdw.dwData            = FALSE;
+
+    if( FAILED( hr = pDevice->SetProperty( DIPROP_AUTOCENTER, &dipdw.diph ) ) )
+        TB_ERROR_DIRECTX("(FF)pDevice->SetProperty(DIPROP_AUTOCENTER...)", hr, TB_ERROR);
+
+	// Zugriff aktivieren
+	pDevice->Acquire();
+	
+	// Als erstes wird die Achsenskalierung eingerichtet.
+	Range.diph.dwHeaderSize	= sizeof(DIPROPHEADER);
+	Range.diph.dwSize		= sizeof(DIPROPRANGE);
+	Range.diph.dwObj		= 0;
+	Range.diph.dwHow		= DIPH_DEVICE;
+	Range.lMin				= -1000;
+	Range.lMax				= +1000;
+	if(FAILED(hResult = pDevice->SetProperty(DIPROP_RANGE,
+		                                     &Range.diph)))
+	{		TB_ERROR_DIRECTX("pDevice->SetProperty(DIPROP_RANGE,...)", hResult, TB_ERROR);
+	}
+
+
+    // Nun die tote Zone
+	DeadZone.diph.dwHeaderSize	= sizeof(DIPROPHEADER);
+	DeadZone.diph.dwSize		= sizeof(DIPROPDWORD);
+	DeadZone.diph.dwObj			= 0;
+	DeadZone.diph.dwHow			= DIPH_DEVICE;
+	DeadZone.dwData				= 1000;
+
+	if(FAILED(hResult = pDevice->SetProperty(DIPROP_DEADZONE,
+		                                     &DeadZone.diph)))
+	{
+		TB_ERROR_DIRECTX("(FF)pDevice->SetProperty(DIPROP_DEADZONE...)", hResult, TB_ERROR);
+	}
+
+	// Sättigung
+	Saturation.diph.dwHeaderSize	= sizeof(DIPROPHEADER);
+	Saturation.diph.dwSize			= sizeof(DIPROPDWORD);
+	Saturation.diph.dwObj			= 0;
+	Saturation.diph.dwHow			= DIPH_DEVICE;
+	Saturation.dwData				= 9000;
+
+	if(FAILED(hResult = pDevice->SetProperty(DIPROP_SATURATION,
+		                                     &Saturation.diph)))
+	{
+		TB_ERROR_DIRECTX("pDevice->SetProperty", hResult, TB_ERROR);
+	}
+    // Enumerate and count the axes of the joystick 
+    if ( FAILED( hr = pDevice->EnumObjects( EnumAxesCallback, 
+                                              (VOID*)&tbDirectInput::m_dwNumFFAxis, DIDFT_AXIS ) ) )
+		TB_ERROR_DIRECTX("(FF)pDevice->SetProperty(DIPROP_SATURATION...)", hr, TB_ERROR);
+
+
+    // This simple sample only supports one or two axis joysticks
+    /*if( tbDirectInput::m_dwNumFFAxis > 2 )
+        tbDirectInput::m_dwNumFFAxis = 2;*/
+
+    diPeriodic.dwMagnitude = DI_FFNOMINALMAX; 
+	diPeriodic.lOffset = 0; 
+	diPeriodic.dwPhase = 0; 
+	diPeriodic.dwPeriod = (DWORD)(0.05 * DI_SECONDS);
+	
+	
+	diEnvelope.dwSize = sizeof(DIENVELOPE);
+	diEnvelope.dwAttackLevel = 0; 
+	diEnvelope.dwAttackTime = (DWORD)(0.5 * DI_SECONDS); 
+	diEnvelope.dwFadeLevel = 0; 
+	diEnvelope.dwFadeTime = (DWORD)(1.0 * DI_SECONDS); 
+
+    // This application needs only one effect: Applying raw forces.
+    DWORD           rgdwAxes[2]     = { DIJOFS_X, DIJOFS_Y };
+    LONG            rglDirection[2] = { 0, 0 };
+    DICONSTANTFORCE cf              = { 0 };
+    DIEFFECT eff;
+    ZeroMemory( &eff, sizeof(eff) );
+    eff.dwSize                  = sizeof(DIEFFECT);
+    eff.dwFlags                 = DIEFF_CARTESIAN | DIEFF_OBJECTOFFSETS;
+    eff.dwDuration              = (DWORD)(2 * DI_SECONDS);
+    eff.dwSamplePeriod          = 0;
+    eff.dwGain                  = DI_FFNOMINALMAX;
+    eff.dwTriggerButton         = DIEB_NOTRIGGER;
+    eff.dwTriggerRepeatInterval = 0;
+    eff.cAxes                   = tbDirectInput::m_dwNumFFAxis;
+    eff.rgdwAxes                = rgdwAxes; 
+    eff.rglDirection            = &rglDirection[0];
+    eff.lpEnvelope              = &diEnvelope;
+    eff.cbTypeSpecificParams    = sizeof(diPeriodic);
+    eff.lpvTypeSpecificParams   = &diPeriodic;  
+    eff.dwStartDelay            = 0;
+
+    // Create the prepared effect
+    if( FAILED( hr = pDevice->CreateEffect( GUID_Sine,                 // GUID_ConstantForce, 
+		&eff, &lpEffect, NULL ) ) )
+    {
+		TB_ERROR_DIRECTX("(FF)pDevice->CreateEffect", hr, TB_ERROR);
+      //  return hr;
+    }
+	//den Effect private bekannt machen
+	tbDirectInput::m_pEffect = lpEffect;
+    if( NULL == tbDirectInput::m_pEffect )
+		TB_ERROR_DIRECTX("(ForceFeedback effect = NULL )", hr, TB_ERROR);
+
+#else //-------------------------------------------------------------------------------------end FF
 	// Datenformat setzen
 	pDevice->SetDataFormat(&c_dfDIJoystick);
 
@@ -557,6 +832,8 @@ tbResult InitJoystick(LPCDIDEVICEINSTANCE pDeviceInstance,
 		// Fehler!
 		TB_ERROR_DIRECTX("pDevice->SetProperty", hResult, TB_ERROR);
 	}
+
+#endif
 
 	// Name, Schnittstelle, GUID und sonstige Informationen eintragen
 	strcpy(tbDirectInput::m_pDevices[2 + dwJoystick].acName, pDeviceInstance->tszInstanceName);
@@ -650,40 +927,7 @@ tbResult InitJoystick(LPCDIDEVICEINSTANCE pDeviceInstance,
 	return TB_OK;
 }
 
-// ******************************************************************
-// Rückruffunktion für die Eingabegeräte
-BOOL CALLBACK EnumDevicesCallback(LPCDIDEVICEINSTANCE pDeviceInstance,
-								  LPVOID pRef)
-{
-	// Prüfen, ob es sich um die Tastatur, die Maus oder einen Joystick handelt
-	if(pDeviceInstance->guidInstance == GUID_SysKeyboard)
-	{
-		// Es ist die Tastatur!
-		if(InitKeyboard()) {TB_WARNING("Fehler beim Initialisieren der Tastatur!");}
-		else TB_INFO("Initialisierung der Tastatur komplett!");
-	}
-	else if(pDeviceInstance->guidInstance == GUID_SysMouse)
-	{
-		// Es ist die Maus!
-		if(InitMouse()) {TB_WARNING("Fehler beim Initialisieren der Maus!");}
-		else TB_INFO("Initialisierung der Maus komplett!");
-	}
-	else
-	{
-		// Es ist ein Joystick!
-		if(InitJoystick(pDeviceInstance, *((DWORD*)(pRef)))) {TB_WARNING("Fehler beim Initialisieren des Joysticks!");}
-		else
-		{
-			TB_INFO("Initialisierung des Joysticks komplett!");
-			
-			// Anzahl der Joysticks im Referenzparameter erhöhen
-			(*((DWORD*)(pRef)))++;
-		}
-	}
 
-	// Der Nächste bitte!
-	return DIENUM_CONTINUE;
-}
 
 // ******************************************************************
 // Initialisierung von DirectInput
@@ -738,12 +982,39 @@ tbResult tbDirectInput::Init(HWND hWindow,		// = NULL
 	// Joystick um eins erhöht - so weiß die Rückruffunktion immer, der wievielte
 	// Joystick es gerade ist.
 	dwNumJoysticks = 0;
+	
+#ifdef FF //-------------------------------------------------------------------------------------mrnice
+	TB_INFO("Keyborad device wird gesucht und Initialisiert");
+	if(FAILED(hResult = m_pDirectInput->EnumDevices(DI8DEVCLASS_KEYBOARD, EnumDevicesCallback,
+		                                            &dwNumJoysticks, DIEDFL_ALLDEVICES)))
+	{
+		// Fehler!
+		TB_ERROR_DIRECTX("m_pDirectInput->EnumDevices(DI8DEVCLASS_KEYBOARD...)", hResult, TB_ERROR);
+	}
+	
+	TB_INFO("Mouse device wird gesucht und Initialisiert");
+	if(FAILED(hResult = m_pDirectInput->EnumDevices(DI8DEVCLASS_POINTER, EnumDevicesCallback,
+		                                            &dwNumJoysticks, DIEDFL_ALLDEVICES)))
+	{
+		// Fehler!
+		TB_ERROR_DIRECTX("m_pDirectInput->EnumDevices(DI8DEVCLASS_POINTER...)", hResult, TB_ERROR);
+	}
+	if( FAILED( hResult = m_pDirectInput->EnumDevices(	 DI8DEVCLASS_GAMECTRL, 
+										 EnumFFDevicesCallback, &dwNumJoysticks, 
+                                         DIEDFL_ATTACHEDONLY | DIEDFL_FORCEFEEDBACK ) ) )
+    {
+        // Fehler!
+		TB_ERROR_DIRECTX("m_pDirectInput->EnumDevices(DI8DEVCLASS_GAMECTRL...)", hResult, TB_ERROR);
+    }
+#else//-------------------------------------------------------------------------------------end FF
+	
 	if(FAILED(hResult = m_pDirectInput->EnumDevices(DI8DEVCLASS_ALL, EnumDevicesCallback,
 		                                            &dwNumJoysticks, DIEDFL_ALLDEVICES)))
 	{
 		// Fehler!
 		TB_ERROR_DIRECTX("m_pDirectInput->EnumDevices", hResult, TB_ERROR);
 	}
+#endif
 
 	// Damit sind wir fertig!
 	TB_INFO("Die DirectInput-Komponente wurde erfolgreich initialisiert!");
@@ -876,7 +1147,7 @@ tbResult GetJoystickState(LPDIRECTINPUTDEVICE8 pDevice,
 						  float* pfOut)
 {
 	HRESULT		hResult;
-	DIJOYSTATE	JoyState;
+	DIJOYSTATE2	JoyState;
 	float		fAngle;
 	float		fSin;
 	float		fCos;
@@ -884,7 +1155,7 @@ tbResult GetJoystickState(LPDIRECTINPUTDEVICE8 pDevice,
 
 	// Den Joystick abfragen
 	pDevice->Poll();
-	if(FAILED(pDevice->GetDeviceState(sizeof(DIJOYSTATE), &JoyState)))
+	if(FAILED(pDevice->GetDeviceState(sizeof(DIJOYSTATE2), &JoyState)))
 	{
 		// Versuchen, den Zugriff auf das Gerät wieder zu aktivieren
 		if(FAILED(pDevice->Acquire()))
@@ -895,7 +1166,7 @@ tbResult GetJoystickState(LPDIRECTINPUTDEVICE8 pDevice,
 		else
 		{
 			// Noch einmal versuchen, die Daten abzufragen
-			if(FAILED(hResult = pDevice->GetDeviceState(sizeof(DIJOYSTATE), &JoyState)))
+			if(FAILED(hResult = pDevice->GetDeviceState(sizeof(DIJOYSTATE2), &JoyState)))
 			{
 				// Fehler!
 				TB_ERROR_DIRECTX("pDevice->GetDeviceState", hResult, TB_ERROR);

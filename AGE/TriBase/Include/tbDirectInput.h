@@ -18,7 +18,7 @@
 	David Scherfgen
 
 ********************************************************************/
-
+#define FF
 // Tastaturdefinitionen
 #define TB_KEY_ESCAPE		(0)
 #define TB_KEY_F1			(1)
@@ -195,6 +195,12 @@ private:
 	static tbButtonInfo*		m_pButtons;		// Liste der analogen Knöpfe
 	static HWND					m_hWindow;		// Verwendetes Fenster
 	static DWORD				m_dwCoopLevel;	// Kooperationsebene
+	
+#ifdef FF
+	static BOOL					m_dwEffectFound;// Ist ein Effekt gefunden worden?
+	static DWORD				m_dwNumFFAxis;  // Anzahl der Achxen auf den der Effekt wirken kann
+	static LPDIRECTINPUTEFFECT	m_pEffect;		// Pointer auf den FFEffekt (struct)
+#endif
 
 public:
 	// Methoden
@@ -215,6 +221,11 @@ public:
 	static inline tbButtonInfo*			GetButtons()	{return m_pButtons;}
 	static inline HWND					GetWindow()		{return m_hWindow;}
 	static inline DWORD					GetCoopLevel()	{return m_dwCoopLevel;}
+	
+#ifdef FF
+	static inline LPDIRECTINPUTEFFECT	tbDirectInput::GetFFEffect() {return m_pEffect;}
+	static inline void					SetEffectFound(BOOL effFound)	{m_dwEffectFound = effFound;}
+#endif
 
 	// friend-Funktionen
 	friend tbResult InitKeyboard();

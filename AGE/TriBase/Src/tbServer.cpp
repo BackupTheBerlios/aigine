@@ -201,7 +201,7 @@ tbResult tbServer::Init() {
 	tbServer::hostname[0] = 0;
 	tbServer::maxspieler = 2;
 	strcpy( tbServer::sessionname, "TriBase-Server2");
-	tbServer::portnummer = 14711;
+	tbServer::portnummer = 14411;
 	tbServer::status = SERVER_ANGEHALTEN;
 
 	tbServer::slist.msgid = MSG_SPIELERLISTE;

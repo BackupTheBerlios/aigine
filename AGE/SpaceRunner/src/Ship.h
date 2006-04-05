@@ -153,7 +153,10 @@ class CShip : public tbObject
 public:
 	// Variablen
 	CGame*		m_pGame;					// Zeiger auf die Spielklasse
-
+//#ifdef FF
+//	LPDIRECTINPUTDEVICE8  m_pJoyDevice;				// pointer auf den joystik
+//	LPDIRECTINPUTEFFECT   m_pEffect	;		// ein neuer ForceFeedback Effekt mit dem der alte überschrieben wird
+//#endif
 	BOOL		m_bExists;					// Existiert das Schiff?
 	int			m_iIndex;					// Index im Array
 	
@@ -186,6 +189,19 @@ public:
 	float		m_fWeaponEnergy;			// Waffenenergie
 	int			m_aiWeaponAmmo[8];			// Munition der Waffen
 	float		m_afWeaponReload[8];		// Nachladezeit der Waffen
+
+#ifdef FF  //---------------------------------------------------------------------mrnice
+	LPDIRECTINPUTDEVICE8  	m_pJoyDevice;				// pointer auf den joystik
+	LPDIRECTINPUTEFFECT   	m_pEffect	;		// ein neuer ForceFeedback Effekt mit dem der alte überschrieben wird
+	int					  	g_nXForce;					// FFkraft auf der x-achse
+	int			 			g_nYForce;					// FFkraft auf der y-achse
+	DWORD					g_dwLastEffectSet;			// zeit in ms seit dem letzten effectCall da weniger als 100ms 
+														// den Joistick beschädigen kann   -> directX sample FFConst
+														
+	//Methoden FF
+	HRESULT 	SetDeviceForcesXY(tbVector3 vHit, float fPower);	//Verändert den FF Effekt 
+	INT 		CoordToForce( INT nCoord );				// setzt koordinaten in einen Kraftvector um (testfunktion)
+#endif //---------------------------------------------------------------------------end ff
 
 	// Methoden
 	tbResult	MoveShip(float fTime);					// Bewegt das Schiff

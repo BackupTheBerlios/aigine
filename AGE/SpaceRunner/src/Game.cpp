@@ -160,6 +160,37 @@ tbResult CGame::Init()
 
 	// Der Spieler spielt das Schiff mit seinem Index.
 	m_pPlayer = &m_aShip[tbClient::index];
+	
+#ifdef FF
+////////ForceFeedback Effekt initialisieren und starten ////////////////////////////////////////////////mrnice
+	
+
+	CShip* pPlayerShip = &m_aShip[tbClient::index];
+
+
+	LPDIRECTINPUTEFFECT    pEffect      = tbDirectInput::GetFFEffect();                       // :getForceFeedbackEffect();
+	tbInputDeviceInfo*     deviceInfo   = tbDirectInput::GetDevices(); 
+	tbInputDeviceInfo      p            = deviceInfo[2];
+	LPDIRECTINPUTDEVICE8   pdv = p.pDevice;
+	
+	pdv->Acquire();
+
+	//pPlayerShip->g_dwLastEffectSet = timeGetTime();
+	pPlayerShip->m_pEffect = pEffect;
+	//pPlayerShip->pEffect = tbDirectInput::m_pEffect;
+	pPlayerShip->m_pJoyDevice = pdv;
+	pPlayerShip->g_dwLastEffectSet = timeGetTime() - 101;
+	
+	if( pPlayerShip->m_pJoyDevice ) 
+	{
+		HRESULT hr;
+		if(FAILED(hr = pPlayerShip->m_pJoyDevice->Acquire())) {
+			// Fehler!
+			TB_ERROR_DIRECTX("pDevice->Acquire()", hr, TB_ERROR);
+		}
+	}
+#endif
+/////////////////////////////////////////////////////////////ForceFeedback end
 
 
 	// Namen der Kameramodi eintragen
