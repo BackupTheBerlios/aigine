@@ -457,10 +457,10 @@ HRESULT CSpaceRunner::clientmessagehandler( PVOID pvUserContext, DWORD dwMessage
 			TB_INFO("MSG_MOVE geschickt");
 			if(tbServer::status != SERVER_GESTARTET) {
 				for( int i = 0; i < 64; i++) {
-					g_pSpaceRunner->m_pGame->m_aCheckPoint[i] = ((msg_move*)rd)->checkPoints[i];
+					//g_pSpaceRunner->m_pGame->m_aCheckPoint[i] = ((msg_move*)rd)->checkPoints[i];
 				}
 				for( int j = 0; j < 32; j++) {
-					g_pSpaceRunner->m_pGame->m_aShip[j] = ((msg_move*)rd)->ships[j];
+					//g_pSpaceRunner->m_pGame->m_aShip[j] = ((msg_move*)rd)->ships[j];
 				}
 			}
 			break;
