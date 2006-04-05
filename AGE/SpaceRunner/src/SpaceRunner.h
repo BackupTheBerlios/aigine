@@ -70,6 +70,7 @@ struct msg_control {
 
 struct msg_move {
 	DWORD			msgid;
+	float			fTime;
 	CCheckPoint		checkPoints[64];
 	CShip			ships[32];
 };
@@ -122,7 +123,7 @@ public:
 	void send_gameEnd(int winner);
 	void send_playership(int ship);
 //	void send_ships(CShip ships[32]);
-	void send_move();
+	void send_move(float fTime);
 	void send_control();
 };
 
