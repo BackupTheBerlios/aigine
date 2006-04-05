@@ -454,7 +454,7 @@ HRESULT CSpaceRunner::clientmessagehandler( PVOID pvUserContext, DWORD dwMessage
 			g_pSpaceRunner->SetGameState(GS_MENU);
 			break;
 		case MSG_MOVE:
-			//TB_WARNING("MSG_MOVE geschickt");
+			TB_INFO("MSG_MOVE geschickt");
 			if(tbServer::status != SERVER_GESTARTET) {
 				for( int i = 0; i < 64; i++) {
 					g_pSpaceRunner->m_pGame->m_aCheckPoint[i] = ((msg_move*)rd)->checkPoints[i];
@@ -488,6 +488,7 @@ HRESULT CSpaceRunner::servermessagehandler( PVOID pvUserContext, DWORD dwMessage
         case MSG_CONTROL:
 			TB_INFO("MSG_CONTROL geschickt");
 			if(tbServer::status == SERVER_GESTARTET && tbClient::index != ((msg_playerShip*)rd)->playerIndex) {
+				TB_WARNING("MSG_CONTROL von Spieler erhalten");
 				m_pGame->m_aShip[((msg_playerShip*)rd)->playerIndex].m_vSteering = (tbVector3)((msg_control*)rd)->steering;
 				m_pGame->m_aShip[((msg_playerShip*)rd)->playerIndex].m_fThrottle = - (float)((msg_control*)rd)->throttle;
 			}
