@@ -496,6 +496,7 @@ HRESULT CSpaceRunner::clientmessagehandler( PVOID pvUserContext, DWORD dwMessage
 					g_pSpaceRunner->m_pGame->m_aShip[j].m_vXAxis = ((msg_move*)rd)->ships[j].m_vXAxis;
 					g_pSpaceRunner->m_pGame->m_aShip[j].m_vYAxis = ((msg_move*)rd)->ships[j].m_vYAxis;
 					g_pSpaceRunner->m_pGame->m_aShip[j].m_vZAxis = ((msg_move*)rd)->ships[j].m_vZAxis;
+					g_pSpaceRunner->m_pGame->m_aShip[j].Move(m_fTime);
 				}
 			}
 			break;
