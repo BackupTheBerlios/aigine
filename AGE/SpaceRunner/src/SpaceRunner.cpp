@@ -456,6 +456,7 @@ HRESULT CSpaceRunner::clientmessagehandler( PVOID pvUserContext, DWORD dwMessage
 		case MSG_MOVE:
 			TB_INFO("MSG_MOVE geschickt");
 			if(tbServer::status != SERVER_GESTARTET) {
+				tbClient::lock();
 				for( int i = 0; i < 64; i++) {
 //					g_pSpaceRunner->m_pGame->m_aCheckPoint[i].m_bExists = ((msg_move*)rd)->checkPoints[i].m_bExists;
 //					g_pSpaceRunner->m_pGame->m_aCheckPoint[i].m_fMass = ((msg_move*)rd)->checkPoints[i].m_fMass;
@@ -500,6 +501,7 @@ HRESULT CSpaceRunner::clientmessagehandler( PVOID pvUserContext, DWORD dwMessage
 					//g_pSpaceRunner->m_pGame->m_aShip[j].AddRotationRel(g_pSpaceRunner->m_pGame->m_aShip[j].m_vSteering * TB_DEG_TO_RAD(g_pSpaceRunner->m_pGame->m_aShip[j].m_pType->fMaxAngularAccel) * g_pSpaceRunner->m_pGame->m_aShip[j].m_fEngineEfficiency * m_fTime);
 					g_pSpaceRunner->m_pGame->m_aShip[j].Update();
 				}
+				tbClient::unlock();
 			}
 			break;
 
@@ -528,7 +530,7 @@ HRESULT CSpaceRunner::servermessagehandler( PVOID pvUserContext, DWORD dwMessage
 			if(tbServer::status == SERVER_GESTARTET && tbClient::index != ((msg_playerShip*)rd)->playerIndex) {
 				TB_WARNING("MSG_CONTROL von Spieler erhalten");
 				m_pGame->m_aShip[((msg_playerShip*)rd)->playerIndex].m_vSteering = (tbVector3)((msg_control*)rd)->steering;
-				m_pGame->m_aShip[((msg_playerShip*)rd)->playerIndex].m_fThrottle = - (float)((msg_control*)rd)->throttle;
+				m_pGame->m_aShip[((msg_playerShip*)rd)->playerIndex].m_fThrottle = (float)((msg_control*)rd)->throttle;
 			}
 
 			break;
