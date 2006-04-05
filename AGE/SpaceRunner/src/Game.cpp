@@ -200,6 +200,7 @@ tbResult CGame::Exit()
 	ZeroMemory(m_aCamera, 1 * sizeof(CCamera));
 	ZeroMemory(m_aCheckPoint, 64 * sizeof(CCheckPoint));
 
+	g_pSpaceRunner->m_clientsReady = 0;
 	// Entladen...
 	Unload();
 
