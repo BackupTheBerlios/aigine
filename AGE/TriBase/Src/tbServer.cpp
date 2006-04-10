@@ -72,7 +72,7 @@ int tbServer::start( PFNDPNMESSAGEHANDLER msghandler, char *sname, int pno, int 
 	hr = server->Host( &adsc, &adr, 1, NULL, NULL, (void *)-1, 0);
 	if( hr < 0)
 		goto RETURN;
-	server->GetLocalHostAddresses(&adr, &anza, 0);
+	server->GetLocalHostAddresses(&adr, &anza, 1);
 	adr->GetComponentByName( DPNA_KEY_HOSTNAME, buf, &buflen, &type);
 	DXUtil_ConvertWideStringToAnsi( hostname, buf, 64);
 
