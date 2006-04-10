@@ -391,7 +391,7 @@ void CSpaceRunner::send_playership(int ship) {
 
 }
 
-void CSpaceRunner::send_move(float fTime, int iShipID) {
+void CSpaceRunner::send_move(int iShipID) {
 	DPN_BUFFER_DESC bdsc;
     DPNHANDLE async;
 
@@ -453,7 +453,15 @@ HRESULT CSpaceRunner::clientmessagehandler( PVOID pvUserContext, DWORD dwMessage
 			g_pSpaceRunner->SetGameState(GS_MENU);
 			break;
 		case MSG_MOVE:
-			g_pSpaceRunner->message_move = *(msg_move *)rd;
+			if(tbServer::status != SERVER_GESTARTET) {
+				g_pSpaceRunner->message_move = *(msg_move *)rd;
+	
+				tbClient::lock();
+				m_pGame->m_aShip[g_pSpaceRunner->message_move.iShipID].m_mMatrix = g_pSpaceRunner->message_move.mMatrix;
+				m_pGame->m_aShip[g_pSpaceRunner->message_move.iShipID].m_mInvMatrix = tbMatrixInvert(g_pSpaceRunner->message_move.mMatrix);
+				tbClient::unlock();
+			}
+
 			//tbClient::lock();
 			//memcpy((void*)&g_pSpaceRunner->message_move, (void*) rd, sizeof(g_pSpaceRunner->message_move));
 			//tbClient::unlock();

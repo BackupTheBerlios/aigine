@@ -464,19 +464,21 @@ tbResult CGame::Move(float fTime)
 		MoveShips(fTime);
 		for(i=0;i<32;i++) {
 			if(m_aShip[i].m_bExists) {
-                g_pSpaceRunner->send_move(m_fTime,i);
+                g_pSpaceRunner->send_move(i);
 			}
 		}
 		//m_fTime += fTime;
 	}
 
-	tbClient::lock();
-	m_aShip[g_pSpaceRunner->message_move.iShipID].m_mMatrix = g_pSpaceRunner->message_move.mMatrix;
-	m_aShip[g_pSpaceRunner->message_move.iShipID].m_mInvMatrix = tbMatrixInvert(g_pSpaceRunner->message_move.mMatrix);
-	tbClient::unlock();
+	//tbClient::lock();
+	//m_aShip[g_pSpaceRunner->message_move.iShipID].m_mMatrix = g_pSpaceRunner->message_move.mMatrix;
+	//m_aShip[g_pSpaceRunner->message_move.iShipID].m_mInvMatrix = tbMatrixInvert(g_pSpaceRunner->message_move.mMatrix);
+	//tbClient::unlock();
 
 	for(i=0;i<32; i++) {
-		m_aShip[i].Move(fTime);
+		if(m_aShip[i].m_bExists) {
+            m_aShip[i].Move(fTime);
+		}
 	}
 
 //	MoveShips(fTime);

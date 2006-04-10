@@ -122,7 +122,7 @@ public:
 	void send_gameEnd(int winner);
 	void send_playership(int ship);
 //	void send_ships(CShip ships[32]);
-	void send_move(float fTime, int iShipID);
+	void send_move(int iShipID);
 	void send_control();
 };
 
