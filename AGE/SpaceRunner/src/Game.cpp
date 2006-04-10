@@ -465,7 +465,7 @@ tbResult CGame::Move(float fTime)
         g_pSpaceRunner->send_move();
 		//m_fTime += fTime;
 	}
-
+//if Client
 	tbClient::lock();
 	for(i=0;i<MAX_PLAYERS;i++) {
 		m_aShip[i].m_vPosition = g_pSpaceRunner->message_move.vPosition[i];
