@@ -112,8 +112,8 @@ tbResult CGame::Init()
 		g_pSpaceRunner->message_spst.numCheckPoints = numCheckPoints;
 
 		for(int k = 0; k < numCheckPoints;k++) {
-			g_CheckPoints[k] = 0;
-			g_pSpaceRunner->message_spst.checkPoints[k] = 0;
+			g_CheckPoints[k] = 1;
+			g_pSpaceRunner->message_spst.checkPoints[k] = 1;
 		}
 
 		for(int i = 0; i < 64; i++) {
@@ -468,11 +468,15 @@ tbResult CGame::Move(float fTime)
 
 	tbClient::lock();
 	for(i=0;i<MAX_PLAYERS;i++) {
-		m_aShip[i].m_vPosition = g_pSpaceRunner->message_move.m_vPosition[i];
-		m_aShip[i].m_vScaling = g_pSpaceRunner->message_move.m_vScaling[i];
-		m_aShip[i].m_vXAxis = g_pSpaceRunner->message_move.m_vXAxis[i];
-		m_aShip[i].m_vYAxis = g_pSpaceRunner->message_move.m_vYAxis[i];
-		m_aShip[i].m_vZAxis = g_pSpaceRunner->message_move.m_vZAxis[i];
+		m_aShip[i].m_vPosition = g_pSpaceRunner->message_move.vPosition[i];
+		m_aShip[i].m_vScaling = g_pSpaceRunner->message_move.vScaling[i];
+		m_aShip[i].m_vXAxis = g_pSpaceRunner->message_move.vXAxis[i];
+		m_aShip[i].m_vYAxis = g_pSpaceRunner->message_move.vYAxis[i];
+		m_aShip[i].m_vZAxis = g_pSpaceRunner->message_move.vZAxis[i];
+	}
+	for(i=0;i<64;i++) {
+		m_aCheckPoint[i].m_bExists = g_pSpaceRunner->message_move.bExists[i];
+		m_aCheckPoint[i].m_isActive = g_pSpaceRunner->message_move.isActive[i];
 	}
     tbClient::unlock();
 

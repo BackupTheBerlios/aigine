@@ -69,11 +69,13 @@ struct msg_control {
 
 struct msg_move {
 	DWORD			msgid;
-	tbVector3		m_vScaling[MAX_PLAYERS];
-	tbVector3		m_vXAxis[MAX_PLAYERS];
-	tbVector3		m_vYAxis[MAX_PLAYERS];
-	tbVector3		m_vZAxis[MAX_PLAYERS];
-	tbVector3		m_vPosition[MAX_PLAYERS];
+	tbVector3		vScaling[MAX_PLAYERS];
+	tbVector3		vXAxis[MAX_PLAYERS];
+	tbVector3		vYAxis[MAX_PLAYERS];
+	tbVector3		vZAxis[MAX_PLAYERS];
+	tbVector3		vPosition[MAX_PLAYERS];
+	BOOL			bExists[64];
+	BOOL			isActive[64];
 };
 
 // CGalactica-Klasse

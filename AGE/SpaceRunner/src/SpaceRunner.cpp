@@ -397,11 +397,15 @@ void CSpaceRunner::send_move() {
 
 	message_move.msgid			= MSG_MOVE;
 	for(int i=0;i<MAX_PLAYERS;i++) {
-		message_move.m_vPosition[i]	= m_pGame->m_aShip[i].m_vPosition;
-		message_move.m_vScaling[i]	= m_pGame->m_aShip[i].m_vScaling;
-		message_move.m_vXAxis[i]	= m_pGame->m_aShip[i].m_vXAxis;
-		message_move.m_vYAxis[i]	= m_pGame->m_aShip[i].m_vYAxis;
-		message_move.m_vZAxis[i]	= m_pGame->m_aShip[i].m_vZAxis;
+		message_move.vPosition[i]	= m_pGame->m_aShip[i].m_vPosition;
+		message_move.vScaling[i]	= m_pGame->m_aShip[i].m_vScaling;
+		message_move.vXAxis[i]	= m_pGame->m_aShip[i].m_vXAxis;
+		message_move.vYAxis[i]	= m_pGame->m_aShip[i].m_vYAxis;
+		message_move.vZAxis[i]	= m_pGame->m_aShip[i].m_vZAxis;
+	}
+	for(i=0;i<64;i++) {
+		message_move.bExists[i] = m_pGame->m_aCheckPoint[i].m_bExists;
+		message_move.isActive[i] = m_pGame->m_aCheckPoint[i].m_isActive;
 	}
 
 
