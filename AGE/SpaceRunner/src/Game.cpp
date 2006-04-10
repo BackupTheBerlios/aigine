@@ -458,19 +458,21 @@ tbResult CGame::Move(float fTime)
 	//if(tbServer::status == SERVER_GESTARTET) { MoveShips(fTime); }
 
 	m_pPlayer->Control(fTime);
+	int i;
 
 	if(tbServer::status == SERVER_GESTARTET) {
 		MoveShips(fTime);
-        g_pSpaceRunner->send_move(m_fTime);
+		for(i=0;i<32;i++) {
+			if(m_aShip[i].m_bExists) {
+                g_pSpaceRunner->send_move(m_fTime,i);
+			}
+		}
 		//m_fTime += fTime;
 	}
 
 	tbClient::lock();
-	for(int i=0; i<32; i++) {
-		m_aShip[i].m_bExists = g_pSpaceRunner->message_move.shipsExists[i];
-		m_aShip[i].m_vVelocity = g_pSpaceRunner->message_move.shipsVelocity[i];
-		m_aShip[i].m_vRotation = g_pSpaceRunner->message_move.shipsRotation[i];
-	}
+	m_aShip[g_pSpaceRunner->message_move.iShipID].m_mMatrix = g_pSpaceRunner->message_move.mMatrix;
+	m_aShip[g_pSpaceRunner->message_move.iShipID].m_mInvMatrix = tbMatrixInvert(g_pSpaceRunner->message_move.mMatrix);
 	tbClient::unlock();
 
 	for(i=0;i<32; i++) {
@@ -1788,7 +1790,6 @@ tbResult CGame::MoveShips(float fTime)
 
 			//g_pSpaceRunner->message_move.ships[s1] = m_aShip[s1];
 			//g_pSpaceRunner->message_move.ships[s2] = m_aShip[s2];
-
 		}
 
 		for(int cp = 0; cp < 64; cp++) {
@@ -1813,7 +1814,6 @@ tbResult CGame::MoveShips(float fTime)
 			//g_pSpaceRunner->message_move.checkPoints[cp] = m_aCheckPoint[cp];
 		}
 	}
-
 	return TB_OK;
 }
 

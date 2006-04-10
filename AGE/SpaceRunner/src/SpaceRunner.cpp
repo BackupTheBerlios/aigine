@@ -391,29 +391,25 @@ void CSpaceRunner::send_playership(int ship) {
 
 }
 
-void CSpaceRunner::send_move(float fTime) {
+void CSpaceRunner::send_move(float fTime, int iShipID) {
 	DPN_BUFFER_DESC bdsc;
     DPNHANDLE async;
 
-	message_move.msgid = MSG_MOVE;
-	message_move.fTime = fTime;
 
-	for(int i = 0; i < 32; i++) { 
-		message_move.shipsExists[i] = m_pGame->m_aShip[i].m_bExists;
-		message_move.shipsRotation[i] = m_pGame->m_aShip[i].m_vRotation;
-		message_move.shipsVelocity[i] = m_pGame->m_aShip[i].m_vVelocity;
+	if(m_pGame->m_aShip[iShipID].m_bExists) {
+		message_move.msgid = MSG_MOVE;
+		message_move.iShipID = iShipID;
+		message_move.mMatrix = m_pGame->m_aShip[iShipID].m_mMatrix;
+
+
+		tbServer::lock();
+		bdsc.dwBufferSize = sizeof(message_move);
+		bdsc.pBufferData = (BYTE*) &message_move;
+
+		tbServer::server->SendTo(DPNID_ALL_PLAYERS_GROUP, &bdsc, 1, 0, NULL, &async, DPNSEND_NOLOOPBACK);
+
+		tbServer::unlock();
 	}
-//	for(int j = 0; j < 64; j++) {
-//        message_move.checkPoints[j] = m_pGame->m_aCheckPoint[j];
-//	}
-
-	tbServer::lock();
-	bdsc.dwBufferSize = sizeof(message_move);
-	bdsc.pBufferData = (BYTE*) &message_move;
-
-	tbServer::server->SendTo(DPNID_ALL_PLAYERS_GROUP, &bdsc, 1, 0, NULL, &async, DPNSEND_NOLOOPBACK);
-
-	tbServer::unlock();
 }
 void CSpaceRunner::send_control() {
 	DPN_BUFFER_DESC bdsc;
