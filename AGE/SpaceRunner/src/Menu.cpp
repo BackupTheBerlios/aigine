@@ -25,7 +25,7 @@ BOOL g_bStartGame = FALSE;
 // __________________________________________________________________
 // Initialisiert den Spielzustand
 tbResult CMenu::Init() {
-	for(int i = 0; i < 32; i++) {
+	for(int i = 0; i < MAX_PLAYERS; i++) {
 		g_Ships[i] = -1;
 	}
 	// Laden...
@@ -64,11 +64,11 @@ tbResult MenuMsgProc(int iID, tbGUIMessage* pMsg, tbGUI* pGUI) {
 					g_pSpaceRunner->m_pGame->m_bUseJoystick = ((tbGUICheckBox*)(pGUI->GetElement(204)))->IsChecked();
 
 					// Team-Array leeren (-1 steht für "kein Schiff")
-			//		for(int i = 0; i < 32; i++) {
+			//		for(int i = 0; i < MAX_PLAYERS; i++) {
 			//			g_Ships[i] = -1;
 			//		}
 					pTeamList = (tbGUIList*)(pGUI->GetElement(121));
-					for(int j = 0; j < pTeamList->GetNumEntries() && j < 32; j++) {
+					for(int j = 0; j < pTeamList->GetNumEntries() && j < MAX_PLAYERS; j++) {
 					// Schiff hinzufügen
 						TB_INFO("Schiff hinzugefügt");
 						g_Ships[j] = ((SShipType*)(pTeamList->GetEntryByOrder(j)->pData))->iIndex;
@@ -156,14 +156,14 @@ tbResult MenuMsgProc(int iID, tbGUIMessage* pMsg, tbGUI* pGUI) {
 
 		// Team-Array leeren (-1 steht für "kein Schiff")
 		for(int t = 0; t < 4; t++) {
-			for(int s = 0; s < 32; s++) {
+			for(int s = 0; s < MAX_PLAYERS; s++) {
 				g_aiTeam[t][s] = -1;
 			}
 		}
 
 		// Team 1
 		pTeamList = (tbGUIList*)(pGUI->GetElement(121));
-		for(int i = 0; i < pTeamList->GetNumEntries() && i < 32; i++) {
+		for(int i = 0; i < pTeamList->GetNumEntries() && i < MAX_PLAYERS; i++) {
 			// Schiff hinzufügen
 			g_aiTeam[0][i] = ((SShipType*)(pTeamList->GetEntryByOrder(i)->pData))->iIndex;
 			iNumShips++;
@@ -171,7 +171,7 @@ tbResult MenuMsgProc(int iID, tbGUIMessage* pMsg, tbGUI* pGUI) {
 
 		// Team 2
 		pTeamList = (tbGUIList*)(pGUI->GetElement(131));
-		for(i = 0; i < pTeamList->GetNumEntries() && i < 32; i++) {
+		for(i = 0; i < pTeamList->GetNumEntries() && i < MAX_PLAYERS; i++) {
 			// Schiff hinzufügen
 			g_aiTeam[1][i] = ((SShipType*)(pTeamList->GetEntryByOrder(i)->pData))->iIndex;
 			iNumShips++;
@@ -179,7 +179,7 @@ tbResult MenuMsgProc(int iID, tbGUIMessage* pMsg, tbGUI* pGUI) {
 
 		// Team 3
 		pTeamList = (tbGUIList*)(pGUI->GetElement(141));
-		for(i = 0; i < pTeamList->GetNumEntries() && i < 32; i++) {
+		for(i = 0; i < pTeamList->GetNumEntries() && i < MAX_PLAYERS; i++) {
 			// Schiff hinzufügen
 			g_aiTeam[2][i] = ((SShipType*)(pTeamList->GetEntryByOrder(i)->pData))->iIndex;
 			iNumShips++;
@@ -187,7 +187,7 @@ tbResult MenuMsgProc(int iID, tbGUIMessage* pMsg, tbGUI* pGUI) {
 
 		// Team 4
 		pTeamList = (tbGUIList*)(pGUI->GetElement(151));
-		for(i = 0; i < pTeamList->GetNumEntries() && i < 32; i++) {
+		for(i = 0; i < pTeamList->GetNumEntries() && i < MAX_PLAYERS; i++) {
 			// Schiff hinzufügen
 			g_aiTeam[3][i] = ((SShipType*)(pTeamList->GetEntryByOrder(i)->pData))->iIndex;
 			iNumShips++;

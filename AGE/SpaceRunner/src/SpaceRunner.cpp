@@ -16,7 +16,7 @@ float*		g_pfButtons = NULL;
 BOOL*		g_pbButtons = NULL;
 BOOL*		g_pbOldButtons = NULL;
 float*		g_pfOldButtons = NULL;
-int			g_Ships[32];
+int			g_Ships[MAX_PLAYERS];
 int			g_CheckPoints[64];
 int			g_Tunnels[64];
 HRESULT (* clientCallFunc)(PVOID, DWORD, PVOID);
@@ -391,29 +391,27 @@ void CSpaceRunner::send_playership(int ship) {
 
 }
 
-void CSpaceRunner::send_move(int iShipID) {
+void CSpaceRunner::send_move() {
 	DPN_BUFFER_DESC bdsc;
     DPNHANDLE async;
 
-
-	if(m_pGame->m_aShip[iShipID].m_bExists) {
-		message_move.msgid			= MSG_MOVE;
-		message_move.iShipID		= iShipID;
-		message_move.m_vPosition	= m_pGame->m_aShip[iShipID].m_vPosition;
-		message_move.m_vScaling		= m_pGame->m_aShip[iShipID].m_vScaling;
-		message_move.m_vXAxis		= m_pGame->m_aShip[iShipID].m_vXAxis;
-		message_move.m_vYAxis		= m_pGame->m_aShip[iShipID].m_vYAxis;
-		message_move.m_vZAxis		= m_pGame->m_aShip[iShipID].m_vZAxis;
-
-
-		tbServer::lock();
-		bdsc.dwBufferSize = sizeof(message_move);
-		bdsc.pBufferData = (BYTE*) &message_move;
-
-		tbServer::server->SendTo(DPNID_ALL_PLAYERS_GROUP, &bdsc, 1, 0, NULL, &async, DPNSEND_NOLOOPBACK);
-
-		tbServer::unlock();
+	message_move.msgid			= MSG_MOVE;
+	for(int i=0;i<MAX_PLAYERS;i++) {
+		message_move.m_vPosition[i]	= m_pGame->m_aShip[i].m_vPosition;
+		message_move.m_vScaling[i]	= m_pGame->m_aShip[i].m_vScaling;
+		message_move.m_vXAxis[i]	= m_pGame->m_aShip[i].m_vXAxis;
+		message_move.m_vYAxis[i]	= m_pGame->m_aShip[i].m_vYAxis;
+		message_move.m_vZAxis[i]	= m_pGame->m_aShip[i].m_vZAxis;
 	}
+
+
+	tbServer::lock();
+	bdsc.dwBufferSize = sizeof(message_move);
+	bdsc.pBufferData = (BYTE*) &message_move;
+
+	tbServer::server->SendTo(DPNID_ALL_PLAYERS_GROUP, &bdsc, 1, 0, NULL, &async, DPNSEND_NOLOOPBACK);
+
+	tbServer::unlock();
 }
 void CSpaceRunner::send_control() {
 	DPN_BUFFER_DESC bdsc;
@@ -447,7 +445,7 @@ HRESULT CSpaceRunner::clientmessagehandler( PVOID pvUserContext, DWORD dwMessage
 					p = ((msg_spielstart*)rd)->pos[i];
 					m_pGame->m_aCheckPoint[iCP].SetPosition(p);
 				}
-				for(int j = 0; j < 32; j++) {
+				for(int j = 0; j < MAX_PLAYERS; j++) {
 					g_Ships[j] = ((msg_spielstart*)rd)->ships[j];
 				}
 				g_bStartGame = TRUE;
@@ -457,17 +455,17 @@ HRESULT CSpaceRunner::clientmessagehandler( PVOID pvUserContext, DWORD dwMessage
 			g_pSpaceRunner->SetGameState(GS_MENU);
 			break;
 		case MSG_MOVE:
-			if(tbServer::status != SERVER_GESTARTET) {
+//			if(tbServer::status != SERVER_GESTARTET) {
 				g_pSpaceRunner->message_move = *(msg_move *)rd;
 	
-				tbClient::lock();
-				m_pGame->m_aShip[g_pSpaceRunner->message_move.iShipID].m_vPosition = g_pSpaceRunner->message_move.m_vPosition;
-				m_pGame->m_aShip[g_pSpaceRunner->message_move.iShipID].m_vScaling = g_pSpaceRunner->message_move.m_vScaling;
-				m_pGame->m_aShip[g_pSpaceRunner->message_move.iShipID].m_vXAxis = g_pSpaceRunner->message_move.m_vXAxis;
-				m_pGame->m_aShip[g_pSpaceRunner->message_move.iShipID].m_vYAxis = g_pSpaceRunner->message_move.m_vYAxis;
-				m_pGame->m_aShip[g_pSpaceRunner->message_move.iShipID].m_vZAxis = g_pSpaceRunner->message_move.m_vZAxis;
-				tbClient::unlock();
-			}
+//				tbClient::lock();
+//				m_pGame->m_aShip[g_pSpaceRunner->message_move.iShipID].m_vPosition = g_pSpaceRunner->message_move.m_vPosition;
+//				m_pGame->m_aShip[g_pSpaceRunner->message_move.iShipID].m_vScaling = g_pSpaceRunner->message_move.m_vScaling;
+//				m_pGame->m_aShip[g_pSpaceRunner->message_move.iShipID].m_vXAxis = g_pSpaceRunner->message_move.m_vXAxis;
+//				m_pGame->m_aShip[g_pSpaceRunner->message_move.iShipID].m_vYAxis = g_pSpaceRunner->message_move.m_vYAxis;
+//				m_pGame->m_aShip[g_pSpaceRunner->message_move.iShipID].m_vZAxis = g_pSpaceRunner->message_move.m_vZAxis;
+//				tbClient::unlock();
+//			}
 
 			//tbClient::lock();
 			//memcpy((void*)&g_pSpaceRunner->message_move, (void*) rd, sizeof(g_pSpaceRunner->message_move));

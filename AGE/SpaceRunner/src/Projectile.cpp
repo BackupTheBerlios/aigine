@@ -84,7 +84,7 @@ tbResult CProjectile::MoveProjectile(float fTime)
 
 	// Kollision mit Schiffen überprüfen
 	pHitShip = NULL;
-	for(int s = 0; s < 32; s++)
+	for(int s = 0; s < MAX_PLAYERS; s++)
 	{
 		pShip = &pGame->m_aShip[s];
 		pShipType = pShip->m_pType;

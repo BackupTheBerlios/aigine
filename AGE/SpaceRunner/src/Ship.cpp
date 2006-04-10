@@ -699,7 +699,7 @@ tbResult CShip::Control(float fTime)
 		}
 
 		// Kollisionen vermeiden
-		for(int iShip = 0; iShip < 32; iShip++)
+		for(int iShip = 0; iShip < MAX_PLAYERS; iShip++)
 		{
 			pShip = &m_pGame->m_aShip[iShip];
 			if(!pShip->m_bExists) continue;
@@ -933,7 +933,7 @@ int CShip::FindNextTarget(int iStart,
 						  int iTeam)
 {
 	// Nächstes Schiff in der Liste suchen
-	for(int s = iStart + 1; s < 32; s++)
+	for(int s = iStart + 1; s < MAX_PLAYERS; s++)
 	{
 		// Das Schiff muss exisitieren, es darf nicht das eigene Schiff sein
 		// und es darf dem angegebenen Team NICHT angehören.
@@ -947,7 +947,7 @@ int CShip::FindNextTarget(int iStart,
 	}
 
 	// Kein Schiff gefunden? Nochmal von vorne suchen.
-	for(s = 0; s < 32; s++)
+	for(s = 0; s < MAX_PLAYERS; s++)
 	{
 		if(m_pGame->m_aShip[s].m_bExists &&
 		   &m_pGame->m_aShip[s] != this &&

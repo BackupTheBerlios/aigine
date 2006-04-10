@@ -77,7 +77,7 @@
 #define SERVER_SPIELBEREIT		2
 #define SERVER_SPIEL_LAEUFT		3
 
-#define MAX_PLAYERS				64
+#define MAX_PLAYERS				8
 #define MAX_NAMLEN				32
 
 #define FREI					1

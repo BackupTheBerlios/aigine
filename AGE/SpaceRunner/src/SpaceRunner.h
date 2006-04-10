@@ -25,7 +25,6 @@
 #include "Resource.h"
 
 
-
 // Spielzustände
 enum EGameState {
 	GS_NONE,		// Kein Spielzustand
@@ -47,7 +46,7 @@ struct msg_spielstart {
 	int				numCheckPoints;
 	int				checkPoints[64];
 	tbVector3		pos[64];
-	int				ships[32];
+	int				ships[MAX_PLAYERS];
 };
 
 struct msg_spielende {
@@ -70,12 +69,11 @@ struct msg_control {
 
 struct msg_move {
 	DWORD			msgid;
-	int				iShipID;
-	tbVector3		m_vScaling;
-	tbVector3		m_vXAxis;
-	tbVector3		m_vYAxis;
-	tbVector3		m_vZAxis;
-	tbVector3		m_vPosition;
+	tbVector3		m_vScaling[MAX_PLAYERS];
+	tbVector3		m_vXAxis[MAX_PLAYERS];
+	tbVector3		m_vYAxis[MAX_PLAYERS];
+	tbVector3		m_vZAxis[MAX_PLAYERS];
+	tbVector3		m_vPosition[MAX_PLAYERS];
 };
 
 // CGalactica-Klasse
@@ -125,8 +123,8 @@ public:
 	void send_gameStart();
 	void send_gameEnd(int winner);
 	void send_playership(int ship);
-//	void send_ships(CShip ships[32]);
-	void send_move(int iShipID);
+//	void send_ships(CShip ships[MAX_PLAYERS]);
+	void send_move();
 	void send_control();
 };
 
@@ -136,7 +134,7 @@ extern float*		g_pfButtons;
 extern BOOL*		g_pbButtons;
 extern BOOL*		g_pbOldButtons;
 extern float*		g_pfOldButtons;
-extern int			g_Ships[32];
+extern int			g_Ships[MAX_PLAYERS];
 extern int			g_CheckPoints[64];
 extern int			g_Tunnels[64];
 extern BOOL			g_bStartGame;

@@ -69,7 +69,7 @@ public:
 	CCamera					m_aCamera[1];
 	CCamera*				m_pCamera;				//Camera-Object
 	
-	CShip					m_aShip[32];			// Die Schiffe
+	CShip					m_aShip[MAX_PLAYERS];			// Die Schiffe
 	
 	CShip*					m_pPlayer;				// Zeiger auf das Schiff des Spielers
 	CCheckPoint				m_aCheckPoint[64];		// Die CheckPoints

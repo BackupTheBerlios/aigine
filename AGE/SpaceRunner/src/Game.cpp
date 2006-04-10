@@ -135,7 +135,7 @@ tbResult CGame::Init()
 		}
 
 			// Schiffe erstellen
-		for(int i = 0; i < 32; i++) {
+		for(int i = 0; i < MAX_PLAYERS; i++) {
 			if(g_Ships[i] != -1) {
 				iShip = CreateShip(0, g_Ships[i]);
 				m_aShip[iShip].SetPosition(tbVector3((float)(i) * 100.0f, 0.0f, -2500.0f) + tbVector3Random() * 20.0f);
@@ -148,7 +148,7 @@ tbResult CGame::Init()
 	}
 
 	if(tbServer::status != SERVER_GESTARTET) {
-		for(int i = 0; i < 32; i++) {
+		for(int i = 0; i < MAX_PLAYERS; i++) {
 			if(g_Ships[i] != -1) {
 				iShip = CreateShip(0, g_Ships[i]);
 				m_aShip[iShip].SetPosition(tbVector3((float)(i) * 100.0f, 0.0f, -2500.0f) + tbVector3Random() * 20.0f);
@@ -226,7 +226,7 @@ tbResult CGame::Exit()
 	}
 	*/
 	// Schiffe und Projektile löschen
-	ZeroMemory(m_aShip, 32 * sizeof(CShip));
+	ZeroMemory(m_aShip, MAX_PLAYERS * sizeof(CShip));
 //	ZeroMemory(m_aProjectile, 256 * sizeof(CProjectile));
 	ZeroMemory(m_aCamera, 1 * sizeof(CCamera));
 	ZeroMemory(m_aCheckPoint, 64 * sizeof(CCheckPoint));
@@ -462,20 +462,21 @@ tbResult CGame::Move(float fTime)
 
 	if(tbServer::status == SERVER_GESTARTET) {
 		MoveShips(fTime);
-		for(i=0;i<32;i++) {
-			if(m_aShip[i].m_bExists) {
-                g_pSpaceRunner->send_move(i);
-			}
-		}
+        g_pSpaceRunner->send_move();
 		//m_fTime += fTime;
 	}
 
-	//tbClient::lock();
-	//m_aShip[g_pSpaceRunner->message_move.iShipID].m_mMatrix = g_pSpaceRunner->message_move.mMatrix;
-	//m_aShip[g_pSpaceRunner->message_move.iShipID].m_mInvMatrix = tbMatrixInvert(g_pSpaceRunner->message_move.mMatrix);
-	//tbClient::unlock();
+	tbClient::lock();
+	for(i=0;i<MAX_PLAYERS;i++) {
+		m_aShip[i].m_vPosition = g_pSpaceRunner->message_move.m_vPosition[i];
+		m_aShip[i].m_vScaling = g_pSpaceRunner->message_move.m_vScaling[i];
+		m_aShip[i].m_vXAxis = g_pSpaceRunner->message_move.m_vXAxis[i];
+		m_aShip[i].m_vYAxis = g_pSpaceRunner->message_move.m_vYAxis[i];
+		m_aShip[i].m_vZAxis = g_pSpaceRunner->message_move.m_vZAxis[i];
+	}
+    tbClient::unlock();
 
-	for(i=0;i<32; i++) {
+	for(i=0;i<MAX_PLAYERS; i++) {
 		if(m_aShip[i].m_bExists) {
             m_aShip[i].Move(fTime);
 		}
@@ -1536,7 +1537,7 @@ int CGame::CreateShip(int iTeam,
 	CShip* pShip;
 
 	// Freies Schiff suchen
-	for(int iShip = 0; iShip < 32; iShip++)
+	for(int iShip = 0; iShip < MAX_PLAYERS; iShip++)
 	{
 		pShip = &m_aShip[iShip];
 		if(!pShip->m_bExists)
@@ -1665,7 +1666,7 @@ tbResult CGame::MoveCameras(float fTime) {
 // Bewegt alle Schiffe
 tbResult CGame::MoveShips(float fTime)
 {
-	BOOL		abChecked[32][32];
+	BOOL		abChecked[MAX_PLAYERS][MAX_PLAYERS];
 	CShip*		pShip1;
 	CShip*		pShip2;
 	CCheckPoint*	pCheckPoint;
@@ -1683,7 +1684,7 @@ tbResult CGame::MoveShips(float fTime)
 
 
 	// Jedes Schiff durchgehen
-	for(int iShip = 0; iShip < 32; iShip++)
+	for(int iShip = 0; iShip < MAX_PLAYERS; iShip++)
 	{
 		// Existiert das Schiff?
 		if(m_aShip[iShip].m_bExists)
@@ -1694,10 +1695,10 @@ tbResult CGame::MoveShips(float fTime)
 	}
 
 	// Kollisionen zwischen Schiffen prüfen
-	ZeroMemory(abChecked, 32 * 32 * sizeof(BOOL));
-	for(int s1 = 0; s1 < 32; s1++)
+	ZeroMemory(abChecked, MAX_PLAYERS * MAX_PLAYERS * sizeof(BOOL));
+	for(int s1 = 0; s1 < MAX_PLAYERS; s1++)
 	{
-		for(int s2 = 0; s2 < 32; s2++)
+		for(int s2 = 0; s2 < MAX_PLAYERS; s2++)
 		{
 			if(abChecked[s1][s2] || abChecked[s2][s1]) continue;
 			if(s1 == s2) continue;
@@ -1824,7 +1825,7 @@ tbResult CGame::MoveShips(float fTime)
 tbResult CGame::RenderShips(float fTime)
 {
 	// Jedes Schiff durchgehen
-	for(int iShip = 0; iShip < 32; iShip++)
+	for(int iShip = 0; iShip < MAX_PLAYERS; iShip++)
 	{
 		// Existiert das Schiff?
 		if(m_aShip[iShip].m_bExists)
@@ -1853,7 +1854,7 @@ tbResult CGame::RenderShips(float fTime)
 tbResult CGame::RenderCheckPoints(float fTime)
 {
 	// Jedes Schiff durchgehen
-	for(int iCheckPoint = 0; iCheckPoint < 32; iCheckPoint++)
+	for(int iCheckPoint = 0; iCheckPoint < 64; iCheckPoint++)
 	{
 		// Existiert das Schiff?
 		if(m_aCheckPoint[iCheckPoint].m_bExists)
