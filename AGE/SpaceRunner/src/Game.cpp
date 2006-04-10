@@ -465,12 +465,14 @@ tbResult CGame::Move(float fTime)
 		//m_fTime += fTime;
 	}
 
+	tbClient::lock();
 	for(int i=0; i<32; i++) {
 		m_aShip[i].m_bExists = g_pSpaceRunner->message_move.ships[i].m_bExists;
 		m_aShip[i].m_vVelocity = g_pSpaceRunner->message_move.ships[i].m_vVelocity;
 		m_aShip[i].m_vRotation = g_pSpaceRunner->message_move.ships[i].m_vRotation;
 		m_aShip[i].Move(fTime);
 	}
+	tbClient::unlock();
 
 //	MoveShips(fTime);
 	// Stoppuhr aktualisieren
