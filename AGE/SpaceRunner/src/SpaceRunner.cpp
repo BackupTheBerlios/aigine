@@ -457,7 +457,7 @@ HRESULT CSpaceRunner::clientmessagehandler( PVOID pvUserContext, DWORD dwMessage
 			g_pSpaceRunner->SetGameState(GS_MENU);
 			break;
 		case MSG_MOVE:
-//			if(tbServer::status != SERVER_GESTARTET) {
+			if(tbServer::status != SERVER_GESTARTET) {
 				g_pSpaceRunner->message_move = *(msg_move *)rd;
 	
 				tbClient::lock();
@@ -467,7 +467,7 @@ HRESULT CSpaceRunner::clientmessagehandler( PVOID pvUserContext, DWORD dwMessage
 				m_pGame->m_aShip[g_pSpaceRunner->message_move.iShipID].m_vYAxis = g_pSpaceRunner->message_move.m_vYAxis;
 				m_pGame->m_aShip[g_pSpaceRunner->message_move.iShipID].m_vZAxis = g_pSpaceRunner->message_move.m_vZAxis;
 				tbClient::unlock();
-//			}
+			}
 
 			//tbClient::lock();
 			//memcpy((void*)&g_pSpaceRunner->message_move, (void*) rd, sizeof(g_pSpaceRunner->message_move));
