@@ -399,11 +399,13 @@ void CSpaceRunner::send_move(float fTime) {
 	message_move.fTime = fTime;
 
 	for(int i = 0; i < 32; i++) { 
-		message_move.ships[i] = m_pGame->m_aShip[i];
+		message_move.shipsExists[i] = m_pGame->m_aShip[i].m_bExists;
+		message_move.shipsRotation[i] = m_pGame->m_aShip[i].m_vRotation;
+		message_move.shipsVelocity[i] = m_pGame->m_aShip[i].m_vVelocity;
 	}
-	for(int j = 0; j < 64; j++) {
-        message_move.checkPoints[j] = m_pGame->m_aCheckPoint[j];
-	}
+//	for(int j = 0; j < 64; j++) {
+//        message_move.checkPoints[j] = m_pGame->m_aCheckPoint[j];
+//	}
 
 	tbServer::lock();
 	bdsc.dwBufferSize = sizeof(message_move);

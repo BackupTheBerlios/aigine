@@ -71,8 +71,10 @@ struct msg_control {
 struct msg_move {
 	DWORD			msgid;
 	float			fTime;
-	CCheckPoint		checkPoints[64];
-	CShip			ships[32];
+//	CCheckPoint		checkPoints[64];
+	BOOL			shipsExists[32];
+	tbVector3		shipsVelocity[32];
+	tbVector3		shipsRotation[32];
 };
 
 // CGalactica-Klasse
