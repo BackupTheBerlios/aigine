@@ -465,6 +465,7 @@ tbResult CGame::Move(float fTime)
 		//m_fTime += fTime;
 	}
 
+
 //	MoveShips(fTime);
 	// Stoppuhr aktualisieren
 	m_fTime += fTime;
