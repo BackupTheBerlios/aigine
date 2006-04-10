@@ -397,9 +397,13 @@ void CSpaceRunner::send_move(int iShipID) {
 
 
 	if(m_pGame->m_aShip[iShipID].m_bExists) {
-		message_move.msgid = MSG_MOVE;
-		message_move.iShipID = iShipID;
-		message_move.mMatrix = m_pGame->m_aShip[iShipID].m_mMatrix;
+		message_move.msgid			= MSG_MOVE;
+		message_move.iShipID		= iShipID;
+		message_move.m_vPosition	= m_pGame->m_aShip[iShipID].m_vPosition;
+		message_move.m_vScaling		= m_pGame->m_aShip[iShipID].m_vScaling;
+		message_move.m_vXAxis		= m_pGame->m_aShip[iShipID].m_vXAxis;
+		message_move.m_vYAxis		= m_pGame->m_aShip[iShipID].m_vYAxis;
+		message_move.m_vZAxis		= m_pGame->m_aShip[iShipID].m_vZAxis;
 
 
 		tbServer::lock();
@@ -453,14 +457,17 @@ HRESULT CSpaceRunner::clientmessagehandler( PVOID pvUserContext, DWORD dwMessage
 			g_pSpaceRunner->SetGameState(GS_MENU);
 			break;
 		case MSG_MOVE:
-			if(tbServer::status != SERVER_GESTARTET) {
+//			if(tbServer::status != SERVER_GESTARTET) {
 				g_pSpaceRunner->message_move = *(msg_move *)rd;
 	
 				tbClient::lock();
-				m_pGame->m_aShip[g_pSpaceRunner->message_move.iShipID].m_mMatrix = g_pSpaceRunner->message_move.mMatrix;
-				m_pGame->m_aShip[g_pSpaceRunner->message_move.iShipID].m_mInvMatrix = tbMatrixInvert(g_pSpaceRunner->message_move.mMatrix);
+				m_pGame->m_aShip[g_pSpaceRunner->message_move.iShipID].m_vPosition = g_pSpaceRunner->message_move.m_vPosition;
+				m_pGame->m_aShip[g_pSpaceRunner->message_move.iShipID].m_vScaling = g_pSpaceRunner->message_move.m_vScaling;
+				m_pGame->m_aShip[g_pSpaceRunner->message_move.iShipID].m_vXAxis = g_pSpaceRunner->message_move.m_vXAxis;
+				m_pGame->m_aShip[g_pSpaceRunner->message_move.iShipID].m_vYAxis = g_pSpaceRunner->message_move.m_vYAxis;
+				m_pGame->m_aShip[g_pSpaceRunner->message_move.iShipID].m_vZAxis = g_pSpaceRunner->message_move.m_vZAxis;
 				tbClient::unlock();
-			}
+//			}
 
 			//tbClient::lock();
 			//memcpy((void*)&g_pSpaceRunner->message_move, (void*) rd, sizeof(g_pSpaceRunner->message_move));

@@ -71,7 +71,11 @@ struct msg_control {
 struct msg_move {
 	DWORD			msgid;
 	int				iShipID;
-	tbMatrix		mMatrix;
+	tbVector3		m_vScaling;
+	tbVector3		m_vXAxis;
+	tbVector3		m_vYAxis;
+	tbVector3		m_vZAxis;
+	tbVector3		m_vPosition;
 };
 
 // CGalactica-Klasse
